@@ -1,0 +1,28 @@
+---
+title: "Precipitation"
+---
+
+# How to interpret precipitation data
+
+* Identify trends: Precipitation data can be used to identify long-term trends, such as the global drying trend that has been observed over the past century.
+* Compare different locations: Precipitation data can be used to compare different locations, such as the average annual precipitation in different cities or countries.
+* Identify extreme events: Precipitation data can be used to identify extreme events, such as droughts or floods.
+* Understand the impact of climate change: Precipitation data can be used to understand the impact of climate change, such as the melting of glaciers or the rising sea level.
+
+# What people may incorrectly assume about precipitation data
+
+* Precipitation data is always accurate: Precipitation data is not always accurate. There are a number of factors that can affect the accuracy of precipitation data, such as the quality of the measuring instruments and the location of the sensors.
+* Precipitation data is not affected by human activity: Precipitation data is affected by human activity. The burning of fossil fuels, for example, can lead to changes in the atmosphere that can affect precipitation patterns.
+* Precipitation data is not important: Precipitation data is important. It can be used to understand the climate, track changes in the environment, and make predictions about the future.
+
+# Acquiring precipitation data:
+
+There are a number of providers of precipitation data. Some of the most common providers include the National Oceanic and Atmospheric Administration (NOAA), the World Meteorological Organization (WMO), and the Global Precipitation Climatology Centre (GPCC).
+Precipitation data is available at different scales. Some providers offer data at a global scale, while others offer data at a national or regional scale.
+Precipitation data is available in different formats. Some providers offer data in text format, while others offer data in graphical format.
+
+# Using precipitation data in a model:
+
+Suppose you are a farmer who is trying to decide what crops to plant. You could use precipitation data to identify the crops that are most likely to be successful in your region. You could then use this information to make a decision about what crops to plant.
+Precipitation data is a valuable resource that can be used to understand the climate, track changes in the environment, and make predictions about the future. By understanding how to interpret precipitation data, you can use it to make informed decisions about your life and your community.
+---

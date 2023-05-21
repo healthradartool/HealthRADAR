@@ -1,0 +1,24 @@
+project:
+  type: website
+
+website:
+  search: 
+    location: navbar
+    type: overlay
+  title: "HealthRADAR"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+    pinned: true
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+    toc: true
+
+
+

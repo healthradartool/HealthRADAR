@@ -1,0 +1,151 @@
+---
+title: "Temperature"
+---
+
+# How to interpret temperature data
+
+Temperature data can be interpreted in a variety of ways, depending on the specific goals of the analysis. Some common methods for interpreting temperature data include:
+
+* Identifying trends: Temperature data can be used to identify long-term trends, such as the global warming trend that has been observed over the past century.
+* Comparing different locations: Temperature data can be used to compare different locations, such as the average temperature in different cities or countries.
+Identifying extreme events: Temperature data can be used to identify extreme events, such as heat waves or cold snaps.
+* Understanding the impact of climate change: Temperature data can be used to understand the impact of climate change, such as the melting of glaciers or the rising sea level.
+
+# What people may incorrectly assume about temperature data
+
+There are a number of common misconceptions about temperature data. Some of these misconceptions include:
+
+* Temperature data is always accurate: Temperature data is not always accurate. There are a number of factors that can affect the accuracy of temperature data, such as the quality of the measuring instruments and the location of the sensors.
+* Temperature data is not affected by human activity: Temperature data is affected by human activity. The burning of fossil fuels, for example, releases greenhouse gases into the atmosphere, which trap heat and cause the planet to warm.
+* Temperature data is not important: Temperature data is important. It can be used to understand the climate, track changes in the environment, and make predictions about the future.
+* Temperature data means how hot I feel: Temperature data can mean air temperature or land surface temperature. It is different from humidity however and certainly will differ from the temperature inside a house or under a tree. All of these contribute to how a person experiences the temperature.
+
+It is important to be aware of these misconceptions when interpreting temperature data. By understanding the limitations of temperature data and the factors that can affect its accuracy, we can better use this data to make informed decisions about the future of our planet.
+
+# Acquiring temperature data
+
+There are several providers of temperature data and it is given at different scales. Here is an example of how one may get the minimum, maximum and mean temperature values at a monthly scale for a given iso3 code:
+
+::: {.panel-tabset}
+
+## Python
+
+``` python
+import requests
+from geopy.geocoders import Nominatim
+
+import pandas as pd
+from meteostat import Point, Monthly
+
+
+def get_coordinates_from_iso3(iso3):
+  """
+  Returns the latitude, longitude, and altitude of the location with the given ISO 3 code.
+
+  Args:
+    iso3: The ISO 3 code of the location.
+
+  Returns:
+    A tuple of latitude, longitude, and altitude.
+  """
+
+  # Get the location's name from the ISO 3 code.
+  url = "https://restcountries.com/v3.1/alpha/{}/name".format(iso3)
+  response = requests.get(url)
+  data = response.json()
+  name = data["name"]
+
+  # Get the location's coordinates from the OpenStreetMap API.
+  geolocator = Nominatim(user_agent="my-app")
+  location = geolocator.geocode(name)
+  latitude = location.latitude
+  longitude = location.longitude
+  altitude = location.altitude
+
+  return latitude, longitude, altitude
+
+def get_monthly_temperature(iso3, start = datetime(2022, 1, 1), end = datetime(2023, 12, 31)):
+  """
+  Returns a Pandas dataframe consisting of 2 years worth of monthly temperature data for the given ISO 3 code.
+
+  Args:
+    iso3: The ISO 3 code of the location for which to get temperature data.
+    start: The month to start collecting data as a datetime object
+    end: The month to conclude collecting data as a datetime object
+
+  Returns:
+    A Pandas dataframe with the following columns:
+      Year: The year of the temperature data.
+      Month: The month of the temperature data.
+      Temp_Min: The minimum temperature for the month.
+      Temp_Avg: The average temperature for the month.
+      Temp_Max: The maximum temperature for the month.
+  """
+
+  # Create a Point object for the given ISO 3 code.
+  tpr = Point(iso3)
+
+  # Get monthly data for 2022 and 2023.
+  data = Monthly(tpr, start, end)
+  data = data.fetch()
+
+  # Convert the data to a Pandas dataframe.
+  df = pd.DataFrame(data[["year", "month", "tmin", "tavg", "tmax"]])
+
+  # Rename the columns.
+  df.columns = ["Year", "Month", "Temp_Min", "Temp_Avg", "Temp_Max"]
+  
+  return df
+```
+
+## R
+
+``` r
+library(rnoaa)
+
+get_temperature_data <- function(iso3_code) {
+  # Get the monthly temperature data for the specified ISO 3 code
+  data <- rnoaa::ncdc(
+    dataset = "GHCND",
+    country = iso3_code,
+    start_date = "2022-01-01",
+    end_date = "2023-12-31",
+    verbose = FALSE
+  )
+
+  # Convert the data to a tibble
+  data <- as_tibble(data)
+
+  # Add columns for year, month, and temperature
+  data <- data %>%
+    mutate(
+      year = year(date),
+      month = month(date),
+      temp_min = min(tavg),
+      temp_avg = mean(tavg),
+      temp_max = max(tavg)
+    )
+
+  # Return the tibble
+  return(data)
+}
+```
+
+:::
+
+# Incorporating Temperature Data in a Model
+
+## Temperature and Malaria Transmission
+Malaria is a mosquito-borne disease caused by the Plasmodium parasite. The parasite is transmitted when an infected mosquito bites a human. The parasite then travels to the liver, where it matures and then infects red blood cells. The infected red blood cells then rupture, releasing more parasites into the bloodstream. This can cause a fever, chills, and other symptoms.
+
+The transmission of malaria is affected by a number of factors, including temperature. The Plasmodium parasite can only survive in a certain range of temperatures. The optimal temperature for malaria transmission is between 20 and 27 degrees Celsius. Below this temperature, the parasite cannot survive, and above this temperature, the parasite's development is slowed down.
+
+## Mathematical Models of Malaria
+Mathematical models are used to study the transmission of malaria and to predict how changes in temperature will affect malaria transmission. These models are based on the basic principles of epidemiology, which is the study of the spread of diseases. Mathematical models can be used to identify the factors that are most important in the transmission of malaria, and to test different strategies for controlling the disease.
+
+## Incorporating Temperature Data in Mathematical Models
+Temperature data can be incorporated into mathematical models of malaria in a number of ways. One way is to use historical temperature data to calibrate the model. This means adjusting the parameters of the model so that it accurately predicts the observed patterns of malaria transmission. Another way to incorporate temperature data is to use real-time temperature data to predict future patterns of malaria transmission. This can be done by using a weather forecast model to predict future temperatures, and then using the mathematical model to predict how these changes in temperature will affect malaria transmission.
+
+The incorporation of temperature data into mathematical models of malaria has a number of benefits. It can help to improve the accuracy of the models, and it can be used to predict how climate change will affect malaria transmission. This information can be used to develop more effective strategies for controlling malaria.
+
+---
