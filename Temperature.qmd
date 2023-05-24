@@ -28,76 +28,6 @@ There are several providers of temperature data and it is given at different sca
 
 ::: {.panel-tabset}
 
-## Python
-
-``` python
-import requests
-from geopy.geocoders import Nominatim
-
-import pandas as pd
-from meteostat import Point, Monthly
-
-
-def get_coordinates_from_iso3(iso3):
-  """
-  Returns the latitude, longitude, and altitude of the location with the given ISO 3 code.
-
-  Args:
-    iso3: The ISO 3 code of the location.
-
-  Returns:
-    A tuple of latitude, longitude, and altitude.
-  """
-
-  # Get the location's name from the ISO 3 code.
-  url = "https://restcountries.com/v3.1/alpha/{}/name".format(iso3)
-  response = requests.get(url)
-  data = response.json()
-  name = data["name"]
-
-  # Get the location's coordinates from the OpenStreetMap API.
-  geolocator = Nominatim(user_agent="my-app")
-  location = geolocator.geocode(name)
-  latitude = location.latitude
-  longitude = location.longitude
-  altitude = location.altitude
-
-  return latitude, longitude, altitude
-
-def get_monthly_temperature(iso3, start = datetime(2022, 1, 1), end = datetime(2023, 12, 31)):
-  """
-  Returns a Pandas dataframe consisting of 2 years worth of monthly temperature data for the given ISO 3 code.
-
-  Args:
-    iso3: The ISO 3 code of the location for which to get temperature data.
-    start: The month to start collecting data as a datetime object
-    end: The month to conclude collecting data as a datetime object
-
-  Returns:
-    A Pandas dataframe with the following columns:
-      Year: The year of the temperature data.
-      Month: The month of the temperature data.
-      Temp_Min: The minimum temperature for the month.
-      Temp_Avg: The average temperature for the month.
-      Temp_Max: The maximum temperature for the month.
-  """
-
-  # Create a Point object for the given ISO 3 code.
-  tpr = Point(iso3)
-
-  # Get monthly data for 2022 and 2023.
-  data = Monthly(tpr, start, end)
-  data = data.fetch()
-
-  # Convert the data to a Pandas dataframe.
-  df = pd.DataFrame(data[["year", "month", "tmin", "tavg", "tmax"]])
-
-  # Rename the columns.
-  df.columns = ["Year", "Month", "Temp_Min", "Temp_Avg", "Temp_Max"]
-  
-  return df
-```
-
 ## R
 
 ``` r
@@ -131,6 +61,77 @@ get_temperature_data <- function(iso3_code) {
 }
 ```
 
+## Python
+
+``` python
+import requests
+from geopy.geocoders import Nominatim
+
+import pandas as pd
+from meteostat import Point, Monthly
+
+
+def get_monthly_temperature(iso3, start = datetime(2022, 1, 1), end = datetime(2023, 12, 31)):
+  """
+  Returns a Pandas dataframe consisting of 2 years worth of monthly temperature data for the given ISO 3 code.
+
+  Args:
+    iso3: The ISO 3 code of the location for which to get temperature data.
+    start: The month to start collecting data as a datetime object
+    end: The month to conclude collecting data as a datetime object
+
+  Returns:
+    A Pandas dataframe with the following columns:
+      Year: The year of the temperature data.
+      Month: The month of the temperature data.
+      Temp_Min: The minimum temperature for the month.
+      Temp_Avg: The average temperature for the month.
+      Temp_Max: The maximum temperature for the month.
+  """
+
+  # Create a Point object for the given ISO 3 code.
+  tpr = Point(iso3)
+
+  # Get monthly data for 2022 and 2023.
+  data = Monthly(tpr, start, end)
+  data = data.fetch()
+
+  # Convert the data to a Pandas dataframe.
+  df = pd.DataFrame(data[["year", "month", "tmin", "tavg", "tmax"]])
+
+  # Rename the columns.
+  df.columns = ["Year", "Month", "Temp_Min", "Temp_Avg", "Temp_Max"]
+  
+  return df
+
+
+def get_coordinates_from_iso3(iso3):
+  """
+  Returns the latitude, longitude, and altitude of the location with the given ISO 3 code.
+
+  Args:
+    iso3: The ISO 3 code of the location.
+
+  Returns:
+    A tuple of latitude, longitude, and altitude.
+  """
+
+  # Get the location's name from the ISO 3 code.
+  url = "https://restcountries.com/v3.1/alpha/{}/name".format(iso3)
+  response = requests.get(url)
+  data = response.json()
+  name = data["name"]
+
+  # Get the location's coordinates from the OpenStreetMap API.
+  geolocator = Nominatim(user_agent="my-app")
+  location = geolocator.geocode(name)
+  latitude = location.latitude
+  longitude = location.longitude
+  altitude = location.altitude
+
+  return latitude, longitude, altitude
+```
+
 :::
 
 # Incorporating Temperature Data in a Model
@@ -148,4 +149,3 @@ Temperature data can be incorporated into mathematical models of malaria in a nu
 
 The incorporation of temperature data into mathematical models of malaria has a number of benefits. It can help to improve the accuracy of the models, and it can be used to predict how climate change will affect malaria transmission. This information can be used to develop more effective strategies for controlling malaria.
 
----

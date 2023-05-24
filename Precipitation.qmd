@@ -25,4 +25,3 @@ Precipitation data is available in different formats. Some providers offer data 
 
 Suppose you are a farmer who is trying to decide what crops to plant. You could use precipitation data to identify the crops that are most likely to be successful in your region. You could then use this information to make a decision about what crops to plant.
 Precipitation data is a valuable resource that can be used to understand the climate, track changes in the environment, and make predictions about the future. By understanding how to interpret precipitation data, you can use it to make informed decisions about your life and your community.
----
