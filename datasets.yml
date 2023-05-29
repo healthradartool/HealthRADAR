@@ -19,8 +19,8 @@
   tiles:
     - title: IRS
       subtitle: Indoor Residual Spraying
-      href: datasets/climate/IRS.html
-      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/IRS.qmd
+      href: datasets/intervention/IRS.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/intervention/IRS.qmd
       thumbnail: img/articles-irs.png
 
 - category: Demographic
@@ -29,6 +29,6 @@
   tiles:
     - title: Demography
       subtitle: population specific data
-      href: datasets/climate/Demography.html
-      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/Demography.qmd
+      href: datasets/demographic/Demography.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/demographic/Demography.qmd
       thumbnail: img/articles-demography.png
