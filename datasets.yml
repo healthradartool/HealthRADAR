@@ -1,0 +1,34 @@
+- category: Climate
+  description: |
+    All climate relevant data
+  tiles:
+    - title: Temperature
+      subtitle: at various scales
+      href: datasets/climate/Temperature.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/Temperature.qmd
+      thumbnail: img/articles-temperature.png
+    - title: Precipitation
+      subtitle: at various scales
+      href: datasets/climate/Precipitation.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/Precipitation.qmd
+      thumbnail: img/articles-precipitation.png
+
+- category: Interventions
+  description: |
+    Malaria specific interventions
+  tiles:
+    - title: IRS
+      subtitle: Indoor Residual Spraying
+      href: datasets/climate/IRS.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/IRS.qmd
+      thumbnail: img/articles-irs.png
+
+- category: Demographic
+  description: |
+    Demography is all about the population of interest
+  tiles:
+    - title: Demography
+      subtitle: population specific data
+      href: datasets/climate/Demography.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/Demography.qmd
+      thumbnail: img/articles-demography.png

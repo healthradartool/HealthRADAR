@@ -1,9 +1,91 @@
 ---
-title: "HealthRADAR"
+pagetitle: "Health: RADAR"
+format:
+  html:
+    toc: false
+search: false
+execute:
+  echo: false
+listing:
+  - id: datasets
+    template: datasets.ejs
+    contents: datasets.yml
+description: |
+  Health RADAR is a tool to acquire context and access to optionalisable data for modelling malaria in Southern Africa.
+
 ---
 
-# Welcome to Health: RADAR
+::: {#hero-banner .column-screen}
+::: {.grid .column-page}
+::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
+::: h1
+Welcome
+:::
+Visit our [About](about.html "Link to the About page") page to learn more find the datasets below to get started:
+:::
+:::
+:::
 
-Visit our [About](about.html "Link to the About page") page to learn more or use the Search feature at the top left to get started.
 
-We have information on [temperature](temperature.html "Link to the temperature page"), [precipitation](precipitation.html "Link to the precipitation page") and for some reason [IRS](irs.html "Link to the Indoor Residual Spraying page").
+::: {#datasets .column-page}
+:::
+
+```{=html}
+<style>
+
+#hero-banner {
+  padding-top: 35px;
+  background-color: rgb(237,243,249);
+}
+
+#quarto-content main { 
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.headline {
+font-size: 1.25em;
+font-weight: 300;
+padding-bottom: 1em;
+}
+
+.headline p {
+  margin: 0;
+  padding-bottom: 0.2rem;
+}
+
+.headline a {
+  text-decoration: none;
+}
+
+.headline ul li {
+  margin-bottom: 0.3em;
+}
+
+.carousel.card {
+  padding-top: 2em;
+}
+
+.carousel img {
+  width: 70%;
+  margin-bottom: 110px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  margin-bottom: 110px;
+}
+
+.carousel-caption {
+  padding-top: 1em;
+}
+
+.touch {
+  
+}
+</style>
+```

@@ -1,0 +1,93 @@
+---
+  title: "Demography"
+---
+
+# How to interpret demographic data
+
+Demographic data is typically arrived at through a census, the result of which is an estimate presented with confidence intervals. The confidence intervals are important because they indicate the level of uncertainty in the estimate. For example, if the confidence interval is wide, then the estimate is less certain than if the confidence interval is narrow.
+
+The kinds of data one might wish to acquire include:
+
+* Total population
+* Population stratified by age group, sex, socioeconomic status, etc.
+* Birth rate and mortality rate
+* Migration rates both within and between countries (especially when considering where malaria could be aqcuired/where it could be spread to)
+* Population density
+* Household structure (e.g. number of people per household, number of households per dwelling, etc.)
+
+For models considering a time period where these values vary significantly, a timeseries of point estimates and confidence intervals may be more appropriate.
+
+# What people may incorrectly assume about demographic data
+
+Demographic data is often assumed to be accurate, but this is not always the case. For example, in some countries, the census is conducted by the government, which may have an incentive to overestimate the population in order to receive more funding from international organizations.
+In other countries, the census is conducted by NGOs, which may have an incentive to underestimate the population in order to receive more funding from international organizations. 
+In addition, demographic data is often assumed to be representative of the entire population, but this is not always the case. For example, in some countries, the census is only conducted in urban areas, which may not be representative of the entire population.
+
+When considering the probability of infection within the population note that not all members of the population share the same risk. Common indicators for risk include spatial location and socioeconomic status. Even amongst those who have a similar risk of getting infected there factors associated with differences in severity of the disease (eg, children and immunocompromised populations are more likely to succomb to the disease).
+
+Birth rate is often assumed to be constant and births are often assumed to be an event with uniform probability amongst all women aged 15-50. As always, one should list such assumptions in the model description and consider their accuracy given the context of region of interest.
+
+
+# How to acquire demographic data
+
+Demographic data can be acquired from a number of sources, including:
+  
+* Governing body for the national census which pertains to the area of interest
+* [The World Bank](https://data.worldbank.org/indicator/SP.POP.TOTL)
+* [The United Nations](https://population.un.org/wpp/Download/Standard/Population/)
+
+# The appropriate use of demographic data in a model of malaria in Southern Africa
+
+A common use case for mathematical modelling is to answer questions about optimal resource allocation for malaria control. In a susceptible population such as South Africa, incidence is sustained by imported malaria from neighbouring Mozambique. Thus it may be desirable to incorporate the migratory patterns between South Africa and malaria endemic regions such as Mozambique.
+
+Another question may be how climate change will affect the spread of malaria. In this case, it may be desirable to incorporate the effects of climate change on the population of South Africa before including the population in the model.
+
+Here is an example of how to acquire estimated population values until the year 2100 for all E8 Regions from the United Nations.
+
+::: {.panel-tabset}
+
+## R
+
+``` r
+# Load the libraries
+library(tidyverse)
+
+# Read the data
+iso3E8 = strsplit1('AGO,BWA,NAM,MOZ,SWZ,ZAF,ZMB,ZWE', ',')
+if (!file.exists('tbUN.rds')) {
+  tbUN <- readxl::read_excel("https://population.un.org/wpp/Download/Files/2_Indicators%20(Probabilistic)/EXCEL_FILES/2_Population/UN_PPP2022_Output_PopTot.xlsx", 
+                             skip=16, sheet='Median') %>%
+  select(iso3=`ISO3 Alpha-code`, location=`Region, subregion, country or area *`, `2022`:`2100`)
+  filter(iso3 %in% iso3E8) %>%
+  pivot_longer(cols = -c(iso3, Variant, Notes),
+               names_to = 'year',
+               values_to = 'population') %>%
+  mutate(year = as.numeric(year))
+  write_csv(tbUN, 'tbUN.csv')
+}
+
+tbUN <- read_csv('tbUN.csv')
+```
+
+## Python
+
+``` python
+import pandas as pd
+import os.path
+
+# Read the data
+iso3E8 = ["AGO","BWA","NAM","MOZ","SWZ","ZAF","ZMB","ZWE"]
+if not os.path.exists('tbUN.csv'):
+  dfUN = pd.read_excel("https://population.un.org/wpp/Download/Files/2_Indicators%20(Probabilistic)/EXCEL_FILES/2_Population/UN_PPP2022_Output_PopTot.xlsx", 
+                       skiprows=16, sheet_name='Median')\
+            .rename(columns={'ISO3 Alpha-code': 'iso3', 'Region, subregion, country or area *': 'location'})\
+            .filter(regex=("iso3|location|^\\d{4}$"))\
+            .query('iso3 in @iso3E8')\
+            .melt(id_vars=['iso3', 'location'], var_name='year', value_name='population')\
+            .assign(year=lambda x: pd.to_numeric(x.year))
+  dfUN.to_csv('tbUN.csv', index=False)
+
+dfUN = pd.read_csv('tbUN.csv')
+```
+
+:::
