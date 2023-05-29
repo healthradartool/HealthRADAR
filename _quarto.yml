@@ -6,6 +6,7 @@ website:
     location: navbar
     type: overlay
   title: "HealthRADAR"
+  favicon: "favicon.ico"
   navbar:
     left:
       - href: index.qmd
