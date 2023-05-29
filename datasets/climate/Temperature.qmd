@@ -2,7 +2,7 @@
 title: "Temperature"
 ---
 
-# How to interpret temperature data
+## How to interpret temperature data
 
 Temperature data can be interpreted in a variety of ways, depending on the specific goals of the analysis. Some common methods for interpreting temperature data include:
 
@@ -11,7 +11,7 @@ Temperature data can be interpreted in a variety of ways, depending on the speci
 Identifying extreme events: Temperature data can be used to identify extreme events, such as heat waves or cold snaps.
 * Understanding the impact of climate change: Temperature data can be used to understand the impact of climate change, such as the melting of glaciers or the rising sea level.
 
-# What people may incorrectly assume about temperature data
+## What people may incorrectly assume about temperature data
 
 There are a number of common misconceptions about temperature data. Some of these misconceptions include:
 
@@ -22,7 +22,7 @@ There are a number of common misconceptions about temperature data. Some of thes
 
 It is important to be aware of these misconceptions when interpreting temperature data. By understanding the limitations of temperature data and the factors that can affect its accuracy, we can better use this data to make informed decisions about the future of our planet.
 
-# Acquiring temperature data
+## Acquiring temperature data
 
 There are several providers of temperature data and it is given at different scales. Here is an example of how one may get the minimum, maximum and mean temperature values at a monthly scale for a given iso3 code:
 
@@ -134,17 +134,17 @@ def get_coordinates_from_iso3(iso3):
 
 :::
 
-# Incorporating Temperature Data in a Model
+## Incorporating Temperature Data in a Model
 
-## Temperature and Malaria Transmission
+### Temperature and Malaria Transmission
 Malaria is a mosquito-borne disease caused by the Plasmodium parasite. The parasite is transmitted when an infected mosquito bites a human. The parasite then travels to the liver, where it matures and then infects red blood cells. The infected red blood cells then rupture, releasing more parasites into the bloodstream. This can cause a fever, chills, and other symptoms.
 
 The transmission of malaria is affected by a number of factors, including temperature. The Plasmodium parasite can only survive in a certain range of temperatures. The optimal temperature for malaria transmission is between 20 and 27 degrees Celsius. Below this temperature, the parasite cannot survive, and above this temperature, the parasite's development is slowed down.
 
-## Mathematical Models of Malaria
+### Mathematical Models of Malaria
 Mathematical models are used to study the transmission of malaria and to predict how changes in temperature will affect malaria transmission. These models are based on the basic principles of epidemiology, which is the study of the spread of diseases. Mathematical models can be used to identify the factors that are most important in the transmission of malaria, and to test different strategies for controlling the disease.
 
-## Incorporating Temperature Data in Mathematical Models
+### Incorporating Temperature Data in Mathematical Models
 Temperature data can be incorporated into mathematical models of malaria in a number of ways. One way is to use historical temperature data to calibrate the model. This means adjusting the parameters of the model so that it accurately predicts the observed patterns of malaria transmission. Another way to incorporate temperature data is to use real-time temperature data to predict future patterns of malaria transmission. This can be done by using a weather forecast model to predict future temperatures, and then using the mathematical model to predict how these changes in temperature will affect malaria transmission.
 
 The incorporation of temperature data into mathematical models of malaria has a number of benefits. It can help to improve the accuracy of the models, and it can be used to predict how climate change will affect malaria transmission. This information can be used to develop more effective strategies for controlling malaria.
