@@ -1,0 +1,11 @@
+/*-- scss:defaults --*/
+$body-bg-hero: #2C3E50;
+$link-color: #8EC3EB;
+$text-muted: #B8C6CF;
+
+.navbar-brand > img {
+  padding: 32px;
+  background: url("img/logo-dark.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}

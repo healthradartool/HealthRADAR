@@ -2,23 +2,23 @@ project:
   type: website
 
 website:
-  search: 
-    location: navbar
-    type: overlay
   title: "HealthRADAR"
+  image: "img/logo-light.png"
   favicon: "favicon.ico"
   navbar:
+    logo: "img/logo-light.png"
     left:
       - href: index.qmd
         text: Home
+      - href: about.qmd
+        text: About
     pinned: true
 
 format:
   html:
     theme:
-      light: flatly
-      dark: darkly
-    css: styles.css
+      light: [flatly, style-light.scss, style-base.scss]
+      dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
 
 
