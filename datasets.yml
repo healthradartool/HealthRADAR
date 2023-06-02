@@ -4,13 +4,13 @@
   tiles:
     - title: Temperature
       subtitle: at various scales
-      href: datasets/climate/Temperature.html
-      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/Temperature.qmd
+      href: datapages/climate/Temperature.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/climate/Temperature.qmd
       thumbnail: img/articles-temperature.png
     - title: Precipitation
       subtitle: at various scales
-      href: datasets/climate/Precipitation.html
-      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/climate/Precipitation.qmd
+      href: datapages/climate/Precipitation.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/climate/Precipitation.qmd
       thumbnail: img/articles-precipitation.png
 
 - category: Interventions
@@ -19,8 +19,8 @@
   tiles:
     - title: IRS
       subtitle: Indoor Residual Spraying
-      href: datasets/intervention/IRS.html
-      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/intervention/IRS.qmd
+      href: datapages/intervention/IRS.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/intervention/IRS.qmd
       thumbnail: img/articles-irs.png
 
 - category: Demographic
@@ -29,6 +29,6 @@
   tiles:
     - title: Demography
       subtitle: population specific data
-      href: datasets/demographic/Demography.html
-      code: https://github.com/uct-masha/HealthRADAR/blob/main/datasets/demographic/Demography.qmd
+      href: datapages/demographic/Demography.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/demographic/Demography.qmd
       thumbnail: img/articles-demography.png
