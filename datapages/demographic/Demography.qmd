@@ -9,9 +9,9 @@ Demographic data is typically arrived at through a census, the result of which i
 The kinds of data one might wish to acquire include:
 
 * Total population
-* Population count stratified by age group, sex, socioeconomic status, etc.
+* Population count stratified by age group, sex, socio-economic status, etc.
 * Birth rate and mortality rate
-* Migration rates both within and between countries (especially when considering where malaria could be aqcuired/where it could be spread to)
+* Migration rates both within and between countries (especially when considering where malaria could be acquired/where it could be spread to)
 * Population density
 * Household structure (e.g. number of people per household, number of households per dwelling, etc.)
 
@@ -42,52 +42,4 @@ A common use case for mathematical modelling is to answer questions about optima
 
 Another question may be how climate change will affect the spread of malaria. In this case, it may be desirable to incorporate the effects of climate change on the population of South Africa before including the population in the model.
 
-Here is an example of how to acquire estimated population values until the year 2100 for all E8 Regions from the United Nations.
-
-::: {.panel-tabset}
-
-## R
-
-``` r
-# Load the libraries
-library(tidyverse)
-
-# Read the data
-iso3E8 = strsplit1('AGO,BWA,NAM,MOZ,SWZ,ZAF,ZMB,ZWE', ',')
-if (!file.exists('tbUN.rds')) {
-  tbUN <- readxl::read_excel("https://population.un.org/wpp/Download/Files/2_Indicators%20(Probabilistic)/EXCEL_FILES/2_Population/UN_PPP2022_Output_PopTot.xlsx", 
-                             skip=16, sheet='Median') %>%
-  select(iso3=`ISO3 Alpha-code`, location=`Region, subregion, country or area *`, `2022`:`2100`)
-  filter(iso3 %in% iso3E8) %>%
-  pivot_longer(cols = -c(iso3, Variant, Notes),
-               names_to = 'year',
-               values_to = 'population') %>%
-  mutate(year = as.numeric(year))
-  write_csv(tbUN, 'tbUN.csv')
-}
-
-tbUN <- read_csv('tbUN.csv')
-```
-
-## Python
-
-``` python
-import pandas as pd
-import os.path
-
-# Read the data
-iso3E8 = ["AGO","BWA","NAM","MOZ","SWZ","ZAF","ZMB","ZWE"]
-if not os.path.exists('tbUN.csv'):
-  dfUN = pd.read_excel("https://population.un.org/wpp/Download/Files/2_Indicators%20(Probabilistic)/EXCEL_FILES/2_Population/UN_PPP2022_Output_PopTot.xlsx", 
-                       skiprows=16, sheet_name='Median')\
-            .rename(columns={'ISO3 Alpha-code': 'iso3', 'Region, subregion, country or area *': 'location'})\
-            .filter(regex=("iso3|location|^\\d{4}$"))\
-            .query('iso3 in @iso3E8')\
-            .melt(id_vars=['iso3', 'location'], var_name='year', value_name='population')\
-            .assign(year=lambda x: pd.to_numeric(x.year))
-  dfUN.to_csv('tbUN.csv', index=False)
-
-dfUN = pd.read_csv('tbUN.csv')
-```
-
-:::
+* [UN](/datasets/population_un.html)

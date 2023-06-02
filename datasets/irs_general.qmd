@@ -1,0 +1,64 @@
+---
+title: "IRS Data"
+---
+
+It is uncommon for IRS spray data to be publicly available. Generally this data is collected by the programmes who implement the IRS intervention and may be shared with researchers directly. 
+
+We will illustrate an example of how one might process this data so that it is useful in a model:
+
+::: {.panel-tabset}
+
+## R
+
+``` r
+# Load the libraries
+library(dplyr)
+library(tidyr)
+
+# Read the data
+tbIRS <- read_tibble("tbIRS.csv")
+
+# Convert the data to a function
+calculate_efficacy <- function(time, pop_at_risk, decay_rate=0.05) {
+  
+  # Get the data for the current time
+  tbIRS_current <- tbIRS %>%
+    filter(year >= time) %>%
+    filter(month >= time)
+  
+  # Calculate the number of people protected
+  people_protected <- tbIRS_current$people_sleeping_in_IRS_protected_area / pop_at_risk
+  
+  # Calculate the efficacy
+  efficacy <- people_protected * (1 - decay_rate)^time
+  
+  return(efficacy)
+}
+```
+
+## Python
+
+``` python
+import pandas as pd
+
+# Read the data
+tbIRS = pd.read_csv("tbIRS.csv")
+
+# Convert the data to a function
+def calculate_efficacy(time, decay_rate=0.05, pop_at_risk):
+  
+  # Get the data for the current time
+  tbIRS_current = tbIRS[tbIRS["year"] >= time]
+  tbIRS_current = tbIRS_current[tbIRS["month"] >= time]
+  
+  # Calculate the number of people protected
+  people_protected = tbIRS_current["people_sleeping_in_IRS_protected_area"] / pop_at_risk
+
+  # Calculate the efficacy
+  efficacy = people_protected * (1 - decay_rate)**time
+  
+  return efficacy
+```
+
+:::
+
