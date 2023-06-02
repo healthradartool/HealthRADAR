@@ -5,5 +5,7 @@
 .Ruserdata
 .DS_Store
 
+/renv/library
+/_publish.yml
 /.quarto/
 /_site/

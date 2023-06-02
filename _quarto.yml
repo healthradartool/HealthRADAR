@@ -21,5 +21,6 @@ format:
       dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
 
-
+execute:
+  freeze: auto
 
