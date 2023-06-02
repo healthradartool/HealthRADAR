@@ -1,0 +1,83 @@
+---
+title: "Kunden Precipitation Data"
+---
+
+## Kunden
+
+Here is an example of how one may get the data:
+
+::: panel-tabset
+## R (opendata)
+
+``` r
+# Function to download monthly precipitation data for Botswana between 2010 and 2023
+# Check if the `ncdf4` package is installed
+if (!requireNamespace("ncdf4", quietly = TRUE)) {
+  install.packages("ncdf4")
+}
+
+# Set the URL of the data file
+data_url <- "https://kunden.dwd.de/cmt/kunden/service/opendata/climate_timeseries/gridded/precipitation/africa/monthly/africa_prec_mon_grid_africa_full.nc4"
+
+# Download the data file
+download.file(data_url, "botswana_precipitation.nc4")
+
+# Read the data file into R
+precipitation <- ncdf4::nc_open("botswana_precipitation.nc4")
+
+# Extract the precipitation data for Botswana
+botswana_precipitation <- precipitation$var[[1]][, 1:15, 1:10]
+
+# Convert the precipitation data to a data frame
+botswana_precipitation <- data.frame(
+  Year = seq(2010, 2023),
+  Month = 1:12,
+  Precipitation = botswana_precipitation
+)
+```
+
+## R (GPCC)
+
+``` r
+# Load the `ncdf4` library
+library(ncdf4)
+
+# Download the GPCC precipitation data for the month of January 2023
+url <- "https://kunden.dwd.de/GPCC/data/GPCC_full_monthly.nc"
+nc <- nc_open(url)
+
+# Extract the precipitation data
+prec <- ncvar_get(nc, "precipitation")
+
+# Convert the precipitation data to a data frame
+prec_df <- data.frame(prec, time = ncvar_get(nc, "time"))
+
+# Plot the precipitation data
+ggplot(prec_df, aes(x = time, y = prec)) +
+  geom_line() +
+  labs(x = "Time (Month)", y = "Precipitation (mm)")
+```
+
+## Python (GPCC)
+
+``` python
+# Import the `netCDF4` library
+import netCDF4
+
+# Download the GPCC precipitation data for the month of January 2023
+url = "https://kunden.dwd.de/GPCC/data/GPCC_full_monthly.nc"
+nc = netCDF4.Dataset(url)
+
+# Extract the precipitation data
+prec = nc.variables['precipitation'][:]
+
+# Convert the precipitation data to a Pandas DataFrame
+prec_df = pd.DataFrame({'prec': prec, 'time': nc.variables['time'][:]})
+
+# Plot the precipitation data
+plt.plot(prec_df['time'], prec_df['prec'])
+plt.xlabel('Time (Month)')
+plt.ylabel('Precipitation (mm)')
+plt.show()
+```
+:::

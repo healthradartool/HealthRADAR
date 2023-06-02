@@ -17,7 +17,12 @@ title: "Precipitation"
 
 ## Acquiring precipitation data:
 
-There are a number of providers of precipitation data. Some of the most common providers include the National Oceanic and Atmospheric Administration (NOAA), the World Meteorological Organization (WMO), and the Global Precipitation Climatology Centre (GPCC).
+There are a number of providers of precipitation data. Here are some specific examples of data sources for monthly precipitation data:
+
+* Global Precipitation Climatology Centre (GPCC): The GPCC is a data center that provides global monthly precipitation data. The data is collected from ground-based gauges and satellites.
+* Climate Prediction Center (CPC): The CPC is a data center that provides monthly precipitation data for the United States. The data is collected from ground-based gauges and satellites.
+* National Centers for Environmental Prediction (NCEP): The NCEP is a data center that provides global monthly precipitation data. The data is collected from ground-based gauges and satellites.
+
 Precipitation data is available at different scales. Some providers offer data at a global scale, while others offer data at a national or regional scale.
 Precipitation data is available in different formats. Some providers offer data in text format, while others offer data in graphical format.
 
@@ -25,3 +30,5 @@ Precipitation data is available in different formats. Some providers offer data 
 
 Suppose you are a farmer who is trying to decide what crops to plant. You could use precipitation data to identify the crops that are most likely to be successful in your region. You could then use this information to make a decision about what crops to plant.
 Precipitation data is a valuable resource that can be used to understand the climate, track changes in the environment, and make predictions about the future. By understanding how to interpret precipitation data, you can use it to make informed decisions about your life and your community.
+
+* [Global Precipitation Climatology Centre (GPCC)](/datasets/precipitation_kmdn.html)
