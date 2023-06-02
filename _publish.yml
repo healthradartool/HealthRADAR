@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: d64aea11-02d8-4823-a5b0-abe80c353cdf
+      url: 'https://quartopub.com/sites/jfunction/healthradar'
