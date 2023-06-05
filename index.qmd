@@ -6,10 +6,6 @@ format:
 search: false
 execute:
   echo: false
-listing:
-  - id: datasets
-    template: datasets.ejs
-    contents: datasets.yml
 description: |
   Health RADAR is a tool to acquire context and access to optionalisable data for modelling malaria in Southern Africa.
 
@@ -21,7 +17,7 @@ description: |
 ::: h1
 Welcome
 :::
-Visit our [About](about.html "Link to the About page") page to learn more find the datasets below to get started:
+Visit our [About](about.html "Link to the About page") page to learn more about this site.
 :::
 :::
 :::
@@ -31,5 +27,15 @@ Note that this is version of "Health RADAR" is for illustration purposes only.
 Most of the current text was generated using AI.
 :::
 
-::: {#datasets .column-page}
-:::
+## How to use Health RADAR:
+
+Health RADAR is a digital tool that aims to catalyse the next generation of
+malaria related CSID research in four countries in Southern Africa. In particular, the aims are:
+
+* To provide a central location for data relevant to include in and accelerate CSID
+modelling of malaria in the four frontline countries in the E8
+* To catalyse CSID modelling calibrated to operationalisable datasets where the data
+characteristics and geographic context are well incorporated
+* To establish a community of African modellers and analysts to support the tool
+
+Though the digital tool may eventually be extended beyond malaria and into other geographic regions, the principal aim remains the same: to enable the development of CSID geographic context are well incorporated.

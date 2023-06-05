@@ -10,6 +10,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: datapages.qmd
+        text: Data Pages
       - href: about.qmd
         text: About
     pinned: true
