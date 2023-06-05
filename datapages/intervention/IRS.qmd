@@ -13,11 +13,11 @@ Indoor residual spraying (IRS) is a public health measure that involves spraying
 
 When interpreting IRS data, it is important to consider the following factors:
   
-The type of insecticide used: The efficacy of IRS can vary depending on the type of insecticide used. Some insecticides are more effective than others.
-The quality of the spraying: The efficacy of IRS can also be affected by the quality of the spraying. If the spraying is not done properly, the insecticide may not be evenly distributed, reducing its effectiveness.
-The climate: The climate can also affect the efficacy of IRS. In hot and humid climates, the insecticide may degrade more quickly, reducing its effectiveness. In dry climates, the insecticide may last longer, but it may also be more difficult to apply evenly.
-The material of the wall sprayed: The material of the wall sprayed can also affect the efficacy of IRS. In general, IRS is more effective on smooth walls than on rough walls. This is because the insecticide is more likely to be evenly distributed on smooth walls.
-The presence of other malaria control interventions: The efficacy of IRS can also be affected by the presence of other malaria control interventions. For example, if people are using bed nets, the efficacy of IRS may be reduced.
+* The type of insecticide used: The efficacy of IRS can vary depending on the type of insecticide used. Some insecticides are more effective than others.
+* The quality of the spraying: The efficacy of IRS can also be affected by the quality of the spraying. If the spraying is not done properly, the insecticide may not be evenly distributed, reducing its effectiveness.
+* The climate: The climate can also affect the efficacy of IRS. In hot and humid climates, the insecticide may degrade more quickly, reducing its effectiveness. In dry climates, the insecticide may last longer, but it may also be more difficult to apply evenly.
+* The material of the wall sprayed: The material of the wall sprayed can also affect the efficacy of IRS. In general, IRS is more effective on smooth walls than on rough walls. This is because the insecticide is more likely to be evenly distributed on smooth walls.
+* The presence of other malaria control interventions: The efficacy of IRS can also be affected by the presence of other malaria control interventions. For example, if people are using bed nets, the efficacy of IRS may be reduced.
 
 ## What people may incorrectly assume about IRS data
 
@@ -32,7 +32,6 @@ IRS data can be acquired from a number of sources, including:
 * Government health ministries
 * Non-governmental organizations (NGOs)
 * Academic institutions
-* Private companies
 
 When acquiring IRS data, it is important to ensure that the data is reliable, accurate and from a reputable source. Consider how the country will benefit from your use of the data. 
 
