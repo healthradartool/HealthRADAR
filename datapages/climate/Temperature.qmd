@@ -2,6 +2,12 @@
 title: "Temperature"
 ---
 
+:::{.callout-warning}
+Note that this is version of "Health RADAR" is for illustration purposes only. 
+Most of the current text was generated using AI.
+:::
+
+
 ## How to interpret temperature data
 
 Temperature data can be interpreted in a variety of ways, depending on the specific goals of the analysis. Some common methods for interpreting temperature data include:

@@ -28,6 +28,7 @@ Visit our [About](about.html "Link to the About page") page to learn more find t
 
 :::{.callout-warning}
 Note that this is version of "Health RADAR" is for illustration purposes only. 
+Most of the current text was generated using AI.
 :::
 
 ::: {#datasets .column-page}

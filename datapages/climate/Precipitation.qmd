@@ -2,6 +2,11 @@
 title: "Precipitation"
 ---
 
+:::{.callout-warning}
+Note that this is version of "Health RADAR" is for illustration purposes only. 
+Most of the current text was generated using AI.
+:::
+
 ## How to interpret precipitation data
 
 * Identify trends: Precipitation data can be used to identify long-term trends, such as the global drying trend that has been observed over the past century.

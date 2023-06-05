@@ -2,6 +2,11 @@
   title: "IRS"
 ---
 
+:::{.callout-warning}
+Note that this is version of "Health RADAR" is for illustration purposes only. 
+Most of the current text was generated using AI.
+:::
+
 ## How to interpret IRS data
 
 Indoor residual spraying (IRS) is a public health measure that involves spraying insecticide on the inside walls of houses to kill mosquitoes that rest on the walls. This prevents the mosquitoes from biting people and transmitting malaria. IRS is a highly effective malaria control intervention, and it has been used successfully in many countries around the world.

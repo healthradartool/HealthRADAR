@@ -2,6 +2,11 @@
   title: "Demography"
 ---
 
+:::{.callout-warning}
+Note that this is version of "Health RADAR" is for illustration purposes only. 
+Most of the current text was generated using AI.
+:::
+
 ## How to interpret demographic data
 
 Demographic data is typically arrived at through a census, the result of which is an estimate presented with confidence intervals. The confidence intervals are important because they indicate the level of uncertainty in the estimate. For example, if the confidence interval is wide, then the estimate is less certain than if the confidence interval is narrow.
