@@ -23,6 +23,16 @@
       code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/intervention/IRS.qmd
       thumbnail: img/articles-irs.png
 
+- category: Entomology
+  description: |
+    Entomology is all about the population of interest
+  tiles:
+    - title: Entomology
+      subtitle: population specific data
+      href: datapages/demographic/Entomology.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/entomology/Entomology.qmd
+      thumbnail: img/articles-entomology.png
+
 - category: Demographic
   description: |
     Demography is all about the population of interest
