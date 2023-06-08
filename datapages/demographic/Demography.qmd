@@ -48,3 +48,4 @@ A common use case for mathematical modelling is to answer questions about optima
 Another question may be how climate change will affect the spread of malaria. In this case, it may be desirable to incorporate the effects of climate change on the population of South Africa before including the population in the model.
 
 * [UN](/datasets/population_un.html)
+* [StatsSA (via NESSTAR)](/datasets/demography_statssa.html)
