@@ -1,0 +1,52 @@
+---
+title: "StatsSA NESSTAR"
+---
+
+## StatsSA
+
+::: callout-warning
+The NESSTAR platform reached [end-of-life](https://atozwiki.com/Nesstar) in 2022. StatsSA completed a census in 2022 so the most recent data will likely come onto a different platform.
+:::
+
+StatsSA Census data is available through the [NESSTAR](http://nesstar.statssa.gov.za:8282/webview/) portal. The NESSTAR portal provides South African official census data, Community surveys and Household surveys. There are various spatial scales such as national/provincial/district level statistics or even statistics pertaining to households.
+
+## Using NESSTAR in a mathematical model of malaria
+
+In South Africa, malaria cases are spatially more common in the North Eastern regions. Suppose you want to construct a model of malaria in the Ehlanzeni district and need to know the population of municipalities in that district. You can do this in the platform by navigating to `Statistics South Africa Datasets > Census Ten Percent Sample > 2011 > Census 2011 Persons (10% sample) Revised 2015 > Persons(Revised)` as follows:
+
+![Figure 1: Selecting the 2011 Census data on NESSTAR](/datasets/demography_statssa/244090621-c28404b9-8d6b-4cd1-bbbc-4fc08084c39c.png)
+
+Now click on Municipality and select "Add to row":
+
+![Figure 2: Adding the Municipality facet as a row](/datasets/demography_statssa/244091029-76205b92-82b9-40e3-a009-2119b1f59578.png)
+
+You will now see the table to the right populate with several columns, one of which is Frequency. This column represents the proportion of the 10% sample which was associated with the district in question. You will also find the last row, Total, gives a value of 4,418,594 reflecting a South African population of roughly 44.186 million people in 2011. You can filter the values by clicking "District" and selecting "Use as filter". Above the table you will be able to choose Ehlanzeni:
+
+![Figure 3: Filtering by a given District](/datasets/demography_statssa/244092908-7d749069-f69b-4d88-9877-4155fbbe9c21.png)
+
+You will now only see values where the district was Ehlanzeni:
+
+![Figure 4: Results from filtering by District](/datasets/demography_statssa/244093113-83878cf0-4097-4742-857e-26d00ec581a8.png)
+
+You can export this table using either the Download or Export to excel buttons at the top of the table:
+
+![Figure 5: Downloading the data](/datasets/demography_statssa/244093595-944e2a49-c9ea-4542-8522-4a72db6e0c20.png)
+
+## Processing the data for a model:
+::: panel-tabset
+## R
+
+``` r
+# Load the libraries
+library(tidyverse)
+
+# Read the data and process it into a simpler csv
+readxl::read_excel(path="path/to/statsSA.xlsx", skip=8,
+                   col_names=c('Municipality', 'Code', 'Frequency', 'PercentAll', 'PercentValid')) |>
+  dplyr::filter(Frequency!=0) |>
+  readr::write_csv('tbStatsSA.csv')
+
+# Read the csv
+tbStatsSA <- readr::read_csv('tbStatsSA.csv')
+```
+:::
