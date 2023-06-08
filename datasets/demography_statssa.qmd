@@ -31,3 +31,22 @@ You will now only see values where the district was Ehlanzeni:
 You can export this table using either the Download or Export to excel buttons at the top of the table:
 
 ![Figure 5: Downloading the data](/datasets/demography_statssa/244093595-944e2a49-c9ea-4542-8522-4a72db6e0c20.png)
+
+## Processing the data for a model:
+::: panel-tabset
+## R
+
+``` r
+# Load the libraries
+library(tidyverse)
+
+# Read the data and process it into a simpler csv
+readxl::read_excel(path="path/to/statsSA.xlsx", skip=8,
+                   col_names=c('Municipality', 'Code', 'Frequency', 'PercentAll', 'PercentValid')) |>
+  dplyr::filter(Frequency!=0) |>
+  readr::write_csv('tbStatsSA.csv')
+
+# Read the csv
+tbStatsSA <- readr::read_csv('tbStatsSA.csv')
+```
+:::
