@@ -15,9 +15,15 @@ description: |
 ::: {.grid .column-page}
 ::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
 ::: h1
-Welcome
+Welcome to Health RADAR
 :::
-Visit our [About](about.html "Link to the About page") page to learn more about this site.
+
+```{r}
+#| classes: '.g-col-lg-6 .g-col-12 .g-col-md-12'
+source("carousel.R")
+carousel("gallery-carousel", 5000, 
+         yaml.load_file("carousel.yml"))
+```
 :::
 :::
 :::
@@ -26,16 +32,3 @@ Visit our [About](about.html "Link to the About page") page to learn more about 
 Note that this is version of "Health RADAR" is for illustration purposes only. 
 Most of the current text was generated using AI.
 :::
-
-## How to use Health RADAR:
-
-Health RADAR is a digital tool that aims to catalyse the next generation of
-malaria related CSID research in four countries in Southern Africa. In particular, the aims are:
-
-* To provide a central location for data relevant to include in and accelerate CSID
-modelling of malaria in the four frontline countries in the E8
-* To catalyse CSID modelling calibrated to operationalisable datasets where the data
-characteristics and geographic context are well incorporated
-* To establish a community of African modellers and analysts to support the tool
-
-Though the digital tool may eventually be extended beyond malaria and into other geographic regions, the principal aim remains the same: to enable the development of CSID geographic context are well incorporated.
