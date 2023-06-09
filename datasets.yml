@@ -29,8 +29,8 @@
   tiles:
     - title: Entomology
       subtitle: population specific data
-      href: datapages/demographic/Entomology.html
-      code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/entomology/Entomology.qmd
+      href: datapages/entomological/Entomology.html
+      code: https://github.com/uct-masha/HealthRADAR/blob/main/datapages/entomological/Entomology.qmd
       thumbnail: img/articles-entomology.png
 
 - category: Demographic
