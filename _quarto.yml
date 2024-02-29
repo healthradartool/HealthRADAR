@@ -22,6 +22,7 @@ format:
       light: [flatly, style-light.scss, style-base.scss]
       dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
+    mainfont: "Schibsted Grotesk"
 
 execute:
   freeze: auto
