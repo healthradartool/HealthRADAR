@@ -1,0 +1,47 @@
+---
+pagetitle: "Data"
+toc: false
+listing: 
+  - id: climate
+    contents: datapages/climate
+    type: grid
+    fields: [image, title, description, categories]
+  - id: intervention
+    contents: datapages/intervention
+    type: grid
+    fields: [image, title, description, categories]
+  - id: entomology
+    contents: datapages/entomological
+    type: grid
+    fields: [image, title, description, categories]
+  - id: demographic
+    contents: datapages/demographic
+    type: grid
+    fields: [image, title, description, categories]
+---
+
+## Data sets
+
+:::{#data-tabs .panel-tabset}
+
+## Climate
+
+:::{#climate}
+:::
+
+## Interventions
+
+:::{#intervention}
+:::
+
+## Entomology
+
+:::{#entomology}
+:::
+
+## Demographic
+
+:::{#demographic}
+:::
+
+:::

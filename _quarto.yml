@@ -10,11 +10,15 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: datapages.qmd
-        text: Data Pages
+      - href: data.qmd
+        text: Data 
       - href: about.qmd
         text: About
     pinned: true
+  page-footer:   
+    center: |
+      <span class="faux-block">{{< fa brands creative-commons >}} 2024 Health RADAR </span> <br/>
+      <span class="faux-block">All content licensed under [{{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)</span>
 
 format:
   html:
