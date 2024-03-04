@@ -1,5 +1,8 @@
 ---
 title: "Entomological Data"
+image: "img/articles-entomology.png"
+categories:
+  - entomology
 ---
 
 :::{.callout-warning}

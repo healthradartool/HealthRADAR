@@ -1,5 +1,8 @@
 ---
-  title: "IRS"
+title: "IRS"
+image: "img/articles-irs.png"
+categories:
+  - intervention
 ---
 
 :::{.callout-warning}
