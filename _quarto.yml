@@ -10,8 +10,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: datapages.qmd
-        text: Data Pages
+      - href: data.qmd
+        text: Data 
       - href: about.qmd
         text: About
     pinned: true
@@ -22,6 +22,7 @@ format:
       light: [flatly, style-light.scss, style-base.scss]
       dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
+    mainfont: "Schibsted Grotesk"
 
 execute:
   freeze: auto

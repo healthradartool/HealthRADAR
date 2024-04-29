@@ -1,5 +1,10 @@
 ---
 title: "Precipitation"
+image: "img/articles-precipitation.png"
+date-modified: "03/04/2024"
+categories:
+  - climate
+  - precipitation
 ---
 
 :::{.callout-warning}
