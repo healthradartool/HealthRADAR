@@ -3,7 +3,7 @@ title: "Temperature"
 image: "img/articles-temperature.png"
 categories:
   - climate
-  - temperaure
+  - temperature
 ---
 
 :::{.callout-warning}
