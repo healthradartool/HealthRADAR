@@ -1,0 +1,190 @@
+---
+title: "World Malaria Report"
+image: "img/articles-wmr.png"
+categories:
+  - malaria
+  - epidemiology
+  - interventions
+  - country-level
+  - annual
+---
+
+## About the data
+
+The WHO World Malaria report, released on an annual basis, provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe. The annexes to the report provide useful information on the data sources and methods used to compile the World Malaria Report, a set of regional malaria profiles and tables of historical time series of case data, commodity distribution, funding amounts and policy adoption.
+
+These datasets provide information on long term trends in malaria control and enable comparison between countries. The data provided are on an annual time scale at the national level, and would not be suitable for subnational analysis or to explore seasonal trends in malaria.
+
+## Access
+
+The reports can be accessed on the [WHO website](https://www.who.int/teams/global-malaria-programme/reports). Each report has a web page which includes useful contextual information as well as additional resources. The “Annexes in Excel format” will download as a zip file which should be extracted. The annexes can be viewed in the original report in PDF format, though for modelling it is usually preferable to have an excel spreadsheet.
+
+The most recent report may not contain all years of estimates. Should earlier years be required, one can access the annexes from earlier reports and merge these.
+
+## What does it look like?
+
+### Description
+
+The list of annexes may vary annually. The information included typically looks like this. Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. To make a longer time series of data, you can access older world malaria reports and annexes from the WHO. Be careful to check the data definitions and information on methodology to be sure that data sets can be concatenated.
+
+The annexes can be found in the report itself as in the following examples: ![](who_wmr/annex4F.png "WHO World Malaria Report 2023 Annex 4F")
+
+![](who_wmr/annex4H.png "WHO World Malaria Report 2023 Annex 4H")
+
+The annexes can also be downloaded as Excel documents from the report page.
+
+|         |                                                                                                              |
+|---------|--------------------------------------------------------------------------------------------------------------|
+| Annex 1 | Data sources and methods                                                                                     |
+| Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries                                    |
+| Annex 3 | WHO Regional profiles                                                                                        |
+| Annex 4 | Data tables and methods                                                                                      |
+|         | A. Policy adoption                                                                                           |
+|         | B. Antimalarial drug policy                                                                                  |
+|         | C. Funding for malaria control                                                                               |
+|         | D. Commodities distribution and coverage                                                                     |
+|         | E. Household survey results                                                                                  |
+|         | F. Population denominator for case incidence and mortality rate, and estimated malaria cases and deaths      |
+|         | G. Population denominator for case incidence and mortality rate, and reported malaria cases by place of care |
+|         | H. Reported malaria cases by method of confirmation                                                          |
+|         | I. Reported malaria cases by species                                                                         |
+|         | J. Reported malaria deaths                                                                                   |
+|         | K. Methods for Tables A-D-G-H-I-J                                                                            |
+
+: Example of the annex layout. This example is from the 2023 world malaria report. Note that the annexes are paired with the report and should be interpreted as such.
+
+## How to use this data
+
+Here is an example illustrating how to download the data, unzip it and read in a sheet
+
+```{r}
+downloadIfNotExists <- function(url, filename) {
+  if (!file.exists(file.path('wmr', filename))) {
+    download.file(url, file.path('wmr', filename))
+  }
+  if (!dir.exists(gsub(".zip", "", filename))) {
+    zip::unzip(zipfile = file.path('wmr', filename), exdir = gsub(".zip", "", filename))
+  }
+  fnames <- list.files(gsub(".zip", "", filename), recursive = T, full.names = T)
+  gsub(paste0("^",gsub(".zip", "", filename),"/"), "", fnames)
+}
+
+# Download and unzip the annexes:
+url < -"https://cdn.who.int/media/docs/default-source/malaria/world-malaria-reports/wmr2017-excel-annexes.zip"
+downloadIfNotExists(url)
+
+# Read in the sheet:
+filename <- "wmr2017-excel-annexes/wmr2017-annex-table-a.xls"
+wmr2017a <- readxl::read_excel(filename, range = "A2:Q102")
+wmr2017a
+```
+
+::: callout-warning
+Should the above link not work, find it at <https://www.who.int/teams/global-malaria-programme/reports>
+:::
+
+## EDA
+
+TODO. Colour palettes can be implemented like this (though we still need to input the colours).
+
+```{r}
+colfunc <- colorRampPalette(c("#404E67", "#809BCE", "#95B8D1",
+                              "#B8E0D4", "#D6EADF", "#EAC4D5",
+                              "#D1625C", "#E89C81", "#FFD6A5"))
+cols <- colfunc(length(unique(mpg$class)))
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class), size=4, alpha=0.8) +
+  scale_colour_manual(values = cols) +
+  theme_minimal() +
+  labs(title = "Fuel efficiency generally decreases with engine size",
+       subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+       caption = "Data from fueleconomy.gov")
+```
+
+Splitting the WHO REGION column can be done with this:
+
+```{r}
+split_who_region <- function(df,
+                             col_region_area=1,
+                             region_name="WHO Region",
+                             area_name="Country/area",
+                             col_na_when_region=NA,
+                             fill_down_first=TRUE) {
+  if (length(intersect(c(region_name, area_name), colnames(df)))!=0) {
+    browser()
+    stop("region_name and area_name must not be in the dataframe")
+  }
+  df[,region_name] <- NA
+  df[,area_name] <- NA
+  for (i in seq(1, nrow(df))) {
+    if (fill_down_first) {
+      if (is.na(df[i, col_region_area])) {
+        df[i, col_region_area] <- df[i-1, col_region_area]
+      }
+    }
+    if(is.na(col_na_when_region)) {
+      is_new_region <- !grepl("[a-z]", df[i, col_region_area, drop=TRUE])
+    } else {
+      is_new_region <- is.na(df[i, col_na_when_region, drop=TRUE])
+    }
+    if (is_new_region) {
+      # print(paste0("Updating ",col_region_area," because is.na(df[",i,",",col_na_when_region,"])"))
+      current_region <- df[i, col_region_area, drop=TRUE]
+    } else {
+      df[i,area_name] <- df[i, col_region_area, drop=TRUE]
+    }
+    df[i,region_name] <- current_region
+  }
+  rows_na_area <- is.na(df[,area_name, drop=TRUE])
+  cnames <- setdiff(colnames(df), colnames(df[,col_region_area]))
+  cnames_ordered <- c(region_name, area_name, head(cnames,-2))
+  df <- df[!rows_na_area, cnames_ordered]
+  df
+}
+
+split_who_region(wmr2017a)
+```
+
+{TODO:}
+
+-   Cases/Deaths with bands
+-   ITN distribution by region
+-   Costs
+
+{Notes from meeting:}
+
+-   Cases and Deaths should be on a 2 axis plot
+-   Legend should be bottom
+-   The element text size needs to be decreased for the title
+-   Cycle between the 4 front countries
+-   Don't replicate WMR, show value with unique examples
+-   Don't scale number of cases, maybe do incidence instead on the second example (pop at risk)
+
+JN/JT: Demonstrate ITN Cascade
+
+```{r}
+# Suppose net distribution per year is calculated like this:
+itn_dist <- c(5000,2000,1500,0,5000,4500,6000,0,0)
+people_protected_per_net <- 2
+# And the effective coverage rate since distribution is calculated like this:
+itn_eff <- c(0.95,0.90,0.85)
+# Then the effective coverage for first year is 0.95*5000*2, for second year is (0.90*5000+0.95*2000)*2, then third year is (0.85*5000+0.90*2000+0.95*1500)*2, after which the 5000 nets distributed initially are no longer considered in use.
+# In the fourth year, the effective nets in use are (0.85*2000+0.90*1500+0*0.95)*2, and so on.
+# This can be calculated using a convolution:
+itn_cov <- convolve(itn_dist*people_protected_per_net,
+                    rev(itn_eff),
+                    type = "open")
+itn_cov |> round(2)
+```
+
+## Key points to consider
+
+-   Pitfalls of annual data
+
+-   Reporting - incidence vs prevalence data
+
+-   Difference between policy and implementation (coverage and timing and effectiveness)
+
+-   National level - ignoring spatial heterogeneity
+
+## Examples of data use in literature
