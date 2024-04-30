@@ -34,7 +34,7 @@ The annexes can be found in the report itself as in the following examples: ![](
 The annexes can also be downloaded as Excel documents from the report page.
 
 |         |                                                                                                              |
-|---------|--------------------------------------------------------------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | Annex 1 | Data sources and methods                                                                                     |
 | Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries                                    |
 | Annex 3 | WHO Regional profiles                                                                                        |
@@ -59,22 +59,23 @@ Here is an example illustrating how to download the data, unzip it and read in a
 
 ```{r}
 downloadIfNotExists <- function(url, filename) {
-  if (!file.exists(file.path('wmr', filename))) {
-    download.file(url, file.path('wmr', filename))
+  if (!file.exists(filename)) {
+    download.file(url, filename)
   }
   if (!dir.exists(gsub(".zip", "", filename))) {
-    zip::unzip(zipfile = file.path('wmr', filename), exdir = gsub(".zip", "", filename))
+    zip::unzip(zipfile = filename, exdir = gsub(".zip", "", filename))
   }
   fnames <- list.files(gsub(".zip", "", filename), recursive = T, full.names = T)
   gsub(paste0("^",gsub(".zip", "", filename),"/"), "", fnames)
 }
 
 # Download and unzip the annexes:
-url < -"https://cdn.who.int/media/docs/default-source/malaria/world-malaria-reports/wmr2017-excel-annexes.zip"
-downloadIfNotExists(url)
+url <- "https://cdn.who.int/media/docs/default-source/malaria/world-malaria-reports/wmr2017-excel-annexes.zip"
+pathbase <- tempdir()
+fpaths <- downloadIfNotExists(url, filename=file.path(pathbase,"wmr2017-excel-annexes.zip"))
 
 # Read in the sheet:
-filename <- "wmr2017-excel-annexes/wmr2017-annex-table-a.xls"
+filename <- file.path(pathbase,"wmr2017-excel-annexes/wmr2017-annex-table-a.xls")
 wmr2017a <- readxl::read_excel(filename, range = "A2:Q102")
 wmr2017a
 ```
@@ -88,6 +89,7 @@ Should the above link not work, find it at <https://www.who.int/teams/global-mal
 TODO. Colour palettes can be implemented like this (though we still need to input the colours).
 
 ```{r}
+library(ggplot2)
 colfunc <- colorRampPalette(c("#404E67", "#809BCE", "#95B8D1",
                               "#B8E0D4", "#D6EADF", "#EAC4D5",
                               "#D1625C", "#E89C81", "#FFD6A5"))
@@ -111,7 +113,6 @@ split_who_region <- function(df,
                              col_na_when_region=NA,
                              fill_down_first=TRUE) {
   if (length(intersect(c(region_name, area_name), colnames(df)))!=0) {
-    browser()
     stop("region_name and area_name must not be in the dataframe")
   }
   df[,region_name] <- NA
