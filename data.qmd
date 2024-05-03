@@ -5,7 +5,9 @@ subtitle: "Browse and search for data sets"
 toc: false
 listing: 
 - id: malaria
-  contents: datapages/malaria
+  contents: datasets/malaria
+  sort:
+    - "title desc"
   type: grid
   fields: [image, title, description, categories]
   categories: true
