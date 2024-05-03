@@ -1,0 +1,82 @@
+---
+title: "UN Demography Data"
+subtitle: "Population and components of demographic change (fertility, child, adult and overall mortality, international migration)."
+image: "images/un-projects-world-population.jpg"
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - malaria
+  - epidemiology
+  - interventions
+  - country-level
+  - annual
+---
+
+The UN Demography Data is a collection of data on population, fertility, mortality, and migration. It is collected by the United Nations Population Division and is available for free to the public.
+
+The data is collected from a variety of sources, including:
+
+-   **National censuses**: These are surveys that are conducted every 10 years or so in most countries. They collect information on the size, composition, and distribution of the population.
+-   **Vital registration systems**: These are systems that record births, deaths, and marriages. They are used to track changes in the population over time.
+-   **Sample surveys**: These are surveys that are conducted on a smaller scale than national censuses. They are used to collect information on topics that are not covered by national censuses.
+
+The data is then processed and analyzed by the United Nations Population Division. It is used to produce a variety of reports and publications, including the World Population Prospects, the Demographic Yearbook, and the Population and Vital Statistics Report.
+
+The UN Demography Data is a valuable resource for anyone who wants to learn more about population trends. It can be used to track changes in the size, composition, and distribution of the population over time. It can also be used to study the impact of factors such as fertility, mortality, and migration on population growth.
+
+Here are some of the ways that the UN Demography Data can be used:
+
+-   **Research**: Researchers use the data to study population trends, such as fertility, mortality, and migration. They also use the data to study the impact of these trends on society, such as the impact of population growth on economic development.
+-   **Policymaking**: Policymakers use the data to make decisions about things like immigration, healthcare, and education. They also use the data to monitor the effectiveness of policies that have already been implemented.
+-   **Business planning**: Businesses use the data to make decisions about things like market size, product development, and marketing campaigns. They also use the data to identify potential risks and opportunities.
+
+The UN Demography Data is a valuable resource for anyone who wants to learn more about population trends. It is available for free to the public and can be used for a variety of purposes.
+
+Here is an example of how to acquire estimated population values until the year 2100 for all E8 Regions from the United Nations.
+
+::: panel-tabset
+## R
+
+``` r
+# Load the libraries
+library(tidyverse)
+
+# Read the data
+iso3E8 = strsplit1('AGO,BWA,NAM,MOZ,SWZ,ZAF,ZMB,ZWE', ',')
+if (!file.exists('tbUN.rds')) {
+  tbUN <- readxl::read_excel("https://population.un.org/wpp/Download/Files/2_Indicators%20(Probabilistic)/EXCEL_FILES/2_Population/UN_PPP2022_Output_PopTot.xlsx", 
+                             skip=16, sheet='Median') %>%
+  select(iso3=`ISO3 Alpha-code`, location=`Region, subregion, country or area *`, `2022`:`2100`)
+  filter(iso3 %in% iso3E8) %>%
+  pivot_longer(cols = -c(iso3, Variant, Notes),
+               names_to = 'year',
+               values_to = 'population') %>%
+  mutate(year = as.numeric(year))
+  write_csv(tbUN, 'tbUN.csv')
+}
+
+tbUN <- read_csv('tbUN.csv')
+```
+
+## Python
+
+``` python
+import pandas as pd
+import os.path
+
+# Read the data
+iso3E8 = ["AGO","BWA","NAM","MOZ","SWZ","ZAF","ZMB","ZWE"]
+if not os.path.exists('tbUN.csv'):
+  dfUN = pd.read_excel("https://population.un.org/wpp/Download/Files/2_Indicators%20(Probabilistic)/EXCEL_FILES/2_Population/UN_PPP2022_Output_PopTot.xlsx", 
+                       skiprows=16, sheet_name='Median')\
+            .rename(columns={'ISO3 Alpha-code': 'iso3', 'Region, subregion, country or area *': 'location'})\
+            .filter(regex=("iso3|location|^\\d{4}$"))\
+            .query('iso3 in @iso3E8')\
+            .melt(id_vars=['iso3', 'location'], var_name='year', value_name='population')\
+            .assign(year=lambda x: pd.to_numeric(x.year))
+  dfUN.to_csv('tbUN.csv', index=False)
+
+dfUN = pd.read_csv('tbUN.csv')
+```
+:::

@@ -1,0 +1,169 @@
+---
+title: "GPCC Precipitation Data"
+subtitle: "GPCC Global Precipitation Climatology Centre monthly precipitation dataset from 1891-present is calculated from global station data."
+image: "images/articles-precipitation.png"
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - malaria
+  - epidemiology
+  - climate
+  - global
+---
+
+## Global Precipitation Climatology Centre
+
+The Global Precipitation Climatology Centre (GPCC) provides monthly and annual gridded precipitation data for the globe. The data is derived from quality-controlled in situ observations from over 60,000 stations worldwide. The data is available at spatial resolutions of 0.5° x 0.5°, 1.0° x 1.0°, and 2.5° x 2.5°.
+
+### Data Collection
+The GPCC data is collected from a variety of sources, including:
+
+* **Ground-based gauges**: These are the most common type of precipitation data source. They measure the amount of precipitation that falls at a specific location. Ground-based gauges can be manual or automated. Manual gauges require a person to measure the amount of precipitation that falls each day. Automated gauges use sensors to measure the amount of precipitation and record it automatically.
+* **Satellites**: Satellites can also be used to measure precipitation. They do this by measuring the amount of energy that is reflected or absorbed by clouds. Satellite data is often used to fill in gaps in ground-based data.
+* **Radar**: Radar can also be used to measure precipitation. It does this by measuring the amount of energy that is reflected by raindrops and snowflakes. Radar data is often used to measure the intensity of precipitation.
+
+The data is collected and processed by the GPCC at the Deutscher Wetterdienst (DWD), the German Meteorological Service. The data is then made available to the public through the GPCC website.
+
+### Data Use
+The GPCC data is used for a variety of purposes, including:
+
+* **Climate monitoring**: The GPCC data can be used to monitor changes in global precipitation patterns over time.
+* **Water resources management**: The GPCC data can be used to assess water resources availability and to plan for droughts and floods.
+* **Agriculture**: The GPCC data can be used to assess crop yields and to plan for irrigation.
+* **Disaster risk reduction**: The GPCC data can be used to assess the risk of natural disasters such as floods and droughts.
+
+The GPCC data is a valuable resource for scientists, policymakers, and the general public. It is used to understand the global water cycle, to monitor changes in precipitation patterns, and to plan for the future.
+
+### Historical data
+
+Here is an example of how one may get historical monthly precipitation data:
+
+::: panel-tabset
+## R (opendata)
+
+``` r
+# Download monthly precipitation data for Botswana between 2010 and 2023
+# Check if the `ncdf4` package is installed
+if (!requireNamespace("ncdf4", quietly = TRUE)) {
+  install.packages("ncdf4")
+}
+
+# Set the URL of the data file
+data_url <- "https://kunden.dwd.de/cmt/kunden/service/opendata/climate_timeseries/gridded/precipitation/africa/monthly/africa_prec_mon_grid_africa_full.nc4"
+
+# Download the data file
+download.file(data_url, "botswana_precipitation.nc4")
+
+# Read the data file into R
+precipitation <- ncdf4::nc_open("botswana_precipitation.nc4")
+
+# Extract the precipitation data for Botswana
+botswana_precipitation <- precipitation$var[[1]][, 1:15, 1:10]
+
+# Convert the precipitation data to a data frame
+botswana_precipitation <- data.frame(
+  Year = seq(2010, 2023),
+  Month = 1:12,
+  Precipitation = botswana_precipitation
+)
+```
+
+## R (GPCC)
+
+``` r
+# Load the `ncdf4` library
+library(ncdf4)
+
+# Download the GPCC precipitation data for the month of January 2023
+url <- "https://kunden.dwd.de/GPCC/data/GPCC_full_monthly.nc"
+nc <- nc_open(url)
+
+# Extract the precipitation data
+prec <- ncvar_get(nc, "precipitation")
+
+# Convert the precipitation data to a data frame
+prec_df <- data.frame(prec, time = ncvar_get(nc, "time"))
+
+# Plot the precipitation data
+ggplot(prec_df, aes(x = time, y = prec)) +
+  geom_line() +
+  labs(x = "Time (Month)", y = "Precipitation (mm)")
+```
+
+## Python (GPCC)
+
+``` python
+# Import the `netCDF4` library
+import netCDF4
+
+# Download the GPCC precipitation data for the month of January 2023
+url = "https://kunden.dwd.de/GPCC/data/GPCC_full_monthly.nc"
+nc = netCDF4.Dataset(url)
+
+# Extract the precipitation data
+prec = nc.variables['precipitation'][:]
+
+# Convert the precipitation data to a Pandas DataFrame
+prec_df = pd.DataFrame({'prec': prec, 'time': nc.variables['time'][:]})
+
+# Plot the precipitation data
+plt.plot(prec_df['time'], prec_df['prec'])
+plt.xlabel('Time (Month)')
+plt.ylabel('Precipitation (mm)')
+plt.show()
+```
+:::
+
+### Predictions
+
+The GPCC also provides predictions on future precipitation values which may be useful in a model.
+
+Here is an example of how one may get future monthly precipitation data:
+
+::: panel-tabset
+## R
+
+``` r
+# Load the `ncdf4` library
+library(ncdf4)
+
+# Download the GPCC precipitation data for the month of January 2023
+url <- "https://kunden.dwd.de/GPCC/data/GPCC_full_monthly.nc"
+nc <- nc_open(url)
+
+# Extract the precipitation data
+prec <- ncvar_get(nc, "precipitation")
+
+# Convert the precipitation data to a data frame
+prec_df <- data.frame(prec, time = ncvar_get(nc, "time"))
+
+# Plot the precipitation data
+ggplot(prec_df, aes(x = time, y = prec)) +
+  geom_line() +
+  labs(x = "Time (Month)", y = "Precipitation (mm)")
+```
+
+## Python
+
+``` python
+# Import the `netCDF4` library
+import netCDF4
+
+# Download the GPCC precipitation data for the month of January 2023
+url = "https://kunden.dwd.de/GPCC/data/GPCC_full_monthly.nc"
+nc = netCDF4.Dataset(url)
+
+# Extract the precipitation data
+prec = nc.variables['precipitation'][:]
+
+# Convert the precipitation data to a Pandas DataFrame
+prec_df = pd.DataFrame({'prec': prec, 'time': nc.variables['time'][:]})
+
+# Plot the precipitation data
+plt.plot(prec_df['time'], prec_df['prec'])
+plt.xlabel('Time (Month)')
+plt.ylabel('Precipitation (mm)')
+plt.show()
+```
+:::
