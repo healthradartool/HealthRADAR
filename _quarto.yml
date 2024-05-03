@@ -1,20 +1,37 @@
 project:
   type: website
+  preview: 
+    port: 4200
+    host: 127.0.0.1
+    browser: false
 
 website:
   title: "HealthRADAR"
   image: "img/logo-light.png"
   favicon: "favicon.ico"
+  search: 
+    location: sidebar
+    type: textbox
   navbar:
     logo: "img/logo-light.png"
     left:
       - href: index.qmd
         text: Home
+      # - href: search.qmd
+      #   text: Search
       - href: data.qmd
-        text: Data 
+        text: Browse
       - href: about.qmd
         text: About
     pinned: true
+  page-footer: "Copyright 2024, Health RADAR"
+  
+  sidebar:
+    - title: "Browse"
+      style: "docked"
+      contents: 
+        - data.qmd
+      
 
 format:
   html:
