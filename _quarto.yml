@@ -40,6 +40,8 @@ format:
       dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
     mainfont: "Schibsted Grotesk"
+    code-fold: true
+    code-summary: "Show the code"
 
 execute:
   freeze: auto
