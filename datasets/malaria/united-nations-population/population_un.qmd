@@ -38,7 +38,10 @@ Here is an example of how to acquire estimated population values until the year 
 ::: panel-tabset
 ## R
 
-``` r
+```{r}
+#| fold: true
+#| eval: false
+
 # Load the libraries
 library(tidyverse)
 
