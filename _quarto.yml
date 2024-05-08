@@ -31,8 +31,9 @@ website:
       style: "docked"
       contents: 
         - data.qmd
-      
-
+language: 
+  search-text-placeholder: "Search"
+  
 format:
   html:
     theme:
