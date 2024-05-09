@@ -9,6 +9,7 @@ listing:
   sort:
     - "title desc"
   type: grid
+  filter-ui: true
   fields: [image, title, description, categories]
   categories: true
 page-layout: full
