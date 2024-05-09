@@ -9,16 +9,14 @@ website:
   title: "HealthRADAR"
   image: "img/logo-light.png"
   favicon: "favicon.ico"
-  search: 
-    location: sidebar
+  search:
+    location: navbar
     type: textbox
   navbar:
     logo: "img/logo-light.png"
     left:
       - href: index.qmd
         text: Home
-      # - href: search.qmd
-      #   text: Search
       - href: data.qmd
         text: Browse
       - href: about.qmd
@@ -26,11 +24,6 @@ website:
     pinned: true
   page-footer: "Copyright 2024, Health RADAR"
   
-  sidebar:
-    - title: "Browse"
-      style: "docked"
-      contents: 
-        - data.qmd
 language: 
   search-text-placeholder: "Search"
   
