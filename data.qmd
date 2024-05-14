@@ -6,8 +6,7 @@ toc: false
 listing: 
 - id: malaria
   contents: datasets/malaria
-  sort:
-    - "title desc"
+  sort: "title desc"
   type: grid
   filter-ui: true
   fields: [image, title, description, categories]
