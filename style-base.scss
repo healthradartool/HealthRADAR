@@ -106,3 +106,21 @@ html {
     border-radius: .5em;
     border-color: #2c3e50;
 }
+
+/*  style sidebar navigation menu */
+div.sidebar-item-container .active {
+  padding: 0.3rem;
+  border-left: solid;
+  border-left-color: #2c3e50;
+  background-color: #f5f7fa
+}
+
+#quarto-sidebar > div > ul > li:nth-child(2),
+#quarto-sidebar > div > ul > li:nth-child(3),
+#quarto-sidebar > div > ul > li:nth-child(4),
+#quarto-sidebar > div > ul > li:nth-child(5) {
+  cursor: default;
+  pointer-events: none;        
+  text-decoration: none;
+  color: grey;
+}

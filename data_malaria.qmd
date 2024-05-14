@@ -1,0 +1,15 @@
+---
+pagetitle: "Browse data sets"
+title: "Malaria Data"
+subtitle: "Browse and search for data sets"
+listing: 
+  contents: datasets/malaria
+  sort: "title desc"
+  type: grid
+  categories: true
+  filter-ui: true
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+---
