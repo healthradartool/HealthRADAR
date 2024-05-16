@@ -7,6 +7,17 @@ assignees: ''
 
 ---
 
+## Tags describing the dataset  (max 6)
+
+- Global, regional, country-level, urban, rural
+- Annual, monthly, daily, hourly
+- Epidemiology, climate, intervention,  demography, entomology
+
+
+## Short description of the data (max 2 lines)
+
+The report provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe.
+
 ## About the data
 
 The WHO World Malaria report, released on an annual basis, provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe. The annexes to the report provide useful information on the data sources and methods used to compile the World Malaria Report, a set of regional malaria profiles and tables of historical time series of case data, commodity distribution, funding amounts and policy adoption.
