@@ -19,13 +19,13 @@ The WHO World Malaria report, released on an annual basis, provides a comprehens
 
 These datasets provide information on long term trends in malaria control and enable comparison between countries. The data provided are on an annual time scale at the national level, and would not be suitable for subnational analysis or to explore seasonal trends in malaria.
 
-## Access
+## Accessing the data
 
 The reports can be accessed on the [WHO website](https://www.who.int/teams/global-malaria-programme/reports). Each report has a web page which includes useful contextual information as well as additional resources. The “Annexes in Excel format” will download as a zip file which should be extracted. The annexes can be viewed in the original report in PDF format, though for modelling it is usually preferable to have an excel spreadsheet.
 
 The most recent report may not contain all years of estimates. Should earlier years be required, one can access the annexes from earlier reports and merge these.
 
-## What does it look like?
+## What does the data look like?
 
 ### Description
 
@@ -38,7 +38,7 @@ The annexes can be found in the report itself as in the following examples: ![](
 The annexes can also be downloaded as Excel documents from the report page.
 
 |         |                                                                                                              |
-|---------------------|---------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | Annex 1 | Data sources and methods                                                                                     |
 | Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries                                    |
 | Annex 3 | WHO Regional profiles                                                                                        |
@@ -57,7 +57,7 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 : Example of the annex layout. This example is from the 2023 world malaria report. Note that the annexes are paired with the report and should be interpreted as such.
 
-## How to use this data
+## How to use this data?
 
 Here is an example illustrating how to download the data, unzip it and read in a sheet
 
@@ -88,7 +88,7 @@ wmr2017a
 Should the above link not work, find it at <https://www.who.int/teams/global-malaria-programme/reports>
 :::
 
-## EDA
+## How to plot this data?
 
 TODO. Colour palettes can be implemented like this (though we still need to input the colours).
 
