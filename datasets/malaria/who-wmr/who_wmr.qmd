@@ -150,46 +150,347 @@ split_who_region <- function(df,
 split_who_region(wmr2017a)
 ```
 
-{TODO:}
 
--   Cases/Deaths with bands
--   ITN distribution by region
--   Costs
-
-{Notes from meeting:}
-
--   Cases and Deaths should be on a 2 axis plot
--   Legend should be bottom
--   The element text size needs to be decreased for the title
--   Cycle between the 4 front countries
--   Don't replicate WMR, show value with unique examples
--   Don't scale number of cases, maybe do incidence instead on the second example (pop at risk)
-
-JN/JT: Demonstrate ITN Cascade
 
 ```{r}
-# Suppose net distribution per year is calculated like this:
-itn_dist <- c(5000,2000,1500,0,5000,4500,6000,0,0)
+
+library(tidyverse)
+
+# Create the data frame
+data <- data.frame(
+  Country = c("Benin", "Burkina Faso", "Burkina Faso", "Cameroon", "Côte d'Ivoire", "Gambia", "Ghana", "Guinea", "Guinea", "Kenya", "Kenya", "Liberia", "Madagascar", "Mali", "Mali", "Mauritania", "Mozambique", "Niger", "Nigeria", "Nigeria", "Rwanda", "Senegal", "Senegal", "Senegal", "Sierra Leone", "Uganda", "Zambia"),
+  Survey = c("2017-18 DHS", "2017-18 MIS", "2021 DHS", "2018 DHS", "2021 DHS", "2019-20 DHS", "2019 MIS", "2018 DHS", "2021 MIS", "2020 MIS", "2022 DHS", "2019-20 DHS", "2021 DHS", "2018 DHS", "2021 MIS", "2019-21 DHS", "2018 MIS", "2021 MIS", "2018 DHS", "2021 MIS", "2019-20 DHS", "2018 DHS", "2019 DHS", "2020-21 MIS", "2019 DHS", "2018-19 MIS", "2018 DHS"),
+  Percentage = c(91.5, 75.3, 82.8, 73.4, 72.1, 77.3, 73.7, 43.9, 63.3, 49.0, 54.2, 54.7, 69.1, 89.8, 90.9, 32.2, 82.2, 96.0, 60.6, 56.0, 66.4, 76.6, 81.0, 75.3, 67.9, 83.0, 78.3)
+)
+
+# Sort the data by percentage
+data <- data %>%
+  arrange(Percentage)
+
+# Create the lollipop plot
+ggplot(data, aes(x = reorder(Country, Percentage), y = Percentage, color = Survey)) +
+  geom_segment(aes(x = Country, xend = Country, y = 0, yend = Percentage), color = "grey") +
+  geom_point(size = 4) +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Percentage of Households with at least one ITN",
+       subtitle = "Data for selected countries",
+       caption = "Source WMR 2023 Annex 4Ea",
+       x = "Country",
+       y = "Percentage",
+       color = "Source") +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 15),
+    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
+    axis.title.x = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 12),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 12)
+  )
+
+
+```
+
+```{r}
+
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+# Create the data frame
+data <- data.frame(
+  Country = c("Benin", "Burkina Faso", "Burkina Faso", "Cameroon", "Côte d'Ivoire", "Gambia", "Ghana", "Guinea", "Guinea", "Kenya", "Kenya", "Liberia", "Madagascar", "Mali", "Mali", "Mauritania", "Mozambique", "Niger", "Nigeria", "Nigeria", "Rwanda", "Senegal", "Senegal", "Senegal", "Sierra Leone", "Uganda", "Zambia"),
+  Survey = c("2017-18 DHS", "2017-18 MIS", "2021 DHS", "2018 DHS", "2021 DHS", "2019-20 DHS", "2019 MIS", "2018 DHS", "2021 MIS", "2020 MIS", "2022 DHS", "2019-20 DHS", "2021 DHS", "2018 DHS", "2021 MIS", "2019-21 DHS", "2018 MIS", "2021 MIS", "2018 DHS", "2021 MIS", "2019-20 DHS", "2018 DHS", "2019 DHS", "2020-21 MIS", "2019 DHS", "2018-19 MIS", "2018 DHS"),
+  Percentage = c(91.5, 75.3, 82.8, 73.4, 72.1, 77.3, 73.7, 43.9, 63.3, 49.0, 54.2, 54.7, 69.1, 89.8, 90.9, 32.2, 82.2, 96.0, 60.6, 56.0, 66.4, 76.6, 81.0, 75.3, 67.9, 83.0, 78.3)
+)
+
+# Load the map data for Africa
+africa <- ne_countries(continent = "Africa", returnclass = "sf")
+
+# Merge the map data with your data
+africa_data <- africa %>%
+  left_join(data, by = c("name" = "Country"))
+
+# Create the choropleth map
+ggplot(data = africa_data) +
+  geom_sf(aes(fill = Percentage)) +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey50", name = "Percentage") +
+  theme_minimal() +
+  labs(title = "Percentage of Households with at least one ITN",
+       subtitle = "Data for selected countries. Countries in grey have no data available.",
+       caption = "Source: WMR 2023 Annex 4Ea") +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 12),
+    plot.caption = element_text(hjust=0, size = 10, face = "italic"),
+    legend.position = "right"
+  )
+
+```
+
+```{r}
+options(scipen = 9)
+
+# Read in the csv file
+data <- read_csv("tutorial_data/filtered_data.csv")
+
+# Divide the cases and deaths by 1000 for better readability
+data$Cases_Point <- data$Cases_Point / 1000
+data$Cases_Lower <- data$Cases_Lower / 1000
+data$Cases_Upper <- data$Cases_Upper / 1000
+data$Deaths_Point <- data$Deaths_Point / 1000
+data$Deaths_Lower <- data$Deaths_Lower / 1000
+data$Deaths_Upper <- data$Deaths_Upper / 1000
+
+unique(data$Country)
+```
+
+
+```{r}
+# Create the plot for Deaths with low and high bands
+ggplot(data, aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
+  geom_line(size = 1) +
+  geom_ribbon(aes(ymin = Cases_Lower, ymax = Cases_Upper, fill = Country), alpha = 0.2) +
+  labs(
+    title = "Reported Malaria Cases Over Time",
+    subtitle = "With confidence bands",
+    x = "Year",
+    y = "Number of Cases (thousands)",
+    color = "Country",
+    fill = "Country",
+    caption = "Source: WMR 2023 Annex 4F"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 14),
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12),
+    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
+    plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
+  ) +
+  guides(color = guide_legend(title.position = "top", title.hjust = 0.5),
+         fill = guide_legend(title.position = "top", title.hjust = 0.5))
+```
+
+
+```{r}
+
+# Define colours, with specified countries highlighted and others grayed out
+country_colors <- c(
+  "Mozambique" = "#e75480"    # Highlight Mozambique
+)
+
+# Assign gray color to all other countries
+all_countries <- unique(data$Country)
+other_countries <- setdiff(all_countries, names(country_colors))
+for (country in other_countries) {
+  country_colors[country] <- "gray"
+}
+
+# Subset data for Mozambique
+mozambique_data <- subset(data, Country == "Mozambique")
+
+# Create the plot for Deaths with low and high bands
+p <- ggplot(data, aes(x = Year, y = Deaths_Point, group = Country, color = Country)) +
+  geom_line(size = 1) +
+  geom_ribbon(aes(ymin = Deaths_Lower, ymax = Deaths_Upper, fill = Country), alpha = 0.2) +
+  geom_line(data = mozambique_data, aes(x = Year, y = Deaths_Point), color = "#e75480", size = 1.5) +  # Highlight Mozambique line
+  labs(
+    title = "Reported Malaria Deaths Over Time",
+    subtitle = "With confidence bands, highlighting Mozambique",
+    x = "Year",
+    y = "Number of Deaths (thousands)",
+    color = "Country",
+    fill = "Country",
+    caption = "Source: WMR 2023 Annex 4F"
+  ) +
+  scale_color_manual(values = country_colors, guide = 'none') +
+  scale_fill_manual(values = country_colors, guide = 'none') +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 14),
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12),
+    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
+    plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
+  )
+
+# Find the middle year for Mozambique
+middle_year <- median(mozambique_data$Year)
+middle_index <- which.min(abs(mozambique_data$Year - middle_year))
+
+# Get the middle data point for Mozambique
+middle_year <- mozambique_data$Year[middle_index]
+middle_deaths_upper <- mozambique_data$Deaths_Upper[middle_index]
+
+# Add annotation for Mozambique at the middle point
+p + annotate("text", x = middle_year + 0.5, y = middle_deaths_upper + 8, label = "Mozambique", hjust = 0.5, size = 5, color = "#e75480", fontface = "bold") +
+  geom_segment(aes(x = middle_year, y = middle_deaths_upper, xend = middle_year + 0.5, yend = middle_deaths_upper + 5), color = "#e75480", arrow = arrow(length = unit(0.2, "cm")))
+
+```
+
+```{r}
+
+# Read in the costing data
+costing_df <- read_csv("tutorial_data/costing_df.csv")
+
+# Reshape data for plotting
+plot_df <- costing_df %>%
+  pivot_longer(cols = c(TotalDonorReported, TotalCountryReported), names_to = "Type", values_to = "Value")
+
+# Ensure 'Year' is treated as a factor and ordered correctly
+plot_df$Year <- as.numeric(plot_df$Year)
+
+# Create the plot
+ggplot(plot_df, aes(x = Year, y = Value / 1000, color = Type)) +
+  geom_line(size = 1) +
+  facet_wrap(~ Country, scales = "free_y") +
+  scale_x_continuous(breaks = unique(plot_df$Year)) +
+  scale_color_manual(values = c("TotalDonorReported" = "#440154", "TotalCountryReported" = "#1f9e89"),
+                     labels = c("TotalDonorReported" = "Reported by donor", "TotalCountryReported" = "Reported by country")) +
+  labs(
+    title = "Comparison of Total Reported Contributions",
+    subtitle = "For Selected Countries (2020-2022)",
+    x = "Year",
+    y = "Total Contributions (in thousands)",
+    color = "Contribution Source",
+    caption = "Source: WMR2023 Annex 4C"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+```
+
+
+```{r}
+# Data for ITN distribution and effectiveness
+itn_dist <- c(5000, 2000, 1500, 0, 5000, 4500, 5500, 0, 0)
 people_protected_per_net <- 2
-# And the effective coverage rate since distribution is calculated like this:
-itn_eff <- c(0.95,0.90,0.85)
-# Then the effective coverage for first year is 0.95*5000*2, for second year is (0.90*5000+0.95*2000)*2, then third year is (0.85*5000+0.90*2000+0.95*1500)*2, after which the 5000 nets distributed initially are no longer considered in use.
-# In the fourth year, the effective nets in use are (0.85*2000+0.90*1500+0*0.95)*2, and so on.
-# This can be calculated using a convolution:
-itn_cov <- convolve(itn_dist*people_protected_per_net,
-                    rev(itn_eff),
-                    type = "open")
-itn_cov |> round(2)
+itn_eff <- c(0.95, 0.90, 0.85)
+
+# Calculate the effective coverage using convolution
+itn_cov <- convolve(itn_dist * people_protected_per_net, rev(itn_eff), type = "open")
+itn_cov <- itn_cov[1:length(itn_dist)]  # Match the length of the distribution data
+itn_cov_rounded <- round(itn_cov, 2)
+
+# Create a data frame for the plot
+years <- seq_along(itn_dist)
+itn_data <- data.frame(
+  Year = years,
+  Effective_Coverage = itn_cov_rounded
+)
+
+# Create the ITN coverage plot with integer x-axis increments and y-axis limits
+itn_coverage_plot <- ggplot(itn_data, aes(x = Year, y = Effective_Coverage)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_text(aes(label = Effective_Coverage), vjust = -0.5, size = 5, colour = "black") +
+  labs(
+    title = "Effective ITN Coverage Over Time",
+    subtitle = "Malaria prevention through distribution and use of ITNs",
+    x = "Year",
+    y = "Effective Coverage (People Protected)",
+    caption = "Source: Hypothetical example. Assuming 2 people are protected per ITN and that ITN protection wanes over time."
+  ) +
+  scale_x_continuous(breaks = seq(min(itn_data$Year), max(itn_data$Year), by = 1)) +
+  scale_y_continuous(limits = c(0, 30000)) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 14),
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 14),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    plot.caption = element_text(hjust = 0, size = 10, face = "italic")
+  ) +
+  theme(plot.caption.position = "plot")
+
+# Print the plot
+print(itn_coverage_plot)
+
 ```
 
 ## Key points to consider
 
--   Pitfalls of annual data
+## Pitfalls of Annual Data:
 
--   Reporting - incidence vs prevalence data
+Using annual data in the model can lead to several pitfalls:
 
--   Difference between policy and implementation (coverage and timing and effectiveness)
+```{=tex}
+\begin{itemize}
 
--   National level - ignoring spatial heterogeneity
+\item Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
+
+\item Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions. This can limit the model's ability to accurately predict the timing and magnitude of changes in disease transmission.
+
+\end{itemize}
+```
+## Reporting - Incidence vs. Prevalence Data:
+
+It is important to distinguish between incidence and prevalence data when building and interpreting the model:
+
+```{=tex}
+\begin{itemize}
+
+\item Incidence data: Incidence refers to the number of new cases of malaria occurring in a population over a specified period. It provides information on the rate at which new infections occur and is more sensitive to changes in transmission dynamics.
+
+\item Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
+
+\end{itemize}
+```
+When using data to parameterise and validate the model, be clear about whether the data represents incidence or prevalence, as they have different implications for the model's structure and interpretation.
+
+## Difference between Policy and Implementation:
+
+There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
+
+```{=tex}
+\begin{itemize}
+
+\item Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance. Use data from surveys or distribution records to accurately represent the true coverage in the model.
+
+\item Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons. Incorporate the actual timing of ITN distribution in the model when possible.
+
+\item Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance. Use data from field studies or published literature to inform the parameters related to ITN effectiveness in the model.
+
+\end{itemize}
+```
+## National Level - Ignoring Spatial Heterogeneity:
+
+Modeling malaria transmission at a national level can overlook important spatial heterogeneities:
+
+```{=tex}
+\begin{itemize}
+
+\item Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors. If possible, consider stratifying the model by region or incorporating spatial heterogeneity to capture these variations.
+
+\item Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior. If data allows, consider incorporating fine-scale spatial data to identify and model these hotspots.
+
+\item Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics. If possible, consider incorporating human movement patterns into the model, particularly if there are significant population flows between high and low transmission areas.
+
+\end{itemize}
+```
+By considering these key points and being aware of the potential pitfalls, you can build more robust and informative models.
 
 ## Examples of data use in literature
+
+The report came out on Jan 31, 2024, so there are not many studies that have used the data yet. However, here are a few that are either under review or have been published recently:
+
+-   [Assessing the Therapeutic Efficacy of Artemether-Lumefantrine for Uncomplicated Malaria in Lagos, Nigeria: A Comprehensive Study on Treatment Response and Resistance Markers](https://doi.org/10.21203/rs.3.rs-3985557/v1)
+
+-   [Design, synthesis and Anti-Plasmodial activity of Mortiamide-Lugdunin conjugates](https://doi.org/10.1016/j.bioorg.2024.107307)
+
