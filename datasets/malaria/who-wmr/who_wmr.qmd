@@ -38,7 +38,7 @@ The annexes can be found in the report itself as in the following examples: ![](
 The annexes can also be downloaded as Excel documents from the report page.
 
 |         |                                                                                                              |
-|----------------------|--------------------------------------------------|
+|----------------------|-------------------------------------------------|
 | Annex 1 | Data sources and methods                                                                                     |
 | Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries                                    |
 | Annex 3 | WHO Regional profiles                                                                                        |
@@ -62,6 +62,7 @@ The annexes can also be downloaded as Excel documents from the report page.
 Here is an example illustrating how to download the data, unzip it and read in a sheet
 
 ```{r}
+
 downloadIfNotExists <- function(url, filename) {
   if (!file.exists(filename)) {
     download.file(url, filename)
@@ -82,6 +83,7 @@ fpaths <- downloadIfNotExists(url, filename=file.path(pathbase,"wmr2017-excel-an
 filename <- file.path(pathbase,"wmr2017-excel-annexes/wmr2017-annex-table-a.xls")
 wmr2017a <- readxl::read_excel(filename, range = "A2:Q102")
 wmr2017a
+
 ```
 
 ::: callout-warning
@@ -89,23 +91,6 @@ Should the above link not work, find it at <https://www.who.int/teams/global-mal
 :::
 
 ## How to plot this data?
-
-TODO. Colour palettes can be implemented like this (though we still need to input the colours).
-
-```{r}
-library(ggplot2)
-colfunc <- colorRampPalette(c("#404E67", "#809BCE", "#95B8D1",
-                              "#B8E0D4", "#D6EADF", "#EAC4D5",
-                              "#D1625C", "#E89C81", "#FFD6A5"))
-cols <- colfunc(length(unique(mpg$class)))
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point(aes(colour = class), size=4, alpha=0.8) +
-  scale_colour_manual(values = cols) +
-  theme_minimal() +
-  labs(title = "Fuel efficiency generally decreases with engine size",
-       subtitle = "Two seaters (sports cars) are an exception because of their light weight",
-       caption = "Data from fueleconomy.gov")
-```
 
 Splitting the WHO REGION column can be done with this:
 
@@ -150,8 +135,6 @@ split_who_region <- function(df,
 split_who_region(wmr2017a)
 ```
 
-
-
 ```{r}
 
 library(tidyverse)
@@ -194,8 +177,11 @@ ggplot(data, aes(x = reorder(Country, Percentage), y = Percentage, color = Surve
 
 ```
 
+
 ```{r}
 
+library(tidyverse)
+library(ggrepel)
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
@@ -207,15 +193,28 @@ data <- data.frame(
   Percentage = c(91.5, 75.3, 82.8, 73.4, 72.1, 77.3, 73.7, 43.9, 63.3, 49.0, 54.2, 54.7, 69.1, 89.8, 90.9, 32.2, 82.2, 96.0, 60.6, 56.0, 66.4, 76.6, 81.0, 75.3, 67.9, 83.0, 78.3)
 )
 
+# Remove duplicate entries, keeping only the first occurrence for each country
+data_unique <- data %>% distinct(Country, .keep_all = TRUE)
+
 # Load the map data for Africa
 africa <- ne_countries(continent = "Africa", returnclass = "sf")
 
+# Define West African countries
+west_african_countries <- c("Benin", "Burkina Faso", "Cabo Verde", "Côte d'Ivoire", 
+                            "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Liberia", 
+                            "Mali", "Mauritania", "Niger", "Nigeria", "Senegal", 
+                            "Sierra Leone", "Togo")
+
+# Subset by West Africa
+west_africa <- africa %>% 
+  filter(name %in% west_african_countries)
+
 # Merge the map data with your data
-africa_data <- africa %>%
-  left_join(data, by = c("name" = "Country"))
+west_africa_data <- west_africa %>%
+  left_join(data_unique, by = c("name" = "Country"))
 
 # Create the choropleth map
-ggplot(data = africa_data) +
+ggplot(data = west_africa_data) +
   geom_sf(aes(fill = Percentage)) +
   scale_fill_viridis_c(option = "plasma", na.value = "grey50", name = "Percentage") +
   theme_minimal() +
@@ -225,11 +224,15 @@ ggplot(data = africa_data) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5, size = 12),
-    plot.caption = element_text(hjust=0, size = 10, face = "italic"),
+    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
     legend.position = "right"
-  )
+  ) +
+  geom_sf_text(aes(label = name, fill = Percentage, color = ifelse(Percentage > 50, "black", "white")), size = 3) +
+  scale_color_identity()
+
 
 ```
+
 
 ```{r}
 options(scipen = 9)
@@ -247,7 +250,6 @@ data$Deaths_Upper <- data$Deaths_Upper / 1000
 
 unique(data$Country)
 ```
-
 
 ```{r}
 # Create the plot for Deaths with low and high bands
@@ -277,7 +279,6 @@ ggplot(data, aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
   guides(color = guide_legend(title.position = "top", title.hjust = 0.5),
          fill = guide_legend(title.position = "top", title.hjust = 0.5))
 ```
-
 
 ```{r}
 
@@ -345,25 +346,39 @@ costing_df <- read_csv("tutorial_data/costing_df.csv")
 
 # Reshape data for plotting
 plot_df <- costing_df %>%
-  pivot_longer(cols = c(TotalDonorReported, TotalCountryReported), names_to = "Type", values_to = "Value")
+  pivot_longer(cols = starts_with("Country_"), names_to = "Donor", values_to = "Amount") %>%
+  mutate(Donor = gsub("Country_", "", Donor)) # Remove "Country_" from the Donor names
 
-# Ensure 'Year' is treated as a factor and ordered correctly
-plot_df$Year <- as.numeric(plot_df$Year)
+# Set the order of the donors so that "Govt_NMP" is last
+plot_df$Donor <- factor(plot_df$Donor, levels = c(
+  "GlobalFund", "WorldBank", "PMI_USAID", "OtherBilaterals", 
+  "WHO", "UNICEF","Govt_NMP", "OtherContributions"
+))
+
+# Define a manual color palette
+manual_colors <- c(
+  "GlobalFund" = "#1b9e77", 
+  "PMI_USAID" = "#d95f02", 
+  "WorldBank" = "#7570b3", 
+  "OtherBilaterals" = "#e7298a", 
+  "WHO" = "#66a61e", 
+  "UNICEF" = "#e6ab02", 
+  "OtherContributions" = "#a6761d", 
+  "Govt_NMP" = "#666666"
+)
 
 # Create the plot
-ggplot(plot_df, aes(x = Year, y = Value / 1000, color = Type)) +
-  geom_line(size = 1) +
+ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
+  geom_bar(stat = "identity", position = "stack") +
   facet_wrap(~ Country, scales = "free_y") +
-  scale_x_continuous(breaks = unique(plot_df$Year)) +
-  scale_color_manual(values = c("TotalDonorReported" = "#440154", "TotalCountryReported" = "#1f9e89"),
-                     labels = c("TotalDonorReported" = "Reported by donor", "TotalCountryReported" = "Reported by country")) +
+  scale_fill_manual(values = manual_colors) + # Use the manual color palette
   labs(
-    title = "Comparison of Total Reported Contributions",
-    subtitle = "For Selected Countries (2020-2022)",
+    title = "Stacked Bar Plot of Country Contributions Over the Years",
+    subtitle = "For Selected Countries",
     x = "Year",
-    y = "Total Contributions (in thousands)",
-    color = "Contribution Source",
-    caption = "Source: WMR2023 Annex 4C"
+    y = "Contributions (in thousands)",
+    fill = "Donor",
+    caption = "Source: WMR 2023 4C"
   ) +
   theme_minimal() +
   theme(
@@ -373,56 +388,9 @@ ggplot(plot_df, aes(x = Year, y = Value / 1000, color = Type)) +
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 
-
 ```
 
-
-```{r}
-# Data for ITN distribution and effectiveness
-itn_dist <- c(5000, 2000, 1500, 0, 5000, 4500, 5500, 0, 0)
-people_protected_per_net <- 2
-itn_eff <- c(0.95, 0.90, 0.85)
-
-# Calculate the effective coverage using convolution
-itn_cov <- convolve(itn_dist * people_protected_per_net, rev(itn_eff), type = "open")
-itn_cov <- itn_cov[1:length(itn_dist)]  # Match the length of the distribution data
-itn_cov_rounded <- round(itn_cov, 2)
-
-# Create a data frame for the plot
-years <- seq_along(itn_dist)
-itn_data <- data.frame(
-  Year = years,
-  Effective_Coverage = itn_cov_rounded
-)
-
-# Create the ITN coverage plot with integer x-axis increments and y-axis limits
-itn_coverage_plot <- ggplot(itn_data, aes(x = Year, y = Effective_Coverage)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
-  geom_text(aes(label = Effective_Coverage), vjust = -0.5, size = 5, colour = "black") +
-  labs(
-    title = "Effective ITN Coverage Over Time",
-    subtitle = "Malaria prevention through distribution and use of ITNs",
-    x = "Year",
-    y = "Effective Coverage (People Protected)",
-    caption = "Source: Hypothetical example. Assuming 2 people are protected per ITN and that ITN protection wanes over time."
-  ) +
-  scale_x_continuous(breaks = seq(min(itn_data$Year), max(itn_data$Year), by = 1)) +
-  scale_y_continuous(limits = c(0, 30000)) +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 14),
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 14),
-    axis.title.x = element_text(size = 14),
-    axis.title.y = element_text(size = 14),
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic")
-  ) +
-  theme(plot.caption.position = "plot")
-
-# Print the plot
-print(itn_coverage_plot)
-
-```
+TODO: stacked bar over country by year - by donor per country.
 
 ## Key points to consider
 
@@ -471,7 +439,7 @@ There can be discrepancies between the intended policy for ITN distribution and 
 ```
 ## National Level - Ignoring Spatial Heterogeneity:
 
-Modeling malaria transmission at a national level can overlook important spatial heterogeneities:
+Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
 ```{=tex}
 \begin{itemize}
@@ -493,4 +461,3 @@ The report came out on Jan 31, 2024, so there are not many studies that have use
 -   [Assessing the Therapeutic Efficacy of Artemether-Lumefantrine for Uncomplicated Malaria in Lagos, Nigeria: A Comprehensive Study on Treatment Response and Resistance Markers](https://doi.org/10.21203/rs.3.rs-3985557/v1)
 
 -   [Design, synthesis and Anti-Plasmodial activity of Mortiamide-Lugdunin conjugates](https://doi.org/10.1016/j.bioorg.2024.107307)
-
