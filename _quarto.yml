@@ -20,8 +20,8 @@ website:
         text: Home
       - href: data.qmd
         text: Browse
-      - href: data_malaria.qmd
-        text: Browse v2
+      # - href: data_malaria.qmd
+      #   text: Browse v2
       - href: about.qmd
         text: About
     pinned: true
