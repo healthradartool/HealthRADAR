@@ -82,7 +82,7 @@ fpaths <- downloadIfNotExists(url, filename=file.path(pathbase,"wmr2017-excel-an
 # Read in the sheet:
 filename <- file.path(pathbase,"wmr2017-excel-annexes/wmr2017-annex-table-a.xls")
 wmr2017a <- readxl::read_excel(filename, range = "A2:Q102")
-wmr2017a
+head(wmr2017a)
 
 ```
 
@@ -390,7 +390,6 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 ```
 
-TODO: stacked bar over country by year - by donor per country.
 
 ## Key points to consider
 
@@ -407,6 +406,7 @@ Using annual data in the model can lead to several pitfalls:
 
 \end{itemize}
 ```
+
 ## Reporting - Incidence vs. Prevalence Data:
 
 It is important to distinguish between incidence and prevalence data when building and interpreting the model:
@@ -420,6 +420,7 @@ It is important to distinguish between incidence and prevalence data when buildi
 
 \end{itemize}
 ```
+
 When using data to parameterise and validate the model, be clear about whether the data represents incidence or prevalence, as they have different implications for the model's structure and interpretation.
 
 ## Difference between Policy and Implementation:
@@ -437,6 +438,7 @@ There can be discrepancies between the intended policy for ITN distribution and 
 
 \end{itemize}
 ```
+
 ## National Level - Ignoring Spatial Heterogeneity:
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
@@ -452,6 +454,7 @@ Modelling malaria transmission at a national level can overlook important spatia
 
 \end{itemize}
 ```
+
 By considering these key points and being aware of the potential pitfalls, you can build more robust and informative models.
 
 ## Examples of data use in literature
