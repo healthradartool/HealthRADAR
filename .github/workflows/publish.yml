@@ -12,6 +12,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2 
 
+      - name: Install libcurl on Linux
+        run: sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
