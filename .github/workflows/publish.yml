@@ -17,9 +17,6 @@ jobs:
           sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev
           sudo apt-get install libharfbuzz-dev libfribidi-dev libfontconfig1-dev
 
-      - name: Install the class package
-        run: Rscript -e 'install.packages("class",version="7.3-20")'
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
