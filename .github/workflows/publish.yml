@@ -17,9 +17,9 @@ jobs:
           sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev
           sudo apt-get install libharfbuzz-dev libfribidi-dev libfontconfig1-dev
 
-      - name: Install libudunits2-dev on Linux
+      - name: Install sf dependencies on Linux
         run: |
-          sudo apt-get install libudunits2-dev
+          sudo apt-get install libudunits2-dev libgdal-dev
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
