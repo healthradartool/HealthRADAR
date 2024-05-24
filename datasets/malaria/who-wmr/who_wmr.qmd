@@ -2,6 +2,10 @@
 title: "World Malaria Report"
 subtitle: "The report provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe."
 image: "images/wmr-covers-2023.jpg"
+execute:
+  message: false
+  warning: false
+  
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
@@ -57,6 +61,8 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 : Example of the annex layout. This example is from the 2023 world malaria report. Note that the annexes are paired with the report and should be interpreted as such.
 
+::: {.callout-note collapse=true}
+
 ## How to use this data?
 
 Here is an example illustrating how to download the data, unzip it and read in a sheet
@@ -86,9 +92,13 @@ head(wmr2017a)
 
 ```
 
+:::
+
 ::: callout-warning
 Should the above link not work, find it at <https://www.who.int/teams/global-malaria-programme/reports>
 :::
+
+::: {.callout-note collapse=true}
 
 ## How to plot this data?
 
@@ -390,6 +400,7 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 ```
 
+:::
 
 ## Key points to consider
 
