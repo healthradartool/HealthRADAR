@@ -92,11 +92,15 @@ head(wmr2017a)
 
 ```
 
-:::
 
 ::: callout-warning
 Should the above link not work, find it at <https://www.who.int/teams/global-malaria-programme/reports>
 :::
+
+<br>
+
+:::
+
 
 ::: {.callout-note collapse=true}
 
