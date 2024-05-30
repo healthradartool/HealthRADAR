@@ -1,5 +1,0 @@
----
-pagetitle: "Browse data sets"
-title: "Diphtheria"
-subtitle: "Browse and search for data sets"
----

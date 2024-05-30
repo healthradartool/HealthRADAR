@@ -1,5 +1,0 @@
----
-pagetitle: "Browse data sets"
-title: "Pertussis Data"
-subtitle: "Browse and search for data sets"
----

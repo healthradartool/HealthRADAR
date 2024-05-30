@@ -1,5 +1,0 @@
----
-pagetitle: "Browse data sets"
-title: "Measles"
-subtitle: "Browse and search for data sets"
----
