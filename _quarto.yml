@@ -20,20 +20,9 @@ website:
         text: Home
       - href: data.qmd
         text: Browse
-      # - href: data_malaria.qmd
-      #   text: Browse v2
       - href: about.qmd
         text: About
     pinned: true
-  sidebar: 
-    title: "Malaria Data"
-    style: docked
-    contents: 
-    - data_malaria.qmd
-    - data_pertussis.qmd
-    - data_cervical_cancer.qmd
-    - data_diphtheria.qmd
-    - data_measles.qmd
   page-footer: "Copyright 2024, Health RADAR"
   
 language: 
