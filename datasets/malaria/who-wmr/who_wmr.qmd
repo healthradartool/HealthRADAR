@@ -42,7 +42,7 @@ The annexes can be found in the report itself as in the following examples: ![](
 The annexes can also be downloaded as Excel documents from the report page.
 
 |         |                                                                                                              |
-|----------------------|-------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | Annex 1 | Data sources and methods                                                                                     |
 | Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries                                    |
 | Annex 3 | WHO Regional profiles                                                                                        |
@@ -61,8 +61,7 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 : Example of the annex layout. This example is from the 2023 world malaria report. Note that the annexes are paired with the report and should be interpreted as such.
 
-::: {.callout-note collapse=true}
-
+::: {.callout-note collapse="true"}
 ## How to use this data?
 
 Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it is able to be used. For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
@@ -132,18 +131,14 @@ gt(wmr2023j_e8)
 
 ```
 
-
 ::: callout-warning
 Should the above link not work, find it at <https://www.who.int/teams/global-malaria-programme/reports>
 :::
 
 <br>
-
 :::
 
-
-::: {.callout-note collapse=true}
-
+::: {.callout-note collapse="true"}
 ## How to plot this data?
 
 ```{r include=FALSE}
@@ -157,8 +152,6 @@ wmr2023Ea_Africa <- readxl::read_excel(filename,
 )
 
 ```
-
-
 
 ```{r}
 
@@ -341,7 +334,6 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 ```
 
 TODO: JN/JT add short description of the plot
-
 :::
 
 ## Key points to consider
@@ -350,61 +342,37 @@ TODO: JN/JT add short description of the plot
 
 Using annual data for your analysis can lead to several pitfalls:
 
-```{=tex}
-\begin{itemize}
+- Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
 
-\item Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
-
-\item Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
-
-\end{itemize}
-```
+- Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
 
 ### Reporting - Incidence vs. Prevalence Data:
 
 It is important to distinguish between incidence and prevalence data when performing your analysis:
 
-```{=tex}
-\begin{itemize}
+- Incidence data: Incidence refers to the number of new cases of malaria occurring in a population over a specified period. It provides information on the rate at which new infections occur and is more sensitive to changes in transmission dynamics.
 
-\item Incidence data: Incidence refers to the number of new cases of malaria occurring in a population over a specified period. It provides information on the rate at which new infections occur and is more sensitive to changes in transmission dynamics.
-
-\item Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
-
-\end{itemize}
-```
+- Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
 
 ### Difference between Policy and Implementation:
 
 There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
 
-```{=tex}
-\begin{itemize}
+- Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance.
 
-\item Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance.
+- Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons. 
 
-\item Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons. 
-
-\item Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
-
-\end{itemize}
-```
+- Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
 
 ### National Level - Ignoring Spatial Heterogeneity:
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
-```{=tex}
-\begin{itemize}
+- Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors. 
 
-\item Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors. 
+- Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
 
-\item Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
-
-\item Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
-
-\end{itemize}
-```
+- Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
 
 ## Examples of data use in literature
 
