@@ -65,7 +65,9 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 ## How to use this data?
 
-Here is an example illustrating how to download the data, unzip it and read in a sheet
+Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it is able to be used. For this example, the goal is to get the reported malaria deaths for the elimination 8 countries, but your specific analysis may require different data.
+
+Let's start by downloading the data for the 2023 World Malaria Report. The following code will download the annexes, unzip them, and locate annex 4J, which contains the reported malaria deaths by country.
 
 ```{r}
 
@@ -81,14 +83,52 @@ downloadIfNotExists <- function(url, filename) {
 }
 
 # Download and unzip the annexes:
-url <- "https://cdn.who.int/media/docs/default-source/malaria/world-malaria-reports/wmr2017-excel-annexes.zip"
+url <- "https://cdn.who.int/media/docs/default-source/malaria/world-malaria-reports/wmr2023-excel-annexes.zip"
 pathbase <- tempdir()
-fpaths <- downloadIfNotExists(url, filename=file.path(pathbase,"wmr2017-excel-annexes.zip"))
+fpaths <- downloadIfNotExists(url, filename=file.path(pathbase,"wmr2023-excel-annexes.zip"))
 
-# Read in the sheet:
-filename <- file.path(pathbase,"wmr2017-excel-annexes/wmr2017-annex-table-a.xls")
-wmr2017a <- readxl::read_excel(filename, range = "A2:Q102")
-head(wmr2017a)
+# list.files(file.path(pathbase,"wmr2023-excel-annexes/WMR2023_Annex"))
+
+# Read in the sheet. Please note that this is specific to the 2023 WMR report and may not work for other years.
+filename <- file.path(pathbase,"wmr2023-excel-annexes/WMR2023_Annex/WMR2023_Annex_4J.xlsx")
+
+```
+
+Now that we know where annex is located, we can read it in and start cleaning it. This part may require inspecting the data beforehand to understand how it is structured.
+
+```{r}
+
+library(tidyverse)
+library(gt)
+
+wmr2023j <- readxl::read_excel(filename, 
+sheet = "Annex_J", # Setting your sheet is good practice even if there is only one sheet.
+skip = 2 # Skip the first two rows of the sheet, which contain metadata.
+)
+
+# View the raw dataset. The gt package is used for better formatting, but this is optional.
+gt(head(wmr2023j))
+
+```
+
+The elimination 8 (E8) countries are Botswana, Eswatini, Namibia, South Africa, Angola, Mozambique, Zambia, and Zimbabwe. To filter the data for these countries, you can use the following code:
+
+```{r}
+
+# Define the E8 countries
+e8_countries <- c("Botswana", "Eswatini", "Namibia", "South Africa", "Angola", "Mozambique", "Zambia", "Zimbabwe")
+
+# Rename the first column for easier reference
+colnames(wmr2023j)[1] <- "WHO_region_Country_area"
+
+# Filter the data for the E8 countries
+wmr2023j_e8 <- wmr2023j %>% dplyr::filter(WHO_region_Country_area %in% e8_countries)
+
+# Since we have removed the region and area information, we can rename the column to just "Country"
+colnames(wmr2023j_e8)[1] <- "Country"
+
+# View the filtered dataset
+gt(wmr2023j_e8)
 
 ```
 
@@ -106,72 +146,34 @@ Should the above link not work, find it at <https://www.who.int/teams/global-mal
 
 ## How to plot this data?
 
-Splitting the WHO REGION column can be done with this:
+```{r include=FALSE}
 
-```{r}
-split_who_region <- function(df,
-                             col_region_area=1,
-                             region_name="WHO Region",
-                             area_name="Country/area",
-                             col_na_when_region=NA,
-                             fill_down_first=TRUE) {
-  if (length(intersect(c(region_name, area_name), colnames(df)))!=0) {
-    stop("region_name and area_name must not be in the dataframe")
-  }
-  df[,region_name] <- NA
-  df[,area_name] <- NA
-  for (i in seq(1, nrow(df))) {
-    if (fill_down_first) {
-      if (is.na(df[i, col_region_area])) {
-        df[i, col_region_area] <- df[i-1, col_region_area]
-      }
-    }
-    if(is.na(col_na_when_region)) {
-      is_new_region <- !grepl("[a-z]", df[i, col_region_area, drop=TRUE])
-    } else {
-      is_new_region <- is.na(df[i, col_na_when_region, drop=TRUE])
-    }
-    if (is_new_region) {
-      # print(paste0("Updating ",col_region_area," because is.na(df[",i,",",col_na_when_region,"])"))
-      current_region <- df[i, col_region_area, drop=TRUE]
-    } else {
-      df[i,area_name] <- df[i, col_region_area, drop=TRUE]
-    }
-    df[i,region_name] <- current_region
-  }
-  rows_na_area <- is.na(df[,area_name, drop=TRUE])
-  cnames <- setdiff(colnames(df), colnames(df[,col_region_area]))
-  cnames_ordered <- c(region_name, area_name, head(cnames,-2))
-  df <- df[!rows_na_area, cnames_ordered]
-  df
-}
+filename <- file.path(pathbase,"wmr2023-excel-annexes/WMR2023_Annex/WMR2023_Annex_4Ea.xlsx")
 
-split_who_region(wmr2017a)
-```
-
-```{r}
-
-library(tidyverse)
-
-# Create the data frame
-data <- data.frame(
-  Country = c("Benin", "Burkina Faso", "Burkina Faso", "Cameroon", "Côte d'Ivoire", "Gambia", "Ghana", "Guinea", "Guinea", "Kenya", "Kenya", "Liberia", "Madagascar", "Mali", "Mali", "Mauritania", "Mozambique", "Niger", "Nigeria", "Nigeria", "Rwanda", "Senegal", "Senegal", "Senegal", "Sierra Leone", "Uganda", "Zambia"),
-  Survey = c("2017-18 DHS", "2017-18 MIS", "2021 DHS", "2018 DHS", "2021 DHS", "2019-20 DHS", "2019 MIS", "2018 DHS", "2021 MIS", "2020 MIS", "2022 DHS", "2019-20 DHS", "2021 DHS", "2018 DHS", "2021 MIS", "2019-21 DHS", "2018 MIS", "2021 MIS", "2018 DHS", "2021 MIS", "2019-20 DHS", "2018 DHS", "2019 DHS", "2020-21 MIS", "2019 DHS", "2018-19 MIS", "2018 DHS"),
-  Percentage = c(91.5, 75.3, 82.8, 73.4, 72.1, 77.3, 73.7, 43.9, 63.3, 49.0, 54.2, 54.7, 69.1, 89.8, 90.9, 32.2, 82.2, 96.0, 60.6, 56.0, 66.4, 76.6, 81.0, 75.3, 67.9, 83.0, 78.3)
+wmr2023Ea_Africa <- readxl::read_excel(filename, 
+  sheet = "data", # Setting your sheet is good practice even if there is only one sheet.
+  range = "A7:C33", # Specify the range of the data
+  col_names = c("Country", "Source", "Percentage") # Specify if the first row contains column names
 )
 
+```
+
+
+
+```{r}
+
 # Sort the data by percentage
-data <- data %>%
+wmr2023Ea_Africa <- wmr2023Ea_Africa %>%
   arrange(Percentage)
 
 # Create the lollipop plot
-ggplot(data, aes(x = reorder(Country, Percentage), y = Percentage, color = Survey)) +
+ggplot(wmr2023Ea_Africa, aes(x = reorder(Country, Percentage), y = Percentage, color = Source)) +
   geom_segment(aes(x = Country, xend = Country, y = 0, yend = Percentage), color = "grey") +
   geom_point(size = 4) +
   coord_flip() +
   theme_minimal() +
   labs(title = "Percentage of Households with at least one ITN",
-       subtitle = "Data for selected countries",
+       subtitle = "Data for selected African countries",
        caption = "Source WMR 2023 Annex 4Ea",
        x = "Country",
        y = "Percentage",
@@ -191,62 +193,53 @@ ggplot(data, aes(x = reorder(Country, Percentage), y = Percentage, color = Surve
 
 ```
 
+TODO: JN add short description of the plot
 
 ```{r}
 
-library(tidyverse)
 library(ggrepel)
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
 
-# Create the data frame
-data <- data.frame(
-  Country = c("Benin", "Burkina Faso", "Burkina Faso", "Cameroon", "Côte d'Ivoire", "Gambia", "Ghana", "Guinea", "Guinea", "Kenya", "Kenya", "Liberia", "Madagascar", "Mali", "Mali", "Mauritania", "Mozambique", "Niger", "Nigeria", "Nigeria", "Rwanda", "Senegal", "Senegal", "Senegal", "Sierra Leone", "Uganda", "Zambia"),
-  Survey = c("2017-18 DHS", "2017-18 MIS", "2021 DHS", "2018 DHS", "2021 DHS", "2019-20 DHS", "2019 MIS", "2018 DHS", "2021 MIS", "2020 MIS", "2022 DHS", "2019-20 DHS", "2021 DHS", "2018 DHS", "2021 MIS", "2019-21 DHS", "2018 MIS", "2021 MIS", "2018 DHS", "2021 MIS", "2019-20 DHS", "2018 DHS", "2019 DHS", "2020-21 MIS", "2019 DHS", "2018-19 MIS", "2018 DHS"),
-  Percentage = c(91.5, 75.3, 82.8, 73.4, 72.1, 77.3, 73.7, 43.9, 63.3, 49.0, 54.2, 54.7, 69.1, 89.8, 90.9, 32.2, 82.2, 96.0, 60.6, 56.0, 66.4, 76.6, 81.0, 75.3, 67.9, 83.0, 78.3)
-)
-
-# Remove duplicate entries, keeping only the first occurrence for each country
-data_unique <- data %>% distinct(Country, .keep_all = TRUE)
-
 # Load the map data for Africa
 africa <- ne_countries(continent = "Africa", returnclass = "sf")
 
-# Define West African countries
-west_african_countries <- c("Benin", "Burkina Faso", "Cabo Verde", "Côte d'Ivoire", 
-                            "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Liberia", 
-                            "Mali", "Mauritania", "Niger", "Nigeria", "Senegal", 
-                            "Sierra Leone", "Togo")
+# Define the elimination 8 countries
+e8_countries <- c("Botswana", "Eswatini", "Namibia", "South Africa", "Angola", "Mozambique", "Zambia", "Zimbabwe")
 
-# Subset by West Africa
-west_africa <- africa %>% 
-  filter(name %in% west_african_countries)
+# Rename "eSwatini" in africa to match the data using dplyr
+africa <- africa %>%
+  mutate(name = ifelse(name == "eSwatini", "Eswatini", name))
+
+# Subset by the elimination 8 countries
+e8_africa <- africa %>% 
+  filter(name %in% e8_countries)
 
 # Merge the map data with your data
-west_africa_data <- west_africa %>%
-  left_join(data_unique, by = c("name" = "Country"))
+e8_data <- e8_africa %>%
+  left_join(wmr2023j_e8, by = c("name" = "Country"))
 
 # Create the choropleth map
-ggplot(data = west_africa_data) +
-  geom_sf(aes(fill = Percentage)) +
-  scale_fill_viridis_c(option = "plasma", na.value = "grey50", name = "Percentage") +
+ggplot(data = e8_data) +
+  geom_sf(aes(fill = `2022`), color = "lightgrey", size = 0.3) +
+  scale_fill_viridis_c(option = "plasma", na.value = "grey50", name = "Reported Deaths") +
   theme_minimal() +
-  labs(title = "Percentage of Households with at least one ITN",
-       subtitle = "Data for selected countries. Countries in grey have no data available.",
-       caption = "Source: WMR 2023 Annex 4Ea") +
+  labs(title = "Reported malaria deaths in the Elimination 8 countries (2022)",
+       caption = "Source: WMR 2023 Annex 4J",
+       x = "Latitude",
+       y = "Longitude") +
   theme(
     plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5, size = 12),
     plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
     legend.position = "right"
   ) +
-  geom_sf_text(aes(label = name, fill = Percentage, color = ifelse(Percentage > 50, "black", "white")), size = 3) +
+  geom_sf_text(aes(label = name, fill = `2022`, color = ifelse(`2022` > mean(`2022`), "black", "white")), size = 3) +
   scale_color_identity()
 
-
 ```
-
+TODO: JN add short description of the plot
 
 ```{r}
 options(scipen = 9)
@@ -271,7 +264,7 @@ ggplot(data, aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
   geom_line(size = 1) +
   geom_ribbon(aes(ymin = Cases_Lower, ymax = Cases_Upper, fill = Country), alpha = 0.2) +
   labs(
-    title = "Reported Malaria Cases Over Time",
+    title = "Estimated Malaria Cases (2000-2022)",
     subtitle = "With confidence bands",
     x = "Year",
     y = "Number of Cases (thousands)",
@@ -294,64 +287,7 @@ ggplot(data, aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
          fill = guide_legend(title.position = "top", title.hjust = 0.5))
 ```
 
-```{r}
-
-# Define colours, with specified countries highlighted and others grayed out
-country_colors <- c(
-  "Mozambique" = "#e75480"    # Highlight Mozambique
-)
-
-# Assign gray color to all other countries
-all_countries <- unique(data$Country)
-other_countries <- setdiff(all_countries, names(country_colors))
-for (country in other_countries) {
-  country_colors[country] <- "gray"
-}
-
-# Subset data for Mozambique
-mozambique_data <- subset(data, Country == "Mozambique")
-
-# Create the plot for Deaths with low and high bands
-p <- ggplot(data, aes(x = Year, y = Deaths_Point, group = Country, color = Country)) +
-  geom_line(size = 1) +
-  geom_ribbon(aes(ymin = Deaths_Lower, ymax = Deaths_Upper, fill = Country), alpha = 0.2) +
-  geom_line(data = mozambique_data, aes(x = Year, y = Deaths_Point), color = "#e75480", size = 1.5) +  # Highlight Mozambique line
-  labs(
-    title = "Reported Malaria Deaths Over Time",
-    subtitle = "With confidence bands, highlighting Mozambique",
-    x = "Year",
-    y = "Number of Deaths (thousands)",
-    color = "Country",
-    fill = "Country",
-    caption = "Source: WMR 2023 Annex 4F"
-  ) +
-  scale_color_manual(values = country_colors, guide = 'none') +
-  scale_fill_manual(values = country_colors, guide = 'none') +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 14),
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 12),
-    legend.title = element_text(size = 14, face = "bold"),
-    legend.text = element_text(size = 12),
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
-  )
-
-# Find the middle year for Mozambique
-middle_year <- median(mozambique_data$Year)
-middle_index <- which.min(abs(mozambique_data$Year - middle_year))
-
-# Get the middle data point for Mozambique
-middle_year <- mozambique_data$Year[middle_index]
-middle_deaths_upper <- mozambique_data$Deaths_Upper[middle_index]
-
-# Add annotation for Mozambique at the middle point
-p + annotate("text", x = middle_year + 0.5, y = middle_deaths_upper + 8, label = "Mozambique", hjust = 0.5, size = 5, color = "#e75480", fontface = "bold") +
-  geom_segment(aes(x = middle_year, y = middle_deaths_upper, xend = middle_year + 0.5, yend = middle_deaths_upper + 5), color = "#e75480", arrow = arrow(length = unit(0.2, "cm")))
-
-```
+TODO: JN add short description of the plot
 
 ```{r}
 
@@ -404,27 +340,29 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 ```
 
+TODO: JN add short description of the plot
+
 :::
 
 ## Key points to consider
 
-## Pitfalls of Annual Data:
+### Pitfalls of Annual Data:
 
-Using annual data in the model can lead to several pitfalls:
+Using annual data for your analysis can lead to several pitfalls:
 
 ```{=tex}
 \begin{itemize}
 
 \item Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
 
-\item Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions. This can limit the model's ability to accurately predict the timing and magnitude of changes in disease transmission.
+\item Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
 
 \end{itemize}
 ```
 
-## Reporting - Incidence vs. Prevalence Data:
+### Reporting - Incidence vs. Prevalence Data:
 
-It is important to distinguish between incidence and prevalence data when building and interpreting the model:
+It is important to distinguish between incidence and prevalence data when performing your analysis:
 
 ```{=tex}
 \begin{itemize}
@@ -436,41 +374,37 @@ It is important to distinguish between incidence and prevalence data when buildi
 \end{itemize}
 ```
 
-When using data to parameterise and validate the model, be clear about whether the data represents incidence or prevalence, as they have different implications for the model's structure and interpretation.
-
-## Difference between Policy and Implementation:
+### Difference between Policy and Implementation:
 
 There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
 
 ```{=tex}
 \begin{itemize}
 
-\item Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance. Use data from surveys or distribution records to accurately represent the true coverage in the model.
+\item Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance.
 
-\item Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons. Incorporate the actual timing of ITN distribution in the model when possible.
+\item Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons. 
 
-\item Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance. Use data from field studies or published literature to inform the parameters related to ITN effectiveness in the model.
+\item Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
 
 \end{itemize}
 ```
 
-## National Level - Ignoring Spatial Heterogeneity:
+### National Level - Ignoring Spatial Heterogeneity:
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
 ```{=tex}
 \begin{itemize}
 
-\item Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors. If possible, consider stratifying the model by region or incorporating spatial heterogeneity to capture these variations.
+\item Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors. 
 
-\item Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior. If data allows, consider incorporating fine-scale spatial data to identify and model these hotspots.
+\item Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
 
-\item Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics. If possible, consider incorporating human movement patterns into the model, particularly if there are significant population flows between high and low transmission areas.
+\item Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
 
 \end{itemize}
 ```
-
-By considering these key points and being aware of the potential pitfalls, you can build more robust and informative models.
 
 ## Examples of data use in literature
 
