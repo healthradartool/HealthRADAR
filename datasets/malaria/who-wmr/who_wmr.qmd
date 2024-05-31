@@ -65,7 +65,7 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 ## How to use this data?
 
-Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it is able to be used. For this example, the goal is to get the reported malaria deaths for the elimination 8 countries, but your specific analysis may require different data.
+Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it is able to be used. For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
 
 Let's start by downloading the data for the 2023 World Malaria Report. The following code will download the annexes, unzip them, and locate annex 4J, which contains the reported malaria deaths by country.
 
@@ -111,7 +111,7 @@ gt(head(wmr2023j))
 
 ```
 
-The elimination 8 (E8) countries are Botswana, Eswatini, Namibia, South Africa, Angola, Mozambique, Zambia, and Zimbabwe. To filter the data for these countries, you can use the following code:
+The E8 countries are Botswana, Eswatini, Namibia, South Africa, Angola, Mozambique, Zambia, and Zimbabwe. To filter the data for these countries, you can use the following code:
 
 ```{r}
 
@@ -193,7 +193,7 @@ ggplot(wmr2023Ea_Africa, aes(x = reorder(Country, Percentage), y = Percentage, c
 
 ```
 
-TODO: JN add short description of the plot
+TODO: JN/JT add short description of the plot with context
 
 ```{r}
 
@@ -239,7 +239,8 @@ ggplot(data = e8_data) +
   scale_color_identity()
 
 ```
-TODO: JN add short description of the plot
+
+TODO: JN/JT add short description of the plot. Discuss context etc.
 
 ```{r}
 options(scipen = 9)
@@ -255,7 +256,6 @@ data$Deaths_Point <- data$Deaths_Point / 1000
 data$Deaths_Lower <- data$Deaths_Lower / 1000
 data$Deaths_Upper <- data$Deaths_Upper / 1000
 
-unique(data$Country)
 ```
 
 ```{r}
@@ -287,7 +287,7 @@ ggplot(data, aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
          fill = guide_legend(title.position = "top", title.hjust = 0.5))
 ```
 
-TODO: JN add short description of the plot
+TODO: JN/JT add short description of the plot
 
 ```{r}
 
@@ -340,7 +340,7 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 ```
 
-TODO: JN add short description of the plot
+TODO: JN/JT add short description of the plot
 
 :::
 
