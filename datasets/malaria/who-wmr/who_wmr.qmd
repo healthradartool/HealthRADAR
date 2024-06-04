@@ -186,7 +186,9 @@ ggplot(wmr2023Ea_Africa, aes(x = reorder(Country, Percentage), y = Percentage, c
 
 ```
 
-TODO: JN/JT add short description of the plot with context
+The dumbbell plot above shows the percentage of households with at least one ITN in selected African countries. The plot highlights the variation in ITN coverage across countries and data sources across years. Niger, Benin and Mali have the highest ITN coverage, while Guinea, Kenya and Mauritania have the lowest coverage. None of the countries had coverage below 25\%, which most having between 50\% and 85\%, which is a good sign for malaria control efforts in these countries, given that the ITNs are used correctly and that the mosquitoes have not developed resistance to the insecticides used in the nets.
+
+TODO: JN add short context
 
 ```{r}
 
@@ -232,6 +234,8 @@ ggplot(data = e8_data) +
   scale_color_identity()
 
 ```
+
+The choropleth map above shows the reported malaria deaths in the Elimination 8 countries in 2022. The map highlights the variation in reported malaria mortality across the E8 countries, with higher mortality rates in Angola, Mozambique, and Zambia. It is important to note that these are reported malaria deaths and may not capture the full extent of malaria mortality in these countries due to underreporting and misclassification of deaths. It would therefore also be useful to consider estimtated malaria deaths as well.
 
 TODO: JN/JT add short description of the plot. Discuss context etc.
 
@@ -280,6 +284,9 @@ ggplot(data, aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
          fill = guide_legend(title.position = "top", title.hjust = 0.5))
 ```
 
+The plot above shows the estimated malaria cases in selected countries from 2000 to 2022. The lines represent the estimated number of cases, while the shaded areas represent the confidence bands around the estimates. The plot highlights the variation in malaria cases across countries and over time, with some countries experiencing fluctuations in case numbers. It is important to consider the uncertainty around these estimates when interpreting the data. For example, looking at the plot for Mozambique, the total number of cases did not change much over the years, with the confidence bands staying relatively stable, whereas Angola saw fluctuations in the number of cases, with much wider confidence bands from 2015, indicating greater uncertainty in the estimates.
+
+
 TODO: JN/JT add short description of the plot
 
 ```{r}
@@ -316,7 +323,7 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
   facet_wrap(~ Country, scales = "free_y") +
   scale_fill_manual(values = manual_colors) + # Use the manual color palette
   labs(
-    title = "Stacked Bar Plot of Country Contributions Over the Years",
+    title = "Stacked Bar Plot of Country Contributions (2020-2022)",
     subtitle = "For Selected Countries",
     x = "Year",
     y = "Contributions (in thousands)",
@@ -333,7 +340,10 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 ```
 
+The stacked bar plot above shows the contributions made by different donors to malaria control efforts in selected countries over the years. The plot highlights the variation in contributions across countries and donors, with some countries receiving more funding from certain donors than others. For example, in Mozambique, the Global Fund and PMI/USAID are the largest contributors, while in South Africa, the Global Fund and local government are the main contributors. It is important to consider the distribution of funding across different donors when assessing the sustainability and effectiveness of malaria control programs in these countries.
+
 TODO: JN/JT add short description of the plot
+
 :::
 
 ## Key points to consider
