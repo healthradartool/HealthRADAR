@@ -75,6 +75,8 @@ We can either manually download, unzip and read in annex 4J or use the `whowmr` 
 
 ::: callout-warning
 The annexes contain references to footnotes. The `whowmr` package leaves these in the data - the idea being that one should engage with the footnote and proceed with context.
+<br>
+:::
 
 After inspecting the data beforehand to understand how it is structured and whether there are any footnotes relevant to our analysis, we can display our data in a table as follows:
 
@@ -105,8 +107,6 @@ wmr2023j_e8 <- whowmr::wmr2023$wmr2023j |>
 gt(wmr2023j_e8)
 ```
 
-<br>
-:::
 
 ::: {.callout-note collapse="true"}
 ## How to plot this data?
