@@ -46,15 +46,17 @@ You can export this table using either the Download or Export to excel buttons a
 
 ``` r
 # Load the libraries
-library(tidyverse)
+library(dplyr)
+library(readxl)
+library(readr)
 
 # Read the data and process it into a simpler csv
-readxl::read_excel(path="path/to/statsSA.xlsx", skip=8,
-                   col_names=c('Municipality', 'Code', 'Frequency', 'PercentAll', 'PercentValid')) |>
-  dplyr::filter(Frequency!=0) |>
-  readr::write_csv('tbStatsSA.csv')
-
+#read_excel(path="path/to/statsSA.xlsx", skip=8,
+#                   col_names=c('Municipality', 'Code', 'Frequency', 'PercentAll', 'PercentValid')) |>
+#  filter(Frequency!=0) |>
+#  write_csv('tbStatsSA.csv')
+#
 # Read the csv
-tbStatsSA <- readr::read_csv('tbStatsSA.csv')
+#tbStatsSA <- read_csv('tbStatsSA.csv')
 ```
 :::

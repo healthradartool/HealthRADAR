@@ -43,7 +43,10 @@ Here is an example of how to acquire estimated population values until the year 
 #| eval: false
 
 # Load the libraries
-library(tidyverse)
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(readr)
 
 # Read the data
 iso3E8 = strsplit1('AGO,BWA,NAM,MOZ,SWZ,ZAF,ZMB,ZWE', ',')
