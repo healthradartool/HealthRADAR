@@ -17,6 +17,10 @@ categories:
   - annual
 ---
 
+```{r setup, include=FALSE}
+source(here::here("datasets/malaria/who-wmr/scripts/packages.R"))
+```
+
 ## About the data
 
 The WHO World Malaria report, released on an annual basis, provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe. The annexes to the report provide useful information on the data sources and methods used to compile the World Malaria Report, a set of regional malaria profiles and tables of historical time series of case data, commodity distribution, funding amounts and policy adoption.
@@ -42,7 +46,7 @@ The annexes can be found in the report itself as in the following examples: ![](
 The annexes can also be downloaded as Excel documents from the report page.
 
 |         |                                                                                                              |
-|-----------------------|-------------------------------------------------|
+|-----------------------|------------------------------------------------|
 | Annex 1 | Data sources and methods                                                                                     |
 | Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries                                    |
 | Annex 3 | WHO Regional profiles                                                                                        |
@@ -63,77 +67,43 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 ::: {.callout-note collapse="true"}
 ## How to use this data?
+:::
 
-Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it is able to be used. For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
+For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
 
-Let's start by downloading the data for the 2023 World Malaria Report. The following code will download the annexes, unzip them, and locate annex 4J, which contains the reported malaria deaths by country.
+We can either manually download, unzip and read in annex 4J or use the `whowmr` package to access the data. 
 
-```{r}
+::: callout-warning
+The annexes contain references to footnotes. The `whowmr` package leaves these in the data - the idea being that one should engage with the footnote and proceed with context.
 
-downloadIfNotExists <- function(url, filename) {
-  if (!file.exists(filename)) {
-    download.file(url, filename)
-  }
-  if (!dir.exists(gsub(".zip", "", filename))) {
-    zip::unzip(zipfile = filename, exdir = gsub(".zip", "", filename))
-  }
-  fnames <- list.files(gsub(".zip", "", filename), recursive = T, full.names = T)
-  gsub(paste0("^",gsub(".zip", "", filename),"/"), "", fnames)
-}
-
-# Download and unzip the annexes:
-url <- "https://cdn.who.int/media/docs/default-source/malaria/world-malaria-reports/wmr2023-excel-annexes.zip"
-pathbase <- tempdir()
-fpaths <- downloadIfNotExists(url, filename=file.path(pathbase,"wmr2023-excel-annexes.zip"))
-
-# list.files(file.path(pathbase,"wmr2023-excel-annexes/WMR2023_Annex"))
-
-# Read in the sheet. Please note that this is specific to the 2023 WMR report and may not work for other years.
-filename <- file.path(pathbase,"wmr2023-excel-annexes/WMR2023_Annex/WMR2023_Annex_4J.xlsx")
-
-```
-
-Now that we know where annex is located, we can read it in and start cleaning it. This part may require inspecting the data beforehand to understand how it is structured.
+After inspecting the data beforehand to understand how it is structured and whether there are any footnotes relevant to our analysis, we can display our data in a table as follows:
 
 ```{r}
-
-library(tidyverse)
-library(gt)
-
-wmr2023j <- readxl::read_excel(filename, 
-sheet = "Annex_J", # Setting your sheet is good practice even if there is only one sheet.
-skip = 2 # Skip the first two rows of the sheet, which contain metadata.
-)
-
-# View the raw dataset. The gt package is used for better formatting, but this is optional.
-gt(head(wmr2023j))
-
+# View Annex 4J of the 2023 World Malaria Report. Note that we remove the footnotes here.
+# The gt package is used for better formatting, but this is optional.
+whowmr::wmr2023$wmr2023j |>
+  # Hide the footnotes
+  mutate(Country=`Country/area` |> stringr::str_remove("\\d.*$")) |>
+  select(Country, `2010`:`2022`) |>
+  head() |>
+  gt()
 ```
 
 The E8 countries are Botswana, Eswatini, Namibia, South Africa, Angola, Mozambique, Zambia, and Zimbabwe. To filter the data for these countries, you can use the following code:
 
 ```{r}
-
 # Define the E8 countries
 e8_countries <- c("Botswana", "Eswatini", "Namibia", "South Africa", "Angola", "Mozambique", "Zambia", "Zimbabwe")
 
-# Rename the first column for easier reference
-colnames(wmr2023j)[1] <- "WHO_region_Country_area"
-
 # Filter the data for the E8 countries
-wmr2023j_e8 <- wmr2023j %>% dplyr::filter(WHO_region_Country_area %in% e8_countries)
-
-# Since we have removed the region and area information, we can rename the column to just "Country"
-colnames(wmr2023j_e8)[1] <- "Country"
+wmr2023j_e8 <- whowmr::wmr2023$wmr2023j |>
+  filter(`Country/area` %in% e8_countries) |>
+  rename(Country="Country/area") |>
+  select(!`WHO Region`) # Remove the WHO Region column
 
 # View the filtered dataset
 gt(wmr2023j_e8)
-
 ```
-
-::: callout-warning
-Should the above link not work, find it at <https://www.who.int/teams/global-malaria-programme/reports>
-:::
 
 <br>
 :::
@@ -142,78 +112,50 @@ Should the above link not work, find it at <https://www.who.int/teams/global-mal
 ## How to plot this data?
 
 ```{r include=FALSE}
-
-filename <- file.path(pathbase,"wmr2023-excel-annexes/WMR2023_Annex/WMR2023_Annex_4Ea.xlsx")
-
-wmr2023Ea_Africa <- readxl::read_excel(filename, 
-  sheet = "data", # Setting your sheet is good practice even if there is only one sheet.
-  range = "A7:C33", # Specify the range of the data
-  col_names = c("Country", "Source", "Percentage") # Specify if the first row contains column names
-)
-
-```
-
-```{r}
-
-# Sort the data by percentage
-wmr2023Ea_Africa <- wmr2023Ea_Africa %>%
-  arrange(Percentage)
+source(here::here("theme_health_radar.R"))
+wmr2023Ea_Africa <- whowmr::wmr2023$wmr2023ea |>
+  transmute(Source = Source,
+            ITNCovPercent = `% of population who slept under an ITN last night`/100,
+            Country = as_factor(`Country/area`))
 
 # Create the lollipop plot
-ggplot(wmr2023Ea_Africa, aes(x = reorder(Country, Percentage), y = Percentage, color = Source)) +
-  geom_segment(aes(x = Country, xend = Country, y = 0, yend = Percentage), color = "grey") +
+ggplot(wmr2023Ea_Africa, aes(x = fct_reorder(Country, ITNCovPercent, .na_rm = FALSE),
+                             y = ITNCovPercent,
+                             color = Source)) +
+  geom_segment(aes(x = Country, xend = Country, y = 0, yend = ITNCovPercent), color = "grey") +
   geom_point(size = 4) +
   coord_flip() +
-  theme_minimal() +
+  theme_health_radar() +
   labs(title = "Percentage of Households with at least one ITN",
        subtitle = "Data for selected African countries",
        caption = "Source WMR 2023 Annex 4Ea",
        x = "Country",
        y = "Percentage",
-       color = "Source") +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 15),
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    axis.title.x = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.text.x = element_text(size = 12),
-    axis.text.y = element_text(size = 12),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 12)
-  )
-
-
+       color = "Source")
 ```
 
-The dumbbell plot above shows the percentage of households with at least one ITN in selected African countries. The plot highlights the variation in ITN coverage across countries and data sources across years. Niger, Benin and Mali have the highest ITN coverage, while Guinea, Kenya and Mauritania have the lowest coverage. None of the countries had coverage below 25\%, which most having between 50\% and 85\%, which is a good sign for malaria control efforts in these countries, given that the ITNs are used correctly and that the mosquitoes have not developed resistance to the insecticides used in the nets.
+The dumbbell plot above shows the percentage of households with at least one ITN in selected African countries. The plot highlights the variation in ITN coverage across countries and data sources across years. Niger, Benin and Mali have the highest ITN coverage, while Guinea, Kenya and Mauritania have the lowest coverage. None of the countries had coverage below 25%, which most having between 50% and 85%, which is a good sign for malaria control efforts in these countries, given that the ITNs are used correctly and that the mosquitoes have not developed resistance to the insecticides used in the nets.
 
 TODO: JN add short context
 
 ```{r}
-
 library(ggrepel)
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
-
-# Load the map data for Africa
-africa <- ne_countries(continent = "Africa", returnclass = "sf")
+library(whowmr)
 
 # Define the elimination 8 countries
 e8_countries <- c("Botswana", "Eswatini", "Namibia", "South Africa", "Angola", "Mozambique", "Zambia", "Zimbabwe")
 
-# Rename "eSwatini" in africa to match the data using dplyr
-africa <- africa %>%
-  mutate(name = ifelse(name == "eSwatini", "Eswatini", name))
-
-# Subset by the elimination 8 countries
-e8_africa <- africa %>% 
+# Load the map data for Africa
+e8_africa <- ne_countries(continent = "Africa", returnclass = "sf") |>
+  mutate(name = if_else(name=="eSwatini", "Eswatini", name)) |>
   filter(name %in% e8_countries)
 
 # Merge the map data with your data
 e8_data <- e8_africa %>%
-  left_join(wmr2023j_e8, by = c("name" = "Country"))
+  left_join(wmr2023$wmr2023j |> mutate(), by = c("name" = "Country/area"))
 
 # Create the choropleth map
 ggplot(data = e8_data) +
@@ -240,52 +182,94 @@ The choropleth map above shows the reported malaria deaths in the Elimination 8 
 TODO: JN/JT add short description of the plot. Discuss context etc.
 
 ```{r}
-options(scipen = 9)
-
-# Read in the csv file
-data <- read_csv("tutorial_data/filtered_data.csv")
-
-# Divide the cases and deaths by 1000 for better readability
-data$Cases_Point <- data$Cases_Point / 1000
-data$Cases_Lower <- data$Cases_Lower / 1000
-data$Cases_Upper <- data$Cases_Upper / 1000
-data$Deaths_Point <- data$Deaths_Point / 1000
-data$Deaths_Lower <- data$Deaths_Lower / 1000
-data$Deaths_Upper <- data$Deaths_Upper / 1000
-
+whowmr::wmr2023$wmr2023f |>
+  # Filter for the frontline E8 countries
+  filter(`Country/area` |> stringr::str_detect("Botswana|Eswatini|Namibia|South Africa"),
+         # We couldn't get opt_interactive to work with grouped rows so we'll just display fewer columns
+         Year>=2020) |>
+  # Rename columns to something more readable
+  rename(Country="Country/area", `Population at risk`="Population denominator for incidence and mortality rate") |>
+  # Hide the footnotes
+  mutate(Country=Country |> stringr::str_remove("\\d.*$")) |> 
+  # Remove the WHO Region column
+  select(!`WHO Region`) |>
+  gt(
+    groupname_col = "Country",
+    row_group_as_column = TRUE
+  ) |>
+  tab_header(title="Population at risk and estimated malaria cases and deaths in the E8 frontline countries",
+             subtitle="Data from WMR 2023 Annex 4F") |>
+  # Control how NA values are displayed
+  sub_missing(columns = everything(), missing_text = "-") |>
+  # Group the Cases and Deaths columns and rename, eg, Cases_Lower to just Lower
+  cols_label_with(columns = starts_with("Cases")|starts_with("Deaths"), fn=~stringr::str_remove_all(., ".+_")) |>
+  tab_spanner(label="Cases", columns=starts_with("Cases")) |> 
+  tab_spanner(label="Deaths", columns=starts_with("Deaths")) |>
+  # Format the numbers to be more readable
+  fmt_number(columns=c(`Population at risk`,starts_with("Cases")|starts_with("Deaths")), suffixing = T) |>
+  # Country column should be bold:
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_row_groups()
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = c("left"),
+      weight = px(1)),
+    locations = cells_body(
+      columns = c(Year, `Population at risk`, Cases_Lower, Deaths_Lower)
+    )
+  ) |>
+  tab_style(
+    style = cell_borders(
+      sides = c("right"),
+      weight = px(1)),
+    locations = cells_body(
+      columns = c(Deaths_Upper)
+    )
+  )
 ```
 
+Some text needed to describe this:
 ```{r}
 # Create the plot for Deaths with low and high bands
-ggplot(data, aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
-  geom_line(size = 1) +
-  geom_ribbon(aes(ymin = Cases_Lower, ymax = Cases_Upper, fill = Country), alpha = 0.2) +
-  labs(
-    title = "Estimated Malaria Cases (2000-2022)",
-    subtitle = "With confidence bands",
-    x = "Year",
-    y = "Number of Cases (thousands)",
-    color = "Country",
-    fill = "Country",
-    caption = "Source: WMR 2023 Annex 4F"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 14),
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 12),
-    legend.title = element_text(size = 14, face = "bold"),
-    legend.text = element_text(size = 12),
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
-  ) +
-  guides(color = guide_legend(title.position = "top", title.hjust = 0.5),
-         fill = guide_legend(title.position = "top", title.hjust = 0.5))
+whowmr::wmr2023$wmr2023f |>
+  # Filter for the E8 countries
+  filter(`Country/area` |> stringr::str_detect("Angola|Botswana|Eswatini|Malawi|Mozambique|Namibia|South Africa|Zambia|Zimbabwe")) |>
+  # Rename columns to something more readable
+  rename(Country="Country/area", `Population at risk`="Population denominator for incidence and mortality rate") |>
+  # Hide the footnotes
+  mutate(Country=Country |> stringr::str_remove("\\d.*$")) |> 
+  # Remove the WHO Region column
+  select(!`WHO Region`) |> 
+  ggplot(aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
+    geom_line(size = 1) +
+    geom_ribbon(aes(ymin = Cases_Lower, ymax = Cases_Upper, fill = Country), alpha = 0.2) +
+    labs(
+      title = "Estimated Malaria Cases (2000-2022)",
+      subtitle = "With confidence bands",
+      x = "Year",
+      y = "Number of Cases (thousands)",
+      color = "Country",
+      fill = "Country",
+      caption = "Source: WMR 2023 Annex 4F"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+      plot.subtitle = element_text(hjust = 0.5, size = 14),
+      axis.title = element_text(size = 14, face = "bold"),
+      axis.text = element_text(size = 12),
+      legend.title = element_text(size = 14, face = "bold"),
+      legend.text = element_text(size = 12),
+      plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
+      plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
+    ) +
+    guides(color = guide_legend(title.position = "top", title.hjust = 0.5),
+           fill = guide_legend(title.position = "top", title.hjust = 0.5))
 ```
 
 The plot above shows the estimated malaria cases in selected countries from 2000 to 2022. The lines represent the estimated number of cases, while the shaded areas represent the confidence bands around the estimates. The plot highlights the variation in malaria cases across countries and over time, with some countries experiencing fluctuations in case numbers. It is important to consider the uncertainty around these estimates when interpreting the data. For example, looking at the plot for Mozambique, the total number of cases did not change much over the years, with the confidence bands staying relatively stable, whereas Angola saw fluctuations in the number of cases, with much wider confidence bands from 2015, indicating greater uncertainty in the estimates.
-
 
 TODO: JN/JT add short description of the plot
 
@@ -343,7 +327,6 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 The stacked bar plot above shows the contributions made by different donors to malaria control efforts in selected countries over the years. The plot highlights the variation in contributions across countries and donors, with some countries receiving more funding from certain donors than others. For example, in Mozambique, the Global Fund and PMI/USAID are the largest contributors, while in South Africa, the Global Fund and local government are the main contributors. It is important to consider the distribution of funding across different donors when assessing the sustainability and effectiveness of malaria control programs in these countries.
 
 TODO: JN/JT add short description of the plot
-
 :::
 
 ## Key points to consider
@@ -352,37 +335,37 @@ TODO: JN/JT add short description of the plot
 
 Using annual data for your analysis can lead to several pitfalls:
 
-- Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
+-   Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
 
-- Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
+-   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
 
 ### Reporting - Incidence vs. Prevalence Data:
 
 It is important to distinguish between incidence and prevalence data when performing your analysis:
 
-- Incidence data: Incidence refers to the number of new cases of malaria occurring in a population over a specified period. It provides information on the rate at which new infections occur and is more sensitive to changes in transmission dynamics.
+-   Incidence data: Incidence refers to the number of new cases of malaria occurring in a population over a specified period. It provides information on the rate at which new infections occur and is more sensitive to changes in transmission dynamics.
 
-- Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
+-   Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
 
 ### Difference between Policy and Implementation:
 
 There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
 
-- Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance.
+-   Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance.
 
-- Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons. 
+-   Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons.
 
-- Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
+-   Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
 
 ### National Level - Ignoring Spatial Heterogeneity:
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
-- Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors. 
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors.
 
-- Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
+-   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
 
-- Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
+-   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
 
 ## Examples of data use in literature
 
