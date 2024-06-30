@@ -67,7 +67,6 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 ::: {.callout-note collapse="true"}
 ## How to use this data?
-:::
 
 For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
 
@@ -107,6 +106,7 @@ wmr2023j_e8 <- whowmr::wmr2023$wmr2023j |>
 gt(wmr2023j_e8)
 ```
 
+:::
 
 ::: {.callout-note collapse="true"}
 ## How to plot this data?
