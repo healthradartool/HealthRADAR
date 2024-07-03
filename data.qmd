@@ -1,7 +1,7 @@
 ---
-pagetitle: "Browse Data"
-title: "Data sets"
-subtitle: "Browse and search for data sets"
+pagetitle: "Browse Data Sources"
+title: "Data sources"
+subtitle: "Browse and search for data sources"
 toc: false
 listing: 
 - id: malaria
