@@ -1,0 +1,55 @@
+---
+title: "The Demographic and Health Surveys Program"
+subtitle: "The DHS Program incorporates data on mosquito nets, IPT, and treatment of malaria. Some surveys also include testing for malaria parasites."
+date: 07/04/2024 # mm-dd-yyyy
+image: "images/dhs.png"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - malaria
+  - epidemiology
+  - country-level
+  - annual
+---
+
+
+## About the data
+
+The DHS program has conducted population surveys since {TIME} which seek to answer questions related to health. In {TIME} the malaria indicator surveys (MIS) started being conducted. The surveys are typically at least at a household level but other units of measurement include women, men and children in the household. The surveys are aggregated into statistical products and made available publicly. The original datasets are available for free but require the user to register and request them. Good documentation exists at their YouTube channel as well as on their website.
+
+Also discuss MICS The DHS Program - Malaria
+
+## Accessing the data
+
+Several options are available for accessing the data and each of them is very well described elsewhere.
+STATcompiler GUI tool for accessing and downloading the data in CSV format. {TODO: Link to youtube video.}
+CRAN: Package rdhs (r-project.org) R package for interacting with DHS {TODO: Link to code snippets in HealthRADAR GitHub repo.}
+The DHS Program - Access Instructions This requires signing up for a free user account.
+
+## What does the data look like?
+
+### Description
+TODO: Show outline of the data here
+
+- Units of study
+- Versions of DHS
+- Indicators and recoding
+
+{{< video https://www.youtube.com/embed/videoseries?amp;list=PLagqLv-gqpTNBR0KcyrajAqKrFdsdIqqe >}}
+
+Include some figure examples
+
+## Key points to consider
+
+- New indicators are being introduced all the time and you may not get indicators far back in time. {how can you check?} email info@DHSprogram.com
+- Not all countries are well represented. Of the frontline countries only Eswatini and Namibia are represented.
+- DHS surveys are typically not performed annually and serve as a snapshot of the population at the time of the survey.
+

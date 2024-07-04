@@ -1,0 +1,33 @@
+---
+title: "Institute for Health Metrics and Evaluation"
+subtitle: "The Institute for Health Metrics and Evaluation (IHME) works with collaborators around the world to develop timely, relevant, and scientifically valid evidence that illuminates the state of health everywhere."
+date: 07/04/2024 # mm-dd-yyyy
+image: "images/ihme.jpg"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - malaria
+  - epidemiology
+  - country-level
+  - annual
+---
+
+## About the data
+
+The Institute for Health Metrics and Evaluation (IHME) provides extensive malaria data that includes prevalence, incidence, mortality rates, and the burden of disease across different regions. The data is meticulously collected and analysed, offering insights into trends over time, the effectiveness of interventions, and disparities in malaria impact among various populations. This comprehensive dataset aids policy-makers, researchers, and public health professionals in designing and implementing strategies to reduce the global burden of malaria and track progress toward elimination goals.
+
+## Accessing the data
+
+
+## What does the data look like?
+
+
+## Key points to consider

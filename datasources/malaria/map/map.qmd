@@ -1,0 +1,33 @@
+---
+title: "The Malaria Atlas Project"
+subtitle: "The Malaria Atlas Project (MAP) aims to disseminate free, accurate and up-to-date geographical information on malaria and associated topics."
+date: 07/04/2024 # mm-dd-yyyy
+image: "images/map.png"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - malaria
+  - epidemiology
+  - country-level
+  - annual
+---
+
+## About the data
+
+The Malaria Atlas Project (MAP) is a leading global resource that compiles and analyses spatial data on malaria transmission and prevalence. By providing high-resolution maps and geospatial models, MAP supports researchers, policy-makers, and health organisations in understanding the distribution and burden of malaria, enabling targeted interventions and informed decision-making to combat the disease effectively.
+
+## Accessing the data
+
+
+## What does the data look like?
+
+
+## Key points to consider

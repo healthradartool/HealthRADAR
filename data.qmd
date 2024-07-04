@@ -5,8 +5,8 @@ subtitle: "Browse and search for data sources"
 toc: false
 listing: 
 - id: malaria
-  contents: datasets/malaria
-  sort: "title desc"
+  contents: datasources/malaria
+  sort: "date"
   type: grid
   filter-ui: true
   fields: [image, title, description, categories]
