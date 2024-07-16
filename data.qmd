@@ -11,6 +11,7 @@ listing:
   filter-ui: true
   fields: [image, title, description, categories]
   categories: true
+  page-size: 9
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
