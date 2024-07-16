@@ -1,0 +1,37 @@
+---
+title: "The Lancet special issues on malaria"
+subtitle: "The Lancet has published several special issues and articles focused on malaria."
+date: 07/04/2024 # mm-dd-yyyy
+image: "images/lancet.png"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - malaria
+  - epidemiology
+  - country-level
+  - annual
+---
+
+## About the data
+
+The Lancet, a prominent medical journal, frequently publishes special issues and series focusing on critical global health topics, including malaria. These special issues compile extensive research, reviews, and expert opinions to provide a comprehensive overview of the state of knowledge and progress in the fight against malaria. 
+
+## Accessing the data
+
+{{< lipsum 1 >}}
+
+## What does the data look like?
+
+{{< lipsum 1 >}}
+
+## Key points to consider
+
+{{< lipsum 1 >}}
