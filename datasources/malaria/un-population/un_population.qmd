@@ -1,0 +1,33 @@
+---
+title: "UN Population Division Data Portal"
+subtitle: "United Nations Population Data Portal provides access to global datasets of demographic indicators produced by the United Nations Population Division."
+date: 07/04/2024 # mm-dd-yyyy
+image: "images/un_population_data.png"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - malaria
+  - epidemiology
+  - country-level
+  - annual
+---
+
+## About the data
+
+United Nations Population Data Portal provides access to global datasets of demographic indicators produced by the United Nations Population Division.The data portal allows users to search data based on indicators and country selections, compare data by selecting multiple regions, countries and areas, create visualizations in the form of the bar, line or spatial layouts and to download data in a variety of formats for further analysis.
+
+## Accessing the data
+
+
+## What does the data look like?
+
+
+## Key points to consider
