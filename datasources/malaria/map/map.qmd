@@ -26,8 +26,12 @@ The Malaria Atlas Project (MAP) is a leading global resource that compiles and a
 
 ## Accessing the data
 
+{{< lipsum 1 >}}
 
 ## What does the data look like?
 
+{{< lipsum 1 >}}
 
 ## Key points to consider
+
+{{< lipsum 1 >}}

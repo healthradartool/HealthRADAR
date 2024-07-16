@@ -27,8 +27,12 @@ The Severe Malaria Observatory provides comprehensive data on malaria, focusing 
 
 ## Accessing the data
 
+{{< lipsum 1 >}}
 
 ## What does the data look like?
 
+{{< lipsum 1 >}}
 
 ## Key points to consider
+
+{{< lipsum 1 >}}

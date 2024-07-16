@@ -26,8 +26,12 @@ The Institute for Health Metrics and Evaluation (IHME) provides extensive malari
 
 ## Accessing the data
 
+{{< lipsum 1 >}}
 
 ## What does the data look like?
 
+{{< lipsum 1 >}}
 
 ## Key points to consider
+
+{{< lipsum 1 >}}
