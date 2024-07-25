@@ -1,0 +1,9 @@
+---
+title: "Climate data guide"
+subtitle: "Expert guidance for navigating and utilizing climate data"
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+---
+
+

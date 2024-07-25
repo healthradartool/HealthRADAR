@@ -16,12 +16,19 @@ website:
   navbar:
     logo: "img/logo-light.png"
     left:
-      - href: index.qmd
-        text: Home
-      - href: data.qmd
-        text: Browse
-      - href: about.qmd
-        text: About
+      - text: Home
+        href: index.qmd
+      - text: Browse
+        href: data.qmd
+      - text: Guides
+        menu: 
+          - text: Climate
+            href: guides/climate.qmd
+          - text: Modelling
+            href: guides/modelling.qmd
+      - text: About
+        href: about.qmd
+        
     pinned: true
   page-footer: "Copyright 2024, Health RADAR"
   
