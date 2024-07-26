@@ -6,3 +6,6 @@ title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 ---
 
+## A guide to malaria modelling
+
+{{< lipsum 5 >}}
