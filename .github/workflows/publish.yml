@@ -20,6 +20,11 @@ jobs:
       - name: Install sf dependencies on Linux
         run: |
           sudo apt-get install libudunits2-dev libgdal-dev
+          
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libprotobuf-dev protobuf-compiler
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
