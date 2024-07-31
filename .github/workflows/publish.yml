@@ -24,7 +24,7 @@ jobs:
       - name: Install protobuf
         run: |
           sudo apt-get update
-          sudo apt-get install -y libprotobuf-dev protobuf-compiler
+          sudo apt-get install -y libprotobuf-dev protobuf-compiler libjq-dev jq
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
