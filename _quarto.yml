@@ -28,9 +28,24 @@ website:
             href: guides/modelling.qmd
       - text: About
         href: about.qmd
+    right:
+      - icon: github
+        href: https://github.com/uct-masha/HealthRADAR
+        aria-label: RADAR GitHub
+      
         
     pinned: true
-  page-footer: "Copyright 2024, Health RADAR"
+  page-footer: 
+          left: "Copyright 2024, Health RADAR"
+          center:
+            - text: About
+              href: about.qmd
+            - text: Data Sources
+              href: data.qmd
+          right:
+            - icon: github
+              href: https://github.com/uct-masha/HealthRADAR
+              aria-label: RADAR GitHub
   
 language: 
   search-text-placeholder: "Search"

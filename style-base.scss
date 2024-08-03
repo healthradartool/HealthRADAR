@@ -107,4 +107,70 @@ html {
     border-color: #2c3e50;
 }
 
+.content-block {
+  padding: 80px 0px;
+}
+
+.hero-text {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.btn-browse {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 12px 24px;
+  margin-right: 20px;
+  border: 0;
+  color: #fff;
+  background: #2c3e50;
+}
+
+#btn-about {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 12px 24px;
+  margin: 15px 20px;
+  border: 0;
+  color: #3a4149;
+  background: #e7ebee;
+}
+
+
+.description {
+  font-size: 20px;
+}
+
+#radar-block {
+  background-color: #f7f9fb;
+}
+
+#data-image {
+  border: solid 2px #e7ebee;
+  border-radius: 8px;
+  margin-left: 30px;
+}
+
+#principles-heading {
+  text-align: center;
+}
+
+#principles-block {
+  background-color: #edf3f9;
+}
+
+.principles {
+  
+}
+
+#browse-btn-block {
+  background-color: #f7f9fb;
+  text-align: center;
+}
 
