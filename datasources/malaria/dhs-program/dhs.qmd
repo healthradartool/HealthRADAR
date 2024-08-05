@@ -58,7 +58,7 @@ Several options are available for accessing the data and each of them is very we
 
 {{< video https://www.youtube.com/embed/videoseries?amp;list=PLagqLv-gqpTNBR0KcyrajAqKrFdsdIqqe >}}
 
-**Accessing the data using STATcompiler abilities **
+**Accessing the data using STATcompiler abilities**
 
 -   **Prevalence and Treatment**: Users can access data on malaria prevalence and treatment practices directly from the [STATcompiler](https://www.STATcompiler%20.com/en/). It allows for the creation of tables, charts, and maps that display malaria prevalence rates, treatment practices, and trends over time.
 
@@ -105,7 +105,6 @@ The indicator dataset guide can found at [The DHS Program - Malaria](https://www
 ![Malaria Data in DHS Surveys](images/malaria%20data%20in%20dhs%20survey.png)
 
 ::: {.callout-note collapse="true"}
-
 ## How to plot this data?
 
 ```{r}
@@ -123,7 +122,6 @@ library(rdhs)
 knitr::opts_chunk$set(echo = T, cache = T, warning = F, message = F, fig.pos = 'H', cache = T)
 options(digits=4, scipen = 9)
 ```
-
 
 ```{r}
 #| message: false
@@ -151,7 +149,6 @@ tags <- dhs_tags()
 #tags[grepl("Malaria", tags$TagName), ]
 ```
 
-
 ```{r}
 #| message: false
 #| warning: false
@@ -168,7 +165,6 @@ f4_codes = all_countries[all_countries$CountryName %in% frontline4, "DHS_Country
 e8_codes = all_countries[all_countries$CountryName %in% elim8, "DHS_CountryCode"]
 
 ```
-
 
 ```{r}
 
@@ -286,10 +282,8 @@ ggplot(filt_data, aes(x = SurveyYear, y = Value, colour = CountryName)) +
   guides(colour = guide_legend(title.position = "top", title.hjust = 0.5))
 
 ```
-Subnational data - mean number of mosquito nets by E8 country
-Each point represents the mean number of nets in a specific subregion of the country. The line represents the trend over time for each country. The shaded area represents the 95% confidence interval for the trend line.
-Add brief descriptions for each one.
 
+Subnational data - mean number of mosquito nets by E8 country Each point represents the mean number of nets in a specific subregion of the country. The line represents the trend over time for each country. The shaded area represents the 95% confidence interval for the trend line. Add brief descriptions for each one.
 
 ```{r}
 
@@ -338,7 +332,6 @@ ggplot(sp$sdr_subnational_boundaries) +
   guides(fill = guide_colorbar(title.position = "top", title.hjust = 0.5))
 
 ```
-
 
 ```{r}
 library(leaflet)
@@ -393,7 +386,160 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
   setView(lng = 37, lat = -13, zoom = 5.5)
 
 ```
-::: 
+:::
+
+::: {.callout-note collapse="true"}
+## How to model this data?
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library("knitr")
+library(tidyverse)
+library(rdhs)
+
+knitr::opts_chunk$set(echo = T, cache = T, warning = F, message = F, fig.pos = 'H', cache = T)
+options(digits=4, scipen = 9)
+```
+
+Including DHS data in modelling could be using known values to estimate their impact on transmission. For instance, a user could obtain the relevant DHS data (e.g. ITN access and usage rates) from the survey indicators, and estimate the effective coverage in a particular country.
+
+To do this we make a few assumptions and state them explicitly. We assume:
+
+-   Survey year correlates with net distribution, and access to mosquito nets in any given household is a result of distribution in a given year.
+
+-   Net usage remains consistent until a new survey is conducted.
+
+-   Net functionality and effectiveness wanes annually, and they are considered lost/expired after three years.
+
+-   Operational effectiveness accounts for factors such as the peak biting hours of a particular vector versus the time of day actually spent under the net.
+
+```{r}
+#| message: false
+#| warning: false
+
+# ITN example
+
+#source("theme_health_radar.R")
+library(tidyverse)
+library(rdhs)
+
+# Get the country codes of the elimination 8 countries
+all_countries = dhs_countries(returnFields=c("CountryName","DHS_CountryCode"))
+elim8 = c("Botswana", "Namibia", "South Africa", "Eswatini", "Zambia", "Zimbabwe", "Mozambique", "Malawi")
+
+# Get the country codes of the elimination 8 countries
+e8_codes = all_countries[all_countries$CountryName %in% elim8, "DHS_CountryCode"]
+
+## Source ITN coverage and usage data
+
+indicators <- dhs_indicators()
+all_malaria_indicators <- indicators |> 
+  filter(Level1 == "Malaria") |> 
+  select(c("IndicatorId", "Definition"))
+
+# Select indicators
+
+# ML_NETP_H_IT2: Percentage of households with at least one insecticide-treated mosquito net (ITN) for every two persons who stayed in the household the previous night
+# ML_ITNU_N_ITN: Percentage of existing insecticide treated nets used the night before the survey
+
+access_data <- dhs_data(indicatorIds = "ML_NETP_H_IT2",
+                  countryIds = e8_codes,
+                  surveyYearStart = 2000)
+
+usage_data <- dhs_data(indicatorIds = "ML_ITNU_N_ITN",
+                          countryIds = e8_codes,
+                          surveyYearStart = 2000)
+
+# Filter the data for Mozambique 
+
+years <- access_data |> 
+  filter(CountryName == "Mozambique") |>
+  pull(SurveyYear) 
+
+itn_access <- access_data |>
+  filter(CountryName == "Mozambique", SurveyYear %in% years) |>
+  arrange(SurveyYear) |>
+  select(SurveyYear, Value) |> 
+  complete(SurveyYear = full_seq(SurveyYear, 1), fill = list(Value = 0)) |> # assume other years to be zero
+  pull(Value)
+
+itn_use <- usage_data |>
+  filter(CountryName == "Mozambique", SurveyYear %in% years) |>
+  arrange(SurveyYear) |>
+  select(SurveyYear, Value) |> 
+  complete(SurveyYear = full_seq(SurveyYear, 1)) |> # usage remains consistent
+  fill(Value, .direction = "down") |> 
+  pull(Value)
+  
+# Assumptions
+itn_eff <- c(0.95, 0.90, 0.85) # Annual ITN attrition/loss in physical and chemical effectiveness
+opp_eff <- 0.5 # Operational effectiveness of ITN at reducing transmission
+
+```
+
+To demonstrate a loss in net functionality and effectiveness as they degrade and undergo attrition, the user can use the concept of convolution to represent a reduction in net access in the population. The initial series of values (net access) is reduced by another series of values (itn effectiveness) at each time step by "filtering" the initial series through the reducing series. For example,
+
+-   one year of net access and usage results in 5% loss,
+
+-   two years result in 10% loss, and
+
+-   three years result in 15% loss.
+
+So 95% of nets received in year one will remain. In year two, 95% of nets received in year two will remain, as well as 90% of the nets previously received in year one. In year three, 95% of any new nets will remain, 90% of the nets received in year two, and 85% of the nets previously received in year one. After four years, 0% of the nets received in year one remain.
+
+```{r}
+# Calculate coverage as loss in access by reductions in ITN effectiveness
+itn_cov <- convolve(itn_access/100, rev(itn_eff), type = "open")
+itn_cov <- itn_cov[1:length(itn_access)]  # Match the length of the distribution data
+itn_cov_rounded <- round(itn_cov, 3)
+```
+
+Coverage is considered effective if it means the minimum access of one net per two persons, the net is used the night prior to the survey, and is operationally effective at preventing bites from an infectious mosquito. This represents the proportion of people who are protected from ongoing transmission.
+
+```{r}
+
+# Number of people with access effectively covered by available ITNs
+eff_cov <- itn_cov_rounded * (itn_use/100) * opp_eff
+
+# Create a data frame for the plot
+itn_data <- data.frame(
+  Year = full_seq(years, 1),
+  Effective_Coverage = eff_cov 
+)
+
+# Create the ITN coverage plot
+ggplot(itn_data, aes(x = Year, y = Effective_Coverage)) +
+  geom_line() +
+  labs(
+    title = "Effective ITN Coverage in Mozambique",
+    subtitle = "Malaria prevention through distribution and use of ITNs",
+    x = "Survey Year",
+    y = "People Protected (%)",
+    caption = "Source: DHS Data API - Malaria Indicators ML_NETP_H_IT2 & ML_ITNU_N_ITN"
+  ) +
+  #theme_health_radar() +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 10)) +
+  scale_x_continuous(breaks = years) +
+  scale_y_continuous(limits = c(0, 1), labels = scales::percent)
+
+
+```
+
+The measure of intensity of disease transmission is also known as the force of infection. Simply put, this is the rate at which suspectible individuals become infected; as is affected by the proportion of the mosquito population that is infectious, the contact rate between susceptible humans and infectious mosquitoes and the probability that a bite from an infectious mosquito transmits disease to a susceptible human. Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to disease. As such, the force of infection, typically denoted by lambda ($λ$), now excludes those protected by the mosquito nets.
+
+```{r}
+#| eval: false
+
+## To reduce transmission in disease model
+
+lambda <- 0.7 # Force of infection
+new_lambda <- lambda * (1-eff_cov)
+```
+:::
 
 **Practical Applications using STATcompiler to access DHS program data**
 
