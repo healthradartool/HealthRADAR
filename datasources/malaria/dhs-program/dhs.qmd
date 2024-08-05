@@ -395,6 +395,12 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
 ```
 ::: 
 
+::: {.callout-note collapse="true"}
+
+## How to model this data?
+
+:::
+
 **Practical Applications using STATcompiler to access DHS program data**
 
 -   **Policy Making and Program Design**: Policymakers and program designers can access up-to-date malaria data, helping them create evidence-based strategies and allocate resources effectively.
