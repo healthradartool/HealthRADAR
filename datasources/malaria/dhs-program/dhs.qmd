@@ -414,7 +414,7 @@ To do this we make a few assumptions and state them explicitly. We assume:
 
 -   Net functionality and effectiveness wanes annually, and they are considered lost/expired after three years.
 
--   Operational effectiveness accounts for factors such as the peak biting hours of a particular vector versus the time of day actually spent under the net. **tyt**
+-   Operational effectiveness accounts for factors such as the peak biting hours of a particular vector versus the time of day actually spent under the net.
 
 ```{r}
 #| message: false
