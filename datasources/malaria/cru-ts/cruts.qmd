@@ -1,0 +1,90 @@
+---
+title: "CRU TS"
+subtitle: "Climate Research Unit Timeseries (CRU TS) Gridded precipitation and other meteorological variables since 1901."
+date: 08/12/2024 # mm-dd-yyyy
+draft: true
+image: "images/crulogo.png"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - climate dataset
+  - gridded observed
+  - rainfall
+  - temperature
+  - humidity
+---
+
+## About the data
+
+Climatic Research Unit (CRU) Time-Series (TS) of high-resolution gridded data of month-by-month variation in climate. Global land coverage (all land areas excluding Antarctica) at 0.5° resolution.
+
+For more information regarding all CRU datasets see [CRU-data](https://crudata.uea.ac.uk/cru/data/hrg/)
+
+### Summary
+
+
+| | |
+--- | --- |
+| **Name** | CRU TS 4.08 |
+| **Institution** | [CRU](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) |
+| **Product type** | gridded observed |
+| **Domain** | global land (excluding Antarctica) |
+| **Resolution** |  0.5° x 0.5° |
+| **Period** | 1901-2023 |
+| **Frequencies** | monthly |
+| **Variables** | precipitation, temperature, humidity, others  |
+
+
+
+### Variables
+
+| **Variable Name** | **Variable Description** | **Units** |
+--- | --- | --- |
+| clt | Total Cloud Fraction | % |
+| DTR | Diurnal Near-Surface Air Temperature Range | K |
+| FD | Frost Day Frequency | days |
+| PET | Potential Evapotranspiration | kg m-2 s-1 |
+| PRCPTOT | Precipitation | mm/month |
+| pr | Precipitation flux | kg m-2 s-1 |
+| tasmax | Daily Maximum Near-Surface Air Temperature  | K |
+| tasmin | Daily Minimum Near-Surface Air Temperature | K |
+| tas | Near-Surface Air Temperature | K |
+| TG | Near-Surface Air Temperature  | C |
+| TN | Daily Minimum Near-Surface Air Temperature | C |
+| TX | Daily Maximum Near-Surface Air Temperature  | C |
+| vap | Vapour Pressure  | Pa |
+| WD | Wet Day Frequency | days |
+
+
+
+
+
+### Terms of use
+
+The various datasets on the CRU website are provided for all to use, provided the sources are acknowledged. Acknowledgment should preferably be by citing one or more of the papers referenced. The website can also be acknowledged if deemed necessary.
+
+
+### Citation
+
+Harris, I., Osborn, T.J., Jones, P. et al. Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Sci Data 7, 109 (2020). https://doi.org/10.1038/s41597-020-0453-3
+
+
+### Notes for users
+
+### Access data
+
+Via The Climate Research Unit (CRU) at the University of East Anglia [CRU TS v4.08](https://crudata.uea.ac.uk/cru/data/hrg)
+
+
+Via Climate Data Store: [Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations](https://cds-beta.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview)
+
+Via Climate Data Guide: [CRU TS Gridded precipitation and other meteorological variables since 1901](https://climatedataguide.ucar.edu/climate-data/cru-ts-gridded-precipitation-and-other-meteorological-variables-1901)
+
