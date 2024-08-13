@@ -1,0 +1,44 @@
+---
+title: "Climate Data Store"
+subtitle: "Copernicus Climate Data Store functions as a one-stop shop to explore data on the Earth’s past, present and future climate."
+date: 08/12/2024 # mm-dd-yyyy
+draft: true
+image: "images/climate_data_store_logo.png"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - climate portal
+  - observed
+  - reanalysis
+  - seasonal forecast
+  - climate projections
+  - rainfall
+  - temperature
+  - humidity
+  - CRU
+  - ERA5
+---
+
+## About the data
+
+{{< lipsum 1 >}}
+
+## Accessing the data
+
+{{< lipsum 1 >}}
+
+## What does the data look like?
+
+{{< lipsum 1 >}}
+
+## Key points to consider
+
+{{< lipsum 1 >}}
