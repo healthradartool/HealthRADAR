@@ -414,7 +414,7 @@ To do this we make a few assumptions and state them explicitly. We assume:
 
 -   Net functionality and effectiveness wanes annually, and they are considered lost/expired after three years.
 
--   Operational effectiveness accounts for factors such as the peak biting hours of a particular vector versus the time of day actually spent under the net. \*\*add other text here
+-   Operational effectiveness accounts for factors such as the peak biting hours of a particular vector versus the time actually spent under the net. In some communities people spend their evenings at cuca shops or other informal outdoor settings, leaving them vulnerable to outdoor biting from exophagic vectors.
 
 ```{r}
 #| message: false
@@ -480,7 +480,7 @@ opp_eff <- 0.5 # Operational effectiveness of ITN at reducing transmission
 
 ```
 
-To demonstrate a loss in net functionality and effectiveness as they degrade and undergo attrition, the user can use the concept of convolution to represent a reduction in net access in the population. The initial series of values (net access) is reduced by another series of values (itn effectiveness) at each time step by "filtering" the initial series through the reducing series. For example,
+To demonstrate a loss in net functionality and effectiveness as they degrade and undergo attrition, the user can use the concept of convolution to represent a reduction in net access in the population. The initial series of values (net access) is reduced by another series of values (net effectiveness) at each time step by "filtering" the initial series through the reducing series. For example,
 
 -   one year of net access and usage results in 5% loss,
 
@@ -488,7 +488,7 @@ To demonstrate a loss in net functionality and effectiveness as they degrade and
 
 -   three years result in 15% loss.
 
-So 95% of nets received in year one will remain. In year two, 95% of nets received in year two will remain, as well as 90% of the nets previously received in year one. In year three, 95% of any new nets will remain, 90% of the nets received in year two, and 85% of the nets previously received in year one. After four years, 0% of the nets received in year one remain.
+Ninety five percent (95%) of nets received in year one will remain at the end of the year. At the end of year two, we have 95% of nets received in year two, as well as 90% of the nets previously received in year one. In year three, 95% of any new nets will remain, 90% of the nets received in year two, and 85% of the nets previously received in year one. After four years, 0% of the nets received in year one remain, as well as 90% and 85% of nets received in years two and three, respectively.
 
 ```{r}
 # Calculate coverage as loss in access by reductions in ITN effectiveness
@@ -529,7 +529,7 @@ ggplot(itn_data, aes(x = Year, y = Effective_Coverage)) +
 
 ```
 
-The measure of intensity of disease transmission is also known as the force of infection. Simply put, this is the rate at which suspectible individuals become infected; as is affected by the proportion of the mosquito population that is infectious, the contact rate between susceptible humans and infectious mosquitoes and the probability that a bite from an infectious mosquito transmits disease to a susceptible human. Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to disease. As such, the force of infection, typically denoted by lambda ($λ$), now excludes those protected by the mosquito nets.
+In epidemiology, the measure of intensity of disease transmission is also known as the force of infection. Simply put, this is the rate at which susceptible individuals become infected per unit time. Three main factors determine this: the proportion of the mosquito population that is infectious, the contact rate between infectious mosquitoes and susceptible humans, and the probability that a bite from an infectious mosquito transmits disease to a susceptible human. The same applies with respect to infectious humans and susceptible mosquitoes. Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to disease. As such, the force of infection, typically denoted by lambda ($λ$), now excludes those protected by the mosquito nets.
 
 ```{r}
 #| eval: false
