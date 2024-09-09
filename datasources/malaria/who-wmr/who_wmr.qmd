@@ -116,27 +116,35 @@ gt(wmr2023j_e8)
 ## How to plot this data?
 
 ```{r include=FALSE}
+
 source(here::here("theme_health_radar.R"))
 wmr2023Ea_Africa <- whowmr::wmr2023$wmr2023ea |>
   transmute(Source = Source,
             ITNCovPercent = `% of population who slept under an ITN last night`/100,
             Country = as_factor(`Country/area`))
 
+```
+
+```{r}
+
 # Create the lollipop plot
 ggplot(wmr2023Ea_Africa, aes(x = fct_reorder(Country, ITNCovPercent, .na_rm = FALSE),
                              y = ITNCovPercent,
                              color = Source)) +
-  geom_segment(aes(x = Country, xend = Country, y = 0, yend = ITNCovPercent), color = "grey") +
+  geom_segment(aes(x = Country, xend = Country, y = 0, yend = ITNCovPercent), color = "grey") +  # Keep constant grey color for segments
   geom_point(size = 4) +
   coord_flip() +
+  scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
   theme_health_radar() +
   labs(title = "Percentage of Households with at least one ITN",
        subtitle = "Data for selected African countries",
        caption = "Source WMR 2023 Annex 4Ea",
        x = "Country",
-       y = "Percentage",
-       color = "Source")
+       y = "Percentage")
+
+
 ```
+
 
 The dumbbell plot above shows the percentage of households with at least one ITN in selected African countries. The plot highlights the variation in ITN coverage across countries and data sources across years. Niger, Benin and Mali have the highest ITN coverage, while Guinea, Kenya and Mauritania have the lowest coverage. None of the countries had coverage below 25%, which most having between 50% and 85%, which is a good sign for malaria control efforts in these countries, given that the ITNs are used correctly and that the mosquitoes have not developed resistance to the insecticides used in the nets.
 
@@ -163,21 +171,17 @@ e8_data <- e8_africa %>%
 
 # Create the choropleth map
 ggplot(data = e8_data) +
-  geom_sf(aes(fill = `2022`), color = "lightgrey", size = 0.3) +
-  scale_fill_viridis_c(option = "plasma", na.value = "grey50", name = "Reported Deaths") +
-  theme_minimal() +
+  geom_sf(aes(fill = `2022`), color = "lightgrey", size = 0.3) +  # Use fill for the continuous 2022 data
+  theme_health_radar() +
+  scale_fill_continuous_health_radar(name = "Deaths") +  # Correct fill scale for continuous data
   labs(title = "Reported malaria deaths in the Elimination 8 countries (2022)",
        caption = "Source: WMR 2023 Annex 4J",
        x = "Latitude",
        y = "Longitude") +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 12),
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    legend.position = "right"
-  ) +
-  geom_sf_text(aes(label = name, fill = `2022`, color = ifelse(`2022` > mean(`2022`), "black", "white")), size = 3) +
-  scale_color_identity()
+  
+  geom_sf_text(aes(label = name, color = ifelse(`2022` > mean(`2022`), "black", "white")), size = 3) +  # Conditional text color
+  scale_color_identity()  # Keep scale_color_identity() to use specified colors directly
+
 
 ```
 
@@ -247,30 +251,22 @@ whowmr::wmr2023$wmr2023f |>
   # Remove the WHO Region column
   select(!`WHO Region`) |> 
   ggplot(aes(x = Year, y = Cases_Point, group = Country, color = Country)) +
-    geom_line(size = 1) +
-    geom_ribbon(aes(ymin = Cases_Lower, ymax = Cases_Upper, fill = Country), alpha = 0.2) +
+    geom_line(linewidth = 1) +
+    geom_ribbon(aes(ymin = Cases_Lower, ymax = Cases_Upper, fill = Country), alpha = 0.2) +  # Corrected to use 'fill' for the ribbon
+    scale_colour_manual_health_radar() +  # Apply manual color scale for 'color' aesthetic (lines)
+    scale_fill_manual_health_radar() +    # Apply manual color scale for 'fill' aesthetic (ribbon fill)
+    theme_health_radar() +
     labs(
       title = "Estimated Malaria Cases (2000-2022)",
       subtitle = "With confidence bands",
       x = "Year",
       y = "Number of Cases (thousands)",
       color = "Country",
-      fill = "Country",
+      fill = "Country",  # Added 'fill' label for the ribbon shading
       caption = "Source: WMR 2023 Annex 4F"
-    ) +
-    theme_minimal() +
-    theme(
-      plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-      plot.subtitle = element_text(hjust = 0.5, size = 14),
-      axis.title = element_text(size = 14, face = "bold"),
-      axis.text = element_text(size = 12),
-      legend.title = element_text(size = 14, face = "bold"),
-      legend.text = element_text(size = 12),
-      plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-      plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
-    ) +
-    guides(color = guide_legend(title.position = "top", title.hjust = 0.5),
-           fill = guide_legend(title.position = "top", title.hjust = 0.5))
+    )
+
+    
 ```
 
 The plot above shows the estimated malaria cases in selected countries from 2000 to 2022. The lines represent the estimated number of cases, while the shaded areas represent the confidence bands around the estimates. The plot highlights the variation in malaria cases across countries and over time, with some countries experiencing fluctuations in case numbers. It is important to consider the uncertainty around these estimates when interpreting the data. For example, looking at the plot for Mozambique, the total number of cases did not change much over the years, with the confidence bands staying relatively stable, whereas Angola saw fluctuations in the number of cases, with much wider confidence bands from 2015, indicating greater uncertainty in the estimates.
@@ -293,23 +289,11 @@ plot_df$Donor <- factor(plot_df$Donor, levels = c(
   "WHO", "UNICEF","Govt_NMP", "OtherContributions"
 ))
 
-# Define a manual color palette
-manual_colors <- c(
-  "GlobalFund" = "#1b9e77", 
-  "PMI_USAID" = "#d95f02", 
-  "WorldBank" = "#7570b3", 
-  "OtherBilaterals" = "#e7298a", 
-  "WHO" = "#66a61e", 
-  "UNICEF" = "#e6ab02", 
-  "OtherContributions" = "#a6761d", 
-  "Govt_NMP" = "#666666"
-)
-
 # Create the plot
 ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
   geom_bar(stat = "identity", position = "stack") +
   facet_wrap(~ Country, scales = "free_y") +
-  scale_fill_manual(values = manual_colors) + # Use the manual color palette
+  scale_fill_manual_health_radar() +  # Apply the custom fill scale for 'Donor'
   labs(
     title = "Stacked Bar Plot of Country Contributions (2020-2022)",
     subtitle = "For Selected Countries",
@@ -318,12 +302,12 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
     fill = "Donor",
     caption = "Source: WMR 2023 4C"
   ) +
-  theme_minimal() +
+  theme_health_radar() +  # Apply the custom radar theme
   theme(
     plot.title = element_text(size = 14, face = "bold"),
     plot.subtitle = element_text(size = 12),
     plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    axis.text.x = element_text(angle = 45, hjust = 1)  # Keep the x-axis label rotation
   )
 
 ```
