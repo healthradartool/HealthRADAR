@@ -1,6 +1,6 @@
 ---
 title: "NCAR Climate Data Guide"
-subtitle: "The Climate Data Guide is an expert knowledge portal providing concise and reliable information on the strengths and limitations of the climate data that are essential for measuring and predicting physical climate risk."
+description: "The Climate Data Guide is an expert knowledge portal providing concise and reliable information on the strengths and limitations of the climate data that are essential for measuring and predicting physical climate risk."
 date: 08/12/2024 # mm-dd-yyyy
 draft: true
 image: "images/ncar_logo.png"

@@ -1,6 +1,6 @@
 ---
 title: "The Demographic and Health Surveys Program"
-subtitle: "The Demographic and Health Surveys (DHS) Program has collected population survey data from over 90 countries for over 30 years."
+description: "The Demographic and Health Surveys (DHS) Program has collected population survey data from over 90 countries for over 30 years."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/dhs.png"
 execute:

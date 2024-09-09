@@ -1,6 +1,6 @@
 ---
-title: "President’s Malaria Initiative"
-subtitle: "The President's Malaria Initiative is a U.S. government program aimed at reducing malaria-related deaths and illnesses in high-burden countries through targeted interventions and support."
+title: "President's Malaria Initiative"
+description: "The President's Malaria Initiative is a U.S. government program aimed at reducing malaria-related deaths and illnesses in high-burden countries through targeted interventions and support."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/pmi.png"
 execute:

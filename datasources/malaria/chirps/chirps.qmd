@@ -1,6 +1,6 @@
 ---
 title: "CHIRPS"
-subtitle: "Rainfall Estimates from Rain Gauge and Satellite Observations"
+description: "Rainfall Estimates from Rain Gauge and Satellite Observations"
 date: 08/30/2024 # mm-dd-yyyy
 draft: false
 image: "images/chirps.png"

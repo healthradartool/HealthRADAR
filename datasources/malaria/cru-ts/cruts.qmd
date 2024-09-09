@@ -1,6 +1,6 @@
 ---
 title: "CRU TS"
-subtitle: "Climate Research Unit Timeseries (CRU TS) Gridded precipitation and other meteorological variables since 1901."
+description: "Climate Research Unit Timeseries (CRU TS) Gridded precipitation and other meteorological variables since 1901."
 date: 08/21/2024 # mm-dd-yyyy
 draft: false
 image: "images/crulogo.png"
