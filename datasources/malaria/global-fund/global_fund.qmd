@@ -1,6 +1,6 @@
 ---
 title: "The Global Fund"
-subtitle: "The Global Fund provides comprehensive data on malaria, including statistics on infection rates, mortality, and the impact of prevention and treatment programs."
+description: "The Global Fund provides comprehensive data on malaria, including statistics on infection rates, mortality, and the impact of prevention and treatment programs."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/global-fund.png"
 execute:

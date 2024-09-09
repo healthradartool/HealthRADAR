@@ -1,6 +1,6 @@
 ---
 title: "UNICEF DATA - Child Statistics"
-subtitle: "UNICEF DATA - Child Statistics provides detailed information on malaria's impact on children, including prevalence, treatment coverage, and mortality rates."
+description: "UNICEF DATA - Child Statistics provides detailed information on malaria's impact on children, including prevalence, treatment coverage, and mortality rates."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/unicef.png"
 execute:

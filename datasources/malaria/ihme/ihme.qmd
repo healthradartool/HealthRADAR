@@ -1,6 +1,6 @@
 ---
 title: "Institute for Health Metrics and Evaluation"
-subtitle: "The Institute for Health Metrics and Evaluation (IHME) works with collaborators around the world to develop timely, relevant, and scientifically valid evidence that illuminates the state of health everywhere."
+description: "The Institute for Health Metrics and Evaluation (IHME) works with collaborators around the world to develop timely, relevant, and scientifically valid evidence that illuminates the state of health everywhere."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/ihme.jpg"
 execute:

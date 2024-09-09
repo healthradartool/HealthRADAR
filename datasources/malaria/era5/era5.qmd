@@ -1,6 +1,6 @@
 ---
 title: "ERA5"
-subtitle: "ERA5 hourly data on single levels from 1940 to present"
+description: "ERA5 hourly data on single levels from 1940 to present"
 date: 08/30/2024 # mm-dd-yyyy
 draft: false
 image: "images/era5.png"

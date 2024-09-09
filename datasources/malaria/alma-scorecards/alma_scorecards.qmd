@@ -1,6 +1,6 @@
 ---
 title: "ALMA Scorecard Hub"
-subtitle: "The ALMA Scorecard Hub includes access to published scorecard tools from several African ministries of health."
+description: "The ALMA Scorecard Hub includes access to published scorecard tools from several African ministries of health."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/alma-scorecard.png"
 execute:

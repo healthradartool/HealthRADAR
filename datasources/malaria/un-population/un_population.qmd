@@ -1,6 +1,6 @@
 ---
 title: "UN Population Division Data Portal"
-subtitle: "United Nations Population Data Portal provides access to global datasets of demographic indicators produced by the United Nations Population Division."
+description: "United Nations Population Data Portal provides access to global datasets of demographic indicators produced by the United Nations Population Division."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/un_population_data.png"
 execute:
