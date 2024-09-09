@@ -39,7 +39,7 @@ The most recent report may not contain all years of estimates. Should earlier ye
 
 ## What does the data look like?
 
-### Description
+**Description**
 
 The list of annexes may vary annually. The information included typically looks like this. Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. To make a longer time series of data, you can access older world malaria reports and annexes from the WHO. Be careful to check the data definitions and information on methodology to be sure that data sets can be concatenated.
 
@@ -335,7 +335,7 @@ TODO: JN/JT add short description of the plot
 
 ## Key points to consider
 
-### Pitfalls of Annual Data:
+**Pitfalls of Annual Data:**
 
 Using annual data for your analysis can lead to several pitfalls:
 
@@ -343,7 +343,7 @@ Using annual data for your analysis can lead to several pitfalls:
 
 -   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
 
-### Reporting - Incidence vs. Prevalence Data:
+**Reporting - Incidence vs. Prevalence Data:**
 
 It is important to distinguish between incidence and prevalence data when performing your analysis:
 
@@ -351,7 +351,7 @@ It is important to distinguish between incidence and prevalence data when perfor
 
 -   Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
 
-### Difference between Policy and Implementation:
+**Difference between Policy and Implementation:**
 
 There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
 
@@ -361,7 +361,7 @@ There can be discrepancies between the intended policy for ITN distribution and 
 
 -   Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
 
-### National Level - Ignoring Spatial Heterogeneity:
+**National Level - Ignoring Spatial Heterogeneity:**
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
@@ -371,7 +371,7 @@ Modelling malaria transmission at a national level can overlook important spatia
 
 -   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
 
-## Examples of data use in literature
+**Examples of data use in literature**
 
 The report came out on Jan 31, 2024, so there are not many studies that have used the data yet. However, here are a few that are either under review or have been published recently:
 
