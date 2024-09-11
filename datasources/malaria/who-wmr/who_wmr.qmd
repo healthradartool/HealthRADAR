@@ -124,11 +124,15 @@ source(here::here("theme_health_radar.R"))
 wmr2023Ea_Africa <- whowmr::wmr2023$wmr2023ea |>
   transmute(Source = Source,
             ITNCovPercent = `% of population who slept under an ITN last night`/100,
-            Country = as_factor(`Country/area`))
+            Country = as_factor(`Country/area`)) |>
+  filter(Country %in% c("Benin", "Cameroon", "Ghana", "Kenya", "Mozambique", "Namibia", "Nigeria", "Zambia")) 
+
 
 ```
 
 ```{r}
+
+library(stringr)
 
 # Create the lollipop plot
 ggplot(wmr2023Ea_Africa, aes(x = fct_reorder(Country, ITNCovPercent, .na_rm = FALSE),
@@ -136,22 +140,17 @@ ggplot(wmr2023Ea_Africa, aes(x = fct_reorder(Country, ITNCovPercent, .na_rm = FA
                              color = Source)) +
   geom_segment(aes(x = Country, xend = Country, y = 0, yend = ITNCovPercent), color = "grey") +  # Keep constant grey color for segments
   geom_point(size = 4) +
-  coord_flip() +
+  coord_flip() +  # Adjust the aspect ratio to make the plot taller
   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
   theme_health_radar() +
   labs(title = "Percentage of Households with at least one ITN",
        subtitle = "Data for selected African countries",
-       caption = "Source WMR 2023 Annex 4Ea",
+       caption = str_wrap("The percentage of households with at least one insecticide-treated net (ITN) in selected African countries, highlighting variations in ITN coverage. Benin,and Mozambique exhibit the highest coverage, while Kenya and Nigeria have the lowest. Most countries have coverage between 50% and 60%, which supports malaria control efforts if ITNs are properly used and resistance to insecticides remains low. Source: WMR 2023 Annex 4Ea.", width = 75),
        x = "Country",
-       y = "Percentage")
-
+       y = "Percentage") 
 
 ```
 
-
-The dumbbell plot above shows the percentage of households with at least one ITN in selected African countries. The plot highlights the variation in ITN coverage across countries and data sources across years. Niger, Benin and Mali have the highest ITN coverage, while Guinea, Kenya and Mauritania have the lowest coverage. None of the countries had coverage below 25%, which most having between 50% and 85%, which is a good sign for malaria control efforts in these countries, given that the ITNs are used correctly and that the mosquitoes have not developed resistance to the insecticides used in the nets.
-
-TODO: JN add short context
 
 ```{r}
 library(ggrepel)
@@ -178,21 +177,21 @@ ggplot(data = e8_data) +
   theme_health_radar() +
   scale_fill_continuous_health_radar(name = "Deaths") +  # Correct fill scale for continuous data
   labs(title = "Reported malaria deaths in the Elimination 8 countries (2022)",
-       caption = "Source: WMR 2023 Annex 4J",
+       caption = str_wrap("The choropleth map highlights reported malaria deaths in the Elimination 8 countries in 2022, with Angola, Mozambique, and Zambia showing higher mortality rates. These reported figures may not reflect the full scale of malaria deaths due to potential underreporting and misclassification. Considering estimated deaths alongside reported figures would provide a more comprehensive picture. Source: WMR 2023 Annex 4J.", width = 80)
+,
        x = "Latitude",
        y = "Longitude") +
   
   geom_sf_text(aes(label = name, color = ifelse(`2022` > mean(`2022`), "black", "white")), size = 3) +  # Conditional text color
-  scale_color_identity()  # Keep scale_color_identity() to use specified colors directly
-
+  scale_color_identity() +  
+  theme(
+    plot.caption.position = "plot",  # Keep the caption outside the plot area
+  )
 
 ```
 
-The choropleth map above shows the reported malaria deaths in the Elimination 8 countries in 2022. The map highlights the variation in reported malaria mortality across the E8 countries, with higher mortality rates in Angola, Mozambique, and Zambia. It is important to note that these are reported malaria deaths and may not capture the full extent of malaria mortality in these countries due to underreporting and misclassification of deaths. It would therefore also be useful to consider estimtated malaria deaths as well.
-
-TODO: JN/JT add short description of the plot. Discuss context etc.
-
 ```{r}
+
 whowmr::wmr2023$wmr2023f |>
   # Filter for the frontline E8 countries
   filter(`Country/area` |> stringr::str_detect("Botswana|Eswatini|Namibia|South Africa"),
@@ -239,9 +238,10 @@ whowmr::wmr2023$wmr2023f |>
       columns = c(Deaths_Upper)
     )
   )
+
 ```
 
-Some text needed to describe this:
+
 ```{r}
 # Create the plot for Deaths with low and high bands
 whowmr::wmr2023$wmr2023f |>
@@ -266,15 +266,13 @@ whowmr::wmr2023$wmr2023f |>
       y = "Number of Cases (thousands)",
       color = "Country",
       fill = "Country",  # Added 'fill' label for the ribbon shading
-      caption = "Source: WMR 2023 Annex 4F"
+      caption = str_wrap("The plot displays estimated malaria cases in selected countries from 2000 to 2022, with lines representing case estimates and shaded areas showing the confidence bands. Variations in case numbers and uncertainty across countries are evident, such as stable case numbers in Mozambique, while Angola saw fluctuating cases with increasing uncertainty after 2015. Source: WMR 2023 Annex 4F.", width = 85)
+
     )
 
     
 ```
 
-The plot above shows the estimated malaria cases in selected countries from 2000 to 2022. The lines represent the estimated number of cases, while the shaded areas represent the confidence bands around the estimates. The plot highlights the variation in malaria cases across countries and over time, with some countries experiencing fluctuations in case numbers. It is important to consider the uncertainty around these estimates when interpreting the data. For example, looking at the plot for Mozambique, the total number of cases did not change much over the years, with the confidence bands staying relatively stable, whereas Angola saw fluctuations in the number of cases, with much wider confidence bands from 2015, indicating greater uncertainty in the estimates.
-
-TODO: JN/JT add short description of the plot
 
 ```{r}
 
@@ -303,21 +301,13 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
     x = "Year",
     y = "Contributions (in thousands)",
     fill = "Donor",
-    caption = "Source: WMR 2023 4C"
+    caption = str_wrap("The stacked bar plot shows donor contributions to malaria control efforts in selected countries from 2020 to 2022. Contributions vary by country and donor, with Mozambique receiving significant support from the Global Fund and PMI/USAID, while in South Africa, the Global Fund and local government are key contributors. Understanding the distribution of funding is essential for evaluating the sustainability and impact of malaria control programs. Source: WMR 2023 4C.", width = 100)
   ) +
-  theme_health_radar() +  # Apply the custom radar theme
-  theme(
-    plot.title = element_text(size = 14, face = "bold"),
-    plot.subtitle = element_text(size = 12),
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    axis.text.x = element_text(angle = 45, hjust = 1)  # Keep the x-axis label rotation
-  )
+  theme_health_radar()  # Apply the custom radar theme
+  
 
 ```
 
-The stacked bar plot above shows the contributions made by different donors to malaria control efforts in selected countries over the years. The plot highlights the variation in contributions across countries and donors, with some countries receiving more funding from certain donors than others. For example, in Mozambique, the Global Fund and PMI/USAID are the largest contributors, while in South Africa, the Global Fund and local government are the main contributors. It is important to consider the distribution of funding across different donors when assessing the sustainability and effectiveness of malaria control programs in these countries.
-
-TODO: JN/JT add short description of the plot
 :::
 
 ## Key points to consider
