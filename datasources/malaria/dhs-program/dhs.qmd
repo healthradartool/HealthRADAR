@@ -22,7 +22,7 @@ categories:
 
 ## About the data
 
-The DHS (Demographic and Health Surveys) Program provides data on population, health, and nutrition through more than 400 surveys in over 90 countries. Data covers the following areas; **Population and Demographics, Fertility and Family Planning, Maternal and Child Health, Nutrition, HIV/AIDS and Other Infections, Malaria, & Gender and Domestic Violence.**
+The DHS (Demographic and Health Surveys) Program provides data on population, health, and nutrition through more than 400 surveys in over 90 countries. Data covers the following areas; *Population and Demographics, Fertility and Family Planning, Maternal and Child Health, Nutrition, HIV/AIDS and Other Infections, Malaria, & Gender and Domestic Violence*.
 
 The DHS data are widely used by governments, NGOs, researchers, and policymakers to design and monitor health programs and policies. The surveys are conducted through face-to-face interviews with representative samples of households, and they use standardized questionnaires to ensure comparability across countries and over time.
 
@@ -30,19 +30,61 @@ Demographic health surveys are also unique for modelling as you can correlate ac
 
 ## Accessing the data
 
-Several options are available for accessing the data and each of them is very well described elsewhere.
+There are several options for accessing the data, each thoroughly explained in other resources.
 
-**STATcompiler**
+::: {.panel-tabset}
+
+## DHS Website
+
+[The DHS Program Access Instructions:](https://www.dhsprogram.com/data/Access-Instructions.cfm) This requires signing up for a free user account.
+
+{{< video https://www.youtube.com/embed/videoseries?amp;list=PLagqLv-gqpTNBR0KcyrajAqKrFdsdIqqe >}}
+
+
+## STATcompiler
 
 [STATcompiler](https://www.statcompiler.com/en/), a graphical user interface tool for accessing and downloading the data in CSV format.
 
 {{< video https://youtu.be/eXdPi6a_pQ0?list=PLagqLv-gqpTNRdiY391wMY0lzM_MuYpAL >}}
 
-**`rdhs` R package**
+#### Accessing the data using STATcompiler
 
-[`rdhs`](https://docs.ropensci.org/rdhs/) is a package for management and analysis of Demographic and Health Survey (DHS) data. This includes functionality to:
+-   **Prevalence and Treatment**: Users can access data on malaria prevalence and treatment practices directly from the [STATcompiler](https://www.STATcompiler%20.com/en/). It allows for the creation of tables, charts, and maps that display malaria prevalence rates, treatment practices, and trends over time.
 
-1.  Access standard indicator data (i.e. [DHS STATcompiler](https://www.statcompiler.com/)) in R via the [DHS API](https://api.dhsprogram.com/).
+-   **Preventive Measures**: STATcompiler provides data on the ownership and use of ITNs, IRS coverage, and IPTp usage. Users can visualize how these preventive measures vary across different regions and demographic groups.
+
+
+-   **Country and Regional Comparisons**: STATcompiler enables users to compare malaria data across different countries and regions. This comparative analysis helps in identifying best practices and areas that require more attention.
+
+-   **Temporal Trends**: Users can analyze trends over time to see how malaria prevention and treatment efforts have evolved and their impact on malaria prevalence and morbidity
+
+-   **Tailored Data Retrieval**: STATcompiler allows users to create custom tables based on specific indicators related to malaria. Users can filter data by variables such as age, sex, urban/rural residence, and wealth quintile.
+
+-   **Indicator Selection**: Users can select specific indicators related to malaria, such as ITN usage, malaria prevalence among children under five, and access to malaria treatment. This customization helps in focusing on particular aspects of malaria control and prevention.
+
+-   **Holistic Health Analysis**: STATcompiler can integrate malaria data with other health indicators, such as child mortality rates, nutrition status, and maternal health. This integration provides a comprehensive view of health challenges and the interconnections between different health issues.
+
+-   **Multi-Indicator Analysis**: Users can analyse how malaria prevention and treatment efforts correlate with other health outcomes, facilitating a broader understanding of health dynamics.
+
+-   **Interactive Tools**: STATcompiler offers an interactive and user-friendly interface, making it easy for users to navigate and extract relevant malaria data.
+
+-   **Data Export**: Users can export data in various formats (e.g., Excel, CSV) for further analysis or reporting purposes.
+
+#### Practical Applications using STATcompiler to access DHS program data
+
+-   **Policy Making and Program Design**: Policymakers and program designers can access up-to-date malaria data, helping them create evidence-based strategies and allocate resources effectively.
+
+-   **Research and Academic Studies**: Researchers can utilize STATcompiler to obtain detailed malaria data for their studies, facilitating in-depth analysis and publication of findings.
+
+-   **Monitoring and Evaluation**: Health organizations can monitor the progress of malaria interventions by analysing trends and identifying gaps in coverage .
+
+By leveraging the capabilities of STATcompiler, users can efficiently analyse and visualise malaria data collected by the DHS Program, leading to more informed decisions and effective interventions in malaria control and prevention.
+
+## R package
+
+The Demographic and Health Surveys (DHS) Program has developed an open-source R package [`rdhs`](https://docs.ropensci.org/rdhs/) for management and analysis of Demographic and Health Survey data. This includes functionality to:
+
+1.  Access standard indicator data (i.e. [DHS STATcompiler](https://www.statcompiler.com/)) in R via the [DHS API](https://api.dhsprogram.com/).
 
 2.  Identify surveys and datasets relevant to a particular analysis.
 
@@ -52,45 +94,12 @@ Several options are available for accessing the data and each of them is very we
 
 5.  Extract variables and combining datasets for pooled multi-survey analyses.
 
-**Access Instructions**
 
-[The DHS Program Access Instructions:](https://www.dhsprogram.com/data/Access-Instructions.cfm) This requires signing up for a free user account.
-
-{{< video https://www.youtube.com/embed/videoseries?amp;list=PLagqLv-gqpTNBR0KcyrajAqKrFdsdIqqe >}}
-
-**Accessing the data using STATcompiler abilities**
-
--   **Prevalence and Treatment**: Users can access data on malaria prevalence and treatment practices directly from the [STATcompiler](https://www.STATcompiler%20.com/en/). It allows for the creation of tables, charts, and maps that display malaria prevalence rates, treatment practices, and trends over time.
-
--   **Preventive Measures**: STATcompiler provides data on the ownership and use of ITNs, IRS coverage, and IPTp usage. Users can visualize how these preventive measures vary across different regions and demographic groups.
-
-**Comparative Analysis**
-
--   **Country and Regional Comparisons**: STATcompiler enables users to compare malaria data across different countries and regions. This comparative analysis helps in identifying best practices and areas that require more attention.
-
--   **Temporal Trends**: Users can analyze trends over time to see how malaria prevention and treatment efforts have evolved and their impact on malaria prevalence and morbidity
-
-**Customizable Data Queries**
-
--   **Tailored Data Retrieval**: STATcompiler allows users to create custom tables based on specific indicators related to malaria. Users can filter data by variables such as age, sex, urban/rural residence, and wealth quintile.
-
--   **Indicator Selection**: Users can select specific indicators related to malaria, such as ITN usage, malaria prevalence among children under five, and access to malaria treatment. This customization helps in focusing on particular aspects of malaria control and prevention.
-
-**Integration with Other Health Indicators**:
-
--   **Holistic Health Analysis**: STATcompiler can integrate malaria data with other health indicators, such as child mortality rates, nutrition status, and maternal health. This integration provides a comprehensive view of health challenges and the interconnections between different health issues.
-
--   **Multi-Indicator Analysis**: Users can analyse how malaria prevention and treatment efforts correlate with other health outcomes, facilitating a broader understanding of health dynamics.
-
-**User-Friendly Interface**
-
--   **Interactive Tools**: STATcompiler offers an interactive and user-friendly interface, making it easy for users to navigate and extract relevant malaria data.
-
--   **Data Export**: Users can export data in various formats (e.g., Excel, CSV) for further analysis or reporting purposes.
+:::
 
 ## What does the data look like?
 
-### Description
+**Description**
 
 DHS data on malaria covers the following area for malaria
 
@@ -541,12 +550,3 @@ new_lambda <- lambda * (1-eff_cov)
 ```
 :::
 
-**Practical Applications using STATcompiler to access DHS program data**
-
--   **Policy Making and Program Design**: Policymakers and program designers can access up-to-date malaria data, helping them create evidence-based strategies and allocate resources effectively.
-
--   **Research and Academic Studies**: Researchers can utilize STATcompiler to obtain detailed malaria data for their studies, facilitating in-depth analysis and publication of findings.
-
--   **Monitoring and Evaluation**: Health organizations can monitor the progress of malaria interventions by analysing trends and identifying gaps in coverage .
-
-By leveraging the capabilities of STATcompiler, users can efficiently analyse and visualise malaria data collected by the DHS Program, leading to more informed decisions and effective interventions in malaria control and prevention.
