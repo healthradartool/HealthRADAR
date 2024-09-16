@@ -22,6 +22,8 @@ website:
         href: data.qmd
       - text: Guides
         menu: 
+          - text: Contributing to Health RADAR 
+            href: guides/contribution_guidance.qmd
           - text: Climate
             href: guides/climate.qmd
           - text: Modelling
