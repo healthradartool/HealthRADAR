@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Portal</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <h1>Login Portal</h1>
+  <form id="login-form">
+    <input type="text" id="username" placeholder="Enter username">
+    <input type="password" id="password" placeholder="Enter password">
+    <button id="login-btn" type="button">Login</button>
+  </form>
+  <div id="alert" style="display: none;" data-id="alert">Incorrect username or password</div>
+
+  <script>
+    const loginBtn = document.getElementById('login-btn');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const alertDiv = document.getElementById('alert');
+
+    function sha1(message) {
+      return CryptoJS.SHA1(message).toString(CryptoJS.enc.Hex);
+    }
+
+    async function urlExists(url) {
+      try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    async function login(username, password) {
+      //const usernameHash = sha1(username);
+      //const passwordHash = sha1(password);
+      const usernameHash = username;
+      const passwordHash = password;
+
+      // Log the hashes for debugging
+      console.log("Username Hash:", usernameHash);
+      console.log("Password Hash:", passwordHash);
+
+      //const url = 'a' + usernameHash + '/a' + passwordHash + '/index.html'; // Construct URL
+      const url = usernameHash + '/index.html'; // Construct URL
+      console.log("Constructed URL:", url); // Log the constructed URL
+
+      if (await urlExists(url)) {
+        window.location = url;
+      } else {
+        alertDiv.style.display = 'block'; // Show alert
+        usernameInput.value = '';
+        passwordInput.value = '';
+        console.log("Login failed, incorrect username or password.");
+      }
+    }
+
+    loginBtn.addEventListener('click', function () {
+      login(usernameInput.value, passwordInput.value);
+    });
+
+    passwordInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        login(usernameInput.value, passwordInput.value);
+      }
+    });
+  </script>
+
+  <footer>
+    <p>Health RADAR</p>
+  </footer>
+</body>
+</html>

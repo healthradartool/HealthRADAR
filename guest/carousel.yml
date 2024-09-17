@@ -1,0 +1,12 @@
+
+- caption: "Usecase: Finding data for models"
+  image: "/guest/img/usecase-finding-data.png"
+  link: "/data"
+  
+- caption: "Usecase: Learning about private data"
+  image: "/guest/img/usecase-learning-data.png"
+  link: "/data"
+  
+- caption: "Usecase: Contributing to the community"
+  image: "/guest/img/usecase-contribute.png"
+  link: "https://github.com/uct-masha/HealthRADAR"

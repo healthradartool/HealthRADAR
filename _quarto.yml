@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: /guest
   preview: 
     port: 4200
     host: 127.0.0.1
@@ -7,29 +8,29 @@ project:
 
 website:
   title: "HealthRADAR"
-  image: "img/logo-light.png"
-  favicon: "favicon.ico"
+  image: "guest/img/logo-light.png"
+  favicon: "guest/favicon.ico"
   bread-crumbs: false
   search:
     location: navbar
     type: textbox
   navbar:
-    logo: "img/logo-light.png"
+    logo: "guest/img/logo-light.png"
     left:
       - text: Home
-        href: index.qmd
+        href: guest/index.qmd
       - text: Browse
-        href: data.qmd
+        href: guest/data.qmd
       - text: Guides
         menu: 
           - text: Contributing to Health RADAR 
-            href: guides/contribution_guidance.qmd
+            href: guest/guides/contribution_guidance.qmd
           - text: Climate
-            href: guides/climate.qmd
+            href: guest/guides/climate.qmd
           - text: Modelling
-            href: guides/modelling.qmd
+            href: guest/guides/modelling.qmd
       - text: About
-        href: about.qmd
+        href: guest/about.qmd
     right:
       - icon: github
         href: https://github.com/uct-masha/HealthRADAR
@@ -41,9 +42,9 @@ website:
           left: "Copyright 2024, Health RADAR"
           center:
             - text: About
-              href: about.qmd
+              href: guest/about.qmd
             - text: Data Sources
-              href: data.qmd
+              href: guest/data.qmd
           right:
             - icon: github
               href: https://github.com/uct-masha/HealthRADAR
@@ -55,7 +56,7 @@ language:
 format:
   html:
     theme:
-      light: [flatly, style-light.scss, style-base.scss]
+      light: [flatly, guest/style-light.scss, guest/style-base.scss]
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
     mainfont: "Schibsted Grotesk"
