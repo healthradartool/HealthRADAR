@@ -2,7 +2,85 @@
 <html>
 <head>
   <title>Login Portal</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+      background-color: #4f4f4f; /* Dark grey background from Darkly theme */
+      color: #ffffff; /* Light text */
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column; /* Arrange elements in a column */
+    }
+    h1 {
+      color: #EDF3F9; /* Green color from Darkly theme */
+      margin-bottom: 20px; /* Space between title and form */
+    }
+    .form-container {
+      background-color: #777777; /* Slightly lighter dark background for form from Darkly theme */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 99, 191, 0.5); /* Adjusted shadow to match theme */
+      width: 100%;
+      max-width: 400px; /* Set a max-width for better alignment */
+      box-sizing: border-box; /* Ensure padding is included in overall width */
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #EDF3F9; /* Green border from Darkly theme */
+      border-radius: 5px;
+      background-color: #777777; /* Dark input background from Darkly theme */
+      color: #ffffff; /* Light text in input */
+      box-sizing: border-box; /* Ensure padding is included in overall width */
+    }
+    input::placeholder {
+      color: #ced4da; /* Light grey color for placeholder text from Darkly theme */
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #EDF3F9; /* Green button background from Darkly theme */
+      color: #000; /* Light text */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #2c3e50; /* Darker green on hover from Darkly theme */
+    }
+    #alert {
+      color: #ff0000; /* Red alert message */
+      margin-top: 10px;
+      align-self: center; /* Align to the start of the form */
+    }
+    /* Center the container, form, and alert */
+    .container {
+      display: flex;
+      flex-direction: column; /* Arrange title, form, and alert in a column */
+      align-items: center;
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      color: #EDF3F9; /* Green color from Darkly theme */
+      text-align: center;
+    }
+    footer a {
+      text-decoration: none;
+      color: #EDF3F9; /* Green color from Darkly theme */
+    }
+    footer a:hover {
+      color: #2c3e50; /* Darker green on hover from Darkly theme */
+    }
+  </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
@@ -34,23 +112,23 @@
     }
 
     async function login(username, password) {
-      //const usernameHash = sha1(username);
-      //const passwordHash = sha1(password);
       const usernameHash = username;
       const passwordHash = password;
+      
+      const cred = usernameHash + passwordHash // use both the username and the password
 
-      // Log the hashes for debugging
       console.log("Username Hash:", usernameHash);
       console.log("Password Hash:", passwordHash);
 
-      //const url = 'a' + usernameHash + '/a' + passwordHash + '/index.html'; // Construct URL
-      const url = usernameHash + '/index.html'; // Construct URL
-      console.log("Constructed URL:", url); // Log the constructed URL
+      const url = usernameHash + '/index.html'; 
+      console.log("Constructed URL:", url);
+      
+      
 
-      if (await urlExists(url)) {
+      if (await urlExists(url) && cred == "radarradar") {
         window.location = url;
       } else {
-        alertDiv.style.display = 'block'; // Show alert
+        alertDiv.style.display = 'block'; 
         usernameInput.value = '';
         passwordInput.value = '';
         console.log("Login failed, incorrect username or password.");
