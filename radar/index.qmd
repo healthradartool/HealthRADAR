@@ -49,7 +49,7 @@ Health RADAR supports responsible access and use of data relevant to include in 
 :::
 
 ::: {.home-buttons}
-[Browse Data Sources](/guest/data.qmd){.btn-browse .btn-action-primary .btn-action .btn .btn-success .btn-lg role="button"} [Learn More](/guest/about.qmd){#btn-about .btn-action .btn .btn-info .btn-lg role="button"}
+[Browse Data Sources](/radar/data.qmd){.btn-browse .btn-action-primary .btn-action .btn .btn-success .btn-lg role="button"} [Learn More](/radar/about.qmd){#btn-about .btn-action .btn .btn-info .btn-lg role="button"}
 :::
 
 :::
@@ -113,7 +113,7 @@ To catalyse the use of the data in CSID modelling, example code snippets will be
 
 ::: {.column-page}
 
-[Browse Data Sources](/guest/data.qmd){.btn-browse .btn-action-primary  .btn-action .btn .btn-success .btn-lg role="button" style="margin-top: 1em;"}
+[Browse Data Sources](/radar/data.qmd){.btn-browse .btn-action-primary  .btn-action .btn .btn-success .btn-lg role="button" style="margin-top: 1em;"}
 
 :::
 :::

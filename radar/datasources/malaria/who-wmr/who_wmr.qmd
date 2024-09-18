@@ -23,7 +23,7 @@ categories:
 ---
 
 ```{r setup, include=FALSE}
-source(here::here("guest/datasources/malaria/who-wmr/scripts/packages.R"))
+source(here::here("radar/datasources/malaria/who-wmr/scripts/packages.R"))
 ```
 
 ## About the data
@@ -120,7 +120,7 @@ gt(wmr2023j_e8)
 
 ```{r include=FALSE}
 
-source(here::here("guest/theme_health_radar.R"))
+source(here::here("radar/theme_health_radar.R"))
 wmr2023Ea_Africa <- whowmr::wmr2023$wmr2023ea |>
   transmute(Source = Source,
             ITNCovPercent = `% of population who slept under an ITN last night`/100,
