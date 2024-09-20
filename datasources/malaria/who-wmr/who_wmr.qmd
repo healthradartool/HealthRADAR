@@ -26,19 +26,25 @@ categories:
 source(here::here("datasources/malaria/who-wmr/scripts/packages.R"))
 ```
 
-## About the data
+::: {.panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 The WHO World Malaria report, released on an annual basis, provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe. The annexes to the report provide useful information on the data sources and methods used to compile the World Malaria Report, a set of regional malaria profiles and tables of historical time series of case data, commodity distribution, funding amounts and policy adoption.
 
 These datasets provide information on long term trends in malaria control and enable comparison between countries. The data provided are on an annual time scale at the national level, and would not be suitable for subnational analysis or to explore seasonal trends in malaria.
 
-## Accessing the data
+
+<h2>Accessing the data</h2> 
+
 
 The reports can be accessed on the [WHO website](https://www.who.int/teams/global-malaria-programme/reports). Each report has a web page which includes useful contextual information as well as additional resources. The “Annexes in Excel format” will download as a zip file which should be extracted. The annexes can be viewed in the original report in PDF format, though for modelling it is usually preferable to have an excel spreadsheet.
 
 The most recent report may not contain all years of estimates. Should earlier years be required, one can access the annexes from earlier reports and merge these.
 
-## What does the data look like?
+<h2>What does the data look like?</h2> 
 
 **Description**
 
@@ -72,7 +78,55 @@ The annexes can also be downloaded as Excel documents from the report page.
 
 : Example of the annex layout. This example is from the 2023 world malaria report. Note that the annexes are paired with the report and should be interpreted as such.
 
-::: {.callout-note collapse="true"}
+<h2>Key points to consider</h2> 
+
+**Pitfalls of Annual Data:**
+
+Using annual data for your analysis can lead to several pitfalls:
+
+-   Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
+
+-   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
+
+**Reporting - Incidence vs. Prevalence Data:**
+
+It is important to distinguish between incidence and prevalence data when performing your analysis:
+
+-   Incidence data: Incidence refers to the number of new cases of malaria occurring in a population over a specified period. It provides information on the rate at which new infections occur and is more sensitive to changes in transmission dynamics.
+
+-   Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
+
+**Difference between Policy and Implementation:**
+
+There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
+
+-   Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance.
+
+-   Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons.
+
+-   Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
+
+**National Level - Ignoring Spatial Heterogeneity:**
+
+Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
+
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors.
+
+-   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
+
+-   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
+
+**Examples of data use in literature**
+
+The report came out on Jan 31, 2024, so there are not many studies that have used the data yet. However, here are a few that are either under review or have been published recently:
+
+-   [Assessing the Therapeutic Efficacy of Artemether-Lumefantrine for Uncomplicated Malaria in Lagos, Nigeria: A Comprehensive Study on Treatment Response and Resistance Markers](https://doi.org/10.21203/rs.3.rs-3985557/v1)
+
+-   [Design, synthesis and Anti-Plasmodial activity of Mortiamide-Lugdunin conjugates](https://doi.org/10.1016/j.bioorg.2024.107307)
+
+## Working with the data
+
+::: {.callout-note collapse="false"}
 ## How to use this data?
 
 For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
@@ -310,48 +364,4 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 :::
 
-## Key points to consider
-
-**Pitfalls of Annual Data:**
-
-Using annual data for your analysis can lead to several pitfalls:
-
--   Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
-
--   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
-
-**Reporting - Incidence vs. Prevalence Data:**
-
-It is important to distinguish between incidence and prevalence data when performing your analysis:
-
--   Incidence data: Incidence refers to the number of new cases of malaria occurring in a population over a specified period. It provides information on the rate at which new infections occur and is more sensitive to changes in transmission dynamics.
-
--   Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
-
-**Difference between Policy and Implementation:**
-
-There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
-
--   Coverage: The planned ITN coverage may differ from the actual coverage achieved due to factors such as logistics, access to remote areas, and population acceptance.
-
--   Timing: The timing of ITN distribution campaigns may vary from the planned schedule. This can affect the impact of ITNs on malaria transmission, particularly if the distribution does not align with peak transmission seasons.
-
--   Effectiveness: The effectiveness of ITNs may differ from the ideal scenario due to factors such as improper usage, wear and tear, and insecticide resistance.
-
-**National Level - Ignoring Spatial Heterogeneity:**
-
-Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
-
--   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors.
-
--   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
-
--   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
-
-**Examples of data use in literature**
-
-The report came out on Jan 31, 2024, so there are not many studies that have used the data yet. However, here are a few that are either under review or have been published recently:
-
--   [Assessing the Therapeutic Efficacy of Artemether-Lumefantrine for Uncomplicated Malaria in Lagos, Nigeria: A Comprehensive Study on Treatment Response and Resistance Markers](https://doi.org/10.21203/rs.3.rs-3985557/v1)
-
--   [Design, synthesis and Anti-Plasmodial activity of Mortiamide-Lugdunin conjugates](https://doi.org/10.1016/j.bioorg.2024.107307)
+:::

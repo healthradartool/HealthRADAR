@@ -20,7 +20,12 @@ categories:
   - annual
 ---
 
-## About the data
+::: {.panel-tabset}
+
+
+## Overview
+
+<h2>About the data</h2>
 
 The DHS (Demographic and Health Surveys) Program provides data on population, health, and nutrition through more than 400 surveys in over 90 countries. Data covers the following areas; *Population and Demographics, Fertility and Family Planning, Maternal and Child Health, Nutrition, HIV/AIDS and Other Infections, Malaria, & Gender and Domestic Violence*.
 
@@ -28,7 +33,7 @@ The DHS data are widely used by governments, NGOs, researchers, and policymakers
 
 Demographic health surveys are also unique for modelling as you can correlate across various datasets variables for example linking Malaria data on prevention and treatment to other factors in the population and demographics data to other health system indicators
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 There are several options for accessing the data, each thoroughly explained in other resources.
 
@@ -97,7 +102,7 @@ The Demographic and Health Surveys (DHS) Program has developed an open-source R 
 
 :::
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 **Description**
 
@@ -113,7 +118,9 @@ The indicator dataset guide can found at [The DHS Program - Malaria](https://www
 
 ![Malaria Data in DHS Surveys](images/malaria%20data%20in%20dhs%20survey.png)
 
-::: {.callout-note collapse="true"}
+## Working with the data
+
+::: {.callout-note collapse="false"}
 ## How to plot this data?
 
 ```{r}
@@ -550,3 +557,4 @@ new_lambda <- lambda * (1-eff_cov)
 ```
 :::
 
+:::
