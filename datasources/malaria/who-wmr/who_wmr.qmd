@@ -26,7 +26,7 @@ categories:
 source(here::here("datasources/malaria/who-wmr/scripts/packages.R"))
 ```
 
-::: {.panel-tabset}
+::: {.page-tabs .panel-tabset}
 
 ## Overview
 
