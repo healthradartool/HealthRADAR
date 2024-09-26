@@ -4,6 +4,7 @@ description: "Climate Research Unit Timeseries (CRU TS) Gridded precipitation an
 date: 08/21/2024 # mm-dd-yyyy
 draft: false
 image: "images/crulogo.png"
+lightbox: true
 execute:
   message: false
   warning: false
@@ -19,7 +20,6 @@ categories:
   - gridded observed
   - rainfall
   - temperature
-  - humidity
   - past
   - present
   - global
@@ -28,88 +28,109 @@ categories:
 
 ## About the data
 
-Climatic Research Unit (CRU) Time-Series (TS) of high-resolution gridded data of month-by-month variation in climate. Global land coverage (all land areas excluding Antarctica) at 0.5° resolution.
+The CRU TS (Climatic Research Unit gridded Time Series) dataset is a global, high-resolution, land-based climate dataset that provides monthly records on a 0.5° grid. The dataset is derived by the interpolation of monthly climate anomalies from extensive networks of weather station observations, offering data from 1901 onwards. This observational dataset consists of ten observed and derived climate variables, such as temperature and precipitation (see Variables list below), making it useful for many classes of users, in diverse research areas and applications and has been widely adopted in research and policy work.
+
+Updated annually, the dataset follows a versioning system. CRU TS v4.08, the latest version released in 2024, reflects both major updates in methodology and minor refinements, extending its temporal coverage and improving data quality, compared to previous versions.
 
 For more information regarding all CRU datasets see [CRU-data](https://crudata.uea.ac.uk/cru/data/hrg/)
 
-### Summary
+**Summary**
 
-
-| | |
---- | --- |
-| **Name** | CRU TS 4.08 |
+|  |  |
+|------------------------------------|------------------------------------|
+| **Name** | CRU TS |
+| **Version** | 4.08 |
 | **Institution** | [CRU](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) |
 | **Product type** | gridded observed |
 | **Domain** | global land (excluding Antarctica) |
-| **Resolution** |  0.5° x 0.5°, 1° x 1°, 2.5° x 2.5° |
+| **Resolution** | 0.5° x 0.5° |
 | **Period** | 1901-2023 |
 | **Frequencies** | monthly |
-| **Variables** | precipitation, temperature, humidity, others  |
+| **Variables** | precipitation, temperature, others |
 | **Update frequency** | annual |
 
-
-
-
-### Variables
+<br/>
+**Variables**
+<br/>
 
 | **Variable Name** | **Variable Description** | **Units** |
---- | --- | --- |
-| clt | Total Cloud Fraction | % |
-| DTR | Diurnal Near-Surface Air Temperature Range | K |
-| FD | Frost Day Frequency | days |
-| PET | Potential Evapotranspiration | kg m-2 s-1 |
-| PRCPTOT | Precipitation | mm/month |
-| TG | Near-Surface Air Temperature  | C |
-| TN | Daily Minimum Near-Surface Air Temperature | C |
-| TX | Daily Maximum Near-Surface Air Temperature  | C |
-| vap | Vapour Pressure  | Pa |
-| WD | Wet Day Frequency | days |
+|--------------|------------------------------------------|----------------|
+| cld | cloud cover | percentage (%) |
+| dtr | diurnal 2-meter temperature range | degrees Celsius |
+| frs | frost day frequency | days |
+| pet | potential evapo-transpiration | millimetres per day |
+| pre | precipitation rate | millimetres per month |
+| tmp | monthly average daily mean 2-meter temperature | degrees Celsius |
+| tmn | monthly average daily minimum 2-meter temperature | degrees Celsius |
+| tmx | monthly average daily maximum 2-meter temperature | degrees Celsius |
+| vap | vapour pressure | hectopascals (hPa) |
+| wet | wet day frequency | days |
 
-### Strengths and weaknesses
+<br/>
+**Strengths and weaknesses**
 
-#### Notes for users
+**Strengths**
 
-The dataset is updated each year (with a few months delay). Each year the dataset is given a new version number.
+-   The dataset is widely used and evaluated.
+-   It provides a number of useful variables for malaria modelling.
+-   It provides and long and continuous record.
 
-Data for each variable is provided with a supplementary variable 'stn' which lists the number of stations (0 - 8) that were used to determine the value at each grid point for each timestep. This info is key to understanding the skill of the dataset and it varies widely through space and time and per variable.
+**Limitations**
+
+-   The skill of the dataset relies heavily on the density of the station network. The density over southern Africa is very poor with some areas not having any available stations, or they are are very far away in climatically very different regions.
+-   The data is monthly which limits the usefulness of the dataset which may require higher temporal resolution data.
+-   The stations come from a number of different networks and they are not strictly homogenized so caution should be use in any trend analysis.
+
+**Notes for users**
+
+CRU provides users with the number of stations used to build each datum within the CRU TS dataset. The NetCDF-formatted (CF-1.4 compliant) CRU TS data output files (for all variables except PET) contain two data variables, the named one, (i.e., ‘tmp’), and a station count (‘stn’) giving the number of stations. If working with ASCII text output files, CRU also publishes a separate station count metadata file. The station counts vary between 0 (no cover, climatology inserted, see Interpolation above), and eight (the maximum station count for interpolation). The ‘stn’ data may be used to quantify uncertainty, most particularly by excluding cells with a 0 (zero) count, as these will have been set to the default climatology. The station count can vary widely through space and time and per variable, see plot xx below.
 
 ## Accessing the data
 
-### Guidance and metadata
+**Guidance and metadata**
 
 Via Climate Data Guide: [CRU TS Gridded precipitation and other meteorlogical variables since 1901](https://climatedataguide.ucar.edu/climate-data/cru-ts-gridded-precipitation-and-other-meteorological-variables-1901)
 
 Via Climate Data Store: [Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations](https://cds-beta.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview)
 
-### Data download
+**Data download**
 
-Via The Climate Research Unit (CRU) at the University of East Anglia [CRU TS v4.08](https://crudata.uea.ac.uk/cru/data/hrg): latest version (currently v4.08 1901 - 2023), but full global dataset has to be downloaded.
+Via The Climate Research Unit (CRU) at the University of East Anglia [CRU TS v4.08](https://crudata.uea.ac.uk/cru/data/hrg): latest version (currently v4.08 1901 - 2023), but full global dataset has to be downloaded. Data provided in ASCII or NetCDF formats.
 
+| **Version** | **Variables** | **Resolution** | **File Format** |
+|-----------------|--------------------|-----------------|-------------------|
+| 4.08 (1901 - 2023) | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap, wet | 0.5 | netCDF (.nc), ASCII (.dat) |
 
-Via Climate Data Store: [Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations](https://cds-beta.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview): older version (currently v4.03 1901 - 2019), spatial and temporal subsetting available. Data provided in NetCDF format
+Via Climate Data Store: [Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations](https://cds-beta.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview): older version (currently v4.03 1901 - 2019). Data provided in NetCDF format.
 
-Via KNMI Climate Explorer: [Monthly observations](https://climexp.knmi.nl/selectfield_obs2.cgi?id=someone@somewhere): older version (currently v4.07 1901 - 2020), gridpoint, average area or generated subset (eg shapefile). Data provided in NetCDF, csv format.
+| **Version**        | **Variables**      | **Resolution** | **File Format** |
+|--------------------|--------------------|----------------|-----------------|
+| 4.03 (1901 - 2019) | pre, tmp, tmn, tmx | 0.5, 1.0, 2.5  | netCDF (.nc)    |
 
-### What does the data look like
+Via KNMI Climate Explorer: [Monthly observations](https://climexp.knmi.nl/selectfield_obs2.cgi?id=someone@somewhere):latest version (currently v4.08 1901 - 2023), gridpoint, average area or generated subset (eg shapefile). Data provided in NetCDF format.
 
-#### Spatial plots of key variables
+| **Version** | **Variables** | **Resolution** | **File Format** |
+|-----------------|--------------------|-----------------|-------------------|
+| 4.08 (1901 - 2023) | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap | 0.5, 1.0, 2.5 | netCDF (.nc) |
+
+## What does the data look like?
+
+**Spatial plots of key variables**
+
+![Figure 1. Spatial plot of long term mean annual total rainfall (mm/year) for the period 1991-2020.](images/Fig1_CRU_MeanRainfall_1991-2020.png) ![Figure 2. Spatial plot of longer term daily mean temperature (deg C) for the period 1991-2020.](images/Fig2_CRU_MeanTemperature_1991-2020.png)
 
 **Key example plots for a selected location**
 
-- seasonal cycle
-- skill assessment / number of stations through time
-- time series
+![Figure 3. Seasonal cycle of monthly total rainfall and daily mean temperature for a gridcell over Bulawayo. Averaged over the period 1991-2020.](images/Fig3_CRU_Climatology_1991-2020.png) ![Figure 4. Timeseries of monthly total rainfall for the gricell over Bulawayo. The number of stations that were used in the interpolation is also shown.](images/Fig4_CRU_TimeSeries_Rainfall_1901-2023.png) ![Figure 5. Timeseries of the monthly mean daily temperature for a gridcell over Bulawao. The number of stations that were used in the interpolation is also shown.](images/Fig5_CRU_TimeSeries_Temperature_1901-2023.png)
 
 ## Key points to consider
 
 The dataset's skill is very tightly linked to the number of stations that are available for the location and timestep.
 
-### Terms of use
+## Terms of use
 
 The various datasets on the CRU website are provided for all to use, provided the sources are acknowledged. Acknowledgment should preferably be by citing one or more of the papers referenced. The website can also be acknowledged if deemed necessary.
 
-### Citation
+## Citation
 
 Harris, I., Osborn, T.J., Jones, P. et al. Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Sci Data 7, 109 (2020). https://doi.org/10.1038/s41597-020-0453-3
-
-

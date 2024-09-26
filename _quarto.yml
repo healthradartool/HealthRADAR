@@ -62,7 +62,8 @@ format:
     mainfont: "Schibsted Grotesk"
     code-fold: true
     code-summary: "Show the code"
-
+    include-in-header: 
+      file: radar/loginurl.html
 execute:
   freeze: auto
 
