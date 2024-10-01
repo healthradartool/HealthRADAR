@@ -2,7 +2,7 @@
 title: "CHIRTS"
 description: "CHIRTS-Daily: A Global 2-m Tmax Product Combining CHIRTSmax and ERA5 for Monitoring Temperature Extremes"
 date: 08/30/2024 # mm-dd-yyyy
-draft: false
+draft: true
 image: "images/chirts.png"
 execute:
   message: false

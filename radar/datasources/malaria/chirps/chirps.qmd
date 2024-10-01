@@ -2,7 +2,7 @@
 title: "CHIRPS"
 description: "Rainfall Estimates from Rain Gauge and Satellite Observations"
 date: 08/30/2024 # mm-dd-yyyy
-draft: false
+draft: true
 image: "images/chirps.png"
 execute:
   message: false
