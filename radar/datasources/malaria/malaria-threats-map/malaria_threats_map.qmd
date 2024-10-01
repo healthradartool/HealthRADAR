@@ -1,0 +1,62 @@
+---
+title: "Malaria Threats Map: Antimalarial drug efficacy and drug resistance"
+description: "The global database on antimalarial drug efficacy and resistance, established in 2000, tracks drug efficacy in malaria-endemic countries."
+date: 09/27/2024 # mm-dd-yyyy
+draft: false
+image: "images/malaria_threats_map.png"
+lightbox: true
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - therapeutic efficacy studies
+  - molecular marker studies
+  - ongoing therapeutic efficacy studies
+  - ongoing molecular marker studies
+---
+
+## About the data
+
+The datasets cover the period from 2010 to 2023. Drug resistance has been one of the main obstacles in the fight against malaria.
+The data is based on antimalarial drug efficacy which is being monitored through therapeutic efficacy studies (TES) across Africa, Asia and South America. The TES track clinical and parasitological outcomes among patients receiving antimalarial treatment. TES are considered the gold standard by which countries can best determine their national treatment policies.
+
+In order to guarantee that patients receive appropriate treatment, it is imperative that drug efficacy and parasite resistance be continuously monitored and reported globally. In order to track the efficacy of antimalarial treatments, WHO supports national malaria programs. 
+
+## Accessing the data
+
+The reports can be accessed on the [WHO website](https://apps.who.int/malaria/maps/threats/#/download). Each report has a web page which includes useful contextual information as well as additional resources. 
+
+The most recent report may not contain all years of estimates. 
+
+## What does the data look like?
+
+**Description**
+
+The list of annexes may vary annually. Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. To make a longer time series of data, you can access older world malaria reports and annexes from the WHO. Be careful to check the data definitions and information on methodology to be sure that data sets can be concatenated.
+
+The annexes can be downloaded from the following links:
+
+- [Datasheets](https://apps.who.int/malaria/maps/threats/#/download)
+- [Dashboards](https://apps.who.int/malaria/maps/threats/#/dashboards?theme=treatment)
+
+## How to use this data?
+
+Download the data from the link and read in a sheet. Sometimes the data needs to be prepared before it is able to be plotted. The data can be saved for use; however, all downloaded data must be referenced.
+
+## How to plot this data?
+
+- Line plots of the annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
+
+- Line plots of the ongoing annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023 
+
+- Line plots of the molecular marker studies for countries in Africa, South America and Asia for the period 2010 - 2023
+
+- Line plots of ongoing molecular marker studies for countries in Africa, South America and Asia for the period 2020 - 2023
+
