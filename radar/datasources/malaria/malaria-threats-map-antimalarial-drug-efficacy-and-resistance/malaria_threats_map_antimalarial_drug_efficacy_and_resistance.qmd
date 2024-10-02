@@ -2,7 +2,6 @@
 title: "Malaria Threats Map: Antimalarial drug efficacy and drug resistance"
 description: "The global database on antimalarial drug efficacy and resistance, established in 2000, tracks drug efficacy in malaria-endemic countries."
 date: 09/27/2024 # mm-dd-yyyy
-draft: false
 image: "images/malaria_threats_map_antimalarial_efficacy_and_resistance.png"
 lightbox: true
 execute:
