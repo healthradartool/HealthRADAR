@@ -76,7 +76,7 @@ Guidelines for Data Inclusion
 
 ::: {.principles .column-page}
 
-::: {layout-nrow=2}
+::: {layout-ncol=3}
 
 ::: {.principle}
 ### Accessible
@@ -102,6 +102,13 @@ The original data collection methods and the context in which the data may be co
 ### Exemplified 
 To catalyse the use of the data in CSID modelling, example code snippets will be provided to incorporate datasets into CSID models.  
 :::
+
+
+::: {.principle}
+### Exemplified 2   <!-- this is added and hidden so that quarto can properly align the principles -->
+To catalyse the use of the data in CSID modelling, example code snippets will be provided to incorporate datasets into CSID models.  
+:::
+
 :::
 
 :::
