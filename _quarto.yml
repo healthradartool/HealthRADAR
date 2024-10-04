@@ -11,6 +11,7 @@ website:
   image: "radar/img/logo-light.png"
   favicon: "radar/favicon.ico"
   bread-crumbs: false
+  draft-mode: visible
   search:
     location: navbar
     type: textbox
@@ -49,6 +50,9 @@ website:
             - icon: github
               href: https://github.com/uct-masha/HealthRADAR
               aria-label: RADAR GitHub
+
+metadata-files:
+  - radar/drafts.yml
   
 language: 
   search-text-placeholder: "Search"

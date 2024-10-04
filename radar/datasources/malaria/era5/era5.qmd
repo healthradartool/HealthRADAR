@@ -2,7 +2,6 @@
 title: "ERA5"
 description: "ERA5 hourly data on single levels from 1940 to present"
 date: 08/30/2024 # mm-dd-yyyy
-draft: true
 image: "images/era5.png"
 execute:
   message: false
