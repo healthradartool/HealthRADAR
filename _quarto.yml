@@ -11,7 +11,7 @@ website:
   image: "radar/img/logo-light.png"
   favicon: "radar/favicon.ico"
   bread-crumbs: false
-  draft-mode: visible
+  draft-mode: gone
   search:
     location: navbar
     type: textbox
