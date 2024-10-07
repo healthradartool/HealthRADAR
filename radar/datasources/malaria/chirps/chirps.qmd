@@ -1,0 +1,110 @@
+---
+title: "CHIRPS"
+description: "Rainfall Estimates from Rain Gauge and Satellite Observations"
+date: 08/30/2024 # mm-dd-yyyy
+image: "images/chirps.png"
+execute:
+  message: false
+  warning: false
+
+language: 
+  title-block-published: "Last updated"
+  
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+categories:
+  - climate dataset
+  - gridded observed
+  - rainfall
+  - past
+  - present
+  - global
+  - africa
+  - daily
+  - monthly
+  - annual
+---
+
+## About the data
+
+Climate Hazards Center InfraRed Precipitation with Station data (CHIRPS), version 2, is a 40+ year quasi-global (50°S-50°N), land-only, gridded (0.05° and 0.25° degree resolution) rainfall dataset. CHIRPS is created by integrating several data sources including 0.05° resolution satellite imagery and in-situ station data to create gridded rainfall time series for trend analysis and seasonal drought monitoring. The dataset starts in 1981 and extends to the near-present day.
+
+For more information regarding CHIRPS datasets see [CHIRPS-website](https://www.chc.ucsb.edu/data/chirps) or [CHIRPS FAQ](https://wiki.chc.ucsb.edu/CHIRPS_FAQ).
+
+
+### Summary
+
+
+| | |
+--- | --- |
+| **Name** | CHIRPS-2.0 |
+| **Institution** | [CHC](https://chc.ucsb.edu/) |
+| **Product type** | gridded observed |
+| **Domain** | global land (50°S-50°N), africa land |
+| **Resolution** |   0.05° x 0.05°, 0.25° x 0.25° |
+| **Period** | 1981-2024 |
+| **Frequencies** | daily, pentad, dekad, monthly, 2-monthly, 3-monthly, annual |
+| **Variables** | precipitation  |
+| **Update frequency (latency)** | monthly (+- 1 month) |
+
+
+### Variables
+
+| **Variable Name** | **Variable Description** | **Units** |
+--- | --- | --- |
+| precip | convective precipitation rate | millimetres per day |
+
+
+## Accessing the data
+
+### guidance and metadata
+
+Via Climate Data Guide: [CHIRPS: Climate Hazards InfraRed Precipitation with Station data (version 2)](https://climatedataguide.ucar.edu/climate-data/chirps-climate-hazards-infrared-precipitation-station-data-version-2)
+
+Via Climate Data Store: [Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations](https://cds-beta.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview)
+
+### data download
+
+Via The Climate Hazard Centre (CHC) at the University of California, Santa Barbara [CHIRPS v2.0](https://data.chc.ucsb.edu/products/CHIRPS-2.0/). The following data is available for the entire period (1981 to 2024):
+
+|  **Domain**	| **Frequency**      	| **Resolution** | **File Format**   	|
+|----------------|------------------------|----------------|-----------------------|
+| africa     	| daily              	| 0.05, 0.25 	| .tif, .bil        	|
+| africa     	| pentad, dekad, monthly | 0.05       	| .tif, .bil, .png  	|
+| africa, global | 2-monthly, 3-monthly   | 0.05       	| .tif              	|
+| global     	| daily              	| 0.05, 0.25 	| .tif, .nc, .cog   	|
+| global     	| dekad              	| 0.05       	| .tif, .bil, .nc   	|
+| global     	| pentad, monthly    	| 0.05       	| .tif, .bil, .nc, .cog |
+| global     	| annual             	| 0.05       	| .tif, .nc         	|
+
+
+Via Climate Data Store: [Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations](https://cds-beta.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview). The following data is available for the period (1981 to 2021):
+
+|  **Domain**	| **Frequency**      	| **Resolution** | **File Format**   	|
+|----------------|------------------------|----------------|-----------------------|
+| africa     	| daily              	| 0.25       	| .nc               	|
+
+
+
+## What does the data look like?
+
+
+### spatial plots of key variables
+
+### Key example plots for a selected location
+
+- seasonal cycle
+- skill assessment / number of stations through time
+- time series
+
+## Key points to consider
+
+### Terms of use
+
+To the extent possible under the law, Pete Peterson has waived all copyright and related or neighboring rights to CHIRPS. CHIRPS data is in the public domain as registered with Creative Commons. This work is published from: the United States.
+
+### Citation
+
+Funk, C., Peterson, P., Landsfeld, M. et al. The climate hazards infrared precipitation with stations—a new environmental record for monitoring extremes. Sci Data 2, 150066 (2015). https://doi.org/10.1038/sdata.2015.66
+

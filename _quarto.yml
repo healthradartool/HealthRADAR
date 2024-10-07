@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: "_site"
   preview: 
     port: 4200
     host: 127.0.0.1
@@ -7,29 +8,30 @@ project:
 
 website:
   title: "HealthRADAR"
-  image: "img/logo-light.png"
-  favicon: "favicon.ico"
+  image: "radar/img/logo-light.png"
+  favicon: "radar/favicon.ico"
   bread-crumbs: false
+  draft-mode: gone
   search:
     location: navbar
     type: textbox
   navbar:
-    logo: "img/logo-light.png"
+    logo: "radar/img/logo-light.png"
     left:
       - text: Home
-        href: index.qmd
+        href: radar/index.qmd
       - text: Browse
-        href: data.qmd
+        href: radar/data.qmd
       - text: Guides
         menu: 
           - text: Contributing to Health RADAR 
-            href: guides/contribution_guidance.qmd
+            href: radar/guides/contribution_guidance.qmd
           - text: Climate
-            href: guides/climate.qmd
+            href: radar/guides/climate.qmd
           - text: Modelling
-            href: guides/modelling.qmd
+            href: radar/guides/modelling.qmd
       - text: About
-        href: about.qmd
+        href: radar/about.qmd
     right:
       - icon: github
         href: https://github.com/uct-masha/HealthRADAR
@@ -41,13 +43,16 @@ website:
           left: "Copyright 2024, Health RADAR"
           center:
             - text: About
-              href: about.qmd
+              href: radar/about.qmd
             - text: Data Sources
-              href: data.qmd
+              href: radar/data.qmd
           right:
             - icon: github
               href: https://github.com/uct-masha/HealthRADAR
               aria-label: RADAR GitHub
+
+metadata-files:
+  - radar/drafts.yml
   
 language: 
   search-text-placeholder: "Search"
@@ -55,13 +60,14 @@ language:
 format:
   html:
     theme:
-      light: [flatly, style-light.scss, style-base.scss]
+      light: [flatly, radar/style-light.scss, radar/style-base.scss]
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
     mainfont: "Schibsted Grotesk"
     code-fold: true
     code-summary: "Show the code"
-
+    #include-in-header: 
+    #  file: radar/loginurl.html
 execute:
   freeze: auto
 

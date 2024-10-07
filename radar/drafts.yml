@@ -1,0 +1,7 @@
+website:
+  drafts:
+    - radar/datasources/malaria/chirps/chirps.qmd
+    - radar/datasources/malaria/chirts/chirts.qmd
+    - radar/datasources/malaria/climate-data-store/climate_data_store.qmd
+    - radar/datasources/malaria/era5/era5.qmd
+    - radar/datasources/malaria/ncar-climate-data-guide/ncar_climate_data_guide.qmd

@@ -1,0 +1,10 @@
+{
+  "listingMap": {
+    "data.qmd": [
+      "datasources/malaria"
+    ],
+    "datapages.qmd": [
+      "datasets.yml"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+---
+pagetitle: "Browse Data Sources"
+title: "Data sources"
+subtitle: "Browse and search for data sources"
+toc: false
+listing: 
+- id: malaria
+  contents: datasources/malaria
+  sort: "date"
+  type: grid
+  filter-ui: true
+  fields: [image, title, description, categories]
+  categories: true
+  page-size: 24
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+---
+
+:::{.data-tabs .panel-tabset}
+
+## Malaria
+
+:::{#malaria}
+:::
+
+## Pertussis
+
+:::{#pertussis}
+:::
+
+## Cervical cancer
+
+:::{#cervical-cancer}
+:::
+
+## Diphtheria 
+
+:::{#diphtheria}
+:::
+
+## Measles
+
+:::{#measles}
+:::
+
+:::

@@ -1,0 +1,8 @@
+<!-- this script hides the actual url so that it is not leaked to the user -->
+
+<script>
+window.addEventListener('load', () => {
+    // Change the URL in the address bar after load
+    history.replaceState(null, null, "/healthradar");
+});
+</script>
