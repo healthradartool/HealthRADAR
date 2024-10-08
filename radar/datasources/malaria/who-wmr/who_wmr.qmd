@@ -148,7 +148,8 @@ whowmr::wmr2023$wmr2023j |>
   mutate(Country=`Country/area` |> stringr::str_remove("\\d.*$")) |>
   select(Country, `2010`:`2022`) |>
   head() |>
-  gt()
+  gt() |>
+  tab_options(table.align = "left")
 ```
 
 The E8 countries are Botswana, Eswatini, Namibia, South Africa, Angola, Mozambique, Zambia, and Zimbabwe. To filter the data for these countries, you can use the following code:
@@ -164,13 +165,13 @@ wmr2023j_e8 <- whowmr::wmr2023$wmr2023j |>
   select(!`WHO Region`) # Remove the WHO Region column
 
 # View the filtered dataset
-gt(wmr2023j_e8)
+gt(wmr2023j_e8)|>
+  tab_options(table.align = "left")
 ```
 
-:::
 
-::: {.callout-note collapse="true"}
-## How to plot this data?
+
+<h2>How to plot this data?</h2>
 
 ```{r include=FALSE}
 
@@ -291,7 +292,8 @@ whowmr::wmr2023$wmr2023f |>
     locations = cells_body(
       columns = c(Deaths_Upper)
     )
-  )
+  )|>
+  tab_options(table.align = "left")
 
 ```
 
