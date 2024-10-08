@@ -126,8 +126,7 @@ The report came out on Jan 31, 2024, so there are not many studies that have use
 
 ## Working with the data
 
-::: {.callout-note collapse="false"}
-## How to use this data?
+<h2>How to use this data?</h2>
 
 For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
 
@@ -363,7 +362,5 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
   
 
 ```
-
-:::
 
 :::

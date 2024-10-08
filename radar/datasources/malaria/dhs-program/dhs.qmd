@@ -116,8 +116,7 @@ The indicator dataset guide can found at [The DHS Program - Malaria](https://www
 
 ## Working with the data
 
-::: {.callout-note collapse="false"}
-## How to plot this data?
+<h2>How to plot this data?</h2>
 
 ```{r}
 #| include: false
@@ -160,11 +159,6 @@ tags <- dhs_tags()
 
 # Get the tags related to malaria
 #tags[grepl("Malaria", tags$TagName), ]
-```
-
-```{r}
-#| message: false
-#| warning: false
 
 # Get the country codes of the frontline 4 of the elimination 8 countries
 all_countries = dhs_countries(returnFields=c("CountryName","DHS_CountryCode"))
@@ -176,10 +170,6 @@ elim8 = c("Botswana", "Namibia", "South Africa", "Eswatini", "Zambia", "Zimbabwe
 # Get the country codes of the frontline 4 of the elimination 8 countries
 f4_codes = all_countries[all_countries$CountryName %in% frontline4, "DHS_CountryCode"]
 e8_codes = all_countries[all_countries$CountryName %in% elim8, "DHS_CountryCode"]
-
-```
-
-```{r}
 
 # Retrieve DHS data for the specified indicator, countries, and survey years
 data1 <- dhs_data(indicatorIds = "ML_NETP_H_MOS",
@@ -238,8 +228,9 @@ ggplot(filt_data, aes(x = as.factor(SurveyYear), y = Value, fill = single_color,
     # Add spacing between panels
     panel.spacing = unit(0.5, "lines")  
   )
-
 ```
+
+
 
 ```{r}
 
@@ -399,10 +390,9 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
   setView(lng = 37, lat = -13, zoom = 5.5)
 
 ```
-:::
 
-::: {.callout-note collapse="true"}
-## How can this data be used in disease modelling?
+
+<h2>How can this data be used in disease modelling?</h2>
 
 ```{r}
 #| include: false
@@ -561,9 +551,5 @@ ggplot(itn_data, aes(x = Year)) +
 In epidemiology, the measure of intensity of disease transmission is also known as the force of infection. Simply put, this is the rate at which susceptible individuals become infected per unit time. Three main factors determine this: the proportion of the mosquito population that is infectious, the contact rate between infectious mosquitoes and susceptible humans, and the probability that a bite from an infectious mosquito transmits disease to a susceptible human. The same applies with respect to infectious humans and susceptible mosquitoes.
 
 Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to infection. As such, the force of infection now excludes those protected by ITNs.
-:::
-<<<<<<< HEAD:datasources/malaria/dhs-program/dhs.qmd
 
 :::
-=======
->>>>>>> main:radar/datasources/malaria/dhs-program/dhs.qmd
