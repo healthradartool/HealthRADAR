@@ -1,5 +1,7 @@
 /*-- scss:defaults --*/
 
+$body-bg: #fefeff;
+
 // fonts
 @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
 
@@ -79,7 +81,7 @@ html {
 
 .page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus,
 .page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus,
-.dpage-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus,
+.page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus,
 .page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus{
   border-width: 0px 0px 2px 0px;
   border-bottom-color: #2c3e50!important;
@@ -97,11 +99,22 @@ html {
   border-bottom-color: #2c3e50;
 }
 
-.data-tabs .tab-content,
-.page-tabs .tab-content {
+.data-tabs .tab-content {
   border-width: 0;
   padding-left: 0;
-  padding-right: 0;
+  padding-right: 0; 
+  padding-top: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.page-tabs .tab-content {
+  padding-top: 10px;
+  margin-top: 15px;
+  border-top: #ecf0f1 1px solid;
+  border-radius: 5px;
+  background-color: #fff;
 }
 
 .card-title {
