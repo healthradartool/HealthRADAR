@@ -26,18 +26,24 @@ categories:
   - ERA5
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 {{< lipsum 1 >}}
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 {{< lipsum 1 >}}
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 {{< lipsum 1 >}}
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
 {{< lipsum 1 >}}
+
+:::

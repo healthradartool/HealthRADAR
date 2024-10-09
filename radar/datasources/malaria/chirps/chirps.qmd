@@ -26,7 +26,11 @@ categories:
   - annual
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 Climate Hazards Center InfraRed Precipitation with Station data (CHIRPS), version 2, is a 40+ year quasi-global (50°S-50°N), land-only, gridded (0.05° and 0.25° degree resolution) rainfall dataset. CHIRPS is created by integrating several data sources including 0.05° resolution satellite imagery and in-situ station data to create gridded rainfall time series for trend analysis and seasonal drought monitoring. The dataset starts in 1981 and extends to the near-present day.
 
@@ -56,7 +60,7 @@ For more information regarding CHIRPS datasets see [CHIRPS-website](https://www.
 | precip | convective precipitation rate | millimetres per day |
 
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 ### guidance and metadata
 
@@ -87,7 +91,7 @@ Via Climate Data Store: [Temperature and precipitation gridded data for global a
 
 
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 
 ### spatial plots of key variables
@@ -98,7 +102,7 @@ Via Climate Data Store: [Temperature and precipitation gridded data for global a
 - skill assessment / number of stations through time
 - time series
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
 ### Terms of use
 
@@ -108,3 +112,5 @@ To the extent possible under the law, Pete Peterson has waived all copyright and
 
 Funk, C., Peterson, P., Landsfeld, M. et al. The climate hazards infrared precipitation with stations—a new environmental record for monitoring extremes. Sci Data 2, 150066 (2015). https://doi.org/10.1038/sdata.2015.66
 
+
+:::

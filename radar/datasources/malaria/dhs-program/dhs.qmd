@@ -552,4 +552,5 @@ In epidemiology, the measure of intensity of disease transmission is also known 
 
 Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to infection. As such, the force of infection now excludes those protected by ITNs.
 
+
 :::

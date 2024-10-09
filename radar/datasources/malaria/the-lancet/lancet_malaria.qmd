@@ -20,18 +20,24 @@ categories:
   - annual
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 The Lancet, a prominent medical journal, frequently publishes special issues and series focusing on critical global health topics, including malaria. These special issues compile extensive research, reviews, and expert opinions to provide a comprehensive overview of the state of knowledge and progress in the fight against malaria. 
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 {{< lipsum 1 >}}
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 {{< lipsum 1 >}}
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
 {{< lipsum 1 >}}
+
+:::

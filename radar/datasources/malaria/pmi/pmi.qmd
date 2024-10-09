@@ -21,20 +21,26 @@ categories:
 ---
 
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 The U.S. Government’s focal point for the global fight against malaria, the U.S. President’s Malaria Initiative has helped save millions of lives and contributed to substantial gains in education, productivity, and economic development.
 PMI started as a five-year initiative with the goal of reducing malaria deaths by 50% in 15 African countries. Thanks to the bipartisan support of Congress and the generosity of the American people, PMI now works in 24 partner countries in sub-Saharan Africa and three programs in the Greater Mekong Subregion in Southeast Asia–representing about 90% of the global malaria burden.
 PMI delivers cost-effective, life-saving malaria interventions alongside catalytic technical and operational assistance to equip and empower partner countries to end malaria
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 {{< lipsum 1 >}}
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 {{< lipsum 1 >}}
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
 {{< lipsum 1 >}}
+
+:::
