@@ -26,7 +26,11 @@ categories:
   - monthly
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 The CRU TS (Climatic Research Unit gridded Time Series) dataset is a global, high-resolution, land-based climate dataset that provides monthly records on a 0.5° grid. The dataset is derived by the interpolation of monthly climate anomalies from extensive networks of weather station observations, offering data from 1901 onwards. This observational dataset consists of ten observed and derived climate variables, such as temperature and precipitation (see Variables list below), making it useful for many classes of users, in diverse research areas and applications and has been widely adopted in research and policy work.
 
@@ -85,7 +89,7 @@ For more information regarding all CRU datasets see [CRU-data](https://crudata.u
 
 CRU provides users with the number of stations used to build each datum within the CRU TS dataset. The NetCDF-formatted (CF-1.4 compliant) CRU TS data output files (for all variables except PET) contain two data variables, the named one, (i.e., ‘tmp’), and a station count (‘stn’) giving the number of stations. If working with ASCII text output files, CRU also publishes a separate station count metadata file. The station counts vary between 0 (no cover, climatology inserted, see Interpolation above), and eight (the maximum station count for interpolation). The ‘stn’ data may be used to quantify uncertainty, most particularly by excluding cells with a 0 (zero) count, as these will have been set to the default climatology. The station count can vary widely through space and time and per variable, see plot xx below.
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 **Guidance and metadata**
 
@@ -113,7 +117,7 @@ Via KNMI Climate Explorer: [Monthly observations](https://climexp.knmi.nl/select
 |-----------------|--------------------|-----------------|-------------------|
 | 4.08 (1901 - 2023) | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap | 0.5, 1.0, 2.5 | netCDF (.nc) |
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 **Spatial plots of key variables**
 
@@ -123,10 +127,25 @@ Via KNMI Climate Explorer: [Monthly observations](https://climexp.knmi.nl/select
 
 ![Figure 3. Seasonal cycle of monthly total rainfall and daily mean temperature for a gridcell over Bulawayo. Averaged over the period 1991-2020.](images/Fig3_CRU_Climatology_1991-2020.png) ![Figure 4. Timeseries of monthly total rainfall for the gricell over Bulawayo. The number of stations that were used in the interpolation is also shown.](images/Fig4_CRU_TimeSeries_Rainfall_1901-2023.png) ![Figure 5. Timeseries of the monthly mean daily temperature for a gridcell over Bulawao. The number of stations that were used in the interpolation is also shown.](images/Fig5_CRU_TimeSeries_Temperature_1901-2023.png)
 
-::: {.callout-note collapse="true"}
-## How can this data be used in disease modelling?
+<h2>Key points to consider</h2>
+
+The dataset's skill is very tightly linked to the number of stations that are available for the location and timestep.
+
+### Terms of use
+
+The various datasets on the CRU website are provided for all to use, provided the sources are acknowledged. Acknowledgment should preferably be by citing one or more of the papers referenced. The website can also be acknowledged if deemed necessary.
+
+### Citation
+
+-   Harris, I., Osborn, T.J., Jones, P. et al. Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data 7(1), 109 (2020). <https://doi.org/10.1038/s41597-020-0453-3>
+
+
+## Working with the data
+
+<h2>How can this data be used in disease modelling?</h2>
 
 Malaria is a seasonal disease with regular fluctuations in incidence. Even in endemic countries with year-round cases peak during the rainy season (November to April for most southern African countries). During this time, temperature and rainfall conditions favour vector development, thereby increasing the total mosquito population. A few specific variables have been experimentally shown to be temperature-sensitive:
+
 -   The parasite extrinsic incubation period
 -   Vector gonotrophic cycle
 -   Human biting rate
@@ -142,7 +161,9 @@ Generally, we introduce a forcing function to mimic the seasonal pattern of temp
 $$
 seas = amp \times (1 + \cos(2 \pi \times time - phi))
 $$
+
 ### Preparing the data 
+
 Using the CRU TS dataset, we obtain specific values for temperature over time, and model the historic impact of climatology on the vector population and subsequent incidence. We use mean air temperature as a proxy for surface temperatures.
 
 ```{r}
@@ -173,17 +194,12 @@ ggplot() +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   labs(
-    title = "Average Mean Surface Air Temperature values in Bulawayo from 2000 to 2020",
+    title = str_wrap("Average Mean Surface Air Temperature values in Bulawayo from 2000 to 2020", width = 50),
     x = "Year",
     y = "Temperature values (Celsius °)",
     caption = str_wrap("Changes in temperature over time. Temperature ranges of have an impact on vector competence, depending on the primary Anopheles vector in the area and its behavioural habits. Source: tas_mon_CRU-TS 4.08")
   ) +
   theme(legend.position = "none")
-
-# Turn monthly data into daily data
-daily_temperature_values <- temperature_values |>
-  complete(time = seq(ymd("2010-01-01"), max(time), by = "day")) |>
-  fill(tas, .direction = "downup")
 
 ```
 
@@ -205,13 +221,18 @@ ggplot() +
   ) +
   theme(legend.position = "none")
 
-daily_rainfall_values <- rainfall_values |>
-  complete(time = seq(ymd("2010-01-01"), max(time), by = "day")) |>
-  fill(PRCPTOT, .direction = "downup")
-
 ```
 We incorporate these values into the mathematical model. Note that other models may include other variables such as altitude and humidity.
 ```{r}
+
+# Turn monthly data into daily data
+daily_temperature_values <- temperature_values |>
+  complete(time = seq(ymd("2010-01-01"), max(time), by = "day")) |>
+  fill(tas, .direction = "downup")
+
+daily_rainfall_values <- rainfall_values |>
+  complete(time = seq(ymd("2010-01-01"), max(time), by = "day")) |>
+  fill(PRCPTOT, .direction = "downup")
 
 set.seed(500)
 
@@ -334,16 +355,16 @@ df |>
                            labels = c("Mosquitoes", "Humans"))) |>
   ggplot() +
   geom_line(aes(x = date, y = value, colour = variable)) +
-  facet_wrap(~variable) +
+  #facet_wrap(~variable) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   theme(panel.spacing = unit(2, "lines")) +
-  scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
+  scale_y_continuous(labels = scales::label_number(suffix = " M", scale = 1e-6)) +
   labs(title = "Mosquito vector and human host Populations over time", 
        x = "Year",
        y = "Population size",
        colour = "Population",
-       caption = str_wrap("Changes in the total mosquito population mimic seasonal changes in temperature and rainfall values over time, with peaks in the summer months. The human population remains constant in this example, as it is not driven by environmental conditions. The higher rainfall values in 2017 are also reflected in the mosquito population. Source: Model output"))
+       caption = str_wrap("Changes in the total mosquito population mimic seasonal changes in temperature and rainfall values over time, with peaks in the summer months. The higher rainfall values in 2017 are also reflected in the mosquito population.  The human population remains constant in this example, as it is not driven by environmental conditions. Source: Model output"))
 
 ```
 
@@ -369,19 +390,11 @@ df |>
       caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. Source: Model output"))
 ```
 
-:::
 
-## Key points to consider
+### Citations
 
-The dataset's skill is very tightly linked to the number of stations that are available for the location and timestep.
-
-## Terms of use
-
-The various datasets on the CRU website are provided for all to use, provided the sources are acknowledged. Acknowledgment should preferably be by citing one or more of the papers referenced. The website can also be acknowledged if deemed necessary.
-
-## Citation
-
--   Harris, I., Osborn, T.J., Jones, P. et al. Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data 7(1), 109 (2020). <https://doi.org/10.1038/s41597-020-0453-3>
 -   Agusto, F. B., Gumel, A. B., & Parham, P. E. Qualitative assessment of the role of temperature variations on malaria transmission dynamics. Journal of Biological Systems, 23(04), 1550030 (2015). <https://doi.org/10.1142/S0218339015500308>
 -   Agusto, F.B. Optimal control and temperature variations of malaria transmission dynamics. Complexity, 1, 5056432 (2020). <https://doi.org/10.1155/2020/5056432>
 -   Traoré B, Sangaré B, Traoré S. A mathematical model of malaria transmission with structured vector population and seasonality. Journal of Applied Mathematics, 1, 6754097 (2017). <https://doi.org/10.1155/2017/6754097>
+
+:::

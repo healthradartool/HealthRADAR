@@ -24,7 +24,12 @@ categories:
   - hourly
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+
+## Overview
+
+<h2>About the data</h2>
 
 ERA5 is the fifth generation ECMWF (European Centre for Medium-Range Weather Forecasts) reanalysis for the global climate and weather. The ERA5 reanalysis dataset covers the period 1940 to near real-time and combines model data with observations from across the world into a globally complete and consistent dataset using the laws of physics. The gridded (0.25° resolution) data is available in 1-hour timesteps.
 
@@ -58,7 +63,7 @@ For more information regarding ERA5 datasets see [ERA5-Dataset Documentation](ht
 
 #### Notes for users
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 ### guidance and metadata
 
@@ -76,7 +81,7 @@ Via Climate Data Store: [ERA5 hourly data on single levels from 1940 to present]
 
 #### Key example plots for a selected location
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
 ### Terms of use
 
@@ -93,3 +98,4 @@ All users of data uploaded on the Climate Data Store (CDS) must:
 
 Hersbach, H., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., Dee, D., Thépaut, J-N. (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on DD-MMM-YYYY)
 
+:::

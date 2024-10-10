@@ -17,7 +17,7 @@ title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 ---
 
-:::{#data-tabs .panel-tabset}
+:::{.data-tabs .panel-tabset}
 
 ## Malaria
 

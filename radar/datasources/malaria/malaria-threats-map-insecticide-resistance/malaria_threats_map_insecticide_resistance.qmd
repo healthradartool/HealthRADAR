@@ -22,7 +22,11 @@ categories:
   - synergist effect in sesceptibility
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 The [global database on insecticide resistance in malaria vectors](https://www.who.int/teams/global-malaria-programme/prevention/vector-control/global-database-on-insecticide-resistance-in-malaria-vectors) was established in 2014 to help track insecticide resistance worldwide. Following a large data consolidation exercise conducted in 2019, which included the integration of separate WHO regional databases and data from other public sources, it has become the largest database on insecticide resistance available at present. It contains data on the status of insecticide susceptibility of Anopheles mosquitoes in more than 88 countries. The contents of the database are provided by Member States, partners (including research and academic institutes) as well as nongovernmental organizations, and are extracted from published and non-published reports on insecticide bioassays.
 
@@ -30,7 +34,7 @@ The database for the Malaria Threat Maps is up-loaded on an ad *hoc basis*. The 
 
 These datasets provide information on decadal trends in insecticide resistance and enable comparison between countries. The data provided are on an ad hoc basis at a national and site-level scale. 
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 The data can be accessed on the Global Malaria Programme page on the [WHO website](https://www.who.int/teams/global-malaria-programme/prevention/vector-control/global-database-on-insecticide-resistance-in-malaria-vectors). The data has a web page which includes useful contextual information as well as additional resources. The data can be viewed in the original report in excel format as it is usually preferable for modelling to have an excel spreadsheet.
 
@@ -46,7 +50,7 @@ The data are provided by WHO Member States, as well as partner institutions (inc
 
 Data reported by WHO Member States are checked for validity and consistency at WHO country, regional and headquarters levels before being included in the database. Data from partner institutions are checked at WHO headquarters level.
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 The data is in excel spreadsheets used to generate maps of insecticide distribution as well as dashboard summaries of the country situation.
 
@@ -64,7 +68,7 @@ The database contains resutls from:
 
 The information included typically looks like this. Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. To make a longer time series of data, you can access older databases such as the African Network for Vector Resistance (ANVR) from the WHO. Be careful to ensure that the definitions indicate whether the normal concentrations were tested and whether intensity assays were conducted as well as information on methodology to be sure that data sets can be compared.
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
   - The data include assays conducted with fewer than the minimum recommended number of mosquitoes (i.e. 100 female anopheline mosquitoes tested in WHO susceptibility tests) as in the absence of other data these results are informative despite the small sample size.
   
@@ -76,25 +80,7 @@ The information included typically looks like this. Data are available for each 
   
   - Data quality is dependent on the correct implementation of the standard insecticide resistance test procedures. Ambient conditions such as temperature and humidity, as well as the procedures followed to rear and handle the mosquitoes during the test, may cause significant variations in test results that hamper the comparability of results in time and space. Countries and institutions are encouraged to strictly follow the WHO standard operation procedures for resistance monitoring
 
-## How to use this data
-
-Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it can be plotted. 
-
-![Table 1. The pyrethroid resistance intensity data for KwaZulu-Natal in South Africa (2016)](images/table_1_pyrethroid_resistance.png)
-
-Data has been extracted for KwaZulu-Natal in South Africa looking at pyrethroid resistance in *Anopheles arabiensis*, the local vector mosquito. Insecticide intensity studies looking at deltamethrin and permethrin showed that there was no significant resistance to Deltamethrin at 5X the discrimination dose and for Permethrin at 10X the discriminating dose. At normal concentration, there is some resistance as indicated by the low levels of mortality. Intensity assays show that this has not translated to operational resistance.
-
-## How to plot this data
-
-![Figure 1. The distribution of pyrethroid resistance in South Africa.](images/distribution_of_pyrethroid_resistance_in_south_africa.jpg)
-
-This is a graphical representation of Table 1.  This shows the distribution of pyrethroid resistance in KwaZulu-Natal for 2010-2024. The resistance is to a specific type of pyrethroid, namely, deltamethrin and the vector that was tested was *Anopheles arabiensis*.
-
-![Figure 2. The distribution of pyrethroid resistance on the African continent.](images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png)
-
-Resistance to pyrethroids has been identified from most countries in Africa but there is a scarcity of data on insecticide resistance intensity. The above figure shows the distribution of the intensity of pyrethroid resistance on the African continent which ranges from low to moderate in the east and south to moderate to high in the west. This map is made up of 1445 bioassays with the majority being in north-western Africa.
-
-## Examples of data use in literature
+<h2>Examples of data use in literature</h2>
 
 1.	WHO: Global vector control response 2017-2030. Geneva: World Health Organization; 2017. 
 
@@ -105,3 +91,25 @@ Resistance to pyrethroids has been identified from most countries in Africa but 
 4.	Dengela D, Seyoum A, Lucas B, Johns B, George K, Belemvire A, Caranci A, Norris LC, Fornadel CM. Multi-country assessment of residual bio-efficacy of insecticides used for indoor residual spraying in malaria control on different surface types: results from program monitoring in 17 PMI/USAID-supported IRS countries. Parasit Vectors. 2018 Jan 30;11(1):71. doi: 10.1186/s13071-017-2608-4. PMID: 29382388; PMCID: PMC5791726.
 
 5.	Bisanzio D, Ally M, Ali AS, Kitojo C, Serbantez N, Kisinza WN, Magesa S, Reithinger R. Modelling Insecticide Resistance of Malaria Vector Populations in Tanzania. Am J Trop Med Hyg. 2022 Jul 5;107(2):308-314. doi: 10.4269/ajtmh.21-0262. PMID: 35895397; PMCID: PMC9393459.
+
+## Working with the data
+
+<h2>How to use this data</h2>
+
+Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it can be plotted. 
+
+![Table 1. The pyrethroid resistance intensity data for KwaZulu-Natal in South Africa (2016)](images/table_1_pyrethroid_resistance.png)
+
+Data has been extracted for KwaZulu-Natal in South Africa looking at pyrethroid resistance in *Anopheles arabiensis*, the local vector mosquito. Insecticide intensity studies looking at deltamethrin and permethrin showed that there was no significant resistance to Deltamethrin at 5X the discrimination dose and for Permethrin at 10X the discriminating dose. At normal concentration, there is some resistance as indicated by the low levels of mortality. Intensity assays show that this has not translated to operational resistance.
+
+<h2>How to plot this data</h2>
+
+![Figure 1. The distribution of pyrethroid resistance in South Africa.](images/distribution_of_pyrethroid_resistance_in_south_africa.jpg)
+
+This is a graphical representation of Table 1.  This shows the distribution of pyrethroid resistance in KwaZulu-Natal for 2010-2024. The resistance is to a specific type of pyrethroid, namely, deltamethrin and the vector that was tested was *Anopheles arabiensis*.
+
+![Figure 2. The distribution of pyrethroid resistance on the African continent.](images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png)
+
+Resistance to pyrethroids has been identified from most countries in Africa but there is a scarcity of data on insecticide resistance intensity. The above figure shows the distribution of the intensity of pyrethroid resistance on the African continent which ranges from low to moderate in the east and south to moderate to high in the west. This map is made up of 1445 bioassays with the majority being in north-western Africa.
+
+:::

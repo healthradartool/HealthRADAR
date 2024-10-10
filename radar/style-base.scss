@@ -1,5 +1,7 @@
 /*-- scss:defaults --*/
 
+$body-bg: #fefeff;
+
 // fonts
 @import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
 
@@ -61,7 +63,7 @@ html {
   width: 64px!important;
   height: 64px!important;
 }
-
+/*
 #tabset-1-1-tab.nav-link.active, #tabset-1-1-tab.nav-link.active:focus,
 #tabset-1-2-tab.nav-link.active, #tabset-1-2-tab.nav-link.active:focus,
 #tabset-1-3-tab.nav-link.active, #tabset-1-3-tab.nav-link.active:focus,
@@ -70,23 +72,53 @@ html {
   border-bottom-color: #2c3e50!important;
   background-color: #f5f7fa!important;
 }
+*/
 
-.nav-link:hover {
+.data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,
+.data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,
+.data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,
+.data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,
+
+.page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus,
+.page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus,
+.page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus,
+.page-tabs .nav-link.active, .page-tabs .nav-tabs.nav-link.active:focus{
+  border-width: 0px 0px 2px 0px;
+  border-bottom-color: #2c3e50!important;
+  background-color: #f5f7fa!important;
+}
+
+.data-tabs .nav-link:hover,
+.page-tabs .nav-link:hover {
   border-width: 0px 0px 2px 0px;
 }
 
-.nav-tabs {
+.data-tabs .nav-tabs,
+.page-tabs .nav-tabs {
   border-width: 0;
   border-bottom-color: #2c3e50;
 }
 
-.tab-content {
+.data-tabs .tab-content {
   border-width: 0;
   padding-left: 0;
+  padding-right: 0; 
+  padding-top: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.page-tabs .tab-content {
+  padding-top: 10px;
+  margin-top: 15px;
+  border-top: #ecf0f1 1px solid;
+  border-radius: 5px;
+  background-color: #fff;
 }
 
 .card-title {
-  font-size: 24px;
+  font-size: 24px; 
 }
 
 /* The filter search bar in the data sets page*/
@@ -94,8 +126,9 @@ html {
   width: 100%;
 }
 
-#data-tabs > ul > li:nth-child(2) > a, #data-tabs > ul > li:nth-child(3) > a, 
-#data-tabs > ul > li:nth-child(4) > a, #data-tabs > ul > li:nth-child(5) > a {
+/* disable the tabs for the other diseases */
+.data-tabs > ul > li:nth-child(2) > a, .data-tabs > ul > li:nth-child(3) > a, 
+.data-tabs > ul > li:nth-child(4) > a, .data-tabs > ul > li:nth-child(5) > a {
   cursor: not-allowed;
   pointer-events: none;        
   text-decoration: none;

@@ -26,7 +26,12 @@ categories:
   - annual
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+
+## Overview
+
+<h2>About the data</h2>
 
 Climate Hazards Center InfraRed Temperature with Stations data (CHIRTS), version 1, is a quasi-global (60°S-70°N), land-only, gridded (0.05° and 0.25° degree resolution) of daily maximum and minimum 2-m temperatures dataset, which is referred to as CHIRTS-daily. CHIRTS is created by integrating numerous data sources including satellite imagery, station data, and ERA5 reanalysis to create a gridded temperature time series for the monitoring of temperature extremes. The dataset starts in 1983 and extends to 2016.
 
@@ -57,7 +62,7 @@ For more information regarding CHIRTS datasets see [CHIRTS website](https://www.
 | RHum | Daily average relative humidity |   |
 | HeatIndex | Daily average heat index |   |
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 
 ### data download
@@ -70,7 +75,7 @@ Via The Climate Hazard Centre (CHC) at the University of California, Santa Barba
 | global     	| Tmax, Tmin         	| 0.05       	| NetCDF (.nc), Cloud Optimized GeoTiff (.cog)      	|
 | global     	| Tmax, Tmin, RHum, HeatIndex | 0.05  	| GeoTiff (.tif)    	|
 
-## What does the data look like
+<h2>What does the data look like</h2>
 
 
 #### spatial plots of key variables
@@ -96,3 +101,4 @@ Funk, C. et al. A high-resolution 1983–2016 Tmax climate data record based on 
 
 Tuholske, C., Caylor, K., Funk, C., Verdin, A., Sweeney, S., Grace, K., Peterson, P., & Evans, T. (In revision). Global Urban Population Exposure to Extreme Heat. Proceedings of the National Academy of Sciences.
 
+:::

@@ -20,18 +20,24 @@ categories:
   - annual
 ---
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 United Nations Population Data Portal provides access to global datasets of demographic indicators produced by the United Nations Population Division.The data portal allows users to search data based on indicators and country selections, compare data by selecting multiple regions, countries and areas, create visualizations in the form of the bar, line or spatial layouts and to download data in a variety of formats for further analysis.
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 {{< lipsum 1 >}}
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 {{< lipsum 1 >}}
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
 {{< lipsum 1 >}}
+
+:::

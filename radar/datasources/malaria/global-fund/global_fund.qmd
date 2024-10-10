@@ -21,18 +21,24 @@ categories:
 ---
 
 
-## About the data
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
 
 The Global Fund provides comprehensive malaria data that includes funding details, programmatic results, and epidemiological trends. This data covers disbursements, allocations, and expenditures, along with information on preventive measures like insecticide-treated nets, treatment availability, and case management. It also tracks incidence, prevalence, and mortality rates, offering detailed country profiles and regional summaries. Additionally, the Global Fund conducts malaria indicator surveys and operational research, and offers interactive dashboards for data visualisation, all aimed at monitoring progress and informing strategic decisions to combat malaria globally.
 
-## Accessing the data
+<h2>Accessing the data</h2>
 
 {{< lipsum 1 >}}
 
-## What does the data look like?
+<h2>What does the data look like?</h2>
 
 {{< lipsum 1 >}}
 
-## Key points to consider
+<h2>Key points to consider</h2>
 
 {{< lipsum 1 >}}
+
+:::
