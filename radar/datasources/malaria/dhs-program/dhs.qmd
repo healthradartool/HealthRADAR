@@ -475,13 +475,13 @@ years <- access_data |>
 itn_access <- access_data |>
   arrange(SurveyYear) |>
   select(SurveyYear, Value) |> 
-  complete(SurveyYear = full_seq(SurveyYear, 1), fill = list(Value = 0)) |> 
+  complete(SurveyYear = full_seq(c(SurveyYear, 2024), 1), fill = list(Value = 0)) |> 
   pull(Value)
 
 itn_use <- usage_data |>
   arrange(SurveyYear) |>
   select(SurveyYear, Value) |> 
-  complete(SurveyYear = full_seq(SurveyYear, 1)) |> 
+  complete(SurveyYear = full_seq(c(SurveyYear, 2024), 1)) |> 
   fill(Value, .direction = "down") |> 
   pull(Value)
 
@@ -515,7 +515,7 @@ itn_cov_rounded <- round(itn_cov, 3)
 
 ### Effective coverage
 
-Coverage is further considered effective if it meets the minimum access of one ITN per two persons, the net is adequately used (and as a proxy, used the night prior to the survey), and is operationally effective at preventing bites from an infectious mosquito. Effective coverage represents the proportion of people who are actually protected from ongoing transmission, and is always less than coverage.
+Coverage is further considered effective if it meets the minimum access of one ITN per two persons, the net is adequately used (and as a proxy, used the night prior to the survey), and is operationally effective at preventing bites from an infectious mosquito. Effective coverage represents the proportion of people who are actually protected from ongoing transmission, and is always less than the stated coverage.
 
 ```{r}
 
@@ -524,28 +524,32 @@ eff_cov <- itn_cov_rounded * (itn_use/100) * opp_eff
 
 # Create a data frame for the plot
 itn_data <- data.frame(
-  Year = full_seq(years, 1),
+  Year = full_seq(c(years, 2024), 1),
   Coverage = itn_cov_rounded,
-  Effective_Coverage = eff_cov) |> 
-  pivot_longer(!Year, names_to = "Type", values_to = "Percent")
+  "Effective Coverage" = eff_cov) |> 
+  pivot_longer(!Year, names_to = "ITN.characteristic", values_to = "Value")
 
 # Create the ITN coverage plot
 ggplot(itn_data, aes(x = Year)) +
-  geom_line(aes(y = Percent, colour = Type)) +
+  geom_line(aes(y = Value, colour = ITN.characteristic)) +
   theme_health_radar() +
-  scale_x_continuous(breaks = years) +
+  scale_colour_manual_health_radar() +
+  scale_fill_continuous_health_radar() +
+  scale_x_continuous(breaks = seq(2011, 2024, 2)) +
   scale_y_continuous(
     name = "Proportion of People",
     limits = c(0, 1), 
     labels = scales::percent
-  ) + 
+    ) + 
   labs(
     title = "Effective ITN Coverage in Mozambique",
-    subtitle = "Malaria prevention through distribution and use of ITNs",
+    subtitle = "Malaria prevention through access and use of ITNs",
     x = "Year",
-    caption = "Source: DHS Data API - Malaria Indicators ML_NETP_H_IT2 & ML_ITNU_N_ITN",
-    colour = "ITN")
-
+    colour = "ITN characteristic",
+    caption = str_wrap("Effective coverage levels of households in Mozambique. ITN coverage increases after a mass distribution campaign, and wanes until the next campaign. After three years ITNs are considered ineffective due to net survival data (not described here). Countries should plan distribution campaigns timely to avoid any gaps in coverage, as is seen in Mozambique in 2014 and 2021. Effective coverage is below coverage due to imperfect usage and challenges in operational effectiveness. Source: DHS Data API - Malaria Indicators ML_NETP_H_IT2 & ML_ITNU_N_ITN")) +
+  theme(legend.position = "inside",
+        legend.justification.inside = c(1, 1))
+  
 
 ```
 
