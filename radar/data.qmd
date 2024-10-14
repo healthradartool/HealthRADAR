@@ -3,6 +3,7 @@ pagetitle: "Browse Data Sources"
 title: "Data sources"
 subtitle: "Browse and search for data sources"
 toc: false
+back-to-top-navigation: false
 listing: 
 - id: malaria
   contents: datasources/malaria

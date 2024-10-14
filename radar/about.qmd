@@ -1,6 +1,7 @@
 ---
 title: "About this site"
 subtitle: "Responsible Access to Data for Analysis and Research (Health: RADAR)"
+back-to-top-navigation: false
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"

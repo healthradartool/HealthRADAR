@@ -12,6 +12,7 @@ website:
   favicon: "radar/favicon.ico"
   bread-crumbs: false
   draft-mode: gone
+  back-to-top-navigation: true
   search:
     location: navbar
     type: textbox
