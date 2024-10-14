@@ -9,7 +9,7 @@ project:
 website:
   title: "HealthRADAR"
   image: "radar/img/logo-light.png"
-  site-path: "/healthradar/"
+  site-url: https://jfunction.quarto.pub/healthradar/
   favicon: "radar/favicon.ico"
   bread-crumbs: false
   draft-mode: gone
