@@ -6,4 +6,4 @@ title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 ---
 
-Try searching or go to [Health RADAR's home page](/radar/index.qmd)
+Try searching or go to [Health RADAR's home page](/index.qmd)
