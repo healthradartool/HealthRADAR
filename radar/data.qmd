@@ -3,6 +3,8 @@ pagetitle: "Browse Data Sources"
 title: "Data sources"
 subtitle: "Browse and search for data sources"
 toc: false
+aliases:
+  - datapages.html
 back-to-top-navigation: false
 listing: 
 - id: malaria
