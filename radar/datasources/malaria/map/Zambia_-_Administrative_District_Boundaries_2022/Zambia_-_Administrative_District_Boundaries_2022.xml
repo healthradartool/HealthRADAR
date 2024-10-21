@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><MD_Metadata xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:xalan="http://xml.apache.org/xalan" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.isotc211.org/2005/gmd">
+    <fileIdentifier>
+        <gco:CharacterString>1680118740633r4255910052611085</gco:CharacterString>
+    </fileIdentifier>
+    <language>
+        <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+    </language>
+    <characterSet>
+        <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+    </characterSet>
+    <hierarchyLevel>
+        <MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+    </hierarchyLevel>
+    <hierarchyLevelName>
+        <gco:CharacterString>dataset</gco:CharacterString>
+    </hierarchyLevelName>
+    <contact>
+        <CI_ResponsibleParty>
+            <role>
+                <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+            </role>
+        </CI_ResponsibleParty>
+    </contact>
+    <dateStamp>
+        <gco:Date>2023-04-10</gco:Date>
+    </dateStamp>
+    <metadataStandardName>
+        <gco:CharacterString>ISO 19139 Geographic Information - Metadata - Implementation Specification</gco:CharacterString>
+    </metadataStandardName>
+    <metadataStandardVersion>
+        <gco:CharacterString>2007</gco:CharacterString>
+    </metadataStandardVersion>
+    <spatialRepresentationInfo>
+        <MD_VectorSpatialRepresentation>
+            <topologyLevel>
+                <MD_TopologyLevelCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_TopologyLevelCode" codeListValue="geometryOnly" codeSpace="ISOTC211/19115">geometryOnly</MD_TopologyLevelCode>
+            </topologyLevel>
+            <geometricObjects>
+                <MD_GeometricObjects>
+                    <geometricObjectType>
+                        <MD_GeometricObjectTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_GeometricObjectTypeCode" codeListValue="composite" codeSpace="ISOTC211/19115">composite</MD_GeometricObjectTypeCode>
+                    </geometricObjectType>
+                </MD_GeometricObjects>
+            </geometricObjects>
+        </MD_VectorSpatialRepresentation>
+    </spatialRepresentationInfo>
+    <referenceSystemInfo>
+        <MD_ReferenceSystem>
+            <referenceSystemIdentifier>
+                <RS_Identifier>
+                    <code>
+                        <gco:CharacterString>3857</gco:CharacterString>
+                    </code>
+                    <codeSpace>
+                        <gco:CharacterString>EPSG</gco:CharacterString>
+                    </codeSpace>
+                    <version>
+                        <gco:CharacterString>6.18.3(9.3.1.2)</gco:CharacterString>
+                    </version>
+                </RS_Identifier>
+            </referenceSystemIdentifier>
+        </MD_ReferenceSystem>
+    </referenceSystemInfo>
+    <identificationInfo>
+        <MD_DataIdentification>
+            <citation>
+                <CI_Citation>
+                    <title>
+                        <gco:CharacterString>Zambia_Districts_GRID3_adjusted_20221026</gco:CharacterString>
+                    </title>
+                    <date gco:nilReason="missing"/>
+                    <presentationForm>
+                        <CI_PresentationFormCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_PresentationFormCode" codeListValue="mapDigital" codeSpace="ISOTC211/19115">mapDigital</CI_PresentationFormCode>
+                    </presentationForm>
+                </CI_Citation>
+            </citation>
+            <abstract>
+                <gco:CharacterString>The administrative district boundaries were generated at a scale of 1:10,000 and validated against official district narratives provided by the Government of the Republic of Zambia, using high resolution imagery and 1:50,000 topographic maps. The shapefile covers the National, 10 Provincial and 116 District Boundaries.</gco:CharacterString>
+            </abstract>
+            <purpose>
+                <gco:CharacterString>The administrative district boundaries were generated through a collaborative effort of the Office of the Surveyor General, Local Government and Housing, Electoral Commission of Zambia, Central Statistical Office and the University of Zambia - Geography and Environmental Studies Department. The shapefile is one of the fundamental datasets on the National Spatial Data Infrastructure (NSDI) portal. Updated district and provincial boundaries will support accurate analysis of geospatial data across different administrative units.</gco:CharacterString>
+            </purpose>
+            <credit>
+                <gco:CharacterString>The Government of the Republic of Zambia through the following institutions i.e Survey Department, Electoral Commission of Zambia, Central Statistical Office, Local Government and Housing and the University of Zambia. Geo-Referenced Infrastructure and Demographic Data for Development (GRID3) for supporting the harmonization workshops and for the methodological approach. The GRID3 programme is funded by the Bill &amp; Melinda Gates Foundation and the United Kingdom’s Department for International Development (DFID).</gco:CharacterString>
+            </credit>
+            <pointOfContact>
+                <CI_ResponsibleParty>
+                    <organisationName>
+                        <gco:CharacterString>Geo-Referenced Infrastructure and Demographic Data for Development (GRID3)</gco:CharacterString>
+                    </organisationName>
+                    <role>
+                        <CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+                    </role>
+                </CI_ResponsibleParty>
+            </pointOfContact>
+            <descriptiveKeywords>
+                <MD_Keywords>
+                    <keyword>
+                        <gco:CharacterString>Downloadable Data</gco:CharacterString>
+                    </keyword>
+                    <thesaurusName uuidref="723f6998-058e-11dc-8314-0800200c9a66"/>
+                </MD_Keywords>
+            </descriptiveKeywords>
+            <descriptiveKeywords>
+                <MD_Keywords>
+                    <keyword>
+                        <gco:CharacterString>Zambia</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>ZMB</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>NSDI</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>Administrative Boundaries</gco:CharacterString>
+                    </keyword>
+                </MD_Keywords>
+            </descriptiveKeywords>
+            <resourceConstraints>
+                <MD_Constraints>
+                    <useLimitation>
+                        <gco:CharacterString>This dataset has been officially endorsed by the Office of the Surveyor General. The district narratives used to update the district shapefiles are dated up to 2017. This data set is released under a Creative Commons Attribution 4.0 International (CC By 4.0) available at http://creativecommons.org/licenses/by/4.0and specified in legal code at http://creativecommons.org/licenses/by/4.0/legalcode</gco:CharacterString>
+                    </useLimitation>
+                </MD_Constraints>
+            </resourceConstraints>
+            <resourceConstraints>
+                <MD_LegalConstraints>
+                    <accessConstraints>
+                        <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions" codeSpace="ISOTC211/19115">otherRestrictions</MD_RestrictionCode>
+                    </accessConstraints>
+                    <otherConstraints>
+                        <gco:CharacterString>Other Constraints</gco:CharacterString>
+                    </otherConstraints>
+                </MD_LegalConstraints>
+            </resourceConstraints>
+            <resourceConstraints>
+                <MD_LegalConstraints>
+                    <useConstraints>
+                        <MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions" codeSpace="ISOTC211/19115">otherRestrictions</MD_RestrictionCode>
+                    </useConstraints>
+                    <otherConstraints>
+                        <gco:CharacterString>Other Constraints</gco:CharacterString>
+                    </otherConstraints>
+                </MD_LegalConstraints>
+            </resourceConstraints>
+            <spatialRepresentationType>
+                <MD_SpatialRepresentationTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" codeSpace="ISOTC211/19115">vector</MD_SpatialRepresentationTypeCode>
+            </spatialRepresentationType>
+            <language>
+                <LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+            </language>
+            <characterSet>
+                <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+            </characterSet>
+            <environmentDescription>
+                <gco:CharacterString>Esri ArcGIS 13.0.0.36056</gco:CharacterString>
+            </environmentDescription>
+        </MD_DataIdentification>
+    </identificationInfo>
+    <distributionInfo>
+        <MD_Distribution>
+            <distributionFormat>
+                <MD_Format>
+                    <name>
+                        <gco:CharacterString>File Geodatabase Feature Class</gco:CharacterString>
+                    </name>
+                    <version gco:nilReason="missing"/>
+                </MD_Format>
+            </distributionFormat>
+            <transferOptions>
+                <MD_DigitalTransferOptions/>
+            </transferOptions>
+        </MD_Distribution>
+    </distributionInfo>
+</MD_Metadata>
