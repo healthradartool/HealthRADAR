@@ -32,11 +32,17 @@ The [global database on insecticide resistance in malaria vectors](https://www.w
 
 The database for the Malaria Threat Maps is up-loaded on an ad *hoc basis*. The database provides the most up to date and comprehensive information regarding insecticide resistance on all continents. The data can be presented in a graphical format as maps detailing individual studies and site-level data for all the threat to vector control. Dashboards depicting epidemiological profile, vectors, insecticide resistance status and spread can be developed for all countries reporting malaria. The databases are interactive and data can be added to the database as it becomes available.  Insecticide resistance maps and dashboards can be created for all countries, according to specific insecticides, resistance intensity and mechanisms of resistance. The changing insecticide resistance profile can be viewed spatially or temporally and provides a platform for countries to share insecticide resistance data as the data becomes available. Data reporting tools are also provided on the Global Malaria Programme.
 
-These datasets provide information on decadal trends in insecticide resistance and enable comparison between countries. The data provided are on an ad hoc basis at a national and site-level scale. 
+These datasets provide information on decadal trends in insecticide resistance and enable comparison between countries. The data provided are on an *ad hoc* basis at a national and site-level scale. 
 
 <h2>Accessing the data</h2>
 
 The data can be accessed on the Global Malaria Programme page on the [WHO website](https://www.who.int/teams/global-malaria-programme/prevention/vector-control/global-database-on-insecticide-resistance-in-malaria-vectors). The data has a web page which includes useful contextual information as well as additional resources. The data can be viewed in the original report in excel format as it is usually preferable for modelling to have an excel spreadsheet.
+
+**Database description**
+
+The data contained in the database can be explored and downloaded through the interactive data visualization platform [Malaria Threats Map](https://www.who.int/teams/global-malaria-programme/surveillance/malaria-threats-map). The platform provides thematic maps showing the status and intensity of insecticide resistance, the status of detection of various resistance mechanisms and the level of involvement of metabolic mechanisms.
+
+The database is the source of the insecticide resistance status updates published annually in the [World malaria report](https://www.who.int/teams/global-malaria-programme/reports) and of the [Global report on insecticide resistance in malaria vectors: 2010-2016](https://www.who.int/publications/i/item/9789241514057). It has also been used for the [annual bulletin](https://www.who.int/publications/i/item/WHO-UCN-GMP-MME-2022.01) of the WHO Mekong Malaria Elimination programme, the [ALMA score cards](https://scorecardhub.org/) and [APLMA leaders dashboard](https://dashboard.aplma.org/) and in worldwide research exercises aiming to improve understanding the spread and evolution of insecticide resistance.
 
 **Data inclusion criteria**
 
