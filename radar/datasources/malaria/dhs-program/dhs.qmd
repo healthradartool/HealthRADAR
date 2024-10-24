@@ -656,7 +656,7 @@ df |>
   labs(x = "Year", 
          y = "Incidence", 
          title = "Daily country-wide incidence",
-         caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2011 to 2024. We see a seasonal pattern over the years, and a reduction in incidence following mass distribution campaigns in 2015, 2018 and 2022. The lowest incidence is in 2019, after a peak effective coverage of 50% of the population at risk in 2018. In addition, we see how incidence steadily increases as the effectiveness of ITNs/LLINs wanes over time. Source: Model output.")) +
+         caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2011 to 2024. We see a seasonal pattern over the years, and a reduction in incidence following mass distribution campaigns in 2015, 2018 and 2022. The lowest incidence is in 2019, after a peak effective coverage of 50% of the population at risk in 2018. In addition, we see how incidence steadily increases as the effectiveness of ITNs/LLINs wanes over a period of three years. Source: Model output.")) +
     theme_health_radar() +
       scale_x_date(date_breaks = "2 years",
                date_labels = "%Y"

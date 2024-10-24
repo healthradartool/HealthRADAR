@@ -389,7 +389,7 @@ df |>
   labs(title = "Daily incidence values in the human population", 
        x = "Year",
        y = "Number of new cases",
-      caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. We see a small peak in 2017, coinciding with a high rainfall values, and potentially larger mosquito populations driving incidence. Source: Model output"))
+      caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. We see a small peak in 2017, coinciding with higher rainfall values that year, resulting in potentially larger mosquito populations driving incidence. Source: Model output"))
 ```
 
 

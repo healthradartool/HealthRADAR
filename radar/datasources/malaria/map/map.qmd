@@ -7,10 +7,9 @@ lightbox: true
 execute:
   message: false
   warning: false
-
 language: 
-  title-block-published: "Last updated"
   
+  title-block-published: "Last updated"
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
@@ -19,77 +18,108 @@ categories:
   - epidemiology
   - spatiotemporal
   - raster
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-::: {.page-tabs .panel-tabset}
-
+:::: {.page-tabs .panel-tabset}
 ## Overview
 
 <h2>About the data</h2>
 
-The Malaria Atlas Project (MAP) is a leading global resource that compiles and analyses spatial data on malaria transmission and prevalence. The MAP site houses millions of data elements and provides innovative analytical approaches to making sense of complex malaria data. 
+The Malaria Atlas Project (MAP) is a leading global resource that
+compiles and analyses spatial data on malaria transmission and
+prevalence. The MAP site houses millions of data elements and provides
+innovative analytical approaches to making sense of complex malaria
+data.
 
-The analytical approaches available on the site use geospatial analysis, spatiotemporal statistical methods, machine learning, and computational disease models. 
+The analytical approaches available on the site use geospatial analysis,
+spatiotemporal statistical methods, machine learning, and computational
+disease models.
 
-Collaboratively, MAP produces these outputs with a core team based at the Telethon Kids Institute and Curtin University in Perth, Western Australia; and Ifakara Health Institute in Dar es Salaam in Tanzania. MAP also has members across Europe, the United States, Africa and Asia.
+Collaboratively, MAP produces these outputs with a core team based at
+the Telethon Kids Institute and Curtin University in Perth, Western
+Australia; and Ifakara Health Institute in Dar es Salaam in Tanzania.
+MAP also has members across Europe, the United States, Africa and Asia.
 
 <h2>Accessing the data</h2>
 
-MAP data can be accessed directly from [https://data.malariaatlas.org/](https://data.malariaatlas.org/) in various formats, including by:  
+MAP data can be accessed directly from <https://data.malariaatlas.org/>
+in various formats, including by:
 
-1. Generating maps and charts on the site, and selecting parameters of interest. The site also allows various variables to be overlaid spatially. 
+1.  Generating maps and charts on the site, and selecting parameters of
+    interest. The site also allows various variables to be overlaid
+    spatially.
 
-2. Downloading CSV and Raster file formats for analysis using other software outside the site. The download process allows users to filter for national and subnational areas of interest. 
+2.  Downloading CSV and Raster file formats for analysis using other
+    software outside the site. The download process allows users to
+    filter for national and subnational areas of interest.
 
 <h2>What does the data look like?</h2>
 
 **Description**
 
-MAP estimated data on malaria covers morbidity, mortality, interventions, and contributing factors, primarily covering the years from 2000 to 2022 (as of 2024). Specifically; 
+MAP estimated data on malaria covers morbidity, mortality,
+interventions, and contributing factors, primarily covering the years
+from 2000 to 2022 (as of 2024). Specifically;
 
-- Incidence and prevalence 
-- Mortality 
-- Treatment 
-- Accessibility factors
-- Insecticide-treated nets (ITNs)
-- Indoor residual spraying
-- Vector occurrence 
-- Human population
-- Housing quality 
-- Zoonotic malaria
+-   Incidence and prevalence
+-   Mortality
+-   Treatment
+-   Accessibility factors
+-   Insecticide-treated nets (ITNs)
+-   Indoor residual spraying
+-   Vector occurrence
+-   Human population
+-   Housing quality
+-   Zoonotic malaria
 
-The data listed above can be found at [https://data.malariaatlas.org/](https://data.malariaatlas.org/)
+The data listed above can be found at <https://data.malariaatlas.org/>
 
-![MAP-Data landing page](images/figure1.png){width=100% fig-align="center"}
+![MAP-Data landing page](images/figure1.png){width="100%"
+fig-align="center"}
 
 <h2>Key points to consider</h2>
 
 #### Estimates vs. data
-Most information provided by MAP comprises modelled estimates rather than definitive data, which may carry inherent uncertainties. Consequently, it is essential to acknowledge the uncertainties associated with the data when drawing conclusions. 
+
+Most information provided by MAP comprises modelled estimates rather
+than definitive data, which may carry inherent uncertainties.
+Consequently, it is essential to acknowledge the uncertainties
+associated with the data when drawing conclusions.
 
 #### Pitfalls of annual data
-MAP data are aggregated annually, which may lead to several pitfalls such as;
 
-- Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
+MAP data are aggregated annually, which may lead to several pitfalls
+such as;
 
-- Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
+-   Seasonal variations: Annual data may not capture the seasonal
+    patterns of malaria transmission, which can be influenced by factors
+    such as rainfall, temperature, and vector abundance. This can lead
+    to an over- or underestimation of the disease burden and the impact
+    of interventions.
+
+-   Temporal aggregation: Aggregating data annually may mask important
+    short-term dynamics, such as outbreaks or the immediate impact of
+    interventions.
 
 ## Working with the data
 
 <h2>How to use this data?</h2>
 
-The tabs below have videos that will help you navigate through the MAP data. These guides are also found on MAP's |>   [help](https://data.malariaatlas.org/help?tab=trends) page.
+The tabs below have videos that will help you navigate through the MAP
+data. These guides are also found on MAP's \|\>
+[help](https://data.malariaatlas.org/help?tab=trends) page.
 
-
-::: {.panel-tabset}
-
-## Trends 
+::: panel-tabset
+## Trends
 
 Trends Help Guides
 
 {{< video https://www.youtube.com/embed/wCK6XRCG7gQ >}}
 
-##  Maps
+## Maps
 
 Map Help Guide
 
@@ -101,23 +131,28 @@ Case Management Help Guide
 
 {{< video https://www.youtube.com/embed/OCJcl1PLPH4 >}}
 
-
 Insecticide Treated Nets Help Guide
 
 {{< video https://www.youtube.com/embed/CRC8a1-M3VY >}}
-
 :::
 
 <h2>How to plot this data?</h2>
 
-MAP data can be downloaded in both CSV and raster formats. We provide an example of how to extract and plot data for each format.
+MAP data can be downloaded in both CSV and raster formats. We provide an
+example of how to extract and plot data for each format.
 
 #### CSV format
 
-MAP's CSV data can be downloaded to have both national and subnational level data for the metric(s) of interest. We intend to plot ITN data at a subnational level. The data can be downloaded as explained in the Trends videos above. Alternatively,
-1. Click on the "Interventions" tab
-2. Select "Subnational"
-3. Click the "Download ITN rate Data" button to start the download. 
+MAP's CSV data can be downloaded to have both national and subnational
+level data for the metric(s) of interest. We intend to plot ITN data at
+a subnational level. The data can be downloaded as explained in the
+Trends videos above. Alternatively,
+
+1.  Click on the "Interventions" tab
+
+2.  Select "Subnational"
+
+3.  Click the "Download ITN rate Data" button to start the download.
 
 ```{r}
 #| echo: true
@@ -155,24 +190,36 @@ ggplot(data = df) +
 
 ```
 
-
 #### Raster format data extraction and plotting
 
-Using raster data is beneficial when analysing data at a smaller geographic scale than the subnational level, which the CSV format does not accommodate. The example outlined below demonstrates the extraction of healthcare access data at the district level, but can be utilised at any level.
+Using raster data is beneficial when analysing data at a smaller
+geographic scale than the subnational level, which the CSV format does
+not accommodate. The example outlined below demonstrates the extraction
+of healthcare access data at the district level, but can be utilised at
+any level.
 
 To extract data from a raster file, you will need two types of data:
-1. A raster file from MAP, and 
-2. A shapefile containing the polygons (geographical area) you wish to extract data for.
+
+1.  A raster file from MAP, and
+
+2.  A shapefile containing the polygons (geographical area) you wish to
+    extract data for.
 
 To download raster files from the MAP website,
-1. Click on "Maps"
-2. Select the drop down arrow titled "Layer Catalogue"
-3. Select the data theme of interest. 
-$. Click the "Download" symbol.
 
-In this example, we select "Global Walking Only Travel Time To Healthcare" as our data theme of interest.
+1.  Click on "Maps"
 
-Shapefiles can be obtained from a range of sources. We download Zambia's district level polygon from [GRID3](https://data.grid3.org/).
+2.  Select the drop down arrow titled "Layer Catalogue"
+
+3.  Select the data theme of interest, such as "Accessibility"
+
+4.  Click the "Download" symbol.
+
+In this example, we select "Global Walking Only Travel Time To
+Healthcare" as our data theme of interest.
+
+Shapefiles can be obtained from a range of sources. We download Zambia's
+district level polygon from [GRID3](https://data.grid3.org/).
 
 ```{r}
 #| echo: true
@@ -238,12 +285,19 @@ Reduce(`+`, lapply(list_district_df, fun_plot)) +
 
 <h2>How can this data be used in disease modelling?</h2>
 
-As earlier alluded, that MAP provides modelled estimates for various interventions including indoor residual spraying (IRS). Below, we show how IRS estimates from MAP can can be used for disease modeling. 
+As earlier alluded, that MAP provides modelled estimates for various
+interventions including indoor residual spraying (IRS). Below, we show
+how IRS estimates from MAP can can be used for disease modeling.
 
 #### Preparing the data
 
-The code below demonstrates how IRS data downloaded from MAP can be prepared for modeling, using data from Zambia as an illustrative example. In the code, we show that the coverage data are presented on a yearly basis, as depicted in the plot. However, further manipulation is required to meet most mathematical modeling requirements. Specifically, in this example, we generate the absolute number of households sprayed and, subsequently, the number of individuals protected.
-
+The code below demonstrates how IRS data downloaded from MAP can be
+prepared for modeling, using data from Zambia as an illustrative
+example. In the code, we show that the coverage data are presented on a
+yearly basis, as depicted in the plot. However, further manipulation is
+required to meet most mathematical modeling requirements. Specifically,
+in this example, we generate the absolute number of households sprayed
+and, subsequently, the number of individuals protected.
 
 ```{r}
 #| echo: true
@@ -278,16 +332,20 @@ ggplot(data = IRSdata, aes(x = Year, y = Value)) +
 
 ```
 
-#### Assumptions 
+#### Assumptions
 
-To create a robust model, it's crucial to articulate the assumptions underlying the dynamics. In our illustrative model
-in the code below represented in the SEIRS (Susceptible, Exposed, Infected, Recovered) model. We assumed the following:
+To create a robust model, it's crucial to articulate the assumptions
+underlying the dynamics. In our illustrative model in the code below
+represented in the SEIRS (Susceptible, Exposed, Infected, Recovered)
+model. We assumed the following:
 
-- Constant population of about 17,000,000, with 5 individuals per household. 
-- Constant seasonality variability  - using seasonal forcing function
-- All areas in the focus country are eligible for IRS
-- Vector population is at equilibrium
-- Transmission occurs through the contact between infected mosquitoes and susceptible humans, and vice versa.
+-   Constant population of about 17,000,000, with 5 individuals per
+    household.
+-   Constant seasonality variability - using seasonal forcing function
+-   All areas in the focus country are eligible for IRS
+-   Vector population is at equilibrium
+-   Transmission occurs through the contact between infected mosquitoes
+    and susceptible humans, and vice versa.
 
 ```{r}
 #| echo: true
@@ -367,7 +425,13 @@ hm<-ode(times=times, y=start, func=seirs,parms=parms)
 
 #### Incidence
 
-The code below demonstrates how to plot model outputs. In this example, we plot daily incidence from 2013 to 2022. The choice of model output to plot depends on the goals of the modeller or stakeholders. For instance, plotting incidence for this model may highlight the estimated impact of IRS on cases over time. However, it is important to note that the outputs of this example model have not been calibrated to real data and therefore do not reflect actual impacts or real case numbers.
+The code below demonstrates how to plot model outputs. In this example,
+we plot daily incidence from 2013 to 2022. The choice of model output to
+plot depends on the goals of the modeller or stakeholders. For instance,
+plotting incidence for this model may highlight the estimated impact of
+IRS on cases over time. However, it is important to note that the
+outputs of this example model have not been calibrated to real data and
+therefore do not reflect actual impacts or real case numbers.
 
 ```{r}
 #| echo: true
@@ -397,6 +461,4 @@ ggplot(data = hmplot, aes(y = value, x = time / 365 + 2013)) +  # Convert time t
 
 
 ```
-
-
-:::
+::::
