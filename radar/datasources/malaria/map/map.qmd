@@ -31,15 +31,15 @@ The Malaria Atlas Project (MAP) is a leading global resource that compiles and a
 
 The analytical approaches available on the site use geospatial analysis, spatiotemporal statistical methods, machine learning, and computational disease models. 
 
-Collaboratively, MAP produces these outputs with a core team based at the Telethon Kids Institute and Curtin University in Perth, Western Australia, and Ifakara Health Institute in Dar es Salaam in Tanzania, and has members in Europe, the United States, Africa and Asia.
+Collaboratively, MAP produces these outputs with a core team based at the Telethon Kids Institute and Curtin University in Perth, Western Australia; and Ifakara Health Institute in Dar es Salaam in Tanzania. MAP also has members across Europe, the United States, Africa and Asia.
 
 <h2>Accessing the data</h2>
 
-MAP data can be accessed directly from [https://data.malariaatlas.org/](https://data.malariaatlas.org/) in various formats, including:  
+MAP data can be accessed directly from [https://data.malariaatlas.org/](https://data.malariaatlas.org/) in various formats, including by:  
 
-1. By generating maps and charts on the site by selecting parameters of interest. The site also allows overlying various variables spatially. 
+1. Generating maps and charts on the site, and selecting parameters of interest. The site also allows various variables to be overlaid spatially. 
 
-2. By downloading CSV and Raster file formats for analysis using other software outside the site. The Downloading process allows filtering counties of interest and subnational categories. 
+2. Downloading CSV and Raster file formats for analysis using other software outside the site. The download process allows users to filter for national and subnational areas of interest. 
 
 <h2>What does the data look like?</h2>
 
@@ -65,7 +65,7 @@ The data listed above can be found at [https://data.malariaatlas.org/](https://d
 <h2>Key points to consider</h2>
 
 #### Estimates vs. data
-Most information provided by MAP comprises modeled estimates rather than definitive data, which may be characterized with inherent uncertainties. Consequently, it is essential to acknowledge the uncertainties associated with the data when drawing conclusions. 
+Most information provided by MAP comprises modelled estimates rather than definitive data, which may carry inherent uncertainties. Consequently, it is essential to acknowledge the uncertainties associated with the data when drawing conclusions. 
 
 #### Pitfalls of annual data
 MAP data are aggregated annually, which may lead to several pitfalls such as;
@@ -78,7 +78,7 @@ MAP data are aggregated annually, which may lead to several pitfalls such as;
 
 <h2>How to use this data?</h2>
 
-Tabs below have videos that will help you navigate through the MAP data. These guids are also found on the help section of the MAP site at the site's [Help with the platform page](https://data.malariaatlas.org/help?tab=trends)
+The tabs below have videos that will help you navigate through the MAP data. These guides are also found on MAP's |>   [help](https://data.malariaatlas.org/help?tab=trends) page.
 
 
 ::: {.panel-tabset}
@@ -114,7 +114,10 @@ MAP data can be downloaded in both CSV and raster formats. We provide an example
 
 #### CSV format
 
-MAP's CSV data can be downloaded to have both national and subnational level data for the metric(s) of interest. 
+MAP's CSV data can be downloaded to have both national and subnational level data for the metric(s) of interest. We intend to plot ITN data at a subnational level. The data can be downloaded as explained in the Trends videos above. Alternatively,
+1. Click on the "Interventions" tab
+2. Select "Subnational"
+3. Click the "Download ITN rate Data" button to start the download. 
 
 ```{r}
 #| echo: true
@@ -123,22 +126,19 @@ MAP's CSV data can be downloaded to have both national and subnational level dat
 #| warning: false
 
 
-#This code shows how to plot ITN data at a subnational level after downloading a csv format from; 
+# To retrieve data, we used the following link:
 # https://data.malariaatlas.org/trends?year=2018&metricGroup=Interventions&geographicLevel=admin1&metricSubcategory=ITN&metricType=rate&metricName=use
 
-#The data can be downloaded as explained in the Trends videos above or by clicking the following;
-# "Interventions", then "Subnational", then the "Download ITN rate Data" button. 
-
-#loading necessary libraries 
 
 library(tidyverse)
+source(here::here("radar/theme_health_radar.R"))
 
-#Load the data from the location where the downloaded csv is saved and selecting country and years.
+# Load the selected data
 
-df <- read.csv("Subnational_Unit-data.csv") %>% 
+df <- read.csv("Subnational_Unit-data.csv") |>  
   filter(National.Unit == "Malawi", Year == 2022) 
 
-#ploting ITN metrics at subnational level of malawi
+# Plot ITN metrics at a subnational level in Malawi
 
 ggplot(data = df) +
   geom_col(aes(x = Year, y = Value, fill = Metric), position = position_dodge()) +
@@ -149,34 +149,30 @@ ggplot(data = df) +
        title = str_wrap("Estimated subnational ITN use, access, and use rate in Malawi in 2022", 
                         width = 45),
         caption = str_wrap("Figure shows the estimated subnational ITN use, access, and use rate (ITN use given access) in Malawi in the year 2022. Source: MAP 2024.",width = 90)) +
-  theme_minimal() +
-  theme(
-    # Center and style the plot title and subtitle
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 14),
-    # Style the axis titles and text
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 12),
-    #axis.text.x = element_text(angle = 45, hjust = 1),
-    # Style the plot caption
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    # Adjust the plot margins
-    plot.margin = margin(t = 20, r = 20, b = 40, l = 20),
-    # Style the facet strip text
-    strip.text = element_text(size = 12, face = "bold"),
-    # Place the legend on the right
-    legend.position = "right",  
-    # Add light background to each facet panel
-    panel.background = element_rect(fill = "#F0F0F0", color = NA),  
-    # Add spacing between panels
-    panel.spacing = unit(0.5, "lines"))
+  theme_health_radar() +
+  theme(# Add light background to each facet panel
+    panel.background = element_rect(fill = "#F0F0F0", color = NA))
 
 ```
 
 
 #### Raster format data extraction and plotting
 
-Using raster data and this approach is beneficial when analyzing data at a smaller geographic scale than the subnational level, which the CSV format does not accommodate. The example outlined below demonstrates the extraction of data at the district level, but can be utilized at any level.
+Using raster data is beneficial when analysing data at a smaller geographic scale than the subnational level, which the CSV format does not accommodate. The example outlined below demonstrates the extraction of healthcare access data at the district level, but can be utilised at any level.
+
+To extract data from a raster file, you will need two types of data:
+1. A raster file from MAP, and 
+2. A shapefile containing the polygons (geographical area) you wish to extract data for.
+
+To download raster files from the MAP website,
+1. Click on "Maps"
+2. Select the drop down arrow titled "Layer Catalogue"
+3. Select the data theme of interest. 
+$. Click the "Download" symbol.
+
+In this example, we select "Global Walking Only Travel Time To Healthcare" as our data theme of interest.
+
+Shapefiles can be obtained from a range of sources. We download Zambia's district level polygon from [GRID3](https://data.grid3.org/).
 
 ```{r}
 #| echo: true
@@ -184,66 +180,47 @@ Using raster data and this approach is beneficial when analyzing data at a small
 #| code-summary: "Show the code"
 #| warning: false
 
-#This code shows how to extract and plot selected access related data at a district level level after downloading a raster format from; 
-# https://data.malariaatlas.org/. 
-
-#To extract data from a raster file, you will need two types of data. 1. Raster file from MAP, and a shapefile containg  polygones you wish to extract data for. 
-
-#MAP Raster files can be downloaded by clicking the following once at https://data.malariaatlas.org/
-# "Maps", then "Layer Catalogue" drop down arrow, then you may select the data theme of interest, such as "Accessibility"
-#In this example, we select "Global Walking Only Travel Time To Healthcare", then click the download symbol.
-
-#Once we download the raster file, we proceed to download the shapefile of interest. 
-#In this example we download Zambia's district level shapefille from https://data.grid3.org/
-#i.e (https://data.grid3.org/datasets/d27357c640394f11943316e36cebaba3_0/about)
-
-#loading necessary libraries 
-
 library(tidyverse)
 library(sf)
 library(terra)
 library(patchwork)
 
+# Specific link used to access Shapefile: (https://data.grid3.org/datasets/d27357c640394f11943316e36cebaba3_0/about)
 
-#Load the data from the location where the downloaded shapefile and raster files are saved.
-#Here we filter by provinces of interest
+# Load the data and filter by provinces of interest
 shp_zambia <- sf::st_read(
   file.path("Zambia_-_Administrative_District_Boundaries_2022", 
             "Zambia_-_Administrative_District_Boundaries_2022.shp"), 
-  quiet = TRUE) %>% 
+  quiet = TRUE) |>  
   filter(PROVINCE %in% c("Eastern", "Northern", "Southern", "Western")) 
 
 
-#loading raster file containing walking only travel time to healthcasre
+# Load raster file containing walking only travel time to healthcare
 raster_walk <- rast("Global_Walking_Only_Travel_Time_To_Healthcare_ZMB.tiff")
 
-#extracting mean walking time to health facility in each district 
-df_walk <- terra::extract(raster_walk, shp_zambia, mean, na.rm = T, ID = T) %>% 
-    as.data.frame() %>% tibble::rownames_to_column() %>%
-    mutate(OBJECTID = as.numeric(rowname)) %>% #OBJECTID is the unique ID in the shapefile
-    left_join(shp_zambia, by = c("OBJECTID"))
+# Extract mean walking time to health facility in each district 
+df_walk <- terra::extract(raster_walk, shp_zambia, mean, na.rm = T, ID = T) |>  
+  as.data.frame() |>  
+  tibble::rownames_to_column() |> 
+  mutate(OBJECTID = as.numeric(rowname)) |>  #OBJECTID is the unique ID in the shapefile
+  left_join(shp_zambia, by = c("OBJECTID"))
 
-#Splitting the dataframe by province to allow easy plotting.
+# Split the dataframe by province to allow for easy plotting
 
 list_district_df <- split(df_walk, df_walk$PROVINCE)
 
-#Function below Defines a function that creates a ggplot for a given dataframe 'df'
+# Function that creates a ggplot for a given dataframe 'df'
 fun_plot <- function(df){
   ggplot(data = df, aes(
     y = reorder(DISTRICT, Global_Walking_Only_Travel_Time_To_Healthcare_ZMB), 
     x = Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)) +
-    # Initializes ggplot with data and aesthetics; reorder districts by travel time
     geom_col(fill = "#1b9e77") +
-    # Add bar columns with specified fill color
     geom_text(aes(label = round(Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)), 
               hjust = -0.2, size = 2.5) +
-    # Adds labels to bars showing rounded travel time
     labs(x = "", y = "", title = df$PROVINCE) +
     # Sets axis labels to blank and title to province name
     xlim(0, 450) +
-    # Sets x-axis limits from 0 to 450
     theme_bw() + 
-    # Customizing plot appearance: borders, text sizes, and colors
     theme(
       panel.border = element_rect(colour = "black", fill=NA, size=0.5),
       plot.title = element_text(hjust = 0.5, size = 10, face = "bold"),
@@ -253,7 +230,8 @@ fun_plot <- function(df){
       axis.title.y = element_text(size = 8),
       legend.title = element_text(size = 8, colour = 'black'),
       legend.text = element_text(size = 8, colour = 'black'),
-      legend.key.height = unit(1, "cm"))
+      legend.key.height = unit(1, "cm")
+      )
 }
 
 
@@ -297,7 +275,7 @@ library(readxl)
 
 #Read in IRS data.
 
-IRSdata <- read.csv("National Unit-data.csv") %>% 
+IRSdata <- read.csv("National Unit-data.csv") |>  
   mutate(sprayed = (Value/100)*3600000, #estimating number of households sprayed) 
          time = c(seq(0, 3285, by = 365))) #time steps for each year for 10 years
             
@@ -423,11 +401,11 @@ The code below demonstrates how to plot model outputs. In this example, we plot 
 #| code-summary: "Show the code"
 #| warning: false
 
-hmplot<-as_tibble(as.data.frame(hm)) %>% 
+hmplot<-as_tibble(as.data.frame(hm)) |>  
   mutate(P=S+E+I+R,
-         Inc = c(0, diff(CInc))) %>% 
-  pivot_longer(names_to = "variable", cols = !1) %>% 
-  mutate(model = "human") %>% filter(variable == "Inc")
+         Inc = c(0, diff(CInc))) |>  
+  pivot_longer(names_to = "variable", cols = !1) |>  
+  mutate(model = "human") |>  filter(variable == "Inc")
 
 
 ggplot(data = hmplot, aes(

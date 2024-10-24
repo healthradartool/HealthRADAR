@@ -184,16 +184,17 @@ options(digits=4, scipen = 9)
 
 There are different approaches to explicitly include environmental conditions into an infectious disease model. For this example, we use three equations from Traore (2017) and Agusto (2015; 2020) defining the effect of climate on the dynamics of malaria transmission. Specifically, the example below describes temperature-dependent human biting rate and mosquito mortality, as well as rainfall-dependent environmental carrying capacity.
 ```{r}
+# Load the data 
 temperature_values <- read_csv("data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv") |> 
   select(time, tas) |> 
   mutate(tas = tas-273) |> #convert from Kelvin to Celsius
-  filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31"))
+  filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
 
 ggplot() +
    geom_line(data = temperature_values, aes(x = time, y = tas, colour = "Temperature")) +
   geom_point(data = temperature_values, aes(x = time, y = tas, colour = "Temperature")) +
   theme_health_radar() +
-  scale_colour_manual_health_radar() +
+  scale_colour_manual_health_radar(manual_colours) +
   labs(
     title = str_wrap("Average Mean Surface Air Temperature values in Bulawayo from 2000 to 2020", width = 50),
     x = "Year",
@@ -205,6 +206,8 @@ ggplot() +
 ```
 
 ```{r}
+
+# Load the data 
 rainfall_values <- read_csv("data/PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv") |> 
   select(time, PRCPTOT) |> 
   filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
