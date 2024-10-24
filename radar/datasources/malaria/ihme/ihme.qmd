@@ -1,8 +1,9 @@
 ---
 title: "Institute for Health Metrics and Evaluation"
 description: "The Institute for Health Metrics and Evaluation (IHME) works with collaborators around the world to develop timely, relevant, and scientifically valid evidence that illuminates the state of health everywhere."
-date: 07/04/2024 # mm-dd-yyyy
+date: 10-23-2024 # mm-dd-yyyy
 image: "images/ihme.jpg"
+lightbox: true 
 execute:
   message: false
   warning: false
@@ -16,6 +17,7 @@ title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology
+  - interventions
   - country-level
   - annual
 ---
@@ -26,18 +28,536 @@ categories:
 
 <h2>About the data</h2>
 
-The Institute for Health Metrics and Evaluation (IHME) provides extensive malaria data that includes prevalence, incidence, mortality rates, and the burden of disease across different regions. The data is meticulously collected and analysed, offering insights into trends over time, the effectiveness of interventions, and disparities in malaria impact among various populations. This comprehensive dataset aids policy-makers, researchers, and public health professionals in designing and implementing strategies to reduce the global burden of malaria and track progress toward elimination goals.
+The [**Global Burden of Disease (GBD)**](http://www.healthdata.org/gbd/about) study, conducted by the Institute for Health Metrics and Evaluation (IHME), evaluates mortality and disability caused by 371 diseases and injuries, along with 88 risk factors across the globe. IHME meticulously collects and analyzes the data, offering insights into trends over time, the effectiveness of interventions, and disparities in the impact of malaria among different populations. The IHME provides extensive malaria data that includes prevalence, incidence, mortality rates, intervention coverage, and the overall burden of disease in 204 countries and territories, with subnational estimates for 21 regions. This comprehensive dataset is a valuable resource for policymakers, researchers, and public health professionals in developing strategies to reduce the global malaria burden and monitor progress toward elimination goals.
 
 <h2>Accessing the data</h2>
 
-{{< lipsum 1 >}}
+The **GBD Results Tool** enables you to download estimates from the study, along with relevant materials such as survey instruments, protocols, and summary information, are accessible on the [**IHME Data Page**](https://ghdx.healthdata.org/ihme_data) through the Global Health Data Exchange (GHDx). You can search for datasets directly or use the [**GDB Results Tool**](https://vizhub.healthdata.org/gbd-results) for more detailed queries. IHME also offers API access to interact with large datasets programmatically.
+
+Search terms such as `"IHME malaria deaths estimates"`, `"malaria prevalence"`, `"malaria incidence"`, or `"bednet usage"` can be used to find datasets compiled by IHME related to malaria on the GHDx homepage.
+
+Alternatively, you can navigate to the Data Tools tab on the homepage. However, you will need to **create an account or sign in** to access and download data. If you do not have an account, click on **sign in** at the top of the Results tab. If you already have an account, click sign in and enter your credentials, then select **GBD results tool** under IHME Data Visualization Tools. In the results tool interface, select the choose the disease metrics and apply filters to narrow the search by `location (country/region)`, `year`, `age group`, and `sex`.
+
+![IHME GBD Results Visualization Tool Page.](images/ihme_gbd_estimates_viz.png "IHME GBD Results Tool")
+
+You can also visualize data as graphs or tables before downloading. You can right-click on the title of files within the GHDx and download them. Datasets can be downloaded as `.csv` and `.xls` files from the GHDx site.
 
 <h2>What does the data look like?</h2>
 
-{{< lipsum 1 >}}
+The data can be downloaded from the [**GHDx IHME ITN Data Page**](https://ghdx.healthdata.org/record/ihme-data/sub-saharan-africa-insecticide-treated-bed-nets-1999-2008) as a `.xls` file. This dataset provides estimates of bed net ownership, ownership among populations at risk, bed net use in children under five in at-risk populations, and trends in the scale-up of LLIN in 44 African countries during the 1999 to 2008 period.
+
+![IHME estimates of insecticide treated bednets distributed.](images/IHME_itns_1999_to_2008.png "IHME ITN dataset")
+
+Datasets dowloaded as `.csv` files from the [**GDB Results Tool**](https://vizhub.healthdata.org/gbd-results) have a standard format which contains mortality, prevalence and incidence in number, percent and rate by location, sex, age, cause of injury, annual value as well as the upper and lower bounds.
+
+![IHME estimates of malaria related deaths, prevalence and incidence.](images/ihme_gbd_malaria_metrics.png "IHME malaria metrics dataset")
 
 <h2>Key points to consider</h2>
 
-{{< lipsum 1 >}}
+IHME (Institute for Health Metrics and Evaluation) provides detailed data on health metrics, including estimates of disease burden such as incidence, mortality, and risk factors for malaria, which can inform transmission models. When integrating IHME data estimates into malaria transmission models, several key aspects should be considered regarding data collection, storage, and its usage to ensure accurate and effective modeling. 
+
+- IHME uses statistical models and expert review to produce comprehensive Global Burden of Disease (GBD) estimates of malaria burden by country, age, and sex.
+
+- Data is updated annually or periodically depending on the source (e.g., monthly surveillance data or annual surveys).
+
+- These data might not always have the same resolution as the model. For instance, while a model may require fine-grained data at the village level or daily intervals, IHME may provide data aggregated at the national level or annually.
+
+- IHME estimates often come with uncertainty intervals due to limitations in the data sources. This uncertainty should be accounted for in model simulations, especially for stochastic models or sensitivity analyses.
+
+## Working the data
+
+<h2>How to use this data?</h2>
+
+```{r, echo = FALSE}
+
+source(here::here("radar/theme_health_radar.R"))   # source in the theme functions
+```
+
+These datasets can be explored to gain insights into the ownership of ITNs, distribution of LLINs, and assess the impact of malaria in Elimination 8 (E8) countries during the 2000 to 2008 period.
+
+Inspect the data beforehand to understand how it is structured and identify indicators that are relevant to our analysis, we can display our data in a table as follows:
+
+```{r, echo = TRUE}
+library(readxl)
+library(tidyverse)
+
+# Load insecticide treated nets data
+ihme_nets <- read_excel(path = "datasets/IHME_INSECTICIDE_TREATED_BEDNETS_SUB_SAHARAN_AFRICA_1999_2008.xls")
+
+# Pull the names of countries
+ihme_nets %>% 
+  pull(Country) %>% 
+  unique()
+```
+
+The E8 countries are Angola, Botswana, Eswatini, Mozambique, Namibia, South Africa, Zambia and Zimbabwe. To filter the data for these countries, you can use the following code to display our data in a table as follows:
+
+```{r, echo = TRUE}
+library(gt)
+
+# define the E8 countries
+e8_countries <- c("Angola", "Botswana","Eswatini", "Mozambique", "Namibia", "South Africa", "Zambia",  "Zimbabwe")
+
+ihme_nets %>% 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
+  filter(Country %in% e8_countries) %>% 
+  head() %>% 
+  gt()
+```
+
+
+**Deaths, prevalence and incidence estimates**
+
+This data set contains number/percents/rates of malaria deaths, prevalence and incidence in the following countries:
+
+```{r, echo = TRUE}
+observed_cases <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) 
+
+observed_cases %>% 
+  pull(location_name) %>% 
+  unique()
+```
+
+We can look at the data to identify indicators to use for analysis:
+
+```{r, echo = TRUE}
+library(gt)
+
+observed_cases %>% 
+  filter(location_name == "Republic of South Africa") %>%
+  head() %>% 
+  gt()
+```
+
+<h2>How to plot this data?</h2>
+
+We display the % ITN ownership in E8 countries with lower and upper bounds.
+
+```{r, echo = TRUE}
+ihme_nets %>% 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
+  filter(Country %in% e8_countries) %>%
+  ggplot(aes(x = Year, y = `% ITN Ownership`, color = Country)) +
+  geom_line(linewidth = 1) +
+  geom_ribbon(aes(ymin = `% ITN Ownership Lower Bound`, ymax = `% ITN Ownership Upper Bound`, fill = Country), alpha = 0.2) +
+  scale_colour_manual_health_radar() +  # Apply manual color scale for 'color' aesthetic (lines)
+  scale_fill_manual_health_radar() +    # Apply manual color scale for 'fill' aesthetic (ribbon fill)
+  theme_health_radar() +
+    labs(
+      title = "Estimated ITN Ownership",
+      subtitle = "With confidence bands",
+      x = "Year",
+      y = "ITN Ownership (%)",
+      color = "Country",
+      fill = "Country",  # Added 'fill' label for the ribbon shading
+      caption = str_wrap("The plot illustrates the estimated ITN ownership in E8 countries from 1999 to 2008. Lines indicate the ownership estimates, while shaded areas represent the confidence bands. The uncertainty in ITN ownership remains fairly consistent across all countries. South Africa and Eswatini had the lowest levels of ITN ownership, but after 2004, there is a noticeable rise in ownership in the other countries, with Zambia showing the higest increase.", width = 85)
+    )
+```
+
+Trend in % ITN Ownership among at-risk populations.
+
+```{r, echo = TRUE}
+ihme_nets %>% 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
+  filter(Country %in% e8_countries) %>%
+  ggplot(aes(x = Year, y = `% ITN Ownership Pop. At Risk`, color = Country)) +
+  geom_line(linewidth = 1) +
+  scale_colour_manual_health_radar() + 
+  theme_health_radar() +
+    labs(
+      title = "Estimated ITN Ownership in populations at-risk",
+      x = "Year",
+      y = "ITN Ownership in Pop. At Risk (%)",
+      color = "Country",
+      caption = str_wrap("The plot depicts estimated ITN ownership among at-risk populations from 1998 to 2008 in E8 countries. The rise in ITN ownership in all countries, with Zambia, Botswana and Zimbabwe showing the highest increases followed by Namibia, Mozambique and Angola. South Africa and Eswatinin remain lower than 20 % ownership in populations at risk.", width = 85)
+    )
+```
+
+ITN use among U5s in at-risk populations vs ITN Use in U5s.
+
+```{r, echo = TRUE}
+ihme_nets %>% 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
+  filter(Country %in% e8_countries) %>%
+  ggplot(aes(x = `% ITN Use U5`, y = `% ITN Use U5 Pop. At Risk`, color = Country)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_colour_manual_health_radar() + 
+  theme_health_radar() +
+    labs(
+      x = "ITN Use U5 (%)",
+      y = "ITN Use U5 Pop. At Risk (%)",
+      color = "Country",
+      fill = "Country",  # Added 'fill' label for the ribbon shading
+      caption = str_wrap("The plot depicts estimated ITN use among children under five years old in at-risk populations with respect to ITN usage in children under five in E8 countries. Zambia, Mozambique and Angola show an equal rise in ITN use among children under five in populations at risk as ITN usage increases in children under five years old. In contrast, The other countries show higher usage among children under five years old in at risk populations despite lower ITN usage in children under five.", width = 85)
+    )
+```
+
+Scale-up of LLIN distribution.
+
+```{r, echo = TRUE}
+ihme_nets %>% 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country),
+         Category = case_when(Country == "Zambia" ~ "1",
+                         Country %in% c("Angola", "Mozambique", "Namibia", "Zimbabwe") ~ "2",
+                         Country %in% c("Botswana", "Eswatini", "South Africa") ~ "3"
+                         ) %>% as.factor()
+         ) %>% 
+  filter(Country %in% e8_countries) %>%
+  group_by(Category) %>% 
+  ggplot() +
+  geom_bar(aes(x = Year, y = `LLINs Distributed Per Capita`, fill = Category), stat = "identity", position = "dodge") +
+  facet_wrap(~Country, scales = "fixed") +
+  scale_fill_manual_health_radar() +   
+  theme_health_radar() +
+    labs(
+      x = "Year",
+      y = "LLINs Distributed Per Capita",
+      fill = "Category",
+      caption = str_wrap("The plot shows estimate of annual % of LLINs distributed in E8 countries during the 1998 to 2008 period. Despite the low levels of distribution, South Africa has distributed LLINs relatively consistently through the years. There is a significant scale-up in LLIN distribution in all other countries, with Mozambique showing a consistent rise in distribution. Zambia has the highest distribution of LLINs per capita followed by Mozambique, Namibia, Zimbabwe and Angola, whereas Botswana, Eswatini and South Africa have the least LLINs distributed.", width = 85)
+    )
+```
+
+Here we show the trends in malaria deaths, percent prevalence and incidence rates during the 2000 to 2021 period.
+
+```{r, echo = TRUE}
+observed_cases %>% 
+  as.data.frame() %>% 
+  filter(measure_name == "Deaths", metric_name == "Number") %>% 
+  group_by(location_name) %>% 
+  ggplot() +
+  geom_bar(aes(x = year, y = val, fill = location_name), stat = "identity", position = "stack") +
+  scale_fill_manual_health_radar() +   
+  theme_health_radar() +
+    labs(
+      x = "Year",
+      y = "Deaths",
+      fill = "Country",
+      caption = str_wrap("This bar plot shows Institute of Health Metrics and Evaluation (IHME) estimates of the total number of deaths caused by malaria in Elimination 8 (E8) countries during the 2000 to 2021 period. The largest number of deaths is recorded in the Republic of Mozambique and Angola, followed by the Republic of Zimbabwe and Zambia whereas the remaining countries show substantially less deaths recorded during this period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
+    )
+```
+
+Similarly we show the percent prevalence of malaria in these countries in the following plot:
+
+```{r, echo = TRUE}
+observed_cases %>% 
+  as.data.frame() %>% 
+  filter(measure_name == "Prevalence", metric_name == "Percent") %>% 
+  ggplot(aes(x = year, y = val, color = location_name)) +
+  geom_line(linewidth = 1) +
+  scale_colour_manual_health_radar() +  
+  scale_fill_manual_health_radar() +
+  theme_health_radar() +
+    labs(
+      title = "Estimated malaria prevalence",
+      x = "Year",
+      y = "Percent",
+      color = "Location",
+      fill = "Location",  # Added 'fill' label for the ribbon shading
+      caption = str_wrap("The plot shows the trends in estimated percentage malaria prevalence across the malaria Elimination 8 (E8) countries during the 2000 to 2021 period. Malaria prevalence in these countries have remained below 40%, with some countries such as the Republic of Mozambique and Zambia, that show a decline in prevalence. Although there was a decrease observed in the Republic Angola in 2005, prevalence remained relatively constant for a period of 5 years from 2010 to 2015 which then saw a rise in prevalence from 10% to 20%. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
+    )
+```
+
+Finally, the incidence rates are shown in as follows:
+
+```{r, echo = TRUE}
+observed_cases %>% 
+  as.data.frame() %>% 
+  filter(measure_name == "Incidence", metric_name == "Rate") %>% 
+  ggplot(aes(x = year, y = val, color = location_name)) +
+  geom_line(linewidth = 1) +
+  geom_ribbon(aes(ymin = lower, ymax = upper, fill = location_name), alpha = 0.2) +
+  scale_colour_manual_health_radar() +  
+  scale_fill_manual_health_radar() +
+  theme_health_radar() +
+    labs(
+      title = "Estimated malaria incidence rate",
+      subtitle = "With confidence bands",
+      x = "Year",
+      y = "Rate (cases per 1000 per year)",
+      color = "Location",
+      fill = "Location",  
+      caption = str_wrap("The plot illustrates the estimated malaria incidence rate from 2000 to 2021 in Elimination 8 (E8) countries. The lines represent incidence rate and the shaded areas show the uncertainty intervals. The Republic of Mozambique experienced malaria incidence around 40 to 60 thousand cases per 1000 per year in 2000 and has decreased to 30 to 40 thousand cases per 1000 per thousand. The Republic of Zimbabwe experiences seasonal malaria incidence with cases fluctuating along the years during the 21 year period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/
+", width = 85)
+    )
+```
+
+<h2>How can this data be used in disease modelling?</h2>
+
+The IHME data on historical trends in incidence and mortality can serve to validate the accuracy of predictions made by transmission models. Malaria models frequently require calibration to align with IHME-derived estimates, such as adjusting transmission rates based on observed incidence or prevalence. Utilize IHME data to assess the potential impact of enhancing interventions. For instance, the effect of expanding bed net coverage on transmission rates can be investigated by incorporating IHME coverage estimates into transmission models.
+
+**Model projections**
+
+The dynamics of the SEACR model can be described with the following set of ordinary differential equations (ODEs):
+
+
+$$
+\frac{dS}{dt} = \mu N -\beta \frac{C + A}{N} S + \rho R - \mu S
+$$
+
+$$
+\frac{dE}{dt} = \beta \frac{C + A}{N} S - \sigma E - \mu E
+$$
+
+$$
+\frac{dA}{dt} = (1 - p) \sigma E - \gamma A - \mu A
+$$
+
+$$
+\frac{dC}{dt} = p \sigma E - \delta C - \mu C
+$$
+
+$$
+\frac{dR}{dt} = \gamma A + \delta C - \rho R - \mu R
+$$
+
+where:
+
+- S(t) represent individuals who are susceptible to malaria and have not been infected.
+- E(t) denotes individuals who have been infected with malaria but are not yet infectious (latent period).
+- A(t) are individuals who are infected and can transmit the disease but do not show symptoms.
+- C(t) are individuals who show symptoms of malaria and can transmit the disease.
+- R(t) represents individuals who have recovered from malaria and are assumed to have immunity.
+
+- N is the total population.
+
+- $\beta$ is the rate at which susceptible individuals become infected.
+- $\sigma$ is the rate at which exposed individuals become either asymptomatic or clinical.
+- $\gamma$ and $\delta$ are the rates at which asymptomatic and clinical individuals recover, respectively.
+- p denotes the proportion of infections that result in asymptomatic cases.
+
+```{r, echo = TRUE}
+# sample SIR model
+library(tidyverse)
+library(deSolve)
+
+# SEACR Model Function
+seacr_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    
+    N = S + E + A + C + R
+
+    dS <- mu * N - beta * (C + A) / N * S + rho * R - mu * S  
+    dE <- beta * (C + A) / N * S - sigma * E - mu * E
+    dA <- (1 - p) * sigma * E - gamma * A - mu * A 
+    dC <- p * sigma * E - delta * C - mu * C     
+    dR <- gamma * A + delta * C - rho * R - mu * R
+    
+    return(list(c(dS, dE, dA, dC, dR)))
+  })
+}
+
+# Parameters
+parameters <- c(beta = 0.3, sigma = 0.1, gamma = 0.05, delta = 0.1, p = 0.5, rho = 0.02, mu = 0.01)
+
+# Initial Conditions
+initial_values <- c(S = 999, E = 0, A = 0, C = 1, R = 0) 
+
+# time steps
+times <- seq(0, 365*8, 1)
+
+# model output
+model_output <- ode(
+  y = initial_values,
+  times = times,
+  func = seacr_model,
+  parms = parameters
+  ) %>% 
+  as.data.frame() %>% 
+  pivot_longer(!time, names_to = "state", values_to = "value") %>% 
+  mutate(
+    year = 2000 + ceiling(time/365),
+    state = as_factor(state)
+    ) %>% 
+  group_by(year, state) %>%
+  summarize(
+      value = sum(value),
+      .groups = "keep"
+    ) 
+```
+
+**How to plot model outputs**
+
+We can generate plots of projected malaria deaths, prevalence and incidence in these areas.
+
+```{r, echo = TRUE}
+model_output %>% 
+  ggplot() +
+    geom_line(aes(x = year, y = value, colour = state), linewidth = 1) +
+    scale_colour_manual_health_radar() +
+    theme_health_radar() +
+      labs(
+        x = "Time",
+        y = "Population",
+        caption = str_wrap("SEACR model projections for the 2000 and 2008 period.", width = 85)
+      )
+```
+
+**Model calibration**
+
+Calibration involves tuning the parameters $\beta$ and $\gamma$ to adjust the model output with the estimated IHME data to determine model parameters.
+
+```{r, echo = TRUE}
+# libraries
+library(readr)
+library(tidyverse)
+library(deSolve)
+
+# SEACR Model Function
+seacr_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    
+    N = S + E + A + C + R
+
+    dS <- mu * N - beta * (C + A) / N * S + rho * R - mu * S  
+    dE <- beta * (C + A) / N * S - sigma * E - mu * E
+    dA <- (1 - p) * sigma * E - gamma * A - mu * A 
+    dC <- p * sigma * E - delta * C - mu * C     
+    dR <- gamma * A + delta * C - rho * R - mu * R
+    
+    return(list(c(dS, dE, dA, dC, dR)))
+  })
+}
+
+# Parameters
+parameters <- c(beta = 0.3, sigma = 0.1, gamma = 0.05, delta = 0.1, p = 0.5, rho = 0.02, mu = 0.01)
+
+# Initial Conditions
+initial_values <- c(S = 999, E = 0, A = 0, C = 1, R = 0)
+
+# time steps
+times <- seq(0, 365*8, 1)
+
+# observed cases
+observed_df <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) %>% as.data.frame() %>% 
+    filter(measure_name == "Incidence", metric_name == "Number", location_name == "Republic of South Africa", year <= 2008) %>% 
+  rename(value = val) %>% 
+  select(year, location_name, value)
+
+# objective function (sum of squared errors)
+objective_function <- function(parms, observed_df) {
+  
+  output_df <- ode(y = initial_values, times = times, func = seacr_model, parms = parms) %>% 
+    as.data.frame() %>% 
+    pivot_longer(!time, names_to = "state", values_to = "value")   %>% 
+    mutate(
+    year = 2000 + ceiling(time/365),
+    state = as_factor(state)
+    ) %>% 
+  group_by(year, state) %>%
+  summarize(
+      value = sum(value),
+      .groups = "keep"
+    ) 
+  
+  # actual IHME data
+  observed_C <- observed_df$value
+  
+  # model projections
+  predicted_C <- filter(output_df, state == "C")$value
+  
+  # sum of squared errors between model and actual data
+  error <- sum((observed_C - predicted_C)^2)
+  
+  return(error)  
+}
+
+# Run optimization
+# optim_result <- optim(par = parameters, fn = objective_function, observed_df = observed_df, method = "Nelder-Mead")
+
+optim_result <- optim(par = parameters, fn = objective_function, observed_df = observed_df, method = "L-BFGS-B", lower = c(beta = 0.1, sigma = 0.1, gamma = 0.01, delta = 0.1, p = 0.1, rho = 0.01, mu = 0.01), upper = c(beta = 1, sigma = 1, gamma = 0.1, delta = 1, p = 1, rho = 0.1, mu = 0.1))
+
+# Best-fit parameters
+cal_parameters <- optim_result$par
+
+# View parameters
+cal_parameters %>% 
+  as.data.frame()
+```
+
+
+**Use calibrated parameters**
+
+Use parameters obtained through calibration
+
+```{r, echo = TRUE}
+# sample SIR model
+library(tidyverse)
+library(deSolve)
+
+# SEACR Model Function
+seacr_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    
+    N = S + E + A + C + R
+
+    dS <- mu * N - beta * (C + A) / N * S + rho * R - mu * S  
+    dE <- beta * (C + A) / N * S - sigma * E - mu * E
+    dA <- (1 - p) * sigma * E - gamma * A - mu * A 
+    dC <- p * sigma * E - delta * C - mu * C     
+    dR <- gamma * A + delta * C - rho * R - mu * R
+    
+    return(list(c(dS, dE, dA, dC, dR)))
+  })
+}
+
+# Parameters
+parameters <- cal_parameters
+
+# Initial Conditions
+initial_values <- c(S = 999, E = 0, A = 0, C = 1, R = 0)
+
+# time steps
+times <- seq(0, 365*8, 1)
+
+# model calibration output
+calibration_output <- ode(
+  y = initial_values,
+  times = times,
+  func = seacr_model,
+  parms = parameters
+  ) %>% 
+  as.data.frame() %>% 
+  select(time, C) %>% 
+  pivot_longer(!time, names_to = "state", values_to = "value")   %>% 
+    mutate(
+    year = 2000 + ceiling(time/365),
+    state = as_factor(state)
+    ) %>% 
+  group_by(year) %>%
+  summarize(
+      value = sum(value),
+      .groups = "keep"
+    ) %>% 
+  select(year, value)
+```
+
+
+**How to plot calibration outputs**
+
+We can generate plots of projected malaria deaths, prevalence and incidence in these areas.
+
+```{r, echo = TRUE}
+model_output <- model_output %>% 
+  filter(state == "C") 
+
+merged_df <- bind_rows(
+  mutate(model_output, key = "predicted"),
+  mutate(calibration_output, key = "calibrated"), 
+  mutate(observed_df, key = "actual")
+  ) 
+
+ggplot() +
+  geom_point(data = filter(merged_df, key == "actual"), aes(x = year, y = value, colour = key), size = 2) +
+  geom_line(data = filter(merged_df, key == "calibrated"), aes(x = year, y = value, colour = key), linewidth = 1) +
+  geom_line(data = filter(merged_df, key == "predicted"), aes(x = year, y = value, colour = key), linewidth = 1) +
+  scale_colour_manual_health_radar() +
+  theme_health_radar() +
+    labs(
+      x = "Time",
+      y = "Cases",
+      caption = str_wrap("Observed, Predicted and Calibrated malaria incidence using the IHME data for the Republic of South Africa during the 2000 and 2008 period.", width = 85)
+    )
+```
 
 :::
