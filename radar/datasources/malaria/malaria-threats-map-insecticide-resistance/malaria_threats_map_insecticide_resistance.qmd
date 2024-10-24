@@ -84,7 +84,7 @@ The information included typically looks like this. Data are available for each 
   
   - Insecticide resistance status varies spatially and temporally. Annual national data, provided for summary purposes, are not necessarily reflective of local situations. For decision-making purposes, the most recent data and those at the lowest possible geographical level should be used. 
   
-  - Data quality is dependent on the correct implementation of the standard insecticide resistance test procedures. Ambient conditions such as temperature and humidity, as well as the procedures followed to rear and handle the mosquitoes during the test, may cause significant variations in test results that hamper the comparability of results in time and space. Countries and institutions are encouraged to strictly follow the WHO standard operation procedures for resistance monitoring
+  - Data quality is dependent on the correct implementation of the standard insecticide resistance test procedures. Ambient conditions such as temperature and humidity, as well as the procedures followed to rear and handle the mosquitoes during the test, may cause significant variations in test results that hamper the comparability of results in time and space. Countries and institutions are encouraged to strictly follow the WHO standard operation procedures for resistance monitoring.
 
 <h2>Examples of data use in literature</h2>
 
