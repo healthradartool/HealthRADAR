@@ -35,7 +35,7 @@ Tracking surveillance activities helps to understand current research gaps. Know
 
 <h2>Accessing the data</H2>
 
-The data can be accessed on the Global Malaria Programme page on the WHO website [Malaria Threat Map](https://apps.who.int/malaria/maps/threats/#/stories?theme=prevention). The data has a web page which includes useful contextual information as well as additional resources. The data can be viewed in the original report in excel format as it is usually preferable for modelling to have an excel spreadsheet.
+The data can be accessed on the Global Malaria Programme page on the WHO website [Malaria Threats Map](https://apps.who.int/malaria/maps/threats/#/stories?theme=prevention). The data has a web page which includes useful contextual information as well as additional resources. The data can be viewed in the original report in excel format as it is usually preferable for modelling to have an excel spreadsheet.
 
 To access the data, click on the [link](https://apps.who.int/malaria/maps/threats) to access the Malaria Threats Map page. Click on the data download tab. Select the theme Invasive Vector Species to access the Invasive Vector Species detections. Data can be filtered according to species and year (1984-2024) in which collected. Filter can be applied according to location. Follow the prompts to select and download data. The data is downloaded as an Excel file.
 
@@ -59,7 +59,7 @@ Figure 2 shows the distribution of all invasive mosquito species in Africa and s
 
 ![Sample of the summary dashboard that can be created using the distribution data.](images/summary_dashboard.png)
 
-Figure 3 shows a snap-shot of the summary data that can be generated from the selected dataset with the use of the appropriate filters. In this example, the vectors of Angola are listed and it is evident that An. shephensi has not yet moved down along the west coast of Africa. The insecticide resistance status of the vector mosquitoes is also given. The [complete dashboard](https://apps.who.int/malaria/maps/threats/#/dashboards?country=AO&theme=prevention) provides more information.
+Figure 3 shows a snap-shot of the summary data that can be generated from the selected dataset with the use of the appropriate filters. In this example, the vectors of Angola are listed and it is evident that *An. stephensi* has not yet moved down along the west coast of Africa. The insecticide resistance status of the vector mosquitoes is also given. The [complete dashboard](https://apps.who.int/malaria/maps/threats/#/dashboards?country=AO&theme=prevention) provides more information.
 
 <h2>Examples of data use in literature</h2>
 
@@ -87,6 +87,6 @@ The data contained in the database can be explored through the interactive data 
 
 <h2>How to plot this data</h2>
 
-Data has been extracted for Kenya (invasive species) and Angola (Dashboard) . *Anopheles stephensi* has not yet not yet been detected in Angola but it has invaded nearly all districts in Kenya. The absence of *An. stephensi* also indicated that entomological surveillance systems need to be strengthened especially where there is no urban malaria. Surveillance systems for entomology needs to take into account the urban nature of the invasive mosquitoes also its tendency to breed in man-made breeding sites such as in water storage containers and open sewers. 
+Data has been extracted for Kenya (invasive species) and Angola (Dashboard) . *Anopheles stephensi* has not yet been detected in Angola but it has invaded nearly all districts in Kenya. The absence of *An. stephensi* also indicated that entomological surveillance systems need to be strengthened especially where there is no urban malaria. Surveillance systems for entomology needs to take into account the urban nature of the invasive mosquitoes also its tendency to breed in man-made breeding sites such as in water storage containers and open sewers. 
 
 :::
