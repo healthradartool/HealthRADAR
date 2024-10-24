@@ -214,44 +214,31 @@ fun_plot <- function(df){
   ggplot(data = df, aes(
     y = reorder(DISTRICT, Global_Walking_Only_Travel_Time_To_Healthcare_ZMB), 
     x = Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)) +
-    geom_col(fill = "#1b9e77") +
+    geom_col(fill = theme_health_radar_colours[5]) +
+     theme_health_radar() +
     geom_text(aes(label = round(Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)), 
               hjust = -0.2, size = 2.5) +
-    labs(x = "", y = "", title = df$PROVINCE) +
-    # Sets axis labels to blank and title to province name
+    labs(x = "", y = "", title = df$PROVINCE) + # Sets axis labels to blank and title to province name
     xlim(0, 450) +
-    theme_bw() + 
-    theme(
-      panel.border = element_rect(colour = "black", fill=NA, size=0.5),
-      plot.title = element_text(hjust = 0.5, size = 10, face = "bold"),
-      axis.text.x = element_text(size = 8, color = "black"), 
-      axis.text.y = element_text(size = 8, color = "black"),
-      axis.title.x = element_text(size = 8),
-      axis.title.y = element_text(size = 8),
-      legend.title = element_text(size = 8, colour = 'black'),
-      legend.text = element_text(size = 8, colour = 'black'),
-      legend.key.height = unit(1, "cm")
-      )
+    theme_bw() # add borders to plots
 }
 
 
 # Applying 'fun_plot' to each dataframe in 'list_district_df' and combine plots
 Reduce(`+`, lapply(list_district_df, fun_plot)) + 
+   # To add annotations to the combined plot
   plot_annotation(
-    # Adds annotations to the combined plot
-    title = str_wrap("Average walking time to access healthcare in Zambia's 
+    title = str_wrap("Average walking time in minutes to access healthcare in Zambia's 
                      Eastern, Northen, Southern, and Western province, by district"),
-    caption = str_wrap("This illustrative plot shows the average walking time in selected provinces by 
-    district. The figure indicates that Northern province has districts with the highest 
-    walking time to access healthcare", width = 100),
-    theme = theme(
-      plot.title = element_text(hjust = 0.5, face = "bold"),
-      plot.caption = element_text(hjust = 0.5)))
+    caption = str_wrap("This illustrative plot shows the average walking time in minutes of various districts in selected provinces. The figure indicates that Northern province has districts with the highest 
+    walking time to access healthcare, i.e. up to five hours. Source: MAP", width = 100),
+    theme = theme_health_radar()
+    )
 ```
 
 <h2>How can this data be used in disease modelling?</h2>
 
-As earlier alluded, that MAP provides modeled estimates for various interventins including IRS. Below, we show how IRS estimates from MAP can can be used for disease modeling. 
+As earlier alluded, that MAP provides modelled estimates for various interventions including indoor residual spraying (IRS). Below, we show how IRS estimates from MAP can can be used for disease modeling. 
 
 #### Preparing the data
 
@@ -264,47 +251,30 @@ The code below demonstrates how IRS data downloaded from MAP can be prepared for
 #| code-summary: "Show the code"
 #| warning: false
 
-
-#Installing pacman package that install and calls packages not installed
-#install.packages("pacman") 
-
 # Load packages 
 library(deSolve)
 library(tidyverse)
 library(readxl)
 
-#Read in IRS data.
+# Read in IRS data.
 
 IRSdata <- read.csv("National Unit-data.csv") |>  
-  mutate(sprayed = (Value/100)*3600000, #estimating number of households sprayed) 
+  mutate(sprayed = (Value/100)*3600000, # estimated number of households sprayed
          time = c(seq(0, 3285, by = 365))) #time steps for each year for 10 years
             
 
-#Coverege plot
+# Coverage plot
 
-ggplot(data = IRSdata, aes(
-    y = Value, 
-    x = Year)) +
-    geom_line(color = "#d95f02", linewidth = 0.8) +
-    geom_text(aes(label = round(Value)), 
+ggplot(data = IRSdata, aes(x = Year, y = Value)) +
+  geom_line(color = theme_health_radar_colours[2], linewidth = 0.8) +
+  geom_text(aes(label = round(Value)), 
               hjust = -0.2, size = 2.5) +
-    labs(x = "Year", y = "IRS Coverage (%)", title = "Countrywide IRS coverage for Zambia",
-         caption = str_wrap("This plot illustrates yearly country-wide IRS coverage from 2013 to 2022. The graph reveals fluctuations in coverage over the years, with notable low in 2018.",width = 90)) +
-    scale_x_continuous(breaks = round(seq(min(IRSdata$Year), max(IRSdata$Year), by = 1))) + # Rounding x-axis values
-    theme_minimal() +
-    theme(
-        plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-        plot.subtitle = element_text(hjust = 0.5, size = 14),
-        axis.title = element_text(size = 14, face = "bold"),
-        axis.text = element_text(size = 12),
-        plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-        plot.margin = margin(t = 20, r = 20, b = 40, l = 20),
-        strip.text = element_text(size = 12, face = "bold"),
-        legend.position = "right",  
-        panel.background = element_rect(fill = "#F0F0F0", color = NA),  
-        panel.spacing = unit(0.5, "lines")
-    )
-
+  labs(x = "Year",
+       y = "IRS Coverage (%)",
+       title = "Countrywide IRS coverage for Zambia",
+       caption = str_wrap("This plot illustrates yearly country-wide IRS coverage from 2013 to 2022. The graph reveals fluctuations in coverage over the years, with a notable low in 2018. Source: MAP", width = 90)) +
+  scale_x_continuous(breaks = round(seq(min(IRSdata$Year), max(IRSdata$Year), by = 1))) + # Rounding x-axis values
+  theme_health_radar()
 
 ```
 
@@ -330,7 +300,7 @@ in the code below represented in the SEIRS (Susceptible, Exposed, Infected, Reco
 seirs <- function(t, x, parms)  {
   with(as.list(c(parms, x)), {
     M = Sm+Em+Im
-    P = S+E+I+R
+    P = S+E+A+C+R
     m = M/P
     
     IRSc = IRSdata$sprayed*pp_h/P # proportion of the population covered by Current spraying cycle
@@ -340,38 +310,42 @@ seirs <- function(t, x, parms)  {
     IRS <- approx(IRSt, IRSe, t, method = "constant", rule = 2)$y # annual IRS implementation
     seasn = seasn_0*(1 + amp*cospi((t - psi)/360)^2)# Seasonality
     IRSs <- IRS*seasn # Seasonal implementation
+    Infectious <- C + zeta_a*A #infectious reservoir
     
-    lambda = ((a^2*b*c*m*I/P)/(a*c*I/P+mu_m)*(gamma_m/(gamma_m+mu_m)))*(1-IRSs)
+    lambda = ((a^2*b*c*m*Infectious/P)/(a*c*Infectious/P+mu_m)*(gamma_m/(gamma_m+mu_m)))*(1-IRSs)
     
     dSm=0
     dEm=0
     dIm=0
     dS= mu_h*P -lambda*S + rho*R - mu_h*S
     dE= lambda*S - (gamma_h + mu_h)*E
-    dI=gamma_h*E - (r + mu_h)*I
-    dR=r*I - (rho + mu_h)*R
+    dA= pa*gamma_h*E - (delta + mu_h)*A
+    dC= (1-pa)*gamma_h*E - (r + mu_h)*C
+    dR= delta*A + r*C - (rho + mu_h)*R
     
     dCInc = lambda*S
     
-    output <- c(dSm, dEm, dIm, dS, dE, dI, dR, dCInc)
+    output <- c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dCInc)
     list(output)
   })
 }
 # Input definitions ####
 #Initial values
-start<-c(Sm = 30000000, Em=20000000, Im=800000, S=10000000, E=5000000, I=2000000,R=0, CInc = 0 )
+start<-c(Sm = 30000000, Em=20000000, Im=800000, S=10000000, E=4000000, A=1000000, C=2000000, R=0, CInc = 0 )
 
 # Parameters
 parms <- c(a = 0.3, #human feeding rate per mosquito
            b = 0.5, # transmission efficiency M->H
-           c=0.5, # transmission efficiency H->M
+           c = 0.5, # transmission efficiency H->M
            gamma_m = 1/10, #rate of onset of infectiousness in mosquitoes
            mu_m = 1/15, #natural birth/death rate in mosquitoes
            mu_h = 1/(70*365), #natural birth/death rate in humans
            gamma_h = 1/20, #rate of onset of infectiousness in humans
            r=1/50, # recovery rate 
-           rho = 1/(1*365), # 
-           
+           rho = 1/(1*365), # rate of loss of immunity after recovery
+           delta = 1/150, # natural recovery rate
+           zeta_a = 0.4, # relative infectiousness of of asymptomatic infections
+           pa = 0.4, # probability of asymptomatic infection
            pp_h = 5, # number people per household
            no_hh = 3600000, # total number of households
            phi = 0.8, # IRS effectiveness
@@ -393,7 +367,7 @@ hm<-ode(times=times, y=start, func=seirs,parms=parms)
 
 #### Incidence
 
-The code below demonstrates how to plot model outputs. In this example, we plot daily incidence from 2013 to 2022. The choice of model output to plot depends on the goals of the modeler or stakeholders. For instance, plotting incidence for this model may highlight the estimated impact of IRS on cases over time. However, it is important to note that the outputs of this model were not calibrated to real data and therefore do not reflect actual impacts or real case numbers.
+The code below demonstrates how to plot model outputs. In this example, we plot daily incidence from 2013 to 2022. The choice of model output to plot depends on the goals of the modeller or stakeholders. For instance, plotting incidence for this model may highlight the estimated impact of IRS on cases over time. However, it is important to note that the outputs of this example model have not been calibrated to real data and therefore do not reflect actual impacts or real case numbers.
 
 ```{r}
 #| echo: true
@@ -401,36 +375,25 @@ The code below demonstrates how to plot model outputs. In this example, we plot 
 #| code-summary: "Show the code"
 #| warning: false
 
-hmplot<-as_tibble(as.data.frame(hm)) |>  
-  mutate(P=S+E+I+R,
+hmplot <- as_tibble(as.data.frame(hm)) |>  
+  mutate(P=S+E+A+C+R,
          Inc = c(0, diff(CInc))) |>  
   pivot_longer(names_to = "variable", cols = !1) |>  
-  mutate(model = "human") |>  filter(variable == "Inc")
+  mutate(model = "human") |>  
+  filter(variable == "Inc")
 
 
-ggplot(data = hmplot, aes(
-    y = value, 
-    x = time / 365 + 2013)) +  # Convert time to years starting from 2013
-    geom_line(color = "#7570b3", linewidth = 0.8) +
-    labs(x = "Year", y = "Incidence", title = "Daily country-wide incidence",
-         caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2014 to 2022. The graph reveals fluctuations in incidence over the years, with notable peaks in 2018. This peak coincides with the period when IRS coverage was at its lowest, highlighting the potential impact of reduced intervention efforts on malaria transmission.",width = 90)) +
+ggplot(data = hmplot, aes(y = value, x = time / 365 + 2013)) +  # Convert time to years starting from 2013
+    geom_line(color = theme_health_radar_colours[9], linewidth = 0.8) +
+    labs(x = "Year", 
+         y = "Incidence", 
+         title = "Daily country-wide incidence",
+         caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2014 to 2022. The graph reveals fluctuations in incidence over the years, with notable peaks in 2018. This peak coincides with the period when IRS coverage was at its lowest, highlighting the potential impact of reduced intervention efforts on malaria transmission. Source: Model output.", width = 90)) +
     ylim(25000, 50000) + 
-
+    theme_health_radar() +
     scale_x_continuous(breaks = seq(2013, 2024, by = 2)) +  # Set x-axis breaks to multiples of 2 years
-    xlim(2014, 2022) + 
-    theme_minimal() +
-  
-    theme(
-        plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-        plot.subtitle = element_text(hjust = 0.5, size = 14),
-        axis.title = element_text(size = 14, face = "bold"),
-        axis.text = element_text(size = 12),
-        plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-        plot.margin = margin(t = 20, r = 20, b = 40, l = 20),
-        strip.text = element_text(size = 12, face = "bold"),
-        legend.position = "right",  
-        panel.background = element_rect(fill = "#F0F0F0", color = NA),  
-        panel.spacing = unit(0.5, "lines") )
+    xlim(2014, 2022) 
+    
 
 
 ```

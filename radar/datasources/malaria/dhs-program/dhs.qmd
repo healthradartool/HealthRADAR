@@ -400,6 +400,7 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
 #| warning: false
 
 library(here)
+library(deSolve)
 source(here::here("radar/theme_health_radar.R"))
 
 
@@ -527,17 +528,15 @@ itn_data <- data.frame(
   pivot_longer(!Year, names_to = "ITN.characteristic", values_to = "Value")
 
 # Create the ITN coverage plot
-ggplot(itn_data, aes(x = Year)) +
-  geom_line(aes(y = Value, colour = ITN.characteristic)) +
+ggplot(itn_data) +
+  geom_line(aes(x = Year, y = Value, colour = ITN.characteristic)) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
-  scale_fill_continuous_health_radar() +
   scale_x_continuous(breaks = seq(2011, 2024, 2)) +
   scale_y_continuous(
     name = "Proportion of People",
     limits = c(0, 1), 
-    labels = scales::percent
-    ) + 
+    labels = scales::percent) + 
   labs(
     title = "Effective ITN Coverage in Mozambique",
     subtitle = "Malaria prevention through access and use of ITNs",
@@ -555,6 +554,117 @@ ggplot(itn_data, aes(x = Year)) +
 In epidemiology, the measure of intensity of disease transmission is also known as the force of infection. Simply put, this is the rate at which susceptible individuals become infected per unit time. Three main factors determine this: the proportion of the mosquito population that is infectious, the contact rate between infectious mosquitoes and susceptible humans, and the probability that a bite from an infectious mosquito transmits disease to a susceptible human. The same applies with respect to infectious humans and susceptible mosquitoes.
 
 Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to infection. As such, the force of infection now excludes those protected by ITNs.
+
+```{r}
+# Time points for the simulation
+Y = 13 # Years of simulation
+times <- seq(0, 365*Y, by = 1)
+
+itndaily_data <- approx(2011:2024, eff_cov, n = length(times), method = "constant", rule = 2)$y
+itnfunc <- approxfun(itndaily_data, method = "linear", rule = 2)
+
+
+# SEACR-SEI model
+seacr <- function(times, start, parameters, itnfunc) { 
+  with(as.list(c(start, parameters)), {
+    P = S + E + A + C + R  
+    M = Sm + Em + Im
+    m = M / P
+
+    ITN <- itnfunc(times)
+    seas = 1+amp*cos(2*pi*(times/365 - phi))
+    
+    # Force of infection
+    Infectious = C + zeta_a*A #infectious reservoir
+    lambda.v <- a*M/P*b*Im/M*seas*(1-ITN) #introduce seasonality and ITNss
+    lambda.h <- a*c*Infectious/P*seas*(1-ITN)
+    
+    
+    # Differential equations/rate of change
+    dSm = mu_m*M - lambda.h*Sm - mu_m*Sm
+    dEm = lambda.h*Sm - (gamma_m + mu_m)*Em
+    dIm = gamma_m*Em - mu_m*Im
+    
+    dS = mu_h*P - lambda.v*S + rho*R - mu_h*S
+    dE = lambda.v*S - (gamma_h + mu_h)*E
+    dA = pa*gamma_h*E - (delta + mu_h)*A
+    dC = (1-pa)*gamma_h*E - (r + mu_h)*C
+    dR = delta*A + r*C - (rho + mu_h)*R
+    
+    dCInc = lambda.v*S
+    
+    
+    # Output
+    list(c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dCInc), ITN = ITN, seas = seas)
+  })
+}
+
+
+# Initial values for compartments
+initial_state <- c(Sm = 1000000, # susceptible mosquitoes
+                   Em = 100000, # exposed and infected mosquitoes
+                   Im = 200000, # infectious mosquitoes
+                   S = 350000, # susceptible humans
+                   E = 200000, # exposed and infected humans
+                   A = 10000, # asymptomatic and infectious humans
+                   C = 100000, # clinical and symptomatic humans
+                   R = 0, # recovered and semi-immune humans
+                   CInc = 0 # cumulative incidence
+)
+# Country-specific parameters should be obtained from literature review and expert knowledge
+parameters <- c(a = 0.25, # human biting rate
+                b = 0.4, # probability of transmission from mosquito to human
+                c = 0.4, # probability of transmission from human to mosquito
+                r = 1/21, # rate of loss of infectiousness after treatment
+                rho = 1/160, # rate of loss of immunity after recovery
+                delta = 1/150, # natural recovery rate
+                zeta_a = 0.2, # relative infectiousness of of asymptomatic infections
+                pa = 0.2, # probability of asymptomatic infection
+                mu_m = 1/10, # birth and death rate of mosquitoes
+                mu_h = 1/(60*365), # birth and death rate of humans
+                gamma_m = 1/10, # extrinsic incubation rate of parasite in mosquitoes
+                gamma_h = 1/10, # extrinsic incubation rate of parasite in humans
+                amp = 0.6, #amplitude of seasonality
+                phi = 278/365 #phase angle; start of season
+                )
+
+# Run the model
+
+out <- ode(y = initial_state, 
+           times = times, 
+           func = seacr, 
+           parms = parameters,
+           itnfunc = itnfunc)
+
+# Post-processing model output into a dataframe
+
+df <- as_tibble(as.data.frame(out)) |> 
+  mutate(P = S + E + A + C + R,
+         M = Sm + Em + Im,
+         Inc = c(0, diff(CInc))) |> 
+  pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
+  mutate(date = ymd("2011-01-01") + time)
+
+# Plotting incidence
+
+df |> 
+  filter(variable %in% "Inc", time > 50) |> 
+  ggplot()+
+  geom_line(aes(x = date, y = value), colour = theme_health_radar_colours[4]) +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  labs(x = "Year", 
+         y = "Incidence", 
+         title = "Daily country-wide incidence",
+         caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2011 to 2024. We see a seasonal pattern over the years, and a reduction in incidence following mass distribution campaigns in 2015, 2018 and 2022. The lowest incidence is in 2019, after a peak effective coverage of 50% of the population at risk in 2018. In addition, we see how incidence steadily increases as the effectiveness of ITNs/LLINs wanes over time. Source: Model output.")) +
+    theme_health_radar() +
+      scale_x_date(date_breaks = "2 years",
+               date_labels = "%Y"
+               )  # Set x-axis breaks to multiples of 3 years
+
+
+```
+
 
 
 :::

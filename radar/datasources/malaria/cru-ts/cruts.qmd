@@ -191,10 +191,9 @@ temperature_values <- read_csv("data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.
   filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
 
 ggplot() +
-   geom_line(data = temperature_values, aes(x = time, y = tas, colour = "Temperature")) +
-  geom_point(data = temperature_values, aes(x = time, y = tas, colour = "Temperature")) +
+   geom_line(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[13]) +
+  geom_point(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[13]) +
   theme_health_radar() +
-  scale_colour_manual_health_radar(manual_colours) +
   labs(
     title = str_wrap("Average Mean Surface Air Temperature values in Bulawayo from 2000 to 2020", width = 50),
     x = "Year",
@@ -213,8 +212,8 @@ rainfall_values <- read_csv("data/PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo
   filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
 
 ggplot() +
-   geom_line(data = rainfall_values, aes(x = time, y = PRCPTOT, colour = "Rainfall")) +
-  geom_point(data = rainfall_values, aes(x = time, y = PRCPTOT, colour = "Rainfall")) +
+   geom_line(data = rainfall_values, aes(x = time, y = PRCPTOT), colour = theme_health_radar_colours[8]) +
+  geom_point(data = rainfall_values, aes(x = time, y = PRCPTOT), colour = theme_health_radar_colours[8]) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   labs(
@@ -359,7 +358,6 @@ df |>
                            labels = c("Mosquitoes", "Humans"))) |>
   ggplot() +
   geom_line(aes(x = date, y = value, colour = variable)) +
-  #facet_wrap(~variable) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   theme(panel.spacing = unit(2, "lines")) +
@@ -376,12 +374,12 @@ df |>
 
 The force of infection (i.e. the rate at which susceptible individuals become infected per unit time) is largely driven by the human biting rate, the ratio of vectors relative to hosts, the probability of transmission and the size of the infectious reservoir. Below, we see how the temperature has driven the rate of new cases through the temperature-dependent variables.
 
-This is especially insightful when the model includes periods of time impacted by severe environmental conditions such as drought or flooding, and the consequences on malaria transmission dynamics are reflected in the incidence values.
+This is especially insightful when the model includes periods of time impacted by severe environmental conditions such as drought or flooding, and the consequences on malaria transmission dynamics are reflected in the incidence values. Note that the example below is not an actual reflection of malaria transmission in Bulawayo, and is merely illustrative.
 ```{r}
 df |> 
-  filter(variable %in% "Inc") |> 
+  filter(variable %in% "Inc", time > 50) |> 
   ggplot()+
-  geom_line(aes(x = date, y = value, colour = variable)) +
+  geom_line(aes(x = date, y = value), colour = theme_health_radar_colours[17]) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   theme(legend.position = "none") +
@@ -389,9 +387,9 @@ df |>
                date_minor_breaks = "3 months",
                date_labels = "%Y") +
   labs(title = "Daily incidence values in the human population", 
-       x = "Date",
+       x = "Year",
        y = "Number of new cases",
-      caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. Source: Model output"))
+      caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. We see a small peak in 2017, coinciding with a high rainfall values, and potentially larger mosquito populations driving incidence. Source: Model output"))
 ```
 
 
