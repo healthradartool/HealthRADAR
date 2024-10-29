@@ -1,8 +1,9 @@
 ---
-title: "President's Malaria Initiative"
-description: "The President's Malaria Initiative is a U.S. government program aimed at reducing malaria-related deaths and illnesses in high-burden countries through targeted interventions and support."
-date: 07/04/2024 # mm-dd-yyyy
+title: "President's Malaria Initiative (PMI)"
+description: "PMI collaborates closely with partner countries to scale up proven interventions and strengthen local capacity and health systems."
+date: 10/25/2024 # mm-dd-yyyy
 image: "images/pmi.png"
+lightbox: true
 execute:
   message: false
   warning: false
@@ -27,20 +28,316 @@ categories:
 
 <h2>About the data</h2>
 
-The U.S. Government’s focal point for the global fight against malaria, the U.S. President’s Malaria Initiative has helped save millions of lives and contributed to substantial gains in education, productivity, and economic development.
-PMI started as a five-year initiative with the goal of reducing malaria deaths by 50% in 15 African countries. Thanks to the bipartisan support of Congress and the generosity of the American people, PMI now works in 24 partner countries in sub-Saharan Africa and three programs in the Greater Mekong Subregion in Southeast Asia–representing about 90% of the global malaria burden.
-PMI delivers cost-effective, life-saving malaria interventions alongside catalytic technical and operational assistance to equip and empower partner countries to end malaria
+The U.S. Government's focal point for the global fight against malaria, the U.S. President's Malaria Initiative has helped save millions of lives and contributed to substantial gains in education, productivity, and economic development. PMI started as a five-year initiative with the goal of reducing malaria deaths by 50% in 15 African countries. Thanks to the bipartisan support of Congress and the generosity of the American people, PMI now works in 24 partner countries in sub-Saharan Africa and three programs in the Greater Mekong Subregion in Southeast Asia--representing about 90% of the global malaria burden. PMI delivers cost-effective, life-saving malaria interventions alongside catalytic technical and operational assistance to equip and empower partner countries to end malaria.
 
 <h2>Accessing the data</h2>
 
-{{< lipsum 1 >}}
+Information on PMI's life-saving malaria interventions and operational support to partner countries is available on the [PMI website](https://www.pmi.gov) 
+
+• Under the "Where We Work" tab from the website, fact sheets for the 27 partner countries can be accessed in PDF format. You can right click on the country's name to access the country's fact sheet, yearly Malaria Operational Plans and download them.
+
+• Under the "Impact" tab, data on malaria burden, PMI funding, PMI commodity investment and the program's impact across partner countries are presented through an interactive map or illustrative graph. This map allows users to hover over individual countries to access detailed information on malaria cases, deaths, and associated metrics. Aside this, filters are also available to select the region or the country and sliders to select the year.
+
+• In the "Resources" section, annual reports, comprehensive one-year Malaria Operational Plans (MOPs), technical documents, and reports detailing interventions in each partner country by year are available for download in PDF format. A search can be refined through the use of filters. The filters are for Technical areas, countries and dates.
 
 <h2>What does the data look like?</h2>
 
-{{< lipsum 1 >}}
+The data are provided for each country on an annual basis and can be accessed through an interactive map or graphical representations. However, no downloadable Excel or CSV files are available. Users must manually extract the data from the map or graph in order to generate Excel or CSV files, should they wish to conduct analyses beyond those available on the website. The following examples illustrate the provided information.
+
+![](images/Screenshot%20(351).png)
+
+![](images/Screenshot%20(352).png)
 
 <h2>Key points to consider</h2>
 
-{{< lipsum 1 >}}
+On the PMI's website, the data are provided for each country on an annual basis and can be accessed through an interactive map or graphical representations.
+
+- The data is sourced mostly from the World Malaria Report (WMR) 
+ 
+- Download Options: There are no downloadable Excel or CSV files available.
+ 
+- Manual Data Extraction: Users need to manually extract data from the map or graph to create Excel or CSV files for further analysis.
+ 
+- Yearly data might overlook the seasonal trends in malaria transmission, which are affected by variables like rainfall, temperature, and vectors abundance. This can result in either an overestimation or underestimation of the disease burden and the effectiveness of interventions.
+
+- Behavioral Changes: Changes in population behaviors, such as increased mobility, changes in agricultural practices, or urbanization, can influence transmission dynamics but may not be captured in annual data.
+
+## Working with the data
+
+<h2>How to use this data</h2>
+
+For this example, the goal is to get the estimated malaria incidence from 2009 to 2022 in 4 of the countries.
+
+```{r}
+# Load packages ####
+library(readxl)
+library(tidyverse)
+library(reshape2)
+
+source(here::here("radar/theme_health_radar.R"))
+
+incidence_pmi <- read_excel("PMI_data/malaria_incidence_PMI.xlsx")
+
+# Reshape the data from wide to long format
+incidence_long <- incidence_pmi %>%
+  pivot_longer(cols = -Country, names_to = "Year", values_to = "Incidence") %>%
+  mutate(Year = as.numeric(Year))  # Convert Year to numeric for plotting
+
+# Convert 'Year' and 'Incidence' to numeric if they are not already
+incidence_long$Year <- as.numeric(as.character(incidence_long$Year))
+incidence_long$Incidence <- as.numeric(as.character(incidence_long$Incidence))
+
+#Plotting
+
+ ggplot(incidence_long, aes(x = Year, y = Incidence, color = Country, group = Country)) +
+   geom_line(size = 1.2) +
+ geom_point(size = 3) +
+ labs(title = "Malaria Incidence Over Time",
+      x = "Year",
+      y = "Malaria Incidence (per 1000 population)",
+      caption = str_wrap("This line graph illustrates the annual malaria incidence (per 1,000 population) in Angola, Mozambique, Zambia, and Zimbabwe from 2008 to 2022.
+Mozambique consistently shows the highest incidence, with a slight decline over the years, stabilizing at around 320 cases per 1,000 people by 2022. Zambia’s incidence initially increases until 2015, after which it starts to decline. In Angola, malaria incidence shows an initial decline from 2008 to 2012, followed by a steady and significant rise through 2022, indicating a worsening malaria burden over time. Zimbabwe shows the lowest malaria incidence, marked by significant variability, with the lowest values seen after 2020. These trends highlight differing malaria control progress and challenges across the four countries. Source: World Malaria Report", width = 75),
+      color = "Country") +
+scale_x_continuous(breaks = seq(min(incidence_long$Year), max(incidence_long$Year), by = 1)) +  # Show all years
+   scale_y_continuous(breaks = seq(0, 400, 50)) +  # Adjust y-axis breaks for better readability
+   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  theme_health_radar() +
+   theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5,face = "bold"),
+        axis.text.y = element_text(size = 10),
+        plot.caption = element_text(hjust = 0, size = 10), 
+        axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
+        ) +  # Adjust font size for x-axis labels
+ theme(plot.margin = margin(20, 20, 20, 20))  # Add margins to prevent label 
+```
+
+For the following example, the goal is to get the baseline and endline ITN coverage in under 5 in 4 of the countries.
+
+```{r}
+coverage_itn <- read_excel("PMI_data/nets_under5_PMI.xlsx")
+
+# Reshape the data for ggplot
+coverage_itn_melted <- melt(coverage_itn, id.vars = "Country", variable.name = "Type", value.name = "Percentage")
+
+# Create the bar graph
+ggplot(coverage_itn_melted , aes(x = Country, y = Percentage, fill = Type)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  
+   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  theme_health_radar() +
+  scale_fill_manual(values = c("Baseline" =  "#a6cee3", "Endline" = "#b2df8a")) +
+  labs(title = "Baseline and Endline Percentages by Country",
+       x = "Country",
+       y = "Percentage of ITN use in children under 5 ",
+       caption = str_wrap("This bar chart compares the percentage of ITN use among children under 5 between baseline and endline of PMI's intervention in Angola, Mozambique, Zambia, and Zimbabwe. Zambia shows the highest endline percentage of ITN coverage, with a significant increase from the baseline. Mozambique also shows a significant increase from the baseline. Angola exhibits a moderate increase in ITN coverage. Source: World Malaria Report", width = 75),
+       fill = "Type") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold"),   # Bold title
+    axis.title.x = element_text(face = "bold"), # Bold x-axis title
+     plot.caption = element_text(hjust = 0, size = 10), 
+    axis.title.y = element_text(face = "bold")  # Bold y-axis title
+  )
+
+```
+
+For the following example, the goal is to get the baseline and endline ITN coverage in under 5 in 4 of the countries.
+
+```{r}
+coverage_iptp <- read_excel("PMI_data/IPTP_coverage_PMI.xlsx")
+
+
+# Define custom colors for the sources
+custom_colors <- c("DHS 2015-2016" = "#33a02c",
+                   "DHS 2022-2023" = "#ff7f00", 
+                   "MIS 2021" =  "#6a3d9a", 
+                   "MIS 2016" = "#e31a1c")
+
+# Create the lollipop plot with color by Source, no size legend, and x-axis limit at 80
+ggplot(coverage_iptp, aes(x = Percentage, y = Country, color = Source)) +
+  # Add black lines from 0 to each percentage value
+  geom_segment(aes(x = 0, xend = Percentage, y = Country, yend = Country), 
+               color = "black", size = 1) +  # Black lines
+  geom_segment(aes(xend = Percentage, yend = Country), size = 1) + # Colorful segments
+  geom_point(aes(size = Percentage), show.legend = FALSE) + 
+  
+   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  theme_health_radar() +
+  # Remove size legend
+  labs(title = "Percentage of Women Receiving IPTP by Country",
+       x = "Percentage (%)",
+       y = "Country",
+        caption = str_wrap("The percentage of women receiving IPTp in Angola, Mozambique, Zambia and Zimbabwe. Zambia exhibits the highest coverage while the other countries have less than 30% of women receiving IPTp.
+                           Source: World Malaria Report", width = 75),
+       color = "Source") + # Legend title
+  xlim(0, 80) + # Set x-axis limits starting at 0 and stopping at 80
+  scale_color_manual(values = custom_colors) + # Set custom colors
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold"),   # Bold title
+    axis.title.x = element_text(face = "bold"), # Bold x-axis title
+     plot.caption = element_text(hjust = 0, size = 10), 
+    axis.title.y = element_text(face = "bold")  # Bold y-axis title
+  ) +
+  theme(legend.position = "right") # Position legend on the right
+
+```
+
+<h2>How can this data be used in disease modelling?</h2>
+
+The data available on the PMI website is valuable for malaria modelling in several ways. It includes indicators that can help in predicting the spread of malaria, assessing the impact of interventions, or understanding regional differences in malaria dynamics. Below are some of the indicators:
+
+- Estimated malaria incidence per year in each of the partner country
+ 
+- Estimated malaria mortality rate per year in each of the partner country
+
+- Percentage of pregnant women who slept under a long-lasting insecticide treated net (LLIN) the night before the survey before and after PMI's intervention. 
+
+- Percentage of children under 5 who slept under a long-lasting insecticide treated net (LLIN) the night before the survey before and after PMI's intervention. 
+
+- Percentage of pregnant women who received at least three doses of preventive treatment during their last pregnancy before and after PMI's intervention. 
+
+- PMI's funding in each of the country. 
+
+In the simple example below, we obtain data on Intermittent preventive treatment of malaria during pregnancy (IPTp) access and usage rates in Angola, and assess the impact of these intervention on malaria cases.
+
+**Model assumptions**
+
+ - The total population size remains constant over time, meaning that births and deaths occur at rates that balance each other out, with no net migration.
+ 
+ - Malaria transmission occurs primarily through mosquito bites, with the transmission rate influenced by the density of infected humans and mosquitoes.
+ 
+ - The model incorporate seasonal variations in malaria transmission due to factors such as rainfall, temperature, and mosquito breeding patterns. This is captured through seasonal forcing in the force of infection equation.
+ 
+ - The model assumes different levels of infectiousness for different states (asymptomatic, treated, untreated), which may be influenced by treatment efficacy or immunity.
+ 
+ - IPTp coverage is assumed to be effective in reducing malaria transmission, which is why it is included in the equation of the force of infection. 
+
+**Force of infection**
+
+The FOI is typically expressed in terms of the number of new infections per susceptible individual per unit of time.It is often represented as a function of various factors, including the transmission dynamics of the disease, the prevalence of infection within the population, and specific interventions aimed at reducing transmission.
+
+The force of infection, represented by the equation 
+$$lambda = seas * (1 - current_iptp) * (a^2 * b * c * m * Infectious / P) / (a * c * Infectious / P + mu_m) * (gamma_m / (gamma_m + mu_m))
+$$
+,reflects a host-vector collapse model, which captures the interplay between host and vector populations in the dynamics of disease transmission.
+
+**Seasonal forcing function**
+
+Seasonality is modelled by multiplying the force of infection of the model by a seasonality factor. 
+ 
+Typically, we introduce a forcing function to replicate the seasonal patterns of temperature and rainfall. In this instance, we utilize the cosine function, where Amp denotes the amplitude of the curve and the intensity of the seasonality, while phi represents the phase angle used to shift the start of the period. 
+ 
+The average monthly rainfall at a country level can be standardized and fitted to trigonometric function to account for seasonality.
+
+$$
+seas = 1 * (1 + amp * cos(2 * pi * (t - phi) / 365))
+$$
+
+**Impact of IPTp Coverage on New Malaria Cases**
+
+```{r}
+# Load packages ####
+library(deSolve)
+library(tidyverse)
+library(readxl)
+
+# Define the SEIR-like model for malaria with time-varying IPTp ####
+iptpmodel <- function(t, x, parms)  {
+  with(as.list(c(parms, x)), {
+    
+    P = S + E + A + C + Tr + R
+    Infectious = C + kappa_t * Tr + kappa_a * A
+    
+    # Interpolate lagged rainfall at the current time (seasonality)
+    seas <- 1 * (1 + amp * cos(2 * pi * (t - phi) / 365))
+    
+    # Time-dependent IPTp coverage
+    current_iptp <- ifelse(t < 6 * 365, 0.19, iptp)  # 0.19 until year 22, then scenario-specific IPTp
+    
+    # Force of infection
+    lambda = seas * (1 - current_iptp) * (a^2 * b * c * m * Infectious / P) / 
+      (a * c * Infectious / P + mu_m) * (gamma_m / (gamma_m + mu_m))
+    
+    # SEIR model equations
+    dS = mu * P - lambda * S + rho_R * R - mu_h * S 
+    dE = lambda * S - (gamma_h + mu_h) * E
+    dA = gamma_h * pa * E - (delta + mu_h) * A + omega * C 
+    dC = gamma_h * (1 - pa) * E - (tau + mu_h) * C - omega * C 
+    dTr = tau * C - (r + mu_h) * Tr
+    dR = r * Tr + delta * A - (rho_R + mu_h) * R 
+    
+    # Incidence and cases
+    dCInc = lambda * S
+    dCcases = gamma_h * (1 - pa) * E
+    
+    output <- c(dS, dE, dA, dC, dTr, dR, dCInc, dCcases)
+    list(output)
+  })
+}
+
+
+# Initial values (state variables)
+start <- c(S = 51000, E = 10000, A = 10000, C = 29000, Tr = 0, R = 0, CInc = 0, Ccases = 29000)
+
+# Parameters for the model (fixed)
+parms <- c(a = 0.28, b = 0.3, c = 0.397, gamma_m = 1/10, mu_m = 1/15,
+           mu = 19 / 100000, mu_h = 19 / 100000, gamma_h = 1/14, omega = 1/5,
+           pa = 0.2, delta = 1/130, tau = 1/3, r = 1/3, rho_R = 1/160, 
+           m = 3, kappa_t = 0.1, kappa_a = 0.2, amp = 0.6, phi = 186)
+# Vector of timesteps (days)
+times <- seq(0, 15 * 365, 1)
+
+# Run the model function remains the same
+run_model <- function(times, y, func, parms, scenario = "Baseline") {
+  mod <- ode(times = times, y = start, func = func, parms = parms)
+  fd <- as_tibble(as.data.frame(mod)) %>% 
+    mutate(
+      P = S + E + A + C + Tr + R,
+      Inc = c(0, diff(CInc)),  # New infections (Incidence)
+      cases = c(0, diff(Ccases)),  # New malaria cases (differentiating Ccases)
+      date = times / 365,  # Time in years
+      year = floor(date) + 1
+    ) %>%
+    pivot_longer(names_to = "variable", cols = -c(time, date, year)) %>%
+    mutate(scenario = scenario)
+  
+  return(fd)
+}
+
+# IPTp coverage scenarios
+iptp_scenarios <- c(0.19, 0.5, 0.7)  # Baseline, 50%, 75% IPTp coverage
+
+# Run the model for each IPTp scenario and store the results
+results <- lapply(iptp_scenarios, function(iptp_value) {
+  parms["iptp"] <- iptp_value
+  run_model(times, start, iptpmodel, parms, scenario = paste0("IPTp = ", iptp_value * 100, "%"))
+})
+
+# Combine results for all scenarios
+results_combined <- bind_rows(results)
+
+# Filter for new malaria cases (variable = "cases") for plotting
+results_cases <- results_combined %>% filter(variable == "cases")
+
+# Plot new malaria cases (cases) over time for each IPTp scenario
+ggplot(results_cases, aes(x = date, y = value, color = scenario)) +
+  geom_line() +
+  labs(title = "Impact of IPTp Coverage on New Malaria Cases in pregnant women",
+       x = "Time (years)", y = " Malaria incidence in pregnant women (per day)", 
+       caption = str_wrap("This graph demonstrates that higher IPTp coverage levels significantly reduce new malaria cases over time. With increasing coverage from 19% to 70%, the incidence of malaria steadily declines, highlighting the importance of widespread IPTp uptake in lowering malaria cases among pregnant women. Pregnant women and children are particularly vulnerable to malaria infections, making this increase in coverage crucial for their protection.
+                           Source: World Malaria Report", width = 75),
+       color = "IPTp Coverage") +
+  
+   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  theme_health_radar() +
+ theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold"),   # Bold title
+    plot.caption = element_text(hjust = 0, size = 10),  # Caption alignment and size
+    legend.position = "right"  # Legend position
+  )
+
+```
 
 :::
