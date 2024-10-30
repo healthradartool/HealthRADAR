@@ -275,10 +275,8 @@ fun_plot <- function(df){
 Reduce(`+`, lapply(list_district_df, fun_plot)) + 
    # To add annotations to the combined plot
   plot_annotation(
-    title = str_wrap("Average walking time in minutes to access healthcare in Zambia's 
-                     Eastern, Northen, Southern, and Western province, by district"),
-    caption = str_wrap("This illustrative plot shows the average walking time in minutes of various districts in selected provinces. The figure indicates that Northern province has districts with the highest 
-    walking time to access healthcare, i.e. up to five hours. Source: MAP", width = 100),
+    title = str_wrap("Average walking time in minutes to access healthcare in Zambia's Eastern, Northern, Southern, and Western province, by district"),
+    caption = str_wrap("This illustrative plot shows the average walking time in minutes of various districts in selected provinces. The figure indicates that Northern province has districts with the highest walking time to access healthcare, i.e. up to five hours. Source: MAP", width = 100),
     theme = theme_health_radar()
     )
 ```
