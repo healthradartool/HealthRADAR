@@ -65,13 +65,13 @@ For more information regarding ERA5 datasets see [ERA5-Dataset Documentation](ht
 
 <h2>Accessing the data</h2>
 
-### guidance and metadata
+**Guidance and metadata**
 
 Via Climate Data Store: [ERA5 hourly data on single levels from 1940 to present]https://cds-beta.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
 
 Via Climate Data Guide: [ERA5 atmospheric reanalysis](https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis)
 
-### data download
+**Data download**
 
 Via Climate Data Store: [ERA5 hourly data on single levels from 1940 to present]https://cds-beta.climate.copernicus.eu/datasets/reanalysis-era5-single-levels). Please see download guide: [How to download ERA5](https://confluence.ecmwf.int/display/CKB/How+to+download+ERA5). Data is available in both NetCDF and GRIB formats.
 

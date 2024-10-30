@@ -32,7 +32,7 @@ categories:
 
 <h2>About the data</h2>
 
-Climate Hazards Center InfraRed Precipitation with Station data (CHIRPS), version 2, is a 40+ year quasi-global (50°S-50°N), land-only, gridded (0.05° and 0.25° degree resolution) rainfall dataset. CHIRPS is created by integrating several data sources including 0.05° resolution satellite imagery and in-situ station data to create gridded rainfall time series for trend analysis and seasonal drought monitoring. The dataset starts in 1981 and extends to the near-present day.
+The Climate Hazards Center InfraRed Precipitation with Station data (CHIRPS), was explicitly designed to provide blended gauge-satellite precipitation estimates that cover most global land regions, have a fairly low latency, high spatial resolution, low bias, and a long period of record.  CHIRPS version 2 is a 40+ year quasi-global (50°S-50°N), land-only, gridded dataset available at 0.05° and 0.25° degree resolutions. It is created by integrating multiple data sources, including satellite imagery at 0.05° resolution and in-situ station data, to generate rainfall time series for trend analysis and seasonal drought monitoring. The dataset begins in 1981 and extends to the near-present day.
 
 For more information regarding CHIRPS datasets see [CHIRPS-website](https://www.chc.ucsb.edu/data/chirps) or [CHIRPS FAQ](https://wiki.chc.ucsb.edu/CHIRPS_FAQ).
 
@@ -53,22 +53,38 @@ For more information regarding CHIRPS datasets see [CHIRPS-website](https://www.
 | **Update frequency (latency)** | monthly (+- 1 month) |
 
 
-### Variables
+#### Variables
 
 | **Variable Name** | **Variable Description** | **Units** |
 --- | --- | --- |
 | precip | convective precipitation rate | millimetres per day |
 
+#### Strengths and limitations
+
+**Strengths**
+
+The dataset has high spatial and temporal resolution.
+It provides a relatively long and continuous record (1981-present)
+It has a relatively rapid update frequency (latency)
+
+**Limitations**
+
+It only provides rainfall and does not include other key variables required for malaria modelling.
+
+**Notes for users**
+
+As is the case with most gridded climate datasets, the CHIRPS dataset provides its time variable in Coordinated Universal Time (UTC). If one is working in a time zone far from the UTC line, you may need to adjust the time variable to align with your local time zone when interpreting daily totals or other time-sensitive data. Southern Africa is typically UTC+2, meaning a daily rainfall total in CHIRPS data which is 12AM to 12AM UTC, would reflect rainfall from 2 AM to 2 AM local time.
+
 
 <h2>Accessing the data</h2>
 
-### guidance and metadata
+**Guidance and metadata**
 
 Via Climate Data Guide: [CHIRPS: Climate Hazards InfraRed Precipitation with Station data (version 2)](https://climatedataguide.ucar.edu/climate-data/chirps-climate-hazards-infrared-precipitation-station-data-version-2)
 
 Via Climate Data Store: [Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations](https://cds-beta.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview)
 
-### data download
+**Data download**
 
 Via The Climate Hazard Centre (CHC) at the University of California, Santa Barbara [CHIRPS v2.0](https://data.chc.ucsb.edu/products/CHIRPS-2.0/). The following data is available for the entire period (1981 to 2024):
 
@@ -90,13 +106,12 @@ Via Climate Data Store: [Temperature and precipitation gridded data for global a
 | africa     	| daily              	| 0.25       	| .nc               	|
 
 
-
 <h2>What does the data look like?</h2>
 
 
-### spatial plots of key variables
+**Spatial plots of key variables**
 
-### Key example plots for a selected location
+**Key example plots for a selected location**
 
 - seasonal cycle
 - skill assessment / number of stations through time

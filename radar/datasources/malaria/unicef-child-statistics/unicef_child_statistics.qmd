@@ -3,6 +3,7 @@ title: "UNICEF DATA - Child Statistics"
 description: "UNICEF DATA - Child Statistics provides detailed information on malaria's impact on children, including prevalence, treatment coverage, and mortality rates."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/unicef.png"
+lightbox: true
 execute:
   message: false
   warning: false
@@ -26,18 +27,181 @@ categories:
 
 <h2>About the data</h2>
 
-UNICEF DATA - Child Statistics provides data on ITN (insecticide-treated net) use by children, IPTp for pregnant women, Household with insecticide treated net (ITN), Percentage of households with at least one insecticide-treated mosquito net (ITN), and other key indicators related to malaria prevention and control in endemic countries.
+UNICEF DATA - Child Statistics provides data on insecticide-treated net (ITN) use, intermittent preventative treatment for pregnant women (IPTp), and key indicators related to malaria testing and treatment for children in endemic countries. These data are collected using household surveys, primarily Multiple Indicator Cluster Surveys (MICS) and Demographic and Health Surveys (DHS).
+
+They are recorded annually, meaning that the dataset will not be appropriate for investigating seasonal trends in the indicators. For each indicator and country, values can be obtained nationally, by sex, by area (urban or rural), by mother's education level, or by wealth index quintiles (WIQ).
 
 <h2>Accessing the data</h2>
 
-{{< lipsum 1 >}}
+The [UNICEF data website](https://data.unicef.org/) includes access to journal articles, publications, data visualisations, datasets, and other resources related to the data they make available.
+
+Reaching the Child Health Coverage dataset from the [UNICEF data website](https://data.unicef.org/) homepage can be done as follows:
+
+1.  Navigate to the \`Data by Topic' tab, and select the \`Malaria' option from the \`Child and Adolescent Health' subsection to reach [UNICEF's Malaria webpage](https://data.unicef.org/topic/child-health/malaria/#notes).
+2.  Scroll down until you see the heading \`Malaria Data'. Select the download button beside the label \`Child Health Coverage'.
+
+The dataset will be downloaded as an Excel file.
 
 <h2>What does the data look like?</h2>
 
-{{< lipsum 1 >}}
+The Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
+
+![Layout of the first sheet of the Excel document.](malaria_xlsx_index.png)
+
 
 <h2>Key points to consider</h2>
 
-{{< lipsum 1 >}}
+This dataset is sparse at times. It is rare that a measure recorded in a given year for a given country will be available for many other countries with which you may want to compare it. This makes it most appropriate for exploration, rather than for investigating a time series of a specific variable, or comparing a variable across specific countries in a given year. 
+
+**Pitfalls of Annual Data:**
+
+Using annual data for your analysis can lead to several pitfalls:
+
+-   Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
+
+-   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
+
+**National Level - Ignoring Spatial Heterogeneity:**
+
+Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
+
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors.
+
+-   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
+
+-   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
+
+**Examples of data use in literature:**
+
+Around 100 UNICEF [journal articles](https://data.unicef.org/resources/resource-type/journal-articles/?f) and over 300 [publications](https://data.unicef.org/resources/resource-type/publications/?f) are made available on the UNICEF data website.
+
+
+## Working with the data
+
+<h2>How to use the dataset</h2>
+
+This dataset includes information on Diarrhoea and Pneumonia in addition to the Malaria-related data. You can isolate data related to specific variables and countries which are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below. 
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+source(here::here("radar/theme_health_radar.R"))
+```
+
+```{r,2}
+# Read in data
+data              <- readxl::read_xlsx("Child-Health-Coverage-Database-December-2023 .xlsx", 
+                                    sheet = "Long")
+colnames(data)    <- data[3,]
+data              <- data[4:nrow(data),]
+data$Value        <- as.numeric(data$Value)
+data$`Latest Year`<- as.numeric(data$`Latest Year`)
+data$`Level`      <- factor(data$`Level`, levels = c("Richest", "Fourth", "Middle", "Second", 
+                                                        "Poorest", "National", "Urban", "Rural", 
+                                                        "Male", "Female", "None", "Primary", 
+                                                        "Sec & Higher", "15-19"))
+
+# Select only Malaria Indicators
+mal_indicators    <- c("IPTP", "ITN", "ITN2", "ITNOWN", "ITNPREG", "MLRACT", "MLRCARE", "MLRDIAG")
+mal_dat           <- dplyr::filter(data, data$Indicator %in% mal_indicators)
+
+# Select only E8 countries
+e8                <- c("Botswana", "Eswatini", "Namibia", "South Africa", 
+                       "Angola", "Mozambique", "Zambia", "Zimbabwe")
+mal_dat           <- dplyr::filter(mal_dat, `Countries and areas` %in% e8)
+```
+
+The first ten rows of these data can be seen in the following table:
+
+```{r}
+# Produce a table of the first ten rows of data
+mal_dat |> 
+  head(n = 10) |>
+  dplyr::select_if(~ !all(is.na(.)))|>
+  gt::gt()
+```
+
+Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, e.g. with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below. 
+
+```{r}
+# Produce a table in wide format of the last ten rows of data
+mal_dat[,-c(6,8,9)] |> 
+  tidyr::pivot_wider(names_from = `Latest Year`,
+                     values_from = `Value`) |>
+  tail(n = 10) |>
+  dplyr::select_if(~ !all(is.na(.)))|>
+  gt::gt()
+```
+
+<h2>How to plot these data?</h2>
+
+```{r,3}
+# Produce a line plot coloured by wealth index quintile
+mal_dat|> 
+  dplyr::filter(Indicator == "IPTP") |>
+  dplyr::filter(`Countries and areas` == "Zambia") |>
+  dplyr::filter(Stratifier == "WIQ") |>
+  ggplot2::ggplot(aes(x = `Latest Year`, y = Value, group = Level)) + 
+    geom_line(aes(col = Level), lwd = 2) + 
+    scale_colour_manual_health_radar() + 
+    theme_health_radar() + 
+    xlab("Year") + 
+    ylab("IPTP") + 
+  labs(title = "Percentage of Pregnant Women who have received IPT",
+       subtitle = "Data for Zimbabwe",
+       caption = stringr::str_wrap("This plot displays the percentage of Zambian women between 15 and 49 years of age, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and separated by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+       x = "Country",
+       y = "Percentage") 
+```
+
+
+```{r,4}
+# Produce a paired bar plot coloured by sex
+mal_dat |> 
+  dplyr::filter(Indicator == "ITN") |>
+  dplyr::filter(`Stratifier` == "Sex") |>
+  dplyr::filter(`Latest Year` == "2007") |>
+  ggplot(aes(x = `Countries and areas`, y = Value, fill = Level)) +
+  geom_bar(position = "dodge", stat='identity') + 
+  scale_fill_manual_health_radar() + 
+  theme_health_radar() + 
+  xlab("Year") + 
+  ylab("ITN") +
+  labs(title = "Percentage of Children using an ITN",
+       subtitle = "Data for selected African countries",
+       caption = stringr::str_wrap("This plot displays the percentage of children 
+  under 5 years of age, separated by sex, who slept under insecticide-treated 
+  mosquito nets (ITNs) the night prior to their partcipation in the survey, in Angola, Eswatini, 
+  Namibia and Zambia in the year 2007. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+       x = "Country",
+       y = "Percentage") 
+```
+
+```{r,5}
+# Produce a lollipop plot with colours indicating the year for which these data were recorded
+mal_dat |> 
+  dplyr::filter(Indicator == "ITNPREG") |>
+  dplyr::filter(Level == "National") |>
+  dplyr::filter(`Latest Year` == 2007 | `Latest Year` == 2018 | `Latest Year` == 2011 | `Latest Year` == 2015 | `Latest Year` == 2014) |>
+  ggplot(aes(x = `Countries and areas`, y = Value, colour = as.factor(`Latest Year`))) + 
+  geom_segment(aes(x = `Countries and areas`, xend = `Countries and areas`, y = 0, yend = Value), color = "grey") +  # Keep constant grey color for segments
+  geom_point(size = 4) +
+  coord_flip() +  # Adjust the aspect ratio to make the plot taller
+  scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  theme_health_radar() +
+  labs(title = "Percentage of Pregnant Women using an ITN",
+       subtitle = "Data for selected African countries",
+       caption = stringr::str_wrap("This plot displays the percentage of pregnant
+       Zimbabwean, Zambian, Namibian, Mozambiquan, Estwatinian and Angolan women 
+       between 15 and 49 years of age, who used insecticide-treated mosquito nets 
+       (ITNs) the night prior to their participation in the survey. Records are displayed for the years 2007, 2011, 2014, 2015 and 2018. 
+                                   Source: UNICEF Child Health Coverage Dataset.", width = 75),
+       x = "Country",
+       y = "Percentage", 
+       colour = "Year") 
+```
+
 
 :::
