@@ -437,7 +437,7 @@ seacr <- function(times, start, parameters, itnfunc) {
     mu_h = 1/(55*365) # birth and death rate of humans
     gamma_m = 1/10 # extrinsic incubation rate of parasite in mosquitoes
     gamma_h = 1/10 # extrinsic incubation rate of parasite in humans
-    phi = 93 # phase angle; start of season
+    phi = 200 # phase angle; start of season
     ppn = 1.8 # persons per net
     attr = 0.7 # nets remaining after 3 years in circulation
     itn_use = 0.6 # probability of sleeping under a net
@@ -484,15 +484,15 @@ initial_state <- c(Sm = 20000000, # susceptible mosquitoes
                    C = 3000000, # clinical and symptomatic humans
                    R = 0, # recovered and semi-immune humans
                    CInc = 0, # cumulative incidence
-                   ITN = 0.5 # # coverage of the population with potential to be protected by nets CURRENTLY IN CIRCULATION
+                   ITN = 0.5 # proportion of the population with potential to be protected by nets CURRENTLY IN CIRCULATION
 )
 
 # Initial parameter estimates
 initial_parameters <- c(a = 0.3, # human biting rate
                         amp = 0.6, # amplitude of seasonality
                 rho = 1/200, # rate of loss of immunity after recovery
-                zeta_a = 0.28, # relative infectiousness of asymptomatic infections
-                pa = 0.4, # probability of asymptomatic infection
+                zeta_a = 0.48, # relative infectiousness of asymptomatic infections
+                pa = 0.1, # probability of asymptomatic infection
                 itn_eff = 0.6 #effectiveness of nets in reducing infectious bites
                 )
 
@@ -577,7 +577,7 @@ nll_seacrs <- function(initial_parameters, observed_data) {
     summarise(annual_inc = sum(Inc),
                 P = last(P)) |> 
     mutate(pred_inci_rate = annual_inc/P*1000) |> 
-    filter(year > 2012, year < 2018) # select years between 2013 and 2018 for fitting
+    filter(year > 2000, year < 2020) # select years between 2000 and 2019 for fitting
     
   # Get model predictions for incidence rate
   pred_IR <- annual_incidence_rate |>
@@ -586,7 +586,7 @@ nll_seacrs <- function(initial_parameters, observed_data) {
 
   # Incidence rate from observed data
   observed_IR <- observed_data |>
-    filter(Year > 2012, Year < 2018) |>
+    filter(Year > 2000, Year < 2020) |>
     pull(inci_rate) |>
     round()
 
