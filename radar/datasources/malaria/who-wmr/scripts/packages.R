@@ -6,4 +6,6 @@ suppressPackageStartupMessages({
   library(readr) # read_csv
   library(tidyr) # pivot_longer
   library(whowmr) # wmr2023 dataset, remotes::install_github("uct-masha/whowmr")
+  library(deSolve)
+  library(lubridate)
 })

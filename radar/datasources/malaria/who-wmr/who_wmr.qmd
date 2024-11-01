@@ -593,8 +593,8 @@ nll_seacrs <- function(initial_parameters, observed_data) {
   # Calculate the Poisson log-likelihood for clinical cases
   log_likelihood_IR <- sum(dpois(observed_IR, lambda = pred_IR, log = TRUE))
   
-  cat("Parameters: ", initial_parameters, "\n") 
-  cat("Log-likelihood: ", log_likelihood_IR, "\n")
+  #cat("Parameters: ", initial_parameters, "\n") 
+  #cat("Log-likelihood: ", log_likelihood_IR, "\n")
 
   # Return the negative log-likelihood
   return(-log_likelihood_IR)
