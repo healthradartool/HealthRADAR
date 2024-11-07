@@ -65,7 +65,7 @@ format:
       light: [flatly, radar/style-light.scss, radar/style-base.scss]
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
-    mainfont: "Schibsted Grotesk"
+    mainfont: "Public Sans"
     code-fold: true
     code-summary: "Show the code"
     #include-in-header: 
