@@ -66,10 +66,10 @@ format:
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
     mainfont: "Public Sans"
+    monofont: "JetBrains Mono"
     code-fold: true
     code-summary: "Show the code"
-    #include-in-header: 
-    #  file: radar/loginurl.html
+    highlight-style: atom-one
 execute:
   freeze: auto
 
