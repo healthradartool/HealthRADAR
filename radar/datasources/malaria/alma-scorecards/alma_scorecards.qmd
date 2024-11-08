@@ -41,10 +41,18 @@ categories:
 
 - To view the available scorecards visit [Scorecard management tools](https://scorecardhub.org/scorecards/). 
 - No login credentials are needed to view or download the available scorecards
-- Login credentials are needed if an individual wishes to undertake any of the online courses offered by ALMA.
+- Login credentials are needed if an individual wishes to undertake any of the [online courses](https://scorecardhub.org/online-courses) offered by ALMA.
 - Under the tab country scorecards, a search can be refined through the use of available filters. The filters are for *country*, *scorecard type* and *year*. To access the scorecards on *malaria*, use the filter *scorecard type* and choose any of the following depending on specific context (*Malaria*, *ALMA Scorecard for Accountability on Action*, *Commonwealth Malaria Tracker*) from the drop-down menu.
 - Under the tab country best practices, a search can be refined through the use of available filters. The filters are for *search*, *topic*, *types of best practices*, *country* and *year*. To access best practices for malaria, use the filter *topic*, 2 choices are available: *Malaria scorecard tools* and *End malaria councils* from the drop-down menu.
-- To watch a video that demonstrates how to navigate the site, visit: [Scorecard hub demonstration](https://scorecardhub.org/guides-and-toolkits/video-demonstration-of-the-alma-scorecard-hub/)
+- The video below demonstrates how to navigate the site:
+
+::: {.callout-note collapse="true"}
+
+## Video demonstration of the ALMA Scorecard Hub
+
+{{< video https://www.youtube.com/watch?v=jJAk_A0bfyk >}}
+
+:::
 
 <h2>What does the data look like?</h2>
 
@@ -63,7 +71,7 @@ or directly from the web platform (not downloadable, user has to scroll through 
 
 <h2>Key points to consider</h2>
 
-- Downloading the materials for the online courses is highly beneficial [Download files](https://scorecardhub.org/guides-and-toolkits/download-course-content-to-access-when-you-do-not-have-an-internet-connection/), as they provide a comprehensive overview on how to create scorecards. This will help towards the understanding and interpretation of the scorecards.
+- Downloading the [materials](https://scorecardhub.org/guides-and-toolkits/download-course-content-to-access-when-you-do-not-have-an-internet-connection/) for the online courses is highly beneficial, as they provide a comprehensive overview on how to create scorecards. This will help towards the understanding and interpretation of the scorecards.
 - The scorecards are highly country specific, indicators change according to the country's health priorities.
 
 ## Working with the data
@@ -112,16 +120,15 @@ rwanda_data <- rwanda_map %>%
 
 # Create the choropleth map
 ggplot(data = rwanda_data) +
-  geom_sf(aes(fill = `cases`), color = "lightgrey", size = 0.3) +  # Use fill for the continuous 2022 data
+  geom_sf(aes(fill = cases), color = "lightgrey", size = 0.3) +  # Use fill for the continuous 2022 data
   theme_health_radar() +
   scale_fill_continuous_health_radar(name = "Total Cases") +  # Correct fill scale for continuous data
   labs(title = "Reported malaria cases Rwanda (by province) 1st quarter (2022)",
-       caption = str_wrap("The choropleth map highlights the total number of new outpatient department (OPD) cases of malaria recorded at health facilities in the five provinces of Rwanda during the first quarter of 2022. With the East and South provinces showing the lowest and highest number of cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", width = 80)
-       ,
+       caption = str_wrap("The choropleth map highlights the total number of new outpatient department (OPD) cases of malaria recorded at health facilities in the five provinces of Rwanda during the first quarter of 2022. With the East and South provinces showing the lowest and highest number of cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", width = 80),
        x = "Latitude",
        y = "Longitude") +
   
-  geom_sf_text(aes(label = name, color = ifelse(`cases` > mean(`cases`), "black", "white")), size = 3) +  # Conditional text color
+  geom_sf_text(aes(label = name, color = ifelse(cases > mean(cases), "black", "white")), size = 3) +  # Conditional text color
   scale_color_identity() +  
   theme(
     plot.caption.position = "plot",  # Keep the caption outside the plot area
