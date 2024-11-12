@@ -125,7 +125,7 @@ The report came out on Jan 31, 2024, so there are not many studies that have use
 
 -   [Design, synthesis and Anti-Plasmodial activity of Mortiamide-Lugdunin conjugates](https://doi.org/10.1016/j.bioorg.2024.107307)
 
-## Working with the data
+## Visualisations
 
 <h2>How to use this data?</h2>
 
@@ -365,7 +365,9 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 ```
 
 
-<h2>How can this data be used in disease modelling?</h2>
+## Modelling Example
+
+<h2>How can this data be used in disease modelling? </h2>
 
 ### Preparing the data 
 
