@@ -98,7 +98,7 @@ The information included typically looks like this. Data are available for each 
 
 5.	Bisanzio D, Ally M, Ali AS, Kitojo C, Serbantez N, Kisinza WN, Magesa S, Reithinger R. Modelling Insecticide Resistance of Malaria Vector Populations in Tanzania. Am J Trop Med Hyg. 2022 Jul 5;107(2):308-314. doi: 10.4269/ajtmh.21-0262. PMID: 35895397; PMCID: PMC9393459.
 
-## Working with the data
+## Visualisations
 
 <h2>How to use this data</h2>
 

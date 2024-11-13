@@ -114,7 +114,7 @@ The indicator dataset guide can found at [The DHS Program - Malaria](https://www
 
 ![Malaria Data in DHS Surveys](images/malaria%20data%20in%20dhs%20survey.png)
 
-## Working with the data
+## Visualisations
 
 <h2>How to plot this data?</h2>
 
@@ -391,6 +391,7 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
 
 ```
 
+## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
 

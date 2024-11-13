@@ -104,7 +104,7 @@ A sample of the dashboard is shown below. The dashboard details the area treatme
 
 - Monroe A, Williams NA, Ogoma S, Karema C, Okumu F. Reflections on the 2021 World Malaria Report and the future of malaria control. Malar J. 2022 May 27;21(1):154. doi: 10.1186/s12936-022-04178-7. PMID: 35624483; PMCID: PMC9137259.
 
-## Working with the data
+## Visualisations
 
 <h2>How to use this data?</h2>
 

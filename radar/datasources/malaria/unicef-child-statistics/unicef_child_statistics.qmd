@@ -77,7 +77,7 @@ Modelling malaria transmission at a national level can overlook important spatia
 Around 100 UNICEF [journal articles](https://data.unicef.org/resources/resource-type/journal-articles/?f) and over 300 [publications](https://data.unicef.org/resources/resource-type/publications/?f) are made available on the UNICEF data website.
 
 
-## Working with the data
+## Visualisations
 
 <h2>How to use the dataset</h2>
 
@@ -94,25 +94,32 @@ source(here::here("radar/theme_health_radar.R"))
 
 ```{r,2}
 # Read in data
-data              <- readxl::read_xlsx("Child-Health-Coverage-Database-December-2023 .xlsx", 
-                                    sheet = "Long")
-colnames(data)    <- data[3,]
-data              <- data[4:nrow(data),]
-data$Value        <- as.numeric(data$Value)
-data$`Latest Year`<- as.numeric(data$`Latest Year`)
-data$`Level`      <- factor(data$`Level`, levels = c("Richest", "Fourth", "Middle", "Second", 
-                                                        "Poorest", "National", "Urban", "Rural", 
-                                                        "Male", "Female", "None", "Primary", 
-                                                        "Sec & Higher", "15-19"))
+data <- readxl::read_xlsx(
+  "Child-Health-Coverage-Database-December-2023 .xlsx",
+  sheet = "Long"
+)
+
+colnames(data) <- data[3, ]
+data <- data[4:nrow(data), ]
+data$Value <- as.numeric(data$Value)
+data$`Latest Year` <- as.numeric(data$`Latest Year`)
+data$`Level` <- factor(data$`Level`, levels = c(
+  "Richest", "Fourth", "Middle", "Second",
+  "Poorest", "National", "Urban", "Rural",
+  "Male", "Female", "None", "Primary",
+  "Sec & Higher", "15-19"
+))
 
 # Select only Malaria Indicators
-mal_indicators    <- c("IPTP", "ITN", "ITN2", "ITNOWN", "ITNPREG", "MLRACT", "MLRCARE", "MLRDIAG")
-mal_dat           <- dplyr::filter(data, data$Indicator %in% mal_indicators)
+mal_indicators <- c("IPTP", "ITN", "ITN2", "ITNOWN", "ITNPREG", "MLRACT", "MLRCARE", "MLRDIAG")
+mal_dat <- dplyr::filter(data, data$Indicator %in% mal_indicators)
 
 # Select only E8 countries
-e8                <- c("Botswana", "Eswatini", "Namibia", "South Africa", 
-                       "Angola", "Mozambique", "Zambia", "Zimbabwe")
-mal_dat           <- dplyr::filter(mal_dat, `Countries and areas` %in% e8)
+e8 <- c(
+  "Botswana", "Eswatini", "Namibia", "South Africa",
+  "Angola", "Mozambique", "Zambia", "Zimbabwe"
+)
+mal_dat <- dplyr::filter(mal_dat, `Countries and areas` %in% e8)
 ```
 
 The first ten rows of these data can be seen in the following table:
@@ -151,11 +158,13 @@ mal_dat|>
     theme_health_radar() + 
     xlab("Year") + 
     ylab("IPTP") + 
-  labs(title = "Percentage of Pregnant Women who have received IPT",
+    labs(
+      title = "Percentage of Pregnant Women who have received IPT",
        subtitle = "Data for Zimbabwe",
        caption = stringr::str_wrap("This plot displays the percentage of Zambian women between 15 and 49 years of age, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and separated by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
        x = "Country",
-       y = "Percentage") 
+       y = "Percentage"
+    ) 
 ```
 
 
@@ -171,14 +180,13 @@ mal_dat |>
   theme_health_radar() + 
   xlab("Year") + 
   ylab("ITN") +
-  labs(title = "Percentage of Children using an ITN",
-       subtitle = "Data for selected African countries",
-       caption = stringr::str_wrap("This plot displays the percentage of children 
-  under 5 years of age, separated by sex, who slept under insecticide-treated 
-  mosquito nets (ITNs) the night prior to their partcipation in the survey, in Angola, Eswatini, 
-  Namibia and Zambia in the year 2007. Source: UNICEF Child Health Coverage Dataset.", width = 75),
-       x = "Country",
-       y = "Percentage") 
+  labs(
+    title = "Percentage of Children using an ITN",
+    subtitle = "Data for selected African countries",
+    caption = stringr::str_wrap("This plot displays the percentage of children  under 5 years of age, separated by sex, who slept under insecticide-treated mosquito nets (ITNs) the night prior to their partcipation in the survey, in Angola, Eswatini, Namibia and Zambia in the year 2007. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+    x = "Country",
+    y = "Percentage"
+  ) 
 ```
 
 ```{r,5}
@@ -193,16 +201,17 @@ mal_dat |>
   coord_flip() +  # Adjust the aspect ratio to make the plot taller
   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
   theme_health_radar() +
-  labs(title = "Percentage of Pregnant Women using an ITN",
-       subtitle = "Data for selected African countries",
-       caption = stringr::str_wrap("This plot displays the percentage of pregnant Zimbabwean, Zambian, Namibian, Mozambiquan, Estwatinian and Angolan women 
-       between 15 and 49 years of age, who used insecticide-treated mosquito nets 
-       (ITNs) the night prior to their participation in the survey. Records are displayed for the years 2007, 2011, 2014, 2015 and 2018. 
-                                   Source: UNICEF Child Health Coverage Dataset.", width = 75),
-       x = "Country",
-       y = "Percentage", 
-       colour = "Year") 
+  labs(
+    title = "Percentage of Pregnant Women using an ITN",
+    subtitle = "Data for selected African countries",
+    caption = stringr::str_wrap("This plot displays the percentage of pregnant Zimbabwean, Zambian, Namibian, Mozambiquan, Estwatinian and Angolan women between 15 and 49 years of age, who used insecticide-treated mosquito nets (ITNs) the night prior to their participation in the survey. Records are displayed for the years 2007, 2011, 2014, 2015 and 2018. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+    x = "Country",
+    y = "Percentage", 
+    colour = "Year"
+  ) 
 ```
+
+## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
 
@@ -231,16 +240,18 @@ Zim_ITN_use_a <- dhs_data(indicatorIds = "ML_ITNU_N_ITN",
   mutate(Population = "Adults")
 
 ggplot() + 
-    geom_point(data = Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) +
+  geom_point(data = Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) +
   geom_point(data = Zim_ITN_use_a, aes(x = `SurveyYear`, y = Value, colour = Population)) +
   geom_line(data = Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) +
   geom_line(data = Zim_ITN_use_a, aes(x = `SurveyYear`, y = Value, colour = Population)) +
-    scale_colour_manual_health_radar() + 
-    theme_health_radar() +
-  labs(title = str_wrap("ITN usage over time in Zimbabwe amongst children and adults"),
-       x = "Year",
-       y = "Percent (%)",
-       caption = str_wrap("In this plot we note that ITN usage in the general population decreases over time, while the ITN usage amongst children under five fluctuates. Source: UNICEF Child Health Coverage Dataset & DHS Data API."))
+  scale_colour_manual_health_radar() + 
+  theme_health_radar() +
+  labs(
+    title = str_wrap("ITN usage over time in Zimbabwe amongst children and adults"),
+    x = "Year",
+    y = "Percent (%)",
+    caption = str_wrap("In this plot we note that ITN usage in the general population decreases over time, while the ITN usage amongst children under five fluctuates. Source: UNICEF Child Health Coverage Dataset & DHS Data API.")
+  )
 
 ```
 There are gaps in the data due to the frequency of these national surveys: adult ITN use data ranges from 2005 to 2015, and ITN use data for children ranges from 2006 to 2019. ITN use in children has also been sampled more frequently, shown in the number of data points in the plot. To further prepare the data for inclusion into the model, we interpolate and extrapolate all data points between 2006 and 2019.
@@ -264,30 +275,34 @@ ITNuse_adult <- Zim_ITN_use_a %>%
   filter(SurveyYear > 2005) # start at 2006 to have same range as UNICEF data
 
 ggplot() + 
-    geom_point(data = ITNuse_children, aes(x = `Latest Year`, y = Value, colour = Population)) +
+  geom_point(data = ITNuse_children, aes(x = `Latest Year`, y = Value, colour = Population)) +
   geom_point(data = ITNuse_adult, aes(x = `SurveyYear`, y = Value, colour = Population)) +
   geom_line(data = ITNuse_children, aes(x = `Latest Year`, y = Value, colour = Population)) +
   geom_line(data = ITNuse_adult, aes(x = `SurveyYear`, y = Value, colour = Population)) +
   scale_colour_manual_health_radar() + 
   theme_health_radar() +
   scale_y_continuous(labels = scales::percent) +
-  labs(title = str_wrap("Extrapolated and interpolated values for ITN usage over time in Zimbabwe"),
-       x = "Year",
-       y = "Percentage",
-       caption = str_wrap("The data trend indicates that ITN usage in the general population (considered here to be over the age of five years old) decreases over time. Amongst children under five ITN usage fluctuates, but is generally lower than usage in adults. Source: UNICEF Child Health Coverage Dataset & DHS Data API."))
+  labs(
+    title = str_wrap("Extrapolated and interpolated values for ITN usage over time in Zimbabwe"),
+    x = "Year",
+    y = "Percentage",
+    caption = str_wrap("The data trend indicates that ITN usage in the general population (considered here to be over the age of five years old) decreases over time. Amongst children under five ITN usage fluctuates, but is generally lower than usage in adults. Source: UNICEF Child Health Coverage Dataset & DHS Data API.")
+  )
 
 ## ITN access data 
 # ML_NETP_H_IT2: Percentage of households with at least one insecticide-treated mosquito net (ITN) for every two persons who stayed in the household the previous night
 
-access_data <- dhs_data(indicatorIds = "ML_NETP_H_IT2",
-                  countryIds = "ZW",
-                  surveyYearStart = 2000)
+access_data <- dhs_data(
+  indicatorIds = "ML_NETP_H_IT2",
+  countryIds = "ZW",
+  surveyYearStart = 2000
+)
 
 # Survey Years were 2005, 2010 and 2015
 # Use complete to fill in years between 2005 and 2019
 complete_access_data <- access_data %>% 
   select(SurveyYear, Value) %>% 
-    complete(SurveyYear = seq(min(SurveyYear), 2019, by = 1)) %>%  # Fill in missing years
+  complete(SurveyYear = seq(min(SurveyYear), 2019, by = 1)) %>%  # Fill in missing years
   mutate(Value = approx(SurveyYear, Value, SurveyYear, rule = 2)$y) %>% 
   mutate(Value = Value/100) %>% 
   filter(SurveyYear > 2005) # start at 2006 to have same range as UNICEF data
@@ -422,13 +437,15 @@ parameters <- c(a = 0.3, # human biting rate
 
 # Run the model
 
-out <- ode(y = initial_state, 
-           times = times, 
-           func = seacr, 
-           parms = parameters,
-           itnfunc = itnfunc,
-           itnuse_childrenfunc = itnuse_childrenfunc,
-           itnuse_adultfunc = itnuse_adultfunc)
+out <- ode(
+  y = initial_state, 
+  times = times, 
+  func = seacr, 
+  parms = parameters,
+  itnfunc = itnfunc,
+  itnuse_childrenfunc = itnuse_childrenfunc,
+  itnuse_adultfunc = itnuse_adultfunc
+)
 
 
 # Post-processing model output into a dataframe
@@ -452,14 +469,17 @@ df |>
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
-  labs(x = "Year", 
-       y = "Incidence", 
-       title = "Daily malaria incidence in Zimbabwe",
-       colour = "Population",
-       caption = str_wrap("This plot illustrates how incidence differs between the two age groups. In the age group of children under the age of five years incidence decreases, which is consistent with previous data shown depicting lower ITN usage in this group. In addition, children under the age of five are a significant contribution to the burden of infection in Zimbabwe. Source: Model output.")) +
+  labs(
+    x = "Year", 
+    y = "Incidence", 
+    title = "Daily malaria incidence in Zimbabwe",
+    colour = "Population",
+    caption = str_wrap("This plot illustrates how incidence differs between the two age groups. In the age group of children under the age of five years incidence decreases, which is consistent with previous data shown depicting lower ITN usage in this group. In addition, children under the age of five are a significant contribution to the burden of infection in Zimbabwe. Source: Model output.")
+  ) +
   theme_health_radar() +
-  scale_x_date(date_breaks = "3 years",
-               date_labels = "%Y"
+  scale_x_date(
+    date_breaks = "3 years",
+    date_labels = "%Y"
   )  # Set x-axis breaks to multiples of 3 years
 
 ```

@@ -79,7 +79,7 @@ Figure 3 shows a snap-shot of the summary data that can be generated from the se
 
 - Kweka EJ. *Anopheles stephensi*: a guest to watch in urban Africa. Trop Dis Travel Med Vaccines. 2022 Apr 1;8(1):7. doi: 10.1186/s40794-022-00165-7. PMID: 35361266; PMCID: PMC8973991.
 
-## Working with the data
+## Visualisations
 
 <h2>How to use this data</h2>
 

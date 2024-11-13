@@ -104,7 +104,7 @@ such as;
     short-term dynamics, such as outbreaks or the immediate impact of
     interventions.
 
-## Working with the data
+## Visualisations
 
 <h2>How to use this data?</h2>
 
@@ -180,13 +180,13 @@ ggplot(data = df) +
   facet_wrap(~ Name) + 
   scale_x_continuous(breaks = seq(min(df$Year), max(df$Year), by = 2)) +  # Custom x-axis breaks
   scale_fill_manual(values = c("Access" = "#1b9e77", "Use" = "#d95f02", "Use Rate" = "#7570b3")) + # Custom colors for each Metric
-  labs(y = "Per 100 people", 
-       title = str_wrap("Estimated subnational ITN use, access, and use rate in Malawi in 2022", 
-                        width = 45),
-        caption = str_wrap("Figure shows the estimated subnational ITN use, access, and use rate (ITN use given access) in Malawi in the year 2022. Source: MAP 2024.",width = 90)) +
+  labs(
+    y = "Per 100 people", 
+    title = str_wrap("Estimated subnational ITN use, access, and use rate in Malawi in 2022", width = 45),
+    caption = str_wrap("Figure shows the estimated subnational ITN use, access, and use rate (ITN use given access) in Malawi in the year 2022. Source: MAP 2024.",width = 90)
+  ) +
   theme_health_radar() +
-  theme(# Add light background to each facet panel
-    panel.background = element_rect(fill = "#F0F0F0", color = NA))
+  theme(panel.background = element_rect(fill = "#F0F0F0", color = NA)) # Add light background to each facet panel
 
 ```
 
@@ -257,14 +257,18 @@ df_walk <- terra::extract(raster_walk, shp_zambia, mean, na.rm = T, ID = T) |>
 list_district_df <- split(df_walk, df_walk$PROVINCE)
 
 # Function that creates a ggplot for a given dataframe 'df'
-fun_plot <- function(df){
-  ggplot(data = df, aes(
+fun_plot <- function(df) {
+  ggplot(
+    data = df, aes(
     y = reorder(DISTRICT, Global_Walking_Only_Travel_Time_To_Healthcare_ZMB), 
-    x = Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)) +
+    x = Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)
+  ) +
     geom_col(fill = theme_health_radar_colours[5]) +
-     theme_health_radar() +
-    geom_text(aes(label = round(Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)), 
-              hjust = -0.2, size = 2.5) +
+    theme_health_radar() +
+    geom_text(
+      aes(label = round(Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)), 
+      hjust = -0.2, size = 2.5
+    ) +
     labs(x = "", y = "", title = df$PROVINCE) + # Sets axis labels to blank and title to province name
     xlim(0, 450) +
     theme_bw() # add borders to plots
@@ -280,6 +284,8 @@ Reduce(`+`, lapply(list_district_df, fun_plot)) +
     theme = theme_health_radar()
     )
 ```
+
+## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
 
@@ -319,12 +325,16 @@ IRSdata <- read.csv("National Unit-data.csv") |>
 
 ggplot(data = IRSdata, aes(x = Year, y = Value)) +
   geom_line(color = theme_health_radar_colours[2], linewidth = 0.8) +
-  geom_text(aes(label = round(Value)), 
-              hjust = -0.2, size = 2.5) +
-  labs(x = "Year",
-       y = "IRS Coverage (%)",
-       title = "Countrywide IRS coverage for Zambia",
-       caption = str_wrap("This plot illustrates yearly country-wide IRS coverage from 2013 to 2022. The graph reveals fluctuations in coverage over the years, with a notable low in 2018. Source: MAP", width = 90)) +
+  geom_text(
+    aes(label = round(Value)), 
+    hjust = -0.2, size = 2.5
+  ) +
+  labs(
+    x = "Year",
+    y = "IRS Coverage (%)",
+    title = "Countrywide IRS coverage for Zambia",
+    caption = str_wrap("This plot illustrates yearly country-wide IRS coverage from 2013 to 2022. The graph reveals fluctuations in coverage over the years, with a notable low in 2018. Source: MAP", width = 90)
+  ) +
   scale_x_continuous(breaks = round(seq(min(IRSdata$Year), max(IRSdata$Year), by = 1))) + # Rounding x-axis values
   theme_health_radar()
 
@@ -438,8 +448,10 @@ therefore do not reflect actual impacts or real case numbers.
 #| warning: false
 
 hmplot <- as_tibble(as.data.frame(hm)) |>  
-  mutate(P=S+E+A+C+R,
-         Inc = c(0, diff(CInc))) |>  
+  mutate(
+    P=S+E+A+C+R,
+    Inc = c(0, diff(CInc))
+  ) |>  
   pivot_longer(names_to = "variable", cols = !1) |>  
   mutate(model = "human") |>  
   filter(variable == "Inc")
@@ -447,10 +459,12 @@ hmplot <- as_tibble(as.data.frame(hm)) |>
 
 ggplot(data = hmplot, aes(y = value, x = time / 365 + 2013)) +  # Convert time to years starting from 2013
     geom_line(color = theme_health_radar_colours[9], linewidth = 0.8) +
-    labs(x = "Year", 
-         y = "Incidence", 
-         title = "Daily country-wide incidence",
-         caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2014 to 2022. The graph reveals fluctuations in incidence over the years, with notable peaks in 2018. This peak coincides with the period when IRS coverage was at its lowest, highlighting the potential impact of reduced intervention efforts on malaria transmission. Source: Model output.", width = 90)) +
+    labs(
+      x = "Year", 
+      y = "Incidence", 
+      title = "Daily country-wide incidence",
+      caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2014 to 2022. The graph reveals fluctuations in incidence over the years, with notable peaks in 2018. This peak coincides with the period when IRS coverage was at its lowest, highlighting the potential impact of reduced intervention efforts on malaria transmission. Source: Model output.", width = 90)
+    ) +
     ylim(25000, 50000) + 
     theme_health_radar() +
     scale_x_continuous(breaks = seq(2013, 2024, by = 2)) +  # Set x-axis breaks to multiples of 2 years

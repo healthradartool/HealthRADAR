@@ -118,16 +118,6 @@ Via KNMI Climate Explorer: [Monthly observations](https://climexp.knmi.nl/select
 |-----------------|--------------------|-----------------|-------------------|
 | 4.08 (1901 - 2023) | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap | 0.5, 1.0, 2.5 | netCDF (.nc) |
 
-<h2>What does the data look like?</h2>
-
-**Spatial plots of key variables**
-
-![Figure 1. Spatial plot of long term mean annual total rainfall (mm/year) for the period 1991-2020.](images/Fig1_CRU_MeanRainfall_1991-2020.png) ![Figure 2. Spatial plot of longer term daily mean temperature (deg C) for the period 1991-2020.](images/Fig2_CRU_MeanTemperature_1991-2020.png)
-
-**Key example plots for a selected location**
-
-![Figure 3. Seasonal cycle of monthly total rainfall and daily mean temperature for a gridcell over Bulawayo. Averaged over the period 1991-2020.](images/Fig3_CRU_Climatology_1991-2020.png) ![Figure 4. Timeseries of monthly total rainfall for the gricell over Bulawayo. The number of stations that were used in the interpolation is also shown.](images/Fig4_CRU_TimeSeries_Rainfall_1901-2023.png) ![Figure 5. Timeseries of the monthly mean daily temperature for a gridcell over Bulawao. The number of stations that were used in the interpolation is also shown.](images/Fig5_CRU_TimeSeries_Temperature_1901-2023.png)
-
 <h2>Key points to consider</h2>
 
 The dataset's skill is very tightly linked to the number of stations that are available for the location and timestep.
@@ -140,8 +130,18 @@ The various datasets on the CRU website are provided for all to use, provided th
 
 -   Harris, I., Osborn, T.J., Jones, P. et al. Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data 7(1), 109 (2020). <https://doi.org/10.1038/s41597-020-0453-3>
 
+## Visualisations  
 
-## Working with the data
+**Spatial plots of key variables**
+
+![Figure 1. Spatial plot of long term mean annual total rainfall (mm/year) for the period 1991-2020.](images/Fig1_CRU_MeanRainfall_1991-2020.png) ![Figure 2. Spatial plot of longer term daily mean temperature (deg C) for the period 1991-2020.](images/Fig2_CRU_MeanTemperature_1991-2020.png)
+
+**Key example plots for a selected location**
+
+![Figure 3. Seasonal cycle of monthly total rainfall and daily mean temperature for a gridcell over Bulawayo. Averaged over the period 1991-2020.](images/Fig3_CRU_Climatology_1991-2020.png) ![Figure 4. Timeseries of monthly total rainfall for the gricell over Bulawayo. The number of stations that were used in the interpolation is also shown.](images/Fig4_CRU_TimeSeries_Rainfall_1901-2023.png) ![Figure 5. Timeseries of the monthly mean daily temperature for a gridcell over Bulawao. The number of stations that were used in the interpolation is also shown.](images/Fig5_CRU_TimeSeries_Temperature_1901-2023.png)
+
+
+## Modelling Example 
 
 <h2>How can this data be used in disease modelling?</h2>
 
@@ -191,7 +191,7 @@ temperature_values <- read_csv("data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.
   filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
 
 ggplot() +
-   geom_line(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[13]) +
+  geom_line(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[13]) +
   geom_point(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[13]) +
   theme_health_radar() +
   labs(
@@ -212,7 +212,7 @@ rainfall_values <- read_csv("data/PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo
   filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
 
 ggplot() +
-   geom_line(data = rainfall_values, aes(x = time, y = PRCPTOT), colour = theme_health_radar_colours[8]) +
+  geom_line(data = rainfall_values, aes(x = time, y = PRCPTOT), colour = theme_health_radar_colours[8]) +
   geom_point(data = rainfall_values, aes(x = time, y = PRCPTOT), colour = theme_health_radar_colours[8]) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
@@ -353,20 +353,26 @@ As mentioned earlier, environmental conditions affect the parasite and mosquito 
 ```{r}
 df |> 
   filter(variable %in% c("M", "P")) |> 
-  mutate(variable = factor(variable,
-                           levels = c("M", "P"),
-                           labels = c("Mosquitoes", "Humans"))) |>
+  mutate(
+    variable = factor(
+      variable,
+      levels = c("M", "P"),
+      labels = c("Mosquitoes", "Humans")
+    )
+  ) |>
   ggplot() +
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   theme(panel.spacing = unit(2, "lines")) +
   scale_y_continuous(labels = scales::label_number(suffix = " M", scale = 1e-6)) +
-  labs(title = "Mosquito vector and human host Populations over time", 
-       x = "Year",
-       y = "Population size",
-       colour = "Population",
-       caption = str_wrap("Changes in the total mosquito population mimic seasonal changes in temperature and rainfall values over time, with peaks in the summer months. The higher rainfall values in 2017 are also reflected in the mosquito population.  The human population remains constant in this example, as it is not driven by environmental conditions. Source: Model output"))
+  labs(
+    title = "Mosquito vector and human host Populations over time", 
+    x = "Year",
+    y = "Population size",
+    colour = "Population",
+    caption = str_wrap("Changes in the total mosquito population mimic seasonal changes in temperature and rainfall values over time, with peaks in the summer months. The higher rainfall values in 2017 are also reflected in the mosquito population.  The human population remains constant in this example, as it is not driven by environmental conditions. Source: Model output")
+  )
 
 ```
 
@@ -383,13 +389,17 @@ df |>
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   theme(legend.position = "none") +
-  scale_x_date(date_breaks = "1 year",
-               date_minor_breaks = "3 months",
-               date_labels = "%Y") +
-  labs(title = "Daily incidence values in the human population", 
-       x = "Year",
-       y = "Number of new cases",
-      caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. We see a small peak in 2017, coinciding with higher rainfall values that year, resulting in potentially larger mosquito populations driving incidence. Source: Model output"))
+  scale_x_date(
+    date_breaks = "1 year",
+    date_minor_breaks = "3 months",
+    date_labels = "%Y"
+  ) +
+  labs(
+    title = "Daily incidence values in the human population", 
+    x = "Year",
+    y = "Number of new cases",
+    caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. We see a small peak in 2017, coinciding with higher rainfall values that year, resulting in potentially larger mosquito populations driving incidence. Source: Model output")
+  )
 ```
 
 

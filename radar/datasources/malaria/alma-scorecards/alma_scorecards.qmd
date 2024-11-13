@@ -74,7 +74,7 @@ or directly from the web platform (not downloadable, user has to scroll through 
 - Downloading the [materials](https://scorecardhub.org/guides-and-toolkits/download-course-content-to-access-when-you-do-not-have-an-internet-connection/) for the online courses is highly beneficial, as they provide a comprehensive overview on how to create scorecards. This will help towards the understanding and interpretation of the scorecards.
 - The scorecards are highly country specific, indicators change according to the country's health priorities.
 
-## Working with the data
+## Visualisations
 
 <h2>How to use this data</h2>
 
@@ -123,16 +123,18 @@ ggplot(data = rwanda_data) +
   geom_sf(aes(fill = cases), color = "lightgrey", size = 0.3) +  # Use fill for the continuous 2022 data
   theme_health_radar() +
   scale_fill_continuous_health_radar(name = "Total Cases") +  # Correct fill scale for continuous data
-  labs(title = "Reported malaria cases Rwanda (by province) 1st quarter (2022)",
-       caption = str_wrap("The choropleth map highlights the total number of new outpatient department (OPD) cases of malaria recorded at health facilities in the five provinces of Rwanda during the first quarter of 2022. With the East and South provinces showing the lowest and highest number of cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", width = 80),
-       x = "Latitude",
-       y = "Longitude") +
-  
-  geom_sf_text(aes(label = name, color = ifelse(cases > mean(cases), "black", "white")), size = 3) +  # Conditional text color
+  labs(
+    title = "Reported malaria cases Rwanda (by province) 1st quarter (2022)",
+    caption = str_wrap("The choropleth map highlights the total number of new outpatient department (OPD) cases of malaria recorded at health facilities in the five provinces of Rwanda during the first quarter of 2022. With the East and South provinces showing the lowest and highest number of cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", width = 80),
+    x = "Latitude",
+    y = "Longitude"
+  ) +
+  geom_sf_text(
+    aes(label = name, color = ifelse(cases > mean(cases), "black", "white")), 
+    size = 3
+  ) +  # Conditional text color
   scale_color_identity() +  
-  theme(
-    plot.caption.position = "plot",  # Keep the caption outside the plot area
-  )
+  theme(plot.caption.position = "plot")  # Keep the caption outside the plot area
 ```
 
 ```{r}

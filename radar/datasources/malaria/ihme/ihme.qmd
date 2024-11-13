@@ -64,7 +64,7 @@ IHME (Institute for Health Metrics and Evaluation) provides detailed data on hea
 
 - IHME estimates often come with uncertainty intervals due to limitations in the data sources. This uncertainty should be accounted for in model simulations, especially for stochastic models or sensitivity analyses.
 
-## Working the data
+## Visualisations
 
 <h2>How to use this data?</h2>
 
@@ -143,15 +143,15 @@ ihme_nets %>%
   scale_colour_manual_health_radar() +  # Apply manual color scale for 'color' aesthetic (lines)
   scale_fill_manual_health_radar() +    # Apply manual color scale for 'fill' aesthetic (ribbon fill)
   theme_health_radar() +
-    labs(
-      title = "Estimated ITN Ownership",
-      subtitle = "With confidence bands",
-      x = "Year",
-      y = "ITN Ownership (%)",
-      color = "Country",
-      fill = "Country",  # Added 'fill' label for the ribbon shading
-      caption = str_wrap("The plot illustrates the estimated ITN ownership in E8 countries from 1999 to 2008. Lines indicate the ownership estimates, while shaded areas represent the confidence bands. The uncertainty in ITN ownership remains fairly consistent across all countries. South Africa and Eswatini had the lowest levels of ITN ownership, but after 2004, there is a noticeable rise in ownership in the other countries, with Zambia showing the higest increase.", width = 85)
-    )
+  labs(
+    title = "Estimated ITN Ownership",
+    subtitle = "With confidence bands",
+    x = "Year",
+    y = "ITN Ownership (%)",
+    color = "Country",
+    fill = "Country",  # Added 'fill' label for the ribbon shading
+    caption = str_wrap("The plot illustrates the estimated ITN ownership in E8 countries from 1999 to 2008. Lines indicate the ownership estimates, while shaded areas represent the confidence bands. The uncertainty in ITN ownership remains fairly consistent across all countries. South Africa and Eswatini had the lowest levels of ITN ownership, but after 2004, there is a noticeable rise in ownership in the other countries, with Zambia showing the higest increase.", width = 85)
+  )
 ```
 
 Trend in % ITN Ownership among at-risk populations.
@@ -164,13 +164,13 @@ ihme_nets %>%
   geom_line(linewidth = 1) +
   scale_colour_manual_health_radar() + 
   theme_health_radar() +
-    labs(
-      title = "Estimated ITN Ownership in populations at-risk",
-      x = "Year",
-      y = "ITN Ownership in Pop. At Risk (%)",
-      color = "Country",
-      caption = str_wrap("The plot depicts estimated ITN ownership among at-risk populations from 1998 to 2008 in E8 countries. The rise in ITN ownership in all countries, with Zambia, Botswana and Zimbabwe showing the highest increases followed by Namibia, Mozambique and Angola. South Africa and Eswatinin remain lower than 20 % ownership in populations at risk.", width = 85)
-    )
+  labs(
+    title = "Estimated ITN Ownership in populations at-risk",
+    x = "Year",
+    y = "ITN Ownership in Pop. At Risk (%)",
+    color = "Country",
+    caption = str_wrap("The plot depicts estimated ITN ownership among at-risk populations from 1998 to 2008 in E8 countries. The rise in ITN ownership in all countries, with Zambia, Botswana and Zimbabwe showing the highest increases followed by Namibia, Mozambique and Angola. South Africa and Eswatinin remain lower than 20 % ownership in populations at risk.", width = 85)
+  )
 ```
 
 ITN use among U5s in at-risk populations vs ITN Use in U5s.
@@ -184,13 +184,13 @@ ihme_nets %>%
   geom_point(size = 2) +
   scale_colour_manual_health_radar() + 
   theme_health_radar() +
-    labs(
-      x = "ITN Use U5 (%)",
-      y = "ITN Use U5 Pop. At Risk (%)",
-      color = "Country",
-      fill = "Country",  # Added 'fill' label for the ribbon shading
-      caption = str_wrap("The plot depicts estimated ITN use among children under five years old in at-risk populations with respect to ITN usage in children under five in E8 countries. Zambia, Mozambique and Angola show an equal rise in ITN use among children under five in populations at risk as ITN usage increases in children under five years old. In contrast, The other countries show higher usage among children under five years old in at risk populations despite lower ITN usage in children under five.", width = 85)
-    )
+  labs(
+    x = "ITN Use U5 (%)",
+    y = "ITN Use U5 Pop. At Risk (%)",
+    color = "Country",
+    fill = "Country",  # Added 'fill' label for the ribbon shading
+    caption = str_wrap("The plot depicts estimated ITN use among children under five years old in at-risk populations with respect to ITN usage in children under five in E8 countries. Zambia, Mozambique and Angola show an equal rise in ITN use among children under five in populations at risk as ITN usage increases in children under five years old. In contrast, The other countries show higher usage among children under five years old in at risk populations despite lower ITN usage in children under five.", width = 85)
+  )
 ```
 
 Scale-up of LLIN distribution.
@@ -210,12 +210,12 @@ ihme_nets %>%
   facet_wrap(~Country, scales = "fixed") +
   scale_fill_manual_health_radar() +   
   theme_health_radar() +
-    labs(
-      x = "Year",
-      y = "LLINs Distributed Per Capita",
-      fill = "Category",
-      caption = str_wrap("The plot shows estimate of annual % of LLINs distributed in E8 countries during the 1998 to 2008 period. Despite the low levels of distribution, South Africa has distributed LLINs relatively consistently through the years. There is a significant scale-up in LLIN distribution in all other countries, with Mozambique showing a consistent rise in distribution. Zambia has the highest distribution of LLINs per capita followed by Mozambique, Namibia, Zimbabwe and Angola, whereas Botswana, Eswatini and South Africa have the least LLINs distributed.", width = 85)
-    )
+  labs(
+    x = "Year",
+    y = "LLINs Distributed Per Capita",
+    fill = "Category",
+    caption = str_wrap("The plot shows estimate of annual % of LLINs distributed in E8 countries during the 1998 to 2008 period. Despite the low levels of distribution, South Africa has distributed LLINs relatively consistently through the years. There is a significant scale-up in LLIN distribution in all other countries, with Mozambique showing a consistent rise in distribution. Zambia has the highest distribution of LLINs per capita followed by Mozambique, Namibia, Zimbabwe and Angola, whereas Botswana, Eswatini and South Africa have the least LLINs distributed.", width = 85)
+  )
 ```
 
 Here we show the trends in malaria deaths, percent prevalence and incidence rates during the 2000 to 2021 period.
@@ -229,12 +229,12 @@ observed_cases %>%
   geom_bar(aes(x = year, y = val, fill = location_name), stat = "identity", position = "stack") +
   scale_fill_manual_health_radar() +   
   theme_health_radar() +
-    labs(
-      x = "Year",
-      y = "Deaths",
-      fill = "Country",
-      caption = str_wrap("This bar plot shows Institute of Health Metrics and Evaluation (IHME) estimates of the total number of deaths caused by malaria in Elimination 8 (E8) countries during the 2000 to 2021 period. The largest number of deaths is recorded in the Republic of Mozambique and Angola, followed by the Republic of Zimbabwe and Zambia whereas the remaining countries show substantially less deaths recorded during this period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
-    )
+  labs(
+    x = "Year",
+    y = "Deaths",
+    fill = "Country",
+    caption = str_wrap("This bar plot shows Institute of Health Metrics and Evaluation (IHME) estimates of the total number of deaths caused by malaria in Elimination 8 (E8) countries during the 2000 to 2021 period. The largest number of deaths is recorded in the Republic of Mozambique and Angola, followed by the Republic of Zimbabwe and Zambia whereas the remaining countries show substantially less deaths recorded during this period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
+  )
 ```
 
 Similarly we show the percent prevalence of malaria in these countries in the following plot:
@@ -248,14 +248,14 @@ observed_cases %>%
   scale_colour_manual_health_radar() +  
   scale_fill_manual_health_radar() +
   theme_health_radar() +
-    labs(
-      title = "Estimated malaria prevalence",
-      x = "Year",
-      y = "Percent",
-      color = "Location",
-      fill = "Location",  # Added 'fill' label for the ribbon shading
-      caption = str_wrap("The plot shows the trends in estimated percentage malaria prevalence across the malaria Elimination 8 (E8) countries during the 2000 to 2021 period. Malaria prevalence in these countries have remained below 40%, with some countries such as the Republic of Mozambique and Zambia, that show a decline in prevalence. Although there was a decrease observed in the Republic Angola in 2005, prevalence remained relatively constant for a period of 5 years from 2010 to 2015 which then saw a rise in prevalence from 10% to 20%. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
-    )
+  labs(
+    title = "Estimated malaria prevalence",
+    x = "Year",
+    y = "Percent",
+    color = "Location",
+    fill = "Location",  # Added 'fill' label for the ribbon shading
+    caption = str_wrap("The plot shows the trends in estimated percentage malaria prevalence across the malaria Elimination 8 (E8) countries during the 2000 to 2021 period. Malaria prevalence in these countries have remained below 40%, with some countries such as the Republic of Mozambique and Zambia, that show a decline in prevalence. Although there was a decrease observed in the Republic Angola in 2005, prevalence remained relatively constant for a period of 5 years from 2010 to 2015 which then saw a rise in prevalence from 10% to 20%. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
+  )
 ```
 
 Finally, the incidence rates are shown in as follows:
@@ -270,17 +270,18 @@ observed_cases %>%
   scale_colour_manual_health_radar() +  
   scale_fill_manual_health_radar() +
   theme_health_radar() +
-    labs(
-      title = "Estimated malaria incidence rate",
-      subtitle = "With confidence bands",
-      x = "Year",
-      y = "Rate (cases per 1000 per year)",
-      color = "Location",
-      fill = "Location",  
-      caption = str_wrap("The plot illustrates the estimated malaria incidence rate from 2000 to 2021 in Elimination 8 (E8) countries. The lines represent incidence rate and the shaded areas show the uncertainty intervals. The Republic of Mozambique experienced malaria incidence around 40 to 60 thousand cases per 1000 per year in 2000 and has decreased to 30 to 40 thousand cases per 1000 per thousand. The Republic of Zimbabwe experiences seasonal malaria incidence with cases fluctuating along the years during the 21 year period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/
-", width = 85)
-    )
+  labs(
+    title = "Estimated malaria incidence rate",
+    subtitle = "With confidence bands",
+    x = "Year",
+    y = "Rate (cases per 1000 per year)",
+    color = "Location",
+    fill = "Location",  
+    caption = str_wrap("The plot illustrates the estimated malaria incidence rate from 2000 to 2021 in Elimination 8 (E8) countries. The lines represent incidence rate and the shaded areas show the uncertainty intervals. The Republic of Mozambique experienced malaria incidence around 40 to 60 thousand cases per 1000 per year in 2000 and has decreased to 30 to 40 thousand cases per 1000 per thousand. The Republic of Zimbabwe experiences seasonal malaria incidence with cases fluctuating along the years during the 21 year period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
+  )
 ```
+
+## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
 
@@ -362,7 +363,7 @@ model_output <- ode(
   times = times,
   func = seacr_model,
   parms = parameters
-  ) %>% 
+) %>% 
   as.data.frame() %>% 
   pivot_longer(!time, names_to = "state", values_to = "value") %>% 
   mutate(
@@ -386,11 +387,11 @@ model_output %>%
     geom_line(aes(x = year, y = value, colour = state), linewidth = 1) +
     scale_colour_manual_health_radar() +
     theme_health_radar() +
-      labs(
-        x = "Time",
-        y = "Population",
-        caption = str_wrap("SEACR model projections for the 2000 and 2008 period.", width = 85)
-      )
+    labs(
+      x = "Time",
+      y = "Population",
+      caption = str_wrap("SEACR model projections for the 2000 and 2008 period.", width = 85)
+    )
 ```
 
 **Model calibration**
@@ -430,7 +431,7 @@ times <- seq(0, 365*8, 1)
 
 # observed cases
 observed_df <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) %>% as.data.frame() %>% 
-    filter(measure_name == "Incidence", metric_name == "Number", location_name == "Republic of South Africa", year <= 2008) %>% 
+  filter(measure_name == "Incidence", metric_name == "Number", location_name == "Republic of South Africa", year <= 2008) %>% 
   rename(value = val) %>% 
   select(year, location_name, value)
 
@@ -441,14 +442,14 @@ objective_function <- function(parms, observed_df) {
     as.data.frame() %>% 
     pivot_longer(!time, names_to = "state", values_to = "value")   %>% 
     mutate(
-    year = 2000 + ceiling(time/365),
-    state = as_factor(state)
+      year = 2000 + ceiling(time/365),
+      state = as_factor(state)
     ) %>% 
-  group_by(year, state) %>%
-  summarize(
-      value = sum(value),
-      .groups = "keep"
-    ) 
+      group_by(year, state) %>%
+      summarize(
+        value = sum(value),
+        .groups = "keep"
+      ) 
   
   # actual IHME data
   observed_C <- observed_df$value
@@ -516,20 +517,20 @@ calibration_output <- ode(
   times = times,
   func = seacr_model,
   parms = parameters
-  ) %>% 
+) %>% 
   as.data.frame() %>% 
   select(time, C) %>% 
   pivot_longer(!time, names_to = "state", values_to = "value")   %>% 
-    mutate(
+  mutate(
     year = 2000 + ceiling(time/365),
     state = as_factor(state)
-    ) %>% 
-  group_by(year) %>%
-  summarize(
+  ) %>% 
+    group_by(year) %>%
+    summarize(
       value = sum(value),
       .groups = "keep"
     ) %>% 
-  select(year, value)
+      select(year, value)
 ```
 
 
@@ -553,11 +554,11 @@ ggplot() +
   geom_line(data = filter(merged_df, key == "predicted"), aes(x = year, y = value, colour = key), linewidth = 1) +
   scale_colour_manual_health_radar() +
   theme_health_radar() +
-    labs(
-      x = "Time",
-      y = "Cases",
-      caption = str_wrap("Observed, Predicted and Calibrated malaria incidence using the IHME data for the Republic of South Africa during the 2000 and 2008 period.", width = 85)
-    )
+  labs(
+    x = "Time",
+    y = "Cases",
+    caption = str_wrap("Observed, Predicted and Calibrated malaria incidence using the IHME data for the Republic of South Africa during the 2000 and 2008 period.", width = 85)
+  )
 ```
 
 :::

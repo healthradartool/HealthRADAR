@@ -62,7 +62,7 @@ On the PMI's website, the data are provided for each country on an annual basis 
 
 - Behavioral Changes: Changes in population behaviors, such as increased mobility, changes in agricultural practices, or urbanization, can influence transmission dynamics but may not be captured in annual data.
 
-## Working with the data
+## Visualisations
 
 <h2>How to use this data</h2>
 
@@ -91,24 +91,26 @@ incidence_long$Incidence <- as.numeric(as.character(incidence_long$Incidence))
 
  ggplot(incidence_long, aes(x = Year, y = Incidence, color = Country, group = Country)) +
    geom_line(size = 1.2) +
- geom_point(size = 3) +
- labs(title = "Malaria Incidence Over Time",
+   geom_point(size = 3) +
+   labs(
+    title = "Malaria Incidence Over Time",
       x = "Year",
       y = "Malaria Incidence (per 1000 population)",
-      caption = str_wrap("This line graph illustrates the annual malaria incidence (per 1,000 population) in Angola, Mozambique, Zambia, and Zimbabwe from 2008 to 2022.
-Mozambique consistently shows the highest incidence, with a slight decline over the years, stabilizing at around 320 cases per 1,000 people by 2022. Zambia’s incidence initially increases until 2015, after which it starts to decline. In Angola, malaria incidence shows an initial decline from 2008 to 2012, followed by a steady and significant rise through 2022, indicating a worsening malaria burden over time. Zimbabwe shows the lowest malaria incidence, marked by significant variability, with the lowest values seen after 2020. These trends highlight differing malaria control progress and challenges across the four countries. Source: World Malaria Report", width = 75),
-      color = "Country") +
-scale_x_continuous(breaks = seq(min(incidence_long$Year), max(incidence_long$Year), by = 1)) +  # Show all years
-   scale_y_continuous(breaks = seq(0, 400, 50)) +  # Adjust y-axis breaks for better readability
-   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
-  theme_health_radar() +
-   theme_minimal() +
-  theme(plot.title = element_text(hjust = 0.5,face = "bold"),
-        axis.text.y = element_text(size = 10),
-        plot.caption = element_text(hjust = 0, size = 10), 
-        axis.text.x = element_text(size = 10, angle = 45, hjust = 1),
-        ) +  # Adjust font size for x-axis labels
- theme(plot.margin = margin(20, 20, 20, 20))  # Add margins to prevent label 
+      caption = str_wrap("This line graph illustrates the annual malaria incidence (per 1,000 population) in Angola, Mozambique, Zambia, and Zimbabwe from 2008 to 2022. Mozambique consistently shows the highest incidence, with a slight decline over the years, stabilizing at around 320 cases per 1,000 people by 2022. Zambia’s incidence initially increases until 2015, after which it starts to decline. In Angola, malaria incidence shows an initial decline from 2008 to 2012, followed by a steady and significant rise through 2022, indicating a worsening malaria burden over time. Zimbabwe shows the lowest malaria incidence, marked by significant variability, with the lowest values seen after 2020. These trends highlight differing malaria control progress and challenges across the four countries. Source: World Malaria Report", width = 75),
+      color = "Country"
+   ) +
+    scale_x_continuous(breaks = seq(min(incidence_long$Year), max(incidence_long$Year), by = 1)) +  # Show all years
+    scale_y_continuous(breaks = seq(0, 400, 50)) +  # Adjust y-axis breaks for better readability
+    scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+    theme_health_radar() +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5,face = "bold"),
+      axis.text.y = element_text(size = 10),
+      plot.caption = element_text(hjust = 0, size = 10), 
+      axis.text.x = element_text(size = 10, angle = 45, hjust = 1)
+    ) +  # Adjust font size for x-axis labels
+      theme(plot.margin = margin(20, 20, 20, 20))  # Add margins to prevent label 
 ```
 
 For the following example, the goal is to get the baseline and endline ITN coverage in under 5 in 4 of the countries.
@@ -122,20 +124,21 @@ coverage_itn_melted <- melt(coverage_itn, id.vars = "Country", variable.name = "
 # Create the bar graph
 ggplot(coverage_itn_melted , aes(x = Country, y = Percentage, fill = Type)) +
   geom_bar(stat = "identity", position = position_dodge()) +
-  
-   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
   theme_health_radar() +
   scale_fill_manual(values = c("Baseline" =  "#a6cee3", "Endline" = "#b2df8a")) +
-  labs(title = "Baseline and Endline Percentages by Country",
-       x = "Country",
-       y = "Percentage of ITN use in children under 5 ",
-       caption = str_wrap("This bar chart compares the percentage of ITN use among children under 5 between baseline and endline of PMI's intervention in Angola, Mozambique, Zambia, and Zimbabwe. Zambia shows the highest endline percentage of ITN coverage, with a significant increase from the baseline. Mozambique also shows a significant increase from the baseline. Angola exhibits a moderate increase in ITN coverage. Source: World Malaria Report", width = 75),
-       fill = "Type") +
+  labs(
+    title = "Baseline and Endline Percentages by Country",
+    x = "Country",
+    y = "Percentage of ITN use in children under 5 ",
+    caption = str_wrap("This bar chart compares the percentage of ITN use among children under 5 between baseline and endline of PMI's intervention in Angola, Mozambique, Zambia, and Zimbabwe. Zambia shows the highest endline percentage of ITN coverage, with a significant increase from the baseline. Mozambique also shows a significant increase from the baseline. Angola exhibits a moderate increase in ITN coverage. Source: World Malaria Report", width = 75),
+    fill = "Type"
+  ) +
   theme_minimal() +
   theme(
     plot.title = element_text(face = "bold"),   # Bold title
     axis.title.x = element_text(face = "bold"), # Bold x-axis title
-     plot.caption = element_text(hjust = 0, size = 10), 
+    plot.caption = element_text(hjust = 0, size = 10), 
     axis.title.y = element_text(face = "bold")  # Bold y-axis title
   )
 
@@ -160,8 +163,7 @@ ggplot(coverage_iptp, aes(x = Percentage, y = Country, color = Source)) +
                color = "black", size = 1) +  # Black lines
   geom_segment(aes(xend = Percentage, yend = Country), size = 1) + # Colorful segments
   geom_point(aes(size = Percentage), show.legend = FALSE) + 
-  
-   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
   theme_health_radar() +
   # Remove size legend
   labs(title = "Percentage of Women Receiving IPTP by Country",
@@ -182,6 +184,8 @@ ggplot(coverage_iptp, aes(x = Percentage, y = Country, color = Source)) +
   theme(legend.position = "right") # Position legend on the right
 
 ```
+
+## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
 
@@ -323,21 +327,21 @@ results_cases <- results_combined %>% filter(variable == "cases")
 # Plot new malaria cases (cases) over time for each IPTp scenario
 ggplot(results_cases, aes(x = date, y = value, color = scenario)) +
   geom_line() +
-  labs(title = "Impact of IPTp Coverage on New Malaria Cases in pregnant women",
-       x = "Time (years)", y = " Malaria incidence in pregnant women (per day)", 
-       caption = str_wrap("This graph demonstrates that higher IPTp coverage levels significantly reduce new malaria cases over time. With increasing coverage from 19% to 70%, the incidence of malaria steadily declines, highlighting the importance of widespread IPTp uptake in lowering malaria cases among pregnant women. Pregnant women and children are particularly vulnerable to malaria infections, making this increase in coverage crucial for their protection.
-                           Source: World Malaria Report", width = 75),
-       color = "IPTp Coverage") +
-  
-   scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
-  theme_health_radar() +
- theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold"),   # Bold title
-    plot.caption = element_text(hjust = 0, size = 10),  # Caption alignment and size
-    legend.position = "right"  # Legend position
-  )
-
+  labs(
+    title = "Impact of IPTp Coverage on New Malaria Cases in pregnant women",
+    x = "Time (years)", y = " Malaria incidence in pregnant women (per day)", 
+    caption = str_wrap("This graph demonstrates that higher IPTp coverage levels significantly reduce new malaria cases over time. With increasing coverage from 19% to 70%, the incidence of malaria steadily declines, highlighting the importance of widespread IPTp uptake in lowering malaria cases among pregnant women. Pregnant women and children are particularly vulnerable to malaria infections, making this increase in coverage crucial for their protection.
+    Source: World Malaria Report", width = 75),
+    color = "IPTp Coverage"
+  ) +
+    scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+    theme_health_radar() +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold"),   # Bold title
+      plot.caption = element_text(hjust = 0, size = 10),  # Caption alignment and size
+      legend.position = "right"  # Legend position
+    )
 ```
 
 :::
