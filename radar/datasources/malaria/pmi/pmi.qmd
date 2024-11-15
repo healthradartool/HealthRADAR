@@ -191,118 +191,140 @@ ggplot(coverage_iptp, aes(x = Percentage, y = Country, color = Source)) +
 
 The data available on the PMI website is valuable for malaria modelling in several ways. It includes indicators that can help in predicting the spread of malaria, assessing the impact of interventions, or understanding regional differences in malaria dynamics. Below are some of the indicators:
 
-- Estimated malaria incidence per year in each of the partner country
+- Estimated malaria incidence per year in each of the partner countries
  
-- Estimated malaria mortality rate per year in each of the partner country
+- Estimated malaria mortality rate per year in each of the partner countries
 
-- Percentage of pregnant women who slept under a long-lasting insecticide treated net (LLIN) the night before the survey before and after PMI's intervention. 
+- Percentage of children under 5 who slept under a long-lasting insecticide treated net (LLIN) the night before the survey before and after PMI's intervention
 
-- Percentage of children under 5 who slept under a long-lasting insecticide treated net (LLIN) the night before the survey before and after PMI's intervention. 
+- Percentage of pregnant women who received at least three doses of preventive treatment during their last pregnancy before and after PMI's intervention
 
-- Percentage of pregnant women who received at least three doses of preventive treatment during their last pregnancy before and after PMI's intervention. 
+- PMI's funding in each country. 
 
-- PMI's funding in each of the country. 
+In the simple example below, we obtain data on Intermittent preventive treatment of malaria during pregnancy (IPTp) access and usage rates in Angola, and assess the impact of these intervention on malaria cases. IPTp is intended to prevent malaria infection by providing pregnant women with three doses of an artemisinin-based combination therapy (ACT). In turn, this prevents risks associated with pregnancy-related complications caused by malaria infection, such as maternal anemia and low birth weights.
 
-In the simple example below, we obtain data on Intermittent preventive treatment of malaria during pregnancy (IPTp) access and usage rates in Angola, and assess the impact of these intervention on malaria cases.
+### Model assumptions
 
-**Model assumptions**
+ - The total population size remains constant over time and mosquito populations are asusmed to be at equilibrium.
 
- - The total population size remains constant over time, meaning that births and deaths occur at rates that balance each other out, with no net migration.
+ -  Based on the data obtained from PMI, 19% of women are receiving IPTp in Angola. After three years we incorporate a potential policy change that increases coverage to 50 and/or 70%, respectively. 
  
- - Malaria transmission occurs primarily through mosquito bites, with the transmission rate influenced by the density of infected humans and mosquitoes.
+ -  All IPTp doses are completed and the intervention is 100% effective. IPTp reduces the likelihood of infection and further infectiousness, and also shortens the time to recovery after an infection.
  
- - The model incorporate seasonal variations in malaria transmission due to factors such as rainfall, temperature, and mosquito breeding patterns. This is captured through seasonal forcing in the force of infection equation.
+ -  0.02% of the Angolan population are women of reproductive age [WHO data](https://platform.who.int/data/maternal-newborn-child-adolescent-ageing/indicator-explorer-new/MCA/women-of-reproductive-age-(15-49-years)-population-(thousands)). 
  
- - The model assumes different levels of infectiousness for different states (asymptomatic, treated, untreated), which may be influenced by treatment efficacy or immunity.
- 
- - IPTp coverage is assumed to be effective in reducing malaria transmission, which is why it is included in the equation of the force of infection. 
+ -  The fertility rate $f$ is defined as the average number of births per woman over her lifetime. The average childbearing years span from 15 to 45 years of age. $f$ is assumed to be constant over time, and applies uniformly to all susceptible women.
 
 **Force of infection**
 
-The FOI is typically expressed in terms of the number of new infections per susceptible individual per unit of time.It is often represented as a function of various factors, including the transmission dynamics of the disease, the prevalence of infection within the population, and specific interventions aimed at reducing transmission.
-
-The force of infection, represented by the equation 
-$$lambda = seas * (1 - current_iptp) * (a^2 * b * c * m * Infectious / P) / (a * c * Infectious / P + mu_m) * (gamma_m / (gamma_m + mu_m))
-$$
-,reflects a host-vector collapse model, which captures the interplay between host and vector populations in the dynamics of disease transmission.
-
-**Seasonal forcing function**
-
-Seasonality is modelled by multiplying the force of infection of the model by a seasonality factor. 
- 
-Typically, we introduce a forcing function to replicate the seasonal patterns of temperature and rainfall. In this instance, we utilize the cosine function, where Amp denotes the amplitude of the curve and the intensity of the seasonality, while phi represents the phase angle used to shift the start of the period. 
- 
-The average monthly rainfall at a country level can be standardized and fitted to trigonometric function to account for seasonality.
-
-$$
-seas = 1 * (1 + amp * cos(2 * pi * (t - phi) / 365))
-$$
-
-**Impact of IPTp Coverage on New Malaria Cases**
+The force of infection is typically expressed in terms of the number of new infections per susceptible individual per unit of time. It is often represented as a function of various factors, including malaria transmission dynamics, the prevalence of infection within the population, and specific interventions aimed at reducing transmission. In this example, the force of infection includes a seasonal forcing function, and current coverage levels of IPTp. For a more detailed explanation of seasonal forcing and the impact of weather dynamics on malaria transmission, please see the [Climate Research Unit Timeseries (CRU TS)](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/cru-ts/cruts.html) page. This example also extends other models on this website by demonstrating three scenarios of IPTp coverage.
 
 ```{r}
 # Load packages ####
 library(deSolve)
 library(tidyverse)
-library(readxl)
 
-# Define the SEIR-like model for malaria with time-varying IPTp ####
+
+# Time points for the simulation
+Y = 10 # Years of simulation
+times <- seq(0, 365*Y, 1)
+
+# Define the SEIR-like model for malaria with time-varying IPTp coverage
 iptpmodel <- function(t, x, parms)  {
   with(as.list(c(parms, x)), {
     
-    P = S + E + A + C + Tr + R
-    Infectious = C + kappa_t * Tr + kappa_a * A
+    P = S + E + A + C + R + P_S + P_E + P_A + P_C
+    Infectious = C + kappa_a*A + epsilon*P_C + epsilon*kappa_a*P_A # infectious resevoir
     
-    # Interpolate lagged rainfall at the current time (seasonality)
+    # Seasonal forcing function
     seas <- 1 * (1 + amp * cos(2 * pi * (t - phi) / 365))
     
-    # Time-dependent IPTp coverage
-    current_iptp <- ifelse(t < 6 * 365, 0.19, iptp)  # 0.19 until year 22, then scenario-specific IPTp
+    # Time-dependent IPTp coverage, new coverage rates after year 5
+    current_iptp <- ifelse(t < (3*365), 0.19, iptp) 
     
     # Force of infection
-    lambda = seas * (1 - current_iptp) * (a^2 * b * c * m * Infectious / P) / 
-      (a * c * Infectious / P + mu_m) * (gamma_m / (gamma_m + mu_m))
+    lambda = seas*(a^2*b*c*m*Infectious/P)/(a*c*Infectious/P+mu_m)*(gamma_m/(gamma_m + mu_m))
     
-    # SEIR model equations
-    dS = mu * P - lambda * S + rho_R * R - mu_h * S 
-    dE = lambda * S - (gamma_h + mu_h) * E
-    dA = gamma_h * pa * E - (delta + mu_h) * A + omega * C 
-    dC = gamma_h * (1 - pa) * E - (tau + mu_h) * C - omega * C 
-    dTr = tau * C - (r + mu_h) * Tr
-    dR = r * Tr + delta * A - (rho_R + mu_h) * R 
+    # Pregnancy rate
+    omega <- f*S/(0.0002*P) # 0.02% of population are women of reproductive age
     
-    # Incidence and cases
-    dCInc = lambda * S
-    dCcases = gamma_h * (1 - pa) * E
+    # General population
+    dS = mu_h*P - lambda*S - omega*S + rho*R - mu_h*S
+    dE = lambda*S - (gamma_h + mu_h)*E
+    dA = pa*gamma_h*E - (delta + mu_h)*A
+    dC = (1-pa)*gamma_h*E - (r + mu_h)*C
+    dR = delta*A + theta*delta*P_A + r*C + theta*r*P_C - (rho + mu_h)*R
     
-    output <- c(dS, dE, dA, dC, dTr, dR, dCInc, dCcases)
+
+    # Pregnant compartments under IPTp
+    dP_S <- omega*S - (1-current_iptp)*lambda*P_S - mu_h*P_S
+    dP_E <- (1-current_iptp)*lambda*P_S - gamma_h*P_E - mu_h*P_E
+    dP_A <- pa*gamma_h*P_E - theta*delta*P_A - mu_h*P_A
+    dP_C <- (1-pa)*gamma_h*P_E - theta*r*P_C - mu_h*P_C
+      
+    # Incidence and clinical cases
+    dGCInc = lambda*S 
+    dPCInc = (1-current_iptp)*lambda*P_S
+    dTCInc = lambda*S + (1-current_iptp)*lambda*P_S
+    
+    output <- c(dS, dE, dA, dC, dR, dP_S, dP_E, dP_A, dP_C, dGCInc, dPCInc, dTCInc)
     list(output)
   })
 }
 
 
 # Initial values (state variables)
-start <- c(S = 51000, E = 10000, A = 10000, C = 29000, Tr = 0, R = 0, CInc = 0, Ccases = 29000)
 
-# Parameters for the model (fixed)
-parms <- c(a = 0.28, b = 0.3, c = 0.397, gamma_m = 1/10, mu_m = 1/15,
-           mu = 19 / 100000, mu_h = 19 / 100000, gamma_h = 1/14, omega = 1/5,
-           pa = 0.2, delta = 1/130, tau = 1/3, r = 1/3, rho_R = 1/160, 
-           m = 3, kappa_t = 0.1, kappa_a = 0.2, amp = 0.6, phi = 186)
-# Vector of timesteps (days)
-times <- seq(0, 15 * 365, 1)
+start <- c(S = 15000000, # susceptible humans
+           E = 10000000, # exposed and infected humans
+           A = 7000000, # asymptomatic and infectious humans
+           C = 2000000, # clinical and symptomatic humans
+           R = 0, # recovered and semi-immune humans
+           P_S = 10000, # susceptible pregnant women
+           P_E = 4000, # exposed and infected pregnant women
+           P_A = 2000,  # asymptomatic and infectious pregnant women
+           P_C = 1000, # clinical and symptomatic pregnant women
+           GCInc = 0, # cumulative incidence in the general population
+           PCInc = 0, # cumulative incidence in pregnant women
+           TCInc = 0 # total cumulative incidence
+          ) 
 
-# Run the model function remains the same
+# Parameters
+parms <- c(a = 0.38, # human biting rate
+           b = 0.3, # probability of transmission from mosquito to human
+           c = 0.397, # probability of transmission from human to mosquito
+           gamma_m = 1/10, # extrinsic incubation rate of parasite in mosquitoes
+           mu_m = 1/15, # birth and death rate of mosquitoes
+           mu_h =  1/(61*365), # birth and death rate of humans
+           gamma_h = 1/14, # extrinsic incubation rate of parasite in humans
+           pa = 0.2, # probability of asymptomatic infection
+           delta = 1/130, # natural recovery rate
+           r = 1/7, # rate of loss of infectiousness after treatment
+           rho = 1/160, # rate of loss of immunity after recovery
+           m = 3, # ratio of mosquito to human populations
+           kappa_a = 0.2, # relative infectiousness of asymptomatic infections
+           amp = 0.6, # amplitude of seasonality
+           phi = 186,  #phase angle; start of season
+           epsilon = 0.75,  # reduced infectiousness due to IPTp
+           theta = 1.25, # increased recovery rate due to IPTp
+           f = 5/30/365 # children born per woman over lifetime (30 reproductive years)
+           )
+
+
+# Run model and post-processing function
 run_model <- function(times, y, func, parms, scenario = "Baseline") {
+  
   mod <- ode(times = times, y = start, func = func, parms = parms)
+  
   fd <- as_tibble(as.data.frame(mod)) %>% 
     mutate(
-      P = S + E + A + C + Tr + R,
-      Inc = c(0, diff(CInc)),  # New infections (Incidence)
-      cases = c(0, diff(Ccases)),  # New malaria cases (differentiating Ccases)
-      date = times / 365,  # Time in years
-      year = floor(date) + 1
-    ) %>%
+      P = S + E + A + C + R + P_S + P_E + P_A + P_C,
+      Preg =  P_S + P_E + P_A + P_C,
+      GInc = c(0, diff(GCInc)),  # New infections (Incidence)
+      PInc = c(0, diff(PCInc)),  # New infections (Incidence)
+      TInc = c(0, diff(TCInc)),  # New infections (Incidence)
+      date = as.Date("2015-01-01") + times,  # Time in years
+      year = year(date)) %>%
     pivot_longer(names_to = "variable", cols = -c(time, date, year)) %>%
     mutate(scenario = scenario)
   
@@ -310,7 +332,8 @@ run_model <- function(times, y, func, parms, scenario = "Baseline") {
 }
 
 # IPTp coverage scenarios
-iptp_scenarios <- c(0.19, 0.5, 0.7)  # Baseline, 50%, 75% IPTp coverage
+# Baseline (19%), 50%, 70% IPTp coverage
+iptp_scenarios <- c(0.19, 0.5, 0.7) 
 
 # Run the model for each IPTp scenario and store the results
 results <- lapply(iptp_scenarios, function(iptp_value) {
@@ -321,27 +344,30 @@ results <- lapply(iptp_scenarios, function(iptp_value) {
 # Combine results for all scenarios
 results_combined <- bind_rows(results)
 
-# Filter for new malaria cases (variable = "cases") for plotting
-results_cases <- results_combined %>% filter(variable == "cases")
+```
 
+### Implications for transmission and incidence
+
+Intermittent Preventive Treatment in Pregnancy (IPTp) reduces the number of infections in pregnant women, who are an otherwise vulnerable reservoir for malaria parasites. IPTp is often used in conjunction with other interventions such as ITNs, however, in this example we demonstrate the impact of scenarios of increasing IPTp coverage on incidence.
+
+```{r}
 # Plot new malaria cases (cases) over time for each IPTp scenario
-ggplot(results_cases, aes(x = date, y = value, color = scenario)) +
-  geom_line() +
-  labs(
-    title = "Impact of IPTp Coverage on New Malaria Cases in pregnant women",
-    x = "Time (years)", y = " Malaria incidence in pregnant women (per day)", 
-    caption = str_wrap("This graph demonstrates that higher IPTp coverage levels significantly reduce new malaria cases over time. With increasing coverage from 19% to 70%, the incidence of malaria steadily declines, highlighting the importance of widespread IPTp uptake in lowering malaria cases among pregnant women. Pregnant women and children are particularly vulnerable to malaria infections, making this increase in coverage crucial for their protection.
-    Source: World Malaria Report", width = 75),
-    color = "IPTp Coverage"
-  ) +
-    scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
-    theme_health_radar() +
-    theme_minimal() +
-    theme(
-      plot.title = element_text(face = "bold"),   # Bold title
-      plot.caption = element_text(hjust = 0, size = 10),  # Caption alignment and size
-      legend.position = "right"  # Legend position
-    )
+results_combined %>% 
+  filter(variable %in% c("GInc", "PInc", "TInc"), time > 100) %>% 
+ggplot() +
+  geom_line(aes(x = date, y = value, color = scenario)) +
+  facet_wrap(~variable, labeller = labeller(variable = c(GInc = "Non-pregnant Population", 
+                                                           PInc = "Pregnant women", 
+                                                           TInc = "Total population"))) +
+  scale_colour_manual_health_radar() +
+  theme_health_radar() +
+  scale_x_date(date_breaks = "3 years", date_labels = "%Y") +
+  labs(title = "Impact of IPTp Coverage on malaria incidence in Angola",
+    x = "Year", 
+    y = "Daily incidence", 
+    caption = str_wrap("This graph demonstrates that higher IPTp coverage levels significantly reduces malaria incidence over time. With increasing coverage from 19% to 70% in 2018, the incidence of malaria steadily declines in the total population (including amongst women who are not pregnant, as well as men and children). This highlights the importance of widespread IPTp uptake in lowering the overall disease burden.  Source: Model output"),
+    color = "IPTp Coverage")
+
 ```
 
 :::

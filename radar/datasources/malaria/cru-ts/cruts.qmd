@@ -367,7 +367,7 @@ df |>
   theme(panel.spacing = unit(2, "lines")) +
   scale_y_continuous(labels = scales::label_number(suffix = " M", scale = 1e-6)) +
   labs(
-    title = "Mosquito vector and human host Populations over time", 
+    title = "Mosquito vector and human host populations over time", 
     x = "Year",
     y = "Population size",
     colour = "Population",
@@ -376,7 +376,7 @@ df |>
 
 ```
 
-### Incidence
+### Implications for transmission and incidence
 
 The force of infection (i.e. the rate at which susceptible individuals become infected per unit time) is largely driven by the human biting rate, the ratio of vectors relative to hosts, the probability of transmission and the size of the infectious reservoir. Below, we see how the temperature has driven the rate of new cases through the temperature-dependent variables.
 

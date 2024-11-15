@@ -512,7 +512,7 @@ itn_cov_rounded <- round(itn_cov, 3)
 
 ```
 
-### Effective coverage
+**Effective coverage**
 
 Coverage is further considered effective if it meets the minimum access of one ITN per two persons, the net is adequately used (and as a proxy, used the night prior to the survey), and is operationally effective at preventing bites from an infectious mosquito. Effective coverage represents the proportion of people who are actually protected from ongoing transmission, and is always less than the stated coverage.
 
@@ -550,11 +550,11 @@ ggplot(itn_data) +
 
 ```
 
-### Implications for transmission
+### Implications for transmission and incidence
 
 In epidemiology, the measure of intensity of disease transmission is also known as the force of infection. Simply put, this is the rate at which susceptible individuals become infected per unit time. Three main factors determine this: the proportion of the mosquito population that is infectious, the contact rate between infectious mosquitoes and susceptible humans, and the probability that a bite from an infectious mosquito transmits disease to a susceptible human. The same applies with respect to infectious humans and susceptible mosquitoes.
 
-Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to infection. As such, the force of infection now excludes those protected by ITNs.
+Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to infection. As such, the force of infection now excludes those protected by ITNs, and we may anticipate changes incidence when ITN effective coverage is high.
 
 ```{r}
 # Time points for the simulation
@@ -579,7 +579,6 @@ seacr <- function(times, start, parameters, itnfunc) {
     Infectious = C + zeta_a*A #infectious reservoir
     lambda.v <- a*M/P*b*Im/M*seas*(1-ITN) #introduce seasonality and ITNss
     lambda.h <- a*c*Infectious/P*seas*(1-ITN)
-    
     
     # Differential equations/rate of change
     dSm = mu_m*M - lambda.h*Sm - mu_m*Sm

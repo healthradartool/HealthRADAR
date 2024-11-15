@@ -293,7 +293,7 @@ As earlier alluded, that MAP provides modelled estimates for various
 interventions including indoor residual spraying (IRS). Below, we show
 how IRS estimates from MAP can can be used for disease modeling.
 
-#### Preparing the data
+### Preparing the data
 
 The code below demonstrates how IRS data downloaded from MAP can be
 prepared for modeling, using data from Zambia as an illustrative
@@ -340,11 +340,11 @@ ggplot(data = IRSdata, aes(x = Year, y = Value)) +
 
 ```
 
-#### Assumptions
+### Model assumptions
 
 To create a robust model, it's crucial to articulate the assumptions
 underlying the dynamics. In our illustrative model in the code below
-represented in the SEIRS (Susceptible, Exposed, Infected, Recovered)
+represented in the SEACR (Susceptible, Exposed, Asymptomatic but infectious, Clinically symptomatic and infectious, Recovered)
 model. We assumed the following:
 
 -   Constant population of about 17,000,000, with 5 individuals per
@@ -369,21 +369,23 @@ seirs <- function(t, x, parms)  {
     P = S+E+A+C+R
     m = M/P
     
+    # Time dependent IRS coverage
     IRSc = IRSdata$sprayed*pp_h/P # proportion of the population covered by Current spraying cycle
     IRSt = IRSdata$time
     IRSe = phi*pmin(1, IRSc) # effective IRS coverage
     
     IRS <- approx(IRSt, IRSe, t, method = "constant", rule = 2)$y # annual IRS implementation
-    seasn = seasn_0*(1 + amp*cospi((t - psi)/360)^2)# Seasonality
+    seasn = seasn_0*(1 + amp*cospi((t - psi)/360)^2) # Seasonality
     IRSs <- IRS*seasn # Seasonal implementation
     Infectious <- C + zeta_a*A #infectious reservoir
     
+    # Force of infection
     lambda = ((a^2*b*c*m*Infectious/P)/(a*c*Infectious/P+mu_m)*(gamma_m/(gamma_m+mu_m)))*(1-IRSs)
     
     dSm=0
     dEm=0
     dIm=0
-    dS= mu_h*P -lambda*S + rho*R - mu_h*S
+    dS= mu_h*P - lambda*S + rho*R - mu_h*S
     dE= lambda*S - (gamma_h + mu_h)*E
     dA= pa*gamma_h*E - (delta + mu_h)*A
     dC= (1-pa)*gamma_h*E - (r + mu_h)*C
@@ -397,7 +399,16 @@ seirs <- function(t, x, parms)  {
 }
 # Input definitions ####
 #Initial values
-start<-c(Sm = 30000000, Em=20000000, Im=800000, S=10000000, E=4000000, A=1000000, C=2000000, R=0, CInc = 0 )
+start <- c(Sm = 30000000, # susceptible mosquitoes
+           Em = 20000000, # exposed and infected mosquitoes
+           Im = 800000, # infectious mosquitoes
+           S = 10000000, # susceptible humans
+           E = 4000000, # exposed and infected humans
+           A = 1000000, # asymptomatic and infectious humans
+           C = 2000000, # clinical and symptomatic humans
+           R = 0, # recovered and semi-immune humans
+           CInc = 0) # cumulative incidence
+
 
 # Parameters
 parms <- c(a = 0.3, #human feeding rate per mosquito
@@ -410,7 +421,7 @@ parms <- c(a = 0.3, #human feeding rate per mosquito
            r=1/50, # recovery rate 
            rho = 1/(1*365), # rate of loss of immunity after recovery
            delta = 1/150, # natural recovery rate
-           zeta_a = 0.4, # relative infectiousness of of asymptomatic infections
+           zeta_a = 0.4, # relative infectiousness of asymptomatic infections
            pa = 0.4, # probability of asymptomatic infection
            pp_h = 5, # number people per household
            no_hh = 3600000, # total number of households
@@ -431,15 +442,12 @@ hm<-ode(times=times, y=start, func=seirs,parms=parms)
 
 ```
 
-#### Incidence
+### Implications for transmission and incidence
 
-The code below demonstrates how to plot model outputs. In this example,
-we plot daily incidence from 2013 to 2022. The choice of model output to
-plot depends on the goals of the modeller or stakeholders. For instance,
-plotting incidence for this model may highlight the estimated impact of
+In this example, we plot daily incidence from 2013 to 2022. As Indoor Residual Spraying (IRS) is intended to repel and kill mosquitoes, we anticipate a reduced human biting rate and therefore lower transmission rates. Plotting incidence for this model may highlight the estimated impact of
 IRS on cases over time. However, it is important to note that the
 outputs of this example model have not been calibrated to real data and
-therefore do not reflect actual impacts or real case numbers.
+are merely a demonstration, not representative of the actual context.
 
 ```{r}
 #| echo: true
@@ -469,8 +477,5 @@ ggplot(data = hmplot, aes(y = value, x = time / 365 + 2013)) +  # Convert time t
     theme_health_radar() +
     scale_x_continuous(breaks = seq(2013, 2024, by = 2)) +  # Set x-axis breaks to multiples of 2 years
     xlim(2014, 2022) 
-    
-
-
 ```
 ::::
