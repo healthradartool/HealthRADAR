@@ -47,7 +47,7 @@ The dataset will be downloaded as an Excel file.
 
 The Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
 
-![Layout of the first sheet of the Excel document.](malaria_xlsx_index.png)
+![Layout of the first sheet of the Excel document.](images/malaria_xlsx_index.png)
 
 
 <h2>Key points to consider</h2>
