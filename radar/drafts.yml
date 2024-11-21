@@ -5,8 +5,8 @@ website:
     - radar/datasources/malaria/climate-data-store/climate_data_store.qmd
     - radar/datasources/malaria/era5/era5.qmd
     - radar/datasources/malaria/ncar-climate-data-guide/ncar_climate_data_guide.qmd
-    - radar/datasources/malaria/global_fund.qmd
-    - radar/datasources/malaria/severe_malaria_observatory.qmd
-    - radar/datasources/malaria/lancet_malaria.qmd
-    - radar/datasources/malaria/un_population.qmd
-    - radar/datasources/malaria/grid3.qmd
+    - radar/datasources/malaria/global-fund/global_fund.qmd
+    - radar/datasources/malaria/severe-malaria-observatory/severe_malaria_observatory.qmd
+    - radar/datasources/malaria/the-lancet/lancet_malaria.qmd
+    - radar/datasources/malaria/un-population/un_population.qmd
+    - radar/datasources/malaria/grid3/grid3.qmd
