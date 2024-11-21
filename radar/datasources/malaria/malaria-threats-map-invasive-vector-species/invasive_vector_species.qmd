@@ -3,17 +3,7 @@ title: "Malaria Threats Map: Invasive vector species"
 description: "WHO Global database on invasive mosquito vector species. At present, the database contains data on detection of Anopheles stephensi outside of its native ecosystems."
 date: 10/23/2024 # mm-dd-yyyy
 image: "images/invasive_vector_species.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria vectors
   - new vectors of malaria

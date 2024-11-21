@@ -3,16 +3,7 @@ title: "ERA5"
 description: "ERA5 hourly data on single levels from 1940 to present"
 date: 08/30/2024 # mm-dd-yyyy
 image: "images/era5.png"
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - climate dataset
   - reanalysis

@@ -3,17 +3,7 @@ title: "UNICEF DATA - Child Statistics"
 description: "UNICEF DATA - Child Statistics provides detailed information on malaria's impact on children, including prevalence, treatment coverage, and mortality rates."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/unicef.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

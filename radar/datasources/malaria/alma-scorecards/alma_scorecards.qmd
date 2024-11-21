@@ -3,17 +3,7 @@ title: "ALMA Scorecard Hub"
 description: "This is a digital platform developed by the African Leaders Malaria Alliance (ALMA) to track and support progress towards malaria elimination."
 date: 10/01/2024 # mm-dd-yyyy
 image: "images/alma-scorecard.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - country scorecards

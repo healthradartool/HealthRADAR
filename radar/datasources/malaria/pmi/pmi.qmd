@@ -3,17 +3,7 @@ title: "President's Malaria Initiative (PMI)"
 description: "PMI collaborates closely with partner countries to scale up proven interventions and strengthen local capacity and health systems."
 date: 10/25/2024 # mm-dd-yyyy
 image: "images/pmi.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

@@ -3,17 +3,7 @@ title: "Institute for Health Metrics and Evaluation"
 description: "The Institute for Health Metrics and Evaluation (IHME) works with collaborators around the world to develop timely, relevant, and scientifically valid evidence that illuminates the state of health everywhere."
 date: 10-23-2024 # mm-dd-yyyy
 image: "images/ihme.jpg"
-lightbox: true 
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

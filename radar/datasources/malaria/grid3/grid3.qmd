@@ -3,16 +3,7 @@ title: "GRID3"
 description: "GRID3 provides open-source, high-resolution geospatial data and tools to support data-driven decision-making for development and humanitarian efforts."
 date: 09/12/2024 # mm-dd-yyyy
 image: "images/grid3-logo.png"
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

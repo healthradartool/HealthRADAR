@@ -3,17 +3,7 @@ title: "Malaria Threats Map: Antimalarial drug efficacy and drug resistance"
 description: "The global database on antimalarial drug efficacy and resistance, established in 2000, tracks drug efficacy in malaria-endemic countries."
 date: 09/27/2024 # mm-dd-yyyy
 image: "images/malaria_threats_map_antimalarial_efficacy_and_resistance.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - therapeutic efficacy studies
   - molecular marker studies
@@ -32,7 +22,7 @@ The WHO global database on antimalarial drug efficacy and resistance contains da
 
 The datasets cover the period from 2010 to 2023. The data is based on antimalarial drug efficacy which is being monitored through therapeutic efficacy studies (TES) across Africa, Asia and South America. The TES track clinical and parasitological outcomes among patients receiving antimalarial treatment. TES are considered the gold standard by which countries can best determine their national treatment policies.
 
-**Molecular markers of antimalarial drug resistance data** 
+**Molecular markers of antimalarial drug resistance data**
 
 The database also includes data on the geographical distribution of molecular markers associated with *P. falciparum* drug resistance, including:
 
@@ -73,36 +63,33 @@ The website also provides access to maps on antimalarial drug efficacy and resis
 
 The maps can be accessed on the [Malaria Threats Map](https://apps.who.int/malaria/maps/threats) website.
 
-
 The website has [dashboards](https://apps.who.int/malaria/maps/threats/#/dashboards) that allows the end user to view summaries of the threats at different geographical levels. The data is available at country and area level. End users may select up to 5 countries/area per report.
-
 
 <h2>What does the data look like?</h2>
 
 **Description**
 
-Data from the most recent TES are summarized in the reports. A comprehensive summary of treatment failure rates broken down by 
-treatment and country is offered using the interactive reports. Therapeutic outcomes are assessed on the final day of the study (day 28, or day 42 for drugs with longer elimination half-lives). For infections appearing during follow-up, genotyping must be conducted to distinguish new infections from recrudescence.
+Data from the most recent TES are summarized in the reports. A comprehensive summary of treatment failure rates broken down by treatment and country is offered using the interactive reports. Therapeutic outcomes are assessed on the final day of the study (day 28, or day 42 for drugs with longer elimination half-lives). For infections appearing during follow-up, genotyping must be conducted to distinguish new infections from recrudescence.
 
-Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. 
+Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year.
 
 A sample of the data is shown below. The table summarizes the treatment failure rates among patients infected with P. malariae. The displayed data is grouped by country and treatment.
 
 ![](images/paginated_report.png)
 
-A sample of the map is shown below. The map details the area where the treatment failure rates among patients infected with *P. falciparum* and treated using artemether-lumefantrine. 
+A sample of the map is shown below. The map details the area where the treatment failure rates among patients infected with *P. falciparum* and treated using artemether-lumefantrine.
 
 ![](images/map.png)
 
-A sample of the dashboard is shown below. The dashboard details the area treatment failure rates by drug for South Africa, Eswatini and Mozambique. The dashboard provides a summary comparison across all countries selected. 
+A sample of the dashboard is shown below. The dashboard details the area treatment failure rates by drug for South Africa, Eswatini and Mozambique. The dashboard provides a summary comparison across all countries selected.
 
 ![](images/dashboard.png)
 
 <h2>Examples of data use in literature</h2>
 
-- Kagoro, F.M., Allen, E., Mabuza, A. et al. Making data map-worthy—enhancing routine malaria data to support surveillance and mapping of Plasmodium falciparum anti-malarial resistance in a pre-elimination sub-Saharan African setting: a molecular and spatiotemporal epidemiology study. Malar J 21, 207 (2022). https://doi.org/10.1186/s12936-022-04224-4
+-   Kagoro, F.M., Allen, E., Mabuza, A. et al. Making data map-worthy—enhancing routine malaria data to support surveillance and mapping of Plasmodium falciparum anti-malarial resistance in a pre-elimination sub-Saharan African setting: a molecular and spatiotemporal epidemiology study. Malar J 21, 207 (2022). https://doi.org/10.1186/s12936-022-04224-4
 
-- Monroe A, Williams NA, Ogoma S, Karema C, Okumu F. Reflections on the 2021 World Malaria Report and the future of malaria control. Malar J. 2022 May 27;21(1):154. doi: 10.1186/s12936-022-04178-7. PMID: 35624483; PMCID: PMC9137259.
+-   Monroe A, Williams NA, Ogoma S, Karema C, Okumu F. Reflections on the 2021 World Malaria Report and the future of malaria control. Malar J. 2022 May 27;21(1):154. doi: 10.1186/s12936-022-04178-7. PMID: 35624483; PMCID: PMC9137259.
 
 ## Visualisations
 
@@ -116,11 +103,11 @@ Download the data from the link and read in a sheet. Sometimes the data needs to
 
 <h2>How to plot this data?</h2>
 
-- Line plots of the annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
+-   Line plots of the annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
 
-- Line plots of the ongoing annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
+-   Line plots of the ongoing annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
 
-- Line plots of the molecular marker studies for countries in Africa, South America and Asia for the period 2010 - 2023
+-   Line plots of the molecular marker studies for countries in Africa, South America and Asia for the period 2010 - 2023
 
-- Line plots of ongoing molecular marker studies for countries in Africa, South America and Asia for the period 2020 - 2023
+-   Line plots of ongoing molecular marker studies for countries in Africa, South America and Asia for the period 2020 - 2023
 :::

@@ -4,17 +4,7 @@ description: "Climate Research Unit Timeseries (CRU TS) Gridded precipitation an
 date: 08/21/2024 # mm-dd-yyyy
 draft: false
 image: "images/crulogo.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - climate dataset
   - gridded observed

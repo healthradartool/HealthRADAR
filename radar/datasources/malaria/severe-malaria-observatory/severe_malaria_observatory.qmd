@@ -3,16 +3,7 @@ title: "Severe Malaria Observatory"
 description: "The Severe Malaria Observatory (SMO) is populated with information made available by the global malaria community."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/severe-malaria-observatory.png"
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

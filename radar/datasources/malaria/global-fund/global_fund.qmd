@@ -3,16 +3,7 @@ title: "The Global Fund"
 description: "The Global Fund provides comprehensive data on malaria, including statistics on infection rates, mortality, and the impact of prevention and treatment programs."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/global-fund.png"
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

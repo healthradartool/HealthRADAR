@@ -3,17 +3,7 @@ title: "World Malaria Report"
 description: "The report provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe."
 date: 07/03/2024 # mm-dd-yyyy
 image: "images/wmr-covers-2023.jpg"
-lightbox: true # for images
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

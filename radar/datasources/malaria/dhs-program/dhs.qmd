@@ -3,17 +3,7 @@ title: "The Demographic and Health Surveys Program"
 description: "The Demographic and Health Surveys (DHS) Program has collected population survey data from over 90 countries for over 30 years."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/dhs.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

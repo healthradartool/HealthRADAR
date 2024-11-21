@@ -3,16 +3,7 @@ title: "CHIRTS"
 description: "CHIRTS-Daily: A Global 2-m Tmax Product Combining CHIRTSmax and ERA5 for Monitoring Temperature Extremes"
 date: 08/30/2024 # mm-dd-yyyy
 image: "images/chirts.png"
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - climate dataset
   - gridded observed

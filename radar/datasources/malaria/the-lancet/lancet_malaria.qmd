@@ -3,16 +3,7 @@ title: "The Lancet special issues on malaria"
 description: "The Lancet has published several special issues and articles focused on malaria."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/lancet.png"
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - epidemiology

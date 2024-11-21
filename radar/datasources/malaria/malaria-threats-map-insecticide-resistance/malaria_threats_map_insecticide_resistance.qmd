@@ -3,17 +3,7 @@ title: "Malaria Threats Map: Vector insecticide resistance"
 description: "Established in 2014, the global insecticide resistance database tracks insecticide resistance in malaria vectors."
 date: 10/01/2024 # mm-dd-yyyy
 image: "images/malaria_threats_map_insecticide_resistance.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
 
-language: 
-  title-block-published: "Last updated"
-  
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
 categories:
   - malaria
   - insecticide resistance status

@@ -3,16 +3,7 @@ title: "Malaria Atlas Project (MAP)"
 description: "The Malaria Atlas Project (MAP) is a leading global resource that compiles and analyses spatial data on malaria transmission and prevalence."
 date: 09/23/2024 # mm-dd-yyyy
 image: "images/map.png"
-lightbox: true
-execute:
-  message: false
-  warning: false
-language: 
-  
-  title-block-published: "Last updated"
-page-layout: full
-title-block-banner: "#EDF3F9"
-title-block-banner-color: "#212529"
+
 categories:
   - malaria
   - epidemiology
