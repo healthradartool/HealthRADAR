@@ -9,3 +9,10 @@ language:
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
+
+include-back-link: true
+
+format:
+  html:
+    template-partials:
+      - title-block.html

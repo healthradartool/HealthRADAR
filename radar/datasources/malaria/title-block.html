@@ -1,0 +1,38 @@
+<header id="title-block-header"
+    class="quarto-title-block default$if(quarto-template-params.banner-header-class)$ $quarto-template-params.banner-header-class$$endif$">
+    <div class="quarto-title-banner">
+        <div class="quarto-title column-body">
+
+            $if(include-back-link)$
+            <div class="back-nav"><a id = "back-nav-link" href="/radar/data.qmd">← Back to browse</a></div>
+            $endif$
+            
+            <h1 class="title">$title$</h1>
+
+            $if(subtitle)$
+            <p class="subtitle">$subtitle$</p>
+            $endif$
+
+            $if(description)$
+            <div>
+                <div class="description">
+                    $description$
+                </div>
+            </div>
+            $endif$
+
+            $if(categories)$
+            $if(quarto-template-params.title-block-categories)$
+            <div class="quarto-categories">
+                $for(categories)$
+                <div class="quarto-category">$categories$</div>
+                $endfor$
+            </div>
+            $endif$
+            $endif$
+        </div>
+    </div>
+
+    $title-metadata.html()$
+    
+</header>
