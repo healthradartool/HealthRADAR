@@ -66,7 +66,7 @@ format:
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
     mainfont: "Public Sans"
-    monofont: "JetBrains Mono"
+    monofont: "Source Code Pro"
     code-fold: true
     code-summary: "Show the code"
     highlight-style: atom-one
