@@ -119,6 +119,7 @@ library(viridis)
 library(sf)
 library(RColorBrewer)
 library(rdhs)
+source(here::here("radar/theme_health_radar.R"))
 
 
 knitr::opts_chunk$set(echo = T, cache = T, warning = F, message = F, fig.pos = 'H', cache = T)
