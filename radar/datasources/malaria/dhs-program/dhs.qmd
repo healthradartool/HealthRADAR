@@ -177,12 +177,11 @@ filt_data = filt_data[filt_data$CountryName == "Namibia",]
 single_color <- "#1b9e77"
 
 # Plot the data as a bar plot
-ggplot(filt_data, aes(x = as.factor(SurveyYear), y = Value, fill = single_color, color = "black")) +
+ggplot(filt_data, aes(x = as.factor(SurveyYear), y = Value, fill = single_color)) +
   # Create bar plot with identity statistic and no legend
   geom_bar(stat = "identity", position = "dodge", show.legend = FALSE) + 
-  # Use the defined color for fill and set border color to black
-  scale_fill_identity() +
-  scale_color_identity() +  
+  # Use the health radar color scheme
+  scale_fill_manual_health_radar() +
   # Set y-axis ticks increment to 10
   scale_y_continuous(breaks = seq(0, max(filt_data$Value, na.rm = TRUE), by = 10)) +  
   # Add titles and labels
@@ -195,29 +194,16 @@ ggplot(filt_data, aes(x = as.factor(SurveyYear), y = Value, fill = single_color,
   ) +
   # Facet the plot by CharacteristicLabel, with 6 columns
   facet_wrap(~ CharacteristicLabel, ncol = 6) +
-  # Apply a minimal theme with customisations
-  theme_minimal() +
+  # Apply the health radar theme
+  theme_health_radar() +
+  # Additional theme customizations specific to this plot
   theme(
-    # Center and style the plot title and subtitle
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 14),
-    # Style the axis titles and text
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 12),
     axis.text.x = element_text(angle = 45, hjust = 1),
-    # Style the plot caption
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    # Adjust the plot margins
-    plot.margin = margin(t = 20, r = 20, b = 40, l = 20),
-    # Style the facet strip text
-    strip.text = element_text(size = 12, face = "bold"),
-    # Remove the legend
-    legend.position = "none",  
-    # Add light background to each facet panel
-    panel.background = element_rect(fill = "#F0F0F0", color = NA),  
-    # Add spacing between panels
-    panel.spacing = unit(0.5, "lines")  
+    legend.position = "none",
+    panel.background = element_rect(fill = "#F0F0F0", color = NA),
+    panel.spacing = unit(0.5, "lines")
   )
+
 ```
 
 
@@ -253,24 +239,12 @@ ggplot(filt_data, aes(x = SurveyYear, y = Value, colour = CountryName)) +
     colour = "Country",
     caption = "Source: DHS Data API - Malaria Indicator ML_NETP_H_MNM"
   ) +
-  # Apply a minimal theme with customizations
-  theme_minimal() +
+  # Apply the health radar theme and colors
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  # Additional theme customizations specific to this plot
   theme(
-    # Center and style the plot title and subtitle
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 14),
-    # Style the axis titles and text
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 12),
-    # Rotate x-axis text for better readability
-    axis.text.x = element_text(angle = 90, vjust = 0.5),
-    # Style the legend title and text
-    legend.title = element_text(size = 14, face = "bold"),
-    legend.text = element_text(size = 12),
-    # Style the plot caption
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    # Adjust the plot margins
-    plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
+    axis.text.x = element_text(angle = 90, vjust = 0.5)
   ) +
   # Center the legend title
   guides(colour = guide_legend(title.position = "top", title.hjust = 0.5))
@@ -295,8 +269,8 @@ sp$sdr_subnational_boundaries$Value <- m
 ggplot(sp$sdr_subnational_boundaries) + 
   # Add a filled polygon layer for each region
   geom_sf(aes(fill = Value), color = "lightgrey", size = 0.3) + 
-  # Use the viridis color scale for the fill, with specific options and NA value color
-  scale_fill_viridis_c(option = "plasma", na.value = "grey50", name = "Value") +
+  # Use the health radar continuous color scale for the fill
+  scale_fill_continuous_health_radar(option = "plasma", na.value = "grey50", name = "Value") +
   # Add titles and labels
   labs(
     title = "Mean number of mosquito nets in Zambia",
@@ -305,23 +279,8 @@ ggplot(sp$sdr_subnational_boundaries) +
     x = "Longitude",
     y = "Latitude"
   ) +
-  # Apply a minimal theme with customizations
-  theme_minimal() +
-  theme(
-    # Center and style the plot title and subtitle
-    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(hjust = 0.5, size = 14),
-    # Style the axis titles and text
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 12),
-    # Style the legend title and text
-    legend.title = element_text(size = 14, face = "bold"),
-    legend.text = element_text(size = 12),
-    # Style the plot caption
-    plot.caption = element_text(hjust = 0, size = 10, face = "italic"),
-    # Adjust the plot margins
-    plot.margin = margin(t = 20, r = 20, b = 40, l = 20)
-  ) +
+  # Apply the health radar theme
+  theme_health_radar() +
   # Center the legend title
   guides(fill = guide_colorbar(title.position = "top", title.hjust = 0.5))
 
@@ -344,8 +303,13 @@ m <- geojsonio::as.json(d2)
 # Convert the JSON data to a spatial object
 nc2 <- geojsonio::geojson_sp(m) 
 
-# Define the color palette using the "viridis" color scale without log scale
-pal <- leaflet::colorNumeric("viridis", domain = nc2$Value, na.color = "grey50")
+# Create a color palette using the health radar colors for continuous data
+# Using the first few colors from theme_health_radar_colours for the gradient
+pal <- leaflet::colorNumeric(
+  palette = colorRampPalette(theme_health_radar_colours[1:3])(100),
+  domain = nc2$Value,
+  na.color = "grey50"
+)
 
 # Plot the data using leaflet
 leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
@@ -353,28 +317,31 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
   addTiles() %>%
   # Add polygons to represent the regions
   addPolygons(
-    stroke = TRUE,  # Add stroke to polygons
-    color = "lightgrey",  # Set the border color to light grey
-    weight = 0.5,  # Set the border weight
-    smoothFactor = 0.3,  # Set the smooth factor for better rendering
-    fillOpacity = 0.8,  # Set fill opacity
-    fillColor = ~pal(Value),  # Fill polygons based on Value using the defined palette
+    stroke = TRUE,
+    color = theme_health_radar_colours[7],  # Using the grey from our theme
+    weight = 0.5,
+    smoothFactor = 0.3,
+    fillOpacity = 0.8,
+    fillColor = ~pal(Value),
     # Add labels to the polygons with characteristic label and value
     label = ~paste0(CharacteristicLabel, ": ", formatC(Value, big.mark = ",")),
     labelOptions = leaflet::labelOptions(
-      style = list("font-weight" = "bold", "color" = "black"),  # Style the label text
+      style = list(
+        "font-weight" = "bold",
+        "color" = theme_health_radar_colours[7]  # Using theme color for labels
+      ),
       textsize = "13px",
       direction = "auto"
     )
   ) %>%
   # Add a legend to the map
   addLegend(
-    pal = pal,  # Use the defined palette
-    values = ~Value,  # Set the values for the legend
-    opacity = 1.0,  # Set the opacity of the legend
-    title = "Malawi: children with fever who took antimalarial drugs (%)",  # Set the title of the legend
-    position = "bottomright",  # Position the legend at the bottom right
-    labFormat = labelFormat()  # Format the labels
+    pal = pal,
+    values = ~Value,
+    opacity = 1.0,
+    title = "Malawi: children with fever who took antimalarial drugs (%)",
+    position = "bottomright",
+    labFormat = labelFormat()
   ) %>%
   # Set the initial view of the map to focus on Malawi
   setView(lng = 37, lat = -13, zoom = 5.5)
