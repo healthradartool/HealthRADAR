@@ -124,11 +124,246 @@ The various datasets on the CRU website are provided for all to use, provided th
 
 **Spatial plots of key variables**
 
-![Figure 1. Spatial plot of long term mean annual total rainfall (mm/year) for the period 1991-2020.](images/Fig1_CRU_MeanRainfall_1991-2020.png) ![Figure 2. Spatial plot of longer term daily mean temperature (deg C) for the period 1991-2020.](images/Fig2_CRU_MeanTemperature_1991-2020.png)
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(here)
+require(deSolve)
+source(here::here("radar/theme_health_radar.R"))
+
+
+knitr::opts_chunk$set(echo = T, cache = T, warning = F, message = F, fig.pos = 'H', cache = T)
+options(digits=4, scipen = 9)
+```
+
+```{r}
+
+library(terra)
+library(ggplot2)
+library(tidyterra) 
+library(stringr)
+
+
+# Read the NetCDF file using terra
+fig1_mean_annual_rainfall <- rast("data/Fig1_MeanAnnualRainfall_CRU_TS-4.08_1991-2020_SouthernAfrica.nc")
+
+# Make 0 values NA
+fig1_mean_annual_rainfall[fig1_mean_annual_rainfall == 0] <- NA
+
+# Create the plot
+ggplot() +
+  geom_spatraster(
+    data = fig1_mean_annual_rainfall,
+    na.rm = TRUE
+  ) +
+  scale_fill_continuous_health_radar(
+    option = "plasma", 
+    na.value = "white",
+    name = "Mean Rainfall\n(mm/year)"  # Removed trailing comma
+  ) +
+  coord_sf(
+    xlim = c(10, 40),
+    ylim = c(-35, 0)
+  ) +
+  theme_health_radar() +
+  labs(
+    title = "Mean Annual Rainfall for Southern Africa (1991-2020)",
+    x = "Longitude", 
+    y = "Latitude",
+    caption = str_wrap("Spatial plot of long term mean annual total rainfall (mm/year) for the period 1991-2020. Source: CRU TS 4.08", width = 75)
+  )
+
+```
+
+
+```{r}
+
+fig2_mean_monthly_avg_temperature <- rast("data/Fig2_MeanMonthlyAverageTemp_CRU_TS-4.08_1991-2020_SouthernAfrica.nc")
+
+# Create the plot
+ggplot() +
+  geom_spatraster(
+    data = fig2_mean_monthly_avg_temperature,
+    na.rm = TRUE
+  ) +
+  scale_fill_continuous_health_radar(
+    option = "plasma", 
+    na.value = "white",
+    name = "Mean Temperature\n(Celsius)"  # Removed trailing comma
+  ) +
+  coord_sf(
+    xlim = c(10, 40),
+    ylim = c(-35, 0)
+  ) +
+  theme_health_radar() +
+  labs(
+    title = "Mean Monthly Average Temperature for Southern Africa (1991-2020)",
+    x = "Longitude", 
+    y = "Latitude",
+    caption = str_wrap("Spatial plot of long term mean monthly average temperature (Celsius) for the period 1991-2020. Source: CRU TS 4.08", width = 75)
+  )
+
+```
 
 **Key example plots for a selected location**
 
-![Figure 3. Seasonal cycle of monthly total rainfall and daily mean temperature for a gridcell over Bulawayo. Averaged over the period 1991-2020.](images/Fig3_CRU_Climatology_1991-2020.png) ![Figure 4. Timeseries of monthly total rainfall for the gricell over Bulawayo. The number of stations that were used in the interpolation is also shown.](images/Fig4_CRU_TimeSeries_Rainfall_1901-2023.png) ![Figure 5. Timeseries of the monthly mean daily temperature for a gridcell over Bulawao. The number of stations that were used in the interpolation is also shown.](images/Fig5_CRU_TimeSeries_Temperature_1901-2023.png)
+```{r}
+
+library(readr)
+
+fig3_PRCPTOT_mon <- read_csv("data/Fig3_PRCPTOT_mon_CRU_TS-4.08_199101-202012_climatology_Bulawayo.csv")
+
+fig3_tas_mon <- read_csv("data/Fig3_tas_mon_CRU_TS-4.08_199101-202012_climatology_Bulawayo.csv")
+
+# Create the climatology plot
+ggplot() +
+  # Rainfall bars
+  geom_col(
+    data = fig3_PRCPTOT_mon,
+    aes(x = time, y = PRCPTOT, fill = "Rainfall"),
+    alpha = 0.6
+  ) +
+  # Temperature line
+  geom_line(
+    data = fig3_tas_mon,
+    aes(x = time, y = tas * 10, color = "Temperature"),
+    linewidth = 1
+  ) +
+  geom_point(
+    data = fig3_tas_mon,
+    aes(x = time, y = tas * 10, color = "Temperature")
+  ) +
+  # Use standardized color scales with explicit values
+  scale_fill_manual(values = setNames(theme_health_radar_colours[1], "Rainfall")) +
+  scale_colour_manual(values = setNames(theme_health_radar_colours[2], "Temperature")) +
+  # Primary axis (rainfall)
+  scale_y_continuous(
+    name = "Monthly Rainfall (mm)",
+    sec.axis = sec_axis(~./10, name = "Temperature (°C)")
+  ) +
+  scale_x_continuous(
+    breaks = 1:12,
+    labels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+  ) +
+  theme_health_radar() +
+  theme(
+    axis.title.y.right = element_text(color = theme_health_radar_colours[2]),  # Match temperature line color
+    axis.text.y.right = element_text(color = theme_health_radar_colours[2]),   # Match temperature line color
+    axis.title.y.left = element_text(color = theme_health_radar_colours[1]),   # Match rainfall bar color
+    axis.text.y.left = element_text(color = theme_health_radar_colours[1]),    # Match rainfall bar color
+    legend.position = "none"
+  ) +
+  labs(
+    title = "Seasonal Cycle of Rainfall and Temperature in Bulawayo",
+    x = "Month",
+    caption = str_wrap("Monthly climatology of total rainfall (bars) and mean temperature (line) for Bulawayo, averaged over the period 1991-2020. Source: CRU TS 4.08", width = 75)
+  )
+
+```
+
+```{r}
+
+fig4_PRCPTOT_mon <- read_csv("data/Fig4_PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv")
+
+# Create the timeseries plot
+ggplot() +
+  # Rainfall bars
+  geom_col(
+    data = fig4_PRCPTOT_mon,
+    aes(x = time, y = PRCPTOT, fill = "Rainfall"),
+    alpha = 0.6
+  ) +
+  # Station count line
+  geom_point(
+    data = fig4_PRCPTOT_mon,
+    aes(x = time, y = stn * 40, color = "Station Count"),
+    linewidth = 0.8
+  ) +
+  # Use standardized color scales with explicit values
+  scale_fill_manual(values = setNames(theme_health_radar_colours[1], "Rainfall")) +
+  scale_colour_manual(values = setNames(theme_health_radar_colours[2], "Station Count")) +
+  # Primary axis (rainfall)
+  scale_y_continuous(
+    name = "Monthly Rainfall (mm)",
+    sec.axis = sec_axis(
+      ~./40, 
+      name = "Number of Stations",
+      breaks = seq(0, 10, 2),  # Force breaks from 0 to 10
+    )
+  ) +
+  scale_x_date(
+    date_breaks = "10 years",
+    date_labels = "%Y"
+  ) +
+  theme_health_radar() +
+  theme(
+    axis.title.y.right = element_text(color = theme_health_radar_colours[2]),
+    axis.text.y.right = element_text(color = theme_health_radar_colours[2]),   
+    axis.title.y.left = element_text(color = theme_health_radar_colours[1]),
+    axis.text.y.left = element_text(color = theme_health_radar_colours[1]),    
+    legend.position = "none"
+  ) +
+  labs(
+    title = "Monthly Rainfall and Station Count in Bulawayo (1901-2023)",
+    x = "Year",
+    caption = str_wrap("Timeseries of monthly total rainfall (bars) and number of stations used in the interpolation (line) for a gridcell over Bulawayo. Source: CRU TS 4.08", width = 75)
+  )
+
+```
+
+```{r}
+
+fig5_tas_mon <- read_csv("data/Fig5_tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv")
+
+# Create the timeseries plot
+ggplot() +
+  # Temperature bars
+  geom_col(
+    data = fig5_tas_mon,
+    aes(x = time, y = tas - 273.15, fill = "Temperature"),
+    alpha = 0.6
+  ) +
+  # Station count line
+  geom_point(
+    data = fig5_tas_mon,
+    aes(x = time, y = stn * 4, color = "Station Count"),
+    linewidth = 0.8
+  ) +
+  # Use standardized color scales with explicit values
+  scale_fill_manual(values = setNames(theme_health_radar_colours[1], "Temperature")) +
+  scale_colour_manual(values = setNames(theme_health_radar_colours[2], "Station Count")) +
+  # Primary axis (temperature)
+  scale_y_continuous(
+    name = "Monthly Temperature (°C)",
+    sec.axis = sec_axis(
+      ~./4, 
+      name = "Number of Stations",
+      breaks = seq(0, 10, 2),  # Force breaks from 0 to 10
+    )
+  ) +
+  scale_x_date(
+    date_breaks = "10 years",
+    date_labels = "%Y"
+  ) +
+  theme_health_radar() +
+  theme(
+    axis.title.y.right = element_text(color = theme_health_radar_colours[2]),
+    axis.text.y.right = element_text(color = theme_health_radar_colours[2]),   
+    axis.title.y.left = element_text(color = theme_health_radar_colours[1]),
+    axis.text.y.left = element_text(color = theme_health_radar_colours[1]),    
+    legend.position = "none"
+  ) +
+  labs(
+    title = "Monthly Temperature and Station Count in Bulawayo (1901-2023)",
+    x = "Year",
+    caption = str_wrap("Timeseries of monthly mean temperature (bars) and number of stations used in the interpolation (line) for a gridcell over Bulawayo. Source: CRU TS 4.08", width = 75)
+  )
+
+```
 
 
 ## Modelling Example 

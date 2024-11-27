@@ -10,3 +10,5 @@ forcats
 lubridate
 here
 deSolve
+terra
+tidyterra
