@@ -304,6 +304,7 @@ We may consider the proportion of the population effectively covered by ITNs to 
 ### Model assumptions
 
 For the purposes of this model we make the following assumptions:
+
 -   Children under the age of five are 20% more susceptible to mosquito transmission $b$ than children over the age of five and adults
 -   Mortality rates $mu_h$ ($\mu_h$) in both age groups are the same
 -   The duration of partial immunity $rho$ ($\rho$) in adults is longer in adults because of previous malaria infections
