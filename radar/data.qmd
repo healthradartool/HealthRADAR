@@ -14,7 +14,7 @@ listing:
     type: grid
     filter-ui: true
     fields: [image, title, description, categories]
-    categories: true
+    categories: false
 
 page-layout: full
 title-block-banner: "#EDF3F9"
