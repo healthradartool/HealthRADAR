@@ -1,13 +1,13 @@
 ---
 title: "UN Population Division Data Portal"
-description: "United Nations Population Data Portal provides access to global datasets of demographic indicators produced by the United Nations Population Division."
-date: 07/04/2024 # mm-dd-yyyy
+description: "United Nations Population Division provides estimates and projections of demographic indicators for the years 1950 to 2100."
+date: 12/13/2024 # mm-dd-yyyy
 image: "images/un_population_data.png"
 
 categories:
-  - malaria
-  - epidemiology
+  - demographics
   - country-level
+  - multi-national 
   - annual
 ---
 
@@ -15,20 +15,95 @@ categories:
 
 ## Overview
 
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(rdhs)
+library(ggrepel)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(whowmr)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(forcats)
+```
+
+
 <h2>About the data</h2>
 
-United Nations Population Data Portal provides access to global datasets of demographic indicators produced by the United Nations Population Division.The data portal allows users to search data based on indicators and country selections, compare data by selecting multiple regions, countries and areas, create visualizations in the form of the bar, line or spatial layouts and to download data in a variety of formats for further analysis.
+The United Nations Population Division produces and regularly updates estimates of various demographic indicators for 237 countries or areas for the period between 1950 and the present. In addition, they currently have projections of the indicators for the period between the present and the year 2100. These estimates and projections are made based on available censuses and nationally representative sample surveys.
+
+Indicators such as population size and density, total births and deaths, infant mortality rate, median age and population sex ratio are available. Data for countries and their territories are recorded separately as well as together. Grouped data for continents or groups of countries, states or territories such as "Small Island Developing States (SIDS)" or "Land-locked Countries" is also available.
 
 <h2>Accessing the data</h2>
 
-{{< lipsum 1 >}}
+1.  Navigate to the UN population division [home page](https://www.un.org/development/desa/pd/)
+2.  Select `Data > World` Population Prospects.
+3.  This will take you to a new page. If you only require a subset of the available data, do the following:
+    -   Navigate to `Data > Data Portal`.
+    -   Choose the desired indicators, locations and years from the dropdown menus, and then press "Search". The resulting page will allow you to view plots of the data.
+    -   Navigating to `Table > Export > CSV` will download the selected data as a CSV file. Be aware that searching a large dataset can take a long time. Using the "Download Center" (Step 4) may be more efficient in this case.
+4.  To download the full dataset which we use in this tutorial, select `Data > Download Center` from the [World Population Prospects page](https://population.un.org/wpp/). The [webpage](https://population.un.org/wpp/Download/Standard/MostUsed/) to which you have now navigated provides options for download.
+    -   Under the title "Major topic/ Special groupings", select the "CSV format" option. Information about the data will be displayed. Scrolling down reveals a table containing links to download various CSV files. For the purposes of this tutorial, the file containing data from the subgroup "Demographic Indicators", labelled "1950-2100, medium (GZ, 15.79 MB)", will be used.
 
 <h2>What does the data look like?</h2>
 
-{{< lipsum 1 >}}
+This dataset contains estimates or projections for a number of demographic indicators between the years 1950 and 2101. It is not separated by age and is presented in long format, with each row providing values for all indicators for a given country or area in a given year.
+
+![Layout of the CSV file opened in Microsoft Excel, displaying nine of 67 columns, and 11 of 84 360 rows.](images/pop_csv.png)
+
+The indicator labels are not all self explanatory. Below is a table which provides slightly more detail for each indicator:
+
+:::{.callout-note icon='false' collapse='true'}
+
+## Indicator description
+
+```{r}
+#| echo: false
+
+labs              <- str_split(read.table("indicator_labs.txt")$V1, ",")[[1]][-(1:13)]    # remove location and time vars
+detail            <- read.table("indicator_detail.txt", sep = "\n")$V1[-1]                # row one is a heading
+timeloc           <- read.table("time_loc_inds.txt", sep = c(":", "\n"))[-13,] # midperiod not recorded for dataset of interest
+colnames(timeloc) <- c("labs", "detail")
+
+table             <- rbind(timeloc, cbind(labs, detail))
+colnames(table) <- c("Name", "Description")
+
+gt::gt(table, caption = "The label used for each indicator in the dataset of interest, along with a description of this indicator. ")
+```
+
+:::
 
 <h2>Key points to consider</h2>
 
-{{< lipsum 1 >}}
+**Estimations and Projections:**
+
+This dataset uses data from censuses and other surveys to generate estimations of demographic indicators between 1950 and the present, and projections of these same indicators from the present to the year 2100.
+
+**Pitfalls of Annual Data:**
+
+Using annual data for your analysis can lead to several pitfalls:
+
+-   Seasonal variations: Annual data may not capture seasonal patterns in population movement, which can be influenced by social or climatic factors. This can lead to an over- or underestimation of the disease spread and the impact of interventions.
+
+-   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as movements of people around smaller holidays or due to unusual climatic events.
+
+Note that this dataset does record total population size in thousands as of 1 January and 1 June of each year. Combining these indicators to get biannual data will decrease the impact of some of the pitfalls detailed above.
+
+**National Level - Ignoring Spatial Heterogeneity:**
+
+Modelling malaria transmission based on population sizes at a national level can overlook important spatial heterogeneities:
+
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in population densities and other demographic factors.
+
+-   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as population density and human behavior.
+
+-   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics. By only looking at movement of people between countries, we will miss these subnational movements.
+
+While some of the locations for which data are provided are territories, regions or states, there are no countries for which the data can be separated by subregion such as province.
 
 :::
