@@ -12,9 +12,9 @@ listing:
     contents: datasources/malaria
     sort: "date"
     type: grid
-    filter-ui: true
-    fields: [image, title, description, categories]
+    filter-ui: [title, description, categories]
     categories: false
+    fields: [image, title, description, categories]
 
 page-layout: full
 title-block-banner: "#EDF3F9"
