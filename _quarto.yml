@@ -12,7 +12,7 @@ website:
   site-url: https://jfunction.quarto.pub/healthradar/radar/
   favicon: "radar/favicon.ico"
   bread-crumbs: false
-  draft-mode: gone
+  draft-mode: unlinked
   back-to-top-navigation: true
   search:
     location: navbar
