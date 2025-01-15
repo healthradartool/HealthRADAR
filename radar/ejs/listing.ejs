@@ -11,7 +11,7 @@
 <div class="card border-1 rounded-2 g-col-12 g-col-sm-6 g-col-md-4 mb-2" <%= metadataAttrs(item) %>>
 <p class="card-img-top"><img src="<%- item.image %>" class="thumbnail-image card-img"></p>
 <div class="card-body post-contents">
-  <h5><a href="<%- item.path %>" class="no-anchor card-title listing-title"><%= item.title %></a></h5>
+  <h5 class="no-anchor"><a href="<%- item.path %>" class="no-anchor card-title listing-title"><%= item.title %></a></h5>
 <div class="listing-categories">
 <% if (Array.isArray(item.categories)) { %>
   <% item.categories.forEach(category => { %>
