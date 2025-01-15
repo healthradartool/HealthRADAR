@@ -107,7 +107,7 @@ Modelling malaria transmission at a national level can overlook important spatia
 
 -   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
 
-**Examples of data use in literature**
+<h2>Examples of data use in literature</h2> 
 
 The report came out on Jan 31, 2024, so there are not many studies that have used the data yet. However, here are a few that are either under review or have been published recently:
 
