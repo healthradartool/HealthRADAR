@@ -208,9 +208,6 @@ html {
   background-color: #edf3f9;
 }
 
-.principles {
-  
-}
 
 #browse-btn-block {
   background-color: #f7f9fb;
@@ -220,4 +217,40 @@ html {
 /* this is added and hidden so that quarto can properly align the principles */
 #exemplified-2 {
   visibility: hidden;
+}
+
+.thumbnail-image {
+  max-height: 150px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+
+.listing-category {
+  color: #6a737b;
+  border: solid 1px #dee2e6;
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-size: .65em;
+  padding-left: .5em;
+  padding-right: .5em;
+  padding-top: .15em;
+  padding-bottom: .15em;
+  cursor: pointer;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+.listing-title a {
+  color: #212529;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.listing-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem;
+  margin-bottom: 2px;
 }

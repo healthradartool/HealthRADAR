@@ -1,12 +1,56 @@
+<div class="row">
+  <select id="sel1" name="choice">
+    <option value="monthly">Mth</option>
+    <option value="malaria">Mal</option>  
+  </select>
+</div>
 
 
-<ul>
-    <% for (const item of items) { %>
-      <li>
-        <a href="<%- item.path %>"><%= item.title %></a>
-        <p><%= item.description %> </p>
-        <p><%= item.date %></p>
-        <p class="quarto-categories"><%= item.categories %> </p>
-      </li>
-    <% } %>
-</ul>
+<div class="list grid">
+<% for (const item of items) { %>
+<div class="card border-1 rounded-2 g-col-12 g-col-sm-6 g-col-md-4 mb-2" <%= metadataAttrs(item) %>>
+<p class="card-img-top"><img src="<%- item.image %>" class="thumbnail-image card-img"></p>
+<div class="card-body post-contents">
+  <h5><a href="<%- item.path %>" class="no-anchor card-title listing-title"><%= item.title %></a></h5>
+<div class="listing-categories">
+<% if (Array.isArray(item.categories)) { %>
+  <% item.categories.forEach(category => { %>
+  <div class="listing-category me-1"><%= category %></div>
+  <% }) %>
+<% } %>
+</div>
+  <p class="listing-description"><%- item.description %></p>
+  <p class="listing-date"><%- item.date %></p>
+</div>
+</div>
+<% } %>
+</div>
+
+<script>
+  document.getElementById("sel1").onchange = (e) => {
+    let val = e.target.value;
+    let urlFragment = "#category="+val;
+    console.log('-----');
+    console.log(window.location.href);
+    console.log(window.location.href.replace(/#.*$/g, ""));
+    console.log('++++++');
+    
+    let url = window.location.href.replace(/#.*$/g, "") + urlFragment; 
+    window.location = url;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
