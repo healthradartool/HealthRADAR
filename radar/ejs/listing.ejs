@@ -1,9 +1,33 @@
 ```{=html}
-<div class="row">
-  <select id="sel1" name="choice">
-    <option value="monthly">Mth</option>
-    <option value="malaria">Mal</option>  
-  </select>
+
+<div class="dropdown-container">
+  <div class="dropdown-wrapper">
+      <select id="geography">
+        <option value="">Geography</option>
+        <option value="global">Global</option>
+        <option value="regional">Regional</option> 
+        <option value="multi-country">Multi-country</option>
+      </select>
+  </div>
+  <div class="dropdown-wrapper">
+    <select id="section">
+      <option value="">Section</option>
+      <option value="epidemiology">Epidemiology</option>
+      <option value="entomology">Entomology</option>
+      <option value="climate">Climate</option>
+      <option value="interventions">Interventions</option> 
+      <option value="costs">Costs</option>
+    </select>
+  </div>
+  <div class="dropdown-wrapper">
+    <select id="timescale">
+      <option value="">Timescale</option>
+      <option value="annual">Annual</option>
+      <option value="monthly">Monthly</option>
+      <option value="day">Day</option>
+      <option value="hourly">Hourly</option> 
+    </select>
+  </div>
 </div>
 
 <div class="list grid">
@@ -30,14 +54,11 @@
 </div>
 
 <script>
-  document.getElementById("sel1").onchange = (e) => {
+  document.getElementById("geography").onchange = (e) => {
     let val = e.target.value;
     let urlFragment = "#category="+val;
-    console.log('-----');
     console.log(window.location.href);
     console.log(window.location.href.replace(/#.*$/g, ""));
-    console.log('++++++');
-    
     let url = window.location.href.replace(/#.*$/g, "") + urlFragment; 
     window.location = url;
   }

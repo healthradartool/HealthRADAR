@@ -260,3 +260,20 @@ html {
   font-weight: 600;
   text-decoration: none;
 }
+
+.dropdown-container {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 15px;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+select {
+  border-radius: .5em;
+  border-color: #2c3e50;
+  padding: 5px;
+}
