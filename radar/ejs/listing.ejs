@@ -28,6 +28,8 @@
       <option value="hourly">Hourly</option> 
     </select>
   </div>
+    <!-- Reset Button -->
+    <button id="resetButton" class="btn btn-primary">Reset Selections</button>
 </div>
 
 <div class="list grid">
@@ -54,15 +56,42 @@
 </div>
 
 <script>
-  document.getElementById("geography").onchange = (e) => {
-    let val = e.target.value;
-    let urlFragment = "#category="+val;
-    console.log(window.location.href);
-    console.log(window.location.href.replace(/#.*$/g, ""));
-    let url = window.location.href.replace(/#.*$/g, "") + urlFragment; 
-    window.location = url;
+  // Function to update the URL fragment based on selected dropdown values
+  function updateUrl() {
+    const geography = document.getElementById("geography").value;
+    const section = document.getElementById("section").value;
+    const timescale = document.getElementById("timescale").value;
+  
+    const filters = [];
+    if (geography) filters.push("category=" + geography);
+    if (section) filters.push("category=" + section);
+    if (timescale) filters.push("category=" + timescale);
+  
+    const urlFragment = filters.length > 0 ? "#" + filters.join("&") : "";
+    
+    const baseUrl = window.location.href.replace(/#.*$/g, "");
+    window.location = baseUrl + urlFragment;
   }
-</script>
+  
+  // Attach change event listeners to all dropdowns
+  document.querySelectorAll('.dropdown-wrapper select').forEach(dropdown => {
+    dropdown.onchange = updateUrl;
+  });
+  
+  // Reset function to clear selections
+  function resetSelections() {
+    document.getElementById("geography").selectedIndex = 0;
+    document.getElementById("section").selectedIndex = 0;
+    document.getElementById("timescale").selectedIndex = 0;
+  
+    // Also update the URL to remove any filters
+    updateUrl();
+  }
+  
+  // Attach click event listener to the reset button
+  document.getElementById("resetButton").onclick = resetSelections;
+  
+  </script>
 ```
 
 
