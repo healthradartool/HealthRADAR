@@ -16,6 +16,7 @@ listing:
     filter-ui: [title, description, categories]
     categories: false
     fields: [image, title, description, categories]
+    page-size: 18
 
 page-layout: full
 title-block-banner: "#EDF3F9"
