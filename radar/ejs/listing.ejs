@@ -44,7 +44,7 @@
           <% if (Array.isArray(item.categories)) { %>
             <% item.categories.forEach(category=> { %>
               <div class="listing-category me-1">
-                <%= category %>
+                <a class="card-tag" href="/radar/data.html#category=<%= category %>"><%= category %></a>
               </div>
               <% }) %>
                 <% } %>
