@@ -182,7 +182,7 @@ ggplot() +
     title = "Mean Annual Rainfall for Southern Africa (1991-2020)",
     x = "Longitude", 
     y = "Latitude",
-    caption = str_wrap("Spatial plot of long term mean annual total rainfall (mm/year) for the period 1991-2020. Source: CRU TS 4.08", width = 75)
+    caption = str_wrap("Mean annual rainfall over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
@@ -212,7 +212,7 @@ ggplot() +
     title = "Mean Monthly Average Temperature for Southern Africa (1991-2020)",
     x = "Longitude", 
     y = "Latitude",
-    caption = str_wrap("Spatial plot of long term mean monthly average temperature (Celsius) for the period 1991-2020. Source: CRU TS 4.08", width = 75)
+    caption = str_wrap("Mean monthly average temperature over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
@@ -269,7 +269,7 @@ ggplot() +
   labs(
     title = "Seasonal Cycle of Rainfall and Temperature in Bulawayo",
     x = "Month",
-    caption = str_wrap("Monthly climatology of total rainfall (bars) and mean temperature (line) for Bulawayo, averaged over the period 1991-2020. Source: CRU TS 4.08", width = 75)
+    caption = str_wrap("Monthly climatology of rainfall (bars) and average temperature (line) for Bulawayo. Zimbabwe, for the period 1991-2020, derived from CRU TS v4.08 data. We see Bulawayo experiences a signioficant propotion of it's rainfall in the warm summer months and is very dry in the temperate winter months. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
@@ -319,7 +319,7 @@ ggplot() +
   labs(
     title = "Monthly Rainfall and Station Count in Bulawayo (1901-2023)",
     x = "Year",
-    caption = str_wrap("Timeseries of monthly total rainfall (bars) and number of stations used in the interpolation (line) for a gridcell over Bulawayo. Source: CRU TS 4.08", width = 75)
+    caption = str_wrap("Monthly rainfall time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly rainfall value. The data is derived from CRU TS v4.08. Notably, there is a decrease in the number of contributing stations from around 2010 onwards. Caution is advised when interpreting values calculated without any station data contributions. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
@@ -369,7 +369,7 @@ ggplot() +
   labs(
     title = "Monthly Temperature and Station Count in Bulawayo (1901-2023)",
     x = "Year",
-    caption = str_wrap("Timeseries of monthly mean temperature (bars) and number of stations used in the interpolation (line) for a gridcell over Bulawayo. Source: CRU TS 4.08", width = 75)
+    caption = str_wrap("Monthly average temperature time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly average temperature value. The data is derived from CRU TS v4.08.  The number of contributing stations remains at an adequate level throughout the time series, with a minimum of three stations. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
