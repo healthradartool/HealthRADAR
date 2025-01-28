@@ -11,6 +11,45 @@ listing:
   - id: malaria
     contents: datasources/malaria
     template: ejs/listing.ejs
+    template-params:
+      disease:
+        - alaria
+      subtopic: 
+        - epidemiology
+        - climate dataset
+        - demographics
+      geography:
+        -  country-level
+        -  global
+        -  multi-national
+      time:
+        - annual
+        - past
+        - present
+        - monthly
+      other:
+        - interventions
+        - children
+        - gridded observed
+        - rainfall
+        - temperature
+        - spatiotemporal
+        - raster
+        - therapeutic efficacy studies
+        - molecular marker studies
+        - ongoing therapeutic efficacy studies
+        - ongoing molecular marker studies
+        - country scorecards
+        - indicators
+        - accountability
+        - insecticide resistance status
+        - intensity
+        - resistance mechanisms detection
+        - synergist effect in susceptibility
+        - malaria vectors
+        - new vectors of malaria
+        - emerging vectors of malaria
+        - vector species    
     sort: "date"
     type: grid
     filter-ui: [title, description, categories]

@@ -1,37 +1,54 @@
 ```{=html}
 
 <div class="dropdown-container">
+  <!--- Time dropdown-->
   <div class="dropdown-wrapper">
-      <select id="geography">
-        <option value="">Geography</option>
-        <option value="global">Global</option>
-        <option value="regional">Regional</option> 
-        <option value="multi-country">Multi-country</option>
-      </select>
-  </div>
-  <div class="dropdown-wrapper">
-    <select id="section">
-      <option value="">Section</option>
-      <option value="epidemiology">Epidemiology</option>
-      <option value="entomology">Entomology</option>
-      <option value="climate">Climate</option>
-      <option value="interventions">Interventions</option> 
-      <option value="costs">Costs</option>
+    <select id="time">
+      <option value="">Time</option>
+      <% if (templateParams && templateParams.time && templateParams.time.length > 0) { %>
+        <% templateParams.time.forEach(function(time) { %>
+          <option value="<%= time %>"><%= time %></option>
+        <% }); %>
+      <% } %>
     </select>
   </div>
+  <!--- Geography dropdown-->
   <div class="dropdown-wrapper">
-    <select id="timescale">
-      <option value="">Timescale</option>
-      <option value="annual">Annual</option>
-      <option value="monthly">Monthly</option>
-      <option value="day">Day</option>
-      <option value="hourly">Hourly</option> 
+    <select id="geography">
+      <option value="">Geography</option>
+      <% if (templateParams && templateParams.geography && templateParams.geography.length > 0) { %>
+        <% templateParams.geography.forEach(function(category) { %>
+          <option value="<%= category %>"><%= category %></option>
+        <% }); %>
+      <% } %>
     </select>
   </div>
-    <!-- Reset Button -->
-    <button id="resetButton" class="btn btn-primary">Reset Selections</button>
+  <!--- Subtopic dropdown-->
+  <div class="dropdown-wrapper">
+    <select id="subtopic">
+      <option value="">Subtopic</option>
+      <% if (templateParams && templateParams.subtopic && templateParams.subtopic.length > 0) { %>
+        <% templateParams.subtopic.forEach(function(subtopic) { %>
+          <option value="<%= subtopic %>"><%= subtopic %></option>
+        <% }); %>
+      <% } %>
+    </select>
+  </div>
+  <!--- Other dropdown-->
+  <div class="dropdown-wrapper">
+    <select id="other">
+      <option value="">Other</option>
+      <% if (templateParams && templateParams.other && templateParams.other.length > 0) { %>
+        <% templateParams.other.forEach(function(other) { %>
+          <option value="<%= other %>"><%= other %></option>
+        <% }); %>
+      <% } %>
+    </select>
+  </div>
+  <!-- Reset Button -->
+  <button id="resetButton" class="btn btn-primary">Reset Selections</button>
 </div>
-
+<!--- show the listing -->
 <div class="list grid">
   <% for (const item of items) { %>
     <div class="card border-1 rounded-2 g-col-12 g-col-sm-6 g-col-md-4 mb-2" <%=metadataAttrs(item) %>>
@@ -58,14 +75,16 @@
 <script>
   // Function to update the URL fragment based on selected dropdown values
   function updateUrl() {
+    const time = document.getElementById("time").value;
     const geography = document.getElementById("geography").value;
-    const section = document.getElementById("section").value;
-    const timescale = document.getElementById("timescale").value;
+    const subtopic = document.getElementById("subtopic").value;
+    const other = document.getElementById("other").value;
   
     const filters = [];
+    if (time) filters.push("category=" + time);
     if (geography) filters.push("category=" + geography);
-    if (section) filters.push("category=" + section);
-    if (timescale) filters.push("category=" + timescale);
+    if (subtopic) filters.push("category=" + subtopic);
+    if (other) filters.push("category=" + other);
   
     const urlFragment = filters.length > 0 ? "#" + filters.join("&") : "";
     
@@ -80,9 +99,10 @@
   
   // Reset function to clear selections
   function resetSelections() {
+    document.getElementById("time").selectedIndex = 0;
     document.getElementById("geography").selectedIndex = 0;
-    document.getElementById("section").selectedIndex = 0;
-    document.getElementById("timescale").selectedIndex = 0;
+    document.getElementById("subtopic").selectedIndex = 0;
+    document.getElementById("other").selectedIndex = 0;
   
     // Also update the URL to remove any filters
     updateUrl();
