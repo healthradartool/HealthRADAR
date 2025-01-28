@@ -13,7 +13,7 @@ listing:
     template: ejs/listing.ejs
     template-params:
       disease:
-        - alaria
+        - malaria
       subtopic: 
         - epidemiology
         - climate dataset
