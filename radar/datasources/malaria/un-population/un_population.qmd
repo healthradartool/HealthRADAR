@@ -30,6 +30,8 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 library(forcats)
+
+source(here::here("radar/theme_health_radar.R"))
 ```
 
 
@@ -105,5 +107,118 @@ Modelling malaria transmission based on population sizes at a national level can
 -   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics. By only looking at movement of people between countries, we will miss these subnational movements.
 
 While some of the locations for which data are provided are territories, regions or states, there are no countries for which the data can be separated by subregion such as province.
+
+## Visualisations
+
+<h2>How to use this dataset</h2>
+
+Long format tables are often easier to work with. Below is a code chunk which converts the dataset as downloaded from the UN Population Division webpage to a longer format, and prints out the "Location", "Time", "Indicator" and "Value" columns.
+
+
+```{r}
+# Read in data
+data <- read.csv("WPP2024_Demographic_Indicators_Medium.csv")
+
+dat_long <- pivot_longer(data, 14:ncol(data), names_to = "Indicator", values_to = "Value") 
+dat_long[,which(colnames(dat_long) %in% c("Location", "Time", "Indicator", "Value"))] |> 
+  head(n = 10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+<h2>How to plot this dataset</h2>
+
+
+```{r}
+# Define the elimination 8 countries
+e8_countries <- c("Botswana", "Eswatini", "Namibia", "South Africa", "Angola", "Mozambique", "Zambia", "Zimbabwe")
+
+# Load the map data for Africa
+e8_africa <- ne_countries(continent = "Africa", returnclass = "sf") |>
+  mutate(name = if_else(name=="eSwatini", "Eswatini", name)) |> # Correct the name for Eswatini
+  filter(name %in% e8_countries) # Filter to include only the elimination 8 countries
+
+# Filter long table so that only the 1 Jan population estimates for 2024 are shown
+dat_long_pop2024 <- filter(dat_long, Time == 2024 & Indicator == "TPopulation1Jan")
+
+# Merge the map data with your data
+e8_data <- e8_africa |>
+  left_join(dat_long_pop2024 |> mutate(), by = c("name" = "Location"))  
+
+# Create the choropleth map
+ggplot(data = e8_data) +
+  geom_sf(aes(fill = Value), color = "lightgrey", size = 0.3) +  # Plot the map with population data
+  theme_health_radar() +  # Apply custom theme
+  # Correct fill scale for continuous data
+  scale_fill_continuous_health_radar(name = "Population Size (in thousands)") +  
+  labs(title = "Estimated Population Size of the Elimination 8 countries",
+       subtitle = "For the year 2024",
+       caption = str_wrap("The choropleth map highlights population size estimates in thousands in the Elimination 8 countries in 2024, with South Africa having the largest population of over 60 million people, and Namibia and Botswana having the smallest populations. These figures are estimates based on census and sample data. Source: UN Population Division.", width = 80),
+       x = "Latitude",
+       y = "Longitude") + 
+  # Conditional text color to ensure readability
+  geom_sf_text(aes(label = name, color = ifelse(Value > mean(Value), "black", "white")), size = 3) +  
+  scale_color_identity() +  
+  # Keep the caption outside the plot area
+  theme(
+    plot.caption.position = "plot"  
+  )
+```
+
+```{r}
+# collapse = TRUE
+# Create a line plot for population size in the E8 countries over time
+dat_long |>
+  # Filter for the E8 countries
+  filter(Location |> 
+           stringr::str_detect("Angola|Botswana|Eswatini|Malawi|Mozambique|Namibia|South Africa|Zambia|Zimbabwe") & 
+           Indicator == "TPopulation1Jan") |>
+  # Rename columns to something more readable
+  rename(Country="Location") |>
+  ggplot(aes(x = Time, y = Value, group = Country, color = Country)) +
+  geom_line(linewidth = 1) +  # Plot the population data as lines
+  geom_vline(xintercept = 2024, linetype = "dashed") +  # Add a dashed vertical line at the year 2024
+  scale_colour_manual_health_radar() +  # Apply manual color scale for "color" aesthetic (lines)
+  theme_health_radar() +  # Apply custom theme
+  labs(
+    title = "Estimated and Projected Population Sizes \n of the Elimination 8 Countries",
+    subtitle = "For the years 1950 to 2100",
+    x = "Year",
+    y = "Population Size (in thousands)",
+    color = "Country",
+    caption = str_wrap("The plot displays estimated population sizes in thousands in the Elimination 8 Countries from 1950 to 2024 and projected population sizes between 2025 and 2100, with lines representing these estimates/projections. The dashed black line indicates the year in which these estimations and projections were produced - 2024. These data are recorded annually, and may therefore miss seasonal variations in population size. Population growth is evident across all eight countries since 1950, with many of the populations projected to plateau by 2100. Source: UN Population Division.", width = 85)
+  )
+
+```
+
+```{r}
+# Filter the data for the E8 countries and specific indicators for the years 2000, 2010, and 2020
+dat_pop_mvf <- dat_long |> 
+  filter(Location |> 
+           stringr::str_detect("Angola|Botswana|Eswatini|Malawi|Mozambique|Namibia|South Africa|Zambia|Zimbabwe") & 
+           Indicator %in% c("TPopulationFemale1July", "TPopulationMale1July") & 
+           Time %in% seq(2000, 2020, 10))
+
+# Rename the indicators to more readable labels
+dat_pop_mvf[dat_pop_mvf == "TPopulationFemale1July"] <- "Female"
+dat_pop_mvf[dat_pop_mvf == "TPopulationMale1July"] <- "Male"
+
+# Create stacked barplots
+ggplot(dat_pop_mvf, aes(x = Time, y = Value, fill = Indicator)) +
+  geom_bar(stat = "identity", position = "stack") +  # Create stacked bars
+  # Create separate plots for each country with free y-axis scales
+  facet_wrap(~ Location, scales = "free_y") +  
+  scale_fill_manual_health_radar() +  # Apply the custom fill scale for "Donor"
+  labs(
+    title = "Stacked Bar Plot of Estimated or Projected Male and Female \n Population Sizes in 2000, 2010 and 2020",
+    subtitle = "For the Elimination 8 Countries",
+    x = "Year",
+    y = "Population Size (in thousands)",
+    fill = "Sex",
+    caption = str_wrap("The stacked bar plot shows the estimated or projected numbers of males and females making up the populations of each of the Elimination 8 countries in 2000, 2010 and 2020. Note the difference in y-axis range for each stacked barplot, indicating different population sizes. No country appears to have a ratio of males to females which differs greatly from 1:1.  Source: UN Population Division.", width = 100)
+  ) +
+  theme_health_radar()  # Apply the custom radar theme
+```
 
 :::

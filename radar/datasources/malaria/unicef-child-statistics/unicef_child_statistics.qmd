@@ -62,7 +62,7 @@ Modelling malaria transmission at a national level can overlook important spatia
 
 -   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
 
-**Examples of data use in literature:**
+<h2>Examples of data use in literature</h2>
 
 Around 100 UNICEF [journal articles](https://data.unicef.org/resources/resource-type/journal-articles/?f) and over 300 [publications](https://data.unicef.org/resources/resource-type/publications/?f) are made available on the UNICEF data website.
 

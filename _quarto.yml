@@ -12,8 +12,14 @@ website:
   site-url: https://jfunction.quarto.pub/healthradar/radar/
   favicon: "radar/favicon.ico"
   bread-crumbs: false
-  draft-mode: gone
+  draft-mode: unlinked
   back-to-top-navigation: true
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "Please note that the website is currently a work in progress. We are actively updating content and features to enhance your experience. Check back soon for exciting updates! Your patience is appreciated!"
+    type: info
+    position: below-navbar
   search:
     location: navbar
     type: textbox
@@ -42,7 +48,7 @@ website:
         
     pinned: true
   page-footer: 
-          left: "Copyright 2024, Health RADAR"
+          left: "Copyright 2025, Health RADAR"
           center:
             - text: About
               href: radar/about.qmd
@@ -66,7 +72,7 @@ format:
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
     mainfont: "Public Sans"
-    monofont: "Source Code Pro"
+    monofont: "Roboto Mono"
     code-fold: true
     code-summary: "Show the code"
     highlight-style: atom-one
