@@ -19,5 +19,5 @@ format:
       
 glossary:
   path: glossary.yml
-  popup: hover # (click, hover, none)
+  popup: click # (click, hover, none)
   show: true
