@@ -76,7 +76,7 @@ For more information regarding all CRU datasets see [CRU-data](https://crudata.u
 
 **Limitations**
 
--   The skill of the dataset relies heavily on the density of the station network. The density over southern Africa is very poor with some areas not having any available stations, or they are are very far away in climatically very different regions.
+-   The {{< glossary skill >}} of the dataset relies heavily on the density of the station network. The density over southern Africa is very poor with some areas not having any available stations, or they are are very far away in climatically very different regions.
 -   The data is monthly which limits the usefulness of the dataset which may require higher temporal resolution data.
 -   The stations come from a number of different networks and they are not strictly homogenized so caution should be use in any trend analysis.
 

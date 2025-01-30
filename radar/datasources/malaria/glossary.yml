@@ -1,3 +1,6 @@
+# This file contains the glossary for the malaria datasources
+
+# Vector insecticide resistance
 Insecticide Resistance: |
   The ability of mosquito populations to survive exposure to insecticides that would normally kill them, often due to genetic mutations or metabolic adaptations.
 
@@ -6,3 +9,9 @@ Pyrethroids: |
 
 WHO susceptibility tests: |
   A standardized bioassay to assess mosquito mortality after exposure to a diagnostic dose of insecticide, used to monitor resistance.
+
+# CRU TS
+skill: |
+  In climate science, the *skill* of a dataset refers to its accuracy, resolution, bias, uncertainty, and predictive power in representing real-world climate conditions. A high-skill dataset closely matches observations, has minimal bias, and reliably supports climate modelling and decision-making.
+
+  
