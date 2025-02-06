@@ -33,11 +33,11 @@ website:
       - text: Guides
         menu: 
           - text: Contributing to Health RADAR 
-            href: radar/guides/contribution_guidance.qmd
+            href: radar/guides/contribution/contribution_guidance.qmd
           - text: Climate
-            href: radar/guides/climate.qmd
+            href: radar/guides/climate/climate.qmd
           - text: Modelling
-            href: radar/guides/modelling.qmd
+            href: radar/guides/contribution/modelling.qmd
       - text: About
         href: radar/about.qmd
     right:
