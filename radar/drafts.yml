@@ -9,3 +9,4 @@ website:
     - radar/datasources/malaria/severe-malaria-observatory/severe_malaria_observatory.qmd
     - radar/datasources/malaria/the-lancet/lancet_malaria.qmd
     - radar/datasources/malaria/grid3/grid3.qmd
+    - radar/datasources/malaria/pmi/pmi.qmd
