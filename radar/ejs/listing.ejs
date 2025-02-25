@@ -1,6 +1,17 @@
 ```{=html}
 
 <div class="dropdown-container">
+  <!--- Theme dropdown-->
+  <div class="dropdown-wrapper">
+    <select id="theme">
+      <option value="">Theme</option>
+      <% if (templateParams && templateParams.theme && templateParams.theme.length > 0) { %>
+        <% templateParams.theme.forEach(function(theme) { %>
+          <option value="<%= theme %>"><%= theme %></option>
+        <% }); %>
+      <% } %>
+    </select>
+  </div>
   <!--- Time dropdown-->
   <div class="dropdown-wrapper">
     <select id="time">
@@ -19,17 +30,6 @@
       <% if (templateParams && templateParams.geography && templateParams.geography.length > 0) { %>
         <% templateParams.geography.forEach(function(category) { %>
           <option value="<%= category %>"><%= category %></option>
-        <% }); %>
-      <% } %>
-    </select>
-  </div>
-  <!--- Subtopic dropdown-->
-  <div class="dropdown-wrapper">
-    <select id="subtopic">
-      <option value="">Subtopic</option>
-      <% if (templateParams && templateParams.subtopic && templateParams.subtopic.length > 0) { %>
-        <% templateParams.subtopic.forEach(function(subtopic) { %>
-          <option value="<%= subtopic %>"><%= subtopic %></option>
         <% }); %>
       <% } %>
     </select>
@@ -77,13 +77,13 @@
   function updateUrl() {
     const time = document.getElementById("time").value;
     const geography = document.getElementById("geography").value;
-    const subtopic = document.getElementById("subtopic").value;
+    const theme = document.getElementById("theme").value;
     const other = document.getElementById("other").value;
   
     const filters = [];
     if (time) filters.push("category=" + time);
     if (geography) filters.push("category=" + geography);
-    if (subtopic) filters.push("category=" + subtopic);
+    if (theme) filters.push("category=" + theme);
     if (other) filters.push("category=" + other);
   
     const urlFragment = filters.length > 0 ? "#" + filters.join("&") : "";
@@ -101,7 +101,7 @@
   function resetSelections() {
     document.getElementById("time").selectedIndex = 0;
     document.getElementById("geography").selectedIndex = 0;
-    document.getElementById("subtopic").selectedIndex = 0;
+    document.getElementById("theme").selectedIndex = 0;
     document.getElementById("other").selectedIndex = 0;
   
     // Also update the URL to remove any filters

@@ -1,0 +1,97 @@
+---
+pagetitle: "Select a theme"
+title: "Malaria"
+subtitle: "Malaria is a mosquito-borne infectious disease caused by *Plasmodium* parasites, which are transmitted to humans through the bites of infected female *Anopheles* mosquitoes.<br/><br/>**Select a theme to filter and discover relevant datasources**"
+toc: false
+back-to-top-navigation: false
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+---
+
+```{r}
+#| echo: false
+# source: Danielle Navarro (https://github.com/djnavarro/djnavarro.github.io/blob/main/index.qmd)
+add_card <- function(src = NULL, title = NULL, text = NULL, url = NULL, link_text = NULL, img_alt = NULL) {
+  lines <- c(
+    '<div class="g-col-12 g-col-md-4 g-col-xl-4">',
+    '<div class="card h-100">',
+    paste0(
+      '<a href="', 
+      url, 
+      '"><img src="', 
+      src, 
+      '"',
+      'alt = "',
+      img_alt,
+      '"',
+      'class="card-img-top card-img-medium"></a>'
+    ),
+    '<div class="card-body">',
+    paste0('<h2 class="card-title">', title, '</h2>'),
+    paste0('<p class="card-text">', text, '</p>'),
+    '</div>',
+    '<div class="card-footer">',
+    paste0('<a href="', url, '" class="btn btn-primary">', link_text, '</a>'),
+    '</div>',
+    '</div>',
+    '</div>'
+  )
+  cat(lines, sep="\n")
+}
+```
+
+::: {.grid}
+```{r}
+#| echo: false
+#| results: asis
+
+add_card(
+    src = "/radar/img/climate.png",
+    title = "Climate",
+    text = "Climate data for analysis, modeling, and decision-making on climate change impacts and adaptation.",
+    url = "/radar/data.html#category=climate",
+    link_text = "Browse data"
+)
+
+add_card(
+    src = "/radar/img/entomology.png",
+    title = "Entomology",
+    text = "Data covering insect taxonomy, distribution, behavior, specimen records, genetics, and ecological surveys.",
+    url = "/radar/data.html#category=entomology",
+    link_text = "Browse data"
+)
+
+add_card(
+    src = "/radar/img/epidemiology.png",
+    title = "Epidemiology ",
+    text = "Epidemiology data on disease incidence, prevalence, distribution, and risk factors in populations.",
+    url = "/radar/data.html#category=epidemiology",
+    link_text = "Browse data"
+)
+
+add_card(
+    src = "/radar/img/demography.png",
+    title = "Demography ",
+    text = "Demographic data on population size, age, gender ratios, and geographic distribution.",
+    url = "/radar/data.html#category=demography",
+    link_text = "Browse data"
+)
+
+add_card(
+    src = "/radar/img/interventions.png",
+    title = "Interventions",
+    text = "Malaria intervention data on vector control, treatment, and public health measures.",
+    url ="/radar/data.html#category=interventions",
+    link_text = "Browse data"
+)
+
+add_card(
+    src = "/radar/img/policy.png",
+    title = "Policies",
+    text = "Policy data on regulations, guidelines, and strategies for malaria control.",
+    url ="/radar/data.html#category=interventions",
+    link_text = "Browse data"
+)
+```
+:::
