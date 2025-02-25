@@ -71,7 +71,7 @@ format:
       light: [flatly, radar/style-light.scss, radar/style-base.scss]
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
-    mainfont: "Public Sans"
+    mainfont: "Roboto"
     monofont: "Roboto Mono"
     code-fold: true
     code-summary: "Show the code"
