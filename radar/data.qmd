@@ -12,12 +12,12 @@ listing:
     contents: datasources/malaria
     template: ejs/listing.ejs
     template-params:
-      disease:
-        - malaria
-      subtopic: 
+      theme:
+        - climate
+        - entomology
         - epidemiology
-        - climate dataset
-        - demographics
+        - demography
+        - interventions
       geography:
         -  country-level
         -  global
