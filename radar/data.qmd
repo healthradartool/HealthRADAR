@@ -62,31 +62,6 @@ title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 ---
 
-:::{.data-tabs .panel-tabset}
 
-## Malaria
 
-:::{#malaria}
-:::
 
-## Pertussis
-
-:::{#pertussis}
-:::
-
-## Cervical cancer
-
-:::{#cervical-cancer}
-:::
-
-## Diphtheria 
-
-:::{#diphtheria}
-:::
-
-## Measles
-
-:::{#measles}
-:::
-
-:::
