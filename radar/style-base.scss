@@ -11,7 +11,7 @@ $body-bg: #fefeff;
 #hero-banner {
   margin-top: -16px;
   padding-top: 35px;
-  background-color: $body-bg-hero;
+  background-color: $body-bg;
 }
 
 #quarto-content main { 
@@ -37,13 +37,15 @@ code, .sourceCode {
 }
 
 #homepage-heading {
+  color: #2c3e50;
   font-size: 4.0625rem;
   text-align: center;
+  line-height: 1.1em;
 }
 
 .headline {
   font-size: 1.25em;
-  font-weight: 300;
+  font-weight: 500;
   padding-bottom: 1em;
 }
 

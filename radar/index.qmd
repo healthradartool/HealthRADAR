@@ -16,7 +16,7 @@ back-to-top-navigation: false
 ::: {.grid .column-page}
 ::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
 ::: {#homepage-heading}
-Welcome to Health RADAR
+Responsible Access to Data for Analysis and Research
 :::
 
 ::: {.description}
