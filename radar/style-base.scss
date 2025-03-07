@@ -39,13 +39,14 @@ code, .sourceCode {
 #homepage-heading {
   color: #2c3e50;
   font-size: 4.0625rem;
+  font-weight: 500;
   text-align: center;
   line-height: 1.1em;
 }
 
 .headline {
   font-size: 1.25em;
-  font-weight: 500;
+  font-weight: 400;
   padding-bottom: 1em;
 }
 
@@ -61,6 +62,19 @@ code, .sourceCode {
 
 .headline ul li {
   margin-bottom: 0.3em;
+}
+
+.entry-point {
+  margin-top: 2em;
+  margin-bottom: 3em;
+  padding: 2em 0;
+  border: 2px solid #e7ebee; 
+  border-radius: 0.25em;
+  /*background-color: #f7f9fb;*/
+}
+
+.hero-buttons {
+  padding: 1em;
 }
 
 /* logo */
@@ -183,6 +197,7 @@ code, .sourceCode {
 
 
 .description {
+  margin-top: 1em;
   font-size: 20px;
 }
 

@@ -28,7 +28,7 @@ Demographic health surveys are also unique for modelling as you can correlate ac
 
 There are several options for accessing the data, each thoroughly explained in other resources.
 
-::: panel-tabset
+::: {.panel-tabset}
 ## DHS Website
 
 [The DHS Program Access Instructions:](https://www.dhsprogram.com/data/Access-Instructions.cfm) This requires signing up for a free user account.
