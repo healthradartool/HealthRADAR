@@ -14,12 +14,12 @@ website:
   bread-crumbs: false
   draft-mode: unlinked
   back-to-top-navigation: true
-  announcement: 
-    icon: info-circle
-    dismissable: true
-    content: "Please note that the website is currently a work in progress. We are actively updating content and features to enhance your experience. Check back soon for exciting updates! Your patience is appreciated!"
-    type: info
-    position: below-navbar
+  # announcement: 
+  #   icon: info-circle
+  #   dismissable: true
+  #   content: "Please note that the website is currently a work in progress. We are actively updating content and features to enhance your experience. Check back soon for exciting updates! Your patience is appreciated!"
+  #   type: info
+  #   position: below-navbar
   search:
     location: navbar
     type: textbox
