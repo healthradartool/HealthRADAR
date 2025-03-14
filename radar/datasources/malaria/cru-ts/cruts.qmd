@@ -375,7 +375,7 @@ ggplot() +
 
 <h2>How can this data be used in disease modelling?</h2>
 
-Malaria is a seasonal disease with regular fluctuations in incidence. Even in endemic countries with year-round cases peak during the rainy season (November to April for most southern African countries). During this time, temperature and rainfall conditions favour vector development, thereby increasing the total mosquito population. A few specific variables have been experimentally shown to be temperature-sensitive:
+Malaria is a seasonal disease with regular fluctuations in incidence. Even in endemic countries with year-round cases peak during the rainy season (November to April for most southern African countries). During this time, temperature and rainfall conditions favour vector development, thereby increasing the total mosquito population. A few specific variables have been experimentally shown to be temperature-sensitive (Shapiro 2017; Suh 2024):
 
 -   The parasite extrinsic incubation period
 -   Vector gonotrophic cycle
@@ -385,13 +385,6 @@ Malaria is a seasonal disease with regular fluctuations in incidence. Even in en
 
 The egg to adult development rate is also rainfall-sensitive, as is oviposition and the carrying capacity of the environment.
 
-### Seasonal forcing function
-
-Generally, we introduce a forcing function to mimic the seasonal pattern of temperature and rainfall. In this case, we use the cossine function, where $amp$ represents the amplitude of the curve and the strength of the seasonality and $phi$ is the phase angle used to offset the start of the period. It is important to note, however, that this merely represents the overall pattern of environmental conditions.
-
-$$
-seas = amp \times (1 + \cos(2 \pi \times time - phi))
-$$
 
 ### Preparing the data 
 
@@ -477,7 +470,7 @@ times <- seq(0, 365*Y, by = 1)
 # SEACR-SEI model
 seacr <- function(times, start, parameters, temp_func, rain_func) { 
   with(as.list(c(start, parameters)), {
-    P = S + E + A + C + R  
+    P = S + E + A + C + R + G
     M = Sm + Em + Im
     m = M / P
     
@@ -510,15 +503,16 @@ seacr <- function(times, start, parameters, temp_func, rain_func) {
     
     dS = mu_h*P - lambda.v*S + rho*R - mu_h*S
     dE = lambda.v*S - (gamma_h + mu_h)*E
-    dA = pa*gamma_h*E - (delta + mu_h)*A
-    dC = (1-pa)*gamma_h*E - (r + mu_h)*C
-    dR = delta*A + r*C - (rho + mu_h)*R
+    dA = pa*gamma_h*E + pa*gamma_h*G - (delta + mu_h)*A
+    dC = (1-pa)*gamma_h*E + (1-pa)*gamma_h*G - (r + mu_h)*C
+    dR = delta*A + r*C - (lambda.v + rho + mu_h)*R
+    dG = lambda.v*R - (gamma_h + mu_h)*G
     
-    dCInc = lambda.v*S
+    dCInc = lambda.v*(S+R)
     
     
     # Output
-    list(c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dCInc))
+    list(c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dG, dCInc))
   })
 }
 
@@ -532,6 +526,7 @@ initial_state <- c(Sm = 1000000, # susceptible mosquitoes
                    A = 130000, # asymptomatic and infectious humans
                    C = 65000, # clinical and symptomatic humans
                    R = 100000, # recovered and semi-immune humans
+                   G = 10000, # secondary-exposed and infected humans
                    CInc = 0 # cumulative incidence
 )
 # Country-specific parameters should be obtained from literature review and expert knowledge
@@ -567,7 +562,7 @@ out <- ode(y = initial_state,
 # Post-processing model output into a dataframe
 
 df <- as_tibble(as.data.frame(out)) |> 
-  mutate(P = S + E + A + C + R,
+  mutate(P = S + E + A + C + R + G,
          M = Sm + Em + Im,
          Inc = c(0, diff(CInc))) |> 
   pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
@@ -578,18 +573,11 @@ df <- as_tibble(as.data.frame(out)) |>
 
 ### Changes in vector population
 
-As mentioned earlier, environmental conditions affect the parasite and mosquito development, and as such we anticipate changes in the vector population to mimic the pattern in the temperature. In this example, we assume the human population stays constant as is shown in the panel on the right. The [UN Population Data portal page](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/un-population/un_population.html) describes human population growth in the context of disease modelling.
+As mentioned earlier, environmental conditions affect the parasite and mosquito development, and as such we anticipate changes in the vector population to mimic the pattern in the temperature. In this example, we assume the human population stays constant as is shown in the panel on the right. The [UN Population Data portal page](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/un-population/un_population.html) describes human population growth in the context of disease modelling. In this example, we assume that the human population remains constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection).
 
 ```{r}
 df |> 
-  filter(variable %in% c("M", "P")) |> 
-  mutate(
-    variable = factor(
-      variable,
-      levels = c("M", "P"),
-      labels = c("Mosquitoes", "Humans")
-    )
-  ) |>
+  filter(variable = "M") |> 
   ggplot() +
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
@@ -635,8 +623,10 @@ df |>
 
 ### Citations
 
--   Agusto, F. B., Gumel, A. B., & Parham, P. E. Qualitative assessment of the role of temperature variations on malaria transmission dynamics. Journal of Biological Systems, 23(04), 1550030 (2015). <https://doi.org/10.1142/S0218339015500308>
--   Agusto, F.B. Optimal control and temperature variations of malaria transmission dynamics. Complexity, 1, 5056432 (2020). <https://doi.org/10.1155/2020/5056432>
--   Traoré B, Sangaré B, Traoré S. A mathematical model of malaria transmission with structured vector population and seasonality. Journal of Applied Mathematics, 1, 6754097 (2017). <https://doi.org/10.1155/2017/6754097>
+-   Agusto F. B., Gumel A. B., & Parham P. E. Qualitative assessment of the role of temperature variations on malaria transmission dynamics. Journal of Biological Systems, 23(04), 1550030 (2015). <https://doi.org/10.1142/S0218339015500308>
+-   Agusto F.B. Optimal control and temperature variations of malaria transmission dynamics. Complexity, 1, 5056432 (2020). <https://doi.org/10.1155/2020/5056432>
+-   Traoré B., Sangaré B., Traoré S. A mathematical model of malaria transmission with structured vector population and seasonality. Journal of Applied Mathematics, 1, 6754097 (2017). <https://doi.org/10.1155/2017/6754097>
+-   Shapiro L.L.M., Whitehead S.A., & Thomas M.B. Quantifying the effects of temperature on mosquito and parasite traits that determine the transmission potential of human malaria. PLoS Biology 15(10), e2003489 (2017). https://doi.org/10.1371/journal.pbio.2003489
+-   Suh, E., Stopard, I.J., Lambert, B. et al. Estimating the effects of temperature on transmission of the human malaria parasite, Plasmodium falciparum. Nature Communications 15, 3230 (2024). <https://doi.org/10.1038/s41467-024-47265-w>
 
 :::

@@ -361,13 +361,15 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 ### Preparing the data 
 
-We obtain case data from Angola for the years 2000 to 2022. We use this data to calibrate our disease models, by fitting model outputs to observed data from the World Malaria Report. Throughout the calibration process we adjust the initial parameters we input into the model, making the model more accurate and representative of actual disease dynamics in a specific context. These parameters represent specific dynamics occurring the in the modelled context, for instance ITN usage $itn_{use}$ may be really high in Angola, or the dominant *Anopheles* vector may have a higher biting rate $a$. Country-specific parameter values should be obtained from existing datasets such as DHS surveys, published reports from national control programs and other stakeholders, literature review and expert knowledge. This data carries a level of uncertainty that may prevent the model from making accurate projections.
+We obtain estimated case data (Annex 4-F) from Angola for the years 2000 to 2022. For high transmission countries in the WHO African Region, estimates are derived from a spatiotemporal Bayesian geostatistical model, using parasite prevalence data from household surveys. This methodology is further described in Annex 1 of the World Malaria Report.
 
-For this example, we fit a simple malaria model to incidence rates calculated from case data from Angola. 
-While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ Incidence.rate = \frac{Cases}{Population.at.risk} \times 1000 $$
+We can use this data to calibrate our disease models, by fitting model outputs to estimated malaria cases from the World Malaria Report. Throughout the calibration process we adjust the initial parameters we input into the model, making the model more accurate and representative of actual disease dynamics in a specific context. These parameters represent specific dynamics occurring the in the modelled context, for instance ITN usage $itn_{use}$ may be really high in Angola, or the dominant *Anopheles* vector may have a higher biting rate $a$. Country-specific parameter values should be obtained from existing datasets such as DHS surveys, literature review, expert knowledge, and published reports from national control programs and other stakeholders. This data carries a level of uncertainty that may prevent the model from making accurate projections.
+
+For this example, we fit a simple malaria model to incidence rates calculated from estimated case data from Angola. 
+While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ Incidence.rate = \frac{Estimated Cases}{Population.at.risk} \times 1000 $$
 
 ```{r}
-observed_data <- whowmr::wmr2023$wmr2023f |>
+estimated_data <- whowmr::wmr2023$wmr2023f |>
   # Filter for Angola
   filter(`Country/area` == "Angola") |>
   rename(Population_at_risk ="Population denominator for incidence and mortality rate") |>
@@ -377,300 +379,51 @@ observed_data <- whowmr::wmr2023$wmr2023f |>
          inci_rate_lower = Cases_Lower/Population_at_risk*1000,
          inci_rate_upper = Cases_Upper/Population_at_risk*1000) 
 
-observed_data |> 
+estimated_data |> 
   ggplot() +
   #geom_pointrange(aes(x = Year, y = Cases_Point, ymin = Cases_Lower, ymax = Cases_Upper), colour = theme_health_radar_colours[15]) + # to see case numbers
   geom_pointrange(aes(x = Year, y = inci_rate, ymin = inci_rate_lower, ymax = inci_rate_upper), colour = theme_health_radar_colours[9]) +
   labs(title = "Malaria incidence rate in Angola from 2000 to 2022",
-       subtitle = "Malaria presumed and confirmed case data as at 23 October 2023",
-       y = "Cases per 1000",
-       caption = str_wrap("We see that the incidence rate for malaria in Angola has generally decreased over time, but rose again after 2014. We also note wide lower and upper ranges of the data, indicating a high level of uncertainty in the exact estimate of the incidence rate. Source: World Malaria Report 2023, Annex 4-F.")) +
+       subtitle = "Estimated case data as at 23 October 2023",
+       y = "Estimated Cases per 1000",
+       caption = stringr::str_wrap("We see that the incidence rate for malaria in Angola has generally decreased over time, but rose again after 2014. We also note wide lower and upper ranges of the data, indicating a high level of uncertainty in the exact estimate of the incidence rate. Source: World Malaria Report 2023, Annex 4-F.")) +
   theme_health_radar()
  
 ```
 
 ### Model Assumptions
 
-We assume that the vector population is at equilibrium, and that ITNs are a widely-used control intervention in Angola. For more details on how to incorporate ITNs and calculating effective coverage, see the [DHS](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page.
-We also assume the human population of Angola is constant. In a more complex model you would factor in realistic projections of population growth over time, as well as malaria-induced deaths.
+We assume that the vector population is at equilibrium, and that ITNs are a widely-used control intervention in Angola. For more details on how to incorporate ITNs and calculating effective coverage, see the [DHS](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. In a more complex model, we would also account for other Angola-specific interventions, such as larviciding, as well as the treatment cascade illustrated below.
 
-*Note*: The ITN data in this model is simulated. Additional interventions such as treatment or larviciding (as may be specific to Angola) have not been factored in this simple example.
+![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/treatment_cascade.PNG)
 
-
-```{r}
-
-set.seed(50) # for reproducibility
-
-# Time points for the simulation
-W = 10 # model warm up
-Y = 23 # years of simulation
-times <- seq(0, 365*(Y+W), by = 1)
-
-itndata <- data.frame(time = seq(0, by = 365, length.out = (Y+W)),
-                      nets = rnorm((Y+W), mean = 9000000, sd = 1000000)
-                    ) 
-
-# Make a time dependent variable of ITN coverage
-itn_cov <- approxfun(itndata$time, itndata$nets, n = 365*(Y), ties = "ordered", method = "constant", rule = 2)
-
-# SEACR-SEI model
-seacr <- function(times, start, parameters, itnfunc) { 
-  with(as.list(c(start, parameters)), {
-    P = S + E + A + C + R 
-    M = Sm + Em + Im
-    m = M / P
-    
-    #Fixed parameters
-    b = 0.5 # probability of transmission from mosquito to human
-    c = 0.5 # probability of transmission from human to mosquito
-    r = 1/7 # rate of loss of infectiousness after treatment
-    delta = 1/200 # natural recovery rate
-    mu_m <- 1/10 # birth and death rate of mosquitoes
-    mu_h = 1/(55*365) # birth and death rate of humans
-    gamma_m = 1/10 # extrinsic incubation rate of parasite in mosquitoes
-    gamma_h = 1/10 # extrinsic incubation rate of parasite in humans
-    phi = 200 # phase angle; start of season
-    ppn = 1.8 # persons per net
-    attr = 0.7 # nets remaining after 3 years in circulation
-    itn_use = 0.6 # probability of sleeping under a net
-    itn_death = 1/(3*365) # median net survival is three years
-
-    seas.t <- amp * (1 + cos(2 * pi * (times / 365 - phi)))
-    
-    itn_dist <- (itn_cov(times))/365*ppn/P    
-    
-    eta <- -log(1-(1-attr))/(3*365) #loss due to attrition over 3 years
-    itn = min(ITN,1)*itn_use*itn_eff # Proportion of population covered by ITN should never be more than 1
-    
-    # Force of infection
-    Infectious = C + zeta_a*A #infectious reservoir
-    lambda = ((a^2*b*c*m*Infectious/P)/(a*c*Infectious/P+mu_m)*(gamma_m/(gamma_m+mu_m)))*seas.t*(1-itn)
-    
-    # Differential equations/rate of change
-    dSm = 0
-    dEm = 0
-    dIm = 0
-    
-    dS = mu_h*P - lambda*S + rho*R - mu_h*S
-    dE = lambda*S - (gamma_h + mu_h)*E
-    dA = pa*gamma_h*E - (delta + mu_h)*A
-    dC = (1-pa)*gamma_h*E - (r + mu_h)*C
-    dR = delta*A + r*C - (rho + mu_h)*R
-    
-    dCInc = lambda*S
-    dITN = itn_dist - (eta + itn_death)*ITN 
-    
-    # Output
-    list(c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dCInc, dITN))
-  })
-}
-
-
-# Initial values for compartments
-initial_state <- c(Sm = 20000000, # susceptible mosquitoes
-                   Em = 20000000, # exposed and infected mosquitoes
-                   Im = 20000000, # infectious mosquitoes
-                   S = 16000000, # susceptible humans
-                   E = 12000000, # exposed and infected humans
-                   A = 6000000, # asymptomatic and infectious humans
-                   C = 3000000, # clinical and symptomatic humans
-                   R = 0, # recovered and semi-immune humans
-                   CInc = 0, # cumulative incidence
-                   ITN = 0.5 # proportion of the population with potential to be protected by nets CURRENTLY IN CIRCULATION
-)
-
-# Initial parameter estimates
-initial_parameters <- c(a = 0.3, # human biting rate
-                        amp = 0.6, # amplitude of seasonality
-                rho = 1/200, # rate of loss of immunity after recovery
-                zeta_a = 0.48, # relative infectiousness of asymptomatic infections
-                pa = 0.1, # probability of asymptomatic infection
-                itn_eff = 0.6 #effectiveness of nets in reducing infectious bites
-                )
-
-# Run the model
-
-out <- ode(y = initial_state, 
-           times = times, 
-           func = seacr, 
-           parms = initial_parameters,
-           itnfunc = itnfunc)
-
-# Post-processing model output into a dataframe
-
-mo <- as_tibble(as.data.frame(out)) |> 
-  mutate(P = S + E + A + C + R,
-         M = Sm + Em + Im,
-         Inc = c(0, diff(CInc))) |> 
-  pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
-  filter(time > W*365) |> 
-  mutate(date = ymd("1990-01-01") + time)
-
-# Plotting incidence rate
-
-predicted_inci_rate <- mo |> 
-  filter(variable %in% c("Inc", "P")) |> 
-  mutate(year = year(date)) |> 
-  pivot_wider(names_from = variable, values_from = value) |>  
-  group_by(year) |>
-  summarize(
-    annual_inc = sum(Inc, na.rm = TRUE),
-    Pop = last(P)) |> # for Angola, the entire population is at risk
-  mutate(pred_inci_rate = annual_inc/Pop*1000) |> 
-  filter(year > 1999, year < 2022)
-
-  ggplot() +
-  geom_line(data = predicted_inci_rate, aes(x = year, y = pred_inci_rate), colour = theme_health_radar_colours[16]) +
-  theme_health_radar() +
-  scale_colour_manual_health_radar() +
-  labs(x = "Year", 
-         y = "Incidence rate per 1000", 
-         title = "Angola annual country-wide malaria incidence rates",
-         caption = str_wrap("This plot illustrates the country-wide incidence rate of malaria from 2000 to 2022. We see that the incidence rate decreases after 2012. Source: Model output.")) 
-  
-```
 
 ### Calibration
 
-From the plot above, we see the predicted incidence rate ranges between 560 and 600 cases per 1000, whereas the incidence rate in the observed data ranged between 100 and 5000 cases per 1000. To obtain a better fit, we calibrate the model using a period of data (2013 to 2018). It is computationally intensive to calibrate all the parameters used in the model, so we name a few criteria for selecting which parameters to fix (remain the same), and which to fit (new estimates obtained through calibration). We may:
--   have less empirical support for certain values,
--   suspect that a certain parameter has a large influence on the model output (prior to doing a sensitivity analysis),
--   know a certain parameter to be driven by context-specific, unknown disease dynamics,
--   find some parameters to be "non-identifiable" (this means that it is difficult to tease out which parameter is influencing the model input. For instance, probability of transmission from mosquito to human, $b$, and the probability of transmission from human to mosquito $c$, are multiplied to calculate the force of infection. Their relative contributions will be challenging to distinguish.)
-
-There are fitting techniques for model calibration, such as Bayesian interference and sum of least squares. Here we use maximum likelihood to assess the model's fit to the data. This is done by defining the objective function. 
+Following calibration and fine-tuning of the parameters, we anticipate model outputs that mimic the pattern and overall trajectory of the estimated data. We simulate an example below:
 ```{r}
 
-# Objective function: Negative log-likelihood
-nll_seacrs <- function(initial_parameters, observed_data) {
-
-  # Transform parameters to ensure they stay within a reasonable range, i.e. 0 to 1 for probabilities and positive for rates
-  transformed_parameters <- c(a <- exp(initial_parameters['a']),
-                              amp <- plogis(initial_parameters['amp']), # same as inverse logit, keeps range 0 to 1
-                              rho <- exp(initial_parameters['rho']),
-                              zeta_a <- plogis(initial_parameters['zeta_a']),
-                              pa <- plogis(initial_parameters['pa']),
-                              itn_eff <- plogis(initial_parameters['itn_eff'])
-                              )
+# Simulated model output with 95% Confidence intervals of incidence rates
+modelled_incidence_rate <- data.frame(
+  Year = 2000:2022,
+  incidence_rate = estimated_data$inci_rate + rnorm(length(estimated_data$inci_rate), mean = 50, sd = 25)) |>  
+  mutate(
+    std_error = 0.03, # for example
+    lower_bound = incidence_rate - (1.96 * std_error * 1000),
+    upper_bound = incidence_rate + (1.96 * std_error * 1000),
+    Type = "Model output")
   
-                
-  # Solve the ODE model
-  pred_out <- ode(y = initial_state, times = times, func = seacr, parms = transformed_parameters, itnfunc = itnfunc)
-  model_output <- as.data.frame(pred_out)
-  
-  # Aggregate the daily incidence to yearly totals and calculate incidence rate
-  model_output$year <- floor(model_output$time / 365)  # Group by year
-  annual_incidence_rate  <- model_output |> 
-    mutate(
-    P = S + E + A + C + R,
-    Inc = c(0, diff(CInc)),
-    year = year + 1999) |> 
-    group_by(year) |> 
-    summarise(annual_inc = sum(Inc),
-                P = last(P)) |> 
-    mutate(pred_inci_rate = annual_inc/P*1000) |> 
-    filter(year > 2000, year < 2020) # select years between 2000 and 2019 for fitting
-    
-  # Get model predictions for incidence rate
-  pred_IR <- annual_incidence_rate |>
-    pull(pred_inci_rate) |>
-    round()
-
-  # Incidence rate from observed data
-  observed_IR <- observed_data |>
-    filter(Year > 2000, Year < 2020) |>
-    pull(inci_rate) |>
-    round()
-
-  # Calculate the Poisson log-likelihood for clinical cases
-  log_likelihood_IR <- sum(dpois(observed_IR, lambda = pred_IR, log = TRUE))
-  
-  #cat("Parameters: ", initial_parameters, "\n") 
-  #cat("Log-likelihood: ", log_likelihood_IR, "\n")
-
-  # Return the negative log-likelihood
-  return(-log_likelihood_IR)
-}
-
-
-initial_transformed_parameters <- c(a <- log(initial_parameters["a"]), 
-                                    amp <-  qlogis(initial_parameters["amp"]), # same as logit function, exp(x)/(1+exp(x))
-                                    rho <-  log(initial_parameters["rho"]), 
-                                    zeta_a <-  qlogis(initial_parameters["zeta_a"]),
-                                    pa <-  qlogis(initial_parameters["pa"]), 
-                                    itn_eff <-  qlogis(initial_parameters["itn_eff"])
-                                    )
-
-# Minimise the negative log-likelihood
-fit <- optim(par = as.list(initial_transformed_parameters), 
-             fn = nll_seacrs, 
-             observed_data = observed_data,
-             method = "Nelder-Mead")
-
-# New fitted parameters
-fitted_params <- fit$par
-
-# Back transform the parameters to bring them back to expected range
-
-backtrans_params <- c(
-  a <- exp(fitted_params["a"]),              # ln for exp-transformed parameters
-  amp <- plogis(fitted_params["amp"]),       # qlogis for plogis-transformed parameters
-  rho <- exp(fitted_params["rho"]),
-  zeta_a <- plogis(fitted_params["zeta_a"]),
-  pa <- plogis(fitted_params["pa"]),
-  itn_eff <- plogis(fitted_params["itn_eff"])
-)
-
-# cbind(initial_parameters, backtrans_params) # compare initial parameters to newly estimated values
-
-# Run the model with new parameters
-
-calibrated_model <- ode(y = initial_state, 
-           times = times, 
-           func = seacr, 
-           parms = backtrans_params,
-           itnfunc = itnfunc)
-
-# Post-processing model output into a dataframe
-
-calibrated_mo <- as_tibble(as.data.frame(calibrated_model)) |> 
-  mutate(P = S + E + A + C + R,
-         M = Sm + Em + Im,
-         Inc = c(0, diff(CInc))) |> 
-  pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
-  filter(time > W*365) |> 
-  mutate(date = ymd("1990-01-01") + time)
-
-# Plotting incidence rate
-
-calibrated_inci_rate <- calibrated_mo |> 
-  filter(variable %in% c("Inc", "P")) |> 
-  mutate(year = year(date)) |> 
-  pivot_wider(names_from = variable, values_from = value) |>  # Spread Inc and P into columns
-  group_by(year) |>
-  summarize(
-    annual_inc = sum(Inc, na.rm = TRUE),
-    Pop = last(P)) |> 
-  mutate(pred_inci_rate = annual_inc/Pop*1000) |> 
-  filter(year > 1999, year < 2022) 
-
-
-# Plot originally predicted values alongside output of newly calibrated model, and observed values
   ggplot() +
-  geom_line(data = predicted_inci_rate |> mutate(label = "Preliminary model"), aes(x = year, y = pred_inci_rate, colour = label)) +
-  geom_line(data = calibrated_inci_rate |> mutate(label = "Calibrated model"), aes(x = year, y = pred_inci_rate, colour = label)) +
-  geom_pointrange(data = observed_data |> mutate(label = "Observed data"), aes(x = Year, y = inci_rate, ymin = inci_rate_lower, ymax = inci_rate_upper, colour = label)) +
-  theme_health_radar() +
-  scale_colour_manual_health_radar() +
-  labs(x = "Year", 
-         y = "Incidence rate per 1000", 
-       colour = "Source",
-         title = "Modelled malaria incidence rates for Angola",
-         caption = str_wrap("The plot above indicates the improved model projection of incidence rate as an output of the model. The calibrated model provides a better fit for the data. Source: Model output.")) 
-
+      geom_ribbon(data = modelled_incidence_rate, aes(x = Year, y = incidence_rate, ymin = lower_bound, ymax = upper_bound), fill = theme_health_radar_colours[20]) +
+     geom_line(data = modelled_incidence_rate, aes(x = Year, y = incidence_rate, colour = Type)) +
+  geom_pointrange(data = estimated_data |> mutate(Type = "WHO estimates"), aes(x = Year, y = inci_rate, ymin = inci_rate_lower, ymax = inci_rate_upper, colour = Type)) +
+  labs(title = "Malaria incidence rate in Angola from 2000 to 2022",
+       subtitle = stringr::str_wrap("Estimated cases plotted alongside calibrated model output with 95% Confidence Intervals"),
+       y = "Estimated Cases per 1000",
+       colour = "Variable Type", 
+       caption = stringr::str_wrap("The calibrated model output projects incidence close to the WHO estimates. Source: Model output & World Malaria Report 2023, Annex 4-F.")) +
+  theme_health_radar()
 ```
-
-After calibration, the next step is to validate the model, ensuring that it continues to replicate data outside of the calibration period. In our case, we would use data from 2019 to 2022 to assess the model performance. A sensitivity analysis would help identify which parameters have the most influence on model outputs, and quantify the level of uncertainty in the parameters, further strengthening the reliability of the model.
-
+The next steps are to validate the model, ensuring that it continues to replicate data outside of the calibration period. A sensitivity analysis would help identify which parameters have the most influence on model outputs, and quantify the level of uncertainty in the parameters, further strengthening the reliability of the model for projections going forward.
 
 :::

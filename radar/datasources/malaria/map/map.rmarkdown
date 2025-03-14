@@ -14,6 +14,8 @@ editor:
     wrap: 72
 ---
 
+
+
 :::: {.page-tabs .panel-tabset}
 ## Overview
 
@@ -108,23 +110,43 @@ data. These guides are also found on MAP's \|\>
 
 Trends Help Guides
 
+
+
 {{< video https://www.youtube.com/embed/wCK6XRCG7gQ >}}
+
+
+
 
 ## Maps
 
 Map Help Guide
 
+
+
 {{< video https://www.youtube.com/embed/qk68bNVZsXo >}}
+
+
+
 
 ## Commodities
 
 Case Management Help Guide
 
+
+
 {{< video https://www.youtube.com/embed/OCJcl1PLPH4 >}}
+
+
+
 
 Insecticide Treated Nets Help Guide
 
+
+
 {{< video https://www.youtube.com/embed/CRC8a1-M3VY >}}
+
+
+
 :::
 
 <h2>How to plot this data?</h2>
@@ -144,6 +166,8 @@ Trends videos above. Alternatively,
 2.  Select "Subnational"
 
 3.  Click the "Download ITN rate Data" button to start the download.
+
+
 
 ```{r}
 #| echo: true
@@ -181,6 +205,8 @@ ggplot(data = df) +
 
 ```
 
+
+
 #### Raster format data extraction and plotting
 
 Using raster data is beneficial when analysing data at a smaller
@@ -211,6 +237,8 @@ Healthcare" as our data theme of interest.
 
 Shapefiles can be obtained from a range of sources. We download Zambia's
 district level polygon from [GRID3](https://data.grid3.org/).
+
+
 
 ```{r}
 #| echo: true
@@ -276,6 +304,8 @@ Reduce(`+`, lapply(list_district_df, fun_plot)) +
     )
 ```
 
+
+
 ## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
@@ -290,6 +320,8 @@ The code below demonstrates how IRS coverage data can be
 prepared for modeling, using data from Zambia as an illustrative
 example. In the code, we show that the coverage data are presented on a
 annual basis, as depicted in the plot. 
+
+
 
 ```{r}
 #| echo: true
@@ -320,6 +352,8 @@ ggplot(data = IRSdata) +
   theme(legend.position="none")
 
 ```
+
+
 To incorporate this into a mathematical model, we obtain the absolute number of households sprayed from MAP and calculate the actual number of individuals protected. Using a constant human population of about 17,000,000, we assume a number with 5 individuals per household and a total of 3400000 households.
 
 ### Model assumptions
@@ -327,6 +361,8 @@ To incorporate this into a mathematical model, we obtain the absolute number of 
 It is crucial to articulate the assumptions underlying the dynamics. In addition to the above, we assume the vector population is at equilibrium, the force of infection is seasonal and all areas are eligible for IRS. 
     
 The parameters used to inform the model are described below. These should be replaced with country-specific data on seasonality, IRS implementation and other health system dynamics.
+
+
 
 ```{r}
 
@@ -428,12 +464,16 @@ out <- ode(y = start,
 ```
 
 
+
+
 A more complex model may have further incorporated intervention uptake/refusals, as are known to occur with IRS, as well as the biting and resting behaviours of the dominant vector in the country. 
 
 ![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/IRS_cascade.PNG)
 ### Implications for transmission and incidence
 
 In this example, we plot daily incidence from 2013 to 2022. As Indoor Residual Spraying (IRS) is intended to repel and kill mosquitoes, we anticipate a reduced human biting rate and therefore lower transmission rates. Plotting incidence for this model may highlight the estimated impact of IRS on cases over time. 
+
+
 
 ```{r}
 
@@ -464,4 +504,7 @@ mo |>
 ```
 
 
+
+
 ::::
+
