@@ -9,7 +9,7 @@ project:
 website:
   title: "HealthRADAR"
   image: "radar/img/logo-light.png"
-  site-url: https://jfunction.quarto.pub/healthradar/radar/
+  site-url: https://uct-masha.quarto.pub/healthradar/radar/
   favicon: "radar/favicon.ico"
   bread-crumbs: false
   draft-mode: unlinked
