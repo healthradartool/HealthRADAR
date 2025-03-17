@@ -156,8 +156,18 @@ code, .sourceCode {
 
 /* style the search bar */
 .input-group-sm>.form-control, .input-group-sm>.form-select, .input-group-sm>.input-group-text, .input-group-sm>.btn {
-    border-radius: .5em;
-    border-color: #2c3e50;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
 }
 
 .content-block {
@@ -279,22 +289,8 @@ code, .sourceCode {
   padding-bottom: 15px;
 }
 
-.dropdown-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
 select {
-  border-radius: .5em;
-  border-color: #2c3e50;
-  padding: 5px;
-  width: 223px;
-}
-
-#resetButton {
-  border-radius: .5em;
-  padding-bottom: 2px;
-  padding-top: 2px;
+  width: 225px !important; /* this is temporary until I figure out a better way */
 }
 
 .card-tag {
