@@ -577,7 +577,7 @@ As mentioned earlier, environmental conditions affect the parasite and mosquito 
 
 ```{r}
 df |> 
-  filter(variable = "M") |> 
+  filter(variable == "M") |> 
   ggplot() +
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
