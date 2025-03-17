@@ -1,4 +1,4 @@
 - source: project
   quarto-pub:
     - id: 67171873-c49e-4167-921f-3a888aa3e317
-      url: https://uct-masha.quarto.pub/healthradar
+      url: 'https://uct-masha.quarto.pub/healthradar'
