@@ -1,6 +1,6 @@
 ---
 title: "Invasive vector species"
-description: "WHO Global database on invasive mosquito vector species. At present, the database contains data on detection of Anopheles stephensi outside of its native ecosystems."
+description: "WHO Global database on invasive mosquito vector species. At present, the database contains data on detection of *Anopheles stephensi* outside of its native ecosystems."
 date: 10/23/2024 # mm-dd-yyyy
 image: "images/invasive_vector_species.png"
 
@@ -25,9 +25,16 @@ Tracking surveillance activities helps to understand current research gaps. Know
 
 <h2>Accessing the data</H2>
 
-The data can be accessed on the Global Malaria Programme page on the WHO website [Malaria Threats Map](https://apps.who.int/malaria/maps/threats/#/stories?theme=prevention). The data has a web page which includes useful contextual information as well as additional resources. The data can be viewed in the original report in excel format as it is usually preferable for modelling to have an excel spreadsheet.
+The data can be accessed via the WHO website through its Global Malaria Programme page on the [Malaria Threats Map](https://apps.who.int/malaria/maps/threats/#/stories?theme=prevention).  The data has a web page which includes useful contextual information as well as additional resources. The data can be viewed in the original report in excel format as it is usually preferable for modelling to have an excel spreadsheet.
 
-To access the data, click on the [link](https://apps.who.int/malaria/maps/threats) to access the Malaria Threats Map page. Click on the data download tab. Select the theme Invasive Vector Species to access the Invasive Vector Species detections. Data can be filtered according to species and year (1984-2024) in which collected. Filter can be applied according to location. Follow the prompts to select and download data. The data is downloaded as an Excel file.
+- To access the data, click on the [link](https://apps.who.int/malaria/maps/threats) to access the [Malaria Threats Map](https://apps.who.int/malaria/maps/threats/) page. 
+- Click on the data download tile. 
+- Select the theme `Invasive Vector Species` to access the `Invasive Vector Species` detections. 
+- Data can be filtered according to species and year (1984-2024) in which collected. 
+- Filter can be applied according to location. 
+- Follow the prompts to select and download data. 
+- The data is downloaded as an Excel file. 
+
 
 The downloaded data can be plotted according to the geography for which the filters were selected (species, year collected and location). At this stage, dashboard summaries are not available for this thematic area.
 
@@ -35,7 +42,7 @@ The downloaded data can be plotted according to the geography for which the filt
 
 Sometimes the data needs to be prepared before it is able to be plotted.
 
-![Distribution of Anopheles stephensi in Kenya for 2022-2024.](images/distributionn_of_anopheles_stephensi_kenya.png)
+![Distribution of *Anopheles stephensi* in Kenya for 2022-2024.](images/distributionn_of_anopheles_stephensi_kenya.png)
 
 The distribution of *An. stephensi* was plotted for all districts in Kenya between 2022-2024. The method employed for collecting the specimens were recorded and the main methods of collection were the dipping method for mosquito larvae and the use of the light trap for collection of adult mosquitoes. The species identification was confirmed using molecular techniques.
 
@@ -50,6 +57,10 @@ Figure 2 shows the distribution of all invasive mosquito species in Africa and s
 ![Sample of the summary dashboard that can be created using the distribution data.](images/summary_dashboard.png)
 
 Figure 3 shows a snap-shot of the summary data that can be generated from the selected dataset with the use of the appropriate filters. In this example, the vectors of Angola are listed and it is evident that *An. stephensi* has not yet moved down along the west coast of Africa. The insecticide resistance status of the vector mosquitoes is also given. The [complete dashboard](https://apps.who.int/malaria/maps/threats/#/dashboards?country=AO&theme=prevention) provides more information.
+
+<h2>Citing the data</h2>
+
+Please acknowledge the use of these datasets by including the following reference in your publications: https://apps.who.int/malaria/maps/threats/#/download. Include year, date of access, acknowledgement of the countries having provided the underlying data (in the event that the source refers to ministries of health or national malaria control programs of specific countries).
 
 <h2>Examples of data use in literature</h2>
 
