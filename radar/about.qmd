@@ -7,6 +7,10 @@ title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 ---
 
+::: {.page-tabs .panel-tabset}
+
+## The Project
+
 One of the greatest obstacles to CSID modelling in LMIC is accessibility to operationalisable datasets. While much data may even be publicly available, it may not be known or well understood outside of the data generators, and often not in a format that is digestible and acceptable to modellers and analysts. This barrier often prohibits the inclusion of such datasets in modelling studies leading to, for example, climate data being incorporated into disease models in a superficial manner or not at all. Climate data are, however, not the only source of data that modellers need to access for CSID modelling. Other types of data include demographic, epidemiological, entomological, health system, intervention impact and cost data.
 
 There is a need to curate these datasets into a central resource where the datasets may be viewed, explored and downloaded with an emphasis on comprehensive documentation describing and contextualising each dataset with worked examples on how to incorporate data into CSID models.
@@ -21,7 +25,7 @@ Our aims are:
 
 * To establish a community of African modellers and analysts to support the tool
 
-## Core Values
+<h2>Core Values</h2> 
 
 The development of the digital tool, the data to populate the tool and the development of the community of African modellers and analysts to use and maintain the tool will be founded on the following core values:
 
@@ -30,3 +34,11 @@ The development of the digital tool, the data to populate the tool and the devel
 * Co-creation
 * Openness
 * Inclusivity
+
+## The Team
+
+- MASHA
+- CSAG
+- SAMRC
+
+:::
