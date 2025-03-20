@@ -30,6 +30,8 @@ website:
         href: radar/index.qmd
       - text: Browse
         href: radar/data.qmd
+      - text: About
+        href: radar/about.qmd
       - text: Guides
         menu: 
           - text: Contributing to Health RADAR 
@@ -38,8 +40,7 @@ website:
             href: radar/guides/climate/climate.qmd
           - text: Modelling
             href: radar/guides/contribution/modelling.qmd
-      - text: About
-        href: radar/about.qmd
+
     right:
       - icon: github
         href: https://github.com/uct-masha/HealthRADAR
