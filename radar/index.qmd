@@ -16,11 +16,11 @@ back-to-top-navigation: false
 ::: {.grid .column-page}
 ::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
 ::: {#homepage-heading}
-Responsible Access to Data for Analysis and Research
+Welcome to HealthRADAR
 :::
 
 ::: {.description}
-Health RADAR aims to provide a central data resource for disease and other relevant data specific to Climate Sensitive Infectious Disease (CSID) modelling.
+Health RADAR aims to provide a central data resource for disease and other relevant data specific to climate sensitive infectious disease (CSID) modelling.
 :::
 
 ::: {.entry-point}
@@ -73,7 +73,7 @@ Responsible Access to Data for Analysis and Research
 :::
 
 ::: {.description}
-Health RADAR supports responsible access and use of data relevant to include in and accelerate CSID modelling of malaria. The platform emphasises comprehensive documentation describing and contextualising each dataset with worked examples on how to incorporate data into CSID models.
+Health RADAR makes it easier to find and use data for climate sensitive infectious disease (CSID) modelling. The platform collates a wide range of data—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. Health RADAR also includes extensive documentation to describe and contextualise each dataset and worked code examples on how to incorporate data into CSID models. In this way, the tool provides you with the context you need to use the information responsibly and confidently.
 :::
 
 ::: {.home-buttons}
@@ -96,59 +96,12 @@ Health RADAR supports responsible access and use of data relevant to include in 
 
 :::
 
-::: {#principles-block .content-block .column-screen}
-
-::: {#principles-heading .hero-text}
-Guidelines for Data Inclusion
-:::
-
-::: {.principles .column-page}
-
-::: {layout-ncol=3}
-
-::: {.principle}
-### Accessible
-Data showcased on Health RADAR is available and accessible to users already.
-:::
-
-::: {.principle}
-### Befitting
-A technical expert group audits the data to ensure it aligns with CSID modelling and excludes sensitive or potentially harmful information.
-:::
-
-::: {.principle}
-### Cited
-A suggested citation must be included so that the source and transformations of the data are adequately acknowledged. 
-:::
-
-::: {.principle}
-### Documented 
-The original data collection methods and the context in which the data may be correctly interpreted will be presented alongside the data to facilitate onward responsible use. 
-:::
-
-::: {.principle}
-### Exemplified 
-To catalyse the use of the data in CSID modelling, example code snippets will be provided to incorporate datasets into CSID models.  
-:::
-
-
-::: {.principle}
-### Exemplified 2   <!-- this is added and hidden so that quarto can properly align the principles -->
-To catalyse the use of the data in CSID modelling, example code snippets will be provided to incorporate datasets into CSID models.  
-:::
-
-:::
-
-:::
-
-:::
-
 
 ::: {#browse-btn-block .content-block .column-screen}
 
 ::: {.column-page}
 
-[Browse Data Sources](/radar/data.qmd){.btn-browse .btn-action-primary  .btn-action .btn .btn-success .btn-lg role="button" style="margin-top: 1em;"}
+[Browse All Data Sources](/radar/data.qmd){.btn-browse .btn-action-primary  .btn-action .btn .btn-success .btn-lg role="button" style="margin-top: 1em;"}
 
 :::
 :::

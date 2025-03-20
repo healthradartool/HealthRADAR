@@ -1,6 +1,5 @@
 ---
-title: "About this site"
-subtitle: "Responsible Access to Data for Analysis and Research (Health: RADAR)"
+title: "About the project"
 back-to-top-navigation: false
 page-layout: full
 title-block-banner: "#EDF3F9"
@@ -34,6 +33,49 @@ The development of the digital tool, the data to populate the tool and the devel
 * Co-creation
 * Openness
 * Inclusivity
+
+
+<h2>Guidelines for Data Inclusion</h2>
+
+::: {.principles}
+
+::: {layout-ncol=3}
+
+::: {.principle}
+### Accessible
+Data showcased on Health RADAR is available and accessible to users already.
+:::
+
+::: {.principle}
+### Befitting
+A technical expert group audits the data to ensure it aligns with CSID modelling and excludes sensitive or potentially harmful information.
+:::
+
+::: {.principle}
+### Cited
+A suggested citation must be included so that the source and transformations of the data are adequately acknowledged. 
+:::
+
+::: {.principle}
+### Documented 
+The original data collection methods and the context in which the data may be correctly interpreted will be presented alongside the data to facilitate onward responsible use. 
+:::
+
+::: {.principle}
+### Exemplified 
+To catalyse the use of the data in CSID modelling, example code snippets will be provided to incorporate datasets into CSID models.  
+:::
+
+
+::: {.principle}
+### Exemplified 2   <!-- this is added and hidden so that quarto can properly align the principles -->
+To catalyse the use of the data in CSID modelling, example code snippets will be provided to incorporate datasets into CSID models.  
+:::
+
+:::
+
+:::
+
 
 ## The Team
 
