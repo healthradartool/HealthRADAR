@@ -116,15 +116,17 @@ Long format tables are often easier to work with. Below is a code chunk which co
 
 ```{r}
 # Read in data
-data <- read.csv("WPP2024_Demographic_Indicators_Medium.csv")
 
-dat_long <- pivot_longer(data, 14:ncol(data), names_to = "Indicator", values_to = "Value") 
+data <- read_csv2("WPP2024_Demographic_Indicators_Medium3.csv",
+                   col_types = "iiccciicicicinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+
+dat_long <- pivot_longer(data, 14:ncol(data), names_to = "Indicator", values_to = "Value") |>
+  mutate(Value = Value/1000) # Convert to thousands
 dat_long[,which(colnames(dat_long) %in% c("Location", "Time", "Indicator", "Value"))] |> 
   head(n = 10) |> 
   gt::gt() |> 
   gt::tab_options(table.align = "left")
 ```
-
 
 <h2>How to plot this dataset</h2>
 
@@ -143,7 +145,7 @@ dat_long_pop2024 <- filter(dat_long, Time == 2024 & Indicator == "TPopulation1Ja
 
 # Merge the map data with your data
 e8_data <- e8_africa |>
-  left_join(dat_long_pop2024 |> mutate(), by = c("name" = "Location"))  
+  left_join(dat_long_pop2024 |> mutate(), by = c("name" = "Location")) 
 
 # Create the choropleth map
 ggplot(data = e8_data) +
