@@ -585,11 +585,11 @@ df |>
   theme(panel.spacing = unit(2, "lines")) +
   scale_y_continuous(labels = scales::label_number(suffix = " M", scale = 1e-6)) +
   labs(
-    title = "Mosquito vector and human host populations over time", 
+    title = "Mosquito vector populations over time", 
     x = "Year",
     y = "Population size",
     colour = "Population",
-    caption = str_wrap("Changes in the total mosquito population mimic seasonal changes in temperature and rainfall values over time, with peaks in the summer months. The higher rainfall values in 2017 are also reflected in the mosquito population.  The human population remains constant in this example, as it is not driven by environmental conditions. Source: Model output")
+    caption = str_wrap("Changes in the total mosquito population mimic seasonal changes in temperature and rainfall values over time, with peaks in the summer months. The higher rainfall values in 2017 are also reflected in the mosquito population. Source: Model output")
   )
 
 ```

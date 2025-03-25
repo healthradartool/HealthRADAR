@@ -328,6 +328,14 @@ It is crucial to articulate the assumptions underlying the dynamics. In addition
     
 The parameters used to inform the model are described below. These should be replaced with country-specific data on seasonality, IRS implementation and other health system dynamics.
 
+A more complex model may have further incorporated intervention uptake/refusals, as are known to occur with IRS, as well as the biting and resting behaviours of the dominant vector in the country. 
+
+![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/IRS_cascade.PNG)
+
+### Implications for transmission and incidence
+
+In this example, we plot daily incidence from 2013 to 2022. As Indoor Residual Spraying (IRS) is intended to repel and kill mosquitoes, we anticipate a reduced human biting rate and therefore lower transmission rates. Plotting incidence for this model may highlight the estimated impact of IRS on cases over time. 
+
 ```{r}
 
 #| echo: true
@@ -351,7 +359,6 @@ seirs <- function(times, start, parameters, irs_cov)  {
     M = Sm + Em + Im
     m = M / P
     
-    #browser()
     # Time dependent IRS coverage
     IRSc = (irs_cov(times))*pp_h/365/P # daily proportion of the population covered by current spraying cycle 
     IRSe = min(1, IRS)*irs_eff # effective IRS coverage, proportion of population covered by IRS should never be more than 1
@@ -379,7 +386,7 @@ seirs <- function(times, start, parameters, irs_cov)  {
     dIRS = IRSc - decay*IRS
     
     output <- c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dG, dCInc, dIRS)
-    list(output, IRS, IRSe, IRSc, irs_cov(times))
+    list(output)
   })
 }
 # Input definitions ####
@@ -425,31 +432,12 @@ out <- ode(y = start,
            parms = parameters,
            irs_cov = irs_cov)
 
-```
-
-
-A more complex model may have further incorporated intervention uptake/refusals, as are known to occur with IRS, as well as the biting and resting behaviours of the dominant vector in the country. 
-
-![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/IRS_cascade.PNG)
-### Implications for transmission and incidence
-
-In this example, we plot daily incidence from 2013 to 2022. As Indoor Residual Spraying (IRS) is intended to repel and kill mosquitoes, we anticipate a reduced human biting rate and therefore lower transmission rates. Plotting incidence for this model may highlight the estimated impact of IRS on cases over time. 
-
-```{r}
-
-#| echo: true
-#| code-fold: true
-#| code-summary: "Show the code"
-#| warning: false
-
 mo <- as_tibble(as.data.frame(out)) |>  
   mutate(
     P = S + E + A + C + R + G,
     Inc = c(0, diff(CInc))) |>  
   pivot_longer(names_to = "variable", cols = !1) |>  
   mutate(date = ymd("2013-07-01") + time)
-
-
 
 mo |>
     filter(variable == "Inc", date > ymd("2014-01-01")) |>
@@ -458,7 +446,7 @@ mo |>
     labs(
       x = "Year", 
       y = "Incidence", 
-      title = "Daily country-wide incidence",
+      title = "Daily country-wide incidence in Zambia",
       caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2014 to 2022. The graph reveals fluctuations in incidence over the years, with a slight increase in 2019 coinciding with low IRS coverage in 2018. This highlights the potential impact of reduced intervention efforts on malaria transmission. Source: Model output.")) +
     theme_health_radar()
 ```

@@ -11,9 +11,7 @@ categories:
   - annual
 ---
 
-::: {.page-tabs .panel-tabset}
-
-
+:::: {.page-tabs .panel-tabset}
 ## Overview
 
 <h2>About the data</h2>
@@ -28,7 +26,7 @@ Demographic health surveys are also unique for modelling as you can correlate ac
 
 There are several options for accessing the data, each thoroughly explained in other resources.
 
-::: {.panel-tabset}
+::: panel-tabset
 ## DHS Website
 
 [The DHS Program Access Instructions:](https://www.dhsprogram.com/data/Access-Instructions.cfm) This requires signing up for a free user account.
@@ -207,8 +205,6 @@ ggplot(filt_data, aes(x = as.factor(SurveyYear), y = Value, fill = single_color)
 
 ```
 
-
-
 ```{r}
 
 # Retrieve DHS data for the specified indicator, countries, and survey years
@@ -313,9 +309,9 @@ pal <- leaflet::colorNumeric(
 )
 
 # Plot the data using leaflet
-leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
+leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) |> 
   # Add base map tiles
-  addTiles() %>%
+  addTiles() |> 
   # Add polygons to represent the regions
   addPolygons(
     stroke = TRUE,
@@ -334,7 +330,7 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
       textsize = "13px",
       direction = "auto"
     )
-  ) %>%
+  ) |> 
   # Add a legend to the map
   addLegend(
     pal = pal,
@@ -343,7 +339,7 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
     title = "Malawi: children with fever who took antimalarial drugs (%)",
     position = "bottomright",
     labFormat = labelFormat()
-  ) %>%
+  ) |> 
   # Set the initial view of the map to focus on Malawi
   setView(lng = 37, lat = -13, zoom = 5.5)
 
@@ -373,256 +369,175 @@ The DHS dataset has various components that can be incorporated into malaria mod
 
 -   Percentage of pregnant women who slept under a long-lasting insecticide treated net (LLIN) the night before the survey
 
--   Percentage of mosquito nets received from immunization visit, private health facility, religious institution or community health worker
-
--   Households with at least one insecticide treated net (ITN) and/or indoor residual spraying (IRS) in the 12 months preceding the survey
-
 -   Among children with fever in the two weeks preceding the survey for whom advice or treatment was sought, the percentage for whom the source was a government health center, traditional practitioner, shop or private doctor
 
-In the simple example below, we obtain data on Insecticide Treated Nets (ITNs) access and usage rates in Mozambique, and estimate the effective coverage of ITNs. This represents the proportion of the population protected from malaria transmission in a particular country.
+In modelling LLIN effective coverage, we account for the number of households that actually receive nets, appropriate usage, insecticide efficacy and the physical integrity of the net. Human and vector behavioural characteristics pertaining to where people spending their evenings (during peak biting times), or the likelihood of indoor vector biting are captured as *operational effectiveness*. Another illustration of this is depicted below:
+
+![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/LLIN-cascade.PNG)
+
+In the simple example below, we obtain data on Long Lasting Insecticide treated Net (LLIN) access and usage rates in Kenya from the DHS, and compare this to data on ITN distribution from the World Malaria Report. Finally, we model the effective coverage of LLINs. This represents the proportion of the population actually protected from malaria transmission in a particular country.
 
 ### Preparing the data
 
-The relevant indicators are sourced from the DHS dataset.
+The relevant indicators are sourced from the DHS datasets.
 
 ```{r}
 #| message: false
 #| warning: false
 
-## Source ITN coverage and usage data
+## Source LLIN coverage and usage data from DHS
 
 indicators <- dhs_indicators()
 all_malaria_indicators <- indicators |> 
   filter(Level1 == "Malaria") |> 
   select(c("IndicatorId", "Definition"))
 
-# Select indicators
+# Select DHS indicators
 
-# ML_NETP_H_IT2: Percentage of households with at least one insecticide-treated mosquito net (ITN) for every two persons who stayed in the household the previous night
+# ML_NETP_H_LL2: Percentage of households with at least one long-lasting insecticidal net (LLIN) for every two persons who stayed in the household the previous night
 # ML_ITNU_N_ITN: Percentage of existing insecticide treated nets used the night before the survey
 
-access_data <- dhs_data(indicatorIds = "ML_NETP_H_IT2",
-                  countryIds = "MZ",
-                  surveyYearStart = 2000)
+access_data <- dhs_data(indicatorIds = "ML_NETP_H_LL2",
+                  countryIds = "KE")
 
 usage_data <- dhs_data(indicatorIds = "ML_ITNU_N_ITN",
-                          countryIds = "MZ",
-                          surveyYearStart = 2000)
+                          countryIds = "KE")
+
+# Obtain LLIN access and usage data
+
+LLIN_access <- access_data |>
+  arrange(SurveyYear) |>
+  select(SurveyYear, Value) |> 
+  complete(SurveyYear = full_seq(c(SurveyYear, 2024), 1), fill = list(Value = 0)) |> 
+  mutate(time = seq(365, 365*17, by = 365)) |>  
+  mutate(access = Value/100)
+
+LLIN_data <- usage_data |>
+  arrange(SurveyYear) |>
+  select(SurveyYear, Value) |> 
+  complete(SurveyYear = full_seq(c(SurveyYear, 2024), 1)) |> 
+  fill(Value, .direction = "down") |>  
+  mutate(usage = Value/100)
+
+# Merge the two datasets
+LLIN_data <- full_join(LLIN_data, LLIN_access, by = "SurveyYear") |>  
+  filter(SurveyYear > 2007)
+
 
 ```
 
 ### Model assumptions
 
-We make a few assumptions about ITNs in the model, explicitly stated here. We assume:
-
--   Survey year correlates with ITN distribution year, and access to mosquito nets in any given household is a result of distribution in a given year. There is no additional distribution in between these specific years.
+We make a few assumptions about LLINs in the model, explicitly stated here. We assume:
 
 -   Net usage remains consistent until a new survey is conducted.
 
--   Net functionality and effectiveness wanes annually, and ITNs are considered lost/expired after three years.
+-   Net functionality and effectiveness wanes at a rate of 25% per annum, and LLINs are considered "expired" after three years.
 
--   Operational effectiveness accounts for factors such as the peak biting hours of a particular vector versus the time actually spent under the net. In some communities people spend their evenings at *cuca/spaza* shops or other informal outdoor settings, leaving them vulnerable to outdoor biting from exophagic vectors.
-
-```{r}
-
-# Obtain survey and ITN distribution years
-years <- access_data |> 
-  pull(SurveyYear) 
-
-itn_access <- access_data |>
-  arrange(SurveyYear) |>
-  select(SurveyYear, Value) |> 
-  complete(SurveyYear = full_seq(c(SurveyYear, 2024), 1), fill = list(Value = 0)) |> 
-  pull(Value)
-
-itn_use <- usage_data |>
-  arrange(SurveyYear) |>
-  select(SurveyYear, Value) |> 
-  complete(SurveyYear = full_seq(c(SurveyYear, 2024), 1)) |> 
-  fill(Value, .direction = "down") |> 
-  pull(Value)
-
-itn_eff <- c(0.95, 0.90, 0.85) # Annual ITN attrition/loss in physical and chemical effectiveness
-
-opp_eff <- 0.5 # Operational effectiveness of ITN at preventing transmission
-
-```
+-   Operational effectiveness: 65% of actual bites from an indoor-biting infectious mosquito are assumed to be prevented by LLINs used during peak biting times.
 
 ### Coverage
 
-Coverage is dependent on access to ITNs at the distribution rate of two persons per net, however, the user must consider a loss in access by reductions in ITN effectiveness over time.
+Coverage is dependent on access to LLINs at the distribution rate of two persons per net. This can be obtained from data from the World Malaria Report Annex *4-D* detailing the number of ITNs distributed in a given year. Distribution is generally done at a rate of one net per two persons at risk and divided by the total population at risk.
 
-To demonstrate the loss in net functionality and effectiveness as they degrade and undergo attrition, the user can use the concept of convolution to represent a reduction in net access in the population. The initial series of values (net access) is reduced by another series of values (net effectiveness) at each time step by "filtering" the initial series through the reducing series. For example,
+$$
+\textrm {Access at time t} = \frac {\textrm{Nets distributed} \times 2}{\textrm {Population at risk}} - \textrm {losses due to insecticide waning and wear and tear}
+$$
 
--   one year of net access and usage results in 5% loss,
+Subsequently, *effective* coverage can be quite low due to imperfect usage and operational effectiveness. 
 
--   two years result in 10% loss, and
+$$
+\textrm{Effective coverage} = \textrm{access} \times \textrm {usage rate} \times \textrm{operational effectiveness}
+$$
 
--   three years result in 15% loss.
-
-Ninety five percent (95%) of nets received in year one will remain at the end of the year. At the end of year two, we have 95% of nets received in year two, as well as 90% of the nets previously received in year one. In year three, 95% of any new nets will remain, 90% of the nets received in year two, and 85% of the nets previously received in year one. After four years, 0% of the nets received in year one remain, as well as 90% and 85% of nets received in years two and three, respectively.
-
-```{r}
-
-itn_cov <- convolve(itn_access/100, rev(itn_eff), type = "open")
-itn_cov <- itn_cov[1:length(itn_access)]  # Match the length of the distribution data
-itn_cov_rounded <- round(itn_cov, 3)
-
-```
-
-**Effective coverage**
-
-Coverage is further considered effective if it meets the minimum access of one ITN per two persons, the net is adequately used (and as a proxy, used the night prior to the survey), and is operationally effective at preventing bites from an infectious mosquito. Effective coverage represents the proportion of people who are actually protected from ongoing transmission, and is always less than the stated coverage.
+The World Malaria Report only provides values for the three years preceding the report, but we show both values for access below for illustrative purposes:
 
 ```{r}
+library(deSolve)
 
-# Number of people with access effectively covered by available ITNs
-eff_cov <- itn_cov_rounded * (itn_use/100) * opp_eff
-
-# Create a data frame for the plot
-itn_data <- data.frame(
-  Year = full_seq(c(years, 2024), 1),
-  Coverage = itn_cov_rounded,
-  "Effective Coverage" = eff_cov) |> 
-  pivot_longer(!Year, names_to = "ITN.characteristic", values_to = "Value")
-
-# Create the ITN coverage plot
-ggplot(itn_data) +
-  geom_line(aes(x = Year, y = Value, colour = ITN.characteristic)) +
-  theme_health_radar() +
-  scale_colour_manual_health_radar() +
-  scale_x_continuous(breaks = seq(2011, 2024, 2)) +
-  scale_y_continuous(
-    name = "Proportion of People",
-    limits = c(0, 1), 
-    labels = scales::percent) + 
-  labs(
-    title = "Effective ITN Coverage in Mozambique",
-    subtitle = "Malaria prevention through access and use of ITNs",
-    x = "Year",
-    colour = "ITN characteristic",
-    caption = str_wrap("Effective coverage levels of households in Mozambique. ITN coverage increases after a mass distribution campaign, and wanes until the next campaign. After three years ITNs are considered ineffective due to net survival data (not described here). Countries should plan distribution campaigns timely to avoid any gaps in coverage, as is seen in Mozambique in 2014 and 2021. Effective coverage is below coverage due to imperfect usage and challenges in operational effectiveness. Source: DHS Data API - Malaria Indicators ML_NETP_H_IT2 & ML_ITNU_N_ITN")) +
-  theme(legend.position = "inside",
-        legend.justification.inside = c(1, 1))
-  
-
-```
-
-### Implications for transmission and incidence
-
-In epidemiology, the measure of intensity of disease transmission is also known as the force of infection. Simply put, this is the rate at which susceptible individuals become infected per unit time. Three main factors determine this: the proportion of the mosquito population that is infectious, the contact rate between infectious mosquitoes and susceptible humans, and the probability that a bite from an infectious mosquito transmits disease to a susceptible human. The same applies with respect to infectious humans and susceptible mosquitoes.
-
-Mosquito nets are intended to prevent transmission by reducing the contact rate between humans and mosquitoes, and we assume that the population that is effectively covered by a mosquito net is no longer vulnerable to infection. As such, the force of infection now excludes those protected by ITNs, and we may anticipate changes incidence when ITN effective coverage is high.
-
-```{r}
 # Time points for the simulation
-Y = 13 # Years of simulation
-times <- seq(0, 365*Y, by = 1)
+Y = 17 # Years of simulation
+times <- seq(0, 365*Y, 1) # time in days
 
-itndaily_data <- approx(2011:2024, eff_cov, n = length(times), method = "constant", rule = 2)$y
-itnfunc <- approxfun(itndaily_data, method = "linear", rule = 2)
+# Define LLIN model ####
 
-
-# SEACR-SEI model
-seacr <- function(times, start, parameters, itnfunc) { 
-  with(as.list(c(start, parameters)), {
-    P = S + E + A + C + R  
-    M = Sm + Em + Im
-    m = M / P
-
-    ITN <- itnfunc(times)
-    seas = 1+amp*cos(2*pi*(times/365 - phi))
+itnmod <- function(times, start, parameters)  {
+  with(as.list(c(parameters, start)), {
     
-    # Force of infection
-    Infectious = C + zeta_a*A #infectious reservoir
-    lambda.v <- a*M/P*b*Im/M*seas*(1-ITN) #introduce seasonality and ITNss
-    lambda.h <- a*c*Infectious/P*seas*(1-ITN)
+    llin_time <- LLIN_data$time
+    llin_access <- approx(llin_time, LLIN_data$access, times, method = "constant", rule = 2)$y
     
-    # Differential equations/rate of change
-    dSm = mu_m*M - lambda.h*Sm - mu_m*Sm
-    dEm = lambda.h*Sm - (gamma_m + mu_m)*Em
-    dIm = gamma_m*Em - mu_m*Im
+    usage <- approx(llin_time, LLIN_data$usage, times, method = "constant", rule = 2)$y
     
-    dS = mu_h*P - lambda.v*S + rho*R - mu_h*S
-    dE = lambda.v*S - (gamma_h + mu_h)*E
-    dA = pa*gamma_h*E - (delta + mu_h)*A
-    dC = (1-pa)*gamma_h*E - (r + mu_h)*C
-    dR = delta*A + r*C - (rho + mu_h)*R
+    eta <- -log(1-(att1-att3))/(3*365) # rate of loss due to attrition rate over three year period
     
-    dCInc = lambda.v*S
-    
-    
-    # Output
-    list(c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dCInc))
+    llin_eff_cov = min(LLIN,1)*usage*opp_eff
+  
+    dLLIN = llin_access/365 - (eta + phi)*LLIN
+  
+    list(dLLIN, llin_eff_cov)
   })
 }
 
+# Input definitions ####
+# Initial values
+start <- c(LLIN = 0.6 # proportion of the population currently protected by LLINs in circulation
+           ) 
 
-# Initial values for compartments
-initial_state <- c(Sm = 1000000, # susceptible mosquitoes
-                   Em = 100000, # exposed and infected mosquitoes
-                   Im = 200000, # infectious mosquitoes
-                   S = 350000, # susceptible humans
-                   E = 200000, # exposed and infected humans
-                   A = 10000, # asymptomatic and infectious humans
-                   C = 100000, # clinical and symptomatic humans
-                   R = 0, # recovered and semi-immune humans
-                   CInc = 0 # cumulative incidence
+
+# Parameters
+parameters <- c(opp_eff = 0.65, # Operational effectiveness of LLIN at preventing transmission
+             att1 = 1, # proportion of nets distributed in year X circulating in year X
+           att2 = 0.75, # proportion of nets distributed in year X circulating in year X+1
+           att3 = 0.5, # proportion of nets distributed in year X circulating in year X+2
+      
+           phi = 1/(3*365) # death rate  of LLINS
 )
-# Country-specific parameters should be obtained from literature review and expert knowledge
-parameters <- c(a = 0.25, # human biting rate
-                b = 0.4, # probability of transmission from mosquito to human
-                c = 0.4, # probability of transmission from human to mosquito
-                r = 1/21, # rate of loss of infectiousness after treatment
-                rho = 1/160, # rate of loss of immunity after recovery
-                delta = 1/150, # natural recovery rate
-                zeta_a = 0.2, # relative infectiousness of of asymptomatic infections
-                pa = 0.2, # probability of asymptomatic infection
-                mu_m = 1/10, # birth and death rate of mosquitoes
-                mu_h = 1/(60*365), # birth and death rate of humans
-                gamma_m = 1/10, # extrinsic incubation rate of parasite in mosquitoes
-                gamma_h = 1/10, # extrinsic incubation rate of parasite in humans
-                amp = 0.7, #amplitude of seasonality
-                phi = 200 #phase angle; start of season
-                )
 
 # Run the model
-
-out <- ode(y = initial_state, 
+out <- ode(y = start, 
            times = times, 
-           func = seacr, 
-           parms = parameters,
-           itnfunc = itnfunc)
+           func = itnmod, 
+           parms = parameters)
 
-# Post-processing model output into a dataframe
 
-df <- as_tibble(as.data.frame(out)) |> 
-  mutate(P = S + E + A + C + R,
-         M = Sm + Em + Im,
-         Inc = c(0, diff(CInc))) |> 
-  pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
-  mutate(date = ymd("2011-01-01") + time)
+model_output_df <- as_tibble(as.data.frame(out)) |>  
+  rename(llin_eff_cov = `2`) |>  
+  mutate(year = as.numeric(format(as.Date("2008-01-01") + time, "%Y"))) |>  
+  mutate(Data = "Effective coverage")
 
-# Plotting incidence
 
-df |> 
-  filter(variable %in% "Inc", time > 50) |> 
-  ggplot()+
-  geom_line(aes(x = date, y = value), colour = theme_health_radar_colours[4]) +
+
+# Source access data from World Malaria Report
+
+## LLINs distributed annually
+dist_data <- whowmr::wmr2023$wmr2023d |>  
+  filter(`Country/area` == "Kenya") |>  
+  select(Year, `No. of LLINs delivered`)
+
+## Population at risk
+WHO_data <- whowmr::wmr2023$wmr2023f |>  
+  filter(`Country/area` == "Kenya", Year > 2007) |>  
+  select(Year, `Population denominator for incidence and mortality rate`)
+
+# Merge the two datasets and calculate access to LLINs in the population at risk
+WHO_data <- full_join(WHO_data, dist_data, by = "Year") |>  # add distribution data to same dataframe
+  mutate(Proportion_population = `No. of LLINs delivered`*2/`Population denominator for incidence and mortality rate`) |>  # one net per 2 persons at risk
+  mutate(Data = "WMR Access")
+
+ggplot() +
+  geom_line(data = model_output_df, aes(x = year, y = llin_eff_cov, colour = Data)) +
+    geom_line(data = model_output_df |>  mutate(Data = "DHS Acccess"), aes(x = year, y = LLIN, colour = Data)) +
+  geom_col(data = WHO_data, aes(x = Year, y = Proportion_population, fill = Data)) +
+  scale_y_continuous(labels = scales::percent) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
-  labs(x = "Year", 
-         y = "Incidence", 
-         title = "Daily country-wide incidence",
-         caption = str_wrap("This plot illustrates the daily country-wide incidence of malaria from 2011 to 2024. We see a seasonal pattern over the years, and a reduction in incidence following mass distribution campaigns in 2015, 2018 and 2022. The lowest incidence is in 2019, after a peak effective coverage of 50% of the population at risk in 2018. In addition, we see how incidence steadily increases as the effectiveness of ITNs/LLINs wanes. Source: Model output.")) +
-    theme_health_radar() +
-      scale_x_date(date_breaks = "2 years",
-               date_labels = "%Y"
-               )  # Set x-axis breaks to multiples of 2 years
-
+  labs(title = "Effective LLIN Coverage in Kenya" ,
+    subtitle = "Malaria prevention through access and use of LLINs",
+    x = "Year",
+    y = "Proportion of population at risk (%)",
+    caption = str_wrap("Note the different data sources. DHS' data captures access to LLINs at particular points in time, but this data may be incongruent with annual LLIN access data captured in the World Malaria Report. We also expect effective coverage to be lower when accounting for operational effectiveness, usage and waning in the insecticide efficacy and physical integrity of the net. Sources: DHS Data API - Malaria Indicators ML_NETP_H_IT2 & ML_NETP_H_LL2; World Malaria Report Annexes 4-D and 4-F.")) 
 
 ```
 
-
-
-:::
+::::
