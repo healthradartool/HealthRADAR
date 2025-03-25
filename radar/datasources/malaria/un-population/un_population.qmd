@@ -21,14 +21,13 @@ categories:
 #| warning: false
 
 library(rdhs)
+library(readr)
 library(ggrepel)
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
 library(whowmr)
-library(dplyr)
-library(stringr)
-library(tidyr)
+library(tidyverse)
 library(forcats)
 
 source(here::here("radar/theme_health_radar.R"))
@@ -220,5 +219,157 @@ ggplot(dat_pop_mvf, aes(x = Time, y = Value, fill = Indicator)) +
   ) +
   theme_health_radar()  # Apply the custom radar theme
 ```
+
+
+## Modelling Example 
+
+<h2>How can this data be used in disease modelling?</h2>
+
+Models aim to provide abstract simulations of real-life dynamics. As such, it is important to include realistic parameters pertaining to birth and death, and the overall growth of the population. Using data from the UN Population Division Data Portal, we use the crude birth and death rates to inform population growth in the example below. While age-specific death rates may be more valuable, we use these as a proxy for average death rates across the population.
+
+### Preparing the data
+
+We plot the values for crude birth and death rates obtained from Mozambique below.
+
+```{r}
+
+crude_births <- read_csv("unpopulation_dataportal_births.csv") |>  
+  distinct(Time, .keep_all = TRUE) # remove duplicates
+crude_deaths <-  read_csv("unpopulation_dataportal_deaths.csv")
+  
+rates <- bind_rows(crude_births, crude_deaths)
+
+rates |>  
+  ggplot(aes(x = Time)) +
+  geom_line(aes(y = Value, colour = IndicatorName)) +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  labs(x = "Year",
+       y = "per 1000 population",
+       title = "Crude birth and death rates in Mozambique",
+       colour = "Indicator",
+       caption = "Birth rates are significantly higher than death reates, as is common in many growing African countries. Source: UN Population Division.")
+
+```
+
+### Changes in human population
+
+Considering malaria immunity increases with age, the introduction of new susceptibles (through the birth rate) can help sustain transmission, and skew the disease burden to younger individuals, i.e. children. In order to factor this in, we show a simple model with no interventions. We assume the vector population remains constant. The [Climate Research Unit Timeseries](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/cru-ts/cruts.html) page provides a demonstration of changes to the vector population in the context of disease modeling. 
+
+```{r}
+library(deSolve)
+
+# Time points for the simulation
+Y = 35 # Years of simulation
+times <- seq(0, 365*Y, 1) # time in days
+
+
+# Define basic dynamic Human-static Vector model ####
+seirs <- function(times, start, parameters, crude_births, crude_deaths)  {
+  with(as.list(c(parameters, start)), {
+    P = S + E + A + C + R + G
+    M = Sm + Em + Im
+    m = M / P
+    
+    pop_time <- seq(1990, 2025, by = 1/365) 
+    birth_rates <- approx(crude_births$Time, crude_births$Value, pop_time, method = "constant", rule = 2)$y
+    death_rates <- approx(crude_deaths$Time, crude_deaths$Value, pop_time, method = "constant", rule = 2)$y
+    
+    # Seasonality
+    seas.t <- amp*(1+cos(2*pi*(times/365 - phi)))
+    
+    # Force of infection
+    Infectious <- C + zeta_a*A # infectious reservoir
+    lambda = ((a^2*b*c*m*Infectious/P)/(a*c*Infectious/P+mu_m)*(gamma_m/(gamma_m+mu_m)))*seas.t
+    
+    time_index <- floor(times + 1)
+    mu_b <- birth_rates[time_index]/1000/365 # crude birth rate in humans
+    mu_h <- death_rates[time_index]/1000/365 # crude death rate in humans
+    
+    # Differential equations/rate of change
+    dSm = 0
+    dEm = 0
+    dIm = 0
+    
+    dS = mu_b*P - lambda*S + rho*R - mu_h*S
+    dE = lambda*S - (gamma_h + mu_h)*E
+    dA = pa*gamma_h*E + pa*gamma_h*G - (delta + mu_h)*A
+    dC = (1-pa)*gamma_h*E + (1-pa)*gamma_h*G - (r + mu_h)*C
+    dR = delta*A + r*C - (lambda + rho + mu_h)*R
+    dG = lambda*R - (gamma_h + mu_h)*G
+     
+    dCInc = lambda*(S+R)
+    
+    output <- c(dSm, dEm, dIm, dS, dE, dA, dC, dR, dG, dCInc)
+    list(output)
+  })
+}
+
+# Input definitions ####
+
+#Initial values
+start <- c(Sm = 30000000, # susceptible mosquitoes
+           Em = 20000000, # exposed and infected mosquitoes
+           Im = 800000, # infectious mosquitoes
+           S = 6000000, # susceptible humans
+           E = 3000000, # exposed and infected humans
+           A = 1000000, # asymptomatic and infectious humans
+           C = 1000000, # clinical and symptomatic humans
+           R = 2000000, # recovered and semi-immune humans
+           G = 1000000, # secondary-exposed and infected humans
+           CInc = 0 # cumulative incidence           
+           ) 
+
+
+# Parameters
+parameters <- c(a = 0.28, # human feeding rate per mosquito
+           b = 0.3, # transmission efficiency M->H
+           c = 0.3, # transmission efficiency H->M
+           gamma_m = 1/10, # rate of onset of infectiousness in mosquitoes
+           mu_m = 1/12, # natural birth/death rate in mosquitoes
+           gamma_h = 1/10, # rate of onset of infectiousness in humans
+           r = 1/7, # rate of loss of infectiousness after treatment
+           rho = 1/365, # rate of loss of immunity after recovery
+           delta = 1/150, # natural recovery rate
+           zeta_a = 0.4, # relative infectiousness of asymptomatic infections
+           pa = 0.1, # probability of asymptomatic infection
+           amp = 0.8, # Amplitude
+           phi = 250 # phase angle; start of season
+)
+
+# Run the model
+out <- ode(y = start, 
+           times = times, 
+           func = seirs, 
+           parms = parameters,
+           crude_births = crude_births,
+           crude_deaths = crude_deaths)
+
+
+# Post-processing model output into a dataframe
+
+df <- as_tibble(as.data.frame(out)) |> 
+  mutate(P = S + E + A + C + R + G) |> 
+  pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
+  mutate(date = ymd("1990-01-01") + time)
+
+df |> 
+  filter(variable == "P") |> 
+  ggplot() +
+  geom_line(aes(x = date, y = value, colour = variable)) +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  scale_y_continuous(labels = scales::label_number(suffix = " M", scale = 1e-6)) +
+  labs(
+    title = "Growth in human population in Mozambique over time", 
+    x = "Year",
+    y = "Population size in millions",
+    colour = "Population",
+    caption = str_wrap("Changes in the total human population over time. Source: Model output")
+  )  +
+  theme(legend.position = "none")
+
+```
+
 
 :::

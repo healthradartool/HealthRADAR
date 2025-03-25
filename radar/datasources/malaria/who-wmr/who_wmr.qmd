@@ -363,10 +363,10 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 We obtain estimated case data (Annex 4-F) from Angola for the years 2000 to 2022. For high transmission countries in the WHO African Region, estimates are derived from a spatiotemporal Bayesian geostatistical model, using parasite prevalence data from household surveys. This methodology is further described in Annex 1 of the World Malaria Report.
 
-We can use this data to calibrate our disease models, by fitting model outputs to estimated malaria cases from the World Malaria Report. Throughout the calibration process we adjust the initial parameters we input into the model, making the model more accurate and representative of actual disease dynamics in a specific context. These parameters represent specific dynamics occurring the in the modelled context, for instance ITN usage $itn_{use}$ may be really high in Angola, or the dominant *Anopheles* vector may have a higher biting rate $a$. Country-specific parameter values should be obtained from existing datasets such as DHS surveys, literature review, expert knowledge, and published reports from national control programs and other stakeholders. This data carries a level of uncertainty that may prevent the model from making accurate projections.
+We can use this data to calibrate our disease models, by fitting model outputs to estimated malaria cases from the World Malaria Report. Throughout the calibration process we adjust the initial parameters we input into the model, making the model more accurate and representative of actual disease dynamics in a specific context. These parameters represent specific dynamics occurring the in the modelled context, for instance ITN usage ($itn_{use}$) may be really high in Angola, or the dominant *Anopheles* vector may have a higher biting rate ($a$). Country-specific parameter values should be obtained from existing datasets such as DHS surveys, literature review, expert knowledge, and published reports from national control programs and other stakeholders. This data carries a level of uncertainty that may prevent the model from making accurate projections.
 
 For this example, we fit a simple malaria model to incidence rates calculated from estimated case data from Angola. 
-While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ Incidence.rate = \frac{Estimated Cases}{Population.at.risk} \times 1000 $$
+While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ \textrm{Incidence rate} = \frac{\textrm {Estimated Cases}}{\textrm {Population at risk}} \times 1000 $$
 
 ```{r}
 estimated_data <- whowmr::wmr2023$wmr2023f |>
@@ -393,7 +393,7 @@ estimated_data |>
 
 ### Model Assumptions
 
-We assume that the vector population is at equilibrium, and that ITNs are a widely-used control intervention in Angola. For more details on how to incorporate ITNs and calculating effective coverage, see the [DHS](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. In a more complex model, we would also account for other Angola-specific interventions, such as larviciding, as well as the treatment cascade illustrated below.
+We assume that the vector population is at equilibrium, and that ITNs are a widely-used control intervention in Angola. For more details on how to incorporate ITNs and calculating effective coverage, see the [DHS](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. In a more complex model, we would also account for other Angola-specific interventions, such as larviciding, as well as the treatment cascade illustrated below.
 
 ![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/treatment_cascade.PNG)
 
