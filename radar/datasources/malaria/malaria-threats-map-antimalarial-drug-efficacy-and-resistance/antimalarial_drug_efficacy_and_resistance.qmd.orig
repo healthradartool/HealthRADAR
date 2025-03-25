@@ -1,0 +1,337 @@
+---
+title: "Antimalarial drug efficacy and drug resistance"
+description: "The global database on antimalarial drug efficacy and resistance, established in 2000, tracks drug efficacy in malaria-endemic countries."
+date: 09/27/2024 # mm-dd-yyyy
+image: "images/malaria_threats_map_antimalarial_efficacy_and_resistance.png"
+
+categories:
+  - therapeutic efficacy studies
+  - molecular marker studies
+  - ongoing therapeutic efficacy studies
+  - ongoing molecular marker studies
+---
+
+::: {.page-tabs .panel-tabset}
+## Overview
+
+<h2>About the data</h2>
+
+The global database on antimalarial drug efficacy and resistance was initiated in 2000 to centralize data and facilitate reporting on the status of antimalarial drug efficacy in malaria endemic countries.
+
+The WHO global database on antimalarial drug efficacy and resistance contains data from therapeutic efficacy studies (TES) conducted on *P. falciparum*, *P. vivax*, *P. ovale*, *P. malariae* and *P. knowlesi*, as well as molecular marker studies of *P. falciparum* drug resistance. TES are mainly done using first- and second-line treatment as well as treatments considered for introduction into the treatment policy.
+
+The datasets cover the period from 2010 to 2023. The data is based on antimalarial drug efficacy which is being monitored through therapeutic efficacy studies (TES) across Africa, Asia and South America. The TES track clinical and parasitological outcomes among patients receiving antimalarial treatment. TES are considered the gold standard by which countries can best determine their national treatment policies.
+
+**Molecular markers of antimalarial drug resistance data**
+
+The database also includes data on the geographical distribution of molecular markers associated with *P. falciparum* drug resistance, including:
+
+-   *PfKelch13* (artemisinin resistance)
+-   *Pfplasmepsin 2-3* copy number (piperaquine resistance)
+-   *Pfmdr1* copy number (mefloquine resistance)
+-   *Pfcrt* in Mesoamerica (chloroquine resistance)
+
+<h2>Accessing the data</h2>
+
+Data on TES performed in compliance with the WHO standard protocol for tracking the effectiveness of antimalarial drugs are included inthe database.The year in the database is the year the study started,since study durations frequently span two calendar years. Polymerase chain reaction (PCR) correction is employed in studies with a minimum follow-up duration of 28 days to differentiate treatment failures resulting from recrudescence from reinfection.
+
+The protocol approach is used to calculate treatment failure rates. Only patients who finish the whole trial follow-up and have a definite outcome—a therapy failure or success—are included in this analysis. Patients who discontinue their participation in the trial, do not follow up, or withdraw are not included in the analysis. Treatment failure rates using the Kaplan-Meier analysis are provided when available.
+
+The TES reports can be accessed using the links below:
+
+***Plasmodium falciparum***
+
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pf.pdf?sfvrsn=aeae993b_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiNmRhYWU4ODgtMDI2NC00ZTA0LWE4Y2ItNjVmOGQ5OTY5MTEyIiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+
+***Plasmodium knowlesi***
+
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pk.pdf?sfvrsn=3dc7d759_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiMGI2NTJlNTEtZDY3Ny00ZDkzLTk1MzItNjliZTYxYjFlOWE5IiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+
+***Plasmodium malariae***
+
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pm.pdf?sfvrsn=13442825_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiN2ZmM2EzM2EtYjA3ZC00NzNhLWI3NDEtMDdjNDg5MGZmYmQ4IiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+
+***Plasmodium ovale***
+
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-po.pdf?sfvrsn=21826566_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiNmZmYTQwYWUtOTJhMi00YTg4LWE5OGMtN2FhYjI3MmQ5NzEzIiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+
+***Plasmodium vivax***
+
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pv.pdf?sfvrsn=48243097_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiNTYxODk5MzgtY2MxNi00YzNkLThkNmQtMGUyOGQwMzBhNGY1IiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+
+The website also provides access to maps on antimalarial drug efficacy and resistance. The maps allow you to explore individual studies and site-level data for all the threats. The maps are updated regularly and data up to site level is available for most countries. The maps allow you to generate graphs by clicking onto it.
+
+The maps can be accessed on the [Malaria Threats Map](https://apps.who.int/malaria/maps/threats) website.
+
+The website has [dashboards](https://apps.who.int/malaria/maps/threats/#/dashboards) that allows the end user to view summaries of the threats at different geographical levels. The data is available at country and area level. End users may select up to 5 countries/area per report.
+
+<h2>What does the data look like?</h2>
+
+**Description**
+
+Data from the most recent TES are summarized in the reports. A comprehensive summary of treatment failure rates broken down by treatment and country is offered using the interactive reports. Therapeutic outcomes are assessed on the final day of the study (day 28, or day 42 for drugs with longer elimination half-lives). For infections appearing during follow-up, genotyping must be conducted to distinguish new infections from recrudescence.
+
+Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year.
+
+A sample of the data is shown below. The table summarizes the treatment failure rates among patients infected with P. malariae. The displayed data is grouped by country and treatment.
+
+![](images/paginated_report.png)
+
+A sample of the map is shown below. The map details the area where the treatment failure rates among patients infected with *P. falciparum* and treated using artemether-lumefantrine.
+
+![](images/map.png)
+
+A sample of the dashboard is shown below. The dashboard details the area treatment failure rates by drug for South Africa, Eswatini and Mozambique. The dashboard provides a summary comparison across all countries selected.
+
+![](images/dashboard.png)
+
+<h2>Examples of data use in literature</h2>
+
+-   Kagoro, F.M., Allen, E., Mabuza, A. et al. Making data map-worthy—enhancing routine malaria data to support surveillance and mapping of Plasmodium falciparum anti-malarial resistance in a pre-elimination sub-Saharan African setting: a molecular and spatiotemporal epidemiology study. Malar J 21, 207 (2022). https://doi.org/10.1186/s12936-022-04224-4
+
+-   Monroe A, Williams NA, Ogoma S, Karema C, Okumu F. Reflections on the 2021 World Malaria Report and the future of malaria control. Malar J. 2022 May 27;21(1):154. doi: 10.1186/s12936-022-04178-7. PMID: 35624483; PMCID: PMC9137259.
+
+## Visualisations
+
+<h2>How to use this data?</h2>
+
+Evaluating trends in antimalarial drug resistance and communicating the results to a broad audience are important for dealing with the drug resistance threat.
+
+As part of its normative function, WHO creates standard procedures to track the effectiveness, resistance, and prevention of antimalarial drugs and offers nations financial and technical support to put these protocols into practice. The [Malaria Threats Map](https://www.who.int/activities/monitoring-malaria-drug-efficacy-and-resistance#cms) is derived from a global database containing the findings of various investigations. Updates to national policies for first- and second-line therapies for malaria are also influenced by these studies.
+
+Download the data from the link and read in a sheet. Sometimes the data needs to be prepared before it is able to be plotted. The data can be saved for use.
+
+<h2>How to plot this data?</h2>
+
+-   Line plots of the annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
+
+-   Line plots of the ongoing annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
+
+-   Line plots of the molecular marker studies for countries in Africa, South America and Asia for the period 2010 - 2023
+
+-   Line plots of ongoing molecular marker studies for countries in Africa, South America and Asia for the period 2020 - 2023
+
+
+## Modelling Example 
+
+<h2>How can this data be used in disease modelling?</h2>
+
+### Preparing the data
+
+Twenty therapeutic efficacy studies following treatment with Artemether-lumefantrine were done in Zimbabwe between 2010 and 2017.
+
+```{r}
+library(readxl)
+library(EnvStats)
+
+therapeutic_eff_data <- read_excel("MTM_THERAPEUTIC_EFFICACY_STUDY_20250324.xlsx",
+<<<<<<< HEAD
+           sheet = 2) |>  
+  mutate(TREATMENT_FAILURE_PP = as.numeric(TREATMENT_FAILURE_PP)/100)
+
+therapeutic_eff_data |>  
+=======
+           sheet = 2) %>% 
+  mutate(TREATMENT_FAILURE_PP = as.numeric(TREATMENT_FAILURE_PP)/100)
+
+therapeutic_eff_data %>% 
+>>>>>>> 076e2d91634b2946054ab225abdd2c32cf69910b
+  ggplot() +
+  geom_point(aes(x = YEAR_END, y = TREATMENT_FAILURE_PP, size = SAMPLE_SIZE, colour = as.factor(YEAR_END))) +
+  scale_y_continuous(limits = c(0, 0.1), labels = scales::percent) +
+  scale_size_continuous(range = c(0, 5)) +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  labs(title = "Patients with treatment failure in Zimbabwe",
+       subtitle = str_wrap("Data from 20 Therapeutic Efficacy Studies among patients infected with P. falciparum"),
+       x = "Year",
+       y = "Percentage",
+       colour = "Year", 
+       size = "Study Sample size",
+       caption = "Source: Malaria Threats Map.")
+  
+```
+
+
+### Model Assumptions
+
+Using a simple model, we demonstrate how treatment failure is incorporated, and plot the values for incidence. We start with an initial value $pf$ of 3% treatment failure among patients infected with *Plasmodium falciparum* in Zimbabwe. We assume that patients are treated, experience treatment failure and express clinical symptoms again within the study follow up period of 28 days (see parameters for $r$ and $sigma$).
+
+```{r}
+library(deSolve)
+
+# Time points for the simulation
+Y = 15 # Years of simulation
+times <- seq(0, 365*Y, 1) # time in days
+
+
+# Define basic dynamic Human-static Vector model ####
+seirs <- function(times, start, parameters)  {
+  with(as.list(c(parameters, start)), {
+    P = S + E + A + C + Tr + Tf + R + G
+    
+    # Seasonality
+    seas.t <- amp*(1+cos(2*pi*(times/365 - phi)))
+    
+    # Force of infection
+    Infectious <- C + Tf + zeta_a*A + zeta_t*Tr # infectious reservoir
+    lambda = ((a^2*b*c*m*Infectious/P)/(a*c*Infectious/P+mu_m)*(gamma_m/(gamma_m+mu_m)))*seas.t
+    
+
+    # Differential equations/rate of change
+    
+    dS = mu_h*P - lambda*S + rho*R - mu_h*S
+    dE = lambda*S - (gamma_h + mu_h)*E
+    dA = pa*gamma_h*E + pa*gamma_h*G +omega*C - (delta + mu_h)*A
+    dC = (1-pa)*gamma_h*E + (1-pa)*gamma_h*G + sigma*Tf - (tau + omega + mu_h)*C
+    dTr = tau*C - (r + mu_h)*Tr
+    dTf = pf*r*Tr - (sigma + mu_h)*Tf
+    dR = delta*A + (1-pf)*r*Tr - (lambda + rho + mu_h)*R
+    dG = lambda*R - (gamma_h + mu_h)*G
+     
+    dCInc = lambda*(S+R)
+    
+    output <- c(dS, dE, dA, dC, dTr, dTf, dR, dG, dCInc)
+    list(output)
+  })
+}
+
+# Input definitions ####
+
+#Initial values
+start <- c(S = 5500000, # susceptible humans
+           E = 3000000, # exposed and infected humans
+           A = 1500000, # asymptomatic and infectious humans
+           C = 1500000, # clinical and symptomatic humans
+           Tr = 1000000, # treated humans
+           Tf = 50000, # humans that have had treatment failure
+           R = 2000000, # recovered and semi-immune humans
+           G = 1550000, # secondary-exposed and infected humans
+           CInc = 0 # cumulative incidence           
+           ) 
+
+
+# Parameters
+parameters <- c(a = 0.28, # human feeding rate per mosquito
+           b = 0.3, # transmission efficiency M->H
+           c = 0.3, # transmission efficiency H->M
+           m = 3, # mosquito-human ratio
+           gamma_m = 1/10, # rate of onset of infectiousness in mosquitoes
+           mu_m = 1/12, # natural birth/death rate in mosquitoes
+            mu_h = 1/(59*365), # natural birth/death rate in humans
+           gamma_h = 1/10, # rate of onset of infectiousness in humans
+           r = 1/7, # rate of loss of infectiousness after treatment
+           rho = 1/365, # rate of loss of immunity after recovery
+           delta = 1/150, # natural recovery rate
+           omega = 1/5, # rate of loss of symptoms in untreated clinical infection
+           zeta_a = 0.2, # relative infectiousness of asymptomatic infections
+           zeta_t = 0.1, # relative infectiousness of treated infections
+            tau = 1/3, # treatment seeking rate
+            sigma = 1/21, # rate of symptomatic recurrence after treatment failure
+           pa = 0.2, # probability of asymptomatic infection
+            pf = 0.03, # probability of treatment failure
+           amp = 0.5, # amplitude
+           phi = 200 # phase angle; start of season
+)
+
+# Run the model
+out <- ode(y = start, 
+           times = times, 
+           func = seirs, 
+           parms = parameters)
+
+
+# Post-processing model output into a dataframe
+
+df <- as_tibble(as.data.frame(out)) |> 
+  mutate(P = S + E + A + C + Tr + Tf + R + G,
+         Inc = c(0, diff(CInc))) |> 
+  pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
+  mutate(date = ymd("2010-01-01") + time)
+
+df |> 
+  filter(variable == "Inc") |> 
+  ggplot() +
+  geom_line(aes(x = date, y = value, colour = variable)) +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
+  labs(
+    title = "Country wide daily incidence in Zimbabwe", 
+    x = "Year",
+    y = "Incidence",
+    caption = str_wrap("Incidence follows the seasonal pattern of malaria. Source: Model output")
+  )  +
+  theme(legend.position = "none")
+
+```
+
+### Exploring uncertainty
+
+To account for the uncertainty in the probability of treatment failure $pf$, we sample the value from a triangular distribution and explore the range of the runs.
+
+```{r}
+
+# Number of ODE runs
+runs <- 100
+results_list <- vector("list", runs)
+
+for (i in 1:runs) {
+  
+  # Sample pf from a triangular distribution, assume mode to be the median
+  pf_sampled <- rtri(1, min = min(therapeutic_eff_data$TREATMENT_FAILURE_PP), mode = median(therapeutic_eff_data$TREATMENT_FAILURE_PP), max = max(therapeutic_eff_data$TREATMENT_FAILURE_PP))
+
+  # Replace "pf" in the parameters vector with pf_sampled 
+  parameters["pf"] <- pf_sampled  
+
+  sens_out <- ode(y = start, 
+           times = times, 
+           func = seirs, 
+           parms = parameters)
+  
+  # Store results
+  results_list[[i]] <- as_tibble(as.data.frame(sens_out)) |> 
+    mutate(P = S + E + A + C + Tr + Tf + R + G,
+         Inc = c(0, diff(CInc))) |> 
+    pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
+    mutate(date = ymd("2010-01-01") + time,
+          run = i,
+          pf = pf_sampled)
+}
+
+# Combine all runs into one dataframe
+sens_df <- bind_rows(results_list)
+
+<<<<<<< HEAD
+median_sens <- sens_df |> 
+  group_by(time) |> 
+  filter(variable == "Inc") |> 
+  summarise(median_Inc = median(value), .groups = "drop") |>  
+=======
+median_sens <- sens_df %>%
+  group_by(time) %>%
+  filter(variable == "Inc") |> 
+  summarise(median_Inc = median(value), .groups = "drop") %>% 
+>>>>>>> 076e2d91634b2946054ab225abdd2c32cf69910b
+  mutate(date = ymd("2010-01-01") + time)
+
+sens_df |> 
+  filter(variable == "Inc") |> 
+  ggplot() +
+  geom_line(aes(x = date, y = value, colour = as_factor(run), group = run), alpha = 0.5) +
+  geom_line(data = median_sens, aes(x = date, y = median_Inc), linewidth = 0.5) +
+  theme_health_radar() +
+  #scale_colour_manual_health_radar() +
+  scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
+  labs(
+    title = "Country wide daily incidence in Zimbabwe", 
+    caption = "Sensitivity analysis of values for treatment failure sampled between 0 and 9%",
+    x = "Year",
+    y = "Incidence",
+    caption = str_wrap("The solid black line indicates the median of a 100 runs. Source: Model output")
+  ) +
+  guides(colour = "none")
+
+```
+
+:::
