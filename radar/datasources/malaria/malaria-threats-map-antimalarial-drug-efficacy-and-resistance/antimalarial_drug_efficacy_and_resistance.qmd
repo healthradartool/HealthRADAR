@@ -125,6 +125,7 @@ Twenty therapeutic efficacy studies following treatment with Artemether-lumefant
 library(readxl)
 library(EnvStats)
 library(tidyverse)
+source(here::here("radar/theme_health_radar.R"))
 
 therapeutic_eff_data <- read_excel("MTM_THERAPEUTIC_EFFICACY_STUDY_20250324.xlsx",
            sheet = 2) |>  
@@ -267,7 +268,6 @@ To account for the uncertainty in the probability of treatment failure $pf$, we 
 
 ```{r}
 
-# Number of ODE runs
 runs <- 100
 results_list <- vector("list", runs)
 
@@ -309,15 +309,12 @@ sens_df |>
   geom_line(aes(x = date, y = value, colour = as_factor(run), group = run), alpha = 0.5) +
   geom_line(data = median_sens, aes(x = date, y = median_Inc), linewidth = 0.5) +
   theme_health_radar() +
-  #scale_colour_manual_health_radar() +
   scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
   labs(
     title = "Country wide daily incidence in Zimbabwe", 
-    caption = "Sensitivity analysis of values for treatment failure sampled between 0 and 9%",
+    caption = str_wrap("Sensitivity analysis of values for treatment failure sampled between 0 and 9%"),
     x = "Year",
-    y = "Incidence",
-    caption = str_wrap("The solid black line indicates the median of a 100 runs. Source: Model output")
-  ) +
+    y = "Incidence") +
   guides(colour = "none")
 
 ```
