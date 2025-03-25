@@ -121,16 +121,21 @@ Download the data from the link and read in a sheet. Sometimes the data needs to
 Twenty therapeutic efficacy studies following treatment with Artemether-lumefantrine were done in Zimbabwe between 2010 and 2017.
 
 ```{r}
-
 library(readxl)
 library(EnvStats)
-library(tidyverse)
 
 therapeutic_eff_data <- read_excel("MTM_THERAPEUTIC_EFFICACY_STUDY_20250324.xlsx",
+<<<<<<< HEAD
            sheet = 2) |>  
   mutate(TREATMENT_FAILURE_PP = as.numeric(TREATMENT_FAILURE_PP)/100)
 
 therapeutic_eff_data |>  
+=======
+           sheet = 2) %>% 
+  mutate(TREATMENT_FAILURE_PP = as.numeric(TREATMENT_FAILURE_PP)/100)
+
+therapeutic_eff_data %>% 
+>>>>>>> 076e2d91634b2946054ab225abdd2c32cf69910b
   ggplot() +
   geom_point(aes(x = YEAR_END, y = TREATMENT_FAILURE_PP, size = SAMPLE_SIZE, colour = as.factor(YEAR_END))) +
   scale_y_continuous(limits = c(0, 0.1), labels = scales::percent) +
@@ -297,10 +302,17 @@ for (i in 1:runs) {
 # Combine all runs into one dataframe
 sens_df <- bind_rows(results_list)
 
+<<<<<<< HEAD
 median_sens <- sens_df |> 
   group_by(time) |> 
   filter(variable == "Inc") |> 
   summarise(median_Inc = median(value), .groups = "drop") |>  
+=======
+median_sens <- sens_df %>%
+  group_by(time) %>%
+  filter(variable == "Inc") |> 
+  summarise(median_Inc = median(value), .groups = "drop") %>% 
+>>>>>>> 076e2d91634b2946054ab225abdd2c32cf69910b
   mutate(date = ymd("2010-01-01") + time)
 
 sens_df |> 
