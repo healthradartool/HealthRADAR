@@ -99,7 +99,7 @@ code, .sourceCode {
 }
 
 footer > .footer-items {
-  color: #fffffff;
+  color: #ffffff;
 }
 
 .data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,
@@ -199,6 +199,11 @@ footer > .footer-items {
   border: 0;
   color: #fff;
   background: #2c3e50;
+}
+
+#browse-all {
+  text-transform: uppercase;
+  font-family: "Roboto Mono";
 }
 
 #btn-about {

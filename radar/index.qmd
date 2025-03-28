@@ -101,7 +101,12 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
 
 ::: {.column-page}
 
-[Browse All Data Sources](/radar/data.qmd){.btn-browse .btn-action-primary  .btn-action .btn .btn-success .btn-lg role="button" style="margin-top: 1em;"}
+<a href="/radar/data.qmd">
+  <button id="browse-all" class="btn btn-primary btn-browse btn-action-primary btn-action btn-success btn-lg" type="button">
+    Browse All Data Sources 
+    <i class="fa-solid fa-square-up-right"></i>
+  </button>
+</a>
 
 :::
 :::
