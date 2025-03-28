@@ -49,16 +49,14 @@ website:
         
     pinned: true
   page-footer: 
-          left: "Copyright 2025, Health RADAR"
+          left: "&copy; Copyright 2025, Health RADAR"
           center:
             - text: About
               href: radar/about.qmd
             - text: Data Sources
               href: radar/data.qmd
-          right:
-            - icon: github
-              href: https://github.com/uct-masha/HealthRADAR
-              aria-label: RADAR GitHub
+          right: |
+            ![](/radar/img/wellcome-logo-white.png){width=65px}
 
 metadata-files:
   - radar/drafts.yml
