@@ -56,7 +56,7 @@ website:
             - text: Data Sources
               href: radar/data.qmd
           right: |
-            ![](/radar/img/wellcome-logo-white.png){width=65px}
+            ![](/radar/img/wellcome-logo-white.png){width=70px}
 
 metadata-files:
   - radar/drafts.yml
