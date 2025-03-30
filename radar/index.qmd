@@ -76,9 +76,13 @@ Responsible Access to Data for Analysis and Research
 Health RADAR makes it easier to find and use data for climate sensitive infectious disease (CSID) modelling. The platform collates a wide range of data—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. Health RADAR also includes extensive documentation to describe and contextualise each dataset and worked code examples on how to incorporate data into CSID models. In this way, the tool provides you with the context you need to use the information responsibly and confidently.
 :::
 
-::: {.home-buttons}
-[Browse Data Sources](/radar/data.qmd){.btn-browse .btn-action-primary .btn-action .btn .btn-success .btn-lg role="button"} [Learn More](/radar/about.qmd){#btn-about .btn-action .btn .btn-info .btn-lg role="button"}
-:::
+<br/>
+<a href="/radar/about.qmd">
+  <button id="learn-more" class="btn btn-outline-primary btn-action-primary btn-action btn-success btn-lg w-100" type="button">
+  Learn More About HealthRADAR
+  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+  </button>
+</a>
 
 :::
 
