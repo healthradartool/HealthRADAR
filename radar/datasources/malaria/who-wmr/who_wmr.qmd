@@ -398,7 +398,7 @@ We assume that the vector population is at equilibrium, and that ITNs are a wide
 ![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/treatment_cascade.PNG)
 
 
-### Calibration
+### Simulated calibration
 
 Following calibration and fine-tuning of the parameters, we anticipate model outputs that mimic the pattern and overall trajectory of the estimated data. We simulate an example below:
 ```{r}
@@ -421,7 +421,7 @@ modelled_incidence_rate <- data.frame(
        subtitle = stringr::str_wrap("Estimated cases plotted alongside calibrated model output with 95% Confidence Intervals"),
        y = "Estimated Cases per 1000",
        colour = "Variable Type", 
-       caption = stringr::str_wrap("The calibrated model output projects incidence close to the WHO estimates. Source: Model output & World Malaria Report 2023, Annex 4-F.")) +
+       caption = stringr::str_wrap("The calibrated model output projects incidence close to the WHO estimates. The gray ribbon represents the model's uncertainty, and its overlap with the confidence intervals of the data indicates a good fit. Source: Model output & World Malaria Report 2023, Annex 4-F.")) +
   theme_health_radar()
 ```
 The next steps are to validate the model, ensuring that it continues to replicate data outside of the calibration period. A sensitivity analysis would help identify which parameters have the most influence on model outputs, and quantify the level of uncertainty in the parameters, further strengthening the reliability of the model for projections going forward.

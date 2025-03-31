@@ -75,8 +75,8 @@ library(tidyverse)
 ihme_nets <- read_excel(path = "datasets/IHME_INSECTICIDE_TREATED_BEDNETS_SUB_SAHARAN_AFRICA_1999_2008.xls")
 
 # Pull the names of countries
-ihme_nets %>% 
-  pull(Country) %>% 
+ihme_nets |>  
+  pull(Country) |>  
   unique()
 ```
 
@@ -88,10 +88,10 @@ library(gt)
 # define the E8 countries
 e8_countries <- c("Angola", "Botswana","Eswatini", "Mozambique", "Namibia", "South Africa", "Zambia",  "Zimbabwe")
 
-ihme_nets %>% 
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
-  filter(Country %in% e8_countries) %>% 
-  head() %>% 
+ihme_nets |>  
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |>  
+  filter(Country %in% e8_countries) |>  
+  head() |>  
   gt()
 ```
 
@@ -103,8 +103,8 @@ This data set contains number/percents/rates of malaria deaths, prevalence and i
 ```{r, echo = TRUE}
 observed_cases <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) 
 
-observed_cases %>% 
-  pull(location_name) %>% 
+observed_cases |>  
+  pull(location_name) |>  
   unique()
 ```
 
@@ -113,9 +113,9 @@ We can look at the data to identify indicators to use for analysis:
 ```{r, echo = TRUE}
 library(gt)
 
-observed_cases %>% 
-  filter(location_name == "Republic of South Africa") %>%
-  head() %>% 
+observed_cases |>  
+  filter(location_name == "Republic of South Africa") |> 
+  head() |>  
   gt()
 ```
 
@@ -124,9 +124,9 @@ observed_cases %>%
 We display the % ITN ownership in E8 countries with lower and upper bounds.
 
 ```{r, echo = TRUE}
-ihme_nets %>% 
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
-  filter(Country %in% e8_countries) %>%
+ihme_nets |>  
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |>  
+  filter(Country %in% e8_countries) |> 
   ggplot(aes(x = Year, y = `% ITN Ownership`, color = Country)) +
   geom_line(linewidth = 1) +
   geom_ribbon(aes(ymin = `% ITN Ownership Lower Bound`, ymax = `% ITN Ownership Upper Bound`, fill = Country), alpha = 0.2) +
@@ -147,9 +147,9 @@ ihme_nets %>%
 Trend in % ITN Ownership among at-risk populations.
 
 ```{r, echo = TRUE}
-ihme_nets %>% 
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
-  filter(Country %in% e8_countries) %>%
+ihme_nets |>  
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |>  
+  filter(Country %in% e8_countries) |> 
   ggplot(aes(x = Year, y = `% ITN Ownership Pop. At Risk`, color = Country)) +
   geom_line(linewidth = 1) +
   scale_colour_manual_health_radar() + 
@@ -166,9 +166,9 @@ ihme_nets %>%
 ITN use among U5s in at-risk populations vs ITN Use in U5s.
 
 ```{r, echo = TRUE}
-ihme_nets %>% 
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) %>% 
-  filter(Country %in% e8_countries) %>%
+ihme_nets |>  
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |>  
+  filter(Country %in% e8_countries) |> 
   ggplot(aes(x = `% ITN Use U5`, y = `% ITN Use U5 Pop. At Risk`, color = Country)) +
   geom_line(linewidth = 1) +
   geom_point(size = 2) +
@@ -186,15 +186,15 @@ ihme_nets %>%
 Scale-up of LLIN distribution.
 
 ```{r, echo = TRUE}
-ihme_nets %>% 
+ihme_nets |>  
   mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country),
          Category = case_when(Country == "Zambia" ~ "1",
                          Country %in% c("Angola", "Mozambique", "Namibia", "Zimbabwe") ~ "2",
                          Country %in% c("Botswana", "Eswatini", "South Africa") ~ "3"
-                         ) %>% as.factor()
-         ) %>% 
-  filter(Country %in% e8_countries) %>%
-  group_by(Category) %>% 
+                         ) |>  as.factor()
+         ) |>  
+  filter(Country %in% e8_countries) |> 
+  group_by(Category) |>  
   ggplot() +
   geom_bar(aes(x = Year, y = `LLINs Distributed Per Capita`, fill = Category), stat = "identity", position = "dodge") +
   facet_wrap(~Country, scales = "fixed") +
@@ -210,11 +210,12 @@ ihme_nets %>%
 
 Here we show the trends in malaria deaths, percent prevalence and incidence rates during the 2000 to 2021 period.
 
-```{r, echo = TRUE}
-observed_cases %>% 
-  as.data.frame() %>% 
-  filter(measure_name == "Deaths", metric_name == "Number") %>% 
-  group_by(location_name) %>% 
+```{r}
+
+observed_cases |>  
+  as.data.frame() |>  
+  filter(measure_name == "Deaths", metric_name == "Number") |>  
+  group_by(location_name) |>  
   ggplot() +
   geom_bar(aes(x = year, y = val, fill = location_name), stat = "identity", position = "stack") +
   scale_fill_manual_health_radar() +   
@@ -230,9 +231,9 @@ observed_cases %>%
 Similarly we show the percent prevalence of malaria in these countries in the following plot:
 
 ```{r, echo = TRUE}
-observed_cases %>% 
-  as.data.frame() %>% 
-  filter(measure_name == "Prevalence", metric_name == "Percent") %>% 
+observed_cases |>  
+  as.data.frame() |>  
+  filter(measure_name == "Prevalence", metric_name == "Percent") |>  
   ggplot(aes(x = year, y = val, color = location_name)) +
   geom_line(linewidth = 1) +
   scale_colour_manual_health_radar() +  
@@ -251,9 +252,9 @@ observed_cases %>%
 Finally, the incidence rates are shown in as follows:
 
 ```{r, echo = TRUE}
-observed_cases %>% 
-  as.data.frame() %>% 
-  filter(measure_name == "Incidence", metric_name == "Rate") %>% 
+observed_cases |>  
+  as.data.frame() |>  
+  filter(measure_name == "Incidence", metric_name == "Rate") |>  
   ggplot(aes(x = year, y = val, color = location_name)) +
   geom_line(linewidth = 1) +
   geom_ribbon(aes(ymin = lower, ymax = upper, fill = location_name), alpha = 0.2) +
@@ -275,280 +276,168 @@ observed_cases %>%
 
 <h2>How can this data be used in disease modelling?</h2>
 
-The IHME data on historical trends in incidence and mortality can serve to validate the accuracy of predictions made by transmission models. Malaria models frequently require calibration to align with IHME-derived estimates, such as adjusting transmission rates based on observed incidence or prevalence. Utilize IHME data to assess the potential impact of enhancing interventions. For instance, the effect of expanding bed net coverage on transmission rates can be investigated by incorporating IHME coverage estimates into transmission models.
+The Global Burden of Disease (GBD) data on historical trends in on various disease metrics can serve to validate the accuracy of predictions made by transmission models. Malaria models frequently require calibration to align with IHME-derived estimates, such as adjusting transmission rates based on observed incidence or prevalence.
 
-**Model projections**
+### Preparing the data 
 
-The dynamics of the SEACR model can be described with the following set of ordinary differential equations (ODEs):
+The Global Burden of Disease study has produced estimates of prevalence for malaria worldwide. Prevalence is defined as the total number of cases of a given cause in a specified population at a designated time. It is differentiated from incidence, which refers to the number of new cases in the population at a given time. Observations from *Plasmodium falciparum* parasite rate (*Pf*PR) surveys and national routine surveillance systems of confirmed and unconfirmed diagnoses are augumented into a model of disease burden. More information on this methodology is provided [here](https://www.healthdata.org/gbd/methods-appendices-2021/malaria).
 
+```{r}
 
-$$
-\frac{dS}{dt} = \mu N -\beta \frac{C + A}{N} S + \rho R - \mu S
-$$
+# Load data from GBD
+observed_df <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) |>  
+  as.data.frame() |>  
+  filter(measure_name == "Prevalence", metric_name == "Number", location_name == "Republic of South Africa") |>  
+  rename(value = val)
 
-$$
-\frac{dE}{dt} = \beta \frac{C + A}{N} S - \sigma E - \mu E
-$$
+observed_df |>  
+ggplot() +
+  geom_point(aes(x = year, y = value, colour = measure_name)) +
+  geom_line(aes(x = year, y = value, colour = measure_name)) +
+  scale_colour_manual_health_radar() +
+  theme_health_radar() +
+  labs(title = "Observed malaria point prevalence for South Africa",
+    x = "Year",
+    y = "Number of Cases",
+    caption = str_wrap("Source: Institute for Health Metrics and Evaluation IHME | Global Burden of Disease Study (GBD) 2021.")) +
+  guides(colour = "none")
 
-$$
-\frac{dA}{dt} = (1 - p) \sigma E - \gamma A - \mu A
-$$
-
-$$
-\frac{dC}{dt} = p \sigma E - \delta C - \mu C
-$$
-
-$$
-\frac{dR}{dt} = \gamma A + \delta C - \rho R - \mu R
-$$
-
-where:
-
-- S(t) represent individuals who are susceptible to malaria and have not been infected.
-- E(t) denotes individuals who have been infected with malaria but are not yet infectious (latent period).
-- A(t) are individuals who are infected and can transmit the disease but do not show symptoms.
-- C(t) are individuals who show symptoms of malaria and can transmit the disease.
-- R(t) represents individuals who have recovered from malaria and are assumed to have immunity.
-
-- N is the total population.
-
-- $\beta$ is the rate at which susceptible individuals become infected.
-- $\sigma$ is the rate at which exposed individuals become either asymptomatic or clinical.
-- $\gamma$ and $\delta$ are the rates at which asymptomatic and clinical individuals recover, respectively.
-- p denotes the proportion of infections that result in asymptomatic cases.
-
-```{r, echo = TRUE}
-# sample SIR model
-library(tidyverse)
-library(deSolve)
-
-# SEACR Model Function
-seacr_model <- function(time, state, parameters) {
-  with(as.list(c(state, parameters)), {
-    
-    N = S + E + A + C + R
-
-    dS <- mu * N - beta * (C + A) / N * S + rho * R - mu * S  
-    dE <- beta * (C + A) / N * S - sigma * E - mu * E
-    dA <- (1 - p) * sigma * E - gamma * A - mu * A 
-    dC <- p * sigma * E - delta * C - mu * C     
-    dR <- gamma * A + delta * C - rho * R - mu * R
-    
-    return(list(c(dS, dE, dA, dC, dR)))
-  })
-}
-
-# Parameters
-parameters <- c(beta = 0.3, sigma = 0.1, gamma = 0.05, delta = 0.1, p = 0.5, rho = 0.02, mu = 0.01)
-
-# Initial Conditions
-initial_values <- c(S = 999, E = 0, A = 0, C = 1, R = 0) 
-
-# time steps
-times <- seq(0, 365*8, 1)
-
-# model output
-model_output <- ode(
-  y = initial_values,
-  times = times,
-  func = seacr_model,
-  parms = parameters
-) %>% 
-  as.data.frame() %>% 
-  pivot_longer(!time, names_to = "state", values_to = "value") %>% 
-  mutate(
-    year = 2000 + ceiling(time/365),
-    state = as_factor(state)
-    ) %>% 
-  group_by(year, state) %>%
-  summarize(
-      value = sum(value),
-      .groups = "keep"
-    ) 
 ```
 
-**How to plot model outputs**
+### Modeling prevalence
 
-We can generate plots of projected malaria deaths, prevalence and incidence in these areas.
+A good use of prevalence data is to calibrate transmission models. This is particularly useful if incidence data is limited, and in diseases with a significant asymptomatic proportion of the population, such as malaria. Fitting the model to both incidence and prevalence data provides a more complete picture of disease dynamics.
 
-```{r, echo = TRUE}
-model_output %>% 
-  ggplot() +
-    geom_line(aes(x = year, y = value, colour = state), linewidth = 1) +
-    scale_colour_manual_health_radar() +
-    theme_health_radar() +
-    labs(
-      x = "Time",
-      y = "Population",
-      caption = str_wrap("SEACR model projections for the 2000 and 2008 period.", width = 85)
-    )
-```
+Using prevalence data is not without challenges. Health system challenges preventing individuals from accessing diagnosis and treatment, may result in under-reporting. In addition, because point prevalence is obtained from cross-sectional surveys, we may fail to capture dynamic trends in transmission and malaria immunity.
+
+Malaria models set in endemic countries also assume that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection). It may be difficult to estimate the true proportion of the population that has recovered from an initial infection already, and is now susceptible to a secondary infection.
 
 **Model calibration**
 
-Calibration involves tuning the parameters $\beta$ and $\gamma$ to adjust the model output with the estimated IHME data to determine model parameters.
+To calibrate the model, firstly, build a transmission model that reflects the underlying health system dynamics in the country,  coverage levels for any control interventions deployed, as well as relevant mosquito, parasite and human behaviours. We then select key parameters to fine-tune, causing the model output to better mimic the observed data.
 
-```{r, echo = TRUE}
-# libraries
-library(readr)
-library(tidyverse)
-library(deSolve)
+We minimise the difference between the model output and observed data using sum of least squares or maximum likelihood estimation. An example of this function is shown in the code snippet below, and a simulated plot thereafter.
 
-# SEACR Model Function
-seacr_model <- function(time, state, parameters) {
-  with(as.list(c(state, parameters)), {
+```{r, eval=FALSE}
+
+#|eval: false
+#|echo: true
+#|warning: false
+
+# Objective or cost function
+objective_function <- function(initial_parameters, observed_df) {
+  
+  # Parameters to fine tune
+  a <- initial_parameters[1] # human biting rate
+  pa <- initial_parameters[2] # probability of asymptomatic infection
+  irs_eff <- initial_parameters[3] # effectiveness of IRS at reducing transmission
+  delta <- initial_parameters[4] # natural recovery rate
+  r <- initial_parameters[5] # rate of loss of infectiousness
+  
+  # Run the ODE model
+  output_df <- ode(y = initial_state, 
+           times = times, 
+           func = seacr, 
+           parms = initial_parameters,
+           irs_cov = irs_cov)
     
-    N = S + E + A + C + R
-
-    dS <- mu * N - beta * (C + A) / N * S + rho * R - mu * S  
-    dE <- beta * (C + A) / N * S - sigma * E - mu * E
-    dA <- (1 - p) * sigma * E - gamma * A - mu * A 
-    dC <- p * sigma * E - delta * C - mu * C     
-    dR <- gamma * A + delta * C - rho * R - mu * R
-    
-    return(list(c(dS, dE, dA, dC, dR)))
-  })
+  # Calculate the values for prevalence
+  prev_df <- output_df |>  
+  as.data.frame() |>  
+  mutate(Prv = c(0, diff(CPrv))) |> 
+  pivot_longer(!time, names_to = "state", values_to = "value") |>  
+  mutate(year = 1995 + ceiling(time/365)) |>  
+  filter(state %in% "Prv") |>  
+  group_by(year) |> 
+  slice_tail(n = 1) |>  
+  filter(year >= 2000) # adjust timeframe to match data
+   
+  # Actual GBD data
+  observed_prev <- filter(observed_df, measure_name == "Prevalence")$value
+  
+  # Model projections
+  predicted_prev <- prev_df$value
+  
+  # Calculate distance using sum of least squares or Poisson log- likelihood
+  error <- (observed_prev - predicted_prev)^2
+  #error <- dpois(round(observed_prev, 0), predicted_prev, log = TRUE)
+  
+  total <- sum(error)
+ 
+  return(-total)
 }
 
-# Parameters
-parameters <- c(beta = 0.3, sigma = 0.1, gamma = 0.05, delta = 0.1, p = 0.5, rho = 0.02, mu = 0.01)
+# Run optimization to mimimise total
 
-# Initial Conditions
-initial_values <- c(S = 999, E = 0, A = 0, C = 1, R = 0)
+optim_result <- optim(par = initial_parameters, 
+                      fn = objective_function, 
+                      observed_df = observed_df, 
+                      method = "L-BFGS-B",
+                      lower = c(a = 0.1, rho = 1/500, pa = 0.01, delta = 1/280, irs_eff = 0.1, r = 1/21),
+                      upper = c(a = 0.9, rho = 1/40, pa = 0.9, delta = 1/90, irs_eff = 0.9, r = 1/3)
+                     )
 
-# time steps
-times <- seq(0, 365*8, 1)
-
-# observed cases
-observed_df <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) %>% as.data.frame() %>% 
-  filter(measure_name == "Incidence", metric_name == "Number", location_name == "Republic of South Africa", year <= 2008) %>% 
-  rename(value = val) %>% 
-  select(year, location_name, value)
-
-# objective function (sum of squared errors)
-objective_function <- function(parms, observed_df) {
-  
-  output_df <- ode(y = initial_values, times = times, func = seacr_model, parms = parms) %>% 
-    as.data.frame() %>% 
-    pivot_longer(!time, names_to = "state", values_to = "value")   %>% 
-    mutate(
-      year = 2000 + ceiling(time/365),
-      state = as_factor(state)
-    ) %>% 
-      group_by(year, state) %>%
-      summarize(
-        value = sum(value),
-        .groups = "keep"
-      ) 
-  
-  # actual IHME data
-  observed_C <- observed_df$value
-  
-  # model projections
-  predicted_C <- filter(output_df, state == "C")$value
-  
-  # sum of squared errors between model and actual data
-  error <- sum((observed_C - predicted_C)^2)
-  
-  return(error)  
-}
-
-# Run optimization
-# optim_result <- optim(par = parameters, fn = objective_function, observed_df = observed_df, method = "Nelder-Mead")
-
-optim_result <- optim(par = parameters, fn = objective_function, observed_df = observed_df, method = "L-BFGS-B", lower = c(beta = 0.1, sigma = 0.1, gamma = 0.01, delta = 0.1, p = 0.1, rho = 0.01, mu = 0.01), upper = c(beta = 1, sigma = 1, gamma = 0.1, delta = 1, p = 1, rho = 0.1, mu = 0.1))
-
-# Best-fit parameters
+# Best-fit parameters from calibration
 cal_parameters <- optim_result$par
 
-# View parameters
-cal_parameters %>% 
-  as.data.frame()
+# Run model with new calibrated parameters 
+calibrated_output <- ode(y = initial_state, 
+           times = times, 
+           func = seacr, 
+           parms = cal_parameters,
+           irs_cov = irs_cov)
+
+# Plot prevalence of new model fit with ggplot
+
 ```
 
 
-**Use calibrated parameters**
+```{r}
 
-Use parameters obtained through calibration
+set.seed(123)
 
-```{r, echo = TRUE}
-# sample SIR model
-library(tidyverse)
-library(deSolve)
-
-# SEACR Model Function
-seacr_model <- function(time, state, parameters) {
-  with(as.list(c(state, parameters)), {
-    
-    N = S + E + A + C + R
-
-    dS <- mu * N - beta * (C + A) / N * S + rho * R - mu * S  
-    dE <- beta * (C + A) / N * S - sigma * E - mu * E
-    dA <- (1 - p) * sigma * E - gamma * A - mu * A 
-    dC <- p * sigma * E - delta * C - mu * C     
-    dR <- gamma * A + delta * C - rho * R - mu * R
-    
-    return(list(c(dS, dE, dA, dC, dR)))
-  })
-}
-
-# Parameters
-parameters <- cal_parameters
-
-# Initial Conditions
-initial_values <- c(S = 999, E = 0, A = 0, C = 1, R = 0)
-
-# time steps
-times <- seq(0, 365*8, 1)
-
-# model calibration output
-calibration_output <- ode(
-  y = initial_values,
-  times = times,
-  func = seacr_model,
-  parms = parameters
-) %>% 
-  as.data.frame() %>% 
-  select(time, C) %>% 
-  pivot_longer(!time, names_to = "state", values_to = "value")   %>% 
+# Simulated values
+predicted_prev <- data.frame(
+  year = 2000:2021,
+  value = observed_df$value + rnorm(length(observed_df$value), mean = 3000, sd = 2000)) |>  
   mutate(
-    year = 2000 + ceiling(time/365),
-    state = as_factor(state)
-  ) %>% 
-    group_by(year) %>%
-    summarize(
-      value = sum(value),
-      .groups = "keep"
-    ) %>% 
-      select(year, value)
-```
-
-
-**How to plot calibration outputs**
-
-We can generate plots of projected malaria deaths, prevalence and incidence in these areas.
-
-```{r, echo = TRUE}
-model_output <- model_output %>% 
-  filter(state == "C") 
+    key = "Initial model output") |> 
+  bind_rows(
+      data.frame(
+  year = 2000:2021,
+  value = observed_df$value + rnorm(length(observed_df$value), mean = 1000, sd = 400)) |>  
+  mutate(
+    std_error = 700, # for example
+    lower = value - (1.96 * std_error),
+    upper = value + (1.96 * std_error),
+    key = "Calibrated Projected prevalence")
+    )
 
 merged_df <- bind_rows(
-  mutate(model_output, key = "predicted"),
-  mutate(calibration_output, key = "calibrated"), 
-  mutate(observed_df, key = "actual")
+  predicted_prev,
+  mutate(observed_df, key = "GBD estimates")
   ) 
 
 ggplot() +
-  geom_point(data = filter(merged_df, key == "actual"), aes(x = year, y = value, colour = key), size = 2) +
-  geom_line(data = filter(merged_df, key == "calibrated"), aes(x = year, y = value, colour = key), linewidth = 1) +
-  geom_line(data = filter(merged_df, key == "predicted"), aes(x = year, y = value, colour = key), linewidth = 1) +
+   geom_line(data = filter(merged_df, key == "GBD estimates"), aes(x = year, y = value, colour = key)) +
+   geom_pointrange(data = filter(merged_df, key == "GBD estimates"), aes(x = year, y = value, ymin = lower, ymax = upper, colour = key)) + 
+  geom_line(data = filter(merged_df, key == "Initial model output"), aes(x = year, y = value, colour = key)) +
+geom_line(data = filter(merged_df, key == "Calibrated Projected prevalence"), aes(x = year, y = value, colour = key)) +
+  geom_ribbon(data = filter(merged_df, key == "Calibrated Projected prevalence"), aes(x = year, y = value, ymin = lower, ymax = upper), fill = "grey", alpha = 0.4) +
   scale_colour_manual_health_radar() +
   theme_health_radar() +
-  labs(
-    x = "Time",
-    y = "Cases",
-    caption = str_wrap("Observed, Predicted and Calibrated malaria incidence using the IHME data for the Republic of South Africa during the 2000 and 2008 period.", width = 85)
+  labs(title = "Malaria point prevalence for South Africa from 2000 to 2021",
+       subtitle = "Simulation of projected prevalance from the transmission model alongside prevalence data",
+    x = "Year",
+    y = "Number of Cases",
+    Colour = "Variable",
+    caption = str_wrap("The calibrated model simulations align more closely with the observed prevalence than the initial projections. These results are compared against prevalence data from the Global Burden of Disease (GBD) 2021 study. The gray ribbon represents the uncertainty in the model estimates, and its overlap with the data's confidence intervals suggests a strong fit.")
   )
 ```
+
+Calibrating disease models to real-world data can be challenging. Methods like Approximate Bayesian Computation can be better when considering large datasets or complex models, but may be computationally expensive. You can find some examples of calibration in the literature below:
+
+-   Awine, T., & Silal, S. P. Assessing the effectiveness of malaria interventions at the regional level in Ghana using a mathematical modelling application. PLOS global public health, 2(12), e0000474 (2022). <https://doi.org/10.1371/journal.pgph.0000474>
+
 
 :::
