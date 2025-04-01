@@ -42,7 +42,7 @@ The downloaded data can be plotted according to the geography for which the filt
 
 Sometimes the data needs to be prepared before it is able to be plotted.
 
-![Figure 1: Distribution of *Anopheles stephensi* in Kenya for 2022-2024.](images/distributionn_of_anopheles_stephensi_kenya.png)
+![Figure 1: Distribution of *Anopheles stephensi* in Kenya for 2022-2024.](images/distributionn_of_anopheles_stephensi_kenya.png){fig-align="left"}
 
 The distribution of *An. stephensi* was plotted for all districts in Kenya between 2022-2024. The method employed for collecting the specimens were recorded and the main methods of collection were the dipping method for mosquito larvae and the use of the light trap for collection of adult mosquitoes. The species identification was confirmed using molecular techniques.
 
@@ -50,11 +50,11 @@ The distribution of *An. stephensi* was plotted for all districts in Kenya betwe
 
 The data can be viewed as a spreadsheet, plotted on a map to show distribution or as a dashboard giving a summary of epidemiological and entomological data. The data can also be downloaded as Excel documents from the "Download Data" page.
 
-![Figure 2: The occurrence of all invasive species from 2010 – 2024.](images/occurance_of_invasive_species.png)
+![Figure 2: The occurrence of all invasive species from 2010 – 2024.](images/occurance_of_invasive_species.png){fig-align="left"}
 
 Figure 2 shows the distribution of all invasive mosquito species in Africa and south-east Asia for the past 14 years. It is apparent that *An. stephensi* is native to south-east Asia but it is an invasive species in north Africa. A number of sites were negative for *An. stephensi*. This information can be used for revising malaria control protocols.
 
-![Figure 3: Sample of the summary dashboard that can be created using the distribution data.](images/summary_dashboard.png)
+![Figure 3: Sample of the summary dashboard that can be created using the distribution data.](images/summary_dashboard.png){fig-align="left"}
 
 Figure 3 shows a snap-shot of the summary data that can be generated from the selected dataset with the use of the appropriate filters. In this example, the vectors of Angola are listed and it is evident that *An. stephensi* has not yet moved down along the west coast of Africa. The insecticide resistance status of the vector mosquitoes is also given. The [complete dashboard](https://apps.who.int/malaria/maps/threats/#/dashboards?country=AO&theme=prevention) provides more information.
 
