@@ -30,7 +30,7 @@ The data can be accessed via the WHO website through its Global Malaria Programm
 - To access the data, click on the [link](https://apps.who.int/malaria/maps/threats) to access the [Malaria Threats Map](https://apps.who.int/malaria/maps/threats/) page. 
 - Click on the data download tile. 
 - Select the theme `Invasive Vector Species` to access the `Invasive Vector Species` detections. 
-- Data can be filtered according to species and year (1984-2024) in which collected. 
+- Data can be filtered according to `species` and `year` (1984-2024) in which collected. 
 - Filter can be applied according to location. 
 - Follow the prompts to select and download data. 
 - The data is downloaded as an Excel file. 
