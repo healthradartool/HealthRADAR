@@ -94,17 +94,17 @@ The information included typically looks like this. Data are available for each 
 
 Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it can be plotted. 
 
-![Table 1. The pyrethroid resistance intensity data for KwaZulu-Natal in South Africa (2016)](images/table_1_pyrethroid_resistance.png)
+![Table 1. The pyrethroid resistance intensity data for KwaZulu-Natal in South Africa (2016)](images/table_1_pyrethroid_resistance.png){fig-align="left"}
 
 Data has been extracted for KwaZulu-Natal in South Africa looking at pyrethroid resistance in *Anopheles arabiensis*, the local vector mosquito. Insecticide intensity studies looking at deltamethrin and permethrin showed that there was no significant resistance to Deltamethrin at 5X the discrimination dose and for Permethrin at 10X the discriminating dose. At normal concentration, there is some resistance as indicated by the low levels of mortality. Intensity assays show that this has not translated to operational resistance.
 
 <h2>How to plot this data</h2>
 
-![Figure 1. The distribution of pyrethroid resistance in South Africa.](images/distribution_of_pyrethroid_resistance_in_south_africa.jpg)
+![Figure 1. The distribution of pyrethroid resistance in South Africa.](images/distribution_of_pyrethroid_resistance_in_south_africa.jpg){fig-align="left"}
 
 This is a graphical representation of Table 1.  This shows the distribution of pyrethroid resistance in KwaZulu-Natal for 2010-2024. The resistance is to a specific type of pyrethroid, namely, deltamethrin and the vector that was tested was *Anopheles arabiensis*.
 
-![Figure 2. The distribution of pyrethroid resistance on the African continent.](images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png)
+![Figure 2. The distribution of pyrethroid resistance on the African continent.](images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png{fig-align="left"}
 
 Resistance to {{< glossary Pyrethroids >}} has been identified from most countries in Africa but there is a scarcity of data on insecticide resistance intensity. The above figure shows the distribution of the intensity of pyrethroid resistance on the African continent which ranges from low to moderate in the east and south to moderate to high in the west. This map is made up of 1445 bioassays with the majority being in north-western Africa.
 

@@ -37,27 +37,37 @@ Data on TES performed in compliance with the WHO standard protocol for tracking 
 
 The protocol approach is used to calculate treatment failure rates. Only patients who finish the whole trial follow-up and have a definite outcome—a therapy failure or success—are included in this analysis. Patients who discontinue their participation in the trial, do not follow up, or withdraw are not included in the analysis. Treatment failure rates using the Kaplan-Meier analysis are provided when available.
 
+- To access the data, click on this [link](https://apps.who.int/malaria/maps/threats) to access the [Malaria Threats Map](https://apps.who.int/malaria/maps/threats/) page
+- Click Download Data option
+- Select the theme on the Antimalarial drug efficacy and resistance
+- Select the dataset required
+- Data can be filtered according to `species`, `region`, `country`, `site` and `year` in which collected. 
+- Follow the prompts to select and download data
+- The data is downloaded as an Excel file
+
 The TES reports can be accessed using the links below:
 
 ***Plasmodium falciparum***
 
-[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pf.pdf?sfvrsn=aeae993b_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiNmRhYWU4ODgtMDI2NC00ZTA0LWE4Y2ItNjVmOGQ5OTY5MTEyIiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pf.pdf?sfvrsn=aeae993b_5)
 
 ***Plasmodium knowlesi***
 
-[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pk.pdf?sfvrsn=3dc7d759_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiMGI2NTJlNTEtZDY3Ny00ZDkzLTk1MzItNjliZTYxYjFlOWE5IiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pk.pdf?sfvrsn=3dc7d759_5)
 
 ***Plasmodium malariae***
 
-[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pm.pdf?sfvrsn=13442825_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiN2ZmM2EzM2EtYjA3ZC00NzNhLWI3NDEtMDdjNDg5MGZmYmQ4IiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pm.pdf?sfvrsn=13442825_5)
 
 ***Plasmodium ovale***
 
-[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-po.pdf?sfvrsn=21826566_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiNmZmYTQwYWUtOTJhMi00YTg4LWE5OGMtN2FhYjI3MmQ5NzEzIiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-po.pdf?sfvrsn=21826566_5)
 
 ***Plasmodium vivax***
 
-[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pv.pdf?sfvrsn=48243097_5)\| [Interactive report on TES results](https://app.powerbi.com/view?r=eyJrIjoiNTYxODk5MzgtY2MxNi00YzNkLThkNmQtMGUyOGQwMzBhNGY1IiwidCI6ImY2MTBjMGI3LWJkMjQtNGIzOS04MTBiLTNkYzI4MGFmYjU5MCIsImMiOjh9)
+[Report in table format ](https://cdn.who.int/media/docs/default-source/malaria/treatment-failure-pv.pdf?sfvrsn=48243097_5)
+
+The most recent report may not contain all years of estimates. 
 
 The website also provides access to maps on antimalarial drug efficacy and resistance. The maps allow you to explore individual studies and site-level data for all the threats. The maps are updated regularly and data up to site level is available for most countries. The maps allow you to generate graphs by clicking onto it.
 
@@ -73,11 +83,11 @@ Data from the most recent TES are summarized in the reports. A comprehensive sum
 
 Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year.
 
-A sample of the data is shown below. The table summarizes the treatment failure rates among patients infected with P. malariae. The displayed data is grouped by country and treatment.
+A sample of the data is shown below. The table summarizes the treatment failure rates among patients infected with *P. malariae*. The displayed data is grouped by country and treatment.
 
 ![](images/paginated_report.png)
 
-A sample of the map is shown below. The map details the area where the treatment failure rates among patients infected with *P. falciparum* and treated using artemether-lumefantrine.
+A sample of the map is shown below. The map details the area where the treatment failure rates among patients infected with *P. falciparum* and treated using *artemether-lumefantrine*.
 
 ![](images/map.png)
 
@@ -85,11 +95,36 @@ A sample of the dashboard is shown below. The dashboard details the area treatme
 
 ![](images/dashboard.png)
 
+<h2>Key points to consider</h2>
+
+The website provides the users with various information related to Antimalarial drug resistance and can be assessed using various tools. The data and information is updated regularly. 
+
+**Strengths**
+
+- The dataset is widely used and evaluated.
+- It provides a number of useful information for antimalarial drug efficacy.
+- It provides a number of useful variables for drug resistance. 
+- Reports and Data are updated regularly.
+
+**Limitations**
+
+- The datasets have data on selected countries/areas affected by malaria only. 
+- The most recent report may not contain all years of estimates. 
+
+<h2>Terms of use</h2>
+
+The various datasets on the website are provided for all to use with free access. Please acknowledge all sources by citing one or more of the papers referenced. The website can also be acknowledged.
+
 <h2>Examples of data use in literature</h2>
 
--   Kagoro, F.M., Allen, E., Mabuza, A. et al. Making data map-worthy—enhancing routine malaria data to support surveillance and mapping of Plasmodium falciparum anti-malarial resistance in a pre-elimination sub-Saharan African setting: a molecular and spatiotemporal epidemiology study. Malar J 21, 207 (2022). https://doi.org/10.1186/s12936-022-04224-4
+- Adam M, Nahzat S, Kakar Q, Assada M, Witkowski B, Tag Eldin Elshafie A, et al. Antimalarial drug efficacy and resistance in malaria-endemic countries in HANMAT-PIAM_net countries of the Eastern Mediterranean Region 2016–2020: Clinical and genetic studies. Trop Med Int Health. 2023; 28(10): 817–829. https://doi.org/10.1111/tmi.13929
 
--   Monroe A, Williams NA, Ogoma S, Karema C, Okumu F. Reflections on the 2021 World Malaria Report and the future of malaria control. Malar J. 2022 May 27;21(1):154. doi: 10.1186/s12936-022-04178-7. PMID: 35624483; PMCID: PMC9137259.
+- Kagoro, F.M., Allen, E., Mabuza, A. et al. Making data map-worthy—enhancing routine malaria data to support surveillance and mapping of Plasmodium falciparum anti-malarial resistance in a pre-elimination sub-Saharan African setting: a molecular and spatiotemporal epidemiology study. Malar J 21, 207 (2022). https://doi.org/10.1186/s12936-022-04224-4
+
+- Monroe A, Williams NA, Ogoma S, Karema C, Okumu F. Reflections on the 2021 World Malaria Report and the future of malaria control. Malar J. 2022 May 27;21(1):154. doi: 10.1186/s12936-022-04178-7. PMID: 35624483; PMCID: PMC9137259.
+
+- WHO,2009, Methods for surveillance of antimalarial drug efficacy [Publication Item](https://www.who.int/publications/i/item/9789241597531#:~:text=Overview,that%20have%20already%20been%20registered.)
+
 
 ## Visualisations
 
