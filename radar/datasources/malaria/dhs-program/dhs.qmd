@@ -373,7 +373,7 @@ The DHS dataset has various components that can be incorporated into malaria mod
 
 In modelling LLIN effective coverage, we account for the number of households that actually receive nets, appropriate usage, insecticide efficacy and the physical integrity of the net. Human and vector behavioural characteristics pertaining to where people spending their evenings (during peak biting times), or the likelihood of indoor vector biting are captured as *operational effectiveness*. Another illustration of this is depicted below:
 
-![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/LLIN-cascade.PNG)
+![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/LLIN-cascade.PNG){fig-align="left"}
 
 In the simple example below, we obtain data on Long Lasting Insecticide treated Net (LLIN) access and usage rates in Kenya from the DHS, and compare this to data on ITN distribution from the World Malaria Report. Finally, we model the effective coverage of LLINs. This represents the proportion of the population actually protected from malaria transmission in a particular country.
 
