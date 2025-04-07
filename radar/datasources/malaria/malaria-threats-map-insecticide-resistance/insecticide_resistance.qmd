@@ -18,11 +18,13 @@ categories:
 
 <h2>About the data</h2>
 
-The [global database on insecticide resistance in malaria vectors](https://www.who.int/teams/global-malaria-programme/prevention/vector-control/global-database-on-insecticide-resistance-in-malaria-vectors) was established in 2014 to help track insecticide resistance worldwide. Following a large data consolidation exercise conducted in 2019, which included the integration of separate WHO regional databases and data from other public sources, it has become the largest database on {{< glossary "insecticide resistance" >}} available at present. It contains data on the status of insecticide susceptibility of Anopheles mosquitoes in more than 88 countries. The contents of the database are provided by Member States, partners (including research and academic institutes) as well as nongovernmental organizations, and are extracted from published and non-published reports on insecticide bioassays.
+The [global database on insecticide resistance in malaria vectors](https://www.who.int/teams/global-malaria-programme/prevention/vector-control/global-database-on-insecticide-resistance-in-malaria-vectors) was established in 2014 to help track insecticide resistance worldwide. Following a large data consolidation exercise conducted in 2019, which included the integration of separate WHO regional databases and data from other public sources, it has become the largest database on {{< glossary "insecticide resistance" >}} available at present. It contains data on the status of insecticide susceptibility of *Anopheles* mosquitoes in more than 88 countries. The contents of the database are provided by Member States, partners (including research and academic institutes) as well as nongovernmental organizations, and are extracted from published and non-published reports on insecticide bioassays.
 
 The database for the Malaria Threat Maps is up-loaded on an ad *hoc basis*. The database provides the most up to date and comprehensive information regarding insecticide resistance on all continents. The data can be presented in a graphical format as maps detailing individual studies and site-level data for all the threat to vector control. Dashboards depicting epidemiological profile, vectors, insecticide resistance status and spread can be developed for all countries reporting malaria. The databases are interactive and data can be added to the database as it becomes available.  Insecticide resistance maps and dashboards can be created for all countries, according to specific insecticides, resistance intensity and mechanisms of resistance. The changing insecticide resistance profile can be viewed spatially or temporally and provides a platform for countries to share insecticide resistance data as the data becomes available. Data reporting tools are also provided on the Global Malaria Programme.
 
 These datasets provide information on decadal trends in insecticide resistance and enable comparison between countries. The data provided are on an *ad hoc* basis at a national and site-level scale. 
+
+To learn more about the data, visit the [Malaria Threats Map](https://apps.who.int/malaria/maps/threats/) website.
 
 <h2>Accessing the data</h2>
 
@@ -66,7 +68,7 @@ The information included typically looks like this. Data are available for each 
 
 <h2>Key points to consider</h2>
 
-  - The data include assays conducted with fewer than the minimum recommended number of mosquitoes (i.e. 100 female anopheline mosquitoes tested in {{< glossary "WHO susceptibility tests" >}}) as in the absence of other data these results are informative despite the small sample size.
+  - The data include assays conducted with fewer than the minimum recommended number of mosquitoes (i.e. 100 female *anopheline* mosquitoes tested in {{< glossary "WHO susceptibility tests" >}}) as in the absence of other data these results are informative despite the small sample size.
   
   - Data from WHO susceptibility tests and CDC bottle bioassays are included. However, these measure different outcomes and results are therefore not directly comparable to those from WHO tests.
   
@@ -104,7 +106,7 @@ Data has been extracted for KwaZulu-Natal in South Africa looking at pyrethroid 
 
 This is a graphical representation of Table 1.  This shows the distribution of pyrethroid resistance in KwaZulu-Natal for 2010-2024. The resistance is to a specific type of pyrethroid, namely, deltamethrin and the vector that was tested was *Anopheles arabiensis*.
 
-![Figure 2. The distribution of pyrethroid resistance on the African continent.](images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png{fig-align="left"}
+![Figure 2. The distribution of pyrethroid resistance on the African continent.](images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png){fig-align="left"}
 
 Resistance to {{< glossary Pyrethroids >}} has been identified from most countries in Africa but there is a scarcity of data on insecticide resistance intensity. The above figure shows the distribution of the intensity of pyrethroid resistance on the African continent which ranges from low to moderate in the east and south to moderate to high in the west. This map is made up of 1445 bioassays with the majority being in north-western Africa.
 
