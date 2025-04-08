@@ -5,7 +5,7 @@ date: 12/13/2024 # mm-dd-yyyy
 image: "images/un_population_data.png"
 
 categories:
-  - demographics
+  - demography
   - country-level 
   - annual
 ---
