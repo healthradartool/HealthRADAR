@@ -5,6 +5,7 @@ date: 10/23/2024 # mm-dd-yyyy
 image: "images/invasive_vector_species.png"
 
 categories:
+  - entomology
   - malaria vectors
   - new vectors of malaria
   - emerging vectors of malaria

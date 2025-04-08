@@ -6,6 +6,7 @@ image: "images/malaria_threats_map_insecticide_resistance.png"
 
 categories:
   - malaria
+  - entomology
   - insecticide resistance status
   - intensity
   - resistance mechanisms detection
@@ -54,7 +55,7 @@ The data is in excel spreadsheets used to generate maps of insecticide distribut
 
 **Description**
 
-The database contains resutls from:
+The database contains results from:
 
   - Insecticide susceptibility bioassays (i.e. WHO tube test, WHO bottle bioassay and United States Centers for Disease Control and Prevention [CDC] bottle assays)
 
