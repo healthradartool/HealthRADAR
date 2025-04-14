@@ -79,8 +79,33 @@ To catalyse the use of the data in CSID modelling, example code snippets will be
 
 ## The Team
 
-- MASHA
-- CSAG
-- SAMRC
+### [The Modelling and Simulation Hub, Africa (MASHA)](https://science.uct.ac.za/masha){.team-links}
+
+The Modelling and Simulation Hub, Africa (MASHA) is a research group at the University of Cape Town. MASHA specialises in disease modelling for policy and capacity building of modellers across Africa and in LMIC. MASHA will support the project through developing and hosting the digital tool, facilitating and curating health and modelling data relevant to malaria transmission for inclusion in the digital tool and developing the code platform that incorporates the data into CSID models.
+
+### [Climate Systems Analysis Group (CSAG)](https://www.csag.uct.ac.za){.team-links}
+
+The Climate Systems Analysis Group (CSAG) at the University of Cape Town is a leading international climate research centre based in Africa with broad research skills and competency in both physical and social dimensions of climate, strong experience in engaging with society, and an excellent track record in capacity development. CSAG will support the project by facilitating and curating climate data relevant to malaria transmission for inclusion in the digital tool.
+
+### [Clinton Health Access Initiative (CHAI)](https://www.clintonhealthaccess.org){.team-links}
+
+The Clinton Health Access Initiative (CHAI) is a non-profit organisation that operates at the nexus of business, government and health to save lives and reduce disease. CHAI works with national governments to reform their health systems, targeting areas where current approaches are failing or moving too slowly. CHAI will support the project by facilitating and curating health system data and malaria intervention costs for inclusion in the digital tool.
+
+### [SAMRC Office of Malaria Research (MOMR)](https://www.samrc.ac.za/research/centre-and-platforms-office/malaria-research-group){.team-links}
+
+The Office of Malaria Research (MOMR) in the South African Medical Research Council
+(SAMRC) funds and facilitates research to understand the social and biological impact of the
+disease and to develop malaria control programmes. MOMR will support the project by
+facilitating and curating entomological data and data related to vector intervention impact
+into the digital tool.
+
+### [SADC Elimination Eight Initiative (E8)](tis.sadc.int/english/sarn/elimination-eight-e8){.team-links}
+
+The Elimination Eight Initiative (E8) is a coalition of eight countries working across national borders to eliminate malaria in southern Africa by 2030 with a consensus-driven strategy that outlines a series of objectives and activities designed to coordinate member countries and technical partners in the joint pursuit of effective elimination strategies. The SADC E8 will support the project through advocacy, coordination and dissemination of the digital tool in the region.
 
 :::
+
+
+
+
+
