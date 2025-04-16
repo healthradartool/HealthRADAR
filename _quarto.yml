@@ -14,6 +14,7 @@ website:
   bread-crumbs: false
   draft-mode: unlinked
   back-to-top-navigation: true
+  google-analytics: "G-8LJCXZ1XXL"
   # announcement: 
   #   icon: info-circle
   #   dismissable: true
