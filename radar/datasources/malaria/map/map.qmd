@@ -150,7 +150,7 @@ source(here::here("radar/theme_health_radar.R"))
 
 ```{r}
 # Load the selected data
-data <- read.csv("Subnational Unit-data.csv")
+data <- read.csv("Subnational_Unit-data.csv")
 
 # Plot ITN metrics at a subnational level in Malawi
 ggplot(data, aes(x = as.factor(Name), y = Value, fill = Metric)) +
@@ -192,13 +192,13 @@ library(patchwork)
 
 # Load the data and filter by provinces of interest
 shp_zambia <- sf::st_read(
-            "Zambia_-_Administrative_District_Boundaries_2022.shp", 
+            "Zambia_-_Administrative_District_Boundaries_2022/Zambia_-_Administrative_District_Boundaries_2022.shp", 
   quiet = TRUE) |>  
   filter(PROVINCE %in% c("Eastern", "Northern", "Southern", "Western")) 
 
 
 # Load raster file containing walking only travel time to healthcare
-raster_walk <- rast("202001_Global_Walking_Only_Travel_Time_To_Healthcare_ZMB.tiff")
+raster_walk <- rast("Global_Walking_Only_Travel_Time_To_Healthcare_ZMB.tiff")
 
 # Extract mean walking time to health facility in each district 
 df_walk <- terra::extract(raster_walk, shp_zambia, mean, na.rm = T, ID = T) |>  
@@ -220,7 +220,7 @@ df_walk <- df_walk |>
   # Create a ggplot object with the filtered and sorted data
   # Adjust the order of the factor variable DISTRICT's levels so that districts in the same province appear together
   df_walk |> ggplot(aes(x = factor(DISTRICT, levels = df_walk$DISTRICT), 
-                        y = `202001_Global_Walking_Only_Travel_Time_To_Healthcare_ZMB`, 
+                        y = `Global_Walking_Only_Travel_Time_To_Healthcare_ZMB`, 
                         fill = PROVINCE)) +
   # Add bar plots to the chart, with bars filled by PROVINCE
   geom_bar(stat='identity') +
