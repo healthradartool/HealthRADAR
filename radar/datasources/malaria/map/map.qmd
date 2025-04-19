@@ -129,95 +129,60 @@ Insecticide Treated Nets Help Guide
 
 <h2>How to plot this data?</h2>
 
-MAP data can be downloaded in both CSV and raster formats. We provide an
-example of how to extract and plot data for each format.
+The data used in the creation of this first plot can be accessed as follows:
 
-#### CSV format
+1.  Navigate to the [MAP Data page](https://data.malariaatlas.org/trends?year=2022&metricGroup=Malaria&geographicLevel=admin0&metricSubcategory=Pf&metricType=rate&metricName=incidence)
 
-MAP's CSV data can be downloaded to have both national and subnational
-level data for the metric(s) of interest. We intend to plot ITN data at
-a subnational level. The data can be downloaded as explained in the
-Trends videos above. Alternatively,
+2.  Select the dropdown menu labelled 'Trends' visible on the top left-hand side of the page. From this dropdown menu, select the 'Interventions' option.
 
-1.  Click on the "Interventions" tab
+3.  A world map should be visible at the bottom of your screen. Just above this map are the options 'National', 'Subnational' and 'Pixel'. Select 'Subnational'.
 
-2.  Select "Subnational"
+4.  To the far right of the 'Subnational' button, click on the button labelled 'Download ITN Rate Data'.
 
-3.  Click the "Download ITN rate Data" button to start the download.
+5.  A popup should appear on your screen. Leave all metrics selected, but select just the year 2022 and the regions of Malawi. 6. Click 'Download selected'.
 
-```{r}
-#| echo: true
-#| code-fold: true
-#| code-summary: "Show the code"
-#| warning: false
-
-
-# To retrieve data, we used the following link:
-# https://data.malariaatlas.org/trends?year=2018&metricGroup=Interventions&geographicLevel=admin1&metricSubcategory=ITN&metricType=rate&metricName=use
-
-
+```{r, output = FALSE}
+# Load packages
 library(tidyverse)
 source(here::here("radar/theme_health_radar.R"))
 
-# Load the selected data
-
-df <- read.csv("Subnational_Unit-data.csv") |>  
-  filter(National.Unit == "Malawi", Year == 2022) 
-
-# Plot ITN metrics at a subnational level in Malawi
-
-ggplot(data = df) +
-  geom_col(aes(x = Year, y = Value, fill = Metric), position = position_dodge()) +
-  facet_wrap(~ Name) + 
-  scale_x_continuous(breaks = seq(min(df$Year), max(df$Year), by = 2)) +  # Custom x-axis breaks
-  scale_fill_manual(values = c("Access" = "#1b9e77", "Use" = "#d95f02", "Use Rate" = "#7570b3")) + # Custom colors for each Metric
-  labs(
-    y = "Per 100 people", 
-    title = str_wrap("Estimated subnational ITN use, access, and use rate in Malawi in 2022", width = 45),
-    caption = str_wrap("Figure shows the estimated subnational ITN use, access, and use rate (ITN use given access) in Malawi in the year 2022. Source: MAP 2024.",width = 90)
-  ) +
-  theme_health_radar() +
-  theme(panel.background = element_rect(fill = "#F0F0F0", color = NA)) # Add light background to each facet panel
-
 ```
 
-#### Raster format data extraction and plotting
+```{r}
+# Load the selected data
+data <- read.csv("Subnational Unit-data.csv")
 
-Using raster data is beneficial when analysing data at a smaller
-geographic scale than the subnational level, which the CSV format does
-not accommodate. The example outlined below demonstrates the extraction
-of healthcare access data at the district level, but can be utilised at
-any level.
-
-To extract data from a raster file, you will need two types of data:
-
-1.  A raster file from MAP, and
-
-2.  A shapefile containing the polygons (geographical area) you wish to
-    extract data for.
+# Plot ITN metrics at a subnational level in Malawi
+ggplot(data, aes(x = as.factor(Name), y = Value, fill = Metric)) +
+  # Create bar plot with identity statistic and no legend
+  geom_col(position = "dodge") + 
+  # Use the health radar color scheme
+  scale_fill_manual_health_radar() +
+  # Set y-axis ticks increment to 10
+  scale_y_continuous(breaks = seq(0, max(data$Value, na.rm = TRUE), by = 10)) +  
+  # Add titles and labels
+  labs(
+    title = "Estimated subnational ITN use, access, and use rate in Malawi (2022)",
+    x = "Region",
+    y = "ITN Use* (per 100 people)",
+    caption = str_wrap("Estimated subnational ITN use, access, and use rate (ITN use given access) per 100 people in Malawi in the year 2022. We can see that only a slightly higher proportion of the population has access to ITNs than uses them in every region of Malawi, which is reflected in the relatively high use rates, all of which are above 80%. Source: MAP 2024. *Or access or use rate", width = 100)) + 
+  # Apply the health radar theme
+  theme_health_radar() 
+```
 
 To download raster files from the MAP website,
 
-1.  Click on "Maps"
+1.  Click on “Maps”
 
-2.  Select the drop down arrow titled "Layer Catalogue"
+2.  Select the drop down arrow titled “Layer Catalogue”
 
-3.  Select the data theme of interest, such as "Accessibility"
+3.  Select the data theme of interest, such as “Accessibility”
 
-4.  Click the "Download" symbol.
+4.  Click the “Download” symbol beside the description of the dataset in which you are interested.
 
-In this example, we select "Global Walking Only Travel Time To
-Healthcare" as our data theme of interest.
-
-Shapefiles can be obtained from a range of sources. We download Zambia's
-district level polygon from [GRID3](https://data.grid3.org/).
+As the resulting dataset for global walking only travel time to healthcare is very large, the code which follows uses a version of this data which has been filtered to include data for Zambia only.
 
 ```{r}
-#| echo: true
-#| code-fold: true
-#| code-summary: "Show the code"
-#| warning: false
-
 library(tidyverse)
 library(sf)
 library(terra)
@@ -227,14 +192,13 @@ library(patchwork)
 
 # Load the data and filter by provinces of interest
 shp_zambia <- sf::st_read(
-  file.path("Zambia_-_Administrative_District_Boundaries_2022", 
-            "Zambia_-_Administrative_District_Boundaries_2022.shp"), 
+            "Zambia_-_Administrative_District_Boundaries_2022.shp", 
   quiet = TRUE) |>  
   filter(PROVINCE %in% c("Eastern", "Northern", "Southern", "Western")) 
 
 
 # Load raster file containing walking only travel time to healthcare
-raster_walk <- rast("Global_Walking_Only_Travel_Time_To_Healthcare_ZMB.tiff")
+raster_walk <- rast("202001_Global_Walking_Only_Travel_Time_To_Healthcare_ZMB.tiff")
 
 # Extract mean walking time to health facility in each district 
 df_walk <- terra::extract(raster_walk, shp_zambia, mean, na.rm = T, ID = T) |>  
@@ -243,37 +207,38 @@ df_walk <- terra::extract(raster_walk, shp_zambia, mean, na.rm = T, ID = T) |>
   mutate(OBJECTID = as.numeric(rowname)) |>  #OBJECTID is the unique ID in the shapefile
   left_join(shp_zambia, by = c("OBJECTID"))
 
-# Split the dataframe by province to allow for easy plotting
+```
 
-list_district_df <- split(df_walk, df_walk$PROVINCE)
+The mean walking time to access healthcare by Zambian district can be visualised using a bar plot. The province in which each district is located can be distinguished by colour.
 
-# Function that creates a ggplot for a given dataframe 'df'
-fun_plot <- function(df) {
-  ggplot(
-    data = df, aes(
-    y = reorder(DISTRICT, Global_Walking_Only_Travel_Time_To_Healthcare_ZMB), 
-    x = Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)
-  ) +
-    geom_col(fill = theme_health_radar_colours[5]) +
-    theme_health_radar() +
-    geom_text(
-      aes(label = round(Global_Walking_Only_Travel_Time_To_Healthcare_ZMB)), 
-      hjust = -0.2, size = 2.5
-    ) +
-    labs(x = "", y = "", title = df$PROVINCE) + # Sets axis labels to blank and title to province name
-    xlim(0, 450) +
-    theme_bw() # add borders to plots
-}
+```{r}
+# Filter the data to include only rows where PROVINCE is not NA
+df_walk <- df_walk |>
+  filter(is.na(PROVINCE) == FALSE) |>  # Remove rows with missing PROVINCE values
+  arrange(PROVINCE, DISTRICT)  # Arrange the data by PROVINCE first, and then DISTRICT in ascending order
 
-
-# Applying 'fun_plot' to each dataframe in 'list_district_df' and combine plots
-Reduce(`+`, lapply(list_district_df, fun_plot)) + 
-   # To add annotations to the combined plot
-  plot_annotation(
-    title = str_wrap("Average walking time in minutes to access healthcare in Zambia's Eastern, Northern, Southern, and Western province, by district"),
-    caption = str_wrap("This illustrative plot shows the average walking time in minutes of various districts in selected provinces. The figure indicates that Northern province has districts with the highest walking time to access healthcare, i.e. up to five hours. Source: MAP", width = 100),
-    theme = theme_health_radar()
-    )
+  # Create a ggplot object with the filtered and sorted data
+  # Adjust the order of the factor variable DISTRICT's levels so that districts in the same province appear together
+  df_walk |> ggplot(aes(x = factor(DISTRICT, levels = df_walk$DISTRICT), 
+                        y = `202001_Global_Walking_Only_Travel_Time_To_Healthcare_ZMB`, 
+                        fill = PROVINCE)) +
+  # Add bar plots to the chart, with bars filled by PROVINCE
+  geom_bar(stat='identity') +
+  # Apply custom theme
+  theme_health_radar() +
+  # Customize the x-axis text to be angled and adjusted
+  theme(axis.text.x = element_text(angle = 70, hjust = 0.6)) +
+  # Apply custom fill color scale
+  scale_fill_manual_health_radar() + 
+  # Add labels and title to the plot
+  labs(
+    title = "Mean walking time to access healthcare in Zambia, by district",
+    x = "District",
+    y = "Mean Walking Time (min)",
+    fill = "Province",
+    caption = str_wrap(
+      "The average walking time in minutes of various districts in selected provinces from their closest healthcare provider. The Northern province has districts with some of the highest walking times to access healthcare, while the Eastern Province district of Chadiza has the lowest. This lowest average walking time to a healthcare facility is still over an hour. Source: MAP", 
+      width = 100))
 ```
 
 ## Modelling Example
