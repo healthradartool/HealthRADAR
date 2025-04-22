@@ -363,10 +363,10 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 We obtain estimated case data (Annex 4-F) from Angola for the years 2000 to 2022. For high transmission countries in the WHO African Region, estimates are derived from a spatiotemporal Bayesian geostatistical model, using parasite prevalence data from household surveys. This methodology is further described in Annex 1 of the World Malaria Report.
 
-We can use this data to calibrate our disease models, by fitting model outputs to estimated malaria cases from the World Malaria Report. Throughout the calibration process we adjust the initial parameters we input into the model, making the model more accurate and representative of actual disease dynamics in a specific context. These parameters represent specific dynamics occurring the in the modelled context, for instance ITN usage ($itn_{use}$) may be really high in Angola, or the dominant *Anopheles* vector may have a higher biting rate ($a$). Country-specific parameter values should be obtained from existing datasets such as DHS surveys, literature review, expert knowledge, and published reports from national control programs and other stakeholders. This data carries a level of uncertainty that may prevent the model from making accurate projections.
+We can use this data to calibrate our disease models, by fitting model outputs to estimated malaria cases from the World Malaria Report. Throughout the calibration process we adjust the initial parameters we input into the model, making the model more accurate and representative of actual disease dynamics in a specific context. These parameters represent specific dynamics occurring the in the modelled context, for instance ITN usage ($itn_{use}$) may be really high in Angola, or the dominant *Anopheles* vector in this region may have a higher human biting rate ($a$) than other *Anopheles* species. Country-specific parameter values should be obtained from existing datasets such as DHS surveys, literature review, expert knowledge, and published reports from national control programs and other stakeholders. This data carries a level of uncertainty that may prevent the model from making accurate projections, but this can be accounted for in uncertainty and sensitivity analyses to increase the model results' credibility and robustness.
 
 For this example, we fit a simple malaria model to incidence rates calculated from estimated case data from Angola. 
-While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ \textrm{Incidence rate} = \frac{\textrm {Estimated Cases}}{\textrm {Population at risk}} \times 1000 $$
+While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ \textrm{Incidence rate} = \frac{\textrm {Estimated Cases}}{\textrm {Population at risk}} \times 1000 $$ {#eq-inci}
 
 ```{r}
 estimated_data <- whowmr::wmr2023$wmr2023f |>
@@ -391,16 +391,17 @@ estimated_data |>
  
 ```
 
-### Model Assumptions
+### Model assumptions
 
 We assume that the vector population is at equilibrium, and that ITNs are a widely-used control intervention in Angola. For more details on how to incorporate ITNs and calculating effective coverage, see the [DHS](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. In a more complex model, we would also account for other Angola-specific interventions, such as larviciding, as well as the treatment cascade illustrated below.
 
 ![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/treatment_cascade.PNG)
 
+This allows the model to capture the fact that not all malaria cases are treated due to the asymptomatic manifestation of the disease—particularly in high-burden, endemic contexts—as well as human behavioural factors and limitations within the health system.
 
 ### Simulated calibration
 
-Following calibration and fine-tuning of the parameters, we anticipate model outputs that mimic the pattern and overall trajectory of the estimated data. We simulate an example below:
+Following model calibration and fine-tuning of the parameters, we anticipate model outputs that mimic the pattern and overall trajectory of the estimated data. We simulate an example below:
 ```{r}
 
 # Simulated model output with 95% Confidence intervals of incidence rates
@@ -421,9 +422,13 @@ modelled_incidence_rate <- data.frame(
        subtitle = stringr::str_wrap("Estimated cases plotted alongside calibrated model output with 95% Confidence Intervals"),
        y = "Estimated Cases per 1000",
        colour = "Variable Type", 
-       caption = stringr::str_wrap("The calibrated model output projects incidence close to the WHO estimates. The gray ribbon represents the model's uncertainty, and its overlap with the confidence intervals of the data indicates a good fit. Source: Model output & World Malaria Report 2023, Annex 4-F.")) +
+       caption = stringr::str_wrap("The calibrated model output projects incidence close to the WHO estimates. The yellow ribbon represents the model's uncertainty, and its overlap with the confidence intervals of the data indicates a good fit. Source: Model output & World Malaria Report 2023, Annex 4-F.")) +
   theme_health_radar()
 ```
 The next steps are to validate the model, ensuring that it continues to replicate data outside of the calibration period. A sensitivity analysis would help identify which parameters have the most influence on model outputs, and quantify the level of uncertainty in the parameters, further strengthening the reliability of the model for projections going forward.
+
+### Policy implications
+
+Calibrated models that produce outputs aligned with real-world incidence or prevalence data are relevant and credible. This increases confidence and utility for decision makers in planning for malaria programming. In addition, models that are tailored to a specific context can better answer questions regarding the impact of certain interventions, or the implementation of other policies in the specified area.
 
 :::
