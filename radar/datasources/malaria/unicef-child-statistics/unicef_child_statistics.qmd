@@ -33,7 +33,7 @@ Reaching the Child Health Coverage dataset from the [UNICEF data website](https:
 
 The dataset will be downloaded as an Excel file.
 
-<h2>What does the data look like?</h2>
+<h2>What do the data look like?</h2>
 
 The Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
 
@@ -56,7 +56,7 @@ Using annual data for your analysis can lead to several pitfalls:
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
--   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors.
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socioeconomic factors.
 
 -   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
 
@@ -71,7 +71,7 @@ Around 100 UNICEF [journal articles](https://data.unicef.org/resources/resource-
 
 <h2>How to use the dataset</h2>
 
-This dataset includes information on Diarrhoea and Pneumonia in addition to the Malaria-related data. You can isolate data related to specific variables and countries which are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below. 
+This dataset includes information on diarrhoea and pneumonia in addition to the malaria-related data. You can isolate data related to specific variables and countries that are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below.  
 
 ```{r}
 #| echo: false
@@ -122,7 +122,7 @@ mal_dat |>
   gt::gt()
 ```
 
-Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, e.g. with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below. 
+Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, for example, with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below.  
 
 ```{r}
 # Produce a table in wide format of the last ten rows of data
@@ -150,10 +150,10 @@ mal_dat|>
     ylab("IPTP") + 
     labs(
       title = "Percentage of Pregnant Women who have received IPT",
-       subtitle = "Data for Zimbabwe",
-       caption = stringr::str_wrap("This plot displays the percentage of Zambian women between 15 and 49 years of age, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and separated by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
-       x = "Country",
-       y = "Percentage"
+      subtitle = "Data for Zimbabwe",
+      caption = stringr::str_wrap("This plot displays the percentage of Zambian women between 15 and 49 years of age, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and separated by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+      x = "Country",
+      y = "Percentage"
     ) 
 ```
 
@@ -207,9 +207,9 @@ mal_dat |>
 
 ### Preparing the data
 
-Many malaria control interventions are targeted at vulnerable populations, specifically pregnant women and children under the age of five. Similarly, in some countries ITNs are distributed through antenatal clinics to increase access and usage of prevention methods in these groups.
+Many malaria control interventions are targeted at vulnerable populations, specifically pregnant women and children under the age of five. Similarly, in some countries, ITNs are distributed through antenatal clinics to increase access and usage of prevention methods in these groups.
 
-For the age-structured malaria model below, we use data on ITN usage amongst children from the UNICEF dataset described above. To the rest of the population, we simulate coverage net data.
+For the age-structured malaria model below, we use data on ITN usage among children from the UNICEF dataset described above. For the rest of the population, we simulate ITN coverage.
 
 ```{r}
 
@@ -249,7 +249,7 @@ For the purposes of this model we make the following assumptions:
 -   The duration of partial immunity $rho$ ($\rho$) in adults is longer in adults because of previous malaria infections
 -   Net usage differs in vulnerable populations, specifically children under the age of five. We set usage among adults at 60%.
 
-Consequently, the force of infection $lambda-c$ ($\lambda_c$) in children under the age of five years, i.e. the rate at which they are exposed to an infectious vector, will be higher than that adults. This is due to their increased susceptibility to infection, and shorter span of partial immunity.
+Consequently, the force of infection $lambda-c$ ($\lambda_c$) in children under the age of five years, that is, the rate at which they are exposed to an infectious vector, will be higher than that in adults. This is due to their increased susceptibility to infection and shorter span of partial immunity.
 
 ```{r}
 library(deSolve)
@@ -409,7 +409,7 @@ df |>
     y = "Incidence", 
     title = "Daily malaria incidence in Zimbabwe",
     colour = "Population",
-    caption = str_wrap("This plot illustrates how incidence differs between the two age groups. Among children under the age of five years incidence decreases as they age out of this group and acquire immunity. In addition, we see that children under the age of five are a significant contribution to the burden of infection in Zimbabwe. Source: Model output.")
+    caption = str_wrap("This plot illustrates how incidence differs between the two age groups. Among children under the age of five years, incidence decreases as they age out of this group and acquire immunity. In addition, we see that children under the age of five are a significant contribution to the burden of infection in Zimbabwe. Source: Model output.")
   ) +
   scale_x_date(
     date_breaks = "3 years",
