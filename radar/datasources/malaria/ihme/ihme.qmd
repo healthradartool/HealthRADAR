@@ -482,5 +482,9 @@ Calibrating disease models to real-world data can be challenging. Methods like A
 
 -   Awine, T., & Silal, S. P. Assessing the effectiveness of malaria interventions at the regional level in Ghana using a mathematical modelling application. PLOS global public health, 2(12), e0000474 (2022). <https://doi.org/10.1371/journal.pgph.0000474>
 
+### Policy implications 
+
+In general, calibration ensures the model accurately reflects local transmission dynamics and the burden of disease. Specifically, calibrating to prevalence data ensures that we are also representing the asymptomatic burden of infection, and correctly accounting for its contribution to ongoing transmission. This allows policymakers to achieve more credible forecasting and simulate the impact of interventions targeted at the asymptomatic population such as mass testing and treating, or mass drug administration.
+
 
 :::

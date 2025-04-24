@@ -252,7 +252,7 @@ Models aim to provide abstract simulations of real-life dynamics. As such, it is
 
 ### Preparing the data
 
-We plot the values for crude birth and death rates obtained from Mozambique below.
+We plot the values for crude birth and death rates in Mozambique obtained from the portal below.
 
 ```{r}
 
@@ -394,5 +394,8 @@ df |>
 
 ```
 
+### Policy implications
+
+Forecasting resource allocation involves planning for demographic shifts,  health infrastructure capacity, and the overall burden on health systems. As newborn susceptibles enter the population, we also anticipate that herd immunity may gradually erode over time, and reinforcing the need for sustained investment in control interventions.
 
 :::
