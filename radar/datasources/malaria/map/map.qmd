@@ -289,8 +289,8 @@ To incorporate this into a mathematical model, we obtain the absolute number of 
 
 ### Model assumptions
 
-It is crucial to articulate the assumptions underlying the dynamics. In addition to the above, we assume the vector population is at equilibrium, the force of infection is seasonal and all areas are eligible for IRS. 
-    
+It is crucial to articulate the assumptions underlying the dynamics. In addition to the above, we assume the vector population is at equilibrium, the force of infection is seasonal, and all areas are eligible for IRS. 
+
 The parameters used to inform the model are described below. These should be replaced with country-specific data on seasonality, IRS implementation and other health system dynamics.
 
 A more complex model may have further incorporated intervention uptake/refusals, as are known to occur with IRS, as well as the biting and resting behaviours of the dominant vector in the country. 
@@ -408,6 +408,7 @@ mo |>
     filter(variable == "Inc", date > ymd("2014-01-01")) |>
     ggplot(aes(x = date, y = value)) + 
     geom_line(color = theme_health_radar_colours[19]) +
+    scale_y_continuous(labels = scales::unit_format(unit = "K", scale = 1e-3)) +
     labs(
       x = "Year", 
       y = "Incidence", 
@@ -415,6 +416,8 @@ mo |>
       caption = str_wrap("This example plot illustrates the daily country-wide incidence of malaria from 2014 to 2022. The graph reveals fluctuations in incidence over the years, with a slight increase in 2019 coinciding with low IRS coverage in 2018. This highlights the potential impact of reduced intervention efforts on malaria transmission. Source: Model output.")) +
     theme_health_radar()
 ```
+### Policy implications
 
+Policymakers may need to justify the use or scale-up of IRS as part of their integrated vector management strategy. Modelling this intervention allows users to assess the impact of IRS on the force of infection, thereby quantifying its effects. In addition, simulating implementation details such as the residual efficacy of the specific insecticide applied, the frequency of application (annual or bi-annual), or the timing of the campaign are key insights for malaria programming.
 
 ::::
