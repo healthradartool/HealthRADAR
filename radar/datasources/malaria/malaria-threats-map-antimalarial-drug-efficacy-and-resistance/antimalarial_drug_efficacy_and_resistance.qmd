@@ -299,7 +299,7 @@ library(deSolve)
 ```
 
 
-Therapeutic efficacy studies assess how well antimalarial drugs clear infections and are an indicator of treatment success. Case management with Artemisinin-based Combination Therapy (ACTs) is a critical part of any country's control strategy, and as such, representing it accurately in the disease model is key. Twenty therapeutic efficacy studies following treatment with Artemether-lumefantrine were done in Zimbabwe between 2010 and 2017. We use these to inform the treatment dynamics in the health system dynamics.
+Therapeutic efficacy studies assess how well antimalarial drugs clear infections and are an indicator of treatment success. Case management with Artemisinin-based Combination Therapy (ACTs) is a critical part of any country's control strategy, and as such, representing it accurately in the disease model is key. Twenty therapeutic efficacy studies following treatment with Artemether-lumefantrine were done in Zimbabwe between 2010 and 2017. We use these to inform the treatment dynamics in the health system.
 
 ### Preparing the data
 
