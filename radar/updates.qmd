@@ -1,0 +1,15 @@
+---
+title: "Updates"
+back-to-top-navigation: false
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+
+listing: 
+    contents: updates
+    type: table
+    sort-ui: false
+    filter-ui: false
+    fields: [date, title]
+---
+

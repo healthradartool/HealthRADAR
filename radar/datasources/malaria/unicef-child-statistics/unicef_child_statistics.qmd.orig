@@ -205,15 +205,21 @@ mal_dat |>
 
 <h2>How can this data be used in disease modelling?</h2>
 
-Many malaria control interventions are targeted at vulnerable populations, specifically pregnant women and children under the age of five. Similarly, in some countries, ITNs are distributed through antenatal clinics to increase access and usage of prevention methods in these groups.
+Many malaria control interventions are targeted at vulnerable populations, specifically pregnant women and children under the age of five. Similarly, in some countries Insecticide Treated Nets (ITNs) are distributed through antenatal clinics to increase access and usage of prevention methods in these groups.
 
 It is also known that partial immunity to malaria is acquired with age, especially in endemic contexts with repeated exposure. For this reason, young children may be more susceptible to severe disease. In addition, as a vulnerable group, children are more likely to sleep earlier and indoors, limiting their exposure to mosquitoes.
 
-For the age-structured malaria model below, we use data on ITN usage amongst children from the UNICEF dataset. For the rest of the population, we simulate ITN coverage.
+For the age-structured malaria model below, we use data on ITN usage amongst children from the UNICEF dataset. For the rest of the population, we simulate coverage net data.
 
 ### Preparing the data
 
+<<<<<<< HEAD
 We filter the data for ITN usage in Zimbabwe. The data also allows stratification by sex, urban/rural, level of mother's education and Wealth Index Quintile (WIQ). For the purposes of this example, we use national level data over time.
+=======
+Many malaria control interventions are targeted at vulnerable populations, specifically pregnant women and children under the age of five. Similarly, in some countries, ITNs are distributed through antenatal clinics to increase access and usage of prevention methods in these groups.
+
+For the age-structured malaria model below, we use data on ITN usage among children from the UNICEF dataset described above. For the rest of the population, we simulate ITN coverage.
+>>>>>>> 60090c91908c88e6ef4285558fc02c56af9354f7
 
 ```{r}
 

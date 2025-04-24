@@ -17,29 +17,26 @@ source(here::here("radar/datasources/malaria/who-wmr/scripts/packages.R"))
 #devtools::install_github("uct-masha/whowmr")
 ```
 
-::: {.page-tabs .panel-tabset}
-
+:::: {.page-tabs .panel-tabset}
 ## Overview
 
 <h2>About the data</h2>
 
-The WHO World Malaria report, released on an annual basis, provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe. The annexes to the report provide useful information on the data sources and methods used to compile the World Malaria Report, a set of regional malaria profiles and tables of historical time series of case data, commodity distribution, funding amounts and policy adoption.
+The WHO World malaria report, released on an annual basis, provides a comprehensive and up-to-date assessment of trends in malaria control and elimination across the globe. The annexes to the report provide useful information on the data sources and methods used to compile the World Malaria Report, a set of regional malaria profiles and tables of historical time series of case data, commodity distribution, funding amounts and policy adoption.
 
 These datasets provide information on long term trends in malaria control and enable comparison between countries. The data provided are on an annual time scale at the national level, and would not be suitable for subnational analysis or to explore seasonal trends in malaria.
 
+<h2>Accessing the data</h2>
 
-<h2>Accessing the data</h2> 
-
-
-The reports can be accessed on the [WHO website](https://www.who.int/teams/global-malaria-programme/reports). Each report has a web page which includes useful contextual information as well as additional resources. The “Annexes in Excel format” will download as a zip file which should be extracted. The annexes can be viewed in the original report in PDF format, though for modelling it is usually preferable to have an excel spreadsheet.
+The reports can be accessed on the [WHO website](https://www.who.int/teams/global-malaria-programme/reports). Each report has a web page that includes useful contextual information and additional resources. The “Annexes in Excel format” will download as a zip file that should be extracted. The annexes can be viewed in the original report in PDF format, though for modelling it is usually preferable to have an excel spreadsheet.
 
 The most recent report may not contain all years of estimates. Should earlier years be required, one can access the annexes from earlier reports and merge these.
 
-<h2>What does the data look like?</h2> 
+<h2>What do the data look like?</h2>
 
 **Description**
 
-The list of annexes may vary annually. The information included typically looks like this. Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. To make a longer time series of data, you can access older world malaria reports and annexes from the WHO. Be careful to check the data definitions and information on methodology to be sure that data sets can be concatenated.
+The list of annexes may vary annually. The information included typically looks like this. Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. To make a longer time series of data, you can access older world malaria reports and annexes from the WHO. Be careful to check the data definitions and information on methodology to be sure that datasets can be concatenated.
 
 The annexes can be found in the report itself as in the following examples:
 
@@ -49,27 +46,27 @@ The annexes can be found in the report itself as in the following examples:
 
 The annexes can also be downloaded as Excel documents from the report page.
 
-|         |                                                                                                              |
-|-----------------------|------------------------------------------------|
-| Annex 1 | Data sources and methods                                                                                     |
-| Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries                                    |
-| Annex 3 | WHO Regional profiles                                                                                        |
-| Annex 4 | Data tables and methods                                                                                      |
-|         | A. Policy adoption                                                                                           |
-|         | B. Antimalarial drug policy                                                                                  |
-|         | C. Funding for malaria control                                                                               |
-|         | D. Commodities distribution and coverage                                                                     |
-|         | E. Household survey results                                                                                  |
-|         | F. Population denominator for case incidence and mortality rate, and estimated malaria cases and deaths      |
-|         | G. Population denominator for case incidence and mortality rate, and reported malaria cases by place of care |
-|         | H. Reported malaria cases by method of confirmation                                                          |
-|         | I. Reported malaria cases by species                                                                         |
-|         | J. Reported malaria deaths                                                                                   |
-|         | K. Methods for Tables A-D-G-H-I-J                                                                            |
+|  |  |
+|-------------------------|------------------------------------------------|
+| Annex 1 | Data sources and methods |
+| Annex 2 | Number of ITNs distributed through campaigns in malaria endemic countries |
+| Annex 3 | WHO Regional profiles |
+| Annex 4 | Data tables and methods |
+|  | A. Policy adoption |
+|  | B. Antimalarial drug policy |
+|  | C. Funding for malaria control |
+|  | D. Commodities distribution and coverage |
+|  | E. Household survey results |
+|  | F. Population denominator for case incidence and mortality rate, and estimated malaria cases and deaths |
+|  | G. Population denominator for case incidence and mortality rate, and reported malaria cases by place of care |
+|  | H. Reported malaria cases by method of confirmation |
+|  | I. Reported malaria cases by species |
+|  | J. Reported malaria deaths |
+|  | K. Methods for Tables A-D-G-H-I-J |
 
-: Example of the annex layout. This example is from the 2023 world malaria report. Note that the annexes are paired with the report and should be interpreted as such.
+: Example of the annex layout. This example is from the 2023 World malaria report. Note that the annexes are paired with the report and should be interpreted as such.
 
-<h2>Key points to consider</h2> 
+<h2>Key points to consider</h2>
 
 **Pitfalls of Annual Data:**
 
@@ -87,7 +84,7 @@ It is important to distinguish between incidence and prevalence data when perfor
 
 -   Prevalence data: Prevalence refers to the proportion of the population that has malaria at a given point in time. It provides a snapshot of the disease burden but does not capture the rate of new infections.
 
-**Difference between Policy and Implementation:**
+**Difference Between Policy and Implementation:**
 
 There can be discrepancies between the intended policy for ITN distribution and the actual implementation on the ground. Consider the following:
 
@@ -101,15 +98,15 @@ There can be discrepancies between the intended policy for ITN distribution and 
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
--   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors.
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socioeconomic factors.
 
 -   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
 
 -   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
 
-<h2>Examples of data use in literature</h2> 
+<h2>Examples of data use in literature</h2>
 
-The report came out on Jan 31, 2024, so there are not many studies that have used the data yet. However, here are a few that are either under review or have been published recently:
+The report was released on Jan 31, 2024 and, as such, few studies have used the data. However, here are a few that are either under review or have been published recently:
 
 -   [Assessing the Therapeutic Efficacy of Artemether-Lumefantrine for Uncomplicated Malaria in Lagos, Nigeria: A Comprehensive Study on Treatment Response and Resistance Markers](https://doi.org/10.21203/rs.3.rs-3985557/v1)
 
@@ -119,16 +116,15 @@ The report came out on Jan 31, 2024, so there are not many studies that have use
 
 <h2>How to use this data?</h2>
 
-For this example, the goal is to get the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
+For this example, the goal is to determine the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
 
-We can either manually download, unzip and read in annex 4J or use the `whowmr` package to access the data. 
+We can either manually download, unzip and read in annex 4J or use the `whowmr` package to access the data.
 
 ::: callout-warning
-The annexes contain references to footnotes. The `whowmr` package leaves these in the data - the idea being that one should engage with the footnote and proceed with context.
-<br>
+The annexes contain references to footnotes. The `whowmr` package leaves these in the data - the idea being that one should engage with the footnote and proceed with context. <br>
 :::
 
-After inspecting the data beforehand to understand how it is structured and whether there are any footnotes relevant to our analysis, we can display our data in a table as follows:
+After inspecting the data to understand how it is structured and whether there are any footnotes relevant to our analysis, we can display our data in a table as follows:
 
 ```{r}
 # View Annex 4J of the 2023 World Malaria Report. Note that we remove the footnotes here.
@@ -357,7 +353,7 @@ ggplot(plot_df, aes(x = Year, y = Amount / 1000, fill = Donor)) +
 
 ## Modelling Example
 
-<h2>How can this data be used in disease modelling? </h2>
+<h2>How can this data be used in disease modelling?</h2>
 
 ### Preparing the data 
 
@@ -365,8 +361,7 @@ We obtain estimated case data (Annex 4-F) from Angola for the years 2000 to 2022
 
 We can use this data to calibrate our disease models, by fitting model outputs to estimated malaria cases from the World Malaria Report. Throughout the calibration process we adjust the initial parameters we input into the model, making the model more accurate and representative of actual disease dynamics in a specific context. These parameters represent specific dynamics occurring the in the modelled context, for instance ITN usage ($itn_{use}$) may be really high in Angola, or the dominant *Anopheles* vector in this region may have a higher human biting rate ($a$) than other *Anopheles* species. Country-specific parameter values should be obtained from existing datasets such as DHS surveys, literature review, expert knowledge, and published reports from national control programs and other stakeholders. This data carries a level of uncertainty that may prevent the model from making accurate projections, but this can be accounted for in uncertainty and sensitivity analyses to increase the model results' credibility and robustness.
 
-For this example, we fit a simple malaria model to incidence rates calculated from estimated case data from Angola. 
-While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ \textrm{Incidence rate} = \frac{\textrm {Estimated Cases}}{\textrm {Population at risk}} \times 1000 $$ {#eq-inci}
+For this example, we fit a simple malaria model to incidence rates calculated from estimated case data from Angola. While it is simpler to fit to case numbers, fitting to incidence rates allows us to capture the disease burden relative to a changing population size, and is better for comparing burden across different populations. Here, we calculate incidence rate per 1000 of the population at risk with the following formula: $$ \textrm{Incidence rate} = \frac{\textrm {Estimated Cases}}{\textrm {Population at risk}} \times 1000 $$
 
 ```{r}
 estimated_data <- whowmr::wmr2023$wmr2023f |>
@@ -397,11 +392,10 @@ We assume that the vector population is at equilibrium, and that ITNs are a wide
 
 ![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/treatment_cascade.PNG)
 
-This allows the model to capture the fact that not all malaria cases are treated due to the asymptomatic manifestation of the disease—particularly in high-burden, endemic contexts—as well as human behavioural factors and limitations within the health system.
-
 ### Simulated calibration
 
-Following model calibration and fine-tuning of the parameters, we anticipate model outputs that mimic the pattern and overall trajectory of the estimated data. We simulate an example below:
+Following calibration and fine-tuning of the parameters, we anticipate model outputs that mimic the pattern and overall trajectory of the estimated data. We simulate an example below:
+
 ```{r}
 
 # Simulated model output with 95% Confidence intervals of incidence rates
