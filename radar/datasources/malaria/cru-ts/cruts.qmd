@@ -182,7 +182,7 @@ ggplot() +
   ) +
   theme_health_radar() +
   labs(
-    title = "Annual average Daily Mean Temperature for Southern Africa (1991-2020)",
+    title = "Annual Average Daily Mean Temperature \n for Southern Africa (1991-2020)",
     x = "Longitude", 
     y = "Latitude",
     caption = str_wrap("Annual average daily mean temperature over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
