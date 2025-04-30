@@ -14,6 +14,7 @@ website:
   bread-crumbs: false
   draft-mode: unlinked
   back-to-top-navigation: true
+  google-analytics: "G-8LJCXZ1XXL"
   # announcement: 
   #   icon: info-circle
   #   dismissable: true
@@ -40,6 +41,8 @@ website:
             href: radar/guides/climate/climate.qmd
           - text: Modelling
             href: radar/guides/contribution/modelling.qmd
+      - text: Updates
+        href: radar/updates.qmd
 
     right:
       - icon: github

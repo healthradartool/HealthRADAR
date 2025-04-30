@@ -89,6 +89,149 @@ The data contained in the database can be explored through the interactive data 
 
 <h2>How to plot this data</h2>
 
-Data has been extracted for Kenya (invasive species) and Angola (Dashboard) . *Anopheles stephensi* has not yet been detected in Angola but it has invaded nearly all districts in Kenya. The absence of *An. stephensi* also indicated that entomological surveillance systems need to be strengthened especially where there is no urban malaria. Surveillance systems for entomology needs to take into account the urban nature of the invasive mosquitoes also its tendency to breed in man-made breeding sites such as in water storage containers and open sewers. 
+To access the specific data used in the visualisations:
+
+1.  Navigate to the [Malaria Threats Map page](https://apps.who.int/malaria/maps/threats/)
+
+2.  Below the right-most window labelled 'Data Download', click on the 'DOWNLOAD DATA' button.
+
+3.  Select the 'Invasive vector species' tile.
+
+4.  Select 'ADD TO DOWNLOAD'.
+
+5.  Select 'NEXT STEP'. Follow the prompts to download your files.
+
+```{r, output = FALSE}
+source(here::here("radar/theme_health_radar.R"))  # source in the theme functions
+library(rdhs)
+library(ggrepel)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(whowmr)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(forcats)
+```
+
+```{r}
+# Define the elimination 8 countries
+africa_names <- c("Burundi", "Ethiopia", "Mozambique", "Sudan", "Djibouti", "Ghana", "Kenya", "Eritrea", "Nigeria", "United Republic of Tanzania")
+
+# Read in the data, and filter our countries outside of Africa
+data <- readxl::read_xlsx("data/MTM_INVASIVE_VECTOR_SPECIES_20250109.xlsx",
+                          sheet = "Data") |> filter(COUNTRY_NAME %in% africa_names)
+
+```
+
+Visualising the spread of sites at which invasive vector species were sampled can be effectively done using a map.
+
+```{r}
+# Define a single colour for the plot
+single_color <- "#1b9e77"
+
+# Load the shapefile data for African countries and filter for specific countries
+africa <- ne_countries(continent = "Africa", returnclass = "sf") |> 
+  # Correct the name "eSwatini" to "Eswatini"
+  mutate(name = if_else(name == "eSwatini", "Eswatini", name)) |>  
+   # Keep only the specified countries
+  filter(name %in% c("Kenya", "Ethiopia", "Eritrea", "Djibouti", "Sudan")) 
+
+# Convert LATITUDE and LONGITUDE columns to numeric
+data$LATITUDE <- as.numeric(data$LATITUDE)
+data$LONGITUDE <- as.numeric(data$LONGITUDE)
+
+# Filter the data for the specified countries and select relevant columns
+sites <- data |> 
+  filter(COUNTRY_NAME %in% c("Kenya", "Ethiopia", "Eritrea", "Djibouti", "Sudan")) |> 
+  select(COUNTRY_NAME, SITE_NAME, LATITUDE, LONGITUDE)  
+
+# Create a ggplot object with the shapefile data
+ggplot(data = africa) +
+   # Plot the shapefile data with grey borders
+  geom_sf(color = "darkgrey", size = 0.3)  + 
+  # Add points for the sites, coloured by the single color defined above
+  geom_point(data = sites, aes(x = LONGITUDE, y = LATITUDE), colour = single_color, size = 2)  + 
+  # Add text labels for the country names
+  geom_sf_text(aes(label = sovereignt), color = "black", size = 3) +
+  # Apply custom theme
+  theme_health_radar() +  
+  # Customize the theme to remove the x- and y-axes and grid lines
+  theme(
+    plot.caption.position = "plot",
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank()
+  ) +
+  
+  # Add labels and title to the plot
+  labs(
+    title = "Sites at which invasive vector species were sampled (2012-2024)",
+    caption = str_wrap(
+      "Sites in North-East African countries at which invasive vector species were collected from 2012 to 2024. Ethiopia appears to hold the highest number of sampling sites. Source: Malaria Threats Map Invasive Vector Species", 
+      width = 50))
+```
+
+A line plot is used to visualise the total number of Invasive Vector Species study samples collected each year. Including points at each data point is important for communicating that this data was collected annually, not continuously, and that data is not available every year.
+
+```{r}
+# Filter the data to include only rows where YEAR_START is not NA
+data |> 
+  filter(is.na(YEAR_START) == FALSE) |> 
+  # Count the number of samples for each year
+  count(year = YEAR_START) |> 
+  # Create a ggplot object with the counted data
+  ggplot(aes(x = year, y = n)) + 
+  # Add a line plot to the chart, coloured by single_color
+  geom_line(colour = single_color) +
+  # Add points to the plot, coloured by single_color
+  geom_point(colour = single_color) +
+  # Apply custom theme
+  theme_health_radar() + 
+  # Customise the x-axis to show yearly breaks
+  scale_x_continuous(breaks = min(data$YEAR_START):max(data$YEAR_START)) +
+  # Add labels and title to the plot
+  labs(
+    x = "Year",
+    y = "Number of samples",
+    title = "Annual total number of samples collected per year", 
+    caption = str_wrap("The annual total number of samples of any species collected in Africa during Invasive Vector Species studies which began in each year. No studies began in the years 2015 or 2017. There appears to be an increase in the number of samples collected between 2014 and 2022, followed by a drop in 2023. Source: Malaria Threats Map Invasive Vector Species", 
+      width = 105))
+```
+
+Lastly, we look at the total number of Invasive Vector Species study samples collected in each country, rather than in each year. As the x-variable is categorical and not continuous, a bar plot is used.
+
+```{r}
+# Define a single color for the bars
+single_color <- "#1b9e77"
+
+# Modify the COUNTRY_NAME to replace "United Republic of Tanzania" with "Tanzania"
+data |> 
+  mutate(COUNTRY_NAME = ifelse(COUNTRY_NAME == "United Republic of Tanzania", "Tanzania", COUNTRY_NAME)) |> 
+  # Count the number of samples for each country
+  count(COUNTRY_NAME) |> 
+  # Create a ggplot object with the counted data
+  ggplot(aes(x = COUNTRY_NAME, y = n)) + 
+  # Add bar plots to the chart, filled with the single colour
+  geom_bar(stat = "identity", fill = single_color) +
+  # Apply custom theme
+  theme_health_radar() +
+  # Customize the x-axis text to be angled and adjusted
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.4)) + 
+  # Add labels and title to the plot
+  labs(
+    x = "",
+    y = "Number of samples",
+    title = "Total number of samples collected in each African country", 
+    caption = str_wrap("The total number of samples of any species collected in each African country during Invasive Vector Species studies. No samples were taken in countries not present on the plot. Over three times the number of samples were collected in Ethiopia than in the second most prolific country, Kenya. Source: Malaria Threats Map Invasive Vector Species", 
+      width = 100))
+```
+
 
 :::

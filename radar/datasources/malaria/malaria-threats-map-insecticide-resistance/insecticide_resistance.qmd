@@ -116,8 +116,7 @@ Resistance to {{< glossary Pyrethroids >}} has been identified from most countri
 
 <h2>How can this data be used in disease modelling?</h2>
 
-We use the results of discriminating concentration bioassays in Mozambique to inform the levels of insecticide resistance. These bioassays measure the concentration of insecticide required to differentiate between susceptible and resistant vectors.
-
+We use the results of discriminating concentration bioassays in Mozambique to inform the levels of insecticide resistance. These bioassays measure the concentration of insecticide required to differentiate between susceptible and resistant vectors. This is valuable in translating how vector resistance affects transmission potential.
 
 ```{r}
 #| include: false
@@ -135,16 +134,20 @@ knitr::opts_chunk$set(echo = T, cache = T, warning = F, message = F, fig.pos = '
 options(digits=4, scipen = 9)
 ```
 
+### Preparing the data
+
+We calculate the proportion of confirmed resistance to calculate the selection pressure, and the mean mortality across all studies done in Mozambique. The data glossary states that the adjusted mosquito mortality is either the result of applying Abbott's formula to the average observed mosquito mortality accross all replicates (when control mortality is between 5-20%) or the average observed mosquito mortality across all replicates (when control mortality is below 5%).
+
 
 ```{r}
 
 # Load the data from Mozambique
 insecticide_data <- read_excel("MTM_DISCRIMINATING_CONCENTRATION_BIOASSAY_20250330.xlsx", sheet = 2)
 
-# Proportion of instances of confirmed resistance 
+# Calculate selection pressure: Proportion of instances of confirmed resistance
 res = sum(insecticide_data$RESISTANCE_STATUS == "Confirmed resistance")/nrow(insecticide_data)
 
-# Summarise insecticide resistance data 
+# Calculate mean mortality 
 insecticide_data_summ <- insecticide_data |> 
   mutate(MORTALITY_ADJUSTED = as.numeric(insecticide_data$MORTALITY_ADJUSTED)) |> 
   group_by(YEAR_START, RESISTANCE_STATUS) |> 
@@ -158,13 +161,13 @@ insecticide_data_summ |>
 RESISTANCE_STATUS))) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
-  scale_y_continuous(limits = c(0, NA)) +
-  labs(title = "Summary of mosquito mortality",
+  #scale_y_continuous(limits = c(0, NA)) +
+  labs(title = "Trend of mosquito mortality in Mozambique",
        subtitle = "Results from MTM discriminating concentration bioassay",
        x = "Year",
        y = "Adjusted mosquito mortality (%)",
        colour = "Resistance status",
-       caption = "Source: Malaria Threats Map")
+       caption = "We see that more mosquitoes survive in bioassays of confirmed resistance in Mozambique over time, indicating a worsening resistance profile. In 2021, mortality dropped to just 40%, highlighting a significant decline in susceptibility. Possible resistance remains somewhat stable (about 92% mosquito mortality). Source: Malaria Threats Map")
 
 ```
 
@@ -176,7 +179,7 @@ We incorporate this data into the model in two ways:
 
 In a more complex model you may also have different rates of mosquito mortality $\mu_m$, susceptibility to infection $b$, or biting rates $a$ (due to fitness costs) for insecticide-sensitive and resistant vectors.
 
-In this simple model example, we assume the coverage of LLINs to be constant at 60%, further reduced by the usage rate. A more detailed example of the implementation of LLINs (including effectiveness, attrition and insecticidal decay) into a transmission model can be found [here](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html). We demonstrate the impact of vector insecticide resistance on the effective coverage of LLINs.
+In this simple model example, we assume the coverage of LLINs to be constant at 75%, further reduced by the usage rate. A more detailed example of the implementation of LLINs (including effectiveness, attrition and insecticidal decay) into a transmission model can be found [here](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html). We demonstrate the impact of vector insecticide resistance on the effective coverage of LLINs.
 
 ```{r}
 
@@ -206,7 +209,7 @@ seacr <- function(times, start, parameters, effr_level) {
    
     # Nets
     itn <- itn_cov*itn_use
-    itn_r <- itn*(1 - effr_level(times)) # Adjust effective coverage of ITNs based on resistance level
+    itn_r <- itn*(effr_level(times)) # Adjust effective coverage of ITNs based on resistance level
     
     # Force of infection
     Infectious = C + zeta_a*A # infectious reservoir
@@ -274,8 +277,8 @@ parameters <- c(a = 0.3, # human biting rate
                 res = 0.2174, # selection pressure, obtained from data
                 amp = 0.5, # amplitude of seasonality
                 phi = 200, # phase angle, start of season
-                itn_use = 0.48, # probability of sleeping under a net
-                itn_cov = 0.6 # coverage of LLINs in the population at risk
+                itn_use = 0.58, # probability of sleeping under a net
+                itn_cov = 0.75 # coverage of LLINs in the population at risk
                 )
     
 
@@ -299,15 +302,19 @@ df |>
     variable == "itn_r" ~ "Resistant")) |> 
     ggplot(aes(x = date, y = value, colour = `Insecticide Status`)) + 
     geom_line() +
-    scale_y_continuous(labels = scales::percent, limits = c(0, NA)) +
+    scale_y_continuous(labels = scales::percent) +
     labs(
       x = "Year", 
       y = "Effective coverage", 
       title = "Effective coverage of LLINs in Mozambique 2010 to 2023",
       subtitle = "Changes due to confirmed resistance",
-      caption = str_wrap("In this example plot we assume LLIN coverage to be constant. As such, when insecticide resistance decreases, LLIN effectiveness increases, as is seen in 2014. Reductions in mosquito mortality (from MTM discriminating bioassays) in 2012 and 2020 led to an increase in the effective coverage of LLINs. Source: Model output.")) +
+      caption = str_wrap("In this example plot, transmission from insecticide-sensitive mosquitoes is consistently protected due to the effective coverage of LLINs. However, when confirmed insecticide resistance increases, and more mosquitoes survive the MTM discriminating bioassays, LLIN effectiveness decreases, as is seen in 2012, 2020 and 2021. Increases in mosquito mortality in 2014 led to an increase in the effective coverage of LLINs. Source: Model output.")) +
     theme_health_radar()
 
 ```
+
+### Policy implications
+
+The direct relationship between insecticidal efficacy and LLIN impact is shown in the example above. Declining effectiveness due to resistance highlights the urgent need for insecticide resistance management to maintain the returns on investment in vector control. This may lead to changes in the active ingredient in the LLINs used, rotations of the insecticide classes in IRS campaigns or subnational adaptations to vector control strategies. Ultimately insecticide resistance compromises the effectiveness of core interventions and threatens progress toward malaria elimination goals.
 
 :::

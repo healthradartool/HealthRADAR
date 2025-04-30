@@ -33,7 +33,7 @@ Reaching the Child Health Coverage dataset from the [UNICEF data website](https:
 
 The dataset will be downloaded as an Excel file.
 
-<h2>What does the data look like?</h2>
+<h2>What do the data look like?</h2>
 
 The Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
 
@@ -56,7 +56,7 @@ Using annual data for your analysis can lead to several pitfalls:
 
 Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
 
--   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socio-economic factors.
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socioeconomic factors.
 
 -   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
 
@@ -71,7 +71,7 @@ Around 100 UNICEF [journal articles](https://data.unicef.org/resources/resource-
 
 <h2>How to use the dataset</h2>
 
-This dataset includes information on Diarrhoea and Pneumonia in addition to the Malaria-related data. You can isolate data related to specific variables and countries which are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below. 
+This dataset includes information on diarrhoea and pneumonia in addition to the malaria-related data. You can isolate data related to specific variables and countries that are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below.  
 
 ```{r}
 #| echo: false
@@ -122,7 +122,7 @@ mal_dat |>
   gt::gt()
 ```
 
-Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, e.g. with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below. 
+Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, for example, with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below.  
 
 ```{r}
 # Produce a table in wide format of the last ten rows of data
@@ -150,10 +150,10 @@ mal_dat|>
     ylab("IPTP") + 
     labs(
       title = "Percentage of Pregnant Women who have received IPT",
-       subtitle = "Data for Zimbabwe",
-       caption = stringr::str_wrap("This plot displays the percentage of Zambian women between 15 and 49 years of age, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and separated by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
-       x = "Country",
-       y = "Percentage"
+      subtitle = "Data for Zimbabwe",
+      caption = stringr::str_wrap("This plot displays the percentage of Zambian women between 15 and 49 years of age, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and separated by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+      x = "Country",
+      y = "Percentage"
     ) 
 ```
 
@@ -198,18 +198,22 @@ mal_dat |>
     x = "Country",
     y = "Percentage", 
     colour = "Year"
-  ) 
+  )
 ```
 
 ## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
 
+Many malaria control interventions are targeted at vulnerable populations, specifically pregnant women and children under the age of five. Similarly, in some countries, ITNs are distributed through antenatal clinics to increase access and usage of prevention methods in these groups.
+
+It is also known that partial immunity to malaria is acquired with age, especially in endemic contexts with repeated exposure. For this reason, young children may be more susceptible to severe disease. In addition, as a vulnerable group, children are more likely to sleep earlier and indoors, limiting their exposure to mosquitoes.
+
+For the age-structured malaria model below, we use data on ITN usage amongst children from the UNICEF dataset. For the rest of the population, we simulate ITN coverage.
+
 ### Preparing the data
 
-Many malaria control interventions are targeted at vulnerable populations, specifically pregnant women and children under the age of five. Similarly, in some countries ITNs are distributed through antenatal clinics to increase access and usage of prevention methods in these groups.
-
-For the age-structured malaria model below, we use data on ITN usage amongst children from the UNICEF dataset described above. To the rest of the population, we simulate coverage net data.
+We filter the data for ITN usage in Zimbabwe. The data also allows stratification by sex, urban/rural, level of mother's education and Wealth Index Quintile (WIQ). For the purposes of this example, we use national level data over time.
 
 ```{r}
 
@@ -230,15 +234,18 @@ ggplot() +
   theme_health_radar() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.4)) +
   labs(
-    title = str_wrap("ITN usage over time in Zimbabwe amongst children"),
+    title = str_wrap("Children under five years of age sleeping under an ITN in Zimbabwe"),
     x = "Year",
     y = "Percent (%)",
     caption = str_wrap("In this plot we note that ITN usage amongst children under five fluctuates between 4 and 30%. Source: UNICEF Child Health Coverage Dataset.")
-  )
+  ) +
+  guides(colour = "none")
 
 ```
 
-We may consider the proportion of the population effectively covered by ITNs to be those with access to at least one ITN and actively using the net. In addition, the effectiveness of the nets at preventing infectious bites decreases over time as chemical efficacy drops and nets are damaged through wear and tear and considered lost. This loss is also called attrition, $attr$. The median survival time of long lasting insecticidal nets (LLINs) is considered to be three years, represented by $eta$ in the model. For a more detailed description of the incorporation of ITNs, see the [DHS](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: all people over the age of five, and children under five years old.
+We may consider the proportion of the population effectively covered by ITNs to be those with access to at least one ITN and actively using the net. In addition, the effectiveness of the nets at preventing infectious bites decreases over time as chemical efficacy drops and nets are damaged through wear and tear and considered lost. This loss is also called attrition, $attr$. The median survival time of long lasting insecticidal nets (LLINs) is considered to be three years, represented by $eta$ in the model. 
+
+For a more detailed description of the incorporation of ITNs, see the [DHS](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: individuals over the age of five, and children under five years old.
 
 ### Model assumptions
 
@@ -249,7 +256,7 @@ For the purposes of this model we make the following assumptions:
 -   The duration of partial immunity $rho$ ($\rho$) in adults is longer in adults because of previous malaria infections
 -   Net usage differs in vulnerable populations, specifically children under the age of five. We set usage among adults at 60%.
 
-Consequently, the force of infection $lambda-c$ ($\lambda_c$) in children under the age of five years, i.e. the rate at which they are exposed to an infectious vector, will be higher than that adults. This is due to their increased susceptibility to infection, and shorter span of partial immunity.
+Consequently, the force of infection $lambda-c$ ($\lambda_c$) in children under the age of five years, that is, the rate at which they are exposed to an infectious vector, will be higher than that in adults. This is due to their increased susceptibility to infection and shorter span of partial immunity.
 
 ```{r}
 library(deSolve)
@@ -259,14 +266,15 @@ times <- seq(0, 365*Y, by = 1)
 
 # Simulate of time-dependent variables of ITN coverage
 
-itncov <-  data.frame(time = seq(0, by = 365, length.out = Y),
-                      nets = runif(Y, min = 0, max = 1)
-) 
+itncov <- data.frame(time = seq(0, by = 365, length.out = Y),
+                     nets = runif(Y, min = 0, max = 1)
+                     ) 
 
 
 ## SEACR-SEI model
 seacr <- function(times, start, parameters, itncov, Zim_ITN_use_c) { 
   with(as.list(c(start, parameters)), {
+    
     P0 = S0 + E0 + A0 + C0 + R0 + G0
     P1 = S1 + E1 + A1 + C1 + R1 + G1
     P = P0 + P1
@@ -304,7 +312,7 @@ seacr <- function(times, start, parameters, itncov, Zim_ITN_use_c) {
     dR0 = delta*A0 + r*C0 - (lambda_c + rho_c + mu_h + kappa_c)*R0
     dG0 = lambda_c*R0 - (gamma_h + mu_h + kappa_c)*G0
     
-    # Adult 
+    # Adults 
     dS1 = kappa_c*S0 - lambda_a*S1 + rho_a*R1 - mu_h*S1
     dE1 = kappa_c*E0 + lambda_a*S1 - (gamma_h + mu_h)*E1
     dA1 = kappa_c*A0 + pa*gamma_h*E1 + pa*gamma_h*G1 - (delta + mu_h)*A1
@@ -347,7 +355,7 @@ initial_state <- c(Sm = 10000000, # susceptible mosquitoes
 )
 # Country-specific parameters should be obtained from literature review and expert knowledge
 parameters <- c(a = 0.3, # human biting rate
-                b_a = 0.4, # probability of transmission from mosquito to adult human
+                b_a = 0.35, # probability of transmission from mosquito to adult human
                 b_c = 0.48, # probability of transmission from mosquito to child human under the age of five (b_a*1.2)
                 c = 0.4, # probability of transmission from human to mosquito
                 r = 1/7, # rate of loss of infectiousness after treatment
@@ -409,7 +417,7 @@ df |>
     y = "Incidence", 
     title = "Daily malaria incidence in Zimbabwe",
     colour = "Population",
-    caption = str_wrap("This plot illustrates how incidence differs between the two age groups. Among children under the age of five years incidence decreases as they age out of this group and acquire immunity. In addition, we see that children under the age of five are a significant contribution to the burden of infection in Zimbabwe. Source: Model output.")
+    caption = str_wrap("This plot illustrates how incidence differs between the two age groups. Among children under the age of five years, incidence decreases as they age out of this group and acquire immunity. In addition, we see that children under the age of five are a significant contribution to the burden of infection in Zimbabwe. Source: Model output.")
   ) +
   scale_x_date(
     date_breaks = "3 years",
@@ -417,6 +425,8 @@ df |>
   )  # Set x-axis breaks to multiples of 3 years
 
 ```
+### Policy implications
 
+By accounting for age specifically, policymakers can develop scenarios for vector control interventions targeted to certain age groups, such as ITN distribution campaigns in schools. Age-structured models can also allow decison makers to assess the impact of interventions such as intermittent preventive treatment in infants (IPTi) or seasonal malaria chemoprevention (SMC).
 
 :::

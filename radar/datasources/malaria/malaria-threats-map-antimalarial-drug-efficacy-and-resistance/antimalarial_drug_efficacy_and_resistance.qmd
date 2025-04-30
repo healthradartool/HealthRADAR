@@ -139,66 +139,218 @@ Download the data from the link and read in a sheet. Sometimes the data needs to
 
 <h2>How to plot this data?</h2>
 
--   Line plots of the annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
+To access the specific data used in the visualisations:
 
--   Line plots of the ongoing annual reported drug resistance cases for countries in Africa, South America and Asia for the period 2010 - 2023
+1.  Navigate to the [Malaria Threats Map page](https://apps.who.int/malaria/maps/threats/)
 
--   Line plots of the molecular marker studies for countries in Africa, South America and Asia for the period 2010 - 2023
+2.  Below the right-most window labelled 'Data Download', click on the 'DOWNLOAD DATA' button.
 
--   Line plots of ongoing molecular marker studies for countries in Africa, South America and Asia for the period 2020 - 2023
+3.  Select the 'Antimalarial drug efficacy and resistance' tile.
+
+4.  Select 'Therapeutic efficacy studies' from the dropdown menu.
+
+5.  Select 'ADD TO DOWNLOAD', and then select 'NEXT STEP'. Follow the prompts to download your file.
+
+```{r}
+library(readxl)
+library(EnvStats)
+library(tidyverse)
+library(rdhs)
+library(ggrepel)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(whowmr)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(forcats)
+source(here::here("radar/theme_health_radar.R"))
+
+# Define the elimination 8 countries
+e8_countries <- c("Botswana", "Eswatini", "Namibia", "South Africa", "Angola", "Mozambique", "Zambia", "Zimbabwe")
+
+# Read data from an Excel file, specifically from the "Data" sheet
+data <- readxl::read_xlsx("data/MTM_THERAPEUTIC_EFFICACY_STUDY_20241216.xlsx",
+                          sheet = "Data")
+
+# Convert specific columns to numeric type
+data$`POSITIVE_DAY_3 (days)` <- as.numeric(data$`POSITIVE_DAY_3 (days)`)
+data$TREATMENT_FAILURE_PP    <- as.numeric(data$TREATMENT_FAILURE_PP)
+data$TREATMENT_FAILURE_KM    <- as.numeric(data$TREATMENT_FAILURE_KM)
+
+# Reshape the data from wide to long format, selecting columns 12 to 16
+dat_long <- data |> 
+  pivot_longer(12:16, names_to = "Indicator", values_to = "Value") |> 
+  filter(COUNTRY_NAME %in% e8_countries)  # Filter rows to include only E8 countries
+
+# Filter the long data for treatment failure per protocol (PP)
+dat_trt_pp <- dat_long |> filter(Indicator == "TREATMENT_FAILURE_PP")
+
+# Filter the long data for sample size
+dat_sample <- dat_long |> filter(Indicator == "SAMPLE_SIZE")
+
+```
+
+A stacked bar plot is a useful way of visualising a total value that is made up of a number of contributions. Here, the total number of patients that completed a MTM therapeutic efficacy study per year between 2010 and 2021 are visualised, with the contributions from each of four of the E8 countries highlighted.
+
+```{r}
+# Number of individuals that completed a study in the e8 countries in a given year
+ggplot(dat_sample, aes(x = YEAR_END, y = Value, fill = COUNTRY_NAME)) +
+  geom_bar(stat = "identity", position = "stack") +
+  # Apply the custom fill scale for Country
+  scale_fill_manual_health_radar() +  
+  # Apply the custom radar theme
+  theme_health_radar() + 
+  # Center title
+  theme(plot.title.position = "plot") +
+  # Add labels and title to the plot
+  labs(
+    title = "Number of patients that completed a MTM therapeutic efficacy study \n (2010-2021)",
+    y = "Number of Patients",
+    x = "Year",
+    fill = "Country",
+    caption = str_wrap("The number of patients that completed a Malaria Threats Map Therapeutic Efficacy Study between 2010 and 2021, for any drug. This excludes all patients that withdrew or were lost to follow-up. Contributions vary by country and year, with Zimbabwe having the highest number of patients complete the study for any year in 2010 (768 patients), and the most patients completing the study across E8 countries in 2015 (1039 patients). Source: Malaria Threats Map Therapeutic Efficacy Study.", width = 85)
+  ) 
+```
+
+The percentage of patients who experienced treatment failure at different Zimbabwean sites can be visualised using a faceted bar plot.
+
+```{r}
+# Filter the data for Zimbabwe only, and remove sites Gokwe and Chiredzi - missing data
+filt_data = dat_trt_pp |> filter(COUNTRY_NAME == "Zimbabwe" & !(SITE_NAME %in% c("Gokwe", "Chiredzi")), DRUG_NAME == "Artemether-lumefantrine")
+# Define a single color for the bars
+single_color <- "#1b9e77"
+
+# Plot the data as a bar plot
+ggplot(filt_data, aes(x = as.factor(YEAR_END), y = Value, fill = single_color)) +
+  # Create bar plot with no legend
+  geom_bar(stat = "identity", position = "dodge", show.legend = FALSE) + 
+  # Use the health radar color scheme
+  scale_fill_manual_health_radar() +
+  # Set y-axis ticks to increment by 2
+  scale_y_continuous(breaks = seq(0, max(filt_data$Value, na.rm = TRUE), by = 2)) +  
+  # Facet the plot by SITE_NAME, creating 6 subplots
+  facet_wrap(~ SITE_NAME) +
+  # Apply the health radar theme
+  theme_health_radar() +
+  # increase separation between panels
+  theme(panel.spacing = unit(1, "lines")) +
+  # Add titles and labels
+  labs(
+    title = "Percentage of patients with treatment failure (2010, 2014 and 2017)",
+    x = "Year",
+    y = "Percentage of Patients",
+    caption = str_wrap("The percentage of patients with treatment failure in Artemether-lumefantrine drug trials ending in the years 2010, 2014 and 2017, for trials run at selected sites in Zimbabwe. Note that the y-axis ranges from 0% to 9.1%. This maximum percentage of patients with treatment failure (9.1%) occurs at the Beitbridge site in 2010. At least one trial is completed at each site with an observed treatment failure of 0%. It should be noted that the number of patients who completed each trial differs drastically between trials, with the minimum being 13 at the Uzumba-Maramba-Pfungwe site in 2017, and the maximum being 109 participants at the Mutasa site in 2010. This impacts the probability of observing a patient with treatment failure. Source: Malaria Threats Map Therapeutic Efficacy Study.", width = 100))
+
+# Is the treatment working nearly perfectly, or is there some other factor potentially at play with a number of sites having treatment failure of 0% in 2017? There is no missing data (i.e. these aren't NaNs), and the sample sizes range between 13 and 103, so they are mostly respectable. I feel like I may have missed a mitigating factor which should be mentioned in the caption
+```
+
+A lollipop plot can be used to visualise the percentage of patients who experienced treatment failure on different drugs, in different countries. A problem is encountered, however, if multiple trials in the same country had the same percentage of patients with treatment failure. Jittering is used to solve this problem, which decreases the visual appeal but ensures that important information is not obscured.
+
+```{r}
+library(stringr)
+
+# Set seed to ensure identical jittering every time the plot is built
+set.seed(18)
+
+dat_trt_pp |> 
+  # Filter the data to include only rows where Value is not NA and YEAR_END is 2015
+  filter(is.na(dat_trt_pp$Value) == FALSE, YEAR_END == 2015) |>
+  # Create ggplot object with the filtered data
+  ggplot(aes(x = fct_reorder(COUNTRY_NAME, Value, .na_rm = FALSE),  # Reorder COUNTRY_NAME based on Value
+                          y = Value,             # Set y-axis to Value
+                          color = DRUG_NAME)) +  # Color points by DRUG_NAME
+  # Add grey segments from y=0 to the value for each country
+  geom_segment(aes(x = COUNTRY_NAME, xend = COUNTRY_NAME, y = 0, yend = Value), color = "grey") +  
+  # Add jittered points to the plot, sized at 4
+  geom_jitter(size = 4, height = 0, width = 0.2) +
+  # Flip the coordinates for a horizontal bar plot
+  coord_flip() +  
+  # Apply custom color scale
+  scale_colour_manual_health_radar() +
+  # Apply custom theme
+  theme_health_radar() +
+  # Shift the title position
+  theme(plot.title.position = "plot") +
+  # Add labels and title to the plot
+  labs(
+    title = "Percentage of patients with treatment failure (2015)",
+    caption = str_wrap(
+      "The percentage of patients with treatment failure in trials ending in the year 2015, in selected E8 countries, highlighting the drug which was being tested. Note that the x-axis ranges from 0% to 13.6%. Each country has at least two trials which showed no evidence of treatment failure. The highest percentage of patients who experienced treatment failure (13.6%) was observed in an Angolan trial for the drug Artemether-lumefantrine. It should be noted that the number of patients who completed each trial differs drastically between trials, with the minimum being 56 at an Angolan site trialing the drug Artesunate-amodiaquine, and the maximum being 145 participants at a Zambian site trialing the drug Artemether-lumefantrine. This impacts the probability of observing a patient with treatment failure. Source: Malaria Threats Map Therapeutic Efficacy Study.", 
+      width = 65),
+    x = "",
+    y = "Percentage", 
+    colour = "Drug")
+```
 
 
 ## Modelling Example 
 
 <h2>How can this data be used in disease modelling?</h2>
 
-### Preparing the data
-
-Twenty therapeutic efficacy studies following treatment with Artemether-lumefantrine were done in Zimbabwe between 2010 and 2017.
-
-```{r}
+```{r, echo = FALSE}
 
 library(readxl)
 library(EnvStats)
 library(tidyverse)
-source(here::here("radar/theme_health_radar.R"))
+library(deSolve)
 
-therapeutic_eff_data <- read_excel("MTM_THERAPEUTIC_EFFICACY_STUDY_20250324.xlsx",
+```
+
+
+Therapeutic efficacy studies assess how well antimalarial drugs clear infections and are an indicator of treatment success. Case management with Artemisinin-based Combination Therapy (ACTs) is a critical part of any country's control strategy, and as such, representing it accurately in the disease model is key. Twenty therapeutic efficacy studies following treatment with Artemether-lumefantrine were done in Zimbabwe between 2010 and 2017. We use these to inform the treatment dynamics in the health system.
+
+### Preparing the data
+
+We calculate the mean probability of treatment failure in each year to inform the model.
+
+```{r}
+
+# Load the data
+therapeutic_eff_data <- read_excel("data/MTM_THERAPEUTIC_EFFICACY_STUDY_20250324.xlsx",
            sheet = 2) |>  
   mutate(TREATMENT_FAILURE_PP = as.numeric(TREATMENT_FAILURE_PP)/100)
 
+# Calculate mean probability of treatment failure over time
+mean_pf <- therapeutic_eff_data |> 
+  group_by(YEAR_END) |> 
+  summarise(mean = mean(TREATMENT_FAILURE_PP)) |>  
+  mutate(time = c(365, 365*5, 365*8)) # to get time series for 2010, 2014 and 2017
+
 therapeutic_eff_data |>  
-  ggplot() +
-  geom_point(aes(x = YEAR_END, y = TREATMENT_FAILURE_PP, size = SAMPLE_SIZE, colour = as.factor(YEAR_END))) +
-  scale_y_continuous(limits = c(0, 0.1), labels = scales::percent) +
-  scale_size_continuous(range = c(0, 5)) +
+  ggplot(aes(x = as_factor(YEAR_END), y = TREATMENT_FAILURE_PP)) +
+  geom_boxplot(aes(colour = as.factor(YEAR_END)), outlier.shape = NA) +
+  stat_summary(aes(colour = "Mean"), fun = mean) +
+  geom_jitter(aes(colour = as.factor(YEAR_END)), width = 0.15) +
+  scale_y_continuous(labels = scales::percent) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   labs(title = "Patients with treatment failure in Zimbabwe",
-       subtitle = str_wrap("Data from 20 Therapeutic Efficacy Studies among patients infected with P. falciparum"),
+       subtitle = str_wrap("Data from 20 Therapeutic Efficacy Studies"),
        x = "Year",
-       y = "Percentage",
-       colour = "Year", 
-       size = "Study Sample size",
-       caption = "Source: Malaria Threats Map.")
+       y = "Proportion that failed treatment",
+       colour = "Year and Variable", 
+       caption = str_wrap("Median and Interquartile values from study results indicated by boxplot. We see that mean treatment failure is decreasing over time, from 3% in 2010 to almost 0% in 2017. Source: Malaria Threats Map."))
   
 ```
 
 
-### Model Assumptions
+### Model assumptions
 
-Using a simple model, we demonstrate how treatment failure is incorporated, and plot the values for incidence. We start with an initial value $pf$ of 3% treatment failure among patients infected with *Plasmodium falciparum* in Zimbabwe. We assume that patients are treated, experience treatment failure and express clinical symptoms again within the study follow up period of 28 days (see parameters for $r$ and $sigma$).
+Using a simple model, we demonstrate how treatment failure is incorporated, and plot the values for incidence. We start with the time-dependent parameter $pf(t)$ for treatment failure among patients infected with *Plasmodium falciparum* in Zimbabwe. We assume that patients are treated, experience treatment failure and express clinical symptoms again within the study follow up period of 28 days (see parameters for $r$ and $sigma$).
 
 ```{r}
-library(deSolve)
 
 # Time points for the simulation
 Y = 15 # Years of simulation
 times <- seq(0, 365*Y, 1) # time in days
 
+# Create a time-dependent function for treatment failure
+pf_function <- approxfun(mean_pf$time, mean_pf$mean, rule = 2)  # linear interpolation
 
 # Define basic dynamic Human-static Vector model ####
-seirs <- function(times, start, parameters)  {
+seirs <- function(times, start, parameters, pf_function)  {
   with(as.list(c(parameters, start)), {
     P = S + E + A + C + Tr + Tf + R + G
     
@@ -209,6 +361,7 @@ seirs <- function(times, start, parameters)  {
     Infectious <- C + Tf + zeta_a*A + zeta_t*Tr # infectious reservoir
     lambda = ((a^2*b*c*m*Infectious/P)/(a*c*Infectious/P+mu_m)*(gamma_m/(gamma_m+mu_m)))*seas.t
     
+     pf_t <- pf_function(times)
 
     # Differential equations/rate of change
     
@@ -217,8 +370,8 @@ seirs <- function(times, start, parameters)  {
     dA = pa*gamma_h*E + pa*gamma_h*G +omega*C - (delta + mu_h)*A
     dC = (1-pa)*gamma_h*E + (1-pa)*gamma_h*G + sigma*Tf - (tau + omega + mu_h)*C
     dTr = tau*C - (r + mu_h)*Tr
-    dTf = pf*r*Tr - (sigma + mu_h)*Tf
-    dR = delta*A + (1-pf)*r*Tr - (lambda + rho + mu_h)*R
+    dTf = pf_t*r*Tr - (sigma + mu_h)*Tf
+    dR = delta*A + (1-pf_t)*r*Tr - (lambda + rho + mu_h)*R
     dG = lambda*R - (gamma_h + mu_h)*G
      
     dCInc = lambda*(S+R)
@@ -231,14 +384,14 @@ seirs <- function(times, start, parameters)  {
 # Input definitions ####
 
 #Initial values
-start <- c(S = 5500000, # susceptible humans
-           E = 3000000, # exposed and infected humans
-           A = 1500000, # asymptomatic and infectious humans
-           C = 1500000, # clinical and symptomatic humans
-           Tr = 1000000, # treated humans
-           Tf = 50000, # humans that have had treatment failure
-           R = 2000000, # recovered and semi-immune humans
-           G = 1550000, # secondary-exposed and infected humans
+start <- c(S = 550000, # susceptible humans
+           E = 300000, # exposed and infected humans
+           A = 150000, # asymptomatic and infectious humans
+           C = 155000, # clinical and symptomatic humans
+           Tr = 80000, # treated humans
+           Tf = 20000, # treated humans that have had treatment failure
+           R = 200000, # recovered and semi-immune humans
+           G = 155000, # secondary-exposed and infected humans
            CInc = 0 # cumulative incidence           
            ) 
 
@@ -250,19 +403,19 @@ parameters <- c(a = 0.28, # human feeding rate per mosquito
            m = 3, # mosquito-human ratio
            gamma_m = 1/10, # rate of onset of infectiousness in mosquitoes
            mu_m = 1/12, # natural birth/death rate in mosquitoes
-            mu_h = 1/(59*365), # natural birth/death rate in humans
-           gamma_h = 1/10, # rate of onset of infectiousness in humans
+           mu_h = 1/(59*365), # natural birth/death rate in humans
+           gamma_h = 1/12, # rate of onset of infectiousness in humans
            r = 1/7, # rate of loss of infectiousness after treatment
            rho = 1/365, # rate of loss of immunity after recovery
            delta = 1/150, # natural recovery rate
-           omega = 1/5, # rate of loss of symptoms in untreated clinical infection
+           omega = 1/10, # rate of loss of symptoms in untreated clinical infection
            zeta_a = 0.2, # relative infectiousness of asymptomatic infections
            zeta_t = 0.1, # relative infectiousness of treated infections
-            tau = 1/3, # treatment seeking rate
-            sigma = 1/21, # rate of symptomatic recurrence after treatment failure
-           pa = 0.2, # probability of asymptomatic infection
-            pf = 0.03, # probability of treatment failure
-           amp = 0.5, # amplitude
+           tau = 1/3, # treatment seeking rate
+           sigma = 1/21, # rate of symptomatic recurrence after treatment failure
+           pa = 0.35, # probability of asymptomatic infection
+           #pf = 0.0228, # probability of treatment failure
+           amp = 0.45, # amplitude
            phi = 200 # phase angle; start of season
 )
 
@@ -270,7 +423,8 @@ parameters <- c(a = 0.28, # human feeding rate per mosquito
 out <- ode(y = start, 
            times = times, 
            func = seirs, 
-           parms = parameters)
+           parms = parameters,
+           pf_function = pf_function)
 
 
 # Post-processing model output into a dataframe
@@ -279,10 +433,10 @@ df <- as_tibble(as.data.frame(out)) |>
   mutate(P = S + E + A + C + Tr + Tf + R + G,
          Inc = c(0, diff(CInc))) |> 
   pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
-  mutate(date = ymd("2010-01-01") + time)
+  mutate(date = ymd("2009-01-01") + time)
 
 df |> 
-  filter(variable == "Inc") |> 
+  filter(variable %in% "Inc", date > ymd("2009-06-01")) |> 
   ggplot() +
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
@@ -292,7 +446,7 @@ df |>
     title = "Country wide daily incidence in Zimbabwe", 
     x = "Year",
     y = "Incidence",
-    caption = str_wrap("Incidence follows the seasonal pattern of malaria. Source: Model output")
+    caption = str_wrap("Incidence follows the seasonal pattern of malaria, but has an overall decreasing trend as treatment failure decreases over time, and more infected individuals are successfully cured. Source: Model output")
   )  +
   theme(legend.position = "none")
 
@@ -304,31 +458,49 @@ To account for the uncertainty in the probability of treatment failure $pf$, we 
 
 ```{r}
 
-runs <- 100
+set.seed(123)
+
+runs <- 50
 results_list <- vector("list", runs)
 
 for (i in 1:runs) {
   
-  # Sample pf from a triangular distribution, assume mode to be the median
-  pf_sampled <- rtri(1, min = min(therapeutic_eff_data$TREATMENT_FAILURE_PP), mode = median(therapeutic_eff_data$TREATMENT_FAILURE_PP), max = max(therapeutic_eff_data$TREATMENT_FAILURE_PP))
+  # Assume mode to be the mean for triangular distribution sampling
+  
+  pf_data <- therapeutic_eff_data |> 
+  group_by(YEAR_END) |> 
+  summarise(
+    min = min(TREATMENT_FAILURE_PP), 
+    mode = mean(TREATMENT_FAILURE_PP),
+    max = max(TREATMENT_FAILURE_PP)
+  )
 
-  # Replace "pf" in the parameters vector with pf_sampled 
-  parameters["pf"] <- pf_sampled  
+  # Sample values probability of treatment failure from a triangular distribution for each year
+  pf_data <- pf_data |>  
+    mutate(
+    pf_sampled = pmap_dbl(list(min, mode, max), ~ rtri(1, min = ..1, mode = ..2, max = ..3)),
+    time = c(365, 365*5, 365*8) # to get time series for 2010, 2014 and 2017
+  )
 
-  sens_out <- ode(y = start, 
+  # Time-dependent interpolation for sampled values
+ pf_run_function <- approxfun(pf_data$time, pf_data$pf_sampled, rule = 2)  # linear interpolation
+
+ # Run the ODE
+  sens_out <- ode(y = start,  
            times = times, 
            func = seirs, 
-           parms = parameters)
+           parms = parameters,
+           pf_function = pf_run_function)
   
   # Store results
   results_list[[i]] <- as_tibble(as.data.frame(sens_out)) |> 
     mutate(P = S + E + A + C + Tr + Tf + R + G,
          Inc = c(0, diff(CInc))) |> 
     pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
-    mutate(date = ymd("2010-01-01") + time,
-          run = i,
-          pf = pf_sampled)
+    mutate(date = ymd("2009-01-01") + time,
+          run = i)
 }
+
 
 # Combine all runs into one dataframe
 sens_df <- bind_rows(results_list)
@@ -336,23 +508,34 @@ sens_df <- bind_rows(results_list)
 median_sens <- sens_df |> 
   group_by(time) |> 
   filter(variable == "Inc") |> 
-  summarise(median_Inc = median(value), .groups = "drop") |>  
-  mutate(date = ymd("2010-01-01") + time)
+  summarise(median_Inc = median(value), 
+            lower_Inc = quantile(value, 0.05),
+            upper_Inc = quantile(value, 0.95),
+            .groups = "drop") |> # plot median values and 95% confidence intervals
+  mutate(date = ymd("2009-01-01") + time)
 
 sens_df |> 
-  filter(variable == "Inc") |> 
+  filter(variable == "Inc", date > ymd("2009-06-01")) |> 
   ggplot() +
-  geom_line(aes(x = date, y = value, colour = as_factor(run), group = run), alpha = 0.5) +
-  geom_line(data = median_sens, aes(x = date, y = median_Inc), linewidth = 0.5) +
+  #geom_line(aes(x = date, y = value, colour = as_factor(run), group = run), alpha = 0.5) + # if you want to see individual runs
+  geom_ribbon(data = median_sens |> filter(date > ymd("2009-06-01")), aes(x = date, ymin = lower_Inc, ymax = upper_Inc), 
+              fill = theme_health_radar_colours[12], alpha = 0.5) +
+  geom_line(data = median_sens |> filter(date > ymd("2009-06-01")), aes(x = date, y = median_Inc, linetype = "Median"), linewidth = 0.5) +
   theme_health_radar() +
   scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
   labs(
-    title = "Country wide daily incidence in Zimbabwe", 
-    caption = str_wrap("Sensitivity analysis of values for treatment failure sampled between 0 and 9%"),
+    title = "Median country-wide daily incidence in Zimbabwe", 
+    subtitle = str_wrap("Shaded area shows 5–95% range across 50 model runs."),
+    caption = str_wrap("Sensitivity analysis of values for treatment failure in each year. Sampling from within the minimum and maximum ranges provided does not appear to significantly cause changes to incidence. Source: Model output."),
     x = "Year",
-    y = "Incidence") +
-  guides(colour = "none")
+    y = "Incidence",
+    linetype = "") +
+  guides(colour = "none") 
 
 ```
+
+### Policy implications
+
+Treatment failure and antimalarial drug resistance can lead to prolonged infectious periods, recrudescence, or higher onward transmission, all of which increase the burden on the health system. Policymakers may need to evaluate the performance of first- and second-line therapies based off of surveillance and other insights from therapeutic efficacy studies, and perhaps recommend changes to treatment guidelines such as the use of triple ACTs or monotherapies.
 
 :::

@@ -72,7 +72,7 @@ library(readxl)
 library(tidyverse)
 
 # Load insecticide treated nets data
-ihme_nets <- read_excel(path = "datasets/IHME_INSECTICIDE_TREATED_BEDNETS_SUB_SAHARAN_AFRICA_1999_2008.xls")
+ihme_nets <- read_excel(path = "data/IHME_INSECTICIDE_TREATED_BEDNETS_SUB_SAHARAN_AFRICA_1999_2008.xls")
 
 # Pull the names of countries
 ihme_nets |>  
@@ -101,7 +101,7 @@ ihme_nets |>
 This data set contains number/percents/rates of malaria deaths, prevalence and incidence in the following countries:
 
 ```{r, echo = TRUE}
-observed_cases <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) 
+observed_cases <- read_csv("data/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) 
 
 observed_cases |>  
   pull(location_name) |>  
@@ -121,155 +121,198 @@ observed_cases |>
 
 <h2>How to plot this data?</h2>
 
-We display the % ITN ownership in E8 countries with lower and upper bounds.
+To access the data used in the next two plots:
 
-```{r, echo = TRUE}
-ihme_nets |>  
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |>  
+1.  Navigate to the ['Sub-Saharan Africa Insecticide-Treated Bed Nets 1999-2008' page](https://ghdx.healthdata.org/record/ihme-data/sub-saharan-africa-insecticide-treated-bed-nets-1999-2008) on the IHME website.
+
+2.  Select the tab labelled 'Files (1)'.
+
+3.  Click on the link names 'Insecticide-treated bed nets (Sub-Saharan Africa) 1999-2008' to download the file.
+
+```{r}
+# Load insecticide treated nets data
+ihme_nets <- read_excel(path = "data/IHME_INSECTICIDE_TREATED_BEDNETS_SUB_SAHARAN_AFRICA_1999_2008.xls")
+
+# Pull the names of countries
+ihme_nets |> 
+  pull(Country) |> 
+  unique()
+```
+
+```{r}
+library(gt)
+
+# define the E8 countries
+e8_countries <- c("Angola", "Botswana","Eswatini", "Mozambique", "Namibia", "South Africa", "Zambia",  "Zimbabwe")
+
+ihme_nets |> 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |> 
   filter(Country %in% e8_countries) |> 
+  head() |> 
+  gt()
+```
+
+As these data are estimated and lower and upper bounds are provided, a line plot is used to show the change in estimated ITN ownership over time, with ribbons representing the confidence intervals.
+
+```{r}
+# Modify the Country names to replace "Swaziland" with "Eswatini"
+ihme_nets |> 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |> 
+  # Filter the data for Frontline 4 countries
+  filter(Country %in% c("Namibia", "South Africa", "Eswatini", "Botswana")) |> 
+  # Create a ggplot object with the filtered data
   ggplot(aes(x = Year, y = `% ITN Ownership`, color = Country)) +
+  # Add lines to the plot, coloured by Country
   geom_line(linewidth = 1) +
+  # Add ribbons to the plot to represent the confidence intervals, filled by country
   geom_ribbon(aes(ymin = `% ITN Ownership Lower Bound`, ymax = `% ITN Ownership Upper Bound`, fill = Country), alpha = 0.2) +
-  scale_colour_manual_health_radar() +  # Apply manual color scale for 'color' aesthetic (lines)
-  scale_fill_manual_health_radar() +    # Apply manual color scale for 'fill' aesthetic (ribbon fill)
+  # Apply custom colour scale for lines
+  scale_colour_manual_health_radar() +  
+  # Apply custom fill scale for ribbons
+  scale_fill_manual_health_radar() +   
+  # Apply custom theme
   theme_health_radar() +
+  # Add labels and title to the plot
   labs(
-    title = "Estimated ITN Ownership",
-    subtitle = "With confidence bands",
+    title = "Estimated ITN ownership in Frontline 4 countries (1999-2008)",
     x = "Year",
     y = "ITN Ownership (%)",
     color = "Country",
-    fill = "Country",  # Added 'fill' label for the ribbon shading
-    caption = str_wrap("The plot illustrates the estimated ITN ownership in E8 countries from 1999 to 2008. Lines indicate the ownership estimates, while shaded areas represent the confidence bands. The uncertainty in ITN ownership remains fairly consistent across all countries. South Africa and Eswatini had the lowest levels of ITN ownership, but after 2004, there is a noticeable rise in ownership in the other countries, with Zambia showing the higest increase.", width = 85)
-  )
+    fill = "Country",  
+    caption = str_wrap(
+      "The estimated ITN ownership in the Frontline 4 countries from 1999 to 2008. Lines indicate the ownership estimates, while shaded areas represent the confidence bands. The uncertainty in ITN ownership increases over time for all countries. South Africa and Eswatini had the lowest levels of ITN ownership, but after 2004, there is a significant rise in ownership in Botswana and Namibia. Source: Institute for Health Metrics and Evaluation (IHME). Available from: https://doi.org/10.6069/DEE3-E887", 
+      width = 100))
 ```
 
-Trend in % ITN Ownership among at-risk populations.
-
-```{r, echo = TRUE}
-ihme_nets |>  
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |>  
-  filter(Country %in% e8_countries) |> 
-  ggplot(aes(x = Year, y = `% ITN Ownership Pop. At Risk`, color = Country)) +
-  geom_line(linewidth = 1) +
-  scale_colour_manual_health_radar() + 
-  theme_health_radar() +
-  labs(
-    title = "Estimated ITN Ownership in populations at-risk",
-    x = "Year",
-    y = "ITN Ownership in Pop. At Risk (%)",
-    color = "Country",
-    caption = str_wrap("The plot depicts estimated ITN ownership among at-risk populations from 1998 to 2008 in E8 countries. The rise in ITN ownership in all countries, with Zambia, Botswana and Zimbabwe showing the highest increases followed by Namibia, Mozambique and Angola. South Africa and Eswatinin remain lower than 20 % ownership in populations at risk.", width = 85)
-  )
-```
-
-ITN use among U5s in at-risk populations vs ITN Use in U5s.
-
-```{r, echo = TRUE}
-ihme_nets |>  
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |>  
-  filter(Country %in% e8_countries) |> 
-  ggplot(aes(x = `% ITN Use U5`, y = `% ITN Use U5 Pop. At Risk`, color = Country)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
-  scale_colour_manual_health_radar() + 
-  theme_health_radar() +
-  labs(
-    x = "ITN Use U5 (%)",
-    y = "ITN Use U5 Pop. At Risk (%)",
-    color = "Country",
-    fill = "Country",  # Added 'fill' label for the ribbon shading
-    caption = str_wrap("The plot depicts estimated ITN use among children under five years old in at-risk populations with respect to ITN usage in children under five in E8 countries. Zambia, Mozambique and Angola show an equal rise in ITN use among children under five in populations at risk as ITN usage increases in children under five years old. In contrast, The other countries show higher usage among children under five years old in at risk populations despite lower ITN usage in children under five.", width = 85)
-  )
-```
-
-Scale-up of LLIN distribution.
-
-```{r, echo = TRUE}
-ihme_nets |>  
-  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country),
-         Category = case_when(Country == "Zambia" ~ "1",
-                         Country %in% c("Angola", "Mozambique", "Namibia", "Zimbabwe") ~ "2",
-                         Country %in% c("Botswana", "Eswatini", "South Africa") ~ "3"
-                         ) |>  as.factor()
-         ) |>  
-  filter(Country %in% e8_countries) |> 
-  group_by(Category) |>  
-  ggplot() +
-  geom_bar(aes(x = Year, y = `LLINs Distributed Per Capita`, fill = Category), stat = "identity", position = "dodge") +
-  facet_wrap(~Country, scales = "fixed") +
-  scale_fill_manual_health_radar() +   
-  theme_health_radar() +
-  labs(
-    x = "Year",
-    y = "LLINs Distributed Per Capita",
-    fill = "Category",
-    caption = str_wrap("The plot shows estimate of annual % of LLINs distributed in E8 countries during the 1998 to 2008 period. Despite the low levels of distribution, South Africa has distributed LLINs relatively consistently through the years. There is a significant scale-up in LLIN distribution in all other countries, with Mozambique showing a consistent rise in distribution. Zambia has the highest distribution of LLINs per capita followed by Mozambique, Namibia, Zimbabwe and Angola, whereas Botswana, Eswatini and South Africa have the least LLINs distributed.", width = 85)
-  )
-```
-
-Here we show the trends in malaria deaths, percent prevalence and incidence rates during the 2000 to 2021 period.
+No bounds are provided for estimated ITN ownership in at-risk populations, so a simple line graph is used to represent these data.
 
 ```{r}
+# Modify the Country names to replace "Swaziland" with "Eswatini"
+ihme_nets |> 
+  mutate(Country = ifelse(Country == "Swaziland", "Eswatini", Country)) |> 
+  # Filter the data for E8 countries
+  filter(Country %in% e8_countries) |> 
+  # Create a ggplot object with the filtered data
+  ggplot(aes(x = Year, y = `% ITN Ownership Pop. At Risk`, color = Country)) +
+  # Add lines to the plot, coloured by Country
+  geom_line(linewidth = 1) +
+  # Apply custom colour scale
+  scale_colour_manual_health_radar() + 
+  # Apply custom theme
+  theme_health_radar() +
+  # Add labels and title to the plot
+  labs(
+    title = "Estimated ITN ownership in at-risk populations (1998-2008)",
+    x = "Year",
+    y = "ITN Ownership (%)",
+    colour = "E8 Country",
+    caption = str_wrap(
+      "The estimated ITN ownership among populations at-risk for malaria in Elimination 8 (E8) countries, from 1998 to 2008. The rise in ITN ownership is estimated in all countries, with Zambia, Botswana and Zimbabwe showing the highest percent ownership in 2008, followed by Namibia, Mozambique and Angola. South Africa and Eswatini maintain less than 20% ownership in at-risk populations. Source: Institute for Health Metrics and Evaluation (IHME). Available from: https://doi.org/10.6069/DEE3-E887", 
+      width = 90))
+```
 
-observed_cases |>  
-  as.data.frame() |>  
-  filter(measure_name == "Deaths", metric_name == "Number") |>  
-  group_by(location_name) |>  
+The 'observed_cases' data can be accessed as follows:
+
+1.  Navigate to the [IHME data portal](https://vizhub.healthdata.org/gbd-results/).
+
+2.  In the search panel on the left-hand side, make the following selections:
+
+    -   Set GBD Estimate to 'Cause of death or injury'.
+
+    -   Select the measures 'Prevalence' , 'Incidence' and 'Deaths'.
+
+    -   Select the metrics 'Number', 'Percent' and 'Rate'.
+
+    -   Set Cause to 'Malaria'.
+
+    -   For Location, select the E8 Countries.
+
+    -   Set Age to 'All Ages'.
+
+    -   Set Sex to 'Both'.
+
+    -   Select the years from 2000 to 2021.
+
+3.  Press the download button and follow the prompts to download your file.
+
+```{r}
+observed_cases <- read_csv("data/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) |>
+  mutate(location_name = ifelse(location_name == "Swaziland", "Eswatini", location_name))
+
+observed_cases |> 
+  pull(location_name) |> 
+  unique()
+```
+
+```{r}
+library(gt)
+
+observed_cases |> 
+  filter(location_name == "South Africa") |>
+  head() |> 
+  gt()
+
+```
+
+A stacked bar plot has been used to show the estimated number of malaria deaths in the E8 countries from 2000 to 2021.
+
+```{r}
+# Convert the observed_cases data to a data frame
+observed_cases |> 
+  as.data.frame() |> 
+  # Filter the data for deaths and rate metrics
+  filter(measure_name == "Deaths", metric_name == "Rate") |> 
+  # Group the data by location
+  group_by(location_name) |> 
+  # Create a ggplot object with the filtered and grouped data
   ggplot() +
+  # Add stacked bar plots to the chart, filled based on location
   geom_bar(aes(x = year, y = val, fill = location_name), stat = "identity", position = "stack") +
+  # Apply custom fill colour scale
   scale_fill_manual_health_radar() +   
+  # Apply custom theme
   theme_health_radar() +
+  # Add labels and title to the plot
   labs(
+    title = "Estimated malaria death rate (2000-2021)",
     x = "Year",
-    y = "Deaths",
-    fill = "Country",
-    caption = str_wrap("This bar plot shows Institute of Health Metrics and Evaluation (IHME) estimates of the total number of deaths caused by malaria in Elimination 8 (E8) countries during the 2000 to 2021 period. The largest number of deaths is recorded in the Republic of Mozambique and Angola, followed by the Republic of Zimbabwe and Zambia whereas the remaining countries show substantially less deaths recorded during this period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
-  )
+    y = "Deaths (rate per 100 000)",
+    fill = "E8 Country",
+    caption = str_wrap(
+      "The Institute of Health Metrics and Evaluation's (IHME) estimates of the malaria death rate in Elimination 8 (E8) countries for the 2000 to 2021 period. The highest death rate is estimated for Mozambique, followed by Angola. Substantially fewer deaths are estimated for Namibia, Botswana, South Africa, and Eswatini during this period, but it should be noted that the populations at risk of malaria in countries such as South Africa, are much lower than those in countries such as Angola and Mozambique. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", 
+      width = 100))
 ```
 
-Similarly we show the percent prevalence of malaria in these countries in the following plot:
+Upper and lower bounds were again available for the estimated malaria incidence rate, so a line plot with ribbons was chosen to visualise these data.
 
-```{r, echo = TRUE}
-observed_cases |>  
-  as.data.frame() |>  
-  filter(measure_name == "Prevalence", metric_name == "Percent") |>  
+```{r}
+# Convert the observed_cases data to a data frame
+observed_cases |> 
+  as.data.frame() |> 
+  # Filter the data for incidence and rate metrics
+  filter(measure_name == "Incidence", metric_name == "Rate") |> 
+  # Create a ggplot object with the filtered data
   ggplot(aes(x = year, y = val, color = location_name)) +
+  # Add lines to the plot, coloured by location name
   geom_line(linewidth = 1) +
-  scale_colour_manual_health_radar() +  
-  scale_fill_manual_health_radar() +
-  theme_health_radar() +
-  labs(
-    title = "Estimated malaria prevalence",
-    x = "Year",
-    y = "Percent",
-    color = "Location",
-    fill = "Location",  # Added 'fill' label for the ribbon shading
-    caption = str_wrap("The plot shows the trends in estimated percentage malaria prevalence across the malaria Elimination 8 (E8) countries during the 2000 to 2021 period. Malaria prevalence in these countries have remained below 40%, with some countries such as the Republic of Mozambique and Zambia, that show a decline in prevalence. Although there was a decrease observed in the Republic Angola in 2005, prevalence remained relatively constant for a period of 5 years from 2010 to 2015 which then saw a rise in prevalence from 10% to 20%. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
-  )
-```
-
-Finally, the incidence rates are shown in as follows:
-
-```{r, echo = TRUE}
-observed_cases |>  
-  as.data.frame() |>  
-  filter(measure_name == "Incidence", metric_name == "Rate") |>  
-  ggplot(aes(x = year, y = val, color = location_name)) +
-  geom_line(linewidth = 1) +
+  # Add ribbons to the plot to represent the confidence intervals, filled based on location
   geom_ribbon(aes(ymin = lower, ymax = upper, fill = location_name), alpha = 0.2) +
+  # Apply custom colour scale for lines
   scale_colour_manual_health_radar() +  
+  # Apply custom fill scale for ribbons
   scale_fill_manual_health_radar() +
+  # Apply custom theme
   theme_health_radar() +
+  # Add labels and title to the plot
   labs(
-    title = "Estimated malaria incidence rate",
-    subtitle = "With confidence bands",
+    title = "Estimated malaria incidence rate (2000-2021)",
     x = "Year",
-    y = "Rate (cases per 1000 per year)",
-    color = "Location",
-    fill = "Location",  
-    caption = str_wrap("The plot illustrates the estimated malaria incidence rate from 2000 to 2021 in Elimination 8 (E8) countries. The lines represent incidence rate and the shaded areas show the uncertainty intervals. The Republic of Mozambique experienced malaria incidence around 40 to 60 thousand cases per 1000 per year in 2000 and has decreased to 30 to 40 thousand cases per 1000 per thousand. The Republic of Zimbabwe experiences seasonal malaria incidence with cases fluctuating along the years during the 21 year period. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", width = 85)
-  )
+    y = "Incidence (rate per 100 000)",
+    colour = "E8 Country",
+    fill = "E8 Country",  
+    caption = str_wrap(
+      "The estimated malaria incidence rate per 100 000 people from 2000 to 2021 in Elimination 8 (E8) countries. The lines show estimated incidence rate and the shaded areas show the uncertainty intervals. Mozambique is estimated to have experienced malaria incidence of 47 452.43 cases per 100 000 people in 2000, which decreased to 32 050.40 cases per 100 000 by 2021. Zimbabwe is estimated to have experienced erratic malaria incidence, with cases fluctuating over the 21 year period depicted. Note that the low incidence rates estimated in countries such as South Africa and Botswana may be related to the low proportion of their total populations living in regions in which malaria is common. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/", 
+      width = 85))
 ```
 
 ## Modelling Example
@@ -285,7 +328,7 @@ The Global Burden of Disease study has produced estimates of prevalence for mala
 ```{r}
 
 # Load data from GBD
-observed_df <- read_csv("datasets/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) |>  
+observed_df <- read_csv("data/IHME-GBD_2021_DATA-05f6b66f-1.csv", show_col_types = FALSE) |>  
   as.data.frame() |>  
   filter(measure_name == "Prevalence", metric_name == "Number", location_name == "Republic of South Africa") |>  
   rename(value = val)
@@ -438,6 +481,10 @@ geom_line(data = filter(merged_df, key == "Calibrated Projected prevalence"), ae
 Calibrating disease models to real-world data can be challenging. Methods like Approximate Bayesian Computation can be better when considering large datasets or complex models, but may be computationally expensive. You can find some examples of calibration in the literature below:
 
 -   Awine, T., & Silal, S. P. Assessing the effectiveness of malaria interventions at the regional level in Ghana using a mathematical modelling application. PLOS global public health, 2(12), e0000474 (2022). <https://doi.org/10.1371/journal.pgph.0000474>
+
+### Policy implications 
+
+In general, calibration ensures the model accurately reflects local transmission dynamics and the burden of disease. Specifically, calibrating to prevalence data ensures that we are also representing the asymptomatic burden of infection, and correctly accounting for its contribution to ongoing transmission. This allows policymakers to achieve more credible forecasting and simulate the impact of interventions targeted at the asymptomatic population such as mass testing and treating, or mass drug administration.
 
 
 :::

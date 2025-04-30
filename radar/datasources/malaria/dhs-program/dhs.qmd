@@ -125,30 +125,21 @@ options(digits=4, scipen = 9)
 ```
 
 ```{r}
-#| message: false
-#| warning: false
-
 indicators <- dhs_indicators()
-
-# Display the first 5 indicators
-#indicators[order(indicators$IndicatorId),][1:5,c("IndicatorId", "Definition")]
 
 # Find all indicators starting with ML
 all_malaria_indicators = indicators[grepl("^ML", indicators$IndicatorId), c("IndicatorId", "Definition")]
-#all_malaria_indicators
+knitr::kable(head(all_malaria_indicators))
+```
 
-# Find the definition for indicator ML_FEVT_C_AML
-#indicators[indicators$IndicatorId == "ML_FEVT_C_AML", "Definition"]
-
-
-# Find the definition for indicator ML_NETP_H_MOS
-#indicators[indicators$IndicatorId == "ML_NETP_H_MOS", "Definition"]
-
+```{r}
 tags <- dhs_tags()
 
 # Get the tags related to malaria
-#tags[grepl("Malaria", tags$TagName), ]
+knitr::kable(tags[grepl("Malaria", tags$TagName), ])
+```
 
+```{r}
 # Get the country codes of the frontline 4 of the elimination 8 countries
 all_countries = dhs_countries(returnFields=c("CountryName","DHS_CountryCode"))
 
@@ -171,7 +162,11 @@ filt_data = data1[!grepl("^\\..*", data1$CharacteristicLabel),]
 
 # Filter the data for Namibia only
 filt_data = filt_data[filt_data$CountryName == "Namibia",]
+```
 
+A faceted bar plot can be used to visualise the percentage of households with at least one insecticide-treated net (ITN) in each Namibian province at a small number of time points. 
+
+```{r}
 # Define a single color for the bars
 single_color <- "#1b9e77"
 
@@ -183,30 +178,26 @@ ggplot(filt_data, aes(x = as.factor(SurveyYear), y = Value, fill = single_color)
   scale_fill_manual_health_radar() +
   # Set y-axis ticks increment to 10
   scale_y_continuous(breaks = seq(0, max(filt_data$Value, na.rm = TRUE), by = 10)) +  
-  # Add titles and labels
-  labs(
-    title = "Households with at least one mosquito net in Namibia",
-    subtitle = "Based on subnational DHS survey data",
-    x = "Survey Year",
-    y = "Percentage of Households",
-    caption = "Source: DHS Data API - Malaria Indicator ML_NETP_H_MOS"
-  ) +
   # Facet the plot by CharacteristicLabel, with 6 columns
   facet_wrap(~ CharacteristicLabel, ncol = 6) +
   # Apply the health radar theme
   theme_health_radar() +
   # Additional theme customizations specific to this plot
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text.x = element_text(angle = 45, hjust = 0.4),
     legend.position = "none",
     panel.background = element_rect(fill = "#F0F0F0", color = NA),
-    panel.spacing = unit(0.5, "lines")
-  )
-
+    panel.spacing = unit(0.5, "lines")) + 
+    # Add titles and labels
+  labs(
+    title = "Namibian households with at least one mosquito net",
+    x = "Year",
+    y = "Percentage of Households",
+    caption = str_wrap("The percentage of households in different regions of Namibia which have at least one mosquito net, based on subnational DHS survey data collected in 2006 and 2013. The Northeast region of Namibia has the highest percentage of households with at least one mosquito net in both 2006 and 2013, while the South region has the lowest. Every region saw an increase in the percentage of households with at least one mosquito net from 2006 to 2013. Note that the y-axis ranges from 0% to 57%. Source: DHS Data API - Malaria Indicator ML_NETP_H_MOS", width = 100))
 ```
 
-```{r}
 
+```{r}
 # Retrieve DHS data for the specified indicator, countries, and survey years
 data2 <- dhs_data(indicatorIds = "ML_NETP_H_MNM",
                  countryIds = e8_codes,
@@ -218,40 +209,40 @@ filt_data = data2[data2$LevelRank == 1,]
 
 # Remove rows with CharacteristicLabel starting with ".." to avoid double counting regions
 filt_data = filt_data[!grepl("^\\..*", filt_data$CharacteristicLabel),]
+```
 
+Generalised linear models can be used to fit an estimated mean value for the number of mosquito nets per household in various African countries. Rather than including all of these countries on one plot, the visualisation can be faceted to show multiple smaller plots - one for each country. 
+
+```{r}
 # Plot the data using ggplot2
-ggplot(filt_data, aes(x = SurveyYear, y = Value, colour = CountryName)) +
+ggplot(filt_data, aes(x = SurveyYear, y = Value), colour = single_color) +
   # Add points to the plot
-  geom_point(size = 2) +
+  geom_point(size = 2, colour = single_color) +
   # Add a smooth line using a generalised linear model, with confidence interval shading
-  geom_smooth(method = "glm", se = TRUE, alpha = 0.3) +
+  geom_smooth(method = "glm", se = TRUE, alpha = 0.3, colour = single_color) +
   # Facet the plot by CountryName, with 3 columns and free y-axis scales
   facet_wrap(~ CountryName, ncol = 3, scales = "free_y") +
-  # Add titles and labels
-  labs(
-    title = "Trend of mean number of mosquito nets by E8 country",
-    subtitle = "Based on subnational survey data from various years",
-    x = "Survey Year",
-    y = "Mean Nets Per Household",
-    colour = "Country",
-    caption = "Source: DHS Data API - Malaria Indicator ML_NETP_H_MNM"
-  ) +
   # Apply the health radar theme and colors
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   # Additional theme customizations specific to this plot
   theme(
     axis.text.x = element_text(angle = 90, vjust = 0.5)
-  ) +
+    ) +
   # Center the legend title
-  guides(colour = guide_legend(title.position = "top", title.hjust = 0.5))
-
+  guides(colour = guide_legend(title.position = "top", title.hjust = 0.5)) +
+  # Add titles and labels
+  labs(
+    title = "Trend of mean number of mosquito nets per household",
+    x = "Year",
+    y = "Mean Nets Per Household",
+    caption = str_wrap("The mean number of mosquito nets per household is estimated by fitting a generalised linear model (GLM) to subnational survey data collected in various years for a selection of Elimination 8 (E8) countries. These GLMs are shown as lines with their 95% confidence intervals displayed in grey, while the data on which the GLMs were built are shown as points. Note that the y-axis ranges differ between countries. Namibia and Eswatini each have only two recorded data points, making it difficult to draw reliable conclusions for either country. All four remaining countries show an increase in mean number of mosquito nets per household, with the mean number of nets per household being between 1 and 2 for their respective most recent survey year. Source: DHS Data API - Malaria Indicator ML_NETP_H_MNM", width = 95)
+  )
 ```
 
-Subnational data - mean number of mosquito nets by E8 country Each point represents the mean number of nets in a specific subregion of the country. The line represents the trend over time for each country. The shaded area represents the 95% confidence interval for the trend line. Add brief descriptions for each one.
+A map is an effective method of visualising the mean number of mosquito nets per Zambian province. 
 
 ```{r}
-
 # Filter the data for Zambia for the year 2018
 d = data2[(data2$CountryName == "Zambia" & data2$SurveyYear == 2018),]
 
@@ -267,21 +258,29 @@ ggplot(sp$sdr_subnational_boundaries) +
   # Add a filled polygon layer for each region
   geom_sf(aes(fill = Value), color = "lightgrey", size = 0.3) + 
   # Use the health radar continuous color scale for the fill
-  scale_fill_continuous_health_radar(option = "plasma", na.value = "grey50", name = "Value") +
+  scale_fill_continuous_health_radar(option = "plasma", na.value = "grey50", name = "Nets/household") +
   # Add titles and labels
   labs(
-    title = "Mean number of mosquito nets in Zambia",
-    subtitle = "Based on subnational DHS survey data from 2018",
-    caption = "Source: DHS Data API - Malaria Indicator ML_NETP_H_MNM",
-    x = "Longitude",
-    y = "Latitude"
-  ) +
+    title = "Mean number of mosquito nets per Zambian household (2018)",
+    caption = str_wrap("The mean number of mosquito nets per household in Zambia, with Lusaka province showing the lowest value of approximately 1.5, and the Mochinga and Copperbelt provinces showing the highest values close to 2. Source: DHS Data API - Malaria Indicator ML_NETP_H_MNM", width = 60)) +
+  # Conditional text color
+  geom_sf_text(aes(label = DHSREGEN, color = ifelse(Value > quantile(Value, 0.1), "black", "white")), size = 3) +  
+  scale_color_identity() +
   # Apply the health radar theme
   theme_health_radar() +
-  # Center the legend title
-  guides(fill = guide_colorbar(title.position = "top", title.hjust = 0.5))
-
+  # Remove x- and y-axes and grid lines
+  theme(
+    plot.title.position = "plot",
+    axis.title.x=element_blank(),
+    axis.text.x=element_blank(),
+    axis.ticks.x=element_blank(),
+    axis.title.y=element_blank(),
+    axis.text.y=element_blank(),
+    axis.ticks.y=element_blank(),
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank())
 ```
+An example of a more interactive mapped visualisation, this time of Malawi rather than Zambia, is shown below. 
 
 ```{r}
 library(leaflet)
@@ -309,9 +308,9 @@ pal <- leaflet::colorNumeric(
 )
 
 # Plot the data using leaflet
-leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) |> 
+leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
   # Add base map tiles
-  addTiles() |> 
+  addTiles() %>%
   # Add polygons to represent the regions
   addPolygons(
     stroke = TRUE,
@@ -330,7 +329,7 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) |>
       textsize = "13px",
       direction = "auto"
     )
-  ) |> 
+  ) %>%
   # Add a legend to the map
   addLegend(
     pal = pal,
@@ -339,11 +338,11 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) |>
     title = "Malawi: children with fever who took antimalarial drugs (%)",
     position = "bottomright",
     labFormat = labelFormat()
-  ) |> 
+  ) %>%
   # Set the initial view of the map to focus on Malawi
   setView(lng = 37, lat = -13, zoom = 5.5)
-
 ```
+
 
 ## Modelling Example
 
@@ -371,11 +370,11 @@ The DHS dataset has various components that can be incorporated into malaria mod
 
 -   Among children with fever in the two weeks preceding the survey for whom advice or treatment was sought, the percentage for whom the source was a government health center, traditional practitioner, shop or private doctor
 
-In modelling LLIN effective coverage, we account for the number of households that actually receive nets, appropriate usage, insecticide efficacy and the physical integrity of the net. Human and vector behavioural characteristics pertaining to where people spending their evenings (during peak biting times), or the likelihood of indoor vector biting are captured as *operational effectiveness*. Another illustration of this is depicted below:
+In modelling LLIN effective coverage, we account for the number of households that actually receive nets, appropriate usage, insecticide efficacy and the physical integrity of the net. Human and vector behavioural characteristics pertaining to where people spending their evenings (during peak biting times), or the likelihood of indoor vector biting are captured as *operational effectiveness* $opp_{eff}$. Another illustration of this is depicted below:
 
 ![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/LLIN-cascade.PNG){fig-align="left"}
 
-In the simple example below, we obtain data on Long Lasting Insecticide treated Net (LLIN) access and usage rates in Kenya from the DHS, and compare this to data on ITN distribution from the World Malaria Report. Finally, we model the effective coverage of LLINs. This represents the proportion of the population actually protected from malaria transmission in a particular country.
+In the simple example below, we obtain data on LLIN access and usage rates in Kenya from the DHS, and compare this to data on ITN distribution from the World Malaria Report. Finally, we model the effective coverage of LLINs. This represents the proportion of the population actually protected from malaria transmission by LLINs in a particular country.
 
 ### Preparing the data
 
@@ -409,7 +408,7 @@ LLIN_access <- access_data |>
   arrange(SurveyYear) |>
   select(SurveyYear, Value) |> 
   complete(SurveyYear = full_seq(c(SurveyYear, 2024), 1), fill = list(Value = 0)) |> 
-  mutate(time = seq(365, 365*17, by = 365)) |>  
+  mutate(time = seq(365, 365*17, by = 365)) |>  # 17 years of simulation
   mutate(access = Value/100)
 
 LLIN_data <- usage_data |>
@@ -423,7 +422,6 @@ LLIN_data <- usage_data |>
 LLIN_data <- full_join(LLIN_data, LLIN_access, by = "SurveyYear") |>  
   filter(SurveyYear > 2007)
 
-
 ```
 
 ### Model assumptions
@@ -432,25 +430,27 @@ We make a few assumptions about LLINs in the model, explicitly stated here. We a
 
 -   Net usage remains consistent until a new survey is conducted.
 
--   Net functionality and effectiveness wanes at a rate of 25% per annum, and LLINs are considered "expired" after three years.
+-   Net functionality and effectiveness declines at a rate of approximately 25% per year, with LLINs considered 'expired' or no longer effective after three years of use."
 
--   Operational effectiveness: 65% of actual bites from an indoor-biting infectious mosquito are assumed to be prevented by LLINs used during peak biting times.
+Would you like to expand this into a p
+
+-   Operational effectiveness ($opp_{eff}$): 65% of actual bites from an indoor-biting infectious mosquito are assumed to be prevented by LLINs used correctly during peak biting times.
 
 ### Coverage
 
-Coverage is dependent on access to LLINs at the distribution rate of two persons per net. This can be obtained from data from the World Malaria Report Annex *4-D* detailing the number of ITNs distributed in a given year. Distribution is generally done at a rate of one net per two persons at risk and divided by the total population at risk.
+Coverage is dependent on access to LLINs at the distribution rate of two persons per net. The reported number of ITNs distributed in a given year in each country can be obtained from the World Malaria Report Annex *4-D*. 
 
 $$
-\textrm {Access at time t} = \frac {\textrm{Nets distributed} \times 2}{\textrm {Population at risk}} - \textrm {losses due to insecticide waning and wear and tear}
-$$
+\textrm {Access} = \frac {\textrm{Nets distributed} \times 2}{\textrm {Population at risk}} - \textrm {losses due to insecticide decay and physical wear and tear}
+$$ {#eq-access}
 
 Subsequently, *effective* coverage can be quite low due to imperfect usage and operational effectiveness. 
 
 $$
-\textrm{Effective coverage} = \textrm{access} \times \textrm {usage rate} \times \textrm{operational effectiveness}
-$$
+\textrm{Effective Coverage} = \textrm{access} \times \textrm {usage rate} \times \textrm{operational effectiveness}
+$$ {#eq-cov}
 
-The World Malaria Report only provides values for the three years preceding the report, but we show both values for access below for illustrative purposes:
+The timelines of the datasets do not align: DHS survey data on LLIN access are available for the years 2008, 2014, and 2015, while net usage data are available for 2008, 2014, 2015, 2020, and 2022. The World Malaria Report provides LLIN access values only for the three years preceding the 2023 report. Nonetheless, we present both LLIN access values and the calculated effective coverage in the same figure below for illustrative purposes. 
 
 ```{r}
 library(deSolve)
@@ -481,17 +481,15 @@ itnmod <- function(times, start, parameters)  {
 
 # Input definitions ####
 # Initial values
-start <- c(LLIN = 0.6 # proportion of the population currently protected by LLINs in circulation
-           ) 
+start <- c(LLIN = 0.6) # proportion of the population currently protected by LLINs in circulation
 
 
 # Parameters
 parameters <- c(opp_eff = 0.65, # Operational effectiveness of LLIN at preventing transmission
-             att1 = 1, # proportion of nets distributed in year X circulating in year X
-           att2 = 0.75, # proportion of nets distributed in year X circulating in year X+1
-           att3 = 0.5, # proportion of nets distributed in year X circulating in year X+2
-      
-           phi = 1/(3*365) # death rate  of LLINS
+                att1 = 1, # proportion of nets distributed in year X circulating in year X
+                att2 = 0.75, # proportion of nets distributed in year X circulating in year X+1
+                att3 = 0.5, # proportion of nets distributed in year X circulating in year X+2
+                phi = 1/(3*365) # death rate  of LLINS
 )
 
 # Run the model
@@ -504,8 +502,10 @@ out <- ode(y = start,
 model_output_df <- as_tibble(as.data.frame(out)) |>  
   rename(llin_eff_cov = `2`) |>  
   mutate(year = as.numeric(format(as.Date("2008-01-01") + time, "%Y"))) |>  
-  mutate(Data = "Effective coverage")
-
+  mutate(Data = "Effective coverage") |>
+  group_by(year) |>
+  slice_head(n = 1) |> # summarise by year
+  ungroup()
 
 
 # Source access data from World Malaria Report
@@ -527,8 +527,8 @@ WHO_data <- full_join(WHO_data, dist_data, by = "Year") |>  # add distribution d
 
 ggplot() +
   geom_line(data = model_output_df, aes(x = year, y = llin_eff_cov, colour = Data)) +
-    geom_line(data = model_output_df |>  mutate(Data = "DHS Acccess"), aes(x = year, y = LLIN, colour = Data)) +
-  geom_col(data = WHO_data, aes(x = Year, y = Proportion_population, fill = Data)) +
+    geom_point(data = model_output_df |>  mutate(Data = "DHS Acccess"), aes(x = year, y = LLIN, colour = Data)) +
+  geom_point(data = WHO_data, aes(x = Year, y = Proportion_population, colour = Data), shape = 15) +
   scale_y_continuous(labels = scales::percent) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
@@ -536,8 +536,11 @@ ggplot() +
     subtitle = "Malaria prevention through access and use of LLINs",
     x = "Year",
     y = "Proportion of population at risk (%)",
-    caption = str_wrap("Note the different data sources. DHS' data captures access to LLINs at particular points in time, but this data may be incongruent with annual LLIN access data captured in the World Malaria Report. We also expect effective coverage to be lower when accounting for operational effectiveness, usage and waning in the insecticide efficacy and physical integrity of the net. Sources: DHS Data API - Malaria Indicators ML_NETP_H_IT2 & ML_NETP_H_LL2; World Malaria Report Annexes 4-D and 4-F.")) 
+    caption = str_wrap("DHS' data captures access to LLINs at particular points in time, but this data may be incongruent with annual LLIN access data captured from the World Malaria Report. We expect effective coverage to be lower than access when accounting for operational effectiveness, usage and waning in the insecticide efficacy and physical integrity of the net. Sources: Model output; DHS Data API - Malaria Indicators ML_NETP_H_IT2 & ML_NETP_H_LL2; World Malaria Report Annexes 4-D and 4-F.")) 
 
 ```
+### Policy implications
+
+Gaps between access to LLINs and actual effective coverage can justify increasing the frequency of mass distribution campaigns or implementing continuous distribution channels through schools and health clinics. Where these gaps stem from low usage rates, targeted social and behavioural change campaigns may be necessary to improve net use. Alternatively, if low effective coverage is due to vector insecticide resistance, switching to nets with different or enhanced active ingredients may prove to be a better strategy. In settings where human behaviour (spending evenings outdoors in fields, at taverns, or fishing) limits the operational effectiveness of LLINs, complementary strategies to address outdoor biting could be considered.
 
 ::::

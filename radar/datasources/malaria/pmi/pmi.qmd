@@ -56,7 +56,6 @@ On the PMI's website, the data are provided for each country on an annual basis 
 
 <h2>How to use this data</h2>
 
-For this example, the goal is to get the estimated malaria incidence from 2009 to 2022 in 4 of the countries.
 
 ```{r}
 # Load packages ####
@@ -65,114 +64,95 @@ library(tidyverse)
 library(reshape2)
 
 source(here::here("radar/theme_health_radar.R"))
-
-incidence_pmi <- read_excel("PMI_data/malaria_incidence_PMI.xlsx")
-
-# Reshape the data from wide to long format
-incidence_long <- incidence_pmi %>%
-  pivot_longer(cols = -Country, names_to = "Year", values_to = "Incidence") %>%
-  mutate(Year = as.numeric(Year))  # Convert Year to numeric for plotting
-
-# Convert 'Year' and 'Incidence' to numeric if they are not already
-incidence_long$Year <- as.numeric(as.character(incidence_long$Year))
-incidence_long$Incidence <- as.numeric(as.character(incidence_long$Incidence))
-
-#Plotting
-
- ggplot(incidence_long, aes(x = Year, y = Incidence, color = Country, group = Country)) +
-   geom_line(size = 1.2) +
-   geom_point(size = 3) +
-   labs(
-    title = "Malaria Incidence Over Time",
-      x = "Year",
-      y = "Malaria Incidence (per 1000 population)",
-      caption = str_wrap("This line graph illustrates the annual malaria incidence (per 1,000 population) in Angola, Mozambique, Zambia, and Zimbabwe from 2008 to 2022. Mozambique consistently shows the highest incidence, with a slight decline over the years, stabilizing at around 320 cases per 1,000 people by 2022. Zambia’s incidence initially increases until 2015, after which it starts to decline. In Angola, malaria incidence shows an initial decline from 2008 to 2012, followed by a steady and significant rise through 2022, indicating a worsening malaria burden over time. Zimbabwe shows the lowest malaria incidence, marked by significant variability, with the lowest values seen after 2020. These trends highlight differing malaria control progress and challenges across the four countries. Source: World Malaria Report", width = 75),
-      color = "Country"
-   ) +
-    scale_x_continuous(breaks = seq(min(incidence_long$Year), max(incidence_long$Year), by = 1)) +  # Show all years
-    scale_y_continuous(breaks = seq(0, 400, 50)) +  # Adjust y-axis breaks for better readability
-    scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
-    theme_health_radar() +
-    theme_minimal() +
-    theme(
-      plot.title = element_text(hjust = 0.5,face = "bold"),
-      axis.text.y = element_text(size = 10),
-      plot.caption = element_text(hjust = 0, size = 10), 
-      axis.text.x = element_text(size = 10, angle = 45, hjust = 1)
-    ) +  # Adjust font size for x-axis labels
-      theme(plot.margin = margin(20, 20, 20, 20))  # Add margins to prevent label 
 ```
 
-For the following example, the goal is to get the baseline and endline ITN coverage in under 5 in 4 of the countries.
+Annual malaria incidence in different countries over time can be easily visualised using line plots. The points plotted at each data point help to communicate that these are annual data, rather than continuous. 
 
 ```{r}
-coverage_itn <- read_excel("PMI_data/nets_under5_PMI.xlsx")
+incidence_pmi <- read_excel("data/malaria_incidence_PMI.xlsx")
+
+# Reshape the data from wide to long format
+incidence_long <- incidence_pmi |>
+  pivot_longer(cols = -Country, names_to = "Year", values_to = "Incidence") |>
+  mutate(Year = as.numeric(Year))  # Convert Year to numeric for plotting
+
+# Convert 'Incidence' to numeric
+incidence_long$Incidence <- as.numeric(as.character(incidence_long$Incidence))
+
+# Create a ggplot object with incidence_long data
+ggplot(incidence_long, aes(x = Year, y = Incidence, color = Country, group = Country)) +
+  # Add lines connecting data points for each country
+  geom_line() +
+  # Add points at each data point for each country
+  geom_point() +
+  # Customize the x-axis to show every year in the data range
+  scale_x_continuous(breaks = min(incidence_long$Year):max(incidence_long$Year)) + 
+  # Customize the y-axis to show breaks from 0 to 400 in increments of 50
+  scale_y_continuous(breaks = seq(0, 400, 50)) + 
+  # Apply a custom theme 
+  theme_health_radar() +
+  # Apply a custom color scale 
+  scale_colour_manual_health_radar() +  
+  # Rotate x-axis text labels 45 degrees and adjust horizontal justification
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.5)) +
+  # Add labels and title to the plot
+  labs(
+    title = "Annual malaria incidence (2009-2022)",
+    x = "Year",
+    y = "Incidence (per 1000 people)",
+    colour = "Country",
+    # Add a caption with wrapped text for better readability
+    caption = str_wrap("The annual malaria incidence (per 1000 people) in Angola, Mozambique, Zambia, and Zimbabwe from 2008 to 2022. Mozambique consistently shows the highest incidence, with a slight decline over the years, stabilizing at around 320 cases per 1000 people by 2022. Zambia’s incidence initially increases until 2014, after which it starts to decline. In Angola, malaria incidence shows an initial decline from 2009 to 2012, followed by a steady rise peaking in 2021, indicating a worsening malaria burden over time. Zimbabwe shows the lowest malaria incidence, marked by significant variability, with the lowest values seen after 2020. These trends highlight differing malaria control progress and challenges across the four countries. Source: World Malaria Report", width = 85)
+  )
+```
+A paired bar plot is used to compare ITN usage in children under 5 in various countries, before and after PMI implementation. 
+
+```{r}
+coverage_itn <- read_excel("data/nets_under5_PMI.xlsx")
 
 # Reshape the data for ggplot
 coverage_itn_melted <- melt(coverage_itn, id.vars = "Country", variable.name = "Type", value.name = "Percentage")
 
-# Create the bar graph
-ggplot(coverage_itn_melted , aes(x = Country, y = Percentage, fill = Type)) +
+# Create a ggplot object with coverage_itn_melted data
+ggplot(coverage_itn_melted, aes(x = Country, y = Percentage, fill = Type)) +
+  # Add bar plots with identity stat and dodge position for side-by-side bars
   geom_bar(stat = "identity", position = position_dodge()) +
-  scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+  # Apply a custom theme 
   theme_health_radar() +
-  scale_fill_manual(values = c("Baseline" =  "#a6cee3", "Endline" = "#b2df8a")) +
+  # Apply a custom fill scale 
+  scale_fill_manual_health_radar() +
+  # Add labels and title to the plot
   labs(
-    title = "Baseline and Endline Percentages by Country",
-    x = "Country",
-    y = "Percentage of ITN use in children under 5 ",
-    caption = str_wrap("This bar chart compares the percentage of ITN use among children under 5 between baseline and endline of PMI's intervention in Angola, Mozambique, Zambia, and Zimbabwe. Zambia shows the highest endline percentage of ITN coverage, with a significant increase from the baseline. Mozambique also shows a significant increase from the baseline. Angola exhibits a moderate increase in ITN coverage. Source: World Malaria Report", width = 75),
-    fill = "Type"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold"),   # Bold title
-    axis.title.x = element_text(face = "bold"), # Bold x-axis title
-    plot.caption = element_text(hjust = 0, size = 10), 
-    axis.title.y = element_text(face = "bold")  # Bold y-axis title
+    title = "ITN usage among children under 5",
+    x = "",  # No label for the x-axis
+    y = "Percentage (%)",
+    # Add a caption with wrapped text for better readability
+    caption = str_wrap("The baseline and endline percentage Insecticide Treated Net (ITN) usage among children under 5 living in Angola, Mozambique, Zambia, and Zimbabwe. The baseline percentage indicates the ITN usage by children under 5 prior to the implementation of the President's Malaria Initiative (PMI), while the endline percentage indicates ITN usage in children under 5 after the implementation of the PMI. Zambia shows the highest endline percentage of ITN coverage, with a significant increase from the baseline. Mozambique shows the most pronounced increase from the baseline. Angola exhibits a relatively small increase in the percentage use of ITNs by children under 5. Source: World Malaria Report", width = 90),
+    fill = ""  # No label for the fill legend
   )
-
 ```
-
-For the following example, the goal is to get the baseline and endline ITN coverage in under 5 in 4 of the countries.
+The percentage of women receiving Intermittent Preventative Treatment in pregnancy (IPTp) in various countries is represented using a simple bar plot. 
 
 ```{r}
-coverage_iptp <- read_excel("PMI_data/IPTP_coverage_PMI.xlsx")
+# Define a single colour for the plot
+single_color <- "#1b9e77"
 
+coverage_iptp <- read_excel("data/IPTP_coverage_PMI.xlsx")
 
-# Define custom colors for the sources
-custom_colors <- c("DHS 2015-2016" = "#33a02c",
-                   "DHS 2022-2023" = "#ff7f00", 
-                   "MIS 2021" =  "#6a3d9a", 
-                   "MIS 2016" = "#e31a1c")
-
-# Create the lollipop plot with color by Source, no size legend, and x-axis limit at 80
-ggplot(coverage_iptp, aes(x = Percentage, y = Country, color = Source)) +
-  # Add black lines from 0 to each percentage value
-  geom_segment(aes(x = 0, xend = Percentage, y = Country, yend = Country), 
-               color = "black", size = 1) +  # Black lines
-  geom_segment(aes(xend = Percentage, yend = Country), size = 1) + # Colorful segments
-  geom_point(aes(size = Percentage), show.legend = FALSE) + 
-  scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
+# Create a ggplot object with coverage_iptp data
+ggplot(coverage_iptp, aes(x = Country, y = Percentage)) +
+  # Add bar plots with identity stat and a single fill color
+  geom_bar(stat = "identity", fill = single_color) +
+  # Apply a custom theme 
   theme_health_radar() +
-  # Remove size legend
-  labs(title = "Percentage of Women Receiving IPTP by Country",
-       x = "Percentage (%)",
-       y = "Country",
-        caption = str_wrap("The percentage of women receiving IPTp in Angola, Mozambique, Zambia and Zimbabwe. Zambia exhibits the highest coverage while the other countries have less than 30% of women receiving IPTp.
-                           Source: World Malaria Report", width = 75),
-       color = "Source") + # Legend title
-  xlim(0, 80) + # Set x-axis limits starting at 0 and stopping at 80
-  scale_color_manual(values = custom_colors) + # Set custom colors
-  theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold"),   # Bold title
-    axis.title.x = element_text(face = "bold"), # Bold x-axis title
-     plot.caption = element_text(hjust = 0, size = 10), 
-    axis.title.y = element_text(face = "bold")  # Bold y-axis title
-  ) +
-  theme(legend.position = "right") # Position legend on the right
-
+  # Add labels and title to the plot
+  labs(
+    title = "Percentage of women receiving IPTp",
+    y = "Percentage (%)",
+    x = "",  # No label for the x-axis
+    # Add a caption with wrapped text for better readability
+    caption = str_wrap("The percentage of women receiving Intermittent Preventative Treatment in pregnancy (IPTp) in Angola, Mozambique, Zambia and Zimbabwe. Zambia exhibits the highest coverage, while the other countries have less than 30% of women receiving IPTp. Source: World Malaria Report", width = 100)
+  )
 ```
 
 ## Modelling Example

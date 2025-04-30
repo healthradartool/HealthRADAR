@@ -581,7 +581,7 @@ df <- as_tibble(as.data.frame(out)) |>
 
 ### Changes in vector population
 
-As mentioned earlier, environmental conditions affect the parasite and mosquito development, and as such we anticipate changes in the vector population to mimic the pattern in the temperature. In this example, we assume the human population stays constant as is shown in the panel on the right. The [UN Population Data portal page](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/un-population/un_population.html) describes human population growth in the context of disease modelling. In this example, we assume that the human population remains constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection).
+As mentioned earlier, environmental conditions affect the parasite and mosquito development, and as such we anticipate changes in the vector population to mimic the pattern in the temperature. In this example, we assume the human population stays constant as is shown in the panel on the right. The [UN Population Data portal page](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/un-population/un_population.html) describes human population growth in the context of disease modelling. In this example, we assume that the human population remains constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection).
 
 ```{r}
 df |> 
@@ -609,7 +609,7 @@ The force of infection (i.e. the rate at which susceptible individuals become in
 This is especially insightful when the model includes periods of time impacted by severe environmental conditions such as drought or flooding, and the consequences on malaria transmission dynamics are reflected in the incidence values. Note that the example below is not an actual reflection of malaria transmission in Bulawayo, and is merely illustrative.
 ```{r}
 df |> 
-  filter(variable %in% "Inc", time > 50) |> 
+  filter(variable == "Inc", time > 50) |> 
   ggplot()+
   geom_line(aes(x = date, y = value), colour = theme_health_radar_colours[17]) +
   theme_health_radar() +
@@ -624,9 +624,13 @@ df |>
     title = "Daily incidence values in the human population", 
     x = "Year",
     y = "Number of new cases",
-    caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September. We see a small peak in 2017, coinciding with higher rainfall values that year, resulting in potentially larger mosquito populations driving incidence. Source: Model output")
+    caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September (the cold, dry season). We see a small peak in 2017, coinciding with higher rainfall values that year, and potentially resulting in increased mosquito populations and elevated transmission. Source: Model output")
   )
 ```
+
+### Policy implications
+
+Models that incorporate temperature and rainfall explicitly may be used to forecast seasonal or year-to-year transmission patterns. This can be used to enable early warning systems for malaria outbreaks, as well as for temporal planning of interventions such as indoor residual spraying (IRS) for maximum impact. This approach also promotes multidisciplinary collaboration for policymakers across health, environmental, and climate sciences.
 
 
 ### Citations

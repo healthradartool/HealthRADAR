@@ -1,0 +1,51 @@
+---
+title: "Health RADAR pilot launch"
+date: 04-14-2025 # mm-dd-yyyy
+page-layout: full
+lightbox: true
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+---
+
+## Introducing the Health Radar Pilot Launch!
+
+We’re excited to announce the upcoming pilot of **Health Radar**—a new initiative designed to make data on climate-sensitive infectious diseases more accessible and actionable. The pilot is a critical first step as we test the platform’s features, gather feedback from users, and shape its evolution. Here's what you can expect over the next few weeks.
+
+
+### Phase 1: Getting Ready (April 21 – May 12)
+
+Our team has been hard at work preparing for a smooth pilot launch:
+
+- **Week of April 21:** We carried out final readiness checks to ensure the platform is functional and intuitive. This included setting up a tagging system for content, finalising key pages, and integrating Google Analytics to help us understand how the site is being used.
+  
+- **Week of April 28:** Communications were sent out to selected participants who will be joining us on this journey. These early users will play a big role in helping us refine Health Radar.
+
+- **Weeks of May 5 & 12:** We're developing and finalising content for a series of pilot webinars and preparing a feedback questionnaire. These tools will help us learn from your experience using Health Radar and identify opportunities to improve.
+
+
+### Phase 2: Pilot Webinars & Feedback (May 19 – June 16)
+
+Throughout the pilot, we’ll be hosting a series of interactive webinars to walk participants through the platform and its capabilities:
+
+- **May 19:** *Webinar 1 – Introduction to RADAR & Pilot Task*  
+  An overview of Health Radar, our partners, and the task for pilot participants.
+
+- **May 26:** *Webinar 2 – Exploring Pilot Access*  
+  A hands-on session demonstrating how to navigate and access pilot features.
+
+- **June 2:** *Webinar 3 – Visualisation*  
+  Highlighting the visual tools available to explore and make sense of the data.
+
+- **June 9:** *Webinar 4 – Integration & Contextualisation*  
+  Bringing it all together—how to connect data points and contextualise insights.
+
+- **June 16:** *Webinar 5 – Conclusion & Synthesis*  
+  We’ll wrap up with key findings, insights from participants, and—if applicable—presentations from standout contributors. We'll also share what’s next for Health Radar, including the official launch timeline.
+
+
+### Join Us on This Journey
+
+The pilot phase is all about learning, refining, and building a platform that truly meets the needs of decision-makers and practitioners working at the intersection of climate and health. We’re incredibly grateful to our early users and look forward to sharing the results of this pilot with the broader community soon.
+
+Stay tuned—and thank you for being part of the journey!
+

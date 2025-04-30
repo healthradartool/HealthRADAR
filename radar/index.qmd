@@ -16,11 +16,11 @@ back-to-top-navigation: false
 ::: {.grid .column-page}
 ::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
 ::: {#homepage-heading}
-Welcome to HealthRADAR
+Welcome to Health RADAR
 :::
 
 ::: {.description}
-Health RADAR aims to provide a central data resource for disease and other relevant data specific to climate sensitive infectious disease (CSID) modelling.
+Health RADAR (Responsible Access to Data for Analysis and Research) aims to provide a central data resource for disease and other relevant data specific to climate sensitive infectious disease (CSID) modelling.
 :::
 
 ::: {.entry-point}
@@ -112,5 +112,6 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
   </button>
 </a>
 
+:::
 :::
 :::

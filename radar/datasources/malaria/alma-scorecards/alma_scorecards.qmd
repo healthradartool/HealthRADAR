@@ -74,10 +74,6 @@ or directly from the web platform (not downloadable, user has to scroll through 
 
 <h2>How to plot this data?</h2>
 
-```{r}
-
-```
-
 
 ```{r}
 # load the libraries
@@ -100,7 +96,7 @@ rwanda_map <- ne_states(country = "Rwanda", returnclass = "sf") %>%
   mutate(name = rwanda_provinces)
 
 # Read in data
-rwandap_data <- read_excel("rwanda_q1_provinces2022.xlsx")
+rwandap_data <- read_excel("data/rwanda_q1_provinces2022.xlsx")
 
 cases <- rwandap_data$MalariaTotalCases 
 
@@ -108,26 +104,42 @@ cases <- rwandap_data$MalariaTotalCases
 rwanda_data <- rwanda_map %>%
   left_join(rwandap_data, by = c("name" = "province"))
 
-# Create the choropleth map
+# Create a ggplot object with the Rwanda data
 ggplot(data = rwanda_data) +
-  geom_sf(aes(fill = cases), color = "lightgrey", size = 0.3) +  # Use fill for the continuous 2022 data
+  # Add a spatial plot with fill based on the number of cases
+  geom_sf(aes(fill = cases), color = "lightgrey", size = 0.3) +  
+  # Apply custom theme
   theme_health_radar() +
-  scale_fill_continuous_health_radar(name = "Total Cases") +  # Correct fill scale for continuous data
-  labs(
-    title = "Reported malaria cases Rwanda (by province) 1st quarter (2022)",
-    caption = str_wrap("The choropleth map highlights the total number of new outpatient department (OPD) cases of malaria recorded at health facilities in the five provinces of Rwanda during the first quarter of 2022. With the East and South provinces showing the lowest and highest number of cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", width = 80),
-    x = "Latitude",
-    y = "Longitude"
-  ) +
+  # Apply custom fill scale for continuous data
+  scale_fill_continuous_health_radar(name = "Total Cases") +  
+  # Add text labels for the names, with color based on the number of cases
   geom_sf_text(
-    aes(label = name, color = ifelse(cases > mean(cases), "black", "white")), 
-    size = 3
-  ) +  # Conditional text color
+    aes(label = name, color = ifelse(cases > quantile(cases, 0.9), "black", "white")), size = 3) +  
+  # Use identity scale for color
   scale_color_identity() +  
-  theme(plot.caption.position = "plot")  # Keep the caption outside the plot area
+  # Customize the theme to remove axis titles and ticks
+  theme(
+    plot.caption.position = "plot",
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank()) +
+  # Add caption and title to the plot
+  labs(
+    title = "Reported malaria cases in Rwanda (2022)",
+    caption = str_wrap(
+      "The total number of new outpatient department (OPD) cases of malaria recorded at healthcare facilities in the five provinces of Rwanda during the first quarter of 2022. The East and South provinces show the lowest and highest number of reported cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", 
+      width = 85))
+
 ```
 
 ```{r}
+# PDF containing data available at: https://alma2030.org/our-work/scorecard-tools/alma-scorecard-for-accountability-and-action/list-of-alma-scorecards/
+
 # Creating the data frame
 Country <- c("Angola", "Angola", "Angola",
              "Botswana", "Botswana", "Botswana",
@@ -153,23 +165,7 @@ Operational_LLINS_IRS <- c(58, 62, 56,  # Angola
 dataframe <- data.frame(Country, Year, Quarter, Operational_LLINS_IRS)
 
 # Display the dataframe
-dataframe
-
-
-# Create a grouped bar plot
-ggplot(dataframe, aes(fill = as.factor(Quarter),y = Operational_LLINS_IRS, x = Country)) +
-  geom_bar(position = "dodge", stat = "identity") +  # Grouped bars by country and quarter
-  scale_fill_manual_health_radar() +  # Apply the custom scale fill for countries
-  labs(
-    title = "Operational LLINs/IRS Coverage by Country and Quarter (2023)",
-    subtitle = "For Selected Countries",
-    x = "Country",
-    y = "LLINs/IRS Coverage (%)",
-    fill = "Quarter",
-    caption = str_wrap("The grouped bar plot shows operational LLINs/IRS coverage for selected countries in 2023. Each bar represents the percentage of the population at risk covered by operational LLINs/IRS, aiding in understanding coverage disparities across countries. Source: ALMA Scorecard Hub, ALMA Scorecard for Accountability on Action.", width = 80)
-  ) +
-  theme_health_radar() +  # Apply the custom radar theme
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis text for better visibility
+knitr::kable(head(dataframe))
 ```
 
 <h2>Tracking indicator perfomance</h2>
@@ -178,51 +174,42 @@ ggplot(dataframe, aes(fill = as.factor(Quarter),y = Operational_LLINS_IRS, x = C
 - Several country performances are highlighted using data obtained from ALMA scorecards for accountability and action.
 - The implementation indicator on operational vector control (LLINs/IRS) coverage was considered.
 
-
+When visualising similar data over a much longer period of time, a line plot is useful. Here, the coverage by an LLIN and/or IRS in each of the Frontline 4 countries from 2015 to 2024 is visualised.
 ```{r}
 # Read in data
-E8_data <- read_excel("E8_implementation.xlsx")
+E8_data <- read_excel("data/E8_implementation.xlsx")
 E8_data$LLINs <- as.numeric(E8_data$LLINs)  
 
-vc <- E8_data$LLINs 
-
-country_colors <- c(
-  "Angola" = "#6a3d9a",  # Dark Purple
-  "Botswana" = "#66a61e",  # Dark Green
-  "Eswatini" = "#7570b3",  # Medium Purple
-  "Mozambique" = "#ffff99",  # Pale Yellow
-  "Namibia" = "#d95f02",  # Dark Orange
-  "South Africa" = "#1f78b4",  # Blue
-  "Zambia" = "#e7298a",  # Pink
-  "Zimbabwe" = "#e6ab02"  # Mustard Yellow
-)
-
-
-# Create the ggplot
-ggplot(E8_data, aes(x = Year, y = vc, group = Country)) +
-  # Add background panels
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 0, ymax = 40), fill = "#e31a1c", alpha = 0.2) +
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 40, ymax = 80), fill = "yellow", alpha = 0.2) +
-  geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 80, ymax = 100), fill = "#33a02c", alpha = 0.2) +
-  
-  # Add lines in a fixed color
-  geom_line(color = "black", size = 0.5) +  # Set line color to blue (or any desired color)
-  
-  # Distinguish points by country
-  geom_point(aes(color = Country), size = 1.5) +
-  
-  scale_color_manual(values = country_colors) +  # Apply manual color scale for 'color' aesthetic (points)
-  scale_y_continuous(breaks = seq(0, 100, by = 10)) +  # Set y-axis breaks from 0 to 100 at intervals of 10
-  scale_x_continuous(breaks = seq(2015, 2024, by = 1)) +  # Set x-axis breaks for each year
+# Filter the data for specific countries
+E8_data |> 
+   # Keep rows where Country is one of the Frontline 4
+  filter(Country %in% c("Botswana", "Namibia", "South Africa", "Eswatini")) |> 
+  # Create a ggplot object with the filtered data
+  ggplot(aes(x = Year, y = as.numeric(LLINs), group = Country)) +
+  # Customize the x-axis to show yearly breaks
+  scale_x_continuous(breaks = seq(floor(min(E8_data$Year)), ceiling(max(E8_data$Year)), by = 1)) +  
+  # Customize the y-axis to show breaks from 0 to 100 in increments of 10
+  scale_y_continuous(breaks = seq(0, 100, by = 10)) +  
+  # Add lines to the plot, coloured by Country
+  geom_line(aes(color = Country), lwd = 1) +  
+  # Add points to the plot, coloured by Country
+  geom_point(aes(color = Country), size = 2) +
+  # Apply custom colour scale
+  scale_colour_manual_health_radar() +  
+  # Apply custom theme
   theme_health_radar() +
-  
+  # Add labels and title to the plot
   labs(
-    title = "Vector Control Implementation (2015-2024)",
+    title = "Operational LLIN or IRS coverage for the Frontline 4 (2015-2024)",
     x = "Year",
-    y = "% Coverage",
+    y = "Coverage (%)",
     color = "Country",
-    caption = str_wrap("The plot displays operational LLINs/IRS coverage (% at risk population) in selected countries from 2015 to 2023, with lines representing the coverage trend across 4 quarters per year. The red, yellow and green panels indicate country level perfomace against the implementation indicator for vector control.Stable trends in the green panel for some countries indicate that they are on track while others show fluctuations over the years. Source: ALMA Scorecard Hub, ALMA Scorecard for Accountability on Action.", width = 85)
+    caption = str_wrap(
+      "Operational long-lasting insecticidal nets (LLINs) or indoor residual spraying (IRS) coverage as a percentage of the at-risk population in the Frontline 4 countries. Solid lines represent the coverage trends taken during each quarter from 2015 to the end of 2023. Namibia experienced a large drop in coverage at the start of 2020, and only began to recover in 2023. South Africa and Eswatini appear to have consistently achieved above 70% coverage. Source: ALMA Scorecard Hub, ALMA Scorecard for Accountability on Action.", 
+      width = 85
+    )
   )
 ```
+
 
 :::

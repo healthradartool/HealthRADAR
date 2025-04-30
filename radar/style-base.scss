@@ -17,6 +17,8 @@ $body-bg: #fefeff;
 #quarto-content main { 
   margin-top: 0;
   padding-top: 0;
+  margin-bottom: -60px;
+  padding-bottom: 0;
 }
 
 .back-nav {
@@ -342,4 +344,17 @@ footer > .footer-items {
 .quarto-title-banner {
   padding-top: 1.5em;
   padding-bottom: 1.5em;
+}
+
+.team-links {
+  text-decoration: none;
+}
+
+.page-tabs .tab-content {
+  padding-top: 10px;
+  margin-top: 15px;
+  border-top: #ecf0f1 1px solid;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-bottom: 3em;
 }
