@@ -2,31 +2,44 @@
 title: "ERA5"
 description: "ERA5 hourly data on single levels from 1940 to present"
 date: 08/30/2024 # mm-dd-yyyy
+draft: true
 image: "images/era5.png"
 
 categories:
-  - climate dataset
+  - climate
+  - gridded
   - reanalysis
   - rainfall
   - temperature
-  - past
-  - present
   - global
   - hourly
 ---
 
-::: {.page-tabs .panel-tabset}
 
+::: {.page-tabs .panel-tabset}
 
 ## Overview
 
 <h2>About the data</h2>
 
-ERA5 is the fifth generation ECMWF (European Centre for Medium-Range Weather Forecasts) reanalysis for the global climate and weather. The ERA5 reanalysis dataset covers the period 1940 to near real-time and combines model data with observations from across the world into a globally complete and consistent dataset using the laws of physics. The gridded (0.25° resolution) data is available in 1-hour timesteps.
+ERA5 is the fifth-generation reanalysis dataset produced by ECMWF (European Centre for Medium-Range Weather Forecasts), providing a detailed, global view of the climate. Covering the period from 1940 to near real-time, ERA5 combines vast amounts of historical observations with modern weather forecasting models, ensuring a globally complete, physically consistent record. The gridded dataset is available at a high spatial resolution of 0.25° (approximately 28 km by 28 km at the equator, varying slightly by latitude) and offers data at hourly intervals, supporting a wide range of applications and research fields.
+
+As a reanalysis dataset, ERA5 reconstructs past atmospheric conditions by assimilating observations using a consistent modern model throughout the record. This approach provides comprehensive information on atmospheric, land-surface, and sea-state variables, making ERA5 a key resource in climate monitoring, environmental assessments, and other scientific studies.
+
+ERA5 is continuously updated, with data typically available within about one week of real time. Regular updates and corrections ensure the quality and completeness of the dataset over time.
+
+ECMWF has made several subsets of the ERA5 reanalysis dataset available to meet different user needs. These include distinctions between data provided at pressure levels versus single levels (surface and near-surface variables), and at different temporal resolutions (hourly and monthly averages). For the purposes of this site, we focus on the "ERA5 hourly data on single levels from 1940 to present" subset, which offers high-resolution, near-surface climate variables suitable for a wide range of applications.
 
 For more information regarding ERA5 datasets see [ERA5-Dataset Documentation](https://confluence.ecmwf.int/display/CKB/ERA5).
 
-#### Summary
+Users can also find more information about the ERA5 dataset here:
+
+- Climate Data Store: [ERA5 hourly data on single levels from 1940 to present](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview)
+
+- Climate Data Guide: [ERA5 atmospheric reanalysis](https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis)
+
+
+**Summary**
 
 | | |
 --- | --- |
@@ -35,12 +48,16 @@ For more information regarding ERA5 datasets see [ERA5-Dataset Documentation](ht
 | **Product type** | reanalysis |
 | **Domain** | global |
 | **Resolution** |   0.25° x 0.25° |
-| **Period** | 1940-2024 |
+| **Period** | 1940 - near real-time |
 | **Frequencies** | hourly |
 | **Variables** | precipitation, temperature, others  |
 | **Update frequency (latency)** | daily (+-5 days) |
 
-#### Variables
+
+<br/>
+**Variables**
+<br/>
+
 
 |  **Variable Name**   |  **Variable Description**  |  **Units**  |
 --- | --- | --- |
@@ -49,32 +66,85 @@ For more information regarding ERA5 datasets see [ERA5-Dataset Documentation](ht
 | 10m u-component of wind | horizontal speed of air moving towards the east, at a height of ten meters above the surface of the Earth | meters per second |
 | 10m v-component of wind | horizontal speed of air moving towards the north, at a height of ten meters above the surface of the Earth | meters per second |
 | 2m dewpoint temperature |   temperature to which the air, at 2 meters above the surface of the Earth, would have to be cooled for saturation to occur |  kelvin |
+For a comprehensive list of variables, you can refer to the dataset's documentation on the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview).
 
-### Strengths and weaknesses
 
-#### Notes for users
+<br/>
 
 <h2>Accessing the data</h2>
 
-**Guidance and metadata**
+ERA5 is a widely used reanalysis dataset and can be downloaded from several different platforms. We focus here on the *ERA5 hourly data on single levels from 1940 to present* subset.
 
-Via Climate Data Store: [ERA5 hourly data on single levels from 1940 to present]https://cds-beta.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
+::: {.panel-tabset}
+### Climate Data Store
+The ERA5 dataset is provided by the European Centre for Medium-Range Weather Forecasts (ECMWF) through the [Copernicus Climate Change Service (C3S)](https://climate.copernicus.eu/), with the [Climate Data Store](https://cds.climate.copernicus.eu/) serving as the primary access point for ERA5 data. Users can download data directly from the  [ERA5 hourly data on single levels from 1940 to present](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview) dataset page. The CDS provides a user-friendly interface for selecting variables, spatial and temporal ranges, and output formats. Data is available in both GRIB and NetCDF formats.
 
-Via Climate Data Guide: [ERA5 atmospheric reanalysis](https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis)
+Guidance on how to download ERA5 data via the Climate Data Store is available [here](https://confluence.ecmwf.int/display/CKB/How+to+download+ERA5)
 
-**Data download**
+|  **Version**   | **Variables**  	| **Resolution** | **Spatial Extent** | **File Format**   	|
+|----------------|------------------|----------------|--------------------|---------------------|
+| Latest (updated daily)  | 2m temperature, Total precipitation, 10m u-component of wind, 10m v-component of wind, 2m dewpoint temperature etc. A comprehensive list is available on the CDS dataset page. 	| 0.25° (~28km x ~28km) 	| Global/User specified |  GRIB (.grib), NetCDF (.nc) |
 
-Via Climate Data Store: [ERA5 hourly data on single levels from 1940 to present]https://cds-beta.climate.copernicus.eu/datasets/reanalysis-era5-single-levels). Please see download guide: [How to download ERA5](https://confluence.ecmwf.int/display/CKB/How+to+download+ERA5). Data is available in both NetCDF and GRIB formats.
 
-### What does the data look like
+### KNMI Climate Explorer
+The [KNMI Climate Explorer](https://climexp.knmi.nl/start.cgi) provides access to ERA5 data with tools for analysis and visualization. The dataset can be specified on their [Daily Select a field page](https://climexp.knmi.nl/selectdailyfield2.cgi?id=someone@somewhere). The ERA5 data available through KNMI is at *daily resolution*, with an 'Africa' subset included. Users can extract data for specific locations or regions and perform statistical analyses directly on the platform. Data provided in NetCDF format.
 
-#### spatial plots of key variables
+|  **Version**   | **Variables**  	| **Resolution** | **Spatial Extent** | **File Format**   	|
+|----------------|------------------|----------------|--------------------|---------------------|
+| Typically up-to-date | A selection of variables including temperature, precipitation, and wind.	| 0.25° (~28km x ~28km), 0.5° (~55.5km x ~55.5km) | User specified | netCDF (.nc) |
+:::
 
-#### Key example plots for a selected location
+<h2>What the data looks likes</h2>
 
+Below are a few plots to give a better sense of what the ERA5 dataset looks like. The first two are spatial plots over Southern Africa, illustrating the spatial resolution and the coarseness of the 0.25° × 0.25° grid. The final three plots focus on a single grid cell and show the seasonal cycle and time series data for that location. 
+
+:::{.cell}
+![Mean annual rainfall over Southern Africa from 1991–2020, derived from ERA5 data.
+Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on 16-OCT-2024)](images/Fig1_ERA5_MeanRainfall_1991-2020.png){fig-align="center"}
+:::
+:::{.cell}
+![Annual average daily mean temperature over Southern Africa from 1991-2020, derived from ERA5 data.
+Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on 16-OCT-2024)](images/Fig2_ERA5_MeanTemperature_1991-2020.png){fig-align="center"}
+:::
+:::{.cell}
+![Monthly climatology of rainfall (bars) and monthly average daily mean (solid line), maximum (dot-dash line) and minimum (dashed line) temperatures, for Mwinilunga, Zambia, for the period 1991-2020, derived from ERA5 data. We see Mwinilunga has very dry and cool winter months (JJA) and experiences it's hottest period over spring (SON).
+Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on 16-OCT-2024)](images/Fig3_ERA5_Climatology_1991-2020.png){fig-align="center"}
+:::
+:::{.cell}
+![Daily rainfall time series for Mwinilunga, Zambia, from 1959 to 2023, derived from ERA5 data.
+Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on 16-OCT-2024)](images/Fig4_ERA5_daily_TimeSeries_Rainfall_1959-2023.png){fig-align="center"}
+:::
+:::{.cell}
+![Daily mean, maximum and minimum temperature time series for Mwinilunga, Zambia, from 1990-1993, derived from ERA5 data. We have focused on a four year period to better see the daily temperature fluctuations. 
+Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on 16-OCT-2024)](images/Fig5_ERA5_daily_TimeSeries_Temperatures_1990-1993.png){fig-align="center"}
+:::
 <h2>Key points to consider</h2>
 
-### Terms of use
+ERA5 is a global reanalysis dataset produced by combining model output with a wide range of historical observations using data assimilation techniques. It reflects a blend of satellite, in situ, aircraft, and other observational sources, integrated using the ECMWF Integrated Forecast System (IFS). Through this system, vast amounts of observations are brought together into a consistent model framework, resulting in a physically coherent dataset suitable for climate monitoring and research.
+
+The quality and density of observations vary across space and time, particularly in earlier decades and over data-sparse regions. ERA5 provides uncertainty estimates for many variables through ensemble-based statistics, such as the standard deviation from the 10-member ensemble. These can be used as proxies to assess confidence in the data at a given time and location.
+
+ERA5 data is available at hourly resolution and can be aggregated to daily or monthly time scales. The dataset includes many surface and atmospheric variables and is updated daily with only a few days' delay, making it suitable for near-real-time analysis. As a model-observation hybrid, ERA5 offers spatially and temporally complete outputs, which can be particularly valuable in regions or periods with limited direct observations.
+
+<h3>Strengths</h3>
+
+- Provides a consistent, physically-based reconstruction of weather and climate over time.
+- Offers hourly data since 1940, allowing analysis at high temporal resolution.
+- Covers a wide range of variables, useful for many climate-health applications, including malaria modelling.
+- Includes ensemble-based uncertainty estimates for many parameters.
+
+<h3>Limitations</h3>
+
+- The accuracy of ERA5 depends on the quality and availability of assimilated observations, which are limited in some regions and periods (especially before the satellite era or over data-sparse regions like parts of Africa).
+- It is not an observational dataset but a model–observation hybrid; as such, it may smooth or misrepresent localized extremes or fine-scale variability.
+- Can be complex and data-intensive to work with.
+
+
+<h2>Citing the data</h2>
+
+Hersbach, H., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., Dee, D., Thépaut, J-N. (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on DD-MMM-YYYY)
+
+<h3>Terms of use</h3>
 
 All users of data uploaded on the Climate Data Store (CDS) must:
 
@@ -82,11 +152,11 @@ All users of data uploaded on the Climate Data Store (CDS) must:
 - acknowledge according to the data licence
 - cite each product used
 
-[Further details](https://confluence.ecmwf.int/display/CKB/How+to+acknowledge+and+cite+a+Climate+Data+Store+%28CDS%29+catalogue+entry+and+the+data+published+as+part+of+it)  
-[CDS ERA5 Example](https://cds.climate.copernicus.eu/api/v2/terms/static/licence-to-use-copernicus-products.pdf)
+For guidance on acknowledging or citing the Climate Data Store, see this [page](https://confluence.ecmwf.int/display/CKB/How+to+acknowledge+and+cite+a+Climate+Data+Store+%28CDS%29+catalogue+entry+and+the+data+published+as+part+of+it). For an example of how to cite ERA5 data specifically, refer to this [ERA5 use case](https://confluence.ecmwf.int/display/CKB/Use+Case+2%3A+ERA5+hourly+data+on+single+levels+from+1940+to+present).
 
-### Citation
+## Visualisations  
 
-Hersbach, H., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., Dee, D., Thépaut, J-N. (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on DD-MMM-YYYY)
+**Key example plots for a selected location**
 
+## Modelling Example 
 :::

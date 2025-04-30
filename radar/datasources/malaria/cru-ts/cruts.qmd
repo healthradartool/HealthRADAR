@@ -79,30 +79,30 @@ CRU is a widely used dataset and can be downloaded from several different platfo
 
 ::: {.panel-tabset}
 ### Data Creator
-The Climatic Research Unit (CRU) at the University of East Anglia is the creator of this dataset. Users can download it directly from their [website](https://crudata.uea.ac.uk/cru/data/hrg/), where a list of available datasets is provided, with the latest version listed at the top. When downloading from CRU, the full global dataset must be downloaded. The data is available in ASCII and NetCDF formats.
+The [Climatic Research Unit (CRU)](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the University of East Anglia is the creator of this dataset. Users can download it directly from their [website](https://crudata.uea.ac.uk/cru/data/hrg/), which lists all available datasets, with the most recent version listed at the top. When downloading from CRU, the file provided are for the full global dataset and are available in both ASCII and NetCDF formats. This is the best source for accessing the latest version of the data.
 
-|  **Version**   | **Variables**      	| **Resolution** | **File Format**   	|
-|----------------|------------------------|----------------|-----------------------|
-| 4.08 (1901 - 2023)  | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap, wet 	| 0.5° (~55.5km x ~55.5km)  	| netCDF (.nc), ASCII (.dat) |
+|  **Version**   | **Variables**  	| **Resolution** | **Spatial Extent** | **File Format**   	|
+|----------------|------------------|----------------|--------------------|---------------------|
+| Latest available  | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap, wet 	| 0.5° (~55.5km x ~55.5km) 	| Global |  netCDF (.nc), ASCII (.dat) |
 
 ### Climate Data Store
-The [Climate Data Store](link to page) also provides a version of this dataset for users to download. It can be accessed [here](https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview). The version of the CRU dataset kept on the Climate Data Store is not always the latest version. Data provided in NetCDF format.
+The [Climate Data Store](https://cds.climate.copernicus.eu/) also provides a version of the CRU dataset for users to download. It can be accessed [here](https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview). However, the version available on the Climate Data Store is not always the most up-to-date. The data is provided in NetCDF format.
 
-|  **Version**   | **Variables**      	| **Resolution** | **File Format**   	|
-|----------------|------------------------|----------------|-----------------------|
-| 4.03 (1901 - 2019)  | pre, tmp, tmn, tmx 	| 0.5° (~55.5km x ~55.5km), 1.0° (~111km x ~111km), 2.5° (~277.5km x ~277.5km)  | netCDF (.nc) |
+|  **Version**   | **Variables**  	| **Resolution** | **Spatial Extent** | **File Format**   	|
+|----------------|------------------|----------------|--------------------|---------------------|
+| May not be the latest  | pre, tmp, tmn, tmx 	| 0.5° (~55.5km x ~55.5km), 1.0° (~111km x ~111km), 2.5° (~277.5km x ~277.5km)  | Global | netCDF (.nc) |
 
 ### KNMI Climate Explorer
-The [KNMI Climate Explorer](link to page) is another platform where users can download CRU data. The dataset can be specified on their [Monthly Observations page](https://climexp.knmi.nl/selectfield_obs2.cgi?id=someone@somewhere), where the latest version of CRU is usually available. Users can download data for a specific grid point or area or create a custom subset using a mask (e.g., a shapefile). Data provided in NetCDF format.
+The [KNMI Climate Explorer](https://climexp.knmi.nl/start.cgi) is another platform where users can download CRU data. The dataset can be specified on their [Monthly Observations page](https://climexp.knmi.nl/selectfield_obs2.cgi?id=someone@somewhere), where the latest version of CRU is usually available. Users can download data for a specific grid point or area or create a custom subset using a mask (e.g., a shapefile). Data provided in NetCDF format.
 
-|  **Version**   | **Variables**      	| **Resolution** | **File Format**   	|
-|----------------|------------------------|----------------|-----------------------|
-| 4.08 (1901 - 2023) | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap	| 0.5° (~55.5km x ~55.5km), 1.0° (~111km x ~111km), 2.5° (~277.5km x ~277.5km) | netCDF (.nc) |
+|  **Version**   | **Variables**  	| **Resolution** | **Spatial Extent** | **File Format**   	|
+|----------------|------------------|----------------|--------------------|---------------------|
+| Typically up-to-date | cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap	| 0.5° (~55.5km x ~55.5km), 1.0° (~111km x ~111km), 2.5° (~277.5km x ~277.5km) | User specified |netCDF (.nc) |
 :::
 
 <h2>What the data looks likes</h2>
 
-Below are a few plots to get a better sense of what the CRU dataset looks like. There are two spacial plots over Southern Africa which gives a sense of the spacial resolution (coarseness of the 0.5° x 0.5° data points). The last three plots focus on a single data point and show the seasonal cycle and time series data for that point. 
+Below are a few plots to give a better sense of what the CRU dataset looks like. The first two are spatial plots over Southern Africa, illustrating the spatial resolution and the coarseness of the 0.5° × 0.5° grid. The final three plots focus on a single grid cell and show the seasonal cycle and time series data for that location. 
 
 **Spatial plots of key variables**
 
@@ -182,10 +182,10 @@ ggplot() +
   ) +
   theme_health_radar() +
   labs(
-    title = "Mean Monthly Average Temperature for Southern Africa (1991-2020)",
+    title = "Annual average Daily Mean Temperature for Southern Africa (1991-2020)",
     x = "Longitude", 
     y = "Latitude",
-    caption = str_wrap("Mean monthly average temperature over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
+    caption = str_wrap("Annual average daily mean temperature over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
@@ -222,7 +222,7 @@ ggplot() +
   # Primary axis (rainfall)
   scale_y_continuous(
     name = "Monthly Rainfall (mm)",
-    sec.axis = sec_axis(~./10, name = "Temperature (°C)")
+    sec.axis = sec_axis(~./10, name = "Monthly Average Daily\n Mean Temperature (°C)")
   ) +
   scale_x_continuous(
     breaks = 1:12,
@@ -240,7 +240,7 @@ ggplot() +
   labs(
     title = "Seasonal Cycle of Rainfall and Temperature in Bulawayo",
     x = "Month",
-    caption = str_wrap("Monthly climatology of rainfall (bars) and average temperature (line) for Bulawayo. Zimbabwe, for the period 1991-2020, derived from CRU TS v4.08 data. We see Bulawayo experiences a signioficant propotion of it's rainfall in the warm summer months and is very dry in the temperate winter months. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
+    caption = str_wrap("Monthly climatology of rainfall (bars) and monthly average daily mean temperature (line) for Bulawayo. Zimbabwe, for the period 1991-2020, derived from CRU TS v4.08 data. We see Bulawayo experiences a signioficant propotion of it's rainfall in the warm summer months and is very dry in the temperate winter months. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
@@ -302,10 +302,10 @@ fig5_tas_mon <- read_csv("data/Fig5_tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.c
 # Create the timeseries plot
 ggplot() +
   # Temperature bars
-  geom_col(
+  geom_line(
     data = fig5_tas_mon,
-    aes(x = time, y = tas - 273.15, fill = "Temperature"),
-    alpha = 0.6
+    aes(x = time, y = tas - 273.15, color = "Temperature"),
+    linewidth = 0.8
   ) +
   # Station count line
   geom_point(
@@ -314,11 +314,13 @@ ggplot() +
     linewidth = 0.8
   ) +
   # Use standardized color scales with explicit values
-  scale_fill_manual(values = setNames(theme_health_radar_colours[1], "Temperature")) +
-  scale_colour_manual(values = setNames(theme_health_radar_colours[2], "Station Count")) +
-  # Primary axis (temperature)
+  scale_colour_manual(values = c(  "Temperature" = theme_health_radar_colours[1],  "Station Count" = theme_health_radar_colours[2])) +
+  #scale_fill_manual(values = setNames(theme_health_radar_colours[1], "Temperature")) +
+  #scale_colour_manual(values = setNames(theme_health_radar_colours[2], "Station Count")) +
+  
+# Primary axis (temperature)
   scale_y_continuous(
-    name = "Monthly Temperature (°C)",
+    name = "Monthly Average Daily \n Mean Temperature (°C)",
     sec.axis = sec_axis(
       ~./4, 
       name = "Number of Stations",
@@ -338,9 +340,9 @@ ggplot() +
     legend.position = "none"
   ) +
   labs(
-    title = "Monthly Temperature and Station Count in Bulawayo (1901-2023)",
+    title = "Monthly Average Daily Mean Temperature and \n Station Count in Bulawayo (1901-2023)",
     x = "Year",
-    caption = str_wrap("Monthly average temperature time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly average temperature value. The data is derived from CRU TS v4.08.  The number of contributing stations remains at an adequate level throughout the time series, with a minimum of three stations. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
+    caption = str_wrap("Monthly average daily mean temperature time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly average daily mean temperature value. The data is derived from CRU TS v4.08.  The number of contributing stations remains at an adequate level throughout the time series, with a minimum of three stations. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)", width = 75)
   )
 
 ```
@@ -349,7 +351,8 @@ ggplot() +
 
 <h2>Key points to consider</h2>
 
-CRU provides users with the number of stations used to build each datum within the CRU TS dataset. The NetCDF-formatted ([CF-1.4](http://cfconventions.org/) compliant) CRU TS data output files (for all variables except PET) contain two data variables, the named one, (i.e., ‘tmp’), and a station count (‘stn’) giving the number of stations. If working with ASCII text output files, CRU also publishes a separate station count metadata file. The station counts vary between 0 (no cover, climatology inserted, see Interpolation above), and eight (the maximum station count for interpolation). The ‘stn’ data may be used to quantify uncertainty, most particularly by excluding cells with a zero count, as these will have been set to the default climatology. The station count can vary widely through space and time and per variable, see figures 4 and 5 above.
+CRU provides users with the number of stations used to build each datum within the CRU TS dataset. The NetCDF-formatted ([CF-1.4](http://cfconventions.org/) compliant) CRU TS data output files (for all variables except PET) contain two data variables, the named one, (i.e., ‘tmp’), and a station count (‘stn’) giving the number of stations. If working with ASCII text output files, CRU also publishes a separate station count metadata file. The station counts vary between 0 (no cover, climatology inserted, see Interpolation above), and eight (the maximum station count for interpolation). The ‘stn’ data may be used to quantify uncertainty, most particularly by excluding cells with a zero count, as these will have been set to the default climatology ((i.e., long-term average values from a reference period when no observations are available). The station count can vary widely through space and time and per variable, see figures 4 and 5 above.
+
 
 <h3>Strengths</h3>
 
