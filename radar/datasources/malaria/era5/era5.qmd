@@ -22,9 +22,7 @@ categories:
 
 <h2>About the data</h2>
 
-ERA5 is the fifth-generation reanalysis dataset produced by ECMWF (European Centre for Medium-Range Weather Forecasts), providing a detailed, global view of the climate. Covering the period from 1940 to near real-time, ERA5 combines vast amounts of historical observations with modern weather forecasting models, ensuring a globally complete, physically consistent record. The gridded dataset is available at a high spatial resolution of 0.25° (approximately 28 km by 28 km at the equator, varying slightly by latitude) and offers data at hourly intervals, supporting a wide range of applications and research fields.
-
-As a reanalysis dataset, ERA5 reconstructs past atmospheric conditions by assimilating observations using a consistent modern model throughout the record. This approach provides comprehensive information on atmospheric, land-surface, and sea-state variables, making ERA5 a key resource in climate monitoring, environmental assessments, and other scientific studies.
+ERA5 is the fifth-generation reanalysis dataset produced by ECMWF (European Centre for Medium-Range Weather Forecasts), providing a detailed, global view of the climate. Covering the period from 1940 to near real-time, ERA5 combines vast amounts of historical observations with modern weather forecasting models, ensuring a globally complete, physically consistent record. The gridded dataset is available at a high spatial resolution of 0.25° (approximately 28 km by 28 km at the equator, varying slightly by latitude) and offers data at hourly intervals, providing sub-daily time resolution. It includes a wide range of surface and upper-air variables, supporting a broad spectrum of applications and research fields.
 
 ERA5 is continuously updated, with data typically available within about one week of real time. Regular updates and corrections ensure the quality and completeness of the dataset over time.
 
@@ -37,7 +35,6 @@ Users can also find more information about the ERA5 dataset here:
 - Climate Data Store: [ERA5 hourly data on single levels from 1940 to present](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview)
 
 - Climate Data Guide: [ERA5 atmospheric reanalysis](https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis)
-
 
 
 **Summary**
@@ -66,7 +63,6 @@ Users can also find more information about the ERA5 dataset here:
 | Total precipitation | accumulated liquid and frozen water, comprising rain and snow, that falls to the Earth's surface | meters |
 | 10m u-component of wind | horizontal speed of air moving towards the east, at a height of ten meters above the surface of the Earth | meters per second |
 | 10m v-component of wind | horizontal speed of air moving towards the north, at a height of ten meters above the surface of the Earth | meters per second |
-| 2m dewpoint temperature |   temperature to which the air, at 2 meters above the surface of the Earth, would have to be cooled for saturation to occur |  kelvin |
 For a comprehensive list of variables, you can refer to the dataset's documentation on the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview).
 
 
@@ -112,7 +108,7 @@ Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5
 Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on 16-OCT-2024)](images/Fig3_ERA5_Climatology_1991-2020.png){fig-align="center"}
 :::
 :::{.cell}
-![Daily rainfall time series for Mwinilunga, Zambia, from 1959 to 2023, derived from ERA5 data.
+![Daily rainfall time series for Mwinilunga, Zambia, from 1959 to 2023, derived from ERA5 data. We can see daily extreme events 
 Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS), DOI: 10.24381/cds.adbb2d47 (Accessed on 16-OCT-2024)](images/Fig4_ERA5_daily_TimeSeries_Rainfall_1959-2023.png){fig-align="center"}
 :::
 :::{.cell}
@@ -123,9 +119,11 @@ Data source: Copernicus Climate Change Service, Climate Data Store, (2023): ERA5
 
 ERA5 is a global reanalysis dataset produced by combining model output with a wide range of historical observations using data assimilation techniques. It reflects a blend of satellite, in situ, aircraft, and other observational sources, integrated using the ECMWF Integrated Forecast System (IFS). Through this system, vast amounts of observations are brought together into a consistent model framework, resulting in a physically coherent dataset suitable for climate monitoring and research.
 
-The quality and density of observations vary across space and time, particularly in earlier decades and over data-sparse regions. ERA5 provides uncertainty estimates for many variables through ensemble-based statistics, such as the standard deviation from the 10-member ensemble. These can be used as proxies to assess confidence in the data at a given time and location.
+The quality and density of observations vary across space and time, particularly in earlier decades and over data-sparse regions. ERA5 provides uncertainty estimates for many variables through ensemble-based statistics, such as the standard deviation from the 10-member ensemble. These can be used as proxies to assess confidence in the data at specific times and locations.
 
-ERA5 data is available at hourly resolution and can be aggregated to daily or monthly time scales. The dataset includes many surface and atmospheric variables and is updated daily with only a few days' delay, making it suitable for near-real-time analysis. As a model-observation hybrid, ERA5 offers spatially and temporally complete outputs, which can be particularly valuable in regions or periods with limited direct observations.
+ERA5 data is available at hourly resolution and can be aggregated to daily or monthly time scales. The dataset includes many surface and atmospheric variables, and its sub-daily time resolution supports detailed temporal analysis. It also enables the derivation of additional variables, such as relative humidity, from core fields like air temperature and dew point temperature. The reanalysis is updated daily with only a few days' delay, making it suitable for near-real-time analysis. As a model-observation hybrid, ERA5 offers spatially and temporally complete outputs, which can be particularly valuable in regions or periods with limited direct observations.
+
+Users should be aware that the skill of ERA5 data varies by variable, due to how the dataset is produced. ERA5 is derived from a global climate model with fixed spatial resolution, meaning it represents the Earth using a grid. As a result, it can struggle to accurately capture small-scale ('sub-grid') processes, such as localized convective rainfall. Consequently, rainfall data tends to be less skillful, especially in regions dominated by convective processes or with sparse observational coverage. Temperature data, on the other hand, generally has higher skill, as it is strongly constrained by assimilated observations and tends to be more spatially consistent than rainfall. Comparing ERA5 data with local observations is recommended to assess its reliability.
 
 <h3>Strengths</h3>
 
@@ -133,6 +131,7 @@ ERA5 data is available at hourly resolution and can be aggregated to daily or mo
 - Offers hourly data since 1940, allowing analysis at high temporal resolution.
 - Covers a wide range of variables, useful for many climate-health applications, including malaria modelling.
 - Includes ensemble-based uncertainty estimates for many parameters.
+
 
 <h3>Limitations</h3>
 
