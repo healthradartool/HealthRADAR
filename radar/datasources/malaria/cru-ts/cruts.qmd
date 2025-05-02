@@ -377,7 +377,104 @@ The various datasets on the CRU website are provided for all to use, provided th
 
 ## Visualisations  
 
-**Key example plots for a selected location**
+<h2>How to use this data?</h2>
+
+In this example we demonstrate how to use the [KNMI Climate Explorer](https://climexp.knmi.nl) to:
+
+1) Select the required variables from the CRU TS dataset (daily maximum and minimum temperature and rainfall).
+2) Generate an area-average spatial subset for the full record period (in this case, for the Mopani District, Limpopo Province, South Africa for the period 1901 - 2023).
+3) Download the resulting data as text files.
+
+While the KNMI Climate Explorer allows anonymous access, it is recommended to register and login to access more features.
+
+The CRU TS dataset is accessible through the side menu under  Select a field > [Monthly observations](https://climexp.knmi.nl/selectfield_obs2.cgi)
+
+:::{.cell}
+![Fig. 1: KNMI Climate Explorer home page](images/fig1_knmi_clim_exp_hompage.png)
+:::
+
+The site lists a number of monthly fields by variable / categories (the names of which may appear somewhat confusing at first).  The CRU TS can be found under the different variables and in this visualisation example we will focus on the data listed under the variables Tmax (daily maximum temperature). 
+
+Users can select the data at different spatial resolutions (0.5°, 1.0°, 2.5°). A metadata variable #/value is also available, indicating the number of weather stations used to calculate each gridcell’s value, ranging from 0 to 8 stations.
+
+:::{.cell}
+![Fig. 2: KNMI Climate Explorer Monthly Observation list of datasets](images/fig2_CRU_KNMI_clim_exp_select_mon_field.png)
+:::
+
+We select the most recent [Tmax CRU TS 4.08 (land) dataset at 0.5° spatial resolution](https://climexp.knmi.nl/select.cgi?id=&field=cru4_tmx). This page provides options to process/modify the data. Including:
+
+- Spatial and temporal subsetting
+- Monthly high/low-pass filtering
+- Year-on-year high/low-pass filtering
+- Regridding to a lower spatial or temporal resolution
+- Computing of anomalies from a climatological mean, or from zonal mean.
+- It also provides a link to download the dataset itself (though it recommends that users rather utilise the authoritative site).
+
+For our purposes, we generate an area average for a spatial subset for the Mopani District, Limpopo Province, South Africa by specifying the latitude and longitude bounds.
+
+:::{.cell}
+![Fig. 3: KNMI Climate Explorer tools used to create the spatial subset.](images/fig3_CRU_KNMI_clim_exp_field.png)
+:::
+
+The output includes:
+
+- A times series
+- The annual cycle
+- Anomalies relative to the annual cycle.
+
+The site generates basic plots of the output, that can be downloaded either in eps or pdf format. The data itself can be downloaded as the raw data (txt format) or as a netcdf file. Both formats include detailed metadata along with the data itself.
+
+:::{.cell}
+![Fig. 4: KNMI Climate Explorer time page presenting the time series output.](images/fig4_CRU_KNMI_clim_exp_time_series.png)
+:::
+
+
+<h2>How to plot this data?</h2>
+
+The downloaded time series can be used for various analyses and visualisations.  
+
+In this example, we perform a simple sanity check on the data by exploring the variability and trends in the climate over the historical period for the Mopani District.  Specifically, we present annual anomalies for daily maximum and daily minimum temperature and rainfall.
+
+<h3>Analysis steps</h3>
+
+1) **Calculation of annual mean or total values** for daily maximum and minimum temperature and rainfall.
+    - We use a July–June year to align with the malaria season, which primarily occurs in summer.
+2) **Calculate the average (baseline) climate** for the 30-year period 1981-2010. 
+    - This is a standard climatological baseline and corresponds with relatively complete station coverage globally.	
+3) **Compute anomalies** by subtracting the baseline from each year’s value.
+4) **Include the metadata #/value (station count)** as an annual average to provide an indication of the data quality across the record.
+
+<h3>Interpretation and discussion</h3>
+
+- **Daily Maximum Temperature (Tmax):** The average is 29°C (Fig. 5). The time series shows considerable year-to-year variability and an overall warming trend.
+- **Daily Minimum Temperature (Tmin):**  The average is 15.6°C (Fig. 6). Similarly, there is variability and a suggested warming trend.
+- **Annual Rainfall:** The mean total rainfall is approximately 532 mm. The record shows strong interannual variability with multi-year wet or dry spells, but no clear long-term trend.
+
+**Note**: South Africa historically maintained dense rainfall, and to a lesser extent temperature, station networks operated by the South African Weather Service, the Agricultural Research Council and other organisations. The data for these networks were combined and made freely available in 2000. This is the key reason for the high density of stations being utilized in the CRU dataset during the period 1904 - 2001 for rainfall and for 1951-2001 for the temperatures. The number of operational weather stations has decreased significantly during the last few decades and only a few of these stations make their data available to be used in datasets like CRU.
+
+<h3>Advice to users</h3>
+
+In this example, the user is advised not to use the temperature data for the period pre-1951 since very few station records are used to calculate the values. Also, there are no other sources of observed climate data against which to evaluate the skill of this dataset during this period. The data for most recent decades should be used with caution and the user is advised to evaluate the dataset against other available datasets.
+
+The rainfall dataset may be used since the maximum number of stations are utilised for the majority of the period. Rainfall, and especially convective rainfall, is highly localized and episodic. Therefore the proximity of the stations to the target location is far more critical in comparison to temperature which is far more spatially and temporally consistent. CRU does not provide the exact location of the stations and therefore it is still advised to evaluate the dataset against other datasets, especially for the more recent decades. 
+
+:::{.cell}
+![Fig. 5: CRU TS annual (July - June) average daily maximum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023. ](images/fig5_CRU_TimeSeries_TemperatureMax-Anomalies_Annua.png)
+:::
+
+:::{.cell}
+![Fig. 6: CRU TS annual (July - June) average daily minimum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023.](images/fig6_CRU_TimeSeries_TemperatureMin-Anomalies_Annual.png)
+:::
+
+:::{.cell}
+![Fig. 7: CRU TS annual (July - June) total rainfall anomalies (%) and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023.](images/fig7_CRU_TimeSeries_Rainfall-Anomalies_Annual.png)
+:::
+
+The CRU TS mean annual total rainfall over this Mopani District is around 532 mm. It shows strong year to year variability, with some longer periods of above or below average rainfall. No clear trends in the rainfall are evident. 
+
+South Africa historically had an extensive rainfall station network and this is evidenced by the maximum number of stations being used to calculate this dataset for this region from 1904 - 2001. The decrease in station count post 2001 is due to both the reduction in active weather stations, but also in the number of stations that make their data available for use in datasets like CRU TS. The user is advised to evaluate the dataset against other datasets, especially for the more recent decades. 
+
+ 
 
 ## Modelling Example 
 
