@@ -233,5 +233,8 @@ data |>
       width = 100))
 ```
 
+## Modelling
+
+Data on invasive mosquito vector species can be used in a range of malaria modelling applications. It can be used to project the spread of disease if transmission efficiency of the invasive vector differs to the native vector, or their combined effects can inform the overall vectorial capacity in a given context. When used in conjunction with other data sources such as climate projections, land cover or population density data, the location of the invasive species collected can be used for spatial risk mapping and/or to forecast further invasions of the species. These findings can also be used as inputs for models that evaluate intervention impact, as far as targeted vector control and changes in their effectiveness due to the presence of invasive species.
 
 :::

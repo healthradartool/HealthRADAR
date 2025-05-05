@@ -12,6 +12,8 @@ categories:
   - accountability
 ---
 
+
+
 ::: {.page-tabs .panel-tabset}
 
 ## Overview
@@ -40,7 +42,12 @@ categories:
 
 ## Video demonstration of the ALMA Scorecard Hub
 
+
+
 {{< video https://www.youtube.com/watch?v=jJAk_A0bfyk >}}
+
+
+
 
 :::
 
@@ -73,6 +80,8 @@ or directly from the web platform (not downloadable, user has to scroll through 
 - As the scorecards are available in pdf format or as a web platform, information has to be extracted manually.
 
 <h2>How to plot this data?</h2>
+
+
 
 
 ```{r}
@@ -168,6 +177,8 @@ dataframe <- data.frame(Country, Year, Quarter, Operational_LLINS_IRS)
 knitr::kable(head(dataframe))
 ```
 
+
+
 <h2>Tracking indicator perfomance</h2>
 
 - The plot given below highlights how tracking indicator performance can be achieved.
@@ -175,6 +186,8 @@ knitr::kable(head(dataframe))
 - The implementation indicator on operational vector control (LLINs/IRS) coverage was considered.
 
 When visualising similar data over a much longer period of time, a line plot is useful. Here, the coverage by an LLIN and/or IRS in each of the Frontline 4 countries from 2015 to 2024 is visualised.
+
+
 ```{r}
 # Read in data
 E8_data <- read_excel("data/E8_implementation.xlsx")
@@ -210,6 +223,8 @@ E8_data |>
     )
   )
 ```
+
+
 
 ## Modelling example
 
