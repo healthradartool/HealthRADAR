@@ -401,9 +401,9 @@ Following calibration and fine-tuning of the parameters, we anticipate model out
 # Simulated model output with 95% Confidence intervals of incidence rates
 modelled_incidence_rate <- data.frame(
   Year = 2000:2022,
-  incidence_rate = estimated_data$inci_rate + rnorm(length(estimated_data$inci_rate), mean = 50, sd = 25)) |>  
+  incidence_rate = estimated_data$inci_rate + rnorm(length(estimated_data$inci_rate), mean = 30, sd = 25)) |>  
   mutate(
-    std_error = 0.03, # for example
+    std_error = 0.04, # for example
     lower_bound = incidence_rate - (1.96 * std_error * 1000),
     upper_bound = incidence_rate + (1.96 * std_error * 1000),
     Type = "Model output")
