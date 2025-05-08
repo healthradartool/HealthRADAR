@@ -155,19 +155,28 @@ insecticide_data_summ <- insecticide_data |>
   complete(YEAR_START = full_seq(YEAR_START, 1), RESISTANCE_STATUS) |>
   mutate(time = (YEAR_START - min(YEAR_START)) * 365)
 
+# Assign colours from theme health radar
+status_colours <- c(
+  "Susceptible" = theme_health_radar_colours[5],          
+  "Possible resistance" = theme_health_radar_colours[6], 
+  "Confirmed resistance" = theme_health_radar_colours[13],
+  "Undetermined" = theme_health_radar_colours[7]
+)
+
+
 insecticide_data_summ |> 
   ggplot() +
   geom_point(aes(x = YEAR_START, y = mean_mortality, colour = as_factor(	
 RESISTANCE_STATUS))) +
   theme_health_radar() +
-  scale_colour_manual_health_radar() +
-  #scale_y_continuous(limits = c(0, NA)) +
+  scale_colour_manual(values = status_colours) +
+  scale_y_continuous(limits = c(0, NA)) +
   labs(title = "Trend of mosquito mortality in Mozambique",
        subtitle = "Results from MTM discriminating concentration bioassay",
        x = "Year",
        y = "Adjusted mosquito mortality (%)",
        colour = "Resistance status",
-       caption = "We see that more mosquitoes survive in bioassays of confirmed resistance in Mozambique over time, indicating a worsening resistance profile. In 2021, mortality dropped to just 40%, highlighting a significant decline in susceptibility. Possible resistance remains somewhat stable (about 92% mosquito mortality). Source: Malaria Threats Map")
+       caption = str_wrap("We see that more mosquitoes survive in bioassays of confirmed resistance in Mozambique over time, indicating a worsening resistance profile. In 2021, mortality dropped to just 40%, highlighting a significant decline in susceptibility. Possible resistance remains somewhat stable (about 92% mosquito mortality). Source: Malaria Threats Map"))
 
 ```
 
@@ -302,7 +311,7 @@ df |>
     variable == "itn_r" ~ "Resistant")) |> 
     ggplot(aes(x = date, y = value, colour = `Insecticide Status`)) + 
     geom_line() +
-    scale_y_continuous(labels = scales::percent) +
+    scale_y_continuous(labels = scales::percent, limits = c(0, 0.6)) +
     labs(
       x = "Year", 
       y = "Effective coverage", 

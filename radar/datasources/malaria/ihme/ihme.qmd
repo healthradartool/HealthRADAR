@@ -351,7 +351,7 @@ ggplot() +
 
 A good use of prevalence data is to calibrate transmission models. This is particularly useful if incidence data is limited, and in diseases with a significant asymptomatic proportion of the population, such as malaria. Fitting the model to both incidence and prevalence data provides a more complete picture of disease dynamics.
 
-Using prevalence data is not without challenges. Health system challenges preventing individuals from accessing diagnosis and treatment, may result in under-reporting. In addition, because point prevalence is obtained from cross-sectional surveys, we may fail to capture dynamic trends in transmission and malaria immunity.
+Point prevalence data is obtained from cross-sectional surveys. As such, we may fail to capture dynamic trends in transmission and malaria immunity. In addition, capturing the asymptomatic population (as a proportion of total prevalence) depends on the sensitivity of the diagnostic tool used.
 
 Malaria models set in endemic countries also assume that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection). It may be difficult to estimate the true proportion of the population that has recovered from an initial infection already, and is now susceptible to a secondary infection.
 
@@ -448,9 +448,9 @@ predicted_prev <- data.frame(
   bind_rows(
       data.frame(
   year = 2000:2021,
-  value = observed_df$value + rnorm(length(observed_df$value), mean = 1000, sd = 400)) |>  
+  value = observed_df$value + rnorm(length(observed_df$value), mean = 700, sd = 500)) |>  
   mutate(
-    std_error = 700, # for example
+    std_error = 800, # for example
     lower = value - (1.96 * std_error),
     upper = value + (1.96 * std_error),
     key = "Calibrated Projected prevalence")
