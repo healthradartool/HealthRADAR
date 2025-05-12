@@ -118,7 +118,7 @@ The report was released on Jan 31, 2024 and, as such, few studies have used the 
 
 For this example, the goal is to determine the reported malaria deaths for the elimination 8 (E8) countries, but your specific analysis may require different data.
 
-We can either manually download, unzip and read in annex 4J or use the `whowmr` package to access the data.
+We can either manually download, unzip and read in annex 4J or use the [`whowmr`](https://github.com/uct-masha/whowmr) package to access the data.
 
 ::: callout-warning
 The annexes contain references to footnotes. The `whowmr` package leaves these in the data - the idea being that one should engage with the footnote and proceed with context. <br>
