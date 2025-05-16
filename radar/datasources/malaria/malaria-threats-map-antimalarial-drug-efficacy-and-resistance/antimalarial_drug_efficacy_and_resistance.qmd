@@ -316,7 +316,7 @@ therapeutic_eff_data <- read_excel("data/MTM_THERAPEUTIC_EFFICACY_STUDY_20250324
 mean_pf <- therapeutic_eff_data |> 
   group_by(YEAR_END) |> 
   summarise(mean = mean(TREATMENT_FAILURE_PP)) |>  
-  mutate(time = c(365, 365*5, 365*8)) # to get time series for 2010, 2014 and 2017
+  mutate(time = c(365*10, 365*15, 365*18)) # to get time series for 2010, 2014 and 2017 with simulation beginning in 2000
 
 therapeutic_eff_data |>  
   ggplot(aes(x = as_factor(YEAR_END), y = TREATMENT_FAILURE_PP)) +
@@ -343,7 +343,7 @@ Using a simple model, we demonstrate how treatment failure is incorporated, and 
 ```{r}
 
 # Time points for the simulation
-Y = 15 # Years of simulation
+Y = 22 # Years of simulation
 times <- seq(0, 365*Y, 1) # time in days
 
 # Create a time-dependent function for treatment failure
@@ -431,24 +431,25 @@ out <- ode(y = start,
 
 df <- as_tibble(as.data.frame(out)) |> 
   mutate(P = S + E + A + C + Tr + Tf + R + G,
-         Inc = c(0, diff(CInc))) |> 
+         Inc = c(0, diff(CInc)),
+         TsR = Tr/(Tr+Tf)) |> 
   pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
-  mutate(date = ymd("2009-01-01") + time)
+  mutate(date = ymd("2000-01-01") + time)
 
 df |> 
-  filter(variable %in% "Inc", date > ymd("2009-06-01")) |> 
+  filter(variable %in% c("TsR"), date > ymd("2009-06-01")) |> 
   ggplot() +
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
-  scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, NA)) +
   labs(
-    title = "Country wide daily incidence in Zimbabwe", 
+    title = "Treatment success rate", 
+    subtitle = "Treatment successes divided by total treatment",
     x = "Year",
-    y = "Incidence",
-    caption = str_wrap("Incidence follows the seasonal pattern of malaria, but has an overall decreasing trend as treatment failure decreases over time, and more infected individuals are successfully cured. Source: Model output")
-  )  +
-  theme(legend.position = "none")
+    y = "Percentage",
+    caption = str_wrap("In general, treatment follows the seasonal pattern of malaria, but the treatment success rate has an overall increasing trend as treatment failure decreases over time, and more infected individuals are successfully cured. Source: Model output")) +
+  theme(guides = "none")
 
 ```
 
@@ -458,79 +459,92 @@ To account for the uncertainty in the probability of treatment failure $pf$, we 
 
 ```{r}
 
-set.seed(123)
+library(triangle)
+library(lhs)
 
+
+set.seed(123)
 runs <- 50
 results_list <- vector("list", runs)
 
+# Latin Hypercube Sample matrix across 3 years for 50 runs
+lhs_matrix <- randomLHS(runs, 3)
+
+# Run simulations
 for (i in 1:runs) {
   
+  # Summarise treatment failure stats by year
   # Assume mode to be the mean for triangular distribution sampling
-  
   pf_data <- therapeutic_eff_data |> 
-  group_by(YEAR_END) |> 
-  summarise(
-    min = min(TREATMENT_FAILURE_PP), 
-    mode = mean(TREATMENT_FAILURE_PP),
-    max = max(TREATMENT_FAILURE_PP)
-  )
-
+    group_by(YEAR_END) |> 
+    summarise(
+      min = min(TREATMENT_FAILURE_PP), 
+      mode = mean(TREATMENT_FAILURE_PP),
+      max = max(TREATMENT_FAILURE_PP),
+      .groups = "drop"
+    )
+  
+  # Time durations (in days) from start of simulation
   # Sample values probability of treatment failure from a triangular distribution for each year
-  pf_data <- pf_data |>  
-    mutate(
-    pf_sampled = pmap_dbl(list(min, mode, max), ~ rtri(1, min = ..1, mode = ..2, max = ..3)),
-    time = c(365, 365*5, 365*8) # to get time series for 2010, 2014 and 2017
-  )
-
+  pf_data <- pf_data |> 
+    mutate(time = c(365*5, 365*10, 365*13))
+  
+  # Use LHS to sample from triangular distribution
+  pf_values <- pf_data |> 
+    mutate(pf_sampled = map2_dbl(row_number(), mode, 
+                                 ~ qtri(lhs_matrix[i, .x], 
+                                        min = min[.x], 
+                                        mode = .y, 
+                                        max = max[.x])))
+  
   # Time-dependent interpolation for sampled values
- pf_run_function <- approxfun(pf_data$time, pf_data$pf_sampled, rule = 2)  # linear interpolation
-
- # Run the ODE
+  pf_run_function <- approxfun(pf_values$time, pf_values$pf_sampled, rule = 2)
+  
+  # Run the ODE
   sens_out <- ode(y = start,  
            times = times, 
            func = seirs, 
            parms = parameters,
            pf_function = pf_run_function)
   
-  # Store results
+  # Store and tidy output
   results_list[[i]] <- as_tibble(as.data.frame(sens_out)) |> 
     mutate(P = S + E + A + C + Tr + Tf + R + G,
-         Inc = c(0, diff(CInc))) |> 
+           Inc = c(0, diff(CInc)),
+           TsR = Tr/(Tr+Tf)) |> 
     pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
-    mutate(date = ymd("2009-01-01") + time,
-          run = i)
+    mutate(date = ymd("2004-01-01") + time,
+           run = i)
 }
-
 
 # Combine all runs into one dataframe
 sens_df <- bind_rows(results_list)
 
 median_sens <- sens_df |> 
   group_by(time) |> 
-  filter(variable == "Inc") |> 
-  summarise(median_Inc = median(value), 
-            lower_Inc = quantile(value, 0.05),
-            upper_Inc = quantile(value, 0.95),
+  filter(variable == "TsR") |> 
+  summarise(median = median(value), 
+            lower = quantile(value, 0.05),
+            upper = quantile(value, 0.95),
             .groups = "drop") |> # plot median values and 95% confidence intervals
-  mutate(date = ymd("2009-01-01") + time)
+  mutate(date = ymd("2000-01-01") + time)
 
 sens_df |> 
-  filter(variable == "Inc", date > ymd("2009-06-01")) |> 
+  filter(variable == "TsR", date > ymd("2009-06-01")) |> 
   ggplot() +
-  #geom_line(aes(x = date, y = value, colour = as_factor(run), group = run), alpha = 0.5) + # if you want to see individual runs
-  geom_ribbon(data = median_sens |> filter(date > ymd("2009-06-01")), aes(x = date, ymin = lower_Inc, ymax = upper_Inc), 
+  # geom_line(aes(x = date, y = value, colour = as_factor(run), group = run), alpha = 0.5) + # if you want to see individual runs
+  geom_ribbon(data = median_sens |> filter(date > ymd("2009-06-01")), aes(x = date, ymin = lower, ymax = upper), 
               fill = theme_health_radar_colours[12], alpha = 0.5) +
-  geom_line(data = median_sens |> filter(date > ymd("2009-06-01")), aes(x = date, y = median_Inc, linetype = "Median"), linewidth = 0.5) +
+  geom_line(data = median_sens |> filter(date > ymd("2009-06-01")), aes(x = date, y = median, linetype = "Median"), linewidth = 0.5) +
   theme_health_radar() +
-  scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
+   scale_y_continuous(labels = scales::percent, limits = c(0, NA)) +
   labs(
-    title = "Median country-wide daily incidence in Zimbabwe", 
-    subtitle = str_wrap("Shaded area shows 5–95% range across 50 model runs."),
-    caption = str_wrap("Sensitivity analysis of values for treatment failure in each year. Sampling from within the minimum and maximum ranges provided does not appear to significantly cause changes to incidence. Source: Model output."),
+    title = "Treatment success rate", 
+    subtitle = "Shaded area shows 5–95% range across 50 model runs.",
     x = "Year",
-    y = "Incidence",
-    linetype = "") +
-  guides(colour = "none") 
+    y = "Percentage",
+    caption = str_wrap("Sensitivity analysis of values for treatment failure in each year. Sampling from within the minimum and maximum ranges provided does not appear to significantly cause changes to the treatment success rate. Source: Model output.")) +
+  theme(legend.position = "none")
 
 ```
 
