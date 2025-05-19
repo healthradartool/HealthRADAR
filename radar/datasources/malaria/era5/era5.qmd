@@ -128,7 +128,7 @@ Users should be aware that the skill of ERA5 data varies by variable, due to how
 
 Specific variables in ERA5 are defined and derived in distinct ways:
 
-- The temperature variable '2m temperature' in ERA5 represents the air temperature at two meters above the surface. Over land, near-surface temperature observations from weather stations are combined with the model output to improve accuracy. However, ERA5 does not explicitly represent urban environments, so it may not fully capture the 'urban heat island' effect often observed in cities. Environmental factors such as land type and vegetation also influence the 2 metre temperature. Over the ocean, the 2 meter temperature is strongly influenced by sea surface temperatures (SST), which are derived from a combination of satellite observations (since 1982) and in-situ measurements (prior to 1982). 
+- The temperature variable '2m temperature' in ERA5 represents the air temperature at two meters above the surface. Over land, near-surface temperature observations from weather stations are combined with the model output to improve accuracy. However, ERA5 does not explicitly represent urban environments, so it may not fully capture the 'urban heat island' effect often observed in cities. Environmental factors such as land type and vegetation also influence the 2 meter temperature. Over the ocean, the 2 meter temperature is strongly influenced by sea surface temperatures (SST), which are derived from a combination of satellite observations (since 1982) and in-situ measurements (prior to 1982). 
 
 - The precipitation variable 'total precipitation' in ERA5 includes all forms of precipitation (e.g. rain, snow, sleet, and hail). Unlike temperature, precipitation observations are not directly used to adjust the model so the data reflects the model's best estimate based on its representation of physical processes. However, ERA5's precipitation is influenced by other observations, such as satellite measurements of humidity in the atmosphere. ERA5 precipitation estimates rely heavily on parameterizations (simplified equations) to represent small-scale ('sub-grid') processes like thunderstorms, which can reduce accuracy in certain regions.
 
@@ -165,7 +165,85 @@ For guidance on acknowledging or citing the Climate Data Store, see this [page](
 
 ## Visualisations  
 
-**Key example plots for a selected location**
+<h2>How to plot this data?</h2>
+
+In this example, we demonstrate how to visualise ERA5 data using the [ERA Explorer](https://era-explorer.climate.copernicus.eu) application provided by [Climate Data Store (CDS)](https://cds.climate.copernicus.eu). The ERA Explorer application allows users to explore the historical climate for anywhere on earth using the ERA5 reanalysis dataset and focuses on four key variables, temperature, rainfall, wind and humidity, all of which are important for Malaria modelling. In the below example we will focus on two different locations in southern Africa.
+
+:::{.cell}
+![Fig. 1: ERA Explorer Landing page ](images/Vis_Fig1_ERA-Explorer_homepage.png)
+:::
+
+Users can select a location of interest by clicking on the global interactive map. The application then calculates a set of climate statistics for the selected grid cell (0.25° x 0.25° resolution), which are displayed as a series of plots. These plots can be downloaded as PNG images, and the underlying data can be downloaded in CSV format. The site also links to example Python notebooks to help users understand, replicate, or customize the code.
+
+    Note: The data represents average conditions for the entire grid cell, not the precise local environment. 
+
+A guidance section, accessible via the "?" icon, provides information on how to use the app; the organisation, the ERA5 dataset and about the data, and how to interpret the plots presented in the app.
+
+:::{.cell}
+![Fig. 2: Guidance documentation popup for the ERA Explorer Application ](images/Vis_Fig2_About_ERA-Explorer.png)
+:::
+
+To illustrate, two locations in southern Africa with contrasting climates were selected (Fig. 3):
+      
+  - Kariba, Zimbabwe
+  - Mbabane, Eswatini
+
+:::{.cell}
+![Fig. 3: ERA Explorer showing the two selected locations](images/Vis_Fig3_ERA-Explorer_compare_locations.png)
+:::
+
+The ERA Explorer provides several types of visualisations which include:
+
+- Monthly climatologies (temperature, rainfall and relative humidity)
+- Annual timeseries (temperature and rainfall)
+- Annual anomalies (temperature)
+- Daily climatologies (temperature)
+- Hourly climatologies (wind)
+
+Each plot is generated automatically, with a brief explanation below describing the method used. While most plots look straightforward, some involve complex processing—particularly those showing relative humidity or hourly wind climatologies.
+
+If users wish to generate their own plots, it is recommended to download the data from the application and to refer to the example python notebooks provided. 
+
+<h3>Monthly Climatologies</h3>
+
+:::{.cell}
+![Monthly temperature climatology for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1991-2020. We can see Kariba is consistently warmer than Mbabane throughout the year. Kariba’s temperatures peak in spring (Sept–Nov), while Mbabane experiences its warmest temperatures in summer (Dec–Feb). Both locations have their coolest periods in winter (Jun–Aug). Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_monthly_climatology_26.30S31.17E_16.52S28.80E.png)
+
+![Monthly precipitation climatology for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1991-2020. Both locations experience a distinct wet season from November to March, with Kariba generally receiving more rainfall during the early summer months (Dec–Feb). Kariba has an extended dry season from May to October, while Mbabane tends to receive more consistent rainfall throughout its drier season. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Precip_monthly_climatology_26.30S31.17E_16.52S28.80E.png)
+
+![Monthly precipitation climatology for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1991-2020. Mbabane generally exhibits higher relative humidity than Kariba throughout the year. While both locations experience lower humidity during the dry season, Kariba shows a more pronounced drop during the hot, dry months of early spring (Sept–Oct), whereas Mbabane’s lowest levels occur during the cooler winter months (Jun–Aug).Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Humidity_monthly_climatology_26.30S31.17E_16.52S28.80E.png)
+:::
+
+<h3>Annual Timeseries</h3>
+
+:::{.cell}
+![Annual average temperature for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1940-2024. Kariba is consistently around 8°C warmer than Mbabane. A clear warming trend is evident in both locations. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_annual_timeseries_26.30S31.17E_16.52S28.80E.png)
+
+![Annual total precipitation for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1940-2024. Mbabane consistently receives more annual rainfall than Kariba, with both locations showing high interannual variability. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Precip_annual_timeseries_26.30S31.17E_16.52S28.80E.png)
+:::
+
+<h3>Daily Climatologies</h3>
+
+:::{.cell}
+![Daily temperature climatology for Kariba (Zimbabwe) for the period 1991-2020. There are distinct cool and warm periods throughout the year. The hottest days and nights occur in late October to early November, while the coldest are observed in early July. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_daily_climatology_16.52S28.80E.png)
+
+![Daily temperature climatology for Mbabane (Eswatini) for the period 1991-2020. The coldest days and nights occur in early July, while the warmest temperatures are more broadly distributed across the summer months (Dec–Feb), rather than peaking in a single period. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_daily_climatology_26.30S31.17E.png)
+:::
+
+<h3>Hourly Climatologies</h3>
+
+:::{.cell}
+![Hourly climatological wind rose for Kariba (Zimbabwe) for the period 1991-2020. Wind direction is highly unidirectional with very little variation, indicating a dominant prevailing wind. The wind speed does vary, suggesting changes in intensity even though the direction remains relatively consistent. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Wind_annual_climatology_16.52S28.80E.png)
+
+![Hourly climatological wind rose for Mbabane (Eswatini) for the period 1991-2020. The wind rose indicates that winds come from multiple directions, with a few directions (Westly, West Noth-Westly and South-Eastly) more common than others. This suggests a moderately variable wind regime without a single dominant direction. Wind speeds also show a wide range of variability. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Wind_annual_climatology_26.30S31.17E.png)
+:::
+
+<h3>Annual Anomalies</h3>
+
+:::{.cell}
+![Climate warming stripes (annual temperature anomalies relative to the 1961–2010 reference period) for Kariba (Zimbabwe) and Mbabane (Eswatini) for 1940–2024. A clear concentration of red shades in recent decades highlights a warming trend at both locations. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_warming_stripes_26.30S31.17E_16.52S28.80E.png)
+:::
+
 
 ## Modelling Example 
 :::
