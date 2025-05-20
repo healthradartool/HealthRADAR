@@ -235,7 +235,7 @@ data |>
       width = 100))
 ```
 
-## Modelling
+## Modelling 
 
 <h2>How can this data be used in disease modelling?</h2>
 

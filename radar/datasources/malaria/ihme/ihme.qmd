@@ -315,7 +315,7 @@ observed_cases |>
       width = 85))
 ```
 
-## Modelling Example
+## Modelling 
 
 <h2>How can this data be used in disease modelling?</h2>
 

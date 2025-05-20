@@ -244,5 +244,5 @@ If users wish to generate their own plots, it is recommended to download the dat
 :::
 
 
-## Modelling Example 
+## Modelling  
 :::

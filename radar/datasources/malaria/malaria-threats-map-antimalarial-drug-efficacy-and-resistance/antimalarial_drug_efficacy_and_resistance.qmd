@@ -285,7 +285,7 @@ dat_trt_pp |>
 ```
 
 
-## Modelling Example 
+## Modelling  
 
 <h2>How can this data be used in disease modelling?</h2>
 

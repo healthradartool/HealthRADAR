@@ -476,7 +476,7 @@ South Africa historically had an extensive rainfall station network and this is 
 
  
 
-## Modelling Example 
+## Modelling 
 
 <h2>How can this data be used in disease modelling?</h2>
 

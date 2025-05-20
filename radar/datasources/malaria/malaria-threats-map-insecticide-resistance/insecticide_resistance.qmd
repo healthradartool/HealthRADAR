@@ -112,7 +112,7 @@ This is a graphical representation of Table 1.  This shows the distribution of p
 Resistance to {{< glossary Pyrethroids >}} has been identified from most countries in Africa but there is a scarcity of data on insecticide resistance intensity. The above figure shows the distribution of the intensity of pyrethroid resistance on the African continent which ranges from low to moderate in the east and south to moderate to high in the west. This map is made up of 1445 bioassays with the majority being in north-western Africa.
 
 
-## Modelling Example
+## Modelling 
 
 <h2>How can this data be used in disease modelling?</h2>
 
