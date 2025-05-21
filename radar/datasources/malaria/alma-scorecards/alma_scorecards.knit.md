@@ -12,6 +12,8 @@ categories:
   - accountability
 ---
 
+
+
 ::: {.page-tabs .panel-tabset}
 
 ## Overview
@@ -40,7 +42,12 @@ categories:
 
 ## Video demonstration of the ALMA Scorecard Hub
 
+
+
 {{< video https://www.youtube.com/watch?v=jJAk_A0bfyk >}}
+
+
+
 
 :::
 
@@ -75,7 +82,11 @@ or directly from the web platform (not downloadable, user has to scroll through 
 <h2>How to plot this data?</h2>
 
 
-```{r}
+
+
+::: {.cell}
+
+```{.r .cell-code}
 # load the libraries
 devtools::install_github("ropensci/rnaturalearthhires")
 
@@ -136,10 +147,16 @@ ggplot(data = rwanda_data) +
     caption = str_wrap(
       "The total number of new outpatient department (OPD) cases of malaria recorded at healthcare facilities in the five provinces of Rwanda during the first quarter of 2022. The East and South provinces show the lowest and highest number of reported cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", 
       width = 85))
-
 ```
 
-```{r}
+::: {.cell-output-display}
+![](alma_scorecards_files/figure-html/unnamed-chunk-1-1.png){width=672}
+:::
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
 # PDF containing data available at: https://alma2030.org/our-work/scorecard-tools/alma-scorecard-for-accountability-and-action/list-of-alma-scorecards/
 
 # Creating the data frame
@@ -170,6 +187,24 @@ dataframe <- data.frame(Country, Year, Quarter, Operational_LLINS_IRS)
 knitr::kable(head(dataframe))
 ```
 
+::: {.cell-output-display}
+
+
+|Country  | Year| Quarter| Operational_LLINS_IRS|
+|:--------|----:|-------:|---------------------:|
+|Angola   | 2023|       1|                    58|
+|Angola   | 2023|       2|                    62|
+|Angola   | 2023|       3|                    56|
+|Botswana | 2023|       1|                     0|
+|Botswana | 2023|       2|                    66|
+|Botswana | 2023|       3|                    66|
+
+
+:::
+:::
+
+
+
 <h2>Tracking indicator perfomance</h2>
 
 - The plot given below highlights how tracking indicator performance can be achieved.
@@ -177,7 +212,11 @@ knitr::kable(head(dataframe))
 - The implementation indicator on operational vector control (LLINs/IRS) coverage was considered.
 
 When visualising similar data over a much longer period of time, a line plot is useful. Here, the coverage by an LLIN and/or IRS in each of the Frontline 4 countries from 2015 to 2024 is visualised.
-```{r}
+
+
+::: {.cell}
+
+```{.r .cell-code}
 # Read in data
 E8_data <- read_excel("data/E8_implementation.xlsx")
 E8_data$LLINs <- as.numeric(E8_data$LLINs)  
@@ -212,6 +251,13 @@ E8_data |>
     )
   )
 ```
+
+::: {.cell-output-display}
+![](alma_scorecards_files/figure-html/unnamed-chunk-3-1.png){width=672}
+:::
+:::
+
+
 
 ## Modelling
 
