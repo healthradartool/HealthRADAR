@@ -407,7 +407,8 @@ df <- as_tibble(as.data.frame(out)) |>
 # Plotting incidence
 
 df |> 
-  filter(variable %in% c("Total", "Adults", "Children < 5"), time > 50) |> 
+  #filter(variable %in% c("Total", "Adults", "Children < 5"), time > 50) |> 
+   filter(variable %in% c("P", "P1", "P0"), time > 50) |> 
   ggplot()+
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
