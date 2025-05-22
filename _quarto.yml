@@ -59,7 +59,10 @@ website:
             - text: Data Sources
               href: radar/data.qmd
           right: |
-            ![](/radar/img/wellcome-logo-white.png){width=70px}
+                <div style="text-align: right;">
+                  <img src="/radar/img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo" />
+                  <div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">Funded by Wellcome</div>
+                </div>
 
 metadata-files:
   - radar/drafts.yml
