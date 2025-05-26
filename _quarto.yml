@@ -7,7 +7,7 @@ project:
     browser: false
 
 website:
-  title: "HealthRADAR"
+  #title: "HealthRADAR"
   image: "radar/img/logo-light.png"
   site-url: https://uct-masha.quarto.pub/healthradar/radar/
   favicon: "radar/favicon.ico"
@@ -25,7 +25,7 @@ website:
     location: navbar
     type: textbox
   navbar:
-    logo: "radar/img/logo-light.png"
+    logo: "radar/img/Health RADAR Logo Transparent.png"
     left:
       - text: Home
         href: radar/index.qmd

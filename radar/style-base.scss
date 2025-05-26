@@ -79,20 +79,16 @@ code, .sourceCode {
   padding: 1em;
 }
 
-/* logo */
-.navbar-logo {
-  max-height: 64px!important;
-  max-width: 64px!important;
-  width: 64px!important;
-  height: 64px!important;
-  padding: 0;
+.navbar-brand > img {
+  height: auto;
+  width: auto;
+  max-height: 130px;
+  padding-right: 1.2em;
 }
 
-.navbar-brand > img {
-  max-height: 64px!important;
-  max-width: 64px!important;
-  width: 64px!important;
-  height: 64px!important;
+#quarto-header > nav {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .nav-footer {
