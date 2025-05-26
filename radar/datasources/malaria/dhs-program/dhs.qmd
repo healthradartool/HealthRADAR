@@ -344,7 +344,7 @@ leaflet(nc2[nc2$IndicatorId == "ML_FEVT_C_AML", ]) %>%
 ```
 
 
-## Modelling Example
+## Modelling
 
 <h2>How can this data be used in disease modelling?</h2>
 

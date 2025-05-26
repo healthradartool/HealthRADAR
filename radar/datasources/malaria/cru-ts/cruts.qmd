@@ -476,19 +476,11 @@ South Africa historically had an extensive rainfall station network and this is 
 
  
 
-## Modelling Example 
+## Modelling 
 
 <h2>How can this data be used in disease modelling?</h2>
 
-Malaria is a seasonal disease with regular fluctuations in incidence. Even in endemic countries with year-round cases peak during the rainy season (November to April for most southern African countries). During this time, temperature and rainfall conditions favour vector development, thereby increasing the total mosquito population. A few specific variables have been experimentally shown to be temperature-sensitive (Shapiro 2017; Suh 2024):
-
--   The parasite extrinsic incubation period
--   Vector gonotrophic cycle
--   Human biting rate
--   Daily survival/death rate of larval and adult vectors
--   The egg to adult development rate
-
-The egg to adult development rate is also rainfall-sensitive, as is oviposition and the carrying capacity of the environment.
+Malaria exhibits marked seasonality, characterised by cyclical increases in transmission intensity. Incidence tends to peak during the rainy season, which spans approximately from October to April across much of southern Africa. This seasonal amplification is largely driven by climatic conditions that enhance *Anopheles* vector survival, breeding site availability, and parasite development rates, collectively contributing to increased vector density and transmission potential.
 
 
 ### Preparing the data 
@@ -510,8 +502,15 @@ knitr::opts_chunk$set(echo = T, cache = T, warning = F, message = F, fig.pos = '
 options(digits=4, scipen = 9)
 ```
 
-There are different approaches to explicitly include environmental conditions into an infectious disease model. For this example, we use three equations from Traore (2017) and Agusto (2015; 2020) defining the effect of climate on the dynamics of malaria transmission. Specifically, the example below describes temperature-dependent human biting rate and mosquito mortality, as well as rainfall-dependent environmental carrying capacity.
+There are different approaches to include environmental conditions into an infectious disease model. In this example, we use the temperature data from Bulawayo to develop a seasonal forcing function that mimics the seasonal pattern of malaria transmission. We achieve this with the following cossine function, and fit it to the data to obtain the values of the amplitude of the peak and of \phi (the phase angle that indicates timing of the peak):
+$$
+1 + amp \times cos(2  \pi \times (\frac{time}{365} - \phi))
+$$
+
+You may need to adjust the function based on the transmission pattern in different contexts. Some  countries may have more bimodal transmission (two peaks), a wide flat plateau, or many irregularly spaced peaks per year. 
+
 ```{r}
+
 # Load the data 
 temperature_values <- read_csv("data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv") |> 
   select(time, tas) |> 
@@ -519,53 +518,73 @@ temperature_values <- read_csv("data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.
   filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
 
 ggplot() +
-  geom_line(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[13]) +
-  geom_point(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[13]) +
-  theme_health_radar() +
-  labs(
-    title = str_wrap("Average Mean Surface Air Temperature values in Bulawayo from 2000 to 2020", width = 50),
-    x = "Year",
-    y = "Temperature values (Celsius °)",
-    caption = str_wrap("Changes in temperature over time. Temperature ranges of have an impact on vector competence, depending on the primary Anopheles vector in the area and its behavioural habits. Source: tas_mon_CRU-TS 4.08")
-  ) +
-  theme(legend.position = "none")
-
-```
-
-```{r}
-
-# Load the data 
-rainfall_values <- read_csv("data/PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv") |> 
-  select(time, PRCPTOT) |> 
-  filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
-
-ggplot() +
-  geom_line(data = rainfall_values, aes(x = time, y = PRCPTOT), colour = theme_health_radar_colours[8]) +
-  geom_point(data = rainfall_values, aes(x = time, y = PRCPTOT), colour = theme_health_radar_colours[8]) +
+  geom_line(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[8]) +
+  geom_point(data = temperature_values, aes(x = time, y = tas), colour = theme_health_radar_colours[8]) +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   labs(
-    title = "Total monthly Precipitation in Bulawayo from 2000 to 2020",
+    title = "Total monthly temperatures in Bulawayo from 2010 to 2020",
     x = "Year",
-    y = "Rainfall values (mm)",
-    caption = str_wrap("Changes in rainfall over time. For instance, 2017 has very high rainfall values, potentially leading to more wetlands for mosquito breeding. Excessive rainfall may also flush out breeding sites. Source: PRCPTOT_mon_CRU-TS 4.08")
+    y = "Temperature values (Celsius)",
+    caption = str_wrap("Changes in temperature over time. Source: tas_mon_CRU-TS 4.08")
   ) +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  ylim(0, NA)
 
 ```
-We incorporate these values into the mathematical model. Note that other models may include other variables such as altitude and humidity.
+
 ```{r}
 
-# Turn monthly data into daily data
-daily_temperature_values <- temperature_values |>
-  complete(time = seq(ymd("2010-01-01"), max(time), by = "day")) |>
-  fill(tas, .direction = "downup")
+# Convert one year of temperature data into seasonal forcing function by normalisation of values
 
-daily_rainfall_values <- rainfall_values |>
-  complete(time = seq(ymd("2010-01-01"), max(time), by = "day")) |>
-  fill(PRCPTOT, .direction = "downup")
+temperature_10yrs <- map_dfr(0:9, function(i) {
+  temperature_values |> 
+    filter(time >= ymd("2018-01-01") & time <= ymd("2018-12-31")) |>
+    arrange(time) |>
+    mutate(
+      scaled_rain = (tas - min(tas)) / (max(tas) - min(tas)),
+      synthetic_time = time + years(i),
+      year = i + 1
+    )
+})
 
-set.seed(500)
+# Fit cosine model
+fit_data <- temperature_10yrs |>
+  mutate(
+    times = yday(synthetic_time), # add day-of-year
+    y = scaled_rain
+  )
+
+fit <- nls(
+  y ~ 1 + amp * cos(2 * pi * (times / 365 - phi)), # seasonal forcing function
+  data = fit_data,
+  start = list(amp = 0.5, phi = 0.8) # choose starting values
+)
+
+#summary(fit) # look at values for amp and phi
+
+# Combine with initial data
+temperature_10yrs <- temperature_10yrs |>
+  mutate(
+    times = yday(synthetic_time),
+    predicted = predict(fit, newdata = data.frame(times = yday(synthetic_time))) # predict from fit
+  )
+
+temperature_10yrs |>
+ggplot() +
+  geom_line(aes(x = synthetic_time, y = predicted), colour = theme_health_radar_colours[6], show.legend = F) +
+  labs(
+    title = "Fitted Seasonal Curve over 10 Years",
+    x = "Year", 
+    y = "Scaled temperature",
+    caption = str_wrap("Using scaled temperature values from 2018 we fit a seasonal curve to obtain inputs for the seasonal forcing function. The fit predicted values for amp = 0.4302 and phi = 0.9913.")
+  ) +
+  theme_health_radar()
+
+```
+
+We incorporate this into the model to see the seasonal pattern in incidence. 
+```{r}
 
 # Time points for the simulation
 Y = 10 # Years of simulation
@@ -573,36 +592,22 @@ times <- seq(0, 365*Y, by = 1)
 
 
 # SEACR-SEI model
-seacr <- function(times, start, parameters, temp_func, rain_func) { 
+seacr <- function(times, start, parameters) { 
   with(as.list(c(start, parameters)), {
     P = S + E + A + C + R + G
     M = Sm + Em + Im
     m = M / P
-    
-    # Climate variables 
-    temp <- temp_func(times)
-    rain <- rain_func(times)
-  
-    # Temperature-dependent equations obtained from Traore 2017 and Agusto 2020
-    # biting rate
-    a <-  -0.00014*temp^2 + 0.027*temp - 0.322
-    
-    # daily oviposition rate
-    ovi <- max(-0.153*temp^2 + 8.61*temp - 97.7, 0) # prevent values going below zero
-    
-    # death rate
-    mu_m <- -log(-0.000828*temp^2 + 0.0367*temp + 0.522)
-    
-    # carrying capacity
-    K <- max(Km*(rain+1), 1)  # ensure K stays above 1000
+   
+    # Seasonality
+    seas =  1+amp*cos(2*pi*(times/365 - phi))
     
     # Force of infection
     Infectious = C + zeta_a*A #infectious reservoir
-    lambda.v <- a*M/P*b*Im/M
-    lambda.h <- a*c*Infectious/P
+    lambda.v <- seas*a*M/P*b*Im/M
+    lambda.h <- seas*a*c*Infectious/P
     
     # Differential equations/rate of change
-    dSm = ovi*(1-M/K)*M - lambda.h*Sm - mu_m*Sm
+    dSm = mu_m*M - lambda.h*Sm - mu_m*Sm
     dEm = lambda.h*Sm - (gamma_m + mu_m)*Em
     dIm = gamma_m*Em - mu_m*Im
     
@@ -635,7 +640,7 @@ initial_state <- c(Sm = 1000000, # susceptible mosquitoes
                    CInc = 0 # cumulative incidence
 )
 # Country-specific parameters should be obtained from literature review and expert knowledge
-parameters <- c(#a = 0.45, # human biting rate
+parameters <- c(a = 0.45, # human biting rate
                 b = 0.5, # probability of transmission from mosquito to human
                 c = 0.6, # probability of transmission from human to mosquito
                 r = 1/21, # rate of loss of infectiousness after treatment
@@ -643,26 +648,20 @@ parameters <- c(#a = 0.45, # human biting rate
                 delta = 1/150, # natural recovery rate
                 zeta_a = 0.4, # relative infectiousness of of asymptomatic infections
                 pa = 0.4, # probability of asymptomatic infection
-                #mu_m = 1/10, # birth and death rate of mosquitoes
+                mu_m = 1/10, # birth and death rate of mosquitoes
                 mu_h = 1/(62*365), # birth and death rate of humans
                 gamma_m = 1/10, # extrinsic incubation rate of parasite in mosquitoes
                 gamma_h = 1/10, # extrinsic incubation rate of parasite in humans
-                Km = 50000 # carrying capacity for mosquito egg laying and pupae and larval development
+                amp = 0.4302, # amplitude of seasonality
+                phi = 0.9913 # phase angle, start of season
                 )
 
-# Environmental forcings
-
-temp_func <- approxfun(daily_temperature_values$tas, method = "linear", rule = 2)
-rain_func <- approxfun(daily_rainfall_values$PRCPTOT, method = "linear", rule = 2)
-    
 
 # Run the model
 out <- ode(y = initial_state, 
            times = times, 
            func = seacr, 
-           parms = parameters,
-           temp_func = temp_func, 
-           rain_func = rain_func)
+           parms = parameters)
 
 # Post-processing model output into a dataframe
 
@@ -673,69 +672,32 @@ df <- as_tibble(as.data.frame(out)) |>
   pivot_longer(cols = -time, names_to = "variable", values_to = "value") |> 
   mutate(date = ymd("2010-01-01") + time)
 
-```
-
-
-### Changes in vector population
-
-As mentioned earlier, environmental conditions affect the parasite and mosquito development, and as such we anticipate changes in the vector population to mimic the pattern in the temperature. In this example, we assume the human population stays constant as is shown in the panel on the right. The [UN Population Data portal page](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/un-population/un_population.html) describes human population growth in the context of disease modelling. In this example, we assume that the human population remains constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection).
-
-```{r}
 df |> 
-  filter(variable == "M") |> 
+  filter(variable == "Inc", time > 100) |> 
   ggplot() +
-  geom_line(aes(x = date, y = value, colour = variable)) +
+  geom_line(aes(x = date, y = value, colour = variable), show.legend = F) +
   theme_health_radar() +
+   theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8)) +
   scale_colour_manual_health_radar() +
-  theme(panel.spacing = unit(2, "lines")) +
-  scale_y_continuous(labels = scales::label_number(suffix = " M", scale = 1e-6)) +
-  labs(
-    title = "Mosquito vector populations over time", 
-    x = "Year",
-    y = "Population size",
-    colour = "Population",
-    caption = str_wrap("Changes in the total mosquito population mimic seasonal changes in temperature and rainfall values over time, with peaks in the summer months. The higher rainfall values in 2017 are also reflected in the mosquito population. Source: Model output")
-  )
-
-```
-
-### Implications for transmission and incidence
-
-The force of infection (i.e. the rate at which susceptible individuals become infected per unit time) is largely driven by the human biting rate, the ratio of vectors relative to hosts, the probability of transmission and the size of the infectious reservoir. Below, we see how the temperature has driven the rate of new cases through the temperature-dependent variables.
-
-This is especially insightful when the model includes periods of time impacted by severe environmental conditions such as drought or flooding, and the consequences on malaria transmission dynamics are reflected in the incidence values. Note that the example below is not an actual reflection of malaria transmission in Bulawayo, and is merely illustrative.
-```{r}
-df |> 
-  filter(variable == "Inc", time > 50) |> 
-  ggplot()+
-  geom_line(aes(x = date, y = value), colour = theme_health_radar_colours[17]) +
-  theme_health_radar() +
-  scale_colour_manual_health_radar() +
-  theme(legend.position = "none") +
+  scale_y_continuous(labels = scales::label_number(suffix = " K", scale = 1e-3)) +
   scale_x_date(
-    date_breaks = "1 year",
-    date_minor_breaks = "3 months",
-    date_labels = "%Y"
-  ) +
+    date_labels = "%b %Y",
+    date_breaks = "6 months") +
   labs(
-    title = "Daily incidence values in the human population", 
-    x = "Year",
-    y = "Number of new cases",
-    caption = str_wrap("Incidence is highest during the summer months (October to February), where environmental conditions are suitable for mosquito breeding and malaria transmission. Incidence is close to zero between June and September (the cold, dry season). We see a small peak in 2017, coinciding with higher rainfall values that year, and potentially resulting in increased mosquito populations and elevated transmission. Source: Model output")
+    title = "Changes to incidence over time", 
+    x = " ",
+    y = "Cases",
+    colour = "Population",
+    caption = str_wrap("We see the seasonal pattern and the peak malaria season between October and April and lowest between June and September (the cold, dry months). The inclusion of control interventions or other dynamics would shift incidence on a year-by-year basis. Source: Model output")
   )
+
 ```
+
 
 ### Policy implications
 
-Models that incorporate temperature and rainfall explicitly may be used to forecast seasonal or year-to-year transmission patterns. This can be used to enable early warning systems for malaria outbreaks, as well as for temporal planning of interventions such as indoor residual spraying (IRS) for maximum impact. This approach also promotes multidisciplinary collaboration for policymakers across health, environmental, and climate sciences.
+Incorporating time-varying transmission into the model reflects the real-world seasonality of malaria. This can be used to plan the timing of interventions, aligning delivery to the peak of the season across different geographical regions. These differences in risk (across geographic regions and seasons) are also important insights for resource allocation and health systems planning, ensuring consistent access to care and other control measures.
 
-
-### Citations
-
--   Agusto F. B., Gumel A. B., & Parham P. E. Qualitative assessment of the role of temperature variations on malaria transmission dynamics. Journal of Biological Systems, 23(04), 1550030 (2015). <https://doi.org/10.1142/S0218339015500308>
--   Agusto F.B. Optimal control and temperature variations of malaria transmission dynamics. Complexity, 1, 5056432 (2020). <https://doi.org/10.1155/2020/5056432>
--   Traoré B., Sangaré B., Traoré S. A mathematical model of malaria transmission with structured vector population and seasonality. Journal of Applied Mathematics, 1, 6754097 (2017). <https://doi.org/10.1155/2017/6754097>
--   Shapiro L.L.M., Whitehead S.A., & Thomas M.B. Quantifying the effects of temperature on mosquito and parasite traits that determine the transmission potential of human malaria. PLoS Biology 15(10), e2003489 (2017). https://doi.org/10.1371/journal.pbio.2003489
--   Suh, E., Stopard, I.J., Lambert, B. et al. Estimating the effects of temperature on transmission of the human malaria parasite, Plasmodium falciparum. Nature Communications 15, 3230 (2024). <https://doi.org/10.1038/s41467-024-47265-w>
+This model uses a seasonal forcing function as opposed to explicit climatic data, and as such the model does not capture details such as extreme weather events, such as 2017's Cyclone Dineo (which may have contributed to increases in malaria cases across southern Africa) or other long-term periodic climatic phenomena such as the El Niño-Southern Oscillation (ENSO) cycle. We show the explicit use of temperature and rainfall using ERA5 data [here](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/era5/era5.html).
 
 :::
