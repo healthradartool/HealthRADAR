@@ -44,10 +44,10 @@ website:
       - text: Updates
         href: radar/updates.qmd
 
-    right:
-      - icon: github
-        href: https://github.com/uct-masha/HealthRADAR
-        aria-label: RADAR GitHub
+#    right:
+#      - icon: github
+#        href: https://github.com/uct-masha/HealthRADAR
+#        aria-label: RADAR GitHub
       
         
     pinned: true
