@@ -1,6 +1,6 @@
 ---
 back-to-top-navigation: false
-page-layout: full
+page-layout: article
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 ---
