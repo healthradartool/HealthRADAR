@@ -1,7 +1,7 @@
 ---
 title: "Climate Data Store"
 description: "Copernicus Climate Data Store functions as a one-stop shop to explore data on the Earth’s past, present and future climate."
-date: 08/12/2024 # mm-dd-yyyy
+date: 05/29/2025 # mm-dd-yyyy
 image: "images/climate_data_store_logo.png"
 
 categories:
@@ -21,20 +21,94 @@ categories:
 
 ## Overview
 
-<h2>About the data</h2>
+<h2>About the data portal</h2>
 
-{{< lipsum 1 >}}
+The [Climate Data Store (CDS)](https://cds.climate.copernicus.eu/), is a comprehensive and open access platform operated by [European Centre for Medium-Range Forecasting (ECMWF)](https://www.ecmwf.int/) for the [Copernicus Climate Change Service (C3S)](https://climate.copernicus.eu/). 
 
-<h2>Accessing the data</h2>
+CDS is a Climate Data Repository providing access to a wide range of [datasets](https://cds.climate.copernicus.eu/datasets) including Observations (satellite and in-situ), Climate Reanalyses, Seasonal Forecasts, Climate Projections and Climate Indices. For each dataset, CDS provides an overview, download and documentation pages.
 
-{{< lipsum 1 >}}
+The site provides [Training](https://cds.climate.copernicus.eu/training) material to facilitate the use of datasets on the CDS. These include practical data processing workflows based on Jupyter notebooks; e-learning modules on key concepts behind the climate data types as well as learning resources from training events. 
 
-<h2>What does the data look like?</h2>
+The site uses, and provides access to, [earthkit](https://cds.climate.copernicus.eu/earthkit) which is a new open-source Python project developed by ECMWF that offers robust tools to accelerate workflows in weather and climate science. It streamlines data access, processing, analysis and visualization. At the time of publishing, earthkit is still in the BETA stage of development.
 
-{{< lipsum 1 >}}
+The CDS hosts a number of [Applications](https://cds.climate.copernicus.eu/applications) which allow users to explore and visualize the historic, present and future climate. 
+
+
+<h2>Accessing the data portal</h2>
+
+The Climate Data Store can be accessed via the following url - [https://climate.copernicus.eu/climate-data-store](https://climate.copernicus.eu/climate-data-store)
+
+Users need to register or login to access many of the features on the climate Data Store (the login tab is found in the top right corner of the page). The CDS utilizes ECMWF user account which enables users to access the CDS as well as other ECMWF resources, events and courses. On CDS the user credentials are primarily used to track user activity, manage data access and ensure compliance with data licenses.
+
+Access to the datasets is provided both interactively (manually over the web) or programmatically through an API service. The CDS provides an extensive [User guide](https://cds.climate.copernicus.eu/user-guide) section which includes; [CDS Documentation](https://confluence.ecmwf.int/display/CKB/Climate+Data+Store+%28CDS%29+documentation) which provides users with a deeper understanding of what the Climate Data Store is and how best to use it; guidance on how to [download data interactively](https://confluence.ecmwf.int/display/CKB/Climate+Data+Store+%28CDS%29+documentation#ClimateDataStore(CDS)documentation-HowtheCDSworks) via the CDS website and also how to [get data programmatically](https://cds.climate.copernicus.eu/how-to-api) via an API service.
+
+
+<h2>What datasets are available</h2>
+
+The CDS provides a [catalogue](https://cds.climate.copernicus.eu/datasets) which lists available datasets. Users can filter this extensive list of datasets through faceted or text-based searches. The site hosts a number of European-focused datasets, so it's helpful to filter by **Spatial coverage** to identify those datasets with **Global** coverage as these would include the southern Africa domain.
+
+The datasets can also be filtered by **Product type**. The definitions of the types is provided below since they may not be easily understandable to a non-climate audience 
+
+- **Climate indices**: Quantitative measures derived from climate variables (e.g., temperature, precipitation) that capture key aspects of climate variability and change. Examples include the El Niño-Southern Oscillation (ENSO) index and the Standardized Precipitation Index (SPI).
+
+- **Climate projections**: Simulated future climate conditions based on climate models that use different greenhouse gas emission scenarios. These projections provide insights into potential long-term changes in climate but are subject to uncertainties related to model assumptions and future human activities.
+
+- **Derived reanalysis**: Climate datasets produced by applying additional calculations or transformations to primary reanalysis data. These may include indices, bias-corrected fields, or interpolated datasets that enhance usability for specific applications.
+
+- **In-situ observations**: Climate data collected directly at a specific location using ground-based instruments, such as weather stations, buoys, and radiosondes. These measurements provide high-accuracy climate information but have limited spatial coverage.
+
+- **Reanalysis**: A comprehensive dataset generated by combining historical climate observations with numerical weather models to reconstruct past climate conditions. Reanalysis datasets provide globally consistent and gridded climate information, widely used in climate research.
+
+- **Satellite observations**: Climate data collected by remote sensing instruments aboard satellites, covering various atmospheric, oceanic, and land-surface parameters. These observations provide global coverage and long-term records of climate variables such as temperature, precipitation, and sea surface height.
+
+- **Seasonal forecasts**: Predictions of climate conditions (e.g., temperature, precipitation) for upcoming months to a year, based on climate models and historical data. These forecasts help anticipate climate variations such as droughts, monsoons, and extreme weather events.
+
+
+Some key datasets that may be of interest are:
+
+<h4>Satellite observations</h4>
+
+- [Precipitation monthly and daily gridded data from 1979 to present derived from satellite measurements](https://cds.climate.copernicus.eu/datasets/satellite-precipitation?tab=overview) 
+The Global Precipitation Climatology Project (GPCP) provides global estimates of precipitation as monthly means and daily means, based on estimates using microwave and infrared satellite imagery. The dataset utilizes advanced data processing and calibration techniques to ensure accuracy and constancy of data.
+
+<h4>Reanalysis</h4> 
+
+- [ERA5 hourly data on single levels from 1940 to present](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview)
+The ERA5 reanalysis outputs are grouped into datasets or catalogue entries. This dataset includes key variables of importance to the malaria modelling community including precipitation, near surface air temperatures and winds (and variables which can be used to calculate relative humidity). The spatial resolution is relatively course (0.25°), but it provides data at very high temporal resolution (hourly) and the dataset is updated daily with just a 5 day latency.
+ 
+- [ERA5-Land hourly from 1950 to present](https://cds.climate.copernicus.eu/datasets/derived-era5-land-daily-statistics) 
+ERA5-Land is a enhanced spatial resolution version of ERA5 providing data at 9km. It provides a large range of climatic, surface, vegetation and other variables. The dataset is updated daily with just a 5 day latency.
+
+<h4>Seasonal forecasts</h4>
+
+- [Seasonal forecast daily and subdaily data on single levels](https://cds.climate.copernicus.eu/datasets/seasonal-original-single-levels)
+This catalogue provides a multi-system seasonal forecast service.  CDS collects, processes and combines the output from several seasonal forecast models and makes them available of user-relevant applications. Forecasts of key variables such as temperature and precipitation are available for retrospective and future seasonal analysis
+
+<h4>Climate projections</h4>
+
+- [CMIP6 Climate projections](https://cds.climate.copernicus.eu/datasets/projections-cmip6)
+This catalogue provides daily and monthly global climate model projections data from the sixth phase of the Coupled Model Intercomparison Project (CMIP6). A range of variables are provides from a large number of models covering both the historical and future period represented by eight future Shared Socioenomic Pathway (SSP) scenarios.
+
 
 <h2>Key points to consider</h2>
 
-{{< lipsum 1 >}}
+<h3>Strengths</h3>
+
+The Climate Data Store aims to be a one-stop shop for climate data and analysis. It hosts a very large number of key datasets and provides detailed guidance information, training and tools.
+
+<h3>Limitations</h3>
+
+The CDS is large and can be confusing and intimidating. The focus is on Europe and not southern Africa.
+
+
+<h2>Citing the data portal</h2>
+
+Copernicus Climate Data Store (CDS) hosted by the European Centre for Medium-Range Weather Forecast (ECMWF), https://cds.climate.copernicus.eu/
+
+<h3>Terms of use</h3>
+
+The CDS requires users to register before any content can be downloaded. Datasets or content made available through the site may have different licensing terms which users need to agree to before access to the content is granted. 
+
+The full terms of use can be found on the CDS [terms of use](https://cds.climate.copernicus.eu/disclaimer-privacy)
 
 :::
