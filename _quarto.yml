@@ -40,8 +40,10 @@ website:
             href: radar/guides/climate/climate.qmd
           - text: Modelling
             href: radar/guides/contribution/modelling.qmd
-      - text: Updates
-        href: radar/updates.qmd
+#      - text: Updates
+#        href: radar/updates.qmd
+      - text: Submit an Issue
+        href: radar/issues.qmd
 
 #    right:
 #      - icon: github
