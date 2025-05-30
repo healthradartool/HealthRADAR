@@ -7,7 +7,7 @@ project:
     browser: false
 
 website:
-  image: "radar/img/logo-light.png"
+  image:  "img/logo-light.png"
   site-url: https://uct-masha.quarto.pub/healthradar/radar/
   favicon: "radar/favicon.ico"
   bread-crumbs: false
@@ -24,26 +24,26 @@ website:
     location: navbar
     type: textbox
   navbar:
-    logo: "radar/img/Health RADAR Logo Transparent.png"
+    logo: "img/Health RADAR Logo Transparent.png"
     left:
       - text: Home
-        href: radar/index.qmd
+        href: index.qmd
       - text: Browse
-        href: radar/data.qmd
+        href: data.qmd
       - text: About
-        href: radar/about.qmd
+        href: about.qmd
       - text: Guides
         menu: 
           - text: Contributing to Health RADAR 
-            href: radar/guides/contribution/contribution_guidance.qmd
+            href: guides/contribution/contribution_guidance.qmd
           - text: Climate
-            href: radar/guides/climate/climate.qmd
+            href: guides/climate/climate.qmd
           - text: Modelling
-            href: radar/guides/contribution/modelling.qmd
+            href: guides/contribution/modelling.qmd
 #      - text: Updates
-#        href: radar/updates.qmd
+#        href: updates.qmd
       - text: Submit an Issue
-        href: radar/issues.qmd
+        href: issues.qmd
 
 #    right:
 #      - icon: github
@@ -56,17 +56,17 @@ website:
           left: "&copy; Copyright 2025, Health RADAR"
           center:
             - text: About
-              href: radar/about.qmd
+              href: about.qmd
             - text: Data Sources
-              href: radar/data.qmd
+              href: data.qmd
           right: |
                 <div style="text-align: right;">
-                  <img src="/radar/img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo" />
+                  <img src="/img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo" />
                   <div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">Funded by Wellcome</div>
                 </div>
 
 metadata-files:
-  - radar/drafts.yml
+  - drafts.yml
   
 language: 
   search-text-placeholder: "Search"
@@ -74,7 +74,7 @@ language:
 format:
   html:
     theme:
-      light: [flatly, radar/style-light.scss, radar/style-base.scss]
+      light: [flatly, style-light.scss, style-base.scss]
       #dark: [darkly, style-dark.scss, style-base.scss]
     toc: true
     mainfont: "Roboto"

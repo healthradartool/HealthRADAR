@@ -1,0 +1,11 @@
+website:
+  drafts:
+    - datasources/malaria/chirps/chirps.qmd
+    - datasources/malaria/chirts/chirts.qmd
+    - datasources/malaria/climate-data-store/climate_data_store.qmd
+    - datasources/malaria/ncar-climate-data-guide/ncar_climate_data_guide.qmd
+    - datasources/malaria/global-fund/global_fund.qmd
+    - datasources/malaria/severe-malaria-observatory/severe_malaria_observatory.qmd
+    - datasources/malaria/the-lancet/lancet_malaria.qmd
+    - datasources/malaria/grid3/grid3.qmd
+    - datasources/malaria/pmi/pmi.qmd

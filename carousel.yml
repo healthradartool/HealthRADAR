@@ -1,0 +1,16 @@
+
+- caption: "Finding useful data for models"
+  image: "/img/usecase-finding-data.png"
+  link: "/data.html"
+  
+- caption: "Worked code examples"
+  image: "/img/usecase-learning-data.png"
+  link: "/data.html"
+  
+- caption: "Contributing to the community"
+  image: "/img/usecase-contribute.png"
+  link: "https://github.com/uct-masha/HealthRADAR"
+
+#- caption: "Funded by Wellcome"
+#  image: "/radar/img/wellcome-logo-healthradar.png"
+#  link: "https://wellcome.ac.uk/"

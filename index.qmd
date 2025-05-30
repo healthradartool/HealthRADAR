@@ -1,0 +1,117 @@
+---
+pagetitle: "Health: RADAR"
+page-layout: full
+format:
+  html:
+    toc: false
+search: false
+execute:
+  echo: false
+description: |
+  Health RADAR is a tool to acquire context and access to optionalisable data for modelling malaria in Southern Africa.
+back-to-top-navigation: false
+---
+
+::: {#hero-banner .column-screen}
+::: {.grid .column-page}
+::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
+::: {#homepage-heading}
+Welcome to Health RADAR
+:::
+
+::: {.description}
+Health RADAR (Responsible Access to Data for Analysis and Research) aims to provide a central data resource for disease and other relevant data specific to climate sensitive infectious disease (CSID) modelling.
+:::
+
+::: {.entry-point}
+::: {.columns}
+
+::: {.column width="40%"}
+I am looking for data in
+
+:::{.hero-buttons}
+<select class="form-select form-select-lg mb-3" aria-label="Large select example">
+  <option selected>Malaria</option>
+  <option value="1" disabled>Chikungunya</option>
+  <option value="2" disabled>Dengue</option>
+  <option value="3" disabled>Cholera</option>
+</select>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<a href="/themes.qmd">
+<button class="btn btn-primary w-100" type="button" width >Proceed <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+</a>
+:::
+
+:::
+
+::: {.column width="60%"}
+```{r}
+#| classes: '.g-col-lg-6 .g-col-12 .g-col-md-12'
+source("carousel.R")
+carousel("gallery-carousel", 5000, 
+         yaml.load_file("carousel.yml"))
+```
+:::
+
+:::
+:::
+:::
+:::
+
+::: {#radar-block .content-block .column-screen}
+
+::: {.column-page}
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.hero-text}
+Responsible Access to Data for Analysis and Research
+:::
+
+::: {.description}
+Health RADAR makes it easier to find and use data for climate sensitive infectious disease (CSID) modelling. The platform collates a wide range of data—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. Health RADAR also includes extensive documentation to describe and contextualise each dataset and worked code examples on how to incorporate data into CSID models. In this way, the tool provides you with the context you need to use the information responsibly and confidently.
+:::
+
+<br/>
+<a href="/about.qmd">
+  <button id="learn-more" class="btn btn-outline-primary btn-action-primary btn-action btn-success btn-lg w-100" type="button">
+  Learn More About HealthRADAR
+  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+  </button>
+</a>
+
+:::
+
+::: {.column width="50%"}
+
+::: {#data-image}
+![](img/browse_datasources.png)
+:::
+
+:::
+
+:::
+
+:::
+
+:::
+
+
+::: {#browse-btn-block .content-block .column-screen}
+
+::: {.column-page}
+
+<a href="/data.qmd">
+  <button id="browse-all" class="btn btn-primary btn-browse btn-action-primary btn-action btn-success btn-lg" type="button">
+    Browse All Data Sources 
+    <i class="fa-solid fa-square-up-right"></i>
+  </button>
+</a>
+
+:::
+:::
+:::
