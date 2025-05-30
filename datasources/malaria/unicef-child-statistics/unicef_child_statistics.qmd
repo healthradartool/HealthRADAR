@@ -209,25 +209,25 @@ mal_dat |>
 ```
 
 ```{r plt-itn-pregnant}
-# Produce a lollipop plot with colours indicating the year for which these data were recorded
+#| fig-asp: 1.2
+# Produce sparkline type plots with rows and colours indicating country for which these data were recorded
 mal_dat |> 
-  dplyr::filter(Indicator == "ITNPREG",
-                Level == "National",
-                `Latest Year` %in% c(2007, 2011, 2014, 2015, 2018)) |>
-  ggplot(aes(x = `Countries and areas`, y = Value, colour = as.factor(`Latest Year`))) + 
-  geom_segment(aes(x = `Countries and areas`, xend = `Countries and areas`, y = 0, yend = Value), color = "grey") +  # Keep constant grey color for segments
-  geom_point(size = 4) +
-  coord_flip() +  # Adjust the aspect ratio to make the plot taller
-  scale_colour_manual_health_radar() +  # Correct color scale for the discrete 'Source' variable
-  theme_health_radar() +
-  labs(
-    title = "Percentage of Pregnant Women using an ITN",
-    subtitle = "Data for selected African countries",
-    caption = stringr::str_wrap("This plot displays the percentage of pregnant Zimbabwean, Zambian, Namibian, Mozambiquan, Estwatinian and Angolan women between 15 and 49 years of age, who used insecticide-treated mosquito nets (ITNs) the night prior to their participation in the survey. Records are displayed for the years 2007, 2011, 2014, 2015 and 2018. Source: UNICEF Child Health Coverage Dataset.", width = 75),
-    x = "Country",
-    y = "Percentage", 
-    colour = "Year"
-  )
+    dplyr::filter(Indicator == "ITNPREG",
+                  Level == "National") |>
+    ggplot(aes(x = `Latest Year`, y = Value, colour = `Countries and areas`)) +
+    geom_line() +
+    geom_point() +
+    scale_y_continuous(labels = scales::label_percent(scale = 1, accuracy = 1)) +  # Set y-axis to percentage
+    theme_health_radar() +
+    labs(
+        title = "Percentage of Pregnant Women using an ITN",
+        subtitle = "Data for Southern African countries",
+        caption = stringr::str_wrap("This plot displays the percentage of pregnant Angolan, Estwatinian, Mozambiquan, Namibian, Zambian and Zimbabwean women between 15 and 49 years of age, who used insecticide-treated mosquito nets (ITNs) the night prior to their participation in the survey. Records are displayed for the years in which they were collected. Consequences of the 2015 setback in Zimbabwe are further explored in the HealthRADAR modelling example. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+        x = "Time",
+        y = "Percent of pregnant women sleeping under an ITN",
+        colour = "Country"
+    ) +
+    facet_wrap(~`Countries and areas`, ncol=1)
 ```
 
 ## Modelling
