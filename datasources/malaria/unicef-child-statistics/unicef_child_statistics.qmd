@@ -112,6 +112,7 @@ library(deSolve)
 source(here::here("theme_health_radar.R"))
 ```
 
+Once the data are loaded, you can use the `filter()` function to select specific indicators and countries of interest. The code below demonstrates how to filter for malaria-specific indicators and the Elimination 8 (E8) countries, which are Botswana, Eswatini, Namibia, South Africa, Angola, Mozambique, Zambia, and Zimbabwe.
 ```{r load-data}
 # Setup filters for Malaria specific indicators and Elimination 8 countries:
 mal_indicators <- c("IPTP", "ITN", "ITN2", "ITNOWN", "ITNPREG", "MLRACT", "MLRCARE", "MLRDIAG")
@@ -165,6 +166,9 @@ mal_dat |>
 
 <h2>How to plot these data?</h2>
 
+The following code chunks demonstrate how to create various plots using the `ggplot2` package in R, which is part of the tidyverse. These plots illustrate different aspects of malaria-related indicators from the UNICEF dataset.
+
+Here we show intermittent preventative treatment (IPT) in Zambia for people living in different socioeconomic conditions, as measured by wealth index quintile (WIQ). This plot shows IPT coverage over time stratified by wealth index quintile.
 ```{r plt-ipt-wealth}
 # Produce a line plot coloured by wealth index quintile
 mal_dat|> 
@@ -187,6 +191,7 @@ mal_dat|>
     )
 ```
 
+This plot shows how many under 5 year olds sleep under an Insecticide Treated Net (ITN) stratified by sex. One can see a small bias towards males.
 ```{r plt-itn-urban-rural}
 # Produce a paired bar plot coloured by sex
 mal_dat |> 
@@ -208,6 +213,7 @@ mal_dat |>
   ) 
 ```
 
+This last plot shows how many woman of child bearing age (15-49) slept under an ITN the night prior to their participation in the survey, stratified by country. The data are shown for six Southern African countries, and the plot is faceted by country. One can see a setback in 2015 in Zimbabwe, which is further explored in the HealthRADAR modelling example following this.
 ```{r plt-itn-pregnant}
 #| fig-asp: 1.2
 # Produce sparkline type plots with rows and colours indicating country for which these data were recorded
