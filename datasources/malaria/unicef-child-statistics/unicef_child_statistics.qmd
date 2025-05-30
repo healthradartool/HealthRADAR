@@ -258,16 +258,17 @@ Zim_ITN_use_c <- mal_dat |>
   ) # add a day_index for interpolation
 
 ggplot(Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) + 
-  geom_point() +
+  geom_point(size=2) +
   geom_line() +
-  scale_colour_manual_health_radar() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.4)) +
+  scale_colour_manual_health_radar() +
+  coord_cartesian(ylim = c(0, 0.4)) +
   theme_health_radar() +
   labs(
     title = str_wrap("Children under five years of age sleeping under an ITN in Zimbabwe"),
     x = "Year",
-    y = "Percent (%)",
-    caption = str_wrap("In this plot we note that ITN usage amongst children under five fluctuates between 4 and 30%. Source: UNICEF Child Health Coverage Dataset.")
+    y = "Percent of children sleeping under ITN",
+    caption = str_wrap("In this plot we note that ITN usage amongst children under five fluctuates between 4% and 30%. Source: UNICEF Child Health Coverage Dataset.")
   ) +
   guides(colour = "none")
 
