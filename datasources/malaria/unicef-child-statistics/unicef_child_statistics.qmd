@@ -13,65 +13,95 @@ categories:
 ---
 
 ::: {.page-tabs .panel-tabset}
-
 ## Overview
 
 <h2>About the data</h2>
 
-UNICEF DATA - Child Statistics provides data on insecticide-treated net (ITN) use, intermittent preventative treatment for pregnant women (IPTp), and key indicators related to malaria testing and treatment for children in endemic countries. These data are collected using household surveys, primarily Multiple Indicator Cluster Surveys (MICS) and Demographic and Health Surveys (DHS).
+UNICEF DATA - Child Statistics provides a wealth of information related to child and women's health globally, with significant coverage of Southern African countries. This includes crucial data for malaria analysis such as: insecticide-treated net (ITN) use among children under five and household members, intermittent preventative treatment for pregnant women (IPTp), and key indicators related to malaria testing and treatment for children in endemic countries. These data are primarily collected through nationally representative household surveys, specifically Multiple Indicator Cluster Surveys (MICS) and Demographic and Health Surveys (DHS). Note that these data can also be accessed from the [DHS Program](/radar/datasources/malaria/dhs-program/dhs.html) website.
 
-They are recorded annually, meaning that the dataset will not be appropriate for investigating seasonal trends in the indicators. For each indicator and country, values can be obtained nationally, by sex, by area (urban or rural), by mother's education level, or by wealth index quintiles (WIQ).
+While recorded annually, meaning the dataset may not be appropriate for investigating granular seasonal trends, it offers valuable insights into longer-term patterns. For each indicator and country, values can be obtained nationally, by sex (typically disaggregated by relevant age groups for children), by area (urban or rural), by mother's education level, or by wealth index quintiles (WIQ). Researchers should note that while these surveys provide robust national and sometimes urban/rural estimates, disaggregation at finer subnational levels are limited. The data are publicly accessible via the UNICEF DATA website, and often mirrored on platforms like the DHS Program's STATcompiler, providing essential evidence for policy and programmatic decisions aimed at malaria control and elimination in the region.
 
 <h2>Accessing the data</h2>
 
-The [UNICEF data website](https://data.unicef.org/) includes access to journal articles, publications, data visualisations, datasets, and other resources related to the data they make available.
+The [UNICEF data website](https://data.unicef.org/) serves as a central hub, offering an array of resources such as a frequently updated blog, journal articles, publications, data visualisations, datasets, and other resources related to the data they make available. For those interested in malaria and broader child health indicators, several avenues exist for data access, catering to different levels of detail and user needs.
 
-Reaching the Child Health Coverage dataset from the [UNICEF data website](https://data.unicef.org/) homepage can be done as follows:
+<h3>Curated datasets from UNICEF Topic Pages</h3>
 
-1.  Navigate to the \`Data by Topic' tab, and select the \`Malaria' option from the \`Child and Adolescent Health' subsection to reach [UNICEF's Malaria webpage](https://data.unicef.org/topic/child-health/malaria/#notes).
-2.  Scroll down until you see the heading \`Malaria Data'. Select the download button beside the label \`Child Health Coverage'.
+UNICEF's topic-specific pages, such as the [Malaria webpage](https://data.unicef.org/topic/child-health/malaria/#notes), often present data within a narrative context, accompanied by pre-selected indicator datasets available for direct download. These datasets are typically provided as Excel files, offering a convenient "single pack" of key indicators relevant to the topic.
 
-The dataset will be downloaded as an Excel file.
+To access the Child Health Coverage dataset, for example, from the UNICEF data website:
+
+Navigate to the 'Data by Topic' tab, and select the 'Malaria' option from the 'Child and Adolescent Health' subsection to reach UNICEF's Malaria webpage.
+
+Scroll down until you see the heading 'Malaria Data'. Select the download button beside the label 'Child Health Coverage'.
+
+The dataset will be downloaded as an Excel file, containing many of the indicators discussed previously, pre-filtered for ease of use.
+
+<h3>Direct Access to Survey Data (DHS and MICS Programs)</h3>
+
+For users seeking more granular data, the DHS Program and MICS provide direct access to survey data. These platforms allow users to explore datasets by country, year, and specific indicators. Users can download raw data files for further analysis or use online tools to generate custom tables and visualisations. More information can be found on the [DHS Program](/radar/datasources/malaria/dhs-program/dhs.html) page.
+
+<h3>UNICEF Indicator Data Warehouse (SDMX)</h3>
+
+For users requiring programmatic access or a broader range of demographic and health indicators beyond those curated for specific topics, UNICEF provides data through its "UNICEF Indicator Data Warehouse." This warehouse utilizes the SDMX (Statistical Data and Metadata eXchange) protocol, a standard for exchanging statistical data and metadata.
+
+Accessing data via SDMX allows for automated data retrieval, making it suitable for advanced users, developers, or researchers who wish to integrate UNICEF data directly into their own analytical platforms or databases. This method provides access to a vast array of indicators, including fundamental demographic data (e.g., population figures, birth rates, number of pregnancies) which can be crucial for contextualizing and analyzing the malaria situation in a country. Details on how to connect to the SDMX API are available on the [UNICEF data website](https://data.unicef.org/sdmx-api-documentation/) for those with technical expertise. Note that there is an R package `rsdmx` which can be used to access SDMX data in R.
 
 <h2>What do the data look like?</h2>
 
-The Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
+Following the first datastream above, the downloaded "Child Health Coverage" Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
 
 ![Layout of the first sheet of the Excel document.](images/malaria_xlsx_index.png)
 
-
 <h2>Key points to consider</h2>
 
-This dataset is sparse at times. It is rare that a measure recorded in a given year for a given country will be available for many other countries with which you may want to compare it. This makes it most appropriate for exploration, rather than for investigating a time series of a specific variable, or comparing a variable across specific countries in a given year. 
+When utilizing data from UNICEF's platform, particularly for malaria analysis in Southern Africa, it's important to be aware of certain characteristics and potential interpretations to ensure robust and accurate insights.
+
+**Value Proposition of UNICEF Data:** 
+
+While much of the underlying data originates from surveys like DHS and MICS (which can be accessed directly), UNICEF's portal offers significant value through its:
+
+-   Descriptive Narrative and Contextualization: UNICEF often frames the data within broader stories and policy contexts, providing a valuable starting point for understanding the public health landscape.
+
+-   Pre-organized Datasets: The curated Excel files available on topic pages offer a convenient "single pack" of key indicators, saving time on data extraction and compilation compared to building custom queries via tools like STATcompiler.
+
+**Data Sparsity and Interpretation of Missing Values**
+
+This dataset can be sparse at times, meaning that a measure recorded in a given year for a specific country may not have comparable data for many other countries. This characteristic makes it most appropriate for:
+
+Exploration of trends within a single country over time for specific indicators.
+
+Understanding the general status of an indicator across a range of countries, rather than direct, year-by-year comparisons across a large set of countries.
+
+Crucially, when encountering blank cells or "N/A" values in the downloaded Excel files, it is highly probable that these indicate a lack of a reliable estimate for that particular indicator, country, and year combination, rather than a value of zero. Assuming a zero value for missing data can lead to significant misinterpretations and biased conclusions in your analysis. Always consult the accompanying metadata or documentation if available, or cross-reference with the primary survey source (DHS/MICS) for clarification on missing data conventions.
 
 **Pitfalls of Annual Data:**
 
-Using annual data for your analysis can lead to several pitfalls:
+Using annual data for your analysis can lead to several pitfalls when investigating a disease such as malaria:
 
--   Seasonal variations: Annual data may not capture the seasonal patterns of malaria transmission, which can be influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions.
+-   Seasonal variations: Annual data may not capture the distinct seasonal patterns of malaria transmission, which are heavily influenced by factors such as rainfall, temperature, and vector abundance. This can lead to an over- or underestimation of the disease burden and the impact of interventions if seasonality is a key driver.
 
--   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions.
+-   Temporal aggregation: Aggregating data annually may mask important short-term dynamics, such as outbreaks or the immediate impact of interventions, which often operate on shorter time scales.
 
 **National Level - Ignoring Spatial Heterogeneity:**
 
-Modelling malaria transmission at a national level can overlook important spatial heterogeneities:
+Modelling malaria transmission solely at a national level can overlook important spatial heterogeneities that are critical for effective policy and intervention planning:
 
--   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, and socioeconomic factors.
+-   Regional variations: Malaria transmission can vary significantly between different regions within a country due to differences in climate, vector ecology, socioeconomic factors, and access to healthcare.
 
--   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior.
+-   Local hotspots: Even within regions, there can be local hotspots of malaria transmission due to factors such as proximity to breeding sites, population density, and human behavior, and specific environmental conditions.
 
--   Population movement: The movement of people between different areas can introduce or reintroduce malaria parasites, affecting transmission dynamics.
+-   Population movement: The movement of people between different areas (e.g., for work, trade, or displacement) can introduce or reintroduce malaria parasites, significantly affecting transmission dynamics in origin and/or destination areas.
 
 <h2>Examples of data use in literature</h2>
 
 Around 100 UNICEF [journal articles](https://data.unicef.org/resources/resource-type/journal-articles/?f) and over 300 [publications](https://data.unicef.org/resources/resource-type/publications/?f) are made available on the UNICEF data website.
 
-
 ## Visualisations
 
 <h2>How to use the dataset</h2>
 
-This dataset includes information on diarrhoea and pneumonia in addition to the malaria-related data. You can isolate data related to specific variables and countries that are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below.  
+This dataset includes information on diarrhoea and pneumonia in addition to the malaria-related data. You can isolate data related to specific variables and countries that are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below.
 
 ```{r}
 #| echo: false
@@ -122,7 +152,7 @@ mal_dat |>
   gt::gt()
 ```
 
-Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, for example, with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below.  
+Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, for example, with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below.
 
 ```{r}
 # Produce a table in wide format of the last ten rows of data
@@ -156,7 +186,6 @@ mal_dat|>
       y = "Percentage"
     ) 
 ```
-
 
 ```{r,4}
 # Produce a paired bar plot coloured by sex
@@ -243,9 +272,9 @@ ggplot() +
 
 ```
 
-We may consider the proportion of the population effectively covered by ITNs to be those with access to at least one ITN and actively using the net. In addition, the effectiveness of the nets at preventing infectious bites decreases over time as chemical efficacy drops and nets are damaged through wear and tear and considered lost. This loss is also called attrition, $attr$. The median survival time of long lasting insecticidal nets (LLINs) is considered to be three years, represented by $eta$ in the model. 
+We may consider the proportion of the population effectively covered by ITNs to be those with access to at least one ITN and actively using the net. In addition, the effectiveness of the nets at preventing infectious bites decreases over time as chemical efficacy drops and nets are damaged through wear and tear and considered lost. This loss is also called attrition, $attr$. The median survival time of long lasting insecticidal nets (LLINs) is considered to be three years, represented by $eta$ in the model.
 
-For a more detailed description of the incorporation of ITNs, see the [DHS](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: individuals over the age of five, and children under five years old.
+For a more detailed description of the incorporation of ITNs, see the [DHS](/radar/datasources/malaria/dhs-program/dhs.html) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: individuals over the age of five, and children under five years old.
 
 ### Model assumptions
 
@@ -425,8 +454,8 @@ df |>
   )  # Set x-axis breaks to multiples of 3 years
 
 ```
+
 ### Policy implications
 
-By accounting for age specifically, policymakers can develop scenarios for vector control interventions targeted to certain age groups, such as ITN distribution campaigns in schools. Age-structured models can also allow decison makers to assess the impact of interventions such as intermittent preventive treatment in infants (IPTi) or seasonal malaria chemoprevention (SMC).
-
+By accounting for age specifically, policymakers can develop scenarios for vector control interventions targeted to certain age groups, such as ITN distribution campaigns in schools. Age-structured models can also allow decision makers to assess the impact of interventions such as intermittent preventive treatment in infants (IPTi) or seasonal malaria chemoprevention (SMC).
 :::
