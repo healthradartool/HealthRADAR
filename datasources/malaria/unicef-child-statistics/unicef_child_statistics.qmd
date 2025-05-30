@@ -211,9 +211,9 @@ mal_dat |>
 ```{r,5}
 # Produce a lollipop plot with colours indicating the year for which these data were recorded
 mal_dat |> 
-  dplyr::filter(Indicator == "ITNPREG") |>
-  dplyr::filter(Level == "National") |>
-  dplyr::filter(`Latest Year` == 2007 | `Latest Year` == 2018 | `Latest Year` == 2011 | `Latest Year` == 2015 | `Latest Year` == 2014) |>
+  dplyr::filter(Indicator == "ITNPREG",
+                Level == "National",
+                `Latest Year` %in% c(2007, 2011, 2014, 2015, 2018)) |>
   ggplot(aes(x = `Countries and areas`, y = Value, colour = as.factor(`Latest Year`))) + 
   geom_segment(aes(x = `Countries and areas`, xend = `Countries and areas`, y = 0, yend = Value), color = "grey") +  # Keep constant grey color for segments
   geom_point(size = 4) +
@@ -250,18 +250,17 @@ We filter the data for ITN usage in Zimbabwe. The data also allows stratificatio
 Zim_ITN_use_c <- mal_dat |> 
   filter(`Countries and areas` == "Zimbabwe", Indicator == "ITN", Stratifier == "National") |> 
   mutate(Population = "Children < 5",
-         Value = Value/100) %>% 
-  mutate(
-    Date = ymd(paste0(`Latest Year`, "-01-01")),
-    day_index = as.numeric(Date - min(Date)) + 1
+         Value = Value/100,
+         Date = ymd(paste0(`Latest Year`, "-01-01")),
+         day_index = as.numeric(Date - min(Date)) + 1
   ) # add a day_index for interpolation
 
-ggplot() + 
-  geom_point(data = Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) +
-   geom_line(data = Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) +
-  scale_colour_manual_health_radar() + 
-  theme_health_radar() +
+ggplot(Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) + 
+  geom_point() +
+  geom_line() +
+  scale_colour_manual_health_radar() +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.4)) +
+  theme_health_radar() +
   labs(
     title = str_wrap("Children under five years of age sleeping under an ITN in Zimbabwe"),
     x = "Year",
@@ -405,7 +404,6 @@ parameters <- c(a = 0.3, # human biting rate
                 itnuse_a = 0.6, # net usage among the adult population
                 itn_eff = 0.45, # effectiveness of ITN at preventing ongoing transmission
                 itn_death = 1/(3*365) # median net survival is three years
-
 )
 
 # Run the model
@@ -436,7 +434,8 @@ df <- as_tibble(as.data.frame(out)) |>
 # Plotting incidence
 
 df |> 
-  filter(variable %in% c("Total", "Adults", "Children < 5"), time > 50) |> 
+  filter(variable %in% c("Total", "Adults", "Children < 5"),
+         time > 50) |> 
   ggplot()+
   geom_line(aes(x = date, y = value, colour = variable)) +
   theme_health_radar() +
