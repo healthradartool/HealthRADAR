@@ -17,7 +17,7 @@ categories:
 
 <h2>About the data</h2>
 
-UNICEF DATA - Child Statistics provides a wealth of information related to child and women's health globally, with significant coverage of Southern African countries. This includes crucial data for malaria analysis such as: insecticide-treated net (ITN) use among children under five and household members, intermittent preventative treatment for pregnant women (IPTp), and key indicators related to malaria testing and treatment for children in endemic countries. These data are primarily collected through nationally representative household surveys, specifically Multiple Indicator Cluster Surveys (MICS) and Demographic and Health Surveys (DHS). Note that these data can also be accessed from the [DHS Program](/radar/datasources/malaria/dhs-program/dhs.html) website.
+UNICEF DATA - Child Statistics provides a wealth of information related to child and women's health globally, with significant coverage of Southern African countries. This includes crucial data for malaria analysis such as: insecticide-treated net (ITN) use among children under five and household members, intermittent preventative treatment for pregnant women (IPTp), and key indicators related to malaria testing and treatment for children in endemic countries. These data are primarily collected through nationally representative household surveys, specifically Multiple Indicator Cluster Surveys (MICS) and Demographic and Health Surveys (DHS). Note that these data can also be accessed from the [DHS Program](/datasources/malaria/dhs-program/dhs.html) website.
 
 While recorded annually, meaning the dataset may not be appropriate for investigating granular seasonal trends, it offers valuable insights into longer-term patterns. For each indicator and country, values can be obtained nationally, by sex (typically disaggregated by relevant age groups for children), by area (urban or rural), by mother's education level, or by wealth index quintiles (WIQ). Researchers should note that while these surveys provide robust national and sometimes urban/rural estimates, disaggregation at finer subnational levels are limited. The data are publicly accessible via the UNICEF DATA website, and often mirrored on platforms like the DHS Program's STATcompiler, providing essential evidence for policy and programmatic decisions aimed at malaria control and elimination in the region.
 
@@ -39,7 +39,7 @@ The dataset will be downloaded as an Excel file, containing many of the indicato
 
 <h3>Direct Access to Survey Data (DHS and MICS Programs)</h3>
 
-For users seeking more granular data, the DHS Program and MICS provide direct access to survey data. These platforms allow users to explore datasets by country, year, and specific indicators. Users can download raw data files for further analysis or use online tools to generate custom tables and visualisations. More information can be found on the [DHS Program](/radar/datasources/malaria/dhs-program/dhs.html) page.
+For users seeking more granular data, the DHS Program and MICS provide direct access to survey data. These platforms allow users to explore datasets by country, year, and specific indicators. Users can download raw data files for further analysis or use online tools to generate custom tables and visualisations. More information can be found on the [DHS Program](/datasources/malaria/dhs-program/dhs.html) page.
 
 <h3>UNICEF Indicator Data Warehouse (SDMX)</h3>
 
@@ -230,7 +230,7 @@ mal_dat |>
     facet_wrap(~`Countries and areas`, ncol=1)
 ```
 
-## Modelling
+## Modelling Example
 
 <h2>How can this data be used in disease modelling?</h2>
 
@@ -276,7 +276,7 @@ ggplot(Zim_ITN_use_c, aes(x = `Latest Year`, y = Value, colour = Population)) +
 
 We may consider the proportion of the population effectively covered by ITNs to be those with access to at least one ITN and actively using the net. In addition, the effectiveness of the nets at preventing infectious bites decreases over time as chemical efficacy drops and nets are damaged through wear and tear and considered lost. This loss is also called attrition, $attr$. The median survival time of long lasting insecticidal nets (LLINs) is considered to be three years, represented by $eta$ in the model.
 
-For a more detailed description of the incorporation of ITNs, see the [DHS](/radar/datasources/malaria/dhs-program/dhs.html) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: individuals over the age of five, and children under five years old.
+For a more detailed description of the incorporation of ITNs, see the [DHS](/datasources/malaria/dhs-program/dhs.html) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: individuals over the age of five, and children under five years old.
 
 ### Model assumptions
 
