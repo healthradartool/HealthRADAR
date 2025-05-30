@@ -1,0 +1,219 @@
+---
+title: "ALMA Scorecard Hub"
+description: "This is a digital platform developed by the African Leaders Malaria Alliance (ALMA) to track and support progress towards malaria elimination."
+date: 10/01/2024 # mm-dd-yyyy
+image: "images/alma-scorecard.png"
+
+categories:
+  - malaria
+  - country scorecards
+  - indicators
+  - country-level
+  - accountability
+---
+
+::: {.page-tabs .panel-tabset}
+
+## Overview
+
+<h2>About the data</h2>
+
+- The site uses two languages, namely, *English* and *French*.
+-   The data is presented in the form of scorecards showing several indicators that are used to assess a country's health priorities.
+- Indicators may vary from country to country, countries generally choose indicators based on their national health strategies.
+- There are currently: 40 malaria country level tools, 1 country level scorecard tool that combines malaria and neglected tropical diseases (NTDs).
+- There are 3 types of scorecards available: country scorecards, community scorecards  and the ALMA scorecard for accountability and action.
+- The country scorecard provides a snapshot of a country's health performance.
+- The community scorecard provides a means for assessing the quality of health services offered at the local health facility or catchment area.
+- The ALMA scorecard for accountability and action displays country level performance against key indicators, highlighting successes and shortfalls.
+
+<h2>Accessing the data</h2>
+
+- To view the available scorecards visit [Scorecard management tools](https://scorecardhub.org/scorecards/). 
+- No login credentials are needed to view or download the available scorecards
+- Login credentials are needed if an individual wishes to undertake any of the [online courses](https://scorecardhub.org/online-courses) offered by ALMA.
+- Under the tab country scorecards, a search can be refined through the use of available filters. The filters are for *country*, *scorecard type* and *year*. To access the scorecards on *malaria*, use the filter *scorecard type* and choose any of the following depending on specific context (*Malaria*, *ALMA Scorecard for Accountability on Action*, *Commonwealth Malaria Tracker*) from the drop-down menu.
+- Under the tab country best practices, a search can be refined through the use of available filters. The filters are for *search*, *topic*, *types of best practices*, *country* and *year*. To access best practices for malaria, use the filter *topic*, 2 choices are available: *Malaria scorecard tools* and *End malaria councils* from the drop-down menu.
+- The video below demonstrates how to navigate the site:
+
+::: {.callout-note collapse="true"}
+
+## Video demonstration of the ALMA Scorecard Hub
+
+{{< video https://www.youtube.com/watch?v=jJAk_A0bfyk >}}
+
+:::
+
+<h2>What does the data look like?</h2>
+
+- Some scorecards are shared as pdf files (these are downloadable)
+
+![Rwanda Malaria Scorecard](images/pdf_scorecard.png)
+
+or directly from the web platform (not downloadable, user has to scroll through the file)
+
+![Zambia Malaria Scorecard](images/web_platform%20scorecard.png)
+
+- Scorecards are color coded, the main colors of use are *green (on track)*, *yellow (in progress)*, *red (not on track)*, *grey (not applicable or no data)*, *white (no data)*.
+- Scorecards use arrows in combination with the colors, *up arrow (to show an increase)* and *down arrow (to show a decrease)*.
+- The ALMA scorecards for accountability and action gives the ALMA scorecard, the Africa Summary report and country specific reports as pdfs in any one of the following languages, *English*, *Arabic*, *Spanish*, *French*, *Swahili* and *Portuguese*.
+- Data available is for the years 2015 to 2024.
+
+<h2>Key points to consider</h2>
+
+- Downloading the [materials](https://scorecardhub.org/guides-and-toolkits/download-course-content-to-access-when-you-do-not-have-an-internet-connection/) for the online courses is highly beneficial, as they provide a comprehensive overview on how to create scorecards. This will help towards the understanding and interpretation of the scorecards.
+- The scorecards are highly country specific, indicators change according to the country's health priorities.
+
+## Visualisations
+
+<h2>How to use this data</h2>
+
+- As indicators vary across countries, it is necessary to check if the indicators of interest are within the available scorecards.
+- It is also necessary to check if the country of interest has made the country scorecard available.
+- As the scorecards are available in pdf format or as a web platform, information has to be extracted manually.
+
+<h2>How to plot this data?</h2>
+
+
+```{r}
+# load the libraries
+devtools::install_github("ropensci/rnaturalearthhires")
+
+library(ggrepel)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(readxl)
+library(stringr)
+library(dplyr)
+
+
+source(here::here("theme_health_radar.R"))
+
+# Define the Rwanda provinces
+rwanda_provinces <- c("East", "South", "West", "North", "Kigali city")
+
+# Load the map data for Rwanda
+rwanda_map <- ne_states(country = "Rwanda", returnclass = "sf") %>%
+  mutate(name = rwanda_provinces)
+
+# Read in data
+rwandap_data <- read_excel("data/rwanda_q1_provinces2022.xlsx")
+
+cases <- rwandap_data$MalariaTotalCases 
+
+# Merge the map data with your data
+rwanda_data <- rwanda_map %>%
+  left_join(rwandap_data, by = c("name" = "province"))
+
+# Create a ggplot object with the Rwanda data
+ggplot(data = rwanda_data) +
+  # Add a spatial plot with fill based on the number of cases
+  geom_sf(aes(fill = cases), color = "lightgrey", size = 0.3) +  
+  # Apply custom theme
+  theme_health_radar() +
+  # Apply custom fill scale for continuous data
+  scale_fill_continuous_health_radar(name = "Total Cases") +  
+  # Add text labels for the names, with color based on the number of cases
+  geom_sf_text(
+    aes(label = name, color = ifelse(cases > quantile(cases, 0.9), "black", "white")), size = 3) +  
+  # Use identity scale for color
+  scale_color_identity() +  
+  # Customize the theme to remove axis titles and ticks
+  theme(
+    plot.caption.position = "plot",
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank()) +
+  # Add caption and title to the plot
+  labs(
+    title = "Reported malaria cases in Rwanda (2022)",
+    caption = str_wrap(
+      "The total number of new outpatient department (OPD) cases of malaria recorded at healthcare facilities in the five provinces of Rwanda during the first quarter of 2022. The East and South provinces show the lowest and highest number of reported cases respectively. Source: ALMA Scorecard Hub, Scorecard management tool.", 
+      width = 85))
+
+```
+
+```{r}
+# PDF containing data available at: https://alma2030.org/our-work/scorecard-tools/alma-scorecard-for-accountability-and-action/list-of-alma-scorecards/
+
+# Creating the data frame
+Country <- c("Angola", "Angola", "Angola",
+             "Botswana", "Botswana", "Botswana",
+             "Eswatini", "Eswatini", "Eswatini",
+             "Mozambique", "Mozambique", "Mozambique",
+             "Namibia", "Namibia", "Namibia",
+             "South Africa", "South Africa", "South Africa",
+             "Zambia", "Zambia", "Zambia",
+             "Zimbabwe", "Zimbabwe", "Zimbabwe")
+
+Year <- rep(2023, 24)  # Same year for all entries
+Quarter <- rep(1:3, times = 8)  # Three quarters for each country
+Operational_LLINS_IRS <- c(58, 62, 56,  # Angola
+                           0, 66, 66,   # Botswana
+                           90, 91, 91,  # Eswatini
+                           100, 100, 100, # Mozambique
+                           64, 64, 64,   # Namibia
+                           70, 86, 86,   # South Africa
+                           88, 100, 100, # Zambia
+                           94, 94, 94)   # Zimbabwe
+
+# Create the data frame
+dataframe <- data.frame(Country, Year, Quarter, Operational_LLINS_IRS)
+
+# Display the dataframe
+knitr::kable(head(dataframe))
+```
+
+<h2>Tracking indicator perfomance</h2>
+
+- The plot given below highlights how tracking indicator performance can be achieved.
+- Several country performances are highlighted using data obtained from ALMA scorecards for accountability and action.
+- The implementation indicator on operational vector control (LLINs/IRS) coverage was considered.
+
+When visualising similar data over a much longer period of time, a line plot is useful. Here, the coverage by an LLIN and/or IRS in each of the Frontline 4 countries from 2015 to 2024 is visualised.
+```{r}
+# Read in data
+E8_data <- read_excel("data/E8_implementation.xlsx")
+E8_data$LLINs <- as.numeric(E8_data$LLINs)  
+
+# Filter the data for specific countries
+E8_data |> 
+   # Keep rows where Country is one of the Frontline 4
+  filter(Country %in% c("Botswana", "Namibia", "South Africa", "Eswatini")) |> 
+  # Create a ggplot object with the filtered data
+  ggplot(aes(x = Year, y = as.numeric(LLINs), group = Country)) +
+  # Customize the x-axis to show yearly breaks
+  scale_x_continuous(breaks = seq(floor(min(E8_data$Year)), ceiling(max(E8_data$Year)), by = 1)) +  
+  # Customize the y-axis to show breaks from 0 to 100 in increments of 10
+  scale_y_continuous(breaks = seq(0, 100, by = 10)) +  
+  # Add lines to the plot, coloured by Country
+  geom_line(aes(color = Country), lwd = 1) +  
+  # Add points to the plot, coloured by Country
+  geom_point(aes(color = Country), size = 2) +
+  # Apply custom colour scale
+  scale_colour_manual_health_radar() +  
+  # Apply custom theme
+  theme_health_radar() +
+  # Add labels and title to the plot
+  labs(
+    title = "Operational LLIN or IRS coverage for the Frontline 4 (2015-2024)",
+    x = "Year",
+    y = "Coverage (%)",
+    color = "Country",
+    caption = str_wrap(
+      "Operational long-lasting insecticidal nets (LLINs) or indoor residual spraying (IRS) coverage as a percentage of the at-risk population in the Frontline 4 countries. Solid lines represent the coverage trends taken during each quarter from 2015 to the end of 2023. Namibia experienced a large drop in coverage at the start of 2020, and only began to recover in 2023. South Africa and Eswatini appear to have consistently achieved above 70% coverage. Source: ALMA Scorecard Hub, ALMA Scorecard for Accountability on Action.", 
+      width = 85
+    )
+  )
+```
+
+## Modelling
+
+
+:::
