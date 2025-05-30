@@ -2,7 +2,7 @@
 title: "Climate Data Store"
 description: "Copernicus Climate Data Store functions as a one-stop shop to explore data on the Earth’s past, present and future climate."
 date: 05/29/2025 # mm-dd-yyyy
-image: "images/climate_data_store_logo.png"
+image: "images/climate_data_store_logo.jpg"
 
 categories:
   - climate portal
@@ -38,6 +38,10 @@ The CDS hosts a number of [Applications](https://cds.climate.copernicus.eu/appli
 
 The Climate Data Store can be accessed via the following url - [https://climate.copernicus.eu/climate-data-store](https://climate.copernicus.eu/climate-data-store)
 
+:::{.cell}
+![Climate Data Store landing page. Source: Screenshot from https://climate.copernicus.eu/climate-data-store, accessed 30 May 2025.](images/CDS-HomePage_Screenshot_2025-05-30.png)
+:::
+
 Users need to register or login to access many of the features on the climate Data Store (the login tab is found in the top right corner of the page). The CDS utilizes ECMWF user account which enables users to access the CDS as well as other ECMWF resources, events and courses. On CDS the user credentials are primarily used to track user activity, manage data access and ensure compliance with data licenses.
 
 Access to the datasets is provided both interactively (manually over the web) or programmatically through an API service. The CDS provides an extensive [User guide](https://cds.climate.copernicus.eu/user-guide) section which includes; [CDS Documentation](https://confluence.ecmwf.int/display/CKB/Climate+Data+Store+%28CDS%29+documentation) which provides users with a deeper understanding of what the Climate Data Store is and how best to use it; guidance on how to [download data interactively](https://confluence.ecmwf.int/display/CKB/Climate+Data+Store+%28CDS%29+documentation#ClimateDataStore(CDS)documentation-HowtheCDSworks) via the CDS website and also how to [get data programmatically](https://cds.climate.copernicus.eu/how-to-api) via an API service.
@@ -46,6 +50,11 @@ Access to the datasets is provided both interactively (manually over the web) or
 <h2>What datasets are available</h2>
 
 The CDS provides a [catalogue](https://cds.climate.copernicus.eu/datasets) which lists available datasets. Users can filter this extensive list of datasets through faceted or text-based searches. The site hosts a number of European-focused datasets, so it's helpful to filter by **Spatial coverage** to identify those datasets with **Global** coverage as these would include the southern Africa domain.
+
+:::{.cell}
+![Climate Data Store dataset catalogue filtered by global spatial coverage. Source: Screenshot from https://cds.climate.copernicus.eu/datasets?kw=Spatial+coverage%3A+Global, accessed 30 May 2025.](images/CDS-Search-Global_Screenshot_2025-05-30.png)
+:::
+
 
 The datasets can also be filtered by **Product type**. The definitions of the types is provided below since they may not be easily understandable to a non-climate audience 
 
