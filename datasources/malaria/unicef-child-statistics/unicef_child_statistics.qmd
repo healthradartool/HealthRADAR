@@ -112,103 +112,103 @@ library(deSolve)
 source(here::here("theme_health_radar.R"))
 ```
 
-```{r,2}
-# Read in data
-data <- readxl::read_xlsx(
-  "Child-Health-Coverage-Database-December-2023 .xlsx",
-  sheet = "Long"
-)
-
-colnames(data) <- data[3, ]
-data <- data[4:nrow(data), ]
-data$Value <- as.numeric(data$Value)
-data$`Latest Year` <- as.numeric(data$`Latest Year`)
-data$`Level` <- factor(data$`Level`, levels = c(
-  "Richest", "Fourth", "Middle", "Second",
-  "Poorest", "National", "Urban", "Rural",
-  "Male", "Female", "None", "Primary",
-  "Sec & Higher", "15-19"
-))
-
-# Select only Malaria Indicators
+```{r load-data}
+# Setup filters for Malaria specific indicators and Elimination 8 countries:
 mal_indicators <- c("IPTP", "ITN", "ITN2", "ITNOWN", "ITNPREG", "MLRACT", "MLRCARE", "MLRDIAG")
-mal_dat <- dplyr::filter(data, data$Indicator %in% mal_indicators)
+e8_countries <- c("Botswana", "Eswatini", "Namibia", "South Africa",
+                  "Angola", "Mozambique", "Zambia", "Zimbabwe")
+# Define stratification levels for the data
+strat_levels = c("National",
+                 "Female", "Male",
+                 "Urban", "Rural",
+                 "Primary", "Sec & Higher", "15-19", "None",
+                 "Poorest", "Second", "Middle", "Fourth", "Richest")
 
-# Select only E8 countries
-e8 <- c(
-  "Botswana", "Eswatini", "Namibia", "South Africa",
-  "Angola", "Mozambique", "Zambia", "Zimbabwe"
-)
-mal_dat <- dplyr::filter(mal_dat, `Countries and areas` %in% e8)
+# Read in data
+mal_dat <- readxl::read_xlsx(
+    "Child-Health-Coverage-Database-December-2023 .xlsx",
+    sheet = "Long",
+    skip = 3,
+    col_types = c("skip", "text",
+                  "skip", "skip", "skip", "skip", "numeric",
+                  "skip", "skip", "text", "text", "text", "numeric",
+                  "skip", "skip", "skip")
+  ) |>
+  filter(
+    Indicator %in% mal_indicators,
+    `Countries and areas` %in% e8_countries
+  ) |>
+  mutate(Level = factor(Level, levels = strat_levels))
 ```
 
 The first ten rows of these data can be seen in the following table:
 
-```{r}
-# Produce a table of the first ten rows of data
+```{r tbl-mal-long}
 mal_dat |> 
   head(n = 10) |>
-  dplyr::select_if(~ !all(is.na(.)))|>
-  gt::gt()
+  gt::gt(caption="First ten rows of the data")
 ```
 
-Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, for example, with each column containing data for a given year. The final ten rows of the above data, converted to wide format, are shown below.
+Although data manipulation in R is often easiest using a dataframe which is in long format, tables may be easier to interpret in wide format, for example, with each column containing data for a given year. The rows representing Zimbabwe tracking MLRDIAG the above data, converted to wide format, are shown below.
 
-```{r}
-# Produce a table in wide format of the last ten rows of data
-mal_dat[,-c(6,8,9)] |> 
+```{r tbl-mal-wider}
+mal_dat |>
+  dplyr::filter(`Countries and areas`=="Zimbabwe",
+                Indicator=="MLRDIAG") |> 
   tidyr::pivot_wider(names_from = `Latest Year`,
-                     values_from = `Value`) |>
-  tail(n = 10) |>
-  dplyr::select_if(~ !all(is.na(.)))|>
-  gt::gt()
+                     values_from = Value) |>
+  dplyr::select(Stratifier, Level, `2011`:`2019`) |>
+  gt::gt(groupname_col = "Stratifier",
+         row_group_as_column=TRUE,
+         caption="Zimbabwe, Malaria diagnostics - percentage of febrile children (under age 5) who had a finger or heel stick for malaria testing")
 ```
 
 <h2>How to plot these data?</h2>
 
-```{r,3}
+```{r plt-ipt-wealth}
 # Produce a line plot coloured by wealth index quintile
 mal_dat|> 
-  dplyr::filter(Indicator == "IPTP") |>
-  dplyr::filter(`Countries and areas` == "Zambia") |>
-  dplyr::filter(Stratifier == "WIQ") |>
-  ggplot2::ggplot(aes(x = `Latest Year`, y = Value, group = Level)) + 
-    geom_line(aes(col = Level), lwd = 2) + 
-    scale_colour_manual_health_radar() + 
-    theme_health_radar() + 
-    xlab("Year") + 
-    ylab("IPTP") + 
+  dplyr::filter(Indicator == "IPTP",
+                `Countries and areas` == "Zambia",
+                Stratifier == "WIQ") |>
+  ggplot2::ggplot(aes(x = `Latest Year`, y = Value, group = Level)) +
+    geom_line(aes(col = Level), lwd = 2) +
+    coord_cartesian(ylim = c(0, 100)) +
+    scale_y_continuous(labels = scales::label_percent(scale = 1, accuracy = 1)) +
+    scale_colour_manual_health_radar() +
+    theme_health_radar() +
     labs(
-      title = "Percentage of Pregnant Women who have received IPT",
-      subtitle = "Data for Zimbabwe",
-      caption = stringr::str_wrap("This plot displays the percentage of Zambian women between 15 and 49 years of age, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and separated by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
-      x = "Country",
-      y = "Percentage"
-    ) 
+      title = "IPT by Wealth Index",
+      subtitle = "Women Aged 15-49 Receiving IPT(3+) during ANC (Zambia)",
+      caption = stringr::str_wrap("This plot displays the percentage of women in Zambia aged 15 to 49, who received intermittent preventative treatment (IPT) for Malaria at least three times during antenatal clinic visits for their most recent pregnancy, with data recorded between 2007 and 2019, and stratified by wealth index quintile. Source: UNICEF Child Health Coverage Dataset.", width = 75),
+      x = "Year",
+      y = "Women aged 15-49 who received 3+ IPT during ANC",
+      colour = "Wealth Index Quintile"
+    )
 ```
 
-```{r,4}
+```{r plt-itn-urban-rural}
 # Produce a paired bar plot coloured by sex
 mal_dat |> 
-  dplyr::filter(Indicator == "ITN") |>
-  dplyr::filter(`Stratifier` == "Sex") |>
-  dplyr::filter(`Latest Year` == "2007") |>
+  dplyr::filter(Indicator == "ITN",
+                Stratifier == "Sex",
+                `Latest Year` == 2007) |>
   ggplot(aes(x = `Countries and areas`, y = Value, fill = Level)) +
-  geom_bar(position = "dodge", stat='identity') + 
-  scale_fill_manual_health_radar() + 
-  theme_health_radar() + 
-  xlab("Year") + 
-  ylab("ITN") +
+  geom_bar(position = position_dodge2(), stat='identity') +
+  scale_y_continuous(labels = scales::label_percent(scale = 1, accuracy = 1)) +
+  scale_fill_manual_health_radar() +
+  coord_cartesian(ylim = c(0, 50)) +  # Set y-axis limits to 0-1 for percentage
+  theme_health_radar() +
   labs(
     title = "Percentage of Children using an ITN",
-    subtitle = "Data for selected African countries",
+    subtitle = "Data for Southern African countries",
     caption = stringr::str_wrap("This plot displays the percentage of children  under 5 years of age, separated by sex, who slept under insecticide-treated mosquito nets (ITNs) the night prior to their partcipation in the survey, in Angola, Eswatini, Namibia and Zambia in the year 2007. Source: UNICEF Child Health Coverage Dataset.", width = 75),
     x = "Country",
-    y = "Percentage"
+    y = "Percent of 0-5 year olds sleeping under an ITN"
   ) 
 ```
 
-```{r,5}
+```{r plt-itn-pregnant}
 # Produce a lollipop plot with colours indicating the year for which these data were recorded
 mal_dat |> 
   dplyr::filter(Indicator == "ITNPREG",
@@ -244,11 +244,13 @@ For the age-structured malaria model below, we use data on ITN usage amongst chi
 
 We filter the data for ITN usage in Zimbabwe. The data also allows stratification by sex, urban/rural, level of mother's education and Wealth Index Quintile (WIQ). For the purposes of this example, we use national level data over time.
 
-```{r}
+```{r plt-itn-use-child}
 
 # ITN usage amongst children
 Zim_ITN_use_c <- mal_dat |> 
-  filter(`Countries and areas` == "Zimbabwe", Indicator == "ITN", Stratifier == "National") |> 
+  filter(`Countries and areas` == "Zimbabwe",
+         Indicator == "ITN",
+         Stratifier == "National") |> 
   mutate(Population = "Children < 5",
          Value = Value/100,
          Date = ymd(paste0(`Latest Year`, "-01-01")),
