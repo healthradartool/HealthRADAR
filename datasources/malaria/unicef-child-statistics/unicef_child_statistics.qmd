@@ -103,7 +103,7 @@ Around 100 UNICEF [journal articles](https://data.unicef.org/resources/resource-
 
 This dataset includes information on diarrhoea and pneumonia in addition to the malaria-related data. You can isolate data related to specific variables and countries that are pertinent to your current research. An example of how to do this, in which the Malaria-related variables and E8 countries are selected, is shown in the code chunk below.
 
-```{r}
+```{r setup}
 #| echo: false
 
 library(tidyverse)
@@ -295,7 +295,7 @@ For the purposes of this model we make the following assumptions:
 
 Consequently, the force of infection $lambda-c$ ($\lambda_c$) in children under the age of five years, that is, the rate at which they are exposed to an infectious vector, will be higher than that in adults. This is due to their increased susceptibility to infection and shorter span of partial immunity.
 
-```{r}
+```{r seacr-model}
 library(deSolve)
 # Time points for the simulation
 Y = 14 # Years of simulation from 2006 to 2019
