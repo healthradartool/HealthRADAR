@@ -215,5 +215,15 @@ E8_data |>
 
 ## Modelling
 
+<h2>How can this data be used in disease modelling?</h2>
+
+The data obtained from the scorecards can be used to:
+-   Estimate the parameter values used in malaria transmission models
+-   Inform quarterly changes to intervention coverage and access, which in turn allows for time-varying parameters that reflect changes in the health system over time 
+-   Represent regional differences with spatially explicit models
+-   Evaluate different scenarios that are linked to the scorecard indicators.
+
+Generally, model outputs may complement the ALMA scorecards by forecasting key indicators and generating policy-relevant projections.
+
 
 :::
