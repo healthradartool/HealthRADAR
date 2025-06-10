@@ -100,6 +100,43 @@ footer > .footer-items {
   color: #ffffff;
 }
 
+/* --- Responsive Footer --- */
+/* Target screens smaller than 768px (tablets and phones) */
+@media (max-width: 768px) {
+  
+  /* The main footer container */
+  .page-footer-inner {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;    /* Center the stacked items */
+    gap: 1.25rem;           /* Add vertical space between items */
+  }
+
+  /* The center links container */
+  .page-footer-center {
+    display: flex;
+    flex-direction: column; /* Also stack the links if they wrap */
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* The container for your logo */
+  .page-footer-right {
+    /* The !important is needed to override the inline style */
+    text-align: center !important; 
+  }
+  
+  .nav-footer-left {
+    margin: 1.1em;
+  }
+  
+  .nav-footer-center {
+     margin: 1.1em;
+  }
+  .nav-footer-right {
+     margin-bottom: 0;
+  }
+}
+
 .data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,
 .data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,
 .data-tabs .nav-link.active, .data-tabs .nav-tabs.nav-link.active:focus,

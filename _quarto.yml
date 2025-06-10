@@ -60,10 +60,10 @@ website:
             - text: Data Sources
               href: data.qmd
           right: |
-                <div style="text-align: right;">
-                  <img src="/img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo" />
-                  <div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">Funded by Wellcome</div>
-                </div>
+            <div>
+              <img src="/img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo" />
+              <div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">Funded by Wellcome</div>
+            </div>
 
 metadata-files:
   - drafts.yml
