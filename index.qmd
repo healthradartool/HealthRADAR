@@ -24,9 +24,9 @@ Health RADAR (Responsible Access to Data for Analysis and Research) aims to prov
 :::
 
 ::: {.entry-point}
-::: {.columns}
+::: {.grid}
 
-::: {.column width="40%"}
+::: {.g-col-12 .g-col-md-5}
 I am looking for data in
 
 :::{.hero-buttons}
@@ -46,7 +46,7 @@ I am looking for data in
 
 :::
 
-::: {.column width="60%"}
+::: {.g-col-12 .g-col-md-7}
 ```{r}
 #| classes: '.g-col-lg-6 .g-col-12 .g-col-md-12'
 source("carousel.R")
@@ -61,12 +61,13 @@ carousel("gallery-carousel", 5000,
 :::
 
 ::: {#radar-block .content-block .column-screen}
-
 ::: {.column-page}
 
-::: {.columns}
+<!-- Use .grid and add .align-items-center for vertical alignment -->
+::: {.grid .align-items-center}
 
-::: {.column width="50%"}
+<!-- First column: 100% width on mobile, 50% on medium screens and up -->
+::: {.g-col-12 .g-col-md-6}
 
 ::: {.hero-text}
 Responsible Access to Data for Analysis and Research
@@ -86,18 +87,18 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
 
 :::
 
-::: {.column width="50%"}
+<!-- Second column: 100% width on mobile, 50% on medium screens and up -->
+::: {.g-col-12 .g-col-md-6}
 
-::: {#data-image}
-![](img/browse_datasources.png)
-:::
-
-:::
+<!-- Pro-tip: adding {.img-fluid} makes the image scale nicely within its column -->
+![](img/browse_datasources.png){#data-image}
 
 :::
 
 :::
+<!-- End of .grid -->
 
+:::
 :::
 
 
