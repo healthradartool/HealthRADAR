@@ -336,18 +336,6 @@ footer > .footer-items {
   text-decoration: none;
 }
 
-.dropdown-container {
-  display: flex;
-  gap: 20px;
-  padding-bottom: 15px;
-}
-
-
-#theme, #time, #geography, #other, #resetButton {
-  width: 225px !important;  /*this is temporary until I figure out a better way*/ 
-}
-
-
 .card-tag {
   color: #6a737b;
   text-decoration: none;

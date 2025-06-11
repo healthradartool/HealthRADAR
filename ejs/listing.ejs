@@ -1,47 +1,74 @@
 ```{=html}
+<!-- 
+  - grid: Enables the layout system.
+  - gap-2: Creates a consistent space between all grid items,
+    both horizontally on desktop AND vertically on mobile.
+  - align-items-end: Vertically aligns columns on desktop.
+  - mb-4: Margin below the bar.
+-->
+<div class="grid gap-2 align-items-end mb-4">
 
-<div class="dropdown-container">
-  <!--- Theme dropdown-->
-  <select class="form-select" id="theme">
-    <option value="">Theme</option>
-    <% if (templateParams && templateParams.theme && templateParams.theme.length > 0) { %>
-      <% templateParams.theme.forEach(function(theme) { %>
-        <option value="<%= theme %>"><%= theme %></option>
-      <% }); %>
-    <% } %>
-  </select>
-  <!--- Time dropdown-->
+  <!-- For each dropdown, we create a responsive column -->
+  <div class="g-col-12 g-col-md-3">
+    <select class="form-select" id="theme">
+      <option value="">Theme</option>
+      <% if (templateParams && templateParams.theme && templateParams.theme.length > 0) { %>
+        <% templateParams.theme.forEach(function(theme) { %>
+          <option value="<%= theme %>"><%= theme %></option>
+        <% }); %>
+      <% } %>
+    </select>
+  </div>
+  
+  <div class="g-col-12 g-col-md-3">
+    <select class="form-select" id="time">
+      <option value="">Time</option>
+      <% if (templateParams && templateParams.time && templateParams.time.length > 0) { %>
+        <% templateParams.time.forEach(function(time) { %>
+          <option value="<%= time %>"><%= time %></option>
+        <% }); %>
+      <% } %>
+    </select>
+  </div>
+  
+  <div class="g-col-12 g-col-md-2">
+    <select class="form-select" id="geography">
+      <option value="">Geography</option>
+      <% if (templateParams && templateParams.geography && templateParams.geography.length > 0) { %>
+        <% templateParams.geography.forEach(function(category) { %>
+          <option value="<%= category %>"><%= category %></option>
+        <% }); %>
+      <% } %>
+    </select>
+  </div>
 
-  <select class="form-select" id="time">
-    <option value="">Time</option>
-    <% if (templateParams && templateParams.time && templateParams.time.length > 0) { %>
-      <% templateParams.time.forEach(function(time) { %>
-        <option value="<%= time %>"><%= time %></option>
-      <% }); %>
-    <% } %>
-  </select>
-  <!--- Geography dropdown-->
-  <select class="form-select" id="geography">
-    <option value="">Geography</option>
-    <% if (templateParams && templateParams.geography && templateParams.geography.length > 0) { %>
-      <% templateParams.geography.forEach(function(category) { %>
-        <option value="<%= category %>"><%= category %></option>
-      <% }); %>
-    <% } %>
-  </select>
-  <!--- Other dropdown-->
-  <select class="form-select" id="other">
-    <option value="">Other</option>
-    <% if (templateParams && templateParams.other && templateParams.other.length > 0) { %>
-      <% templateParams.other.forEach(function(other) { %>
-        <option value="<%= other %>"><%= other %></option>
-      <% }); %>
-    <% } %>
-  </select>
-  <!-- Reset Button -->
-  <button id="resetButton" class="btn btn-primary">Reset Selections</button>
+  <div class="g-col-12 g-col-md-2">
+    <select class="form-select" id="other">
+      <option value="">Other</option>
+      <% if (templateParams && templateParams.other && templateParams.other.length > 0) { %>
+        <% templateParams.other.forEach(function(other) { %>
+          <option value="<%= other %>"><%= other %></option>
+        <% }); %>
+      <% } %>
+    </select>
+  </div>
+  
+  <!-- 
+    The Button's column is special.
+    - g-col-12: Full width on mobile.
+    - g-col-md-2: Fixed width on desktop that accommodates the button nicely.
+  -->
+  <div class="g-col-12 g-col-md-2">
+    <!-- 
+      Add w-100 to the button itself.
+      - This makes it fill its parent column. On mobile, the column is full-width, so the button becomes full-width.
+      - On desktop, the column takes up the allocated space.
+    -->
+    <button id="resetButton" class="btn btn-primary w-100">Reset Selections</button>
+  </div>
 </div>
-<!--- show the listing -->
+
+<!--- The rest of your EJS file remains the same -->
 <div class="list grid">
   <% for (const item of items) { %>
     <div class="card border-1 rounded-2 g-col-12 g-col-sm-6 g-col-md-4 mb-2" <%=metadataAttrs(item) %>>
@@ -65,8 +92,9 @@
     <% } %>
 </div>
 
+
 <script>
-  // Function to update the URL fragment based on selected dropdown values
+  // No changes needed to your JavaScript logic, but update the selector to be robust.
   function updateUrl() {
     const time = document.getElementById("time").value;
     const geography = document.getElementById("geography").value;
@@ -85,25 +113,20 @@
     window.location = baseUrl + urlFragment;
   }
   
-  // Attach change event listeners to all dropdowns
-  document.querySelectorAll('.dropdown-container select').forEach(dropdown => {
+  // Select all dropdowns inside the grid container
+  document.querySelectorAll('.grid select').forEach(dropdown => {
     dropdown.onchange = updateUrl;
   });
   
-  // Reset function to clear selections
   function resetSelections() {
     document.getElementById("time").selectedIndex = 0;
     document.getElementById("geography").selectedIndex = 0;
     document.getElementById("theme").selectedIndex = 0;
     document.getElementById("other").selectedIndex = 0;
-  
-    // Also update the URL to remove any filters
     updateUrl();
   }
   
-  // Attach click event listener to the reset button
   document.getElementById("resetButton").onclick = resetSelections;
-  
 </script>
 ```
 
