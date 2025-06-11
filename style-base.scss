@@ -8,6 +8,25 @@ $body-bg: #fefeff;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /*-- scss:rules --*/
+
+/* Hide desktop logo on mobile, show mobile logo */
+@media (max-width: 767px) {
+  .navbar-brand img {
+    display: none !important;
+  }
+  
+  .navbar-brand::before {
+    content: "";
+    background-image: url("img/radar-mobile-logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    width: 120px; /* Adjust to your mobile logo width */
+    height: 40px;  /* Adjust to your mobile logo height */
+  }
+}
+
 #hero-banner {
   margin-top: -16px;
   padding-top: 35px;
