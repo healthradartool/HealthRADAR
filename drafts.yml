@@ -9,3 +9,4 @@ website:
     - datasources/malaria/the-lancet/lancet_malaria.qmd
     - datasources/malaria/grid3/grid3.qmd
     - datasources/malaria/pmi/pmi.qmd
+    - guides/contribution/modelling.qmd
