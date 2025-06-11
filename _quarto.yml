@@ -38,8 +38,8 @@ website:
             href: guides/contribution/contribution_guidance.qmd
           - text: Climate
             href: guides/climate/climate.qmd
-          - text: Modelling
-            href: guides/contribution/modelling.qmd
+#          - text: Modelling
+#            href: guides/contribution/modelling.qmd
 #      - text: Updates
 #        href: updates.qmd
       - text: Submit an Issue
