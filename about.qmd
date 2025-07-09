@@ -4,6 +4,7 @@ back-to-top-navigation: false
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
+comments: false
 ---
 
 ::: {.page-tabs .panel-tabset}

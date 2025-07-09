@@ -10,6 +10,7 @@ execute:
 description: |
   Health RADAR is a tool to acquire context and access to optionalisable data for modelling malaria in Southern Africa.
 back-to-top-navigation: false
+comments: false
 ---
 
 ::: {#hero-banner .column-screen}

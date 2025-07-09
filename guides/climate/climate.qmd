@@ -5,6 +5,7 @@ page-layout: full
 lightbox: true
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
+comments: false
 ---
 
 

@@ -85,3 +85,10 @@ format:
 execute:
   freeze: auto
 
+comments:
+  giscus: 
+    repo: uct-masha/HealthRADAR
+    category: Announcements
+    mapping: title
+    loading: lazy
+    input-position: top

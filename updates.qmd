@@ -11,5 +11,6 @@ listing:
     sort-ui: false
     filter-ui: false
     fields: [date, title]
+comments: false
 ---
 

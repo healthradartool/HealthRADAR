@@ -4,6 +4,7 @@ subtitle: "Expert guidance for navigating and utilizing Heath RADAR for modellin
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
+comments: false
 ---
 
 ## A guide to malaria modelling
