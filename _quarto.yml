@@ -45,10 +45,10 @@ website:
       - text: Submit an Issue
         href: issues.qmd
 
-#    right:
-#      - icon: github
-#        href: https://github.com/uct-masha/HealthRADAR
-#        aria-label: RADAR GitHub
+    right:
+      - icon: github
+        href: https://github.com/uct-masha/HealthRADAR
+        aria-label: RADAR GitHub
       
         
     pinned: true
