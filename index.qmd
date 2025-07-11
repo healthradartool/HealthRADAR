@@ -60,6 +60,7 @@ carousel("gallery-carousel", 5000,
 :::
 :::
 :::
+:::
 
 ::: {#radar-block .content-block .column-screen}
 ::: {.column-page}
@@ -114,6 +115,5 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
   </button>
 </a>
 
-:::
 :::
 :::

@@ -28,17 +28,17 @@ $body-bg: #fefeff;
 }
 
 #hero-banner {
-  margin-top: -16px;
-  padding-top: 35px;
   background-color: $body-bg;
 }
 
+/*
 #quarto-content main { 
   margin-top: 0;
   padding-top: 0;
   margin-bottom: -60px;
   padding-bottom: 0;
 }
+*/
 
 .back-nav {
   margin-bottom: 1.1em;
@@ -304,6 +304,10 @@ footer > .footer-items {
 #browse-btn-block {
   /* background-color: #f7f9fb; */
   text-align: center;
+}
+
+#browse-btn-block.content-block {
+  padding-bottom: 0 !important;
 }
 
 /* this is added and hidden so that quarto can properly align the principles */
