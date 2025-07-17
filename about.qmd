@@ -6,6 +6,12 @@ title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 comments: false
 ---
+```{r}
+#| echo: false
+
+source(here::here("make_card.R"))
+```
+
 
 ::: {.page-tabs .panel-tabset}
 
@@ -78,27 +84,53 @@ To catalyse the use of the data in CSID modelling, example code snippets will be
 :::
 
 
-## The Team
+## Project Partners
 
-### The Modelling and Simulation Hub, Africa (MASHA)
+::: {.grid}
 
-The [Modelling and Simulation Hub, Africa (MASHA)](https://science.uct.ac.za/masha){.team-links} is a research group at the University of Cape Town. MASHA specialises in disease modelling for policy and capacity building of modellers across Africa and in LMIC. MASHA will support the project through developing and hosting the digital tool, facilitating and curating health and modelling data relevant to malaria transmission for inclusion in the digital tool and developing the code platform that incorporates the data into CSID models.
+```{r}
+#| echo: false
+#| results: asis
 
-### Climate Systems Analysis Group (CSAG)
+add_card(
+  src = "img/partner-logos/masha-logo.png",
+  title = "The Modelling and Simulation Hub, Africa",
+  text = "The Modelling and Simulation Hub, Africa (MASHA) is a research group at the University of Cape Town. MASHA specialises in disease modelling for policy and capacity building of modellers across Africa and in LMIC. MASHA will support the project through developing and hosting the digital tool, facilitating and curating health and modelling data relevant to malaria transmission for inclusion in the digital tool and developing the code platform that incorporates the data into CSID models.",
+  img_alt = "The Modelling and Simulation Hub, Africa (MASHA) logo",
+  url = "https://science.uct.ac.za/masha",
+  link_text = "Learn More"
+)
 
-The [Climate Systems Analysis Group (CSAG)](https://www.csag.uct.ac.za){.team-links} at the University of Cape Town is a leading international climate research centre based in Africa with broad research skills and competency in both physical and social dimensions of climate, strong experience in engaging with society, and an excellent track record in capacity development. CSAG will support the project by facilitating and curating climate data relevant to malaria transmission for inclusion in the digital tool.
+add_card(
+  src = "img/partner-logos/csag-logo.png",
+  img_alt = "The Climate Systems Analysis Group (CSAG) logo",
+  title = "Climate Systems Analysis Group",
+  text = "The Climate Systems Analysis Group (CSAG) at the University of Cape Town is a leading international climate research centre based in Africa with broad research skills and competency in both physical and social dimensions of climate, strong experience in engaging with society, and an excellent track record in capacity development. CSAG will support the project by facilitating and curating climate data relevant to malaria transmission for inclusion in the digital tool.",
+  url = "https://www.csag.uct.ac.za",
+  link_text = "Learn More"
+)
 
-### Clinton Health Access Initiative (CHAI)
+add_card(
+  src = "img/partner-logos/chai-logo.png",
+  img_alt = "The Clinton Health Access Initiative (CHAI) logo",
+  title = "Clinton Health Access Initiative",
+  text = "The Clinton Health Access Initiative (CHAI) is a non-profit organisation that operates at the nexus of business, government and health to save lives and reduce disease. CHAI works with national governments to reform their health systems, targeting areas where current approaches are failing or moving too slowly. CHAI will support the project by facilitating and curating health system data and malaria intervention costs for inclusion in the digital tool.",
+  url = "https://www.clintonhealthaccess.org",
+  link_text = "Learn More"
+)
 
-The [Clinton Health Access Initiative (CHAI)](https://www.clintonhealthaccess.org){.team-links} is a non-profit organisation that operates at the nexus of business, government and health to save lives and reduce disease. CHAI works with national governments to reform their health systems, targeting areas where current approaches are failing or moving too slowly. CHAI will support the project by facilitating and curating health system data and malaria intervention costs for inclusion in the digital tool.
+add_card(
+  src = "img/partner-logos/samrc-logo.png",
+  img_alt = "The South African Medical Research Council (SAMRC) logo",
+  title = "South African Medical Research Council",
+  text = "The South African Medical Research Council (SAMRC) is a non-profit organisation that operates at the nexus of business, government and health to save lives and reduce disease. SAMRC will support the project by facilitating and curating entomological data and data related to vector intervention impact for inclusion in the digital tool.",
+  url = "https://www.samrc.ac.za",
+  link_text = "Learn More"
+)
 
-### SAMRC Office of Malaria Research (MOMR)
+```
 
-The [Office of Malaria Research (MOMR)](https://www.samrc.ac.za/research/centre-and-platforms-office/malaria-research-group){.team-links} in the South African Medical Research Council
-(SAMRC) funds and facilitates research to understand the social and biological impact of the
-disease and to develop malaria control programmes. MOMR will support the project by
-facilitating and curating entomological data and data related to vector intervention impact
-into the digital tool.
+::: 
 
 :::
 
