@@ -16,7 +16,7 @@ comments: false
 ::: {#hero-banner .column-screen}
 ::: {.grid .column-page}
 ::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
-::: {#homepage-heading}
+::: {#homepage-heading .h1}
 Welcome to Health RADAR
 :::
 
@@ -71,7 +71,7 @@ carousel("gallery-carousel", 5000,
 <!-- First column: 100% width on mobile, 50% on medium screens and up -->
 ::: {.g-col-12 .g-col-md-6}
 
-::: {.hero-text}
+::: {.hero-text .h3}
 Responsible Access to Data for Analysis and Research
 :::
 
