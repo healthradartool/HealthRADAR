@@ -17,7 +17,7 @@ website:
   announcement: 
     icon: info-circle
     dismissable: true
-    content: "Please note that this platform is currently in its pilot phase. We are actively refining content and features as we test and improve the experience. Your feedback is welcome during this early stage."
+    content: "Please note that this platform is currently in beta. We are actively refining content and features as we test and improve the experience. Your feedback is welcome during this early stage."
     type: info
     position: below-navbar
   search:

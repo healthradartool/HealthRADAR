@@ -16,18 +16,19 @@ comments: false
 ::: {#hero-banner .column-screen}
 ::: {.grid .column-page}
 ::: {.headline .g-col-lg-12 .g-col-12 .g-col-md-12}
+
 ::: {#homepage-heading .h1}
 Welcome to Health RADAR
 :::
 
-::: {.description}
+::: {.description .h4}
 Health RADAR is a centralised resource for data relevant to climate sensitive infectious disease (CSID) modelling. Explore our data pages for guidance on downloading and using CSID modelling data.
 :::
 
 ::: {.entry-point}
 ::: {.grid}
 
-::: {.g-col-12 .g-col-md-5}
+::: {.g-col-12 .g-col-md-5 .h5}
 I am looking for data in
 
 :::{.hero-buttons}
@@ -41,23 +42,69 @@ I am looking for data in
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 <a href="/themes.qmd">
-<button class="btn btn-primary w-100" type="button" width >Proceed <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+<button class="btn btn-primary hero-button w-100" type="button" width >Proceed <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
 </a>
 :::
 
 :::
 
 ::: {.g-col-12 .g-col-md-7}
-```{r}
-#| classes: '.g-col-lg-6 .g-col-12 .g-col-md-12'
-source("carousel.R")
-carousel("gallery-carousel", 5000, 
-         yaml.load_file("carousel.yml"))
-```
+![](img/diagram.png)
 :::
 
 :::
 :::
+:::
+:::
+:::
+
+::: {#rating-cards-section .content-block .column-screen}
+::: {.column-page}
+
+::: {.grid .align-items-center}
+
+::: {.g-col-12 .g-col-md-4}
+::: {.content-card}
+::: {.card-header}
+Data Sources
+:::
+::: {.card-image}
+![](img/data-sources.png){.img-fluid}
+:::
+::: {.card-description}
+Access comprehensive datasets for climate sensitive infectious disease modelling including demographic, epidemiological and environmental data.
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.content-card}
+::: {.card-header}
+Documentation
+:::
+::: {.card-image}
+![](img/documentation.png){.img-fluid}
+:::
+::: {.card-description}
+Detailed guides and tutorials on how to download, process and incorporate data into your CSID models effectively.
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.content-card}
+::: {.card-header}
+Code Examples
+:::
+::: {.card-image}
+![](img/code-examples.png){.img-fluid}
+:::
+::: {.card-description}
+Worked examples and code snippets showing how to integrate various data sources into your modelling workflows.
+:::
+:::
+:::
+
 :::
 :::
 :::
@@ -81,7 +128,7 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
 
 <br/>
 <a href="/about.qmd">
-  <button id="learn-more" class="btn btn-outline-primary btn-action-primary btn-action btn-success btn-lg w-100" type="button">
+  <button id="learn-more" class="btn btn-outline-primary btn-action-primary btn-action btn-success btn-sm" type="button">
   Learn More About Health RADAR
   <i class="fa-solid fa-arrow-right-to-bracket"></i>
   </button>
@@ -93,7 +140,7 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
 ::: {.g-col-12 .g-col-md-6}
 
 <!-- Pro-tip: adding {.img-fluid} makes the image scale nicely within its column -->
-![](img/browse_datasources.png){#data-image}
+![](img/Browse-Data-Sources.png){#data-image}
 
 :::
 
