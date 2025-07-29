@@ -49,7 +49,7 @@ I am looking for data in
 :::
 
 ::: {.g-col-12 .g-col-md-7}
-![](img/diagram.png)
+![](img/Health%20RADAR%20-%20landing%20image.png)
 :::
 
 :::
