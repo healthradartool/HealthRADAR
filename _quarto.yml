@@ -34,8 +34,8 @@ website:
         href: about.qmd
       - text: Guides
         menu: 
-          - text: Contributing to Health RADAR 
-            href: guides/contribution/contribution_guidance.qmd
+#          - text: Contributing to Health RADAR 
+#            href: guides/contribution/contribution_guidance.qmd
           - text: Climate
             href: guides/climate/climate.qmd
 #          - text: Modelling
