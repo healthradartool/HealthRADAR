@@ -6,5 +6,41 @@ title-block-banner-color: "#212529"
 comments: false
 ---
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVFIn4cR4vvL-aUHyZu5C4rJe2OF3OVHtaosY03GMHZzWJkw/viewform?embedded=true" width="840" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<div class="responsive-iframe-container">
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScVFIn4cR4vvL-aUHyZu5C4rJe2OF3OVHtaosY03GMHZzWJkw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+
+<style>
+.responsive-iframe-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 120%; 
+  overflow: hidden;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.responsive-iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .responsive-iframe-container {
+    padding-bottom: 140%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-iframe-container {
+    padding-bottom: 160%; 
+  }
+}
+</style>
 
