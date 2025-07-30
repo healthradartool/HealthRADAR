@@ -14,12 +14,12 @@ website:
   draft-mode: unlinked
   back-to-top-navigation: true
   google-analytics: "G-8LJCXZ1XXL"
-  announcement: 
-    icon: info-circle
-    dismissable: true
-    content: "Please note that this platform is currently in beta. We are actively refining content and features as we test and improve the experience. Your feedback is welcome during this early stage."
-    type: info
-    position: below-navbar
+  # announcement: 
+  #   icon: info-circle
+  #   dismissable: true
+  #   content: "Please note that this platform is currently in beta. We are actively refining content and features as we test and improve the experience. Your feedback is welcome during this early stage."
+  #   type: info
+  #   position: below-navbar
   search:
     location: navbar
     type: textbox
