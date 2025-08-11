@@ -3,6 +3,7 @@ title: "CHIRPS"
 description: "Rainfall Estimates from Rain Gauge and Satellite Observations"
 date: 08/30/2024 # mm-dd-yyyy
 image: "images/chirps.png"
+draft: true
 
 categories:
   - climate dataset
