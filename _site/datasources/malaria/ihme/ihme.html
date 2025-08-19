@@ -1,0 +1,3591 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-10-23">
+<meta name="description" content="The Institute for Health Metrics and Evaluation (IHME) works with collaborators around the world to develop timely, relevant, and scientifically valid evidence that illuminates the state of health everywhere.">
+
+<title>Institute for Health Metrics and Evaluation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../radar/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-7b26f514444c863e99e16d2cb2559a3c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "Search",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H03EKDS8HM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
+</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #212529;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #212529;
+background: #EDF3F9;
+      }
+</style>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../data.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../../guides/climate/climate.html">
+ <span class="dropdown-text">Climate</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../issues.html"> 
+<span class="menu-text">Submit an Issue</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/healthradartool/HealthRADAR"> <i class="bi bi-github" role="img" aria-label="RADAR GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+    <div class="quarto-title-banner page-columns page-full">
+        <div class="quarto-title column-page">
+
+                        <div class="back-nav"><a id="back-nav-link" href="../../../data.html">← Back to browse</a></div>
+                        
+            <h1 class="title">Institute for Health Metrics and Evaluation</h1>
+
+            
+                        <div>
+                <div class="description">
+                    The Institute for Health Metrics and Evaluation (IHME) works with collaborators around the world to develop timely, relevant, and scientifically valid evidence that illuminates the state of health everywhere.
+                </div>
+            </div>
+            
+                                    <div class="quarto-categories">
+                                <div class="quarto-category">malaria</div>
+                                <div class="quarto-category">epidemiology</div>
+                                <div class="quarto-category">interventions</div>
+                                <div class="quarto-category">country-level</div>
+                                <div class="quarto-category">annual</div>
+                            </div>
+                                </div>
+    </div>
+
+    
+    <div class="quarto-title-meta column-page">
+
+        
+        <div>
+        <div class="quarto-title-meta-heading">Last updated</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">October 23, 2024</p>
+        </div>
+      </div>
+      
+        
+      </div>
+      
+    
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+<div class="tabset-margin-container"></div><div class="page-tabs panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Modelling</a></li></ul>
+<div class="page-tabs tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<h2 class="anchored">
+About the data
+</h2>
+<p>The <a href="http://www.healthdata.org/gbd/about"><strong>Global Burden of Disease (GBD)</strong></a> study, conducted by the Institute for Health Metrics and Evaluation (IHME), evaluates mortality and disability caused by 371 diseases and injuries, along with 88 risk factors across the globe. IHME meticulously collects and analyzes the data, offering insights into trends over time, the effectiveness of interventions, and disparities in the impact of malaria among different populations. The IHME provides extensive malaria data that includes prevalence, incidence, mortality rates, intervention coverage, and the overall burden of disease in 204 countries and territories, with subnational estimates for 21 regions. This comprehensive dataset is a valuable resource for policymakers, researchers, and public health professionals in developing strategies to reduce the global malaria burden and monitor progress toward elimination goals.</p>
+<h2 class="anchored">
+Accessing the data
+</h2>
+<p>The <strong>GBD Results Tool</strong> enables you to download estimates from the study, along with relevant materials such as survey instruments, protocols, and summary information, are accessible on the <a href="https://ghdx.healthdata.org/ihme_data"><strong>IHME Data Page</strong></a> through the Global Health Data Exchange (GHDx). You can search for datasets directly or use the <a href="https://vizhub.healthdata.org/gbd-results"><strong>GDB Results Tool</strong></a> for more detailed queries. IHME also offers API access to interact with large datasets programmatically.</p>
+<p>Search terms such as <code>"IHME malaria deaths estimates"</code>, <code>"malaria prevalence"</code>, <code>"malaria incidence"</code>, or <code>"bednet usage"</code> can be used to find datasets compiled by IHME related to malaria on the GHDx homepage.</p>
+<p>Alternatively, you can navigate to the Data Tools tab on the homepage. However, you will need to <strong>create an account or sign in</strong> to access and download data. If you do not have an account, click on <strong>sign in</strong> at the top of the Results tab. If you already have an account, click sign in and enter your credentials, then select <strong>GBD results tool</strong> under IHME Data Visualization Tools. In the results tool interface, select the choose the disease metrics and apply filters to narrow the search by <code>location (country/region)</code>, <code>year</code>, <code>age group</code>, and <code>sex</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/ihme_gbd_estimates_viz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="IHME GBD Results Visualization Tool Page."><img src="images/ihme_gbd_estimates_viz.png" title="IHME GBD Results Tool" class="img-fluid figure-img" alt="IHME GBD Results Visualization Tool Page."></a></p>
+<figcaption>IHME GBD Results Visualization Tool Page.</figcaption>
+</figure>
+</div>
+<p>You can also visualize data as graphs or tables before downloading. You can right-click on the title of files within the GHDx and download them. Datasets can be downloaded as <code>.csv</code> and <code>.xls</code> files from the GHDx site.</p>
+<h2 class="anchored">
+What does the data look like?
+</h2>
+<p>The data can be downloaded from the <a href="https://ghdx.healthdata.org/record/ihme-data/sub-saharan-africa-insecticide-treated-bed-nets-1999-2008"><strong>GHDx IHME ITN Data Page</strong></a> as a <code>.xls</code> file. This dataset provides estimates of bed net ownership, ownership among populations at risk, bed net use in children under five in at-risk populations, and trends in the scale-up of LLIN in 44 African countries during the 1999 to 2008 period.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/IHME_itns_1999_to_2008.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="IHME estimates of insecticide treated bednets distributed."><img src="images/IHME_itns_1999_to_2008.png" title="IHME ITN dataset" class="img-fluid figure-img" alt="IHME estimates of insecticide treated bednets distributed."></a></p>
+<figcaption>IHME estimates of insecticide treated bednets distributed.</figcaption>
+</figure>
+</div>
+<p>Datasets dowloaded as <code>.csv</code> files from the <a href="https://vizhub.healthdata.org/gbd-results"><strong>GDB Results Tool</strong></a> have a standard format which contains mortality, prevalence and incidence in number, percent and rate by location, sex, age, cause of injury, annual value as well as the upper and lower bounds.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/ihme_gbd_malaria_metrics.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="IHME estimates of malaria related deaths, prevalence and incidence."><img src="images/ihme_gbd_malaria_metrics.png" title="IHME malaria metrics dataset" class="img-fluid figure-img" alt="IHME estimates of malaria related deaths, prevalence and incidence."></a></p>
+<figcaption>IHME estimates of malaria related deaths, prevalence and incidence.</figcaption>
+</figure>
+</div>
+<h2 class="anchored">
+Key points to consider
+</h2>
+<p>IHME (Institute for Health Metrics and Evaluation) provides detailed data on health metrics, including estimates of disease burden such as incidence, mortality, and risk factors for malaria, which can inform transmission models. When integrating IHME data estimates into malaria transmission models, several key aspects should be considered regarding data collection, storage, and its usage to ensure accurate and effective modeling.</p>
+<ul>
+<li><p>IHME uses statistical models and expert review to produce comprehensive Global Burden of Disease (GBD) estimates of malaria burden by country, age, and sex.</p></li>
+<li><p>Data is updated annually or periodically depending on the source (e.g., monthly surveillance data or annual surveys).</p></li>
+<li><p>These data might not always have the same resolution as the model. For instance, while a model may require fine-grained data at the village level or daily intervals, IHME may provide data aggregated at the national level or annually.</p></li>
+<li><p>IHME estimates often come with uncertainty intervals due to limitations in the data sources. This uncertainty should be accounted for in model simulations, especially for stochastic models or sensitivity analyses.</p></li>
+</ul>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<h2 class="anchored">
+How to use this data?
+</h2>
+<p>These datasets can be explored to gain insights into the ownership of ITNs, distribution of LLINs, and assess the impact of malaria in Elimination 8 (E8) countries during the 2000 to 2008 period.</p>
+<p>Inspect the data beforehand to understand how it is structured and identify indicators that are relevant to our analysis, we can display our data in a table as follows:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load insecticide treated nets data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"data/IHME_INSECTICIDE_TREATED_BEDNETS_SUB_SAHARAN_AFRICA_1999_2008.xls"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull the names of countries</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="sc">|&gt;</span>  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Country) <span class="sc">|&gt;</span>  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Angola"                   "Benin"                   
+ [3] "Botswana"                 "Burkina Faso"            
+ [5] "Burundi"                  "Cameroon"                
+ [7] "Central African Republic" "Chad"                    
+ [9] "Comoros"                  "Congo"                   
+[11] "Cote d'Ivoire"            "Dem. Rep. of Congo"      
+[13] "Djibouti"                 "Equatorial Guinea"       
+[15] "Eritrea"                  "Ethiopia"                
+[17] "Gabon"                    "Ghana"                   
+[19] "Guinea"                   "Guinea-Bissau"           
+[21] "Kenya"                    "Liberia"                 
+[23] "Madagascar"               "Malawi"                  
+[25] "Mali"                     "Mauritania"              
+[27] "Mozambique"               "Namibia"                 
+[29] "Niger"                    "Nigeria"                 
+[31] "Rwanda"                   "SaoTome &amp; Principe"      
+[33] "Senegal"                  "Sierra Leone"            
+[35] "Somalia"                  "South Africa"            
+[37] "Sudan"                    "Swaziland"               
+[39] "Tanzania"                 "The Gambia"              
+[41] "Togo"                     "Uganda"                  
+[43] "Zambia"                   "Zimbabwe"                </code></pre>
+</div>
+</div>
+<p>The E8 countries are Angola, Botswana, Eswatini, Mozambique, Namibia, South Africa, Zambia and Zimbabwe. To filter the data for these countries, you can use the following code to display our data in a table as follows:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the E8 countries</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>e8_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Angola"</span>, <span class="st">"Botswana"</span>,<span class="st">"Eswatini"</span>, <span class="st">"Mozambique"</span>, <span class="st">"Namibia"</span>, <span class="st">"South Africa"</span>, <span class="st">"Zambia"</span>,  <span class="st">"Zimbabwe"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="sc">|&gt;</span>  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Country =</span> <span class="fu">ifelse</span>(Country <span class="sc">==</span> <span class="st">"Swaziland"</span>, <span class="st">"Eswatini"</span>, Country)) <span class="sc">|&gt;</span>  </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">%in%</span> e8_countries) <span class="sc">|&gt;</span>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span>  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="zoaceydnwo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zoaceydnwo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zoaceydnwo thead, #zoaceydnwo tbody, #zoaceydnwo tfoot, #zoaceydnwo tr, #zoaceydnwo td, #zoaceydnwo th {
+  border-style: none;
+}
+
+#zoaceydnwo p {
+  margin: 0;
+  padding: 0;
+}
+
+#zoaceydnwo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zoaceydnwo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zoaceydnwo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zoaceydnwo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zoaceydnwo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zoaceydnwo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zoaceydnwo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zoaceydnwo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zoaceydnwo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zoaceydnwo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zoaceydnwo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zoaceydnwo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zoaceydnwo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zoaceydnwo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zoaceydnwo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zoaceydnwo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zoaceydnwo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zoaceydnwo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zoaceydnwo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zoaceydnwo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zoaceydnwo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zoaceydnwo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zoaceydnwo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zoaceydnwo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zoaceydnwo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zoaceydnwo .gt_left {
+  text-align: left;
+}
+
+#zoaceydnwo .gt_center {
+  text-align: center;
+}
+
+#zoaceydnwo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zoaceydnwo .gt_font_normal {
+  font-weight: normal;
+}
+
+#zoaceydnwo .gt_font_bold {
+  font-weight: bold;
+}
+
+#zoaceydnwo .gt_font_italic {
+  font-style: italic;
+}
+
+#zoaceydnwo .gt_super {
+  font-size: 65%;
+}
+
+#zoaceydnwo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zoaceydnwo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zoaceydnwo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zoaceydnwo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zoaceydnwo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zoaceydnwo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zoaceydnwo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zoaceydnwo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zoaceydnwo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Country" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Country</th>
+<th id="ISO" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">ISO</th>
+<th id="Year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th id="a%-ITN-Ownership" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership</th>
+<th id="a%-ITN-Ownership-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Lower Bound</th>
+<th id="a%-ITN-Ownership-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Upper Bound</th>
+<th id="a%-ITN-Ownership-Pop.-At-Risk" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Pop. At Risk</th>
+<th id="a%-ITN-Ownership-Pop.-At-Risk-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Pop. At Risk Lower Bound</th>
+<th id="a%-ITN-Ownership-Pop.-At-Risk-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Pop. At Risk Upper Bound</th>
+<th id="a%-ITN-Use-U5" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5</th>
+<th id="a%-ITN-Use-U5-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5 Lower Bound</th>
+<th id="a%ITN-Use-U5-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%ITN Use U5 Upper Bound</th>
+<th id="a%-ITN-Use-U5-Pop.-At-Risk" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5 Pop. At Risk</th>
+<th id="a%-ITN-Use-U5-Pop.-At-Risk-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5 Pop. At Risk Lower Bound</th>
+<th id="a%ITN-Use-U5-Pop.-At-Risk-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%ITN Use U5 Pop. At Risk Upper Bound</th>
+<th id="LLINs-Distributed-Per-Capita" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LLINs Distributed Per Capita</th>
+<th id="LLINs-Distributed-Per-Capita-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LLINs Distributed Per Capita Lower Bound</th>
+<th id="LLINs-Distributed-Per-Capita-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LLINs Distributed Per Capita Upper Bound</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">1999</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">4.205</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">1.070</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">8.260</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">4.205</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">1.070</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">8.260</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">1.823343</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.2811190</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">10.45575</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">1.823343</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.2811190</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">10.45575</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0008978</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006312</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0011968</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2000</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">5.470</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">2.615</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">8.670</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">5.470</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">2.615</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">8.670</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">2.560483</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.5011920</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">11.92120</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">2.560483</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.5011920</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">11.92120</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0009440</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006260</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0012728</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2001</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">6.960</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">4.295</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">9.735</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">6.960</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">4.295</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">9.735</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">3.370769</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.7293910</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">14.14694</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">3.370770</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.7293910</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">14.14694</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0009652</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006216</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0013144</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2002</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">6.795</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">3.620</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">10.220</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">6.795</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">3.620</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">10.220</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">3.264936</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.6668079</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">14.27508</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">3.264936</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.6668079</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">14.27508</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0009839</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006222</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0013374</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2003</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">5.930</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">2.405</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">10.160</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">5.930</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">2.405</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">10.160</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">2.777820</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.5249189</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">13.33062</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">2.777820</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.5249189</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">13.33062</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0010066</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006548</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0013854</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2004</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">5.670</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">2.540</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">10.095</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">5.670</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">2.540</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">10.095</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">2.642282</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.5099266</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">12.98258</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">2.642282</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.5099266</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">12.98258</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0078725</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0027322</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0115660</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Deaths, prevalence and incidence estimates</strong></p>
+<p>This data set contains number/percents/rates of malaria deaths, prevalence and incidence in the following countries:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IHME-GBD_2021_DATA-05f6b66f-1.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="sc">|&gt;</span>  </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(location_name) <span class="sc">|&gt;</span>  </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Republic of Angola"       "Republic of South Africa"
+[3] "Kingdom of Eswatini"      "Republic of Zambia"      
+[5] "Republic of Zimbabwe"     "Republic of Mozambique"  
+[7] "Republic of Botswana"     "Republic of Namibia"     </code></pre>
+</div>
+</div>
+<p>We can look at the data to identify indicators to use for analysis:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="sc">|&gt;</span>  </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location_name <span class="sc">==</span> <span class="st">"Republic of South Africa"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span>  </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="podozguxep" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#podozguxep table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#podozguxep thead, #podozguxep tbody, #podozguxep tfoot, #podozguxep tr, #podozguxep td, #podozguxep th {
+  border-style: none;
+}
+
+#podozguxep p {
+  margin: 0;
+  padding: 0;
+}
+
+#podozguxep .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#podozguxep .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#podozguxep .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#podozguxep .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#podozguxep .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#podozguxep .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#podozguxep .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#podozguxep .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#podozguxep .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#podozguxep .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#podozguxep .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#podozguxep .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#podozguxep .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#podozguxep .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#podozguxep .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#podozguxep .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#podozguxep .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#podozguxep .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#podozguxep .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#podozguxep .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#podozguxep .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#podozguxep .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#podozguxep .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#podozguxep .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#podozguxep .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#podozguxep .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#podozguxep .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#podozguxep .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#podozguxep .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#podozguxep .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#podozguxep .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#podozguxep .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#podozguxep .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#podozguxep .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#podozguxep .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#podozguxep .gt_left {
+  text-align: left;
+}
+
+#podozguxep .gt_center {
+  text-align: center;
+}
+
+#podozguxep .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#podozguxep .gt_font_normal {
+  font-weight: normal;
+}
+
+#podozguxep .gt_font_bold {
+  font-weight: bold;
+}
+
+#podozguxep .gt_font_italic {
+  font-style: italic;
+}
+
+#podozguxep .gt_super {
+  font-size: 65%;
+}
+
+#podozguxep .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#podozguxep .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#podozguxep .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#podozguxep .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#podozguxep .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#podozguxep .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#podozguxep .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#podozguxep .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#podozguxep div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="measure_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">measure_id</th>
+<th id="measure_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">measure_name</th>
+<th id="location_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">location_id</th>
+<th id="location_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location_name</th>
+<th id="sex_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sex_id</th>
+<th id="sex_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">sex_name</th>
+<th id="age_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">age_id</th>
+<th id="age_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">age_name</th>
+<th id="cause_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cause_id</th>
+<th id="cause_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">cause_name</th>
+<th id="metric_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">metric_id</th>
+<th id="metric_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">metric_name</th>
+<th id="year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">year</th>
+<th id="val" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">val</th>
+<th id="upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">upper</th>
+<th id="lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">lower</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="measure_id">1</td>
+<td class="gt_row gt_left" headers="measure_name">Deaths</td>
+<td class="gt_row gt_right" headers="location_id">196</td>
+<td class="gt_row gt_left" headers="location_name">Republic of South Africa</td>
+<td class="gt_row gt_right" headers="sex_id">3</td>
+<td class="gt_row gt_left" headers="sex_name">Both</td>
+<td class="gt_row gt_right" headers="age_id">22</td>
+<td class="gt_row gt_left" headers="age_name">All ages</td>
+<td class="gt_row gt_right" headers="cause_id">345</td>
+<td class="gt_row gt_left" headers="cause_name">Malaria</td>
+<td class="gt_row gt_right" headers="metric_id">1</td>
+<td class="gt_row gt_left" headers="metric_name">Number</td>
+<td class="gt_row gt_right" headers="year">2000</td>
+<td class="gt_row gt_right" headers="val">2.147995e+01</td>
+<td class="gt_row gt_right" headers="upper">4.741927e+01</td>
+<td class="gt_row gt_right" headers="lower">7.290654e+00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="measure_id">1</td>
+<td class="gt_row gt_left" headers="measure_name">Deaths</td>
+<td class="gt_row gt_right" headers="location_id">196</td>
+<td class="gt_row gt_left" headers="location_name">Republic of South Africa</td>
+<td class="gt_row gt_right" headers="sex_id">3</td>
+<td class="gt_row gt_left" headers="sex_name">Both</td>
+<td class="gt_row gt_right" headers="age_id">22</td>
+<td class="gt_row gt_left" headers="age_name">All ages</td>
+<td class="gt_row gt_right" headers="cause_id">345</td>
+<td class="gt_row gt_left" headers="cause_name">Malaria</td>
+<td class="gt_row gt_right" headers="metric_id">2</td>
+<td class="gt_row gt_left" headers="metric_name">Percent</td>
+<td class="gt_row gt_right" headers="year">2000</td>
+<td class="gt_row gt_right" headers="val">4.000841e-05</td>
+<td class="gt_row gt_right" headers="upper">8.857476e-05</td>
+<td class="gt_row gt_right" headers="lower">1.354524e-05</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="measure_id">1</td>
+<td class="gt_row gt_left" headers="measure_name">Deaths</td>
+<td class="gt_row gt_right" headers="location_id">196</td>
+<td class="gt_row gt_left" headers="location_name">Republic of South Africa</td>
+<td class="gt_row gt_right" headers="sex_id">3</td>
+<td class="gt_row gt_left" headers="sex_name">Both</td>
+<td class="gt_row gt_right" headers="age_id">22</td>
+<td class="gt_row gt_left" headers="age_name">All ages</td>
+<td class="gt_row gt_right" headers="cause_id">345</td>
+<td class="gt_row gt_left" headers="cause_name">Malaria</td>
+<td class="gt_row gt_right" headers="metric_id">3</td>
+<td class="gt_row gt_left" headers="metric_name">Rate</td>
+<td class="gt_row gt_right" headers="year">2000</td>
+<td class="gt_row gt_right" headers="val">4.731551e-02</td>
+<td class="gt_row gt_right" headers="upper">1.044540e-01</td>
+<td class="gt_row gt_right" headers="lower">1.605968e-02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="measure_id">1</td>
+<td class="gt_row gt_left" headers="measure_name">Deaths</td>
+<td class="gt_row gt_right" headers="location_id">196</td>
+<td class="gt_row gt_left" headers="location_name">Republic of South Africa</td>
+<td class="gt_row gt_right" headers="sex_id">3</td>
+<td class="gt_row gt_left" headers="sex_name">Both</td>
+<td class="gt_row gt_right" headers="age_id">22</td>
+<td class="gt_row gt_left" headers="age_name">All ages</td>
+<td class="gt_row gt_right" headers="cause_id">345</td>
+<td class="gt_row gt_left" headers="cause_name">Malaria</td>
+<td class="gt_row gt_right" headers="metric_id">1</td>
+<td class="gt_row gt_left" headers="metric_name">Number</td>
+<td class="gt_row gt_right" headers="year">2001</td>
+<td class="gt_row gt_right" headers="val">3.244936e+02</td>
+<td class="gt_row gt_right" headers="upper">7.395696e+02</td>
+<td class="gt_row gt_right" headers="lower">1.102811e+02</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="measure_id">1</td>
+<td class="gt_row gt_left" headers="measure_name">Deaths</td>
+<td class="gt_row gt_right" headers="location_id">196</td>
+<td class="gt_row gt_left" headers="location_name">Republic of South Africa</td>
+<td class="gt_row gt_right" headers="sex_id">3</td>
+<td class="gt_row gt_left" headers="sex_name">Both</td>
+<td class="gt_row gt_right" headers="age_id">22</td>
+<td class="gt_row gt_left" headers="age_name">All ages</td>
+<td class="gt_row gt_right" headers="cause_id">345</td>
+<td class="gt_row gt_left" headers="cause_name">Malaria</td>
+<td class="gt_row gt_right" headers="metric_id">2</td>
+<td class="gt_row gt_left" headers="metric_name">Percent</td>
+<td class="gt_row gt_right" headers="year">2001</td>
+<td class="gt_row gt_right" headers="val">5.616515e-04</td>
+<td class="gt_row gt_right" headers="upper">1.284622e-03</td>
+<td class="gt_row gt_right" headers="lower">1.917376e-04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="measure_id">1</td>
+<td class="gt_row gt_left" headers="measure_name">Deaths</td>
+<td class="gt_row gt_right" headers="location_id">196</td>
+<td class="gt_row gt_left" headers="location_name">Republic of South Africa</td>
+<td class="gt_row gt_right" headers="sex_id">3</td>
+<td class="gt_row gt_left" headers="sex_name">Both</td>
+<td class="gt_row gt_right" headers="age_id">22</td>
+<td class="gt_row gt_left" headers="age_name">All ages</td>
+<td class="gt_row gt_right" headers="cause_id">345</td>
+<td class="gt_row gt_left" headers="cause_name">Malaria</td>
+<td class="gt_row gt_right" headers="metric_id">3</td>
+<td class="gt_row gt_left" headers="metric_name">Rate</td>
+<td class="gt_row gt_right" headers="year">2001</td>
+<td class="gt_row gt_right" headers="val">7.038036e-01</td>
+<td class="gt_row gt_right" headers="upper">1.604074e+00</td>
+<td class="gt_row gt_right" headers="lower">2.391920e-01</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<h2 class="anchored">
+How to plot this data?
+</h2>
+<p>To access the data used in the next two plots:</p>
+<ol type="1">
+<li><p>Navigate to the <a href="https://ghdx.healthdata.org/record/ihme-data/sub-saharan-africa-insecticide-treated-bed-nets-1999-2008">‘Sub-Saharan Africa Insecticide-Treated Bed Nets 1999-2008’ page</a> on the IHME website.</p></li>
+<li><p>Select the tab labelled ‘Files (1)’.</p></li>
+<li><p>Click on the link names ‘Insecticide-treated bed nets (Sub-Saharan Africa) 1999-2008’ to download the file.</p></li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load insecticide treated nets data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"data/IHME_INSECTICIDE_TREATED_BEDNETS_SUB_SAHARAN_AFRICA_1999_2008.xls"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull the names of countries</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Country) <span class="sc">|&gt;</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Angola"                   "Benin"                   
+ [3] "Botswana"                 "Burkina Faso"            
+ [5] "Burundi"                  "Cameroon"                
+ [7] "Central African Republic" "Chad"                    
+ [9] "Comoros"                  "Congo"                   
+[11] "Cote d'Ivoire"            "Dem. Rep. of Congo"      
+[13] "Djibouti"                 "Equatorial Guinea"       
+[15] "Eritrea"                  "Ethiopia"                
+[17] "Gabon"                    "Ghana"                   
+[19] "Guinea"                   "Guinea-Bissau"           
+[21] "Kenya"                    "Liberia"                 
+[23] "Madagascar"               "Malawi"                  
+[25] "Mali"                     "Mauritania"              
+[27] "Mozambique"               "Namibia"                 
+[29] "Niger"                    "Nigeria"                 
+[31] "Rwanda"                   "SaoTome &amp; Principe"      
+[33] "Senegal"                  "Sierra Leone"            
+[35] "Somalia"                  "South Africa"            
+[37] "Sudan"                    "Swaziland"               
+[39] "Tanzania"                 "The Gambia"              
+[41] "Togo"                     "Uganda"                  
+[43] "Zambia"                   "Zimbabwe"                </code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define the E8 countries</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>e8_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Angola"</span>, <span class="st">"Botswana"</span>,<span class="st">"Eswatini"</span>, <span class="st">"Mozambique"</span>, <span class="st">"Namibia"</span>, <span class="st">"South Africa"</span>, <span class="st">"Zambia"</span>,  <span class="st">"Zimbabwe"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="sc">|&gt;</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Country =</span> <span class="fu">ifelse</span>(Country <span class="sc">==</span> <span class="st">"Swaziland"</span>, <span class="st">"Eswatini"</span>, Country)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">%in%</span> e8_countries) <span class="sc">|&gt;</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="facszydrij" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#facszydrij table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#facszydrij thead, #facszydrij tbody, #facszydrij tfoot, #facszydrij tr, #facszydrij td, #facszydrij th {
+  border-style: none;
+}
+
+#facszydrij p {
+  margin: 0;
+  padding: 0;
+}
+
+#facszydrij .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#facszydrij .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#facszydrij .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#facszydrij .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#facszydrij .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#facszydrij .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#facszydrij .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#facszydrij .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#facszydrij .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#facszydrij .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#facszydrij .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#facszydrij .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#facszydrij .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#facszydrij .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#facszydrij .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#facszydrij .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#facszydrij .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#facszydrij .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#facszydrij .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#facszydrij .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#facszydrij .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#facszydrij .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#facszydrij .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#facszydrij .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#facszydrij .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#facszydrij .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#facszydrij .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#facszydrij .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#facszydrij .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#facszydrij .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#facszydrij .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#facszydrij .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#facszydrij .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#facszydrij .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#facszydrij .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#facszydrij .gt_left {
+  text-align: left;
+}
+
+#facszydrij .gt_center {
+  text-align: center;
+}
+
+#facszydrij .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#facszydrij .gt_font_normal {
+  font-weight: normal;
+}
+
+#facszydrij .gt_font_bold {
+  font-weight: bold;
+}
+
+#facszydrij .gt_font_italic {
+  font-style: italic;
+}
+
+#facszydrij .gt_super {
+  font-size: 65%;
+}
+
+#facszydrij .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#facszydrij .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#facszydrij .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#facszydrij .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#facszydrij .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#facszydrij .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#facszydrij .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#facszydrij .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#facszydrij div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Country" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Country</th>
+<th id="ISO" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">ISO</th>
+<th id="Year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Year</th>
+<th id="a%-ITN-Ownership" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership</th>
+<th id="a%-ITN-Ownership-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Lower Bound</th>
+<th id="a%-ITN-Ownership-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Upper Bound</th>
+<th id="a%-ITN-Ownership-Pop.-At-Risk" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Pop. At Risk</th>
+<th id="a%-ITN-Ownership-Pop.-At-Risk-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Pop. At Risk Lower Bound</th>
+<th id="a%-ITN-Ownership-Pop.-At-Risk-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Ownership Pop. At Risk Upper Bound</th>
+<th id="a%-ITN-Use-U5" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5</th>
+<th id="a%-ITN-Use-U5-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5 Lower Bound</th>
+<th id="a%ITN-Use-U5-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%ITN Use U5 Upper Bound</th>
+<th id="a%-ITN-Use-U5-Pop.-At-Risk" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5 Pop. At Risk</th>
+<th id="a%-ITN-Use-U5-Pop.-At-Risk-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% ITN Use U5 Pop. At Risk Lower Bound</th>
+<th id="a%ITN-Use-U5-Pop.-At-Risk-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">%ITN Use U5 Pop. At Risk Upper Bound</th>
+<th id="LLINs-Distributed-Per-Capita" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LLINs Distributed Per Capita</th>
+<th id="LLINs-Distributed-Per-Capita-Lower-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LLINs Distributed Per Capita Lower Bound</th>
+<th id="LLINs-Distributed-Per-Capita-Upper-Bound" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">LLINs Distributed Per Capita Upper Bound</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">1999</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">4.205</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">1.070</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">8.260</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">4.205</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">1.070</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">8.260</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">1.823343</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.2811190</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">10.45575</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">1.823343</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.2811190</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">10.45575</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0008978</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006312</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0011968</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2000</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">5.470</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">2.615</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">8.670</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">5.470</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">2.615</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">8.670</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">2.560483</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.5011920</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">11.92120</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">2.560483</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.5011920</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">11.92120</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0009440</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006260</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0012728</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2001</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">6.960</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">4.295</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">9.735</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">6.960</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">4.295</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">9.735</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">3.370769</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.7293910</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">14.14694</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">3.370770</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.7293910</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">14.14694</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0009652</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006216</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0013144</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2002</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">6.795</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">3.620</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">10.220</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">6.795</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">3.620</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">10.220</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">3.264936</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.6668079</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">14.27508</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">3.264936</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.6668079</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">14.27508</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0009839</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006222</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0013374</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2003</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">5.930</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">2.405</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">10.160</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">5.930</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">2.405</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">10.160</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">2.777820</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.5249189</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">13.33062</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">2.777820</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.5249189</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">13.33062</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0010066</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0006548</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0013854</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Country">Angola</td>
+<td class="gt_row gt_left" headers="ISO">AGO</td>
+<td class="gt_row gt_right" headers="Year">2004</td>
+<td class="gt_row gt_right" headers="% ITN Ownership">5.670</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Lower Bound">2.540</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Upper Bound">10.095</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk">5.670</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Lower Bound">2.540</td>
+<td class="gt_row gt_right" headers="% ITN Ownership Pop. At Risk Upper Bound">10.095</td>
+<td class="gt_row gt_right" headers="% ITN Use U5">2.642282</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Lower Bound">0.5099266</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Upper Bound">12.98258</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk">2.642282</td>
+<td class="gt_row gt_right" headers="% ITN Use U5 Pop. At Risk Lower Bound">0.5099266</td>
+<td class="gt_row gt_right" headers="%ITN Use U5 Pop. At Risk Upper Bound">12.98258</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita">0.0078725</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Lower Bound">0.0027322</td>
+<td class="gt_row gt_right" headers="LLINs Distributed Per Capita Upper Bound">0.0115660</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>As these data are estimated and lower and upper bounds are provided, a line plot is used to show the change in estimated ITN ownership over time, with ribbons representing the confidence intervals.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the Country names to replace "Swaziland" with "Eswatini"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Country =</span> <span class="fu">ifelse</span>(Country <span class="sc">==</span> <span class="st">"Swaziland"</span>, <span class="st">"Eswatini"</span>, Country)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter the data for Frontline 4 countries</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Namibia"</span>, <span class="st">"South Africa"</span>, <span class="st">"Eswatini"</span>, <span class="st">"Botswana"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a ggplot object with the filtered data</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> <span class="st">`</span><span class="at">% ITN Ownership</span><span class="st">`</span>, <span class="at">color =</span> Country)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add lines to the plot, coloured by Country</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add ribbons to the plot to represent the confidence intervals, filled by country</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> <span class="st">`</span><span class="at">% ITN Ownership Lower Bound</span><span class="st">`</span>, <span class="at">ymax =</span> <span class="st">`</span><span class="at">% ITN Ownership Upper Bound</span><span class="st">`</span>, <span class="at">fill =</span> Country), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom colour scale for lines</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span>  </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom fill scale for ribbons</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual_health_radar</span>() <span class="sc">+</span>   </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom theme</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add labels and title to the plot</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Estimated ITN ownership in Frontline 4 countries (1999-2008)"</span>,</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ITN Ownership (%)"</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Country"</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Country"</span>,  </span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"The estimated ITN ownership in the Frontline 4 countries from 1999 to 2008. Lines indicate the ownership estimates, while shaded areas represent the confidence bands. The uncertainty in ITN ownership increases over time for all countries. South Africa and Eswatini had the lowest levels of ITN ownership, but after 2004, there is a significant rise in ownership in Botswana and Namibia. Source: Institute for Health Metrics and Evaluation (IHME). Available from: https://doi.org/10.6069/DEE3-E887"</span>, </span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ihme_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="ihme_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>No bounds are provided for estimated ITN ownership in at-risk populations, so a simple line graph is used to represent these data.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the Country names to replace "Swaziland" with "Eswatini"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ihme_nets <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Country =</span> <span class="fu">ifelse</span>(Country <span class="sc">==</span> <span class="st">"Swaziland"</span>, <span class="st">"Eswatini"</span>, Country)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter the data for E8 countries</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">%in%</span> e8_countries) <span class="sc">|&gt;</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a ggplot object with the filtered data</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> <span class="st">`</span><span class="at">% ITN Ownership Pop. At Risk</span><span class="st">`</span>, <span class="at">color =</span> Country)) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add lines to the plot, coloured by Country</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom colour scale</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span> </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom theme</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add labels and title to the plot</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Estimated ITN ownership in at-risk populations (1998-2008)"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ITN Ownership (%)"</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"E8 Country"</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>      <span class="st">"The estimated ITN ownership among populations at-risk for malaria in Elimination 8 (E8) countries, from 1998 to 2008. The rise in ITN ownership is estimated in all countries, with Zambia, Botswana and Zimbabwe showing the highest percent ownership in 2008, followed by Namibia, Mozambique and Angola. South Africa and Eswatini maintain less than 20% ownership in at-risk populations. Source: Institute for Health Metrics and Evaluation (IHME). Available from: https://doi.org/10.6069/DEE3-E887"</span>, </span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ihme_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="ihme_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The ‘observed_cases’ data can be accessed as follows:</p>
+<ol type="1">
+<li><p>Navigate to the <a href="https://vizhub.healthdata.org/gbd-results/">IHME data portal</a>.</p></li>
+<li><p>In the search panel on the left-hand side, make the following selections:</p>
+<ul>
+<li><p>Set GBD Estimate to ‘Cause of death or injury’.</p></li>
+<li><p>Select the measures ‘Prevalence’ , ‘Incidence’ and ‘Deaths’.</p></li>
+<li><p>Select the metrics ‘Number’, ‘Percent’ and ‘Rate’.</p></li>
+<li><p>Set Cause to ‘Malaria’.</p></li>
+<li><p>For Location, select the E8 Countries.</p></li>
+<li><p>Set Age to ‘All Ages’.</p></li>
+<li><p>Set Sex to ‘Both’.</p></li>
+<li><p>Select the years from 2000 to 2021.</p></li>
+</ul></li>
+<li><p>Press the download button and follow the prompts to download your file.</p></li>
+</ol>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IHME-GBD_2021_DATA-05f6b66f-1.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">location_name =</span> <span class="fu">ifelse</span>(location_name <span class="sc">==</span> <span class="st">"Swaziland"</span>, <span class="st">"Eswatini"</span>, location_name))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="sc">|&gt;</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(location_name) <span class="sc">|&gt;</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Republic of Angola"       "Republic of South Africa"
+[3] "Kingdom of Eswatini"      "Republic of Zambia"      
+[5] "Republic of Zimbabwe"     "Republic of Mozambique"  
+[7] "Republic of Botswana"     "Republic of Namibia"     </code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location_name <span class="sc">==</span> <span class="st">"South Africa"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="aglfgovyxh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aglfgovyxh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#aglfgovyxh thead, #aglfgovyxh tbody, #aglfgovyxh tfoot, #aglfgovyxh tr, #aglfgovyxh td, #aglfgovyxh th {
+  border-style: none;
+}
+
+#aglfgovyxh p {
+  margin: 0;
+  padding: 0;
+}
+
+#aglfgovyxh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#aglfgovyxh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#aglfgovyxh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#aglfgovyxh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#aglfgovyxh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aglfgovyxh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#aglfgovyxh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#aglfgovyxh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#aglfgovyxh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#aglfgovyxh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#aglfgovyxh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#aglfgovyxh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#aglfgovyxh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#aglfgovyxh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#aglfgovyxh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aglfgovyxh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#aglfgovyxh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#aglfgovyxh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#aglfgovyxh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aglfgovyxh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#aglfgovyxh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aglfgovyxh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#aglfgovyxh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aglfgovyxh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aglfgovyxh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aglfgovyxh .gt_left {
+  text-align: left;
+}
+
+#aglfgovyxh .gt_center {
+  text-align: center;
+}
+
+#aglfgovyxh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#aglfgovyxh .gt_font_normal {
+  font-weight: normal;
+}
+
+#aglfgovyxh .gt_font_bold {
+  font-weight: bold;
+}
+
+#aglfgovyxh .gt_font_italic {
+  font-style: italic;
+}
+
+#aglfgovyxh .gt_super {
+  font-size: 65%;
+}
+
+#aglfgovyxh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#aglfgovyxh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#aglfgovyxh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#aglfgovyxh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#aglfgovyxh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#aglfgovyxh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#aglfgovyxh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#aglfgovyxh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#aglfgovyxh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="measure_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">measure_id</th>
+<th id="measure_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">measure_name</th>
+<th id="location_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">location_id</th>
+<th id="location_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">location_name</th>
+<th id="sex_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sex_id</th>
+<th id="sex_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">sex_name</th>
+<th id="age_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">age_id</th>
+<th id="age_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">age_name</th>
+<th id="cause_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cause_id</th>
+<th id="cause_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">cause_name</th>
+<th id="metric_id" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">metric_id</th>
+<th id="metric_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">metric_name</th>
+<th id="year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">year</th>
+<th id="val" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">val</th>
+<th id="upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">upper</th>
+<th id="lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">lower</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>A stacked bar plot has been used to show the estimated number of malaria deaths in the E8 countries from 2000 to 2021.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the observed_cases data to a data frame</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter the data for deaths and rate metrics</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(measure_name <span class="sc">==</span> <span class="st">"Deaths"</span>, metric_name <span class="sc">==</span> <span class="st">"Rate"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group the data by location</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location_name) <span class="sc">|&gt;</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a ggplot object with the filtered and grouped data</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add stacked bar plots to the chart, filled based on location</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> val, <span class="at">fill =</span> location_name), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom fill colour scale</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual_health_radar</span>() <span class="sc">+</span>   </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom theme</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add labels and title to the plot</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Estimated malaria death rate (2000-2021)"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Deaths (rate per 100 000)"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"E8 Country"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>      <span class="st">"The Institute of Health Metrics and Evaluation's (IHME) estimates of the malaria death rate in Elimination 8 (E8) countries for the 2000 to 2021 period. The highest death rate is estimated for Mozambique, followed by Angola. Substantially fewer deaths are estimated for Namibia, Botswana, South Africa, and Eswatini during this period, but it should be noted that the populations at risk of malaria in countries such as South Africa, are much lower than those in countries such as Angola and Mozambique. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/"</span>, </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ihme_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="ihme_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Upper and lower bounds were again available for the estimated malaria incidence rate, so a line plot with ribbons was chosen to visualise these data.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the observed_cases data to a data frame</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>observed_cases <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter the data for incidence and rate metrics</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(measure_name <span class="sc">==</span> <span class="st">"Incidence"</span>, metric_name <span class="sc">==</span> <span class="st">"Rate"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a ggplot object with the filtered data</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> val, <span class="at">color =</span> location_name)) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add lines to the plot, coloured by location name</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add ribbons to the plot to represent the confidence intervals, filled based on location</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper, <span class="at">fill =</span> location_name), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom colour scale for lines</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span>  </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom fill scale for ribbons</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply custom theme</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add labels and title to the plot</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Estimated malaria incidence rate (2000-2021)"</span>,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Incidence (rate per 100 000)"</span>,</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"E8 Country"</span>,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"E8 Country"</span>,  </span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"The estimated malaria incidence rate per 100 000 people from 2000 to 2021 in Elimination 8 (E8) countries. The lines show estimated incidence rate and the shaded areas show the uncertainty intervals. Mozambique is estimated to have experienced malaria incidence of 47 452.43 cases per 100 000 people in 2000, which decreased to 32 050.40 cases per 100 000 by 2021. Zimbabwe is estimated to have experienced erratic malaria incidence, with cases fluctuating over the 21 year period depicted. Note that the low incidence rates estimated in countries such as South Africa and Botswana may be related to the low proportion of their total populations living in regions in which malaria is common. Source: Institute for Health Metrics and Evaluation (IHME). Global Burden of Disease Study 2021 (GBD 2021) Results. Seattle, WA: IHME, University of Washington, 2024. Available from: https://vizhub.healthdata.org/gbd-results/"</span>, </span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">85</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ihme_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="ihme_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<h2 class="anchored">
+How can this data be used in disease modelling?
+</h2>
+<p>The Global Burden of Disease (GBD) data on historical trends in on various disease metrics can serve to validate the accuracy of predictions made by transmission models. Malaria models frequently require calibration to align with IHME-derived estimates, such as adjusting transmission rates based on observed incidence or prevalence.</p>
+<section id="preparing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-the-data">Preparing the data</h3>
+<p>The Global Burden of Disease study has produced estimates of prevalence for malaria worldwide. Prevalence is defined as the total number of cases of a given cause in a specified population at a designated time. It is differentiated from incidence, which refers to the number of new cases in the population at a given time. Observations from <em>Plasmodium falciparum</em> parasite rate (<em>Pf</em>PR) surveys and national routine surveillance systems of confirmed and unconfirmed diagnoses are augumented into a model of disease burden. More information on this methodology is provided <a href="https://www.healthdata.org/gbd/methods-appendices-2021/malaria">here</a>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data from GBD</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>observed_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IHME-GBD_2021_DATA-05f6b66f-1.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span>  </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(measure_name <span class="sc">==</span> <span class="st">"Prevalence"</span>, metric_name <span class="sc">==</span> <span class="st">"Number"</span>, location_name <span class="sc">==</span> <span class="st">"Republic of South Africa"</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">value =</span> val)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>observed_df <span class="sc">|&gt;</span>  </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">colour =</span> measure_name)) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">colour =</span> measure_name)) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Observed malaria point prevalence for South Africa"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Cases"</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Source: Institute for Health Metrics and Evaluation IHME | Global Burden of Disease Study (GBD) 2021."</span>)) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ihme_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="ihme_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="modeling-prevalence" class="level3">
+<h3 class="anchored" data-anchor-id="modeling-prevalence">Modeling prevalence</h3>
+<p>A good use of prevalence data is to calibrate transmission models. This is particularly useful if incidence data is limited, and in diseases with a significant asymptomatic proportion of the population, such as malaria. Fitting the model to both incidence and prevalence data provides a more complete picture of disease dynamics.</p>
+<p>Point prevalence data is obtained from cross-sectional surveys. As such, we may fail to capture dynamic trends in transmission and malaria immunity. In addition, capturing the asymptomatic population (as a proportion of total prevalence) depends on the sensitivity of the diagnostic tool used.</p>
+<p>Malaria models set in endemic countries also assume that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection). It may be difficult to estimate the true proportion of the population that has recovered from an initial infection already, and is now susceptible to a secondary infection.</p>
+<p><strong>Model calibration</strong></p>
+<p>To calibrate the model, firstly, build a transmission model that reflects the underlying health system dynamics in the country, coverage levels for any control interventions deployed, as well as relevant mosquito, parasite and human behaviours. We then select key parameters to fine-tune, causing the model output to better mimic the observed data.</p>
+<p>We minimise the difference between the model output and observed data using sum of least squares or maximum likelihood estimation. An example of this function is shown in the code snippet below, and a simulated plot thereafter.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|echo: true</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#|warning: false</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective or cost function</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>objective_function <span class="ot">&lt;-</span> <span class="cf">function</span>(initial_parameters, observed_df) {</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Parameters to fine tune</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> initial_parameters[<span class="dv">1</span>] <span class="co"># human biting rate</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  pa <span class="ot">&lt;-</span> initial_parameters[<span class="dv">2</span>] <span class="co"># probability of asymptomatic infection</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  irs_eff <span class="ot">&lt;-</span> initial_parameters[<span class="dv">3</span>] <span class="co"># effectiveness of IRS at reducing transmission</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  delta <span class="ot">&lt;-</span> initial_parameters[<span class="dv">4</span>] <span class="co"># natural recovery rate</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> initial_parameters[<span class="dv">5</span>] <span class="co"># rate of loss of infectiousness</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Run the ODE model</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  output_df <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial_state, </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">times =</span> times, </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">func =</span> seacr, </span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">parms =</span> initial_parameters,</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">irs_cov =</span> irs_cov)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate the values for prevalence</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  prev_df <span class="ot">&lt;-</span> output_df <span class="sc">|&gt;</span>  </span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span>  </span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Prv =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">diff</span>(CPrv))) <span class="sc">|&gt;</span> </span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>time, <span class="at">names_to =</span> <span class="st">"state"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">1995</span> <span class="sc">+</span> <span class="fu">ceiling</span>(time<span class="sc">/</span><span class="dv">365</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">%in%</span> <span class="st">"Prv"</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span> </span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="co"># adjust timeframe to match data</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Actual GBD data</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  observed_prev <span class="ot">&lt;-</span> <span class="fu">filter</span>(observed_df, measure_name <span class="sc">==</span> <span class="st">"Prevalence"</span>)<span class="sc">$</span>value</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Model projections</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>  predicted_prev <span class="ot">&lt;-</span> prev_df<span class="sc">$</span>value</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate distance using sum of least squares or Poisson log- likelihood</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>  error <span class="ot">&lt;-</span> (observed_prev <span class="sc">-</span> predicted_prev)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">#error &lt;- dpois(round(observed_prev, 0), predicted_prev, log = TRUE)</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="fu">sum</span>(error)</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="sc">-</span>total)</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Run optimization to mimimise total</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>optim_result <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="at">par =</span> initial_parameters, </span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fn =</span> objective_function, </span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>                      <span class="at">observed_df =</span> observed_df, </span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">"L-BFGS-B"</span>,</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>                      <span class="at">lower =</span> <span class="fu">c</span>(<span class="at">a =</span> <span class="fl">0.1</span>, <span class="at">rho =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">500</span>, <span class="at">pa =</span> <span class="fl">0.01</span>, <span class="at">delta =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">280</span>, <span class="at">irs_eff =</span> <span class="fl">0.1</span>, <span class="at">r =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">21</span>),</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>                      <span class="at">upper =</span> <span class="fu">c</span>(<span class="at">a =</span> <span class="fl">0.9</span>, <span class="at">rho =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">40</span>, <span class="at">pa =</span> <span class="fl">0.9</span>, <span class="at">delta =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">90</span>, <span class="at">irs_eff =</span> <span class="fl">0.9</span>, <span class="at">r =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Best-fit parameters from calibration</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>cal_parameters <span class="ot">&lt;-</span> optim_result<span class="sc">$</span>par</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Run model with new calibrated parameters </span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>calibrated_output <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial_state, </span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>           <span class="at">times =</span> times, </span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>           <span class="at">func =</span> seacr, </span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>           <span class="at">parms =</span> cal_parameters,</span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>           <span class="at">irs_cov =</span> irs_cov)</span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot prevalence of new model fit with ggplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated values</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>predicted_prev <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2021</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> observed_df<span class="sc">$</span>value <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(observed_df<span class="sc">$</span>value), <span class="at">mean =</span> <span class="dv">3000</span>, <span class="at">sd =</span> <span class="dv">2000</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">key =</span> <span class="st">"Initial model output"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">data.frame</span>(</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2021</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> observed_df<span class="sc">$</span>value <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(observed_df<span class="sc">$</span>value), <span class="at">mean =</span> <span class="dv">700</span>, <span class="at">sd =</span> <span class="dv">500</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">std_error =</span> <span class="dv">800</span>, <span class="co"># for example</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">lower =</span> value <span class="sc">-</span> (<span class="fl">1.96</span> <span class="sc">*</span> std_error),</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">upper =</span> value <span class="sc">+</span> (<span class="fl">1.96</span> <span class="sc">*</span> std_error),</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">key =</span> <span class="st">"Calibrated Projected prevalence"</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  predicted_prev,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(observed_df, <span class="at">key =</span> <span class="st">"GBD estimates"</span>)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(merged_df, key <span class="sc">==</span> <span class="st">"GBD estimates"</span>), <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">colour =</span> key)) <span class="sc">+</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_pointrange</span>(<span class="at">data =</span> <span class="fu">filter</span>(merged_df, key <span class="sc">==</span> <span class="st">"GBD estimates"</span>), <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper, <span class="at">colour =</span> key)) <span class="sc">+</span> </span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(merged_df, key <span class="sc">==</span> <span class="st">"Initial model output"</span>), <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">colour =</span> key)) <span class="sc">+</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">data =</span> <span class="fu">filter</span>(merged_df, key <span class="sc">==</span> <span class="st">"Calibrated Projected prevalence"</span>), <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">colour =</span> key)) <span class="sc">+</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> <span class="fu">filter</span>(merged_df, key <span class="sc">==</span> <span class="st">"Calibrated Projected prevalence"</span>), <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Malaria point prevalence for South Africa from 2000 to 2021"</span>,</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Simulation of projected prevalance from the transmission model alongside prevalence data"</span>,</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Cases"</span>,</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Colour =</span> <span class="st">"Variable"</span>,</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The calibrated model simulations align more closely with the observed prevalence than the initial projections. These results are compared against prevalence data from the Global Burden of Disease (GBD) 2021 study. The gray ribbon represents the uncertainty in the model estimates, and its overlap with the data's confidence intervals suggests a strong fit."</span>)</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="ihme_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="ihme_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Calibrating disease models to real-world data can be challenging. Methods like Approximate Bayesian Computation can be better when considering large datasets or complex models, but may be computationally expensive. You can find some examples of calibration in the literature below:</p>
+<ul>
+<li>Awine, T., &amp; Silal, S. P. Assessing the effectiveness of malaria interventions at the regional level in Ghana using a mathematical modelling application. PLOS global public health, 2(12), e0000474 (2022). <a href="https://doi.org/10.1371/journal.pgph.0000474" class="uri">https://doi.org/10.1371/journal.pgph.0000474</a></li>
+</ul>
+</section>
+<section id="policy-implications" class="level3">
+<h3 class="anchored" data-anchor-id="policy-implications">Policy implications</h3>
+<p>In general, calibration ensures the model accurately reflects local transmission dynamics and the burden of disease. Specifically, calibrating to prevalence data ensures that we are also representing the asymptomatic burden of infection, and correctly accounting for its contribution to ongoing transmission. This allows policymakers to achieve more credible forecasting and simulate the impact of interventions targeted at the asymptomatic population such as mass testing and treating, or mass drug administration.</p>
+</section>
+</div>
+</div>
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/healthradartool\.net");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "healthradartool/HealthRADAR";
+    script.dataset.repoId = "R_kgDOJlxA2Q";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOJlxA2c4CspTP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, Health RADAR</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../../about.html">
+<p>About</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../data.html">
+<p>Data Sources</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div>
+<img src="../../../img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo">
+<div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">
+Funded by Wellcome
+</div>
+</div>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

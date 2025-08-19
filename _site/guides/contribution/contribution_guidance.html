@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Health RADAR Contribution Guide</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../radar/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7b26f514444c863e99e16d2cb2559a3c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "Search",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H03EKDS8HM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
+</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #212529;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #212529;
+background: #EDF3F9;
+      }
+</style>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../data.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../guides/climate/climate.html">
+ <span class="dropdown-text">Climate</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../issues.html"> 
+<span class="menu-text">Submit an Issue</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/healthradartool/HealthRADAR"> <i class="bi bi-github" role="img" aria-label="RADAR GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Health RADAR Contribution Guide</h1>
+            <p class="subtitle lead">This guide provides detailed instructions to help you effectively contribute pages to the Health RADAR project.</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-to-contribute-a-page" id="toc-how-to-contribute-a-page" class="nav-link active" data-scroll-target="#how-to-contribute-a-page">How to contribute a page</a></li>
+  <li><a href="#instructions-to-complete-template" id="toc-instructions-to-complete-template" class="nav-link" data-scroll-target="#instructions-to-complete-template">Instructions to complete template</a>
+  <ul class="collapse">
+  <li><a href="#visualisation-guidance" id="toc-visualisation-guidance" class="nav-link" data-scroll-target="#visualisation-guidance">Visualisation Guidance</a></li>
+  <li><a href="#modelling-example-guidance" id="toc-modelling-example-guidance" class="nav-link" data-scroll-target="#modelling-example-guidance">Modelling example Guidance</a></li>
+  <li><a href="#code-guidance" id="toc-code-guidance" class="nav-link" data-scroll-target="#code-guidance">Code Guidance</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="how-to-contribute-a-page" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-contribute-a-page">How to contribute a page</h2>
+<p>Contributing a page requires the completion of a page template, with a folder for static images and any sample datasets used. All code chunks will be contained within the page text in a qmd format. If you are not familiar with the qmd format, follow the template provided with a pre-populated example.</p>
+</section>
+<section id="instructions-to-complete-template" class="level2">
+<h2 class="anchored" data-anchor-id="instructions-to-complete-template">Instructions to complete template</h2>
+<p>Please read this manual before populating the template for your RADAR page. The Master template is available in <code>Health RADAR Workbench / Templates</code>. Do not edit the template. Please save a copy to your organisation folder and label it with the page title.</p>
+<section id="notes-about-the-template-style" class="level4">
+<h4 class="anchored" data-anchor-id="notes-about-the-template-style">Notes about the template style</h4>
+<p>This is a file written in markdown. Markdown is a simple markup language for formatting text quickly and easily, commonly used for creating clean and readable documents and will help us to turn your page into a website.</p>
+<section id="rules" class="level5">
+<h5 class="anchored" data-anchor-id="rules">Rules:</h5>
+<ul>
+<li><p>Maintain the # signs. These help to separate Titles and Headings. A single # is for the main title and additional # signs are for subheadings.</p></li>
+<li><p>We have provided standardised headings for you to use (highlighted). Please feel free to add additional headings and subheadings as you see fit. The Highlighted fields are for you to populate.</p></li>
+<li><p>Please write the text in a readable format with our target users being analysts, researchers and public health officials working in malaria.</p></li>
+</ul>
+</section>
+<section id="including-static-images." class="level5">
+<h5 class="anchored" data-anchor-id="including-static-images.">Including static images.</h5>
+<ul>
+<li>Create a folder for each page</li>
+<li>Save each image you wish to include on the page</li>
+<li>On the template, you can note the image file name and desired caption as in the example below.<br>
+E.g. (images/filename.png “caption”)</li>
+</ul>
+</section>
+<section id="including-links" class="level5">
+<h5 class="anchored" data-anchor-id="including-links">Including links:</h5>
+<p>You can mix the links in with your text in the following way:</p>
+<p>[Link Description](actual link goes here)</p>
+<p>Example: [Data Visualisation Tips and Tricks](https://r4ds.had.co.nz/data-visualisation.html)</p>
+</section>
+</section>
+<section id="section-specific-information" class="level4">
+<h4 class="anchored" data-anchor-id="section-specific-information">Section specific information</h4>
+</section>
+<section id="page-header-text" class="level4">
+<h4 class="anchored" data-anchor-id="page-header-text">Page header text</h4>
+<p>Categories:</p>
+<p>Choose these search terms to describe your page (max 6)</p>
+<p>Existing terms:</p>
+<ul>
+<li>Global, regional, country-level, urban, rural</li>
+<li>Annual, monthly, daily, hourly</li>
+<li>Epidemiology, climate, intervention, demography, entomology</li>
+</ul>
+<p>New terms: add…</p>
+</section>
+<section id="description" class="level4">
+<h4 class="anchored" data-anchor-id="description">Description</h4>
+<p>Keep it short and to the point. What is the type of data (annual, monthly etc)? How often is it updated? If there are multiple datasets then provide a short description for each one. Also mention where historical data can be found if necessary and some caveats (if known) with the datasets. Think about the lifespan of any links that you include</p>
+</section>
+<section id="how-to-use-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="how-to-use-the-data">How to use the data?</h4>
+<p>If you are comfortable coding up the access to the data, then place the code chunk in the template here. Provide a brief summary of the dataset once it is read in (first ~50 lines). If you are not comfortable with code, then leave this section blank.</p>
+</section>
+<section id="how-to-plot-this-data" class="level4">
+<h4 class="anchored" data-anchor-id="how-to-plot-this-data">How to plot this data?</h4>
+<p>Once again, if you are comfortable coding up a few interesting plots to visualise the data, then please include that here. Take a look at the plotting templates in the resources to get an idea of plotting styles. If you cannot do the coding section, then please ignore that section and provide an explanation of a plot that would benefit the end used. An example description could be:</p>
+<p>“Line plots of the annual reported malaria cases for country A, B, C and D for the period 2000 - 2022”</p>
+</section>
+<section id="key-points-to-consider" class="level4">
+<h4 class="anchored" data-anchor-id="key-points-to-consider">Key points to consider:</h4>
+<p>These are short, dataset specific bullet points that bring attention to certain features of the data that an end user might overlook. These could be the fact that the dataset contains annual data which means that trends within years would not be captured (all data points generated at the end of year, for example), or when it would be suitable to use this dataset and when another dataset would be preferable</p>
+</section>
+<section id="visualisation-guidance" class="level3">
+<h3 class="anchored" data-anchor-id="visualisation-guidance">Visualisation Guidance</h3>
+<p>In general, the visualisations should highlight the type of data available from a data source. Try to keep to roughly 4 key visualisations that allow visitors to quickly engage with the dataset while learning. They should be as beginner-friendly as possible so that the visualisation and plotting code can ideally both be understood relatively quickly.</p>
+<p>In terms of styling, please apply the <code>theme_health_radar()</code>, <code>scale_colour_manual_health_radar()</code>, <code>scale_fill_manual_health_radar()</code>, <code>scale_colour_continuous_health_radar()</code> and <code>scale_fill_continuous_health_radar()</code> whenever possible. This will ensure consistency in the visualisations across the entire website.</p>
+<p>To understand the process a bit better, let’s go through an example from the <a href="https://jfunction.quarto.pub/healthradar/datasources/malaria/who-wmr/who_wmr.html">World Malaria Report</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the elimination 8 countries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>e8_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Botswana"</span>, <span class="st">"Eswatini"</span>, <span class="st">"Namibia"</span>, <span class="st">"South Africa"</span>, <span class="st">"Angola"</span>, <span class="st">"Mozambique"</span>, <span class="st">"Zambia"</span>, <span class="st">"Zimbabwe"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the map data for Africa</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>e8_africa <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">continent =</span> <span class="st">"Africa"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">if_else</span>(name<span class="sc">==</span><span class="st">"eSwatini"</span>, <span class="st">"Eswatini"</span>, name)) <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">%in%</span> e8_countries)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the map data with your data</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>e8_data <span class="ot">&lt;-</span> e8_africa <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(wmr2023<span class="sc">$</span>wmr2023j <span class="sc">|&gt;</span> <span class="fu">mutate</span>(), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"Country/area"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the choropleth map</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> e8_data) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="st">`</span><span class="at">2022</span><span class="st">`</span>), <span class="at">color =</span> <span class="st">"lightgrey"</span>, <span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span>  <span class="co"># Use fill for the continuous 2022 data</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous_health_radar</span>(<span class="at">name =</span> <span class="st">"Deaths"</span>) <span class="sc">+</span>  <span class="co"># Correct fill scale for continuous data</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Reported malaria deaths in the Elimination 8 countries (2022)"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"A choropleth map of the reported malaria deaths in the Elimination 8 countries in 2022. The map highlights the variation in reported malaria mortality across the E8 countries, with higher mortality rates in Angola, Mozambique, and Zambia. It is important to note that these are reported malaria deaths and may not capture the full extent of malaria mortality in these countries due to underreporting and misclassification of deaths. It would therefore also be useful to consider estimated malaria deaths as well. Source: WMR 2023 Annex 4J"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Latitude"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Longitude"</span>) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name, <span class="at">color =</span> <span class="fu">ifelse</span>(<span class="st">`</span><span class="at">2022</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">2022</span><span class="st">`</span>), <span class="st">"black"</span>, <span class="st">"white"</span>)), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># Conditional text color</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_identity</span>()  <span class="co"># Keep scale_color_identity() to use specified colors directly</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The code above has a few key elements. Firstly, notice how the pre-processing steps have been added to give the reader a clearer idea of the necessary transformations required to prepare the dataset for visualisations. You should also add comments to this part to help guide the reader. Secondly is the actual plot, which is created using <code>ggplot2</code>. Notice how the theme and continuous fill colours have been applied. Also see that the caption is quite descriptive and that the source has been added at the end. This allows the visualisation to stand on its own if it is copied as-is and reduces the chances of misinterpretation and misuse. It is highly recommended that you follow this blueprint.</p>
+<p>Let’s also take a look at a plot that uses a discrete colour palette:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot for Deaths with low and high bands</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>whowmr<span class="sc">::</span>wmr2023<span class="sc">$</span>wmr2023f <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter for the E8 countries</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Country/area</span><span class="st">`</span> <span class="sc">|&gt;</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="st">"Angola|Botswana|Eswatini|Malawi|Mozambique|Namibia|South Africa|Zambia|Zimbabwe"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rename columns to something more readable</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Country=</span><span class="st">"Country/area"</span>, <span class="st">`</span><span class="at">Population at risk</span><span class="st">`</span><span class="ot">=</span><span class="st">"Population denominator for incidence and mortality rate"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hide the footnotes</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Country=</span>Country <span class="sc">|&gt;</span> stringr<span class="sc">::</span><span class="fu">str_remove</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">d.*$"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove the WHO Region column</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">`</span><span class="at">WHO Region</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Cases_Point, <span class="at">group =</span> Country, <span class="at">color =</span> Country)) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Cases_Lower, <span class="at">ymax =</span> Cases_Upper, <span class="at">fill =</span> Country), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span>  <span class="co"># Corrected to use 'fill' for the ribbon</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span>  <span class="co"># Apply manual color scale for 'color' aesthetic (lines)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual_health_radar</span>() <span class="sc">+</span>    <span class="co"># Apply manual color scale for 'fill' aesthetic (ribbon fill)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Estimated Malaria Cases (2000-2022)"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"With confidence bands"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Number of Cases (thousands)"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Country"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"Country"</span>,  <span class="co"># Added 'fill' label for the ribbon shading</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"A plot of the estimated malaria cases in selected countries from 2000 to 2022. The lines represent the estimated number of cases, while the shaded areas represent the confidence bands around the estimates. Notice the variation in malaria cases across countries and over time, with some countries experiencing fluctuations in case numbers. It is important to consider the uncertainty around these estimates when interpreting the data. For example, looking at the plot for Mozambique, the total number of cases did not change much over the years, with the confidence bands staying relatively stable, whereas Angola saw fluctuations in the number of cases, with much wider confidence bands from 2015, indicating greater uncertainty in the estimates. Source: WMR 2023 Annex 4F"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This plot is very similar in terms of general structure to the previous one, but uses the discrete <code>scale_colour_manual_health_radar()</code> and <code>scale_fill_manual_health_radar()</code> colour palettes for the countries to ensure consistency. There are 20 colours in this palette, which should be more than enough for most visualisations.</p>
+</section>
+<section id="modelling-example-guidance" class="level3">
+<h3 class="anchored" data-anchor-id="modelling-example-guidance">Modelling example Guidance</h3>
+</section>
+<section id="code-guidance" class="level3">
+<h3 class="anchored" data-anchor-id="code-guidance">Code Guidance</h3>
+<p>Get started by forking/cloning the repository from https://github.com/uct-masha/HealthRADAR and opening it as a project in RStudio – we use <code>renv</code> to manage the package versions and have decided that <code>(as at Aug 2024) R 4.4.0</code> is the version we should support for development. This is the version that the automated builder will use then automatically publishing the tool to https://jfunction.quarto.pub/healthradar/</p>
+<p>If you intend running any code in the project and have not yet read the documentation for <code>renv</code>, you simply must go do so before proceeding. It won’t take you too long and working through it is going to save you a lot of time and frustration. The pages are located in their own directory under <code>datasources/malaria/</code></p>
+<p>Sometimes there’s a need to make a little dataset which will be used in examples on the page. In this case, some way of getting that dataset should be described. We thought it best to describe this in some document which is stored in the Health RADAR repository under, eg, <code>scripts/access.R.</code> This could be a script which downloads some large dataset and preprocesses it into something small enough to use in examples. This way, we don’t have to pollute the main page with details on exactly how the specific instance of data was accessed but we maintain traceability into such details should the user want to explore this further. This may make more sense in cases such as using <a href="https://www.statcompiler.com/en">STATcompiler</a> to download DHS survey data since there’s a web page you need to work with to actually get a dataset which we still want to make visualisations about (and modelling examples). In this case one could store a short walk through on the steps required to reconstruct the sample dataset used in visualisations on the site.</p>
+<p>Where it is sensible to do so, contributions should focus on the malaria in the E8 countries. Preferably they should focus on the four front-line countries (perhaps rotate through these countries in different examples to give an even spread)</p>
+<p>Examples should not copy/reproduce already existing derivatives of the data but rather demonstrate something interesting and new.</p>
+<p>When including <code>R code</code> in the project:</p>
+<ul>
+<li>Use <code>theme_health_radar()</code> where possible, it’s from <code>theme_health_radar.R</code></li>
+</ul>
+<p>When adding visualisations or modelling examples:</p>
+<ul>
+<li>Describe in the text what the visualisation is telling us or what the modelling snippet is telling us</li>
+<li>Relate the data being described generally on the page to the example</li>
+</ul>
+<section id="r-code-style" class="level4">
+<h4 class="anchored" data-anchor-id="r-code-style">R Code Style</h4>
+<p>For pipes we try use <code>|&gt;</code> not <code>%&gt;%</code> though sometimes this isn’t possible</p>
+<p>We use <a href="https://gt.rstudio.com"><code>gt()</code></a> to make tables.</p>
+<p>When processing data:</p>
+<ul>
+<li>Pipes should appear at the end of a line and be proceeded by a space Filter as early as possible</li>
+<li>Instead of something like <code>mutate() |&gt; select()</code>, use <code>transmute()</code></li>
+<li>Instead of <code>select(x) |&gt; as.list()</code> or similar, consider <code>pull(x)</code> which also has a names argument</li>
+<li>Use <code>pivot_longer()</code> and <code>pivot_wider()</code> as needed. It is common to use the former before plotting.</li>
+<li>When coercing to a factor consider using <code>as_factor()</code> or <code>factor(levels=…)</code></li>
+<li>Use indentation to keep track of the flow of your code. For example, if you’ve written <code>ggplot() +</code> on one line, the next line should be indented to show that we’re still in the “ggplot” context</li>
+<li>We seldom need to use <code>group_by()</code> these days since <code>summarise()</code> and friends have a <code>.by</code> argument. It was verbose and fussy managing grouped datasets in tidy pipelines before – eg needing to call <code>ungroup()</code> or think about using the <code>.drop</code> argument in <code>group_by()</code></li>
+<li>If you aren’t sure about something, consult the following in order:
+<ul>
+<li>Existing code snippets in Health RADAR</li>
+<li>The <a href="https://style.tidyverse.org">tidy style guide</a></li>
+<li>Another R programmer working on the project – e.g.&nbsp;RM/JN</li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/healthradartool\.net");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, Health RADAR</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+<p>About</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../data.html">
+<p>Data Sources</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div>
+<img src="../../img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo">
+<div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">
+Funded by Wellcome
+</div>
+</div>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

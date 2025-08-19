@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-10-01">
+<meta name="description" content="Established in 2014, the global insecticide resistance database tracks insecticide resistance in malaria vectors.">
+
+<title>Vector insecticide resistance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../radar/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-7b26f514444c863e99e16d2cb2559a3c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/glossary/glossary.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "Search",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H03EKDS8HM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
+</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #212529;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #212529;
+background: #EDF3F9;
+      }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../data.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../../guides/climate/climate.html">
+ <span class="dropdown-text">Climate</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../issues.html"> 
+<span class="menu-text">Submit an Issue</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/healthradartool/HealthRADAR"> <i class="bi bi-github" role="img" aria-label="RADAR GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+    <div class="quarto-title-banner page-columns page-full">
+        <div class="quarto-title column-page">
+
+                        <div class="back-nav"><a id="back-nav-link" href="../../../data.html">← Back to browse</a></div>
+                        
+            <h1 class="title">Vector insecticide resistance</h1>
+
+            
+                        <div>
+                <div class="description">
+                    Established in 2014, the global insecticide resistance database tracks insecticide resistance in malaria vectors.
+                </div>
+            </div>
+            
+                                    <div class="quarto-categories">
+                                <div class="quarto-category">malaria</div>
+                                <div class="quarto-category">entomology</div>
+                                <div class="quarto-category">insecticide resistance status</div>
+                                <div class="quarto-category">intensity</div>
+                                <div class="quarto-category">resistance mechanisms detection</div>
+                                <div class="quarto-category">synergist effect in sesceptibility</div>
+                            </div>
+                                </div>
+    </div>
+
+    
+    <div class="quarto-title-meta column-page">
+
+        
+        <div>
+        <div class="quarto-title-meta-heading">Last updated</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">October 1, 2024</p>
+        </div>
+      </div>
+      
+        
+      </div>
+      
+    
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+<div class="tabset-margin-container"></div><div class="page-tabs panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Modelling</a></li></ul>
+<div class="page-tabs tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<h2 class="anchored">
+About the data
+</h2>
+<p>The <a href="https://www.who.int/teams/global-malaria-programme/prevention/vector-control/global-database-on-insecticide-resistance-in-malaria-vectors">global database on insecticide resistance in malaria vectors</a> was established in 2014 to help track insecticide resistance worldwide. Following a large data consolidation exercise conducted in 2019, which included the integration of separate WHO regional databases and data from other public sources, it has become the largest database on <button class="glossary"><span class="def">The ability of mosquito populations to survive exposure to insecticides that would normally kill them, often due to genetic mutations or metabolic adaptations.</span>insecticide resistance</button> available at present. It contains data on the status of insecticide susceptibility of <em>Anopheles</em> mosquitoes in more than 88 countries. The contents of the database are provided by Member States, partners (including research and academic institutes) as well as nongovernmental organizations, and are extracted from published and non-published reports on insecticide bioassays.</p>
+<p>The database for the Malaria Threat Maps is up-loaded on an ad <em>hoc basis</em>. The database provides the most up to date and comprehensive information regarding insecticide resistance on all continents. The data can be presented in a graphical format as maps detailing individual studies and site-level data for all the threat to vector control. Dashboards depicting epidemiological profile, vectors, insecticide resistance status and spread can be developed for all countries reporting malaria. The databases are interactive and data can be added to the database as it becomes available. Insecticide resistance maps and dashboards can be created for all countries, according to specific insecticides, resistance intensity and mechanisms of resistance. The changing insecticide resistance profile can be viewed spatially or temporally and provides a platform for countries to share insecticide resistance data as the data becomes available. Data reporting tools are also provided on the Global Malaria Programme.</p>
+<p>These datasets provide information on decadal trends in insecticide resistance and enable comparison between countries. The data provided are on an <em>ad hoc</em> basis at a national and site-level scale.</p>
+<p>To learn more about the data, visit the <a href="https://apps.who.int/malaria/maps/threats/">Malaria Threats Map</a> website.</p>
+<h2 class="anchored">
+Accessing the data
+</h2>
+<p>The data can be accessed on the Global Malaria Programme page on the <a href="https://www.who.int/teams/global-malaria-programme/prevention/vector-control/global-database-on-insecticide-resistance-in-malaria-vectors">WHO website</a>. The data has a web page which includes useful contextual information as well as additional resources. The data can be viewed in the original report in excel format as it is usually preferable for modelling to have an excel spreadsheet.</p>
+<p><strong>Database description</strong></p>
+<p>The data contained in the database can be explored and downloaded through the interactive data visualization platform <a href="https://www.who.int/teams/global-malaria-programme/surveillance/malaria-threats-map">Malaria Threats Map</a>. The platform provides thematic maps showing the status and intensity of insecticide resistance, the status of detection of various resistance mechanisms and the level of involvement of metabolic mechanisms.</p>
+<p>The database is the source of the insecticide resistance status updates published annually in the <a href="https://www.who.int/teams/global-malaria-programme/reports">World malaria report</a> and of the <a href="https://www.who.int/publications/i/item/9789241514057">Global report on insecticide resistance in malaria vectors: 2010-2016</a>. It has also been used for the <a href="https://www.who.int/publications/i/item/WHO-UCN-GMP-MME-2022.01">annual bulletin</a> of the WHO Mekong Malaria Elimination programme, the <a href="https://scorecardhub.org/">ALMA score cards</a> and <a href="https://dashboard.aplma.org/">APLMA leaders dashboard</a> and in worldwide research exercises aiming to improve understanding the spread and evolution of insecticide resistance.</p>
+<p><strong>Data inclusion criteria</strong></p>
+<p>The database includes results from bioassays conducted following the standard WHO and CDC procedures for insecticide resistance monitoring in malaria vector mosquitoes with validated, or tentatively validated, discriminating concentrations, as well as results from biochemical and molecular assays. Results of bioassays conducted with non-standard discriminating concentrations are excluded.</p>
+<p><strong>Data sources</strong></p>
+<p>The data are provided by WHO Member States, as well as partner institutions (including research institutes and nongovernmental organizations), some of which run partner platforms such as Vector Base or IR Mapper and are regularly extracted from publications in international peer-reviewed scientific journals.</p>
+<p><strong>Data quality control</strong></p>
+<p>Data reported by WHO Member States are checked for validity and consistency at WHO country, regional and headquarters levels before being included in the database. Data from partner institutions are checked at WHO headquarters level.</p>
+<h2 class="anchored">
+What does the data look like?
+</h2>
+<p>The data is in excel spreadsheets used to generate maps of insecticide distribution as well as dashboard summaries of the country situation.</p>
+<p><strong>Description</strong></p>
+<p>The database contains results from:</p>
+<ul>
+<li><p>Insecticide susceptibility bioassays (i.e.&nbsp;WHO tube test, WHO bottle bioassay and United States Centers for Disease Control and Prevention [CDC] bottle assays)</p></li>
+<li><p>Intensity bioassays</p></li>
+<li><p>Synergist-insecticide bioassays</p></li>
+<li><p>Biochemical and molecular assays to detect the presence of various resistance mechanisms (i.e.&nbsp;mono-oxygenases, esterases, GSTs, kdr L1014S, kdr L1014F, Ace1R).</p></li>
+</ul>
+<p>The information included typically looks like this. Data are available for each country and annually. Some datasheets contain a few years of data, while others report data for the most recent year. To make a longer time series of data, you can access older databases such as the African Network for Vector Resistance (ANVR) from the WHO. Be careful to ensure that the definitions indicate whether the normal concentrations were tested and whether intensity assays were conducted as well as information on methodology to be sure that data sets can be compared.</p>
+<h2 class="anchored">
+Key points to consider
+</h2>
+<ul>
+<li><p>The data include assays conducted with fewer than the minimum recommended number of mosquitoes (i.e.&nbsp;100 female <em>anopheline</em> mosquitoes tested in <button class="glossary"><span class="def">A standardized bioassay to assess mosquito mortality after exposure to a diagnostic dose of insecticide, used to monitor resistance.</span>WHO susceptibility tests</button>) as in the absence of other data these results are informative despite the small sample size.</p></li>
+<li><p>Data from WHO susceptibility tests and CDC bottle bioassays are included. However, these measure different outcomes and results are therefore not directly comparable to those from WHO tests.</p></li>
+<li><p>Mosquito collection durations may span two calendar years; hence, the year indicated for a test result in the database is the year when collection of mosquitoes began for that test.</p></li>
+<li><p>Insecticide resistance status varies spatially and temporally. Annual national data, provided for summary purposes, are not necessarily reflective of local situations. For decision-making purposes, the most recent data and those at the lowest possible geographical level should be used.</p></li>
+<li><p>Data quality is dependent on the correct implementation of the standard insecticide resistance test procedures. Ambient conditions such as temperature and humidity, as well as the procedures followed to rear and handle the mosquitoes during the test, may cause significant variations in test results that hamper the comparability of results in time and space. Countries and institutions are encouraged to strictly follow the WHO standard operation procedures for resistance monitoring.</p></li>
+</ul>
+<h2 class="anchored">
+Examples of data use in literature
+</h2>
+<ol type="1">
+<li><p>WHO: Global vector control response 2017-2030. Geneva: World Health Organization; 2017.</p></li>
+<li><p>Wilson AL, Courtenay O, Kelly-Hope LA, Scott TW, Takken W, Torr SJ, Lindsay SW: The importance of vector control for the control and elimination of vector-borne diseases. PLOS Neglected Tropical Diseases 2020, 14(1):e0007831.</p></li>
+<li><p>Golding N, Wilson AL, Moyes CL, Cano J, Pigott DM, Velayudhan R, Brooker SJ, Smith DL, Hay SI, Lindsay SW: Integrating vector control across diseases. BMC medicine 2015, 13(1):249.</p></li>
+<li><p>Dengela D, Seyoum A, Lucas B, Johns B, George K, Belemvire A, Caranci A, Norris LC, Fornadel CM. Multi-country assessment of residual bio-efficacy of insecticides used for indoor residual spraying in malaria control on different surface types: results from program monitoring in 17 PMI/USAID-supported IRS countries. Parasit Vectors. 2018 Jan 30;11(1):71. doi: 10.1186/s13071-017-2608-4. PMID: 29382388; PMCID: PMC5791726.</p></li>
+<li><p>Bisanzio D, Ally M, Ali AS, Kitojo C, Serbantez N, Kisinza WN, Magesa S, Reithinger R. Modelling Insecticide Resistance of Malaria Vector Populations in Tanzania. Am J Trop Med Hyg. 2022 Jul 5;107(2):308-314. doi: 10.4269/ajtmh.21-0262. PMID: 35895397; PMCID: PMC9393459.</p></li>
+</ol>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<h2 class="anchored">
+How to use this data
+</h2>
+<p>Here is an example illustrating how to download the data, unzip it and read in a sheet. Sometimes the data needs to be prepared before it can be plotted.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="images/table_1_pyrethroid_resistance.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Table 1. The pyrethroid resistance intensity data for KwaZulu-Natal in South Africa (2016)"><img src="images/table_1_pyrethroid_resistance.png" class="img-fluid quarto-figure quarto-figure-left figure-img" alt="Table 1. The pyrethroid resistance intensity data for KwaZulu-Natal in South Africa (2016)"></a></p>
+</figure>
+</div>
+<figcaption>Table 1. The pyrethroid resistance intensity data for KwaZulu-Natal in South Africa (2016)</figcaption>
+</figure>
+</div>
+<p>Data has been extracted for KwaZulu-Natal in South Africa looking at pyrethroid resistance in <em>Anopheles arabiensis</em>, the local vector mosquito. Insecticide intensity studies looking at deltamethrin and permethrin showed that there was no significant resistance to Deltamethrin at 5X the discrimination dose and for Permethrin at 10X the discriminating dose. At normal concentration, there is some resistance as indicated by the low levels of mortality. Intensity assays show that this has not translated to operational resistance.</p>
+<h2 class="anchored">
+How to plot this data
+</h2>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="images/distribution_of_pyrethroid_resistance_in_south_africa.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure 1. The distribution of pyrethroid resistance in South Africa."><img src="images/distribution_of_pyrethroid_resistance_in_south_africa.jpg" class="img-fluid quarto-figure quarto-figure-left figure-img" alt="Figure 1. The distribution of pyrethroid resistance in South Africa."></a></p>
+</figure>
+</div>
+<figcaption>Figure 1. The distribution of pyrethroid resistance in South Africa.</figcaption>
+</figure>
+</div>
+<p>This is a graphical representation of Table 1. This shows the distribution of pyrethroid resistance in KwaZulu-Natal for 2010-2024. The resistance is to a specific type of pyrethroid, namely, deltamethrin and the vector that was tested was <em>Anopheles arabiensis</em>.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure 2. The distribution of pyrethroid resistance on the African continent."><img src="images/distribution_of_pyrethroid_resistance_on_the_african_contitnent.png" class="img-fluid quarto-figure quarto-figure-left figure-img" alt="Figure 2. The distribution of pyrethroid resistance on the African continent."></a></p>
+</figure>
+</div>
+<figcaption>Figure 2. The distribution of pyrethroid resistance on the African continent.</figcaption>
+</figure>
+</div>
+<p>Resistance to <button class="glossary"><span class="def">A class of synthetic insecticides widely used in malaria control (e.g., in bed nets and sprays) that target mosquito nervous systems.</span>Pyrethroids</button> has been identified from most countries in Africa but there is a scarcity of data on insecticide resistance intensity. The above figure shows the distribution of the intensity of pyrethroid resistance on the African continent which ranges from low to moderate in the east and south to moderate to high in the west. This map is made up of 1445 bioassays with the majority being in north-western Africa.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<h2 class="anchored">
+How can this data be used in disease modelling?
+</h2>
+<p>We use the results of discriminating concentration bioassays in Mozambique to inform the levels of insecticide resistance. These bioassays measure the concentration of insecticide required to differentiate between susceptible and resistant vectors. This is valuable in translating how vector resistance affects transmission potential.</p>
+<section id="preparing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-the-data">Preparing the data</h3>
+<p>We calculate the proportion of confirmed resistance to calculate the selection pressure, and the mean mortality across all studies done in Mozambique. The data glossary states that the adjusted mosquito mortality is either the result of applying Abbott’s formula to the average observed mosquito mortality accross all replicates (when control mortality is between 5-20%) or the average observed mosquito mortality across all replicates (when control mortality is below 5%).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data from Mozambique</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>insecticide_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"MTM_DISCRIMINATING_CONCENTRATION_BIOASSAY_20250330.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate selection pressure: Proportion of instances of confirmed resistance</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>res <span class="ot">=</span> <span class="fu">sum</span>(insecticide_data<span class="sc">$</span>RESISTANCE_STATUS <span class="sc">==</span> <span class="st">"Confirmed resistance"</span>)<span class="sc">/</span><span class="fu">nrow</span>(insecticide_data)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean mortality </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>insecticide_data_summ <span class="ot">&lt;-</span> insecticide_data <span class="sc">|&gt;</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MORTALITY_ADJUSTED =</span> <span class="fu">as.numeric</span>(insecticide_data<span class="sc">$</span>MORTALITY_ADJUSTED)) <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(YEAR_START, RESISTANCE_STATUS) <span class="sc">|&gt;</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_mortality =</span> <span class="fu">mean</span>(MORTALITY_ADJUSTED), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(<span class="at">YEAR_START =</span> <span class="fu">full_seq</span>(YEAR_START, <span class="dv">1</span>), RESISTANCE_STATUS) <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> (YEAR_START <span class="sc">-</span> <span class="fu">min</span>(YEAR_START)) <span class="sc">*</span> <span class="dv">365</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign colours from theme health radar</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>status_colours <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Susceptible"</span> <span class="ot">=</span> theme_health_radar_colours[<span class="dv">5</span>],          </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Possible resistance"</span> <span class="ot">=</span> theme_health_radar_colours[<span class="dv">6</span>], </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Confirmed resistance"</span> <span class="ot">=</span> theme_health_radar_colours[<span class="dv">13</span>],</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Undetermined"</span> <span class="ot">=</span> theme_health_radar_colours[<span class="dv">7</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>insecticide_data_summ <span class="sc">|&gt;</span> </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> YEAR_START, <span class="at">y =</span> mean_mortality, <span class="at">colour =</span> <span class="fu">as_factor</span>(    </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>RESISTANCE_STATUS))) <span class="sc">+</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> status_colours) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Trend of mosquito mortality in Mozambique"</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Results from MTM discriminating concentration bioassay"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Adjusted mosquito mortality (%)"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Resistance status"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"We see that more mosquitoes survive in bioassays of confirmed resistance in Mozambique over time, indicating a worsening resistance profile. In 2021, mortality dropped to just 40%, highlighting a significant decline in susceptibility. Possible resistance remains somewhat stable (about 92% mosquito mortality). Source: Malaria Threats Map"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="insecticide_resistance_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="insecticide_resistance_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We incorporate this data into the model in two ways:</p>
+<ul>
+<li><p>Selection Pressure, as the proportion of vectors that start as resistant due to prior selection by insecticide use. From the data we find that in 115 of the 529 bioassays conducted resistance was confirmed, and set the selection pressure <span class="math inline">\(res\)</span> at 21%.</p></li>
+<li><p>Adjusting the effectiveness of interventions, <span class="math inline">\(effr_{level}\)</span> to represent the reduced effectiveness of an intervention such as long-lasting insecticidal nets (LLINs) against resistant mosquitoes.</p></li>
+</ul>
+<p>In a more complex model you may also have different rates of mosquito mortality <span class="math inline">\(\mu_m\)</span>, susceptibility to infection <span class="math inline">\(b\)</span>, or biting rates <span class="math inline">\(a\)</span> (due to fitness costs) for insecticide-sensitive and resistant vectors.</p>
+<p>In this simple model example, we assume the coverage of LLINs to be constant at 75%, further reduced by the usage rate. A more detailed example of the implementation of LLINs (including effectiveness, attrition and insecticidal decay) into a transmission model can be found <a href="https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html">here</a>. We demonstrate the impact of vector insecticide resistance on the effective coverage of LLINs.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="dv">14</span> <span class="co"># Years of simulation</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">365</span><span class="sc">*</span>Y, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimates of resistance levels over time</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>resdata <span class="ot">&lt;-</span> insecticide_data_summ <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(RESISTANCE_STATUS <span class="sc">==</span> <span class="st">"Confirmed resistance"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_mortality =</span> mean_mortality<span class="sc">/</span><span class="dv">100</span>) <span class="co"># convert into decimal</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a time dependent variable of resistance levels</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>effr_level <span class="ot">&lt;-</span> <span class="fu">approxfun</span>(resdata<span class="sc">$</span>time, resdata<span class="sc">$</span>mean_mortality, <span class="at">n =</span> <span class="dv">365</span><span class="sc">*</span>Y, <span class="at">ties =</span> <span class="st">"ordered"</span>, <span class="at">method =</span> <span class="st">"constant"</span>, <span class="at">rule =</span> <span class="dv">2</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># SEACR-SEI model</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>seacr <span class="ot">&lt;-</span> <span class="cf">function</span>(times, start, parameters, effr_level) { </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(start, parameters)), {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    P <span class="ot">=</span> S <span class="sc">+</span> E <span class="sc">+</span> A <span class="sc">+</span> C <span class="sc">+</span> R <span class="sc">+</span> G </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    M_s <span class="ot">=</span> Sm_s <span class="sc">+</span> Em_s <span class="sc">+</span> Im_s</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    M_r <span class="ot">=</span> Sm_r <span class="sc">+</span> Em_r <span class="sc">+</span> Im_r</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    M <span class="ot">=</span> M_s <span class="sc">+</span> M_r</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">=</span> M <span class="sc">/</span> P</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seasonality</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    seas.t <span class="ot">&lt;-</span> amp<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>(times<span class="sc">/</span><span class="dv">365</span><span class="sc">-</span>phi)))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Nets</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    itn <span class="ot">&lt;-</span> itn_cov<span class="sc">*</span>itn_use</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    itn_r <span class="ot">&lt;-</span> itn<span class="sc">*</span>(<span class="fu">effr_level</span>(times)) <span class="co"># Adjust effective coverage of ITNs based on resistance level</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Force of infection</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    Infectious <span class="ot">=</span> C <span class="sc">+</span> zeta_a<span class="sc">*</span>A <span class="co"># infectious reservoir</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    lambda.v <span class="ot">&lt;-</span> seas.t<span class="sc">*</span>a<span class="sc">*</span>M<span class="sc">/</span>P<span class="sc">*</span>b<span class="sc">*</span>(Im_r<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>itn_r) <span class="sc">+</span> Im_s<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>itn))<span class="sc">/</span>M</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    lambda.h <span class="ot">&lt;-</span> seas.t<span class="sc">*</span>a<span class="sc">*</span>c<span class="sc">*</span>Infectious<span class="sc">/</span>P<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>itn)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Differential equations/rate of change</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Insecticide-sensitive mosquito compartments</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    dSm_s <span class="ot">=</span> (<span class="dv">1</span><span class="sc">-</span>res)<span class="sc">*</span>mu_m<span class="sc">*</span>M <span class="sc">-</span> (lambda.h)<span class="sc">*</span>Sm_s <span class="sc">-</span> mu_m<span class="sc">*</span>Sm_s</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    dEm_s <span class="ot">=</span> (lambda.h)<span class="sc">*</span>Sm_s <span class="sc">-</span> (gamma_m <span class="sc">+</span> mu_m)<span class="sc">*</span>Em_s</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    dIm_s <span class="ot">=</span> gamma_m<span class="sc">*</span>Em_s <span class="sc">-</span> mu_m<span class="sc">*</span>Im_s</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Insecticide-resistant mosquito compartments</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    dSm_r <span class="ot">=</span> res<span class="sc">*</span>mu_m<span class="sc">*</span>M <span class="sc">-</span> (lambda.h)<span class="sc">*</span>Sm_r <span class="sc">-</span> mu_m<span class="sc">*</span>Sm_r</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    dEm_r <span class="ot">=</span> (lambda.h)<span class="sc">*</span>Sm_r <span class="sc">-</span> (gamma_m <span class="sc">+</span> mu_m)<span class="sc">*</span>Em_r</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    dIm_r <span class="ot">=</span> gamma_m<span class="sc">*</span>Em_r <span class="sc">-</span> mu_m<span class="sc">*</span>Im_r</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Human compartments</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    dS <span class="ot">=</span> mu_h<span class="sc">*</span>P <span class="sc">-</span> lambda.v<span class="sc">*</span>S <span class="sc">+</span> rho<span class="sc">*</span>R <span class="sc">-</span> mu_h<span class="sc">*</span>S</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    dE <span class="ot">=</span> lambda.v<span class="sc">*</span>S <span class="sc">-</span> (gamma_h <span class="sc">+</span> mu_h)<span class="sc">*</span>E</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    dA <span class="ot">=</span> pa<span class="sc">*</span>gamma_h<span class="sc">*</span>E <span class="sc">+</span> pa<span class="sc">*</span>gamma_h<span class="sc">*</span>G <span class="sc">-</span> (delta <span class="sc">+</span> mu_h)<span class="sc">*</span>A</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    dC <span class="ot">=</span> (<span class="dv">1</span><span class="sc">-</span>pa)<span class="sc">*</span>gamma_h<span class="sc">*</span>E <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>pa)<span class="sc">*</span>gamma_h<span class="sc">*</span>G <span class="sc">-</span> (r <span class="sc">+</span> mu_h)<span class="sc">*</span>C</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    dR <span class="ot">=</span> delta<span class="sc">*</span>A <span class="sc">+</span> r<span class="sc">*</span>C <span class="sc">-</span> (lambda.v <span class="sc">+</span> rho <span class="sc">+</span> mu_h)<span class="sc">*</span>R</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    dG <span class="ot">=</span> lambda.v<span class="sc">*</span>R <span class="sc">-</span> (gamma_h <span class="sc">+</span> mu_h)<span class="sc">*</span>G</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    dCInc <span class="ot">=</span> lambda.v<span class="sc">*</span>(S <span class="sc">+</span> R)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="fu">c</span>(dSm_s, dEm_s, dIm_s, dSm_r, dEm_r, dIm_r, dS, dE, dA, dC, dR, dG, dCInc), <span class="at">itn=</span>itn, <span class="at">itn_r=</span>itn_r)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial values for compartments</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>initial_state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Sm_s =</span> <span class="dv">5000000</span>, <span class="co"># susceptible insecticide-sensitive mosquitoes</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Em_s =</span> <span class="dv">3000000</span>, <span class="co"># exposed and infected insecticide-sensitive mosquitoes</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Im_s =</span> <span class="dv">1000000</span>, <span class="co"># infectious insecticide-sensitive mosquitoes</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Sm_r =</span> <span class="dv">4000000</span>, <span class="co"># susceptible insecticide-resistant mosquitoes</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Em_r =</span> <span class="dv">2000000</span>, <span class="co"># exposed and infected insecticide-resistant mosquitoes</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Im_r =</span> <span class="dv">1000000</span>, <span class="co"># infectious insecticide-resistant mosquitoes</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>                   <span class="at">S =</span> <span class="dv">3500000</span>, <span class="co"># susceptible humans</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>                   <span class="at">E =</span> <span class="dv">350000</span>, <span class="co"># exposed and infected humans</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>                   <span class="at">A =</span> <span class="dv">1300000</span>, <span class="co"># asymptomatic and infectious humans</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>                   <span class="at">C =</span> <span class="dv">650000</span>, <span class="co"># clinical and symptomatic humans</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>                   <span class="at">R =</span> <span class="dv">100000</span>, <span class="co"># recovered and semi-immune humans</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>                   <span class="at">G =</span> <span class="dv">100000</span>, <span class="co"># secondary-exposed and infected humans</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>                   <span class="at">CInc =</span> <span class="dv">0</span> <span class="co"># cumulative incidence in humans infected by insecticide resistant mosquitoes</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>                  </span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Country-specific parameters should be obtained from literature review and expert knowledge</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> <span class="fl">0.3</span>, <span class="co"># human biting rate</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>                <span class="at">b =</span> <span class="fl">0.4</span>, <span class="co"># probability of transmission from mosquito to human</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>                <span class="at">c =</span> <span class="fl">0.4</span>, <span class="co"># probability of transmission from human to mosquito</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>                <span class="at">r =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">7</span>, <span class="co"># rate of loss of infectiousness after treatment</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>                <span class="at">rho =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">160</span>, <span class="co"># rate of loss of immunity after recovery</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>                <span class="at">delta =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">200</span>, <span class="co"># natural recovery rate</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>                <span class="at">zeta_a =</span> <span class="fl">0.4</span>, <span class="co"># relative infectiousness of of asymptomatic infections</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>                <span class="at">pa =</span> <span class="fl">0.35</span>, <span class="co"># probability of asymptomatic infection</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>                <span class="at">mu_m =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="co"># birth and death rate of mosquitoes</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>                <span class="at">mu_h =</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">62</span><span class="sc">*</span><span class="dv">365</span>), <span class="co"># birth and death rate of humans</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>                <span class="at">gamma_m =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="co"># extrinsic incubation rate of parasite in mosquitoes</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>                <span class="at">gamma_h =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="co"># extrinsic incubation rate of parasite in humans</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>                <span class="at">res =</span> <span class="fl">0.2174</span>, <span class="co"># selection pressure, obtained from data</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>                <span class="at">amp =</span> <span class="fl">0.5</span>, <span class="co"># amplitude of seasonality</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>                <span class="at">phi =</span> <span class="dv">200</span>, <span class="co"># phase angle, start of season</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>                <span class="at">itn_use =</span> <span class="fl">0.58</span>, <span class="co"># probability of sleeping under a net</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>                <span class="at">itn_cov =</span> <span class="fl">0.75</span> <span class="co"># coverage of LLINs in the population at risk</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the model</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial_state, </span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>           <span class="at">times =</span> times, </span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>           <span class="at">func =</span> seacr, </span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>           <span class="at">parms =</span> parameters,</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>           <span class="at">effr_level =</span> effr_level)</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-processing model output into a dataframe</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">as.data.frame</span>(out)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>time, <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="st">"2010-01-01"</span>) <span class="sc">+</span> time)</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"itn"</span>, <span class="st">"itn_r"</span>), date <span class="sc">&gt;</span> <span class="st">"2010-01-01"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Insecticide Status</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>    variable <span class="sc">==</span> <span class="st">"itn"</span> <span class="sc">~</span> <span class="st">"Sensitive"</span>,</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    variable <span class="sc">==</span> <span class="st">"itn_r"</span> <span class="sc">~</span> <span class="st">"Resistant"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">colour =</span> <span class="st">`</span><span class="at">Insecticide Status</span><span class="st">`</span>)) <span class="sc">+</span> </span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.6</span>)) <span class="sc">+</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Year"</span>, </span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Effective coverage"</span>, </span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Effective coverage of LLINs in Mozambique 2010 to 2023"</span>,</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Changes due to confirmed resistance"</span>,</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"In this example plot, transmission from insecticide-sensitive mosquitoes is consistently protected due to the effective coverage of LLINs. However, when confirmed insecticide resistance increases, and more mosquitoes survive the MTM discriminating bioassays, LLIN effectiveness decreases, as is seen in 2012, 2020 and 2021. Increases in mosquito mortality in 2014 led to an increase in the effective coverage of LLINs. Source: Model output."</span>)) <span class="sc">+</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_health_radar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="insecticide_resistance_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="insecticide_resistance_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="policy-implications" class="level3">
+<h3 class="anchored" data-anchor-id="policy-implications">Policy implications</h3>
+<p>The direct relationship between insecticidal efficacy and LLIN impact is shown in the example above. Declining effectiveness due to resistance highlights the urgent need for insecticide resistance management to maintain the returns on investment in vector control. This may lead to changes in the active ingredient in the LLINs used, rotations of the insecticide classes in IRS campaigns or subnational adaptations to vector control strategies. Ultimately insecticide resistance compromises the effectiveness of core interventions and threatens progress toward malaria elimination goals.</p>
+</section>
+</div>
+</div>
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/healthradartool\.net");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "healthradartool/HealthRADAR";
+    script.dataset.repoId = "R_kgDOJlxA2Q";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOJlxA2c4CspTP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, Health RADAR</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../../about.html">
+<p>About</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../data.html">
+<p>Data Sources</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div>
+<img src="../../../img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo">
+<div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">
+Funded by Wellcome
+</div>
+</div>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

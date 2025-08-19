@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-08-21">
+<meta name="description" content="Climate Research Unit Timeseries (CRU TS) Gridded precipitation and other meteorological variables since 1901.">
+
+<title>CRU TS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../radar/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c1f63da3e08f13bc72dc17e92cfd001d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-7b26f514444c863e99e16d2cb2559a3c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "Search",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H03EKDS8HM"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
+</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #212529;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #212529;
+background: #EDF3F9;
+      }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../data.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../../guides/climate/climate.html">
+ <span class="dropdown-text">Climate</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../issues.html"> 
+<span class="menu-text">Submit an Issue</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/healthradartool/HealthRADAR"> <i class="bi bi-github" role="img" aria-label="RADAR GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+    <div class="quarto-title-banner page-columns page-full">
+        <div class="quarto-title column-page">
+
+                        <div class="back-nav"><a id="back-nav-link" href="../../../data.html">← Back to browse</a></div>
+                        
+            <h1 class="title">CRU TS</h1>
+
+            
+                        <div>
+                <div class="description">
+                    Climate Research Unit Timeseries (CRU TS) Gridded precipitation and other meteorological variables since 1901.
+                </div>
+            </div>
+            
+                                    <div class="quarto-categories">
+                                <div class="quarto-category">climate</div>
+                                <div class="quarto-category">gridded</div>
+                                <div class="quarto-category">observed</div>
+                                <div class="quarto-category">rainfall</div>
+                                <div class="quarto-category">temperature</div>
+                                <div class="quarto-category">global</div>
+                                <div class="quarto-category">monthly</div>
+                            </div>
+                                </div>
+    </div>
+
+    
+    <div class="quarto-title-meta column-page">
+
+        
+        <div>
+        <div class="quarto-title-meta-heading">Last updated</div>
+        <div class="quarto-title-meta-contents">
+          <p class="date">August 21, 2024</p>
+        </div>
+      </div>
+      
+        
+      </div>
+      
+    
+</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+
+
+
+
+<div class="tabset-margin-container"></div><div class="page-tabs panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Modelling</a></li></ul>
+<div class="page-tabs tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<h2 class="anchored">
+About the data
+</h2>
+<p>The CRU TS (Climatic Research Unit gridded Time Series) dataset is a global, high-resolution, land-based climate dataset that provides monthly records on a 0.5° grid (approximately 55.5 km by 55.5 km at the equator, varying slightly by latitude). The dataset is derived by the interpolation of monthly climate anomalies from extensive networks of weather station observations, offering data from 1901 onwards. This observational dataset consists of ten observed and derived climate variables, such as temperature and precipitation (see Variables list below), making it useful for many types of users, in diverse research areas and applications and has been widely adopted in research and policy work.</p>
+<p>Updated annually, the dataset follows a versioning system, CRU TS vX.YY. Where ‘X’ reflects major updates in methodology and ‘YY’ indicates minor refinements, extending its temporal coverage and improving data quality, compared to previous versions.</p>
+<p>For more information regarding all CRU datasets see <a href="https://crudata.uea.ac.uk/cru/data/hrg/">CRU-data</a></p>
+<p>Users can also find more information about the CRU dataset here:</p>
+<ul>
+<li><p>Climate Data Guide: <a href="https://climatedataguide.ucar.edu/climate-data/cru-ts-gridded-precipitation-and-other-meteorological-variables-1901">CRU TS Gridded precipitation and other meteorological variables since 1901</a></p></li>
+<li><p>Climate Data Store: <a href="https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview">Temperature and precipitation gridded data for global and regional domains derived from in-situ and satellite observations</a></p></li>
+</ul>
+<p><strong>Summary</strong></p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td>CRU TS</td>
+</tr>
+<tr class="even">
+<td><strong>Version</strong></td>
+<td>Check for lastest version <a href="https://crudata.uea.ac.uk/cru/data/hrg/">here</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Institution</strong></td>
+<td><a href="https://www.uea.ac.uk/groups-and-centres/climatic-research-unit">CRU</a></td>
+</tr>
+<tr class="even">
+<td><strong>Product type</strong></td>
+<td>gridded observed</td>
+</tr>
+<tr class="odd">
+<td><strong>Domain</strong></td>
+<td>global land (excluding Antarctica)</td>
+</tr>
+<tr class="even">
+<td><strong>Resolution</strong></td>
+<td>0.5° x 0.5° (~55.5km x ~55.5km)</td>
+</tr>
+<tr class="odd">
+<td><strong>Period</strong></td>
+<td>1901-recent</td>
+</tr>
+<tr class="even">
+<td><strong>Frequencies</strong></td>
+<td>monthly</td>
+</tr>
+<tr class="odd">
+<td><strong>Variables</strong></td>
+<td>precipitation, temperature, others</td>
+</tr>
+<tr class="even">
+<td><strong>Update frequency</strong></td>
+<td>annual</td>
+</tr>
+</tbody>
+</table>
+<p><br> <strong>Variables</strong> <br></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 66%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Variable Name</strong></th>
+<th><strong>Variable Description</strong></th>
+<th><strong>Units</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cld</td>
+<td>cloud cover</td>
+<td>percentage (%)</td>
+</tr>
+<tr class="even">
+<td>dtr</td>
+<td>diurnal 2-meter temperature range</td>
+<td>degrees Celsius</td>
+</tr>
+<tr class="odd">
+<td>frs</td>
+<td>frost day frequency</td>
+<td>days</td>
+</tr>
+<tr class="even">
+<td>pet</td>
+<td>potential evapo-transpiration</td>
+<td>millimetres per day</td>
+</tr>
+<tr class="odd">
+<td>pre</td>
+<td>precipitation rate</td>
+<td>millimetres per month</td>
+</tr>
+<tr class="even">
+<td>tmp</td>
+<td>monthly average daily mean 2-meter temperature</td>
+<td>degrees Celsius</td>
+</tr>
+<tr class="odd">
+<td>tmn</td>
+<td>monthly average daily minimum 2-meter temperature</td>
+<td>degrees Celsius</td>
+</tr>
+<tr class="even">
+<td>tmx</td>
+<td>monthly average daily maximum 2-meter temperature</td>
+<td>degrees Celsius</td>
+</tr>
+<tr class="odd">
+<td>vap</td>
+<td>vapour pressure</td>
+<td>hectopascals (hPa)</td>
+</tr>
+<tr class="even">
+<td>wet</td>
+<td>wet day frequency</td>
+<td>days</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 class="anchored">
+Accessing the data
+</h2>
+<p>CRU is a widely used dataset and can be downloaded from several different platforms.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Data Creator</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Climate Data Store</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">KNMI Climate Explorer</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>The <a href="https://www.uea.ac.uk/groups-and-centres/climatic-research-unit">Climatic Research Unit (CRU)</a> at the University of East Anglia is the creator of this dataset. Users can download it directly from their <a href="https://crudata.uea.ac.uk/cru/data/hrg/">website</a>, which lists all available datasets, with the most recent version listed at the top. When downloading from CRU, the file provided are for the full global dataset and are available in both ASCII and NetCDF formats. This is the best source for accessing the latest version of the data.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Version</strong></th>
+<th><strong>Variables</strong></th>
+<th><strong>Resolution</strong></th>
+<th><strong>Spatial Extent</strong></th>
+<th><strong>File Format</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Latest available</td>
+<td>cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap, wet</td>
+<td>0.5° (~55.5km x ~55.5km)</td>
+<td>Global</td>
+<td>netCDF (.nc), ASCII (.dat)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>The <a href="https://cds.climate.copernicus.eu/">Climate Data Store</a> also provides a version of the CRU dataset for users to download. It can be accessed <a href="https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-global-and-regional?tab=overview">here</a>. However, the version available on the Climate Data Store is not always the most up-to-date. The data is provided in NetCDF format.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Version</strong></th>
+<th><strong>Variables</strong></th>
+<th><strong>Resolution</strong></th>
+<th><strong>Spatial Extent</strong></th>
+<th><strong>File Format</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>May not be the latest</td>
+<td>pre, tmp, tmn, tmx</td>
+<td>0.5° (~55.5km x ~55.5km), 1.0° (~111km x ~111km), 2.5° (~277.5km x ~277.5km)</td>
+<td>Global</td>
+<td>netCDF (.nc)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>The <a href="https://climexp.knmi.nl/start.cgi">KNMI Climate Explorer</a> is another platform where users can download CRU data. The dataset can be specified on their <a href="https://climexp.knmi.nl/selectfield_obs2.cgi?id=someone@somewhere">Monthly Observations page</a>, where the latest version of CRU is usually available. Users can download data for a specific grid point or area or create a custom subset using a mask (e.g., a shapefile). Data provided in NetCDF format.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 17%">
+<col style="width: 21%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Version</strong></th>
+<th><strong>Variables</strong></th>
+<th><strong>Resolution</strong></th>
+<th><strong>Spatial Extent</strong></th>
+<th><strong>File Format</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Typically up-to-date</td>
+<td>cld, dtr, frs, pet, pre, tmp, tmn, tmx, vap</td>
+<td>0.5° (~55.5km x ~55.5km), 1.0° (~111km x ~111km), 2.5° (~277.5km x ~277.5km)</td>
+<td>User specified</td>
+<td>netCDF (.nc)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<h2 class="anchored">
+What the data looks likes
+</h2>
+<p>Below are a few plots to give a better sense of what the CRU dataset looks like. The first two are spatial plots over Southern Africa, illustrating the spatial resolution and the coarseness of the 0.5° × 0.5° grid. The final three plots focus on a single grid cell and show the seasonal cycle and time series data for that location.</p>
+<p><strong>Spatial plots of key variables</strong></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyterra) </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the NetCDF file using terra</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fig1_mean_annual_rainfall <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"data/Fig1_MeanAnnualRainfall_CRU_TS-4.08_1991-2020_SouthernAfrica.nc"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make 0 values NA</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>fig1_mean_annual_rainfall[fig1_mean_annual_rainfall <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig1_mean_annual_rainfall,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous_health_radar</span>(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="st">"plasma"</span>, </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"white"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Mean Rainfall</span><span class="sc">\n</span><span class="st">(mm/year)"</span>  <span class="co"># Removed trailing comma</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">40</span>),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">35</span>, <span class="dv">0</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean Annual Rainfall for Southern Africa (1991-2020)"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitude"</span>, </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Latitude"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Mean annual rainfall over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="cruts_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig2_mean_monthly_avg_temperature <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"data/Fig2_MeanMonthlyAverageTemp_CRU_TS-4.08_1991-2020_SouthernAfrica.nc"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig2_mean_monthly_avg_temperature,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous_health_radar</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="st">"plasma"</span>, </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"white"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Mean Temperature</span><span class="sc">\n</span><span class="st">(Celsius)"</span>  <span class="co"># Removed trailing comma</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">40</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">35</span>, <span class="dv">0</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Annual Average Daily Mean Temperature </span><span class="sc">\n</span><span class="st"> for Southern Africa (1991-2020)"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitude"</span>, </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Latitude"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Annual average daily mean temperature over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="cruts_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fig3_PRCPTOT_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig3_PRCPTOT_mon_CRU_TS-4.08_199101-202012_climatology_Bulawayo.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fig3_tas_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig3_tas_mon_CRU_TS-4.08_199101-202012_climatology_Bulawayo.csv"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the climatology plot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rainfall bars</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig3_PRCPTOT_mon,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> PRCPTOT, <span class="at">fill =</span> <span class="st">"Rainfall"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.6</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Temperature line</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig3_tas_mon,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> tas <span class="sc">*</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"Temperature"</span>),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig3_tas_mon,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> tas <span class="sc">*</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"Temperature"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use standardized color scales with explicit values</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">setNames</span>(theme_health_radar_colours[<span class="dv">1</span>], <span class="st">"Rainfall"</span>)) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">setNames</span>(theme_health_radar_colours[<span class="dv">2</span>], <span class="st">"Temperature"</span>)) <span class="sc">+</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Primary axis (rainfall)</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Monthly Rainfall (mm)"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span><span class="dv">10</span>, <span class="at">name =</span> <span class="st">"Monthly Average Daily</span><span class="sc">\n</span><span class="st"> Mean Temperature (°C)"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>, </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y.right =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">2</span>]),  <span class="co"># Match temperature line color</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y.right =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">2</span>]),   <span class="co"># Match temperature line color</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y.left =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">1</span>]),   <span class="co"># Match rainfall bar color</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">1</span>]),    <span class="co"># Match rainfall bar color</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Seasonal Cycle of Rainfall and Temperature in Bulawayo"</span>,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Month"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Monthly climatology of rainfall (bars) and monthly average daily mean temperature (line) for Bulawayo. Zimbabwe, for the period 1991-2020, derived from CRU TS v4.08 data. We see Bulawayo experiences a signioficant propotion of it's rainfall in the warm summer months and is very dry in the temperate winter months. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="cruts_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig4_PRCPTOT_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig4_PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the timeseries plot</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rainfall bars</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig4_PRCPTOT_mon,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> PRCPTOT, <span class="at">fill =</span> <span class="st">"Rainfall"</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.6</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Station count line</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig4_PRCPTOT_mon,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> stn <span class="sc">*</span> <span class="dv">40</span>, <span class="at">color =</span> <span class="st">"Station Count"</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use standardized color scales with explicit values</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">setNames</span>(theme_health_radar_colours[<span class="dv">1</span>], <span class="st">"Rainfall"</span>)) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">setNames</span>(theme_health_radar_colours[<span class="dv">2</span>], <span class="st">"Station Count"</span>)) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Primary axis (rainfall)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Monthly Rainfall (mm)"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span>.<span class="sc">/</span><span class="dv">40</span>, </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">"Number of Stations"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>),  <span class="co"># Force breaks from 0 to 10</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"10 years"</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y"</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y.right =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">2</span>]),</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y.right =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">2</span>]),   </span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y.left =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">1</span>]),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">1</span>]),    </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Monthly Rainfall and Station Count in Bulawayo (1901-2023)"</span>,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Monthly rainfall time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly rainfall value. The data is derived from CRU TS v4.08. Notably, there is a decrease in the number of contributing stations from around 2010 onwards. Caution is advised when interpreting values calculated without any station data contributions. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="cruts_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig5_tas_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig5_tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the timeseries plot</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Temperature bars</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig5_tas_mon,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> tas <span class="sc">-</span> <span class="fl">273.15</span>, <span class="at">color =</span> <span class="st">"Temperature"</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Station count line</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fig5_tas_mon,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> stn <span class="sc">*</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">"Station Count"</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use standardized color scales with explicit values</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(  <span class="st">"Temperature"</span> <span class="ot">=</span> theme_health_radar_colours[<span class="dv">1</span>],  <span class="st">"Station Count"</span> <span class="ot">=</span> theme_health_radar_colours[<span class="dv">2</span>])) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_fill_manual(values = setNames(theme_health_radar_colours[1], "Temperature")) +</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_colour_manual(values = setNames(theme_health_radar_colours[2], "Station Count")) +</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Primary axis (temperature)</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Monthly Average Daily </span><span class="sc">\n</span><span class="st"> Mean Temperature (°C)"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span>.<span class="sc">/</span><span class="dv">4</span>, </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">"Number of Stations"</span>,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>),  <span class="co"># Force breaks from 0 to 10</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"10 years"</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y"</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y.right =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">2</span>]),</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y.right =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">2</span>]),   </span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y.left =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">1</span>]),</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y.left =</span> <span class="fu">element_text</span>(<span class="at">color =</span> theme_health_radar_colours[<span class="dv">1</span>]),    </span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Monthly Average Daily Mean Temperature and </span><span class="sc">\n</span><span class="st"> Station Count in Bulawayo (1901-2023)"</span>,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Monthly average daily mean temperature time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly average daily mean temperature value. The data is derived from CRU TS v4.08.  The number of contributing stations remains at an adequate level throughout the time series, with a minimum of three stations. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="cruts_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<h2 class="anchored">
+Key points to consider
+</h2>
+<p>CRU provides users with the number of stations used to build each datum within the CRU TS dataset. The NetCDF-formatted (<a href="http://cfconventions.org/">CF-1.4</a> compliant) CRU TS data output files (for all variables except PET) contain two data variables, the named one, (i.e., ‘tmp’), and a station count (‘stn’) giving the number of stations. If working with ASCII text output files, CRU also publishes a separate station count metadata file. The station counts vary between 0 (no cover, climatology inserted, see Interpolation above), and eight (the maximum station count for interpolation). The ‘stn’ data may be used to quantify uncertainty, most particularly by excluding cells with a zero count, as these will have been set to the default climatology ((i.e., long-term average values from a reference period when no observations are available). The station count can vary widely through space and time and per variable, see figures 4 and 5 above.</p>
+<h3 class="anchored">
+Strengths
+</h3>
+<ul>
+<li>The dataset is widely used and evaluated.</li>
+<li>It provides a number of useful variables for malaria modelling.</li>
+<li>It provides and long and continuous record.</li>
+</ul>
+<h3 class="anchored">
+Limitations
+</h3>
+<ul>
+<li>The skill of the dataset relies heavily on the density of the station network. The density over southern Africa is very poor with some areas not having any available stations, or they are are very far away in climatically very different regions.</li>
+<li>The data is monthly which limits the usefulness of the dataset which may require higher temporal resolution data.</li>
+<li>The stations come from a number of different networks and they are not strictly homogenized so caution should be use in any trend analysis.</li>
+</ul>
+<h2 class="anchored">
+Citing the data
+</h2>
+<p>Harris, I., Osborn, T.J., Jones, P. et al.&nbsp;Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Sci Data 7, 109 (2020). https://doi.org/10.1038/s41597-020-0453-3</p>
+<h3 class="anchored">
+Terms of use
+</h3>
+<p>The various datasets on the CRU website are provided for all to use, provided the sources are acknowledged. Acknowledgment should preferably be by citing one or more of the papers referenced. The website can also be acknowledged if deemed necessary.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<h2 class="anchored">
+How to use this data?
+</h2>
+<p>In this example we demonstrate how to use the <a href="https://climexp.knmi.nl">KNMI Climate Explorer</a> to:</p>
+<ol type="1">
+<li>Select the required variables from the CRU TS dataset (daily maximum and minimum temperature and rainfall).</li>
+<li>Generate an area-average spatial subset for the full record period (in this case, for the Mopani District, Limpopo Province, South Africa for the period 1901 - 2023).</li>
+<li>Download the resulting data as text files.</li>
+</ol>
+<p>While the KNMI Climate Explorer allows anonymous access, it is recommended to register and login to access more features.</p>
+<p>The CRU TS dataset is accessible through the side menu under Select a field &gt; <a href="https://climexp.knmi.nl/selectfield_obs2.cgi">Monthly observations</a></p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fig1_knmi_clim_exp_hompage.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Fig. 1: KNMI Climate Explorer home page"><img src="images/fig1_knmi_clim_exp_hompage.png" class="img-fluid figure-img" alt="Fig. 1: KNMI Climate Explorer home page"></a></p>
+<figcaption>Fig. 1: KNMI Climate Explorer home page</figcaption>
+</figure>
+</div>
+</div>
+<p>The site lists a number of monthly fields by variable / categories (the names of which may appear somewhat confusing at first). The CRU TS can be found under the different variables and in this visualisation example we will focus on the data listed under the variables Tmax (daily maximum temperature).</p>
+<p>Users can select the data at different spatial resolutions (0.5°, 1.0°, 2.5°). A metadata variable #/value is also available, indicating the number of weather stations used to calculate each gridcell’s value, ranging from 0 to 8 stations.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fig2_CRU_KNMI_clim_exp_select_mon_field.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Fig. 2: KNMI Climate Explorer Monthly Observation list of datasets"><img src="images/fig2_CRU_KNMI_clim_exp_select_mon_field.png" class="img-fluid figure-img" alt="Fig. 2: KNMI Climate Explorer Monthly Observation list of datasets"></a></p>
+<figcaption>Fig. 2: KNMI Climate Explorer Monthly Observation list of datasets</figcaption>
+</figure>
+</div>
+</div>
+<p>We select the most recent <a href="https://climexp.knmi.nl/select.cgi?id=&amp;field=cru4_tmx">Tmax CRU TS 4.08 (land) dataset at 0.5° spatial resolution</a>. This page provides options to process/modify the data. Including:</p>
+<ul>
+<li>Spatial and temporal subsetting</li>
+<li>Monthly high/low-pass filtering</li>
+<li>Year-on-year high/low-pass filtering</li>
+<li>Regridding to a lower spatial or temporal resolution</li>
+<li>Computing of anomalies from a climatological mean, or from zonal mean.</li>
+<li>It also provides a link to download the dataset itself (though it recommends that users rather utilise the authoritative site).</li>
+</ul>
+<p>For our purposes, we generate an area average for a spatial subset for the Mopani District, Limpopo Province, South Africa by specifying the latitude and longitude bounds.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fig3_CRU_KNMI_clim_exp_field.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Fig. 3: KNMI Climate Explorer tools used to create the spatial subset."><img src="images/fig3_CRU_KNMI_clim_exp_field.png" class="img-fluid figure-img" alt="Fig. 3: KNMI Climate Explorer tools used to create the spatial subset."></a></p>
+<figcaption>Fig. 3: KNMI Climate Explorer tools used to create the spatial subset.</figcaption>
+</figure>
+</div>
+</div>
+<p>The output includes:</p>
+<ul>
+<li>A times series</li>
+<li>The annual cycle</li>
+<li>Anomalies relative to the annual cycle.</li>
+</ul>
+<p>The site generates basic plots of the output, that can be downloaded either in eps or pdf format. The data itself can be downloaded as the raw data (txt format) or as a netcdf file. Both formats include detailed metadata along with the data itself.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fig4_CRU_KNMI_clim_exp_time_series.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Fig. 4: KNMI Climate Explorer time page presenting the time series output."><img src="images/fig4_CRU_KNMI_clim_exp_time_series.png" class="img-fluid figure-img" alt="Fig. 4: KNMI Climate Explorer time page presenting the time series output."></a></p>
+<figcaption>Fig. 4: KNMI Climate Explorer time page presenting the time series output.</figcaption>
+</figure>
+</div>
+</div>
+<h2 class="anchored">
+How to plot this data?
+</h2>
+<p>The downloaded time series can be used for various analyses and visualisations.</p>
+<p>In this example, we perform a simple sanity check on the data by exploring the variability and trends in the climate over the historical period for the Mopani District. Specifically, we present annual anomalies for daily maximum and daily minimum temperature and rainfall.</p>
+<h3 class="anchored">
+Analysis steps
+</h3>
+<ol type="1">
+<li><strong>Calculation of annual mean or total values</strong> for daily maximum and minimum temperature and rainfall.
+<ul>
+<li>We use a July–June year to align with the malaria season, which primarily occurs in summer.</li>
+</ul></li>
+<li><strong>Calculate the average (baseline) climate</strong> for the 30-year period 1981-2010.
+<ul>
+<li>This is a standard climatological baseline and corresponds with relatively complete station coverage globally.<br>
+</li>
+</ul></li>
+<li><strong>Compute anomalies</strong> by subtracting the baseline from each year’s value.</li>
+<li><strong>Include the metadata #/value (station count)</strong> as an annual average to provide an indication of the data quality across the record.</li>
+</ol>
+<h3 class="anchored">
+Interpretation and discussion
+</h3>
+<ul>
+<li><strong>Daily Maximum Temperature (Tmax):</strong> The average is 29°C (Fig. 5). The time series shows considerable year-to-year variability and an overall warming trend.</li>
+<li><strong>Daily Minimum Temperature (Tmin):</strong> The average is 15.6°C (Fig. 6). Similarly, there is variability and a suggested warming trend.</li>
+<li><strong>Annual Rainfall:</strong> The mean total rainfall is approximately 532 mm. The record shows strong interannual variability with multi-year wet or dry spells, but no clear long-term trend.</li>
+</ul>
+<p><strong>Note</strong>: South Africa historically maintained dense rainfall, and to a lesser extent temperature, station networks operated by the South African Weather Service, the Agricultural Research Council and other organisations. The data for these networks were combined and made freely available in 2000. This is the key reason for the high density of stations being utilized in the CRU dataset during the period 1904 - 2001 for rainfall and for 1951-2001 for the temperatures. The number of operational weather stations has decreased significantly during the last few decades and only a few of these stations make their data available to be used in datasets like CRU.</p>
+<h3 class="anchored">
+Advice to users
+</h3>
+<p>In this example, the user is advised not to use the temperature data for the period pre-1951 since very few station records are used to calculate the values. Also, there are no other sources of observed climate data against which to evaluate the skill of this dataset during this period. The data for most recent decades should be used with caution and the user is advised to evaluate the dataset against other available datasets.</p>
+<p>The rainfall dataset may be used since the maximum number of stations are utilised for the majority of the period. Rainfall, and especially convective rainfall, is highly localized and episodic. Therefore the proximity of the stations to the target location is far more critical in comparison to temperature which is far more spatially and temporally consistent. CRU does not provide the exact location of the stations and therefore it is still advised to evaluate the dataset against other datasets, especially for the more recent decades.</p>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fig5_CRU_TimeSeries_TemperatureMax-Anomalies_Annua.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Fig. 5: CRU TS annual (July - June) average daily maximum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023."><img src="images/fig5_CRU_TimeSeries_TemperatureMax-Anomalies_Annua.png" class="img-fluid figure-img" alt="Fig. 5: CRU TS annual (July - June) average daily maximum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023."></a></p>
+<figcaption>Fig. 5: CRU TS annual (July - June) average daily maximum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fig6_CRU_TimeSeries_TemperatureMin-Anomalies_Annual.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Fig. 6: CRU TS annual (July - June) average daily minimum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023."><img src="images/fig6_CRU_TimeSeries_TemperatureMin-Anomalies_Annual.png" class="img-fluid figure-img" alt="Fig. 6: CRU TS annual (July - June) average daily minimum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023."></a></p>
+<figcaption>Fig. 6: CRU TS annual (July - June) average daily minimum temperature anomalies and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023.</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/fig7_CRU_TimeSeries_Rainfall-Anomalies_Annual.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Fig. 7: CRU TS annual (July - June) total rainfall anomalies (%) and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023."><img src="images/fig7_CRU_TimeSeries_Rainfall-Anomalies_Annual.png" class="img-fluid figure-img" alt="Fig. 7: CRU TS annual (July - June) total rainfall anomalies (%) and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023."></a></p>
+<figcaption>Fig. 7: CRU TS annual (July - June) total rainfall anomalies (%) and number of stations for the Mopani District (average gridcell values for domain lon 30 - 32, lat -24.5 - -23) for the period 1901-2023.</figcaption>
+</figure>
+</div>
+</div>
+<p>The CRU TS mean annual total rainfall over this Mopani District is around 532 mm. It shows strong year to year variability, with some longer periods of above or below average rainfall. No clear trends in the rainfall are evident.</p>
+<p>South Africa historically had an extensive rainfall station network and this is evidenced by the maximum number of stations being used to calculate this dataset for this region from 1904 - 2001. The decrease in station count post 2001 is due to both the reduction in active weather stations, but also in the number of stations that make their data available for use in datasets like CRU TS. The user is advised to evaluate the dataset against other datasets, especially for the more recent decades.</p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<h2 class="anchored">
+How can this data be used in disease modelling?
+</h2>
+<p>Malaria exhibits marked seasonality, characterised by cyclical increases in transmission intensity. Incidence tends to peak during the rainy season, which spans approximately from October to April across much of southern Africa. This seasonal amplification is largely driven by climatic conditions that enhance <em>Anopheles</em> vector survival, breeding site availability, and parasite development rates, collectively contributing to increased vector density and transmission potential.</p>
+<section id="preparing-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-the-data">Preparing the data</h3>
+<p>Using the CRU TS dataset, we obtain specific values for temperature over time, and model the historic impact of climatology on the vector population and subsequent incidence. We use mean air temperature as a proxy for surface temperatures.</p>
+<p>There are different approaches to include environmental conditions into an infectious disease model. In this example, we use the temperature data from Bulawayo to develop a seasonal forcing function that mimics the seasonal pattern of malaria transmission. We achieve this with the following cossine function, and fit it to the data to obtain the values of the amplitude of the peak and of (the phase angle that indicates timing of the peak): <span class="math display">\[
+1 + amp \times cos(2  \pi \times (\frac{time}{365} - \phi))
+\]</span></p>
+<p>You may need to adjust the function based on the transmission pattern in different contexts. Some countries may have more bimodal transmission (two peaks), a wide flat plateau, or many irregularly spaced peaks per year.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>temperature_values <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(time, tas) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tas =</span> tas<span class="dv">-273</span>) <span class="sc">|&gt;</span> <span class="co">#convert from Kelvin to Celsius</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time <span class="sc">&gt;=</span> <span class="fu">ymd</span>(<span class="st">"2010-01-01"</span>) <span class="sc">&amp;</span> time <span class="sc">&lt;=</span> <span class="fu">ymd</span>(<span class="st">"2020-12-31"</span>)) <span class="co"># start date of data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> temperature_values, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> tas), <span class="at">colour =</span> theme_health_radar_colours[<span class="dv">8</span>]) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> temperature_values, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> tas), <span class="at">colour =</span> theme_health_radar_colours[<span class="dv">8</span>]) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total monthly temperatures in Bulawayo from 2010 to 2020"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Temperature values (Celsius)"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Changes in temperature over time. Source: tas_mon_CRU-TS 4.08"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="cruts_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert one year of temperature data into seasonal forcing function by normalisation of values</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>temperature_10yrs <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  temperature_values <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(time <span class="sc">&gt;=</span> <span class="fu">ymd</span>(<span class="st">"2018-01-01"</span>) <span class="sc">&amp;</span> time <span class="sc">&lt;=</span> <span class="fu">ymd</span>(<span class="st">"2018-12-31"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(time) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">scaled_rain =</span> (tas <span class="sc">-</span> <span class="fu">min</span>(tas)) <span class="sc">/</span> (<span class="fu">max</span>(tas) <span class="sc">-</span> <span class="fu">min</span>(tas)),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">synthetic_time =</span> time <span class="sc">+</span> <span class="fu">years</span>(i),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">year =</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit cosine model</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>fit_data <span class="ot">&lt;-</span> temperature_10yrs <span class="sc">|&gt;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">times =</span> <span class="fu">yday</span>(synthetic_time), <span class="co"># add day-of-year</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> scaled_rain</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  y <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> amp <span class="sc">*</span> <span class="fu">cos</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> (times <span class="sc">/</span> <span class="dv">365</span> <span class="sc">-</span> phi)), <span class="co"># seasonal forcing function</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> fit_data,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">amp =</span> <span class="fl">0.5</span>, <span class="at">phi =</span> <span class="fl">0.8</span>) <span class="co"># choose starting values</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(fit) # look at values for amp and phi</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine with initial data</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>temperature_10yrs <span class="ot">&lt;-</span> temperature_10yrs <span class="sc">|&gt;</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">times =</span> <span class="fu">yday</span>(synthetic_time),</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">predicted =</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">times =</span> <span class="fu">yday</span>(synthetic_time))) <span class="co"># predict from fit</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>temperature_10yrs <span class="sc">|&gt;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> synthetic_time, <span class="at">y =</span> predicted), <span class="at">colour =</span> theme_health_radar_colours[<span class="dv">6</span>], <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fitted Seasonal Curve over 10 Years"</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>, </span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Scaled temperature"</span>,</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Using scaled temperature values from 2018 we fit a seasonal curve to obtain inputs for the seasonal forcing function. The fit predicted values for amp = 0.4302 and phi = 0.9913."</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="cruts_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We incorporate this into the model to see the seasonal pattern in incidence.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="dv">10</span> <span class="co"># Years of simulation</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">365</span><span class="sc">*</span>Y, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># SEACR-SEI model</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>seacr <span class="ot">&lt;-</span> <span class="cf">function</span>(times, start, parameters) { </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(start, parameters)), {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    P <span class="ot">=</span> S <span class="sc">+</span> E <span class="sc">+</span> A <span class="sc">+</span> C <span class="sc">+</span> R <span class="sc">+</span> G</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    M <span class="ot">=</span> Sm <span class="sc">+</span> Em <span class="sc">+</span> Im</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">=</span> M <span class="sc">/</span> P</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seasonality</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    seas <span class="ot">=</span>  <span class="dv">1</span><span class="sc">+</span>amp<span class="sc">*</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>(times<span class="sc">/</span><span class="dv">365</span> <span class="sc">-</span> phi))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Force of infection</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    Infectious <span class="ot">=</span> C <span class="sc">+</span> zeta_a<span class="sc">*</span>A <span class="co">#infectious reservoir</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    lambda.v <span class="ot">&lt;-</span> seas<span class="sc">*</span>a<span class="sc">*</span>M<span class="sc">/</span>P<span class="sc">*</span>b<span class="sc">*</span>Im<span class="sc">/</span>M</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    lambda.h <span class="ot">&lt;-</span> seas<span class="sc">*</span>a<span class="sc">*</span>c<span class="sc">*</span>Infectious<span class="sc">/</span>P</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Differential equations/rate of change</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    dSm <span class="ot">=</span> mu_m<span class="sc">*</span>M <span class="sc">-</span> lambda.h<span class="sc">*</span>Sm <span class="sc">-</span> mu_m<span class="sc">*</span>Sm</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    dEm <span class="ot">=</span> lambda.h<span class="sc">*</span>Sm <span class="sc">-</span> (gamma_m <span class="sc">+</span> mu_m)<span class="sc">*</span>Em</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    dIm <span class="ot">=</span> gamma_m<span class="sc">*</span>Em <span class="sc">-</span> mu_m<span class="sc">*</span>Im</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    dS <span class="ot">=</span> mu_h<span class="sc">*</span>P <span class="sc">-</span> lambda.v<span class="sc">*</span>S <span class="sc">+</span> rho<span class="sc">*</span>R <span class="sc">-</span> mu_h<span class="sc">*</span>S</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    dE <span class="ot">=</span> lambda.v<span class="sc">*</span>S <span class="sc">-</span> (gamma_h <span class="sc">+</span> mu_h)<span class="sc">*</span>E</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    dA <span class="ot">=</span> pa<span class="sc">*</span>gamma_h<span class="sc">*</span>E <span class="sc">+</span> pa<span class="sc">*</span>gamma_h<span class="sc">*</span>G <span class="sc">-</span> (delta <span class="sc">+</span> mu_h)<span class="sc">*</span>A</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    dC <span class="ot">=</span> (<span class="dv">1</span><span class="sc">-</span>pa)<span class="sc">*</span>gamma_h<span class="sc">*</span>E <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>pa)<span class="sc">*</span>gamma_h<span class="sc">*</span>G <span class="sc">-</span> (r <span class="sc">+</span> mu_h)<span class="sc">*</span>C</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    dR <span class="ot">=</span> delta<span class="sc">*</span>A <span class="sc">+</span> r<span class="sc">*</span>C <span class="sc">-</span> (lambda.v <span class="sc">+</span> rho <span class="sc">+</span> mu_h)<span class="sc">*</span>R</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    dG <span class="ot">=</span> lambda.v<span class="sc">*</span>R <span class="sc">-</span> (gamma_h <span class="sc">+</span> mu_h)<span class="sc">*</span>G</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    dCInc <span class="ot">=</span> lambda.v<span class="sc">*</span>(S<span class="sc">+</span>R)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="fu">c</span>(dSm, dEm, dIm, dS, dE, dA, dC, dR, dG, dCInc))</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial values for compartments(approximations for Bulawayo, Zimbabwe)</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>initial_state <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Sm =</span> <span class="dv">1000000</span>, <span class="co"># susceptible mosquitoes</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Em =</span> <span class="dv">100000</span>, <span class="co"># exposed and infected mosquitoes</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Im =</span> <span class="dv">200000</span>, <span class="co"># infectious mosquitoes</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>                   <span class="at">S =</span> <span class="dv">350000</span>, <span class="co"># susceptible humans</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>                   <span class="at">E =</span> <span class="dv">35000</span>, <span class="co"># exposed and infected humans</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>                   <span class="at">A =</span> <span class="dv">130000</span>, <span class="co"># asymptomatic and infectious humans</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>                   <span class="at">C =</span> <span class="dv">65000</span>, <span class="co"># clinical and symptomatic humans</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>                   <span class="at">R =</span> <span class="dv">100000</span>, <span class="co"># recovered and semi-immune humans</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>                   <span class="at">G =</span> <span class="dv">10000</span>, <span class="co"># secondary-exposed and infected humans</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>                   <span class="at">CInc =</span> <span class="dv">0</span> <span class="co"># cumulative incidence</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Country-specific parameters should be obtained from literature review and expert knowledge</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">a =</span> <span class="fl">0.45</span>, <span class="co"># human biting rate</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>                <span class="at">b =</span> <span class="fl">0.5</span>, <span class="co"># probability of transmission from mosquito to human</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>                <span class="at">c =</span> <span class="fl">0.6</span>, <span class="co"># probability of transmission from human to mosquito</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>                <span class="at">r =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">21</span>, <span class="co"># rate of loss of infectiousness after treatment</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>                <span class="at">rho =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">160</span>, <span class="co"># rate of loss of immunity after recovery</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>                <span class="at">delta =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">150</span>, <span class="co"># natural recovery rate</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>                <span class="at">zeta_a =</span> <span class="fl">0.4</span>, <span class="co"># relative infectiousness of of asymptomatic infections</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>                <span class="at">pa =</span> <span class="fl">0.4</span>, <span class="co"># probability of asymptomatic infection</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>                <span class="at">mu_m =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="co"># birth and death rate of mosquitoes</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>                <span class="at">mu_h =</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">62</span><span class="sc">*</span><span class="dv">365</span>), <span class="co"># birth and death rate of humans</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>                <span class="at">gamma_m =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="co"># extrinsic incubation rate of parasite in mosquitoes</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>                <span class="at">gamma_h =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="co"># extrinsic incubation rate of parasite in humans</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>                <span class="at">amp =</span> <span class="fl">0.4302</span>, <span class="co"># amplitude of seasonality</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>                <span class="at">phi =</span> <span class="fl">0.9913</span> <span class="co"># phase angle, start of season</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the model</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">ode</span>(<span class="at">y =</span> initial_state, </span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>           <span class="at">times =</span> times, </span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>           <span class="at">func =</span> seacr, </span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>           <span class="at">parms =</span> parameters)</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-processing model output into a dataframe</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">as.data.frame</span>(out)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> S <span class="sc">+</span> E <span class="sc">+</span> A <span class="sc">+</span> C <span class="sc">+</span> R <span class="sc">+</span> G,</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>         <span class="at">M =</span> Sm <span class="sc">+</span> Em <span class="sc">+</span> Im,</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>         <span class="at">Inc =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">diff</span>(CInc))) <span class="sc">|&gt;</span> </span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>time, <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(<span class="st">"2010-01-01"</span>) <span class="sc">+</span> time)</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"Inc"</span>, time <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">colour =</span> variable), <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual_health_radar</span>() <span class="sc">+</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">" K"</span>, <span class="at">scale =</span> <span class="fl">1e-3</span>)) <span class="sc">+</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%b %Y"</span>,</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"6 months"</span>) <span class="sc">+</span></span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Changes to incidence over time"</span>, </span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">" "</span>,</span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cases"</span>,</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Population"</span>,</span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"We see the seasonal pattern and the peak malaria season between October and April and lowest between June and September (the cold, dry months). The inclusion of control interventions or other dynamics would shift incidence on a year-by-year basis. Source: Model output"</span>)</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="cruts_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="cruts_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" data-fig-pos="H" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="policy-implications" class="level3">
+<h3 class="anchored" data-anchor-id="policy-implications">Policy implications</h3>
+<p>Incorporating time-varying transmission into the model reflects the real-world seasonality of malaria. This can be used to plan the timing of interventions, aligning delivery to the peak of the season across different geographical regions. These differences in risk (across geographic regions and seasons) are also important insights for resource allocation and health systems planning, ensuring consistent access to care and other control measures.</p>
+<p>This model uses a seasonal forcing function as opposed to explicit climatic data, and as such the model does not capture details such as extreme weather events, such as 2017’s Cyclone Dineo (which may have contributed to increases in malaria cases across southern Africa) or other long-term periodic climatic phenomena such as the El Niño-Southern Oscillation (ENSO) cycle. We show the explicit use of temperature and rainfall using ERA5 data <a href="https://uct-masha.quarto.pub/healthradar/datasources/malaria/era5/era5.html">here</a>.</p>
+</section>
+</div>
+</div>
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/healthradartool\.net");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "healthradartool/HealthRADAR";
+    script.dataset.repoId = "R_kgDOJlxA2Q";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOJlxA2c4CspTP";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2025, Health RADAR</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../../about.html">
+<p>About</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../data.html">
+<p>Data Sources</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div>
+<img src="../../../img/wellcome-logo-white.png" width="100px" alt="Wellcome Logo">
+<div style="font-size: 1em; color: white; font-weight: 500; margin-top: 10px">
+Funded by Wellcome
+</div>
+</div>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

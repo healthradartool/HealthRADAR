@@ -1,0 +1,25 @@
+[
+  {
+    "listing": "/updates.html",
+    "items": [
+      "/updates/pilot_launch.html"
+    ]
+  },
+  {
+    "listing": "/data.html",
+    "items": [
+      "/datasources/malaria/who-wmr/who_wmr.html",
+      "/datasources/malaria/dhs-program/dhs.html",
+      "/datasources/malaria/cru-ts/cruts.html",
+      "/datasources/malaria/era5/era5.html",
+      "/datasources/malaria/map/map.html",
+      "/datasources/malaria/malaria-threats-map-antimalarial-drug-efficacy-and-resistance/antimalarial_drug_efficacy_and_resistance.html",
+      "/datasources/malaria/alma-scorecards/alma_scorecards.html",
+      "/datasources/malaria/malaria-threats-map-insecticide-resistance/insecticide_resistance.html",
+      "/datasources/malaria/ihme/ihme.html",
+      "/datasources/malaria/malaria-threats-map-invasive-vector-species/invasive_vector_species.html",
+      "/datasources/malaria/un-population/un_population.html",
+      "/datasources/malaria/unicef-child-statistics/unicef_child_statistics.html"
+    ]
+  }
+]
