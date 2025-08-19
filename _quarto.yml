@@ -8,7 +8,7 @@ project:
 
 website:
   image:  "img/logo-light.png"
-  site-url: https://uct-masha.quarto.pub/healthradar/radar/
+  site-url: https://healthradartool.net
   favicon: "radar/favicon.ico"
   bread-crumbs: false
   draft-mode: unlinked
@@ -47,7 +47,7 @@ website:
 
     right:
       - icon: github
-        href: https://github.com/uct-masha/HealthRADAR
+        href: https://github.com/healthradartool/HealthRADAR
         aria-label: RADAR GitHub
       
         
@@ -84,7 +84,7 @@ execute:
 
 comments:
   giscus: 
-    repo: uct-masha/HealthRADAR
+    repo: healthradartool/HealthRADAR
     category: Announcements
     mapping: title
     loading: lazy
