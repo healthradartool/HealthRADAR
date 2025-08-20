@@ -23,11 +23,11 @@ Health RADAR curates datasets across multiple domains essential for CSID modelli
 
 All datasets included in Health RADAR adhere to the following principles:
 
-- **`A`**ccessible: Data is available and accessible to users
-- **`B`**efitting: Technically audited to ensure alignment with CSID modelling needs
-- **`C`**ited: Proper attribution and citation information provided
-- **`D`**ocumented: Comprehensive documentation of collection methods and context
-- **`E`**xemplified: Code examples for integration into CSID models
+- `A` ccessible: Data is available and accessible to users
+- `B` efitting: Technically audited to ensure alignment with CSID modelling needs
+- `C` ited: Proper attribution and citation information provided
+- `D` ocumented: Comprehensive documentation of collection methods and context
+- `E` xemplified: Code examples for integration into CSID models
 
 ## Getting Started
 
