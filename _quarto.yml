@@ -9,7 +9,7 @@ project:
 website:
   image:  "img/logo-light.png"
   site-url: https://healthradartool.net
-  favicon: "radar/favicon.ico"
+  favicon: "favicon.ico"
   bread-crumbs: false
   draft-mode: unlinked
   back-to-top-navigation: true
