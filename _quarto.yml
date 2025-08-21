@@ -11,7 +11,7 @@ website:
   site-url: https://healthradartool.net
   favicon: "favicon.ico"
   bread-crumbs: false
-  draft-mode: unlinked
+  draft-mode: gone
   back-to-top-navigation: true
   google-analytics: "G-H03EKDS8HM"
   # announcement: 
