@@ -79,6 +79,7 @@ format:
     code-fold: true
     code-summary: "Show the code"
     highlight-style: atom-one
+    footnotes-hover: true
 execute:
   freeze: auto
 

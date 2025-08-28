@@ -362,7 +362,7 @@ CRU provides users with the number of stations used to build each datum within t
 
 <h3>Limitations</h3>
 
-- The skill of the dataset relies heavily on the density of the station network. The density over southern Africa is very poor with some areas not having any available stations, or they are are very far away in climatically very different regions.
+- The **skill**^[In climate science, the *skill* of a dataset refers to its accuracy, resolution, bias, uncertainty, and predictive power in representing real-world climate conditions. A high-skill dataset closely matches observations, has minimal bias, and reliably supports climate modelling and decision-making] of the dataset relies heavily on the density of the station network. The density over southern Africa is very poor with some areas not having any available stations, or they are are very far away in climatically very different regions.
 - The data is monthly which limits the usefulness of the dataset which may require higher temporal resolution data.
 - The stations come from a number of different networks and they are not strictly homogenized so caution should be use in any trend analysis.
 
