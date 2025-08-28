@@ -17,7 +17,3 @@ format:
     template-partials:
       - title-block.html
       
-glossary:
-  path: glossary.yml
-  popup: click # (click, hover, none)
-  show: true
