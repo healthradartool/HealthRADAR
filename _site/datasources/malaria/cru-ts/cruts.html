@@ -226,7 +226,7 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
     <div class="quarto-title-banner page-columns page-full">
-        <div class="quarto-title column-page-left">
+        <div class="quarto-title column-page">
 
                         <div class="back-nav"><a id="back-nav-link" href="../../../data.html">← Back to browse</a></div>
                         
@@ -252,7 +252,7 @@ window.Quarto = {
     </div>
 
     
-    <div class="quarto-title-meta column-page-left">
+    <div class="quarto-title-meta column-page">
 
         
         <div>
@@ -269,17 +269,11 @@ window.Quarto = {
 </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#policy-implications" id="toc-policy-implications" class="nav-link active" data-scroll-target="#policy-implications">Policy implications</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
@@ -1030,7 +1024,8 @@ How can this data be used in disease modelling?
 </div>
 </div>
 </div>
-<p>We incorporate this into the model to see the seasonal pattern in incidence. ::: {.cell}</p>
+<p>We incorporate this into the model to see the seasonal pattern in incidence.</p>
+<div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
@@ -1145,18 +1140,18 @@ How can this data be used in disease modelling?
 </figure>
 </div>
 </div>
+</div>
 </section>
-</div>
-</div>
-</div>
 <section id="policy-implications" class="level3">
 <h3 class="anchored" data-anchor-id="policy-implications">Policy implications</h3>
 <p>Incorporating time-varying transmission into the model reflects the real-world seasonality of malaria. This can be used to plan the timing of interventions, aligning delivery to the peak of the season across different geographical regions. These differences in risk (across geographic regions and seasons) are also important insights for resource allocation and health systems planning, ensuring consistent access to care and other control measures.</p>
 <p>This model uses a seasonal forcing function as opposed to explicit climatic data, and as such the model does not capture details such as extreme weather events, such as 2017’s Cyclone Dineo (which may have contributed to increases in malaria cases across southern Africa) or other long-term periodic climatic phenomena such as the El Niño-Southern Oscillation (ENSO) cycle. We show the explicit use of temperature and rainfall using ERA5 data <a href="https://uct-masha.quarto.pub/healthradar/datasources/malaria/era5/era5.html">here</a>.</p>
-<p>:::</p>
-
-
 </section>
+</div>
+</div>
+</div>
+
+
 
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
