@@ -2,118 +2,134 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://healthradartool.net/updates.html</loc>
-    <lastmod>2025-08-19T07:38:38.631Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.963Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/themes.html</loc>
-    <lastmod>2025-08-19T07:38:38.631Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.963Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/index.html</loc>
-    <lastmod>2025-08-19T07:38:38.610Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.962Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/guides/contribution/contribution_guidance.html</loc>
+<<<<<<< HEAD
     <lastmod>2025-08-21T11:04:48.148Z</lastmod>
+=======
+    <lastmod>2025-08-21T07:58:38.937Z</lastmod>
+>>>>>>> ac0c7b0 (Adding GHCNd dataset branch)
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/who-wmr/who_wmr.html</loc>
-    <lastmod>2025-08-19T07:38:38.435Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.923Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/un-population/un_population.html</loc>
-    <lastmod>2025-08-19T07:38:38.387Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.905Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/malaria-threats-map-invasive-vector-species/invasive_vector_species.html</loc>
-    <lastmod>2025-08-19T07:38:38.024Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.807Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/malaria-threats-map-antimalarial-drug-efficacy-and-resistance/antimalarial_drug_efficacy_and_resistance.html</loc>
-    <lastmod>2025-08-19T07:38:37.943Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.798Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/era5/era5.html</loc>
-    <lastmod>2025-08-19T07:38:37.745Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.772Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/cru-ts/cruts.html</loc>
+<<<<<<< HEAD
     <lastmod>2025-08-28T11:04:28.386Z</lastmod>
+=======
+    <lastmod>2025-08-21T07:58:38.693Z</lastmod>
+>>>>>>> ac0c7b0 (Adding GHCNd dataset branch)
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/the-lancet/lancet_malaria.html</loc>
-    <lastmod>2025-08-19T07:38:37.239Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.691Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/pmi/pmi.html</loc>
-    <lastmod>2025-08-19T07:38:37.233Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.691Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/grid3/grid3.html</loc>
-    <lastmod>2025-08-19T07:38:37.198Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.685Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/climate-data-store/climate_data_store.html</loc>
-    <lastmod>2025-08-19T07:38:37.181Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.682Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/about.html</loc>
-    <lastmod>2025-08-19T07:38:37.179Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.681Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/data.html</loc>
-    <lastmod>2025-08-19T07:38:37.181Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.681Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/global-fund/global_fund.html</loc>
-    <lastmod>2025-08-19T07:38:37.198Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.685Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/ncar-climate-data-guide/ncar_climate_data_guide.html</loc>
-    <lastmod>2025-08-19T07:38:37.211Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.686Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/severe-malaria-observatory/severe_malaria_observatory.html</loc>
-    <lastmod>2025-08-19T07:38:37.236Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.691Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/alma-scorecards/alma_scorecards.html</loc>
-    <lastmod>2025-08-19T07:38:37.241Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.691Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/dhs-program/dhs.html</loc>
-    <lastmod>2025-08-19T07:38:37.558Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.745Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/ihme/ihme.html</loc>
-    <lastmod>2025-08-19T07:38:37.910Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.793Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/malaria-threats-map-insecticide-resistance/insecticide_resistance.html</loc>
+<<<<<<< HEAD
     <lastmod>2025-08-28T11:07:45.232Z</lastmod>
+=======
+    <lastmod>2025-08-21T07:58:38.803Z</lastmod>
+>>>>>>> ac0c7b0 (Adding GHCNd dataset branch)
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/map/map.html</loc>
-    <lastmod>2025-08-19T07:38:38.349Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.899Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/unicef-child-statistics/unicef_child_statistics.html</loc>
-    <lastmod>2025-08-19T07:38:38.419Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.919Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/guides/climate/climate.html</loc>
-    <lastmod>2025-08-19T07:38:38.443Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.923Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/guides/contribution/modelling.html</loc>
-    <lastmod>2025-08-19T07:38:38.483Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.937Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/issues.html</loc>
-    <lastmod>2025-08-19T07:38:38.623Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.962Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/updates/pilot_launch.html</loc>
-    <lastmod>2025-08-19T07:38:38.631Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://healthradartool.net/datasources/malaria/ghcn/ghcn.html</loc>
+    <lastmod>2025-08-18T08:16:38.828Z</lastmod>
   </url>
 </urlset>
