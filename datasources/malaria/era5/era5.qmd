@@ -1,7 +1,7 @@
 ---
 title: "ERA5"
 description: "ERA5 hourly data on single levels from 1940 to present"
-date: 08/30/2024 # mm-dd-yyyy
+date: 08/01/2025 # mm-dd-yyyy
 image: "images/era5.png"
 
 categories:
@@ -164,84 +164,68 @@ For guidance on acknowledging or citing the Climate Data Store, see this [page](
 
 ## Visualisations  
 
-<h2>How to plot this data?</h2>
+<h2>How to use this data?</h2>
 
-In this example, we demonstrate how to visualise ERA5 data using the [ERA Explorer](https://era-explorer.climate.copernicus.eu) application provided by [Climate Data Store (CDS)](https://cds.climate.copernicus.eu). The ERA Explorer application allows users to explore the historical climate for anywhere on earth using the ERA5 reanalysis dataset and focuses on four key variables, temperature, rainfall, wind and humidity, all of which are important for Malaria modelling. In the below example we will focus on two different locations in southern Africa.
+Mosquito survival and malaria transmission are strongly influenced by short-term changes in temperature, humidity, and rainfall. Datasets like ERA5, with high temporal resolution, allow us to identify when critical climatic thresholds are crossed. 
+In this example, we show how ERA5 data can be used to assess the ‘climatic suitability’ for malaria transmission by visualising key thresholds of rainfall, temperature, and humidity that influence mosquito survival and parasite development.
 
-:::{.cell}
-![Fig. 1: ERA Explorer Landing page ](images/Vis_Fig1_ERA-Explorer_homepage.png)
-:::
+To generate the visualisations, we extracted ERA5 reanalysis hourly temperature (2m temperature), dewpoint temperature (2m dewpoint temperature), and precipitation (‘Total precipitation’) data. Time-series data was extracted for these three variables for the period 2010-2020 for the two grid cells with in which Kariba (Zimbabwe) and Mbabane (Eswatini) are found. The following preparation steps were applied:
 
-Users can select a location of interest by clicking on the global interactive map. The application then calculates a set of climate statistics for the selected grid cell (0.25° x 0.25° resolution), which are displayed as a series of plots. These plots can be downloaded as PNG images, and the underlying data can be downloaded in CSV format. The site also links to example Python notebooks to help users understand, replicate, or customize the code.
+- Rainfall: Hourly precipitation was first summed to daily totals. A 7-day rolling sum (i.e. the total rainfall for today and previous six days) was then applied, to capture short-term wet periods that are more relevant to mosquito breeding than isolated rain events.
 
-    Note: The data represents average conditions for the entire grid cell, not the precise local environment. 
+- Temperature:  Hourly temperature values were averaged to produce daily mean temperature.
 
-A guidance section, accessible via the "?" icon, provides information on how to use the app; the organisation, the ERA5 dataset and about the data, and how to interpret the plots presented in the app.
+- Relative humidity: Relative humidity is not directly available in the ERA5 dataset. Instead, it was derived from daily mean temperature ($T$) and dewpoint temperature ($T_d$) using the August–Roche–Magnus formulas for saturation vapor pressure ($e_s$), actual vapor pressure ($e$), and relative humidity ($RH$):
 
-:::{.cell}
-![Fig. 2: Guidance documentation popup for the ERA Explorer Application ](images/Vis_Fig2_About_ERA-Explorer.png)
-:::
 
-To illustrate, two locations in southern Africa with contrasting climates were selected (Fig. 3):
-      
-  - Kariba, Zimbabwe
-  - Mbabane, Eswatini
+$$
+e_s = 6.112 \times \exp\left(\frac{17.67 \, T}{T + 243.5}\right)
+$$
 
-:::{.cell}
-![Fig. 3: ERA Explorer showing the two selected locations](images/Vis_Fig3_ERA-Explorer_compare_locations.png)
-:::
+$$
+e = 6.112 \times \exp\left(\frac{17.67 \, T_d}{T_d + 243.5}\right)
+$$
 
-The ERA Explorer provides several types of visualisations which include:
+$$
+RH = 100 \times \frac{e}{e_s}
+$$
 
-- Monthly climatologies (temperature, rainfall and relative humidity)
-- Annual timeseries (temperature and rainfall)
-- Annual anomalies (temperature)
-- Daily climatologies (temperature)
-- Hourly climatologies (wind)
+<h2>How to plot the data?</h2>
 
-Each plot is generated automatically, with a brief explanation below describing the method used. While most plots look straightforward, some involve complex processing—particularly those showing relative humidity or hourly wind climatologies.
+To assess climatic suitability for malaria transmission, we analyze ERA5 data through three key visualizations (Fig 1–3), focusing on three climatic thresholds critical to Anopheles mosquitoes and Plasmodium parasites:
 
-If users wish to generate their own plots, it is recommended to download the data from the application and to refer to the example python notebooks provided. 
+1. Daily Temperature (18–32°C): Bounds for parasite development.
+2. Daily relative humidity (>60%): Minimum for mosquito survival.
+3. 7-day rolling sum of daily precipitation (>10mm): Triggers breeding-site formation.
 
-<h3>Monthly Climatologies</h3>
+When all three thresholds are met simultaneously, conditions become optimal for mosquito survival and parasite development. Figures 1 (daily thresholds), 2 (seasonal patterns), and 3 (annual trends) highlight when and where these conditions occur. These insights could help target interventions when and where climate-driven risk is highest.
 
 :::{.cell}
-![Monthly temperature climatology for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1991-2020. We can see Kariba is consistently warmer than Mbabane throughout the year. Kariba’s temperatures peak in spring (Sept–Nov), while Mbabane experiences its warmest temperatures in summer (Dec–Feb). Both locations have their coolest periods in winter (Jun–Aug). Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_monthly_climatology_26.30S31.17E_16.52S28.80E.png)
-
-![Monthly precipitation climatology for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1991-2020. Both locations experience a distinct wet season from November to March, with Kariba generally receiving more rainfall during the early summer months (Dec–Feb). Kariba has an extended dry season from May to October, while Mbabane tends to receive more consistent rainfall throughout its drier season. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Precip_monthly_climatology_26.30S31.17E_16.52S28.80E.png)
-
-![Monthly precipitation climatology for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1991-2020. Mbabane generally exhibits higher relative humidity than Kariba throughout the year. While both locations experience lower humidity during the dry season, Kariba shows a more pronounced drop during the hot, dry months of early spring (Sept–Oct), whereas Mbabane’s lowest levels occur during the cooler winter months (Jun–Aug).Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Humidity_monthly_climatology_26.30S31.17E_16.52S28.80E.png)
+![Fig. 1: Climatic thresholds of daily average temperature and relative humidity and of a 7-day rolling total precipitation over Kariba and Mbabane from 2010-2020](images/Vis1A_Thresholds-ERA5_2010-2020.png)
 :::
 
-<h3>Annual Timeseries</h3>
+Figure 1 visualises the periods when climatic thresholds are met for both Kariba (Zimbabwe) and Mbabane (Eswatini). The top panel shows daily temperature with thresholds of 18 °C and 32 °C, approximating the lower and upper bounds for mosquito survival and parasite development. The middle panel shows daily relative humidity, with a threshold of 60%. Sustained humidity above this level supports mosquito survival and activity, while lower humidity limits their ability to thrive. The bottom panel shows the 7-day rolling sum of daily precipitation. Periods where rainfall exceeds 10 mm/7 days are highlighted, representing conditions favourable for mosquito breeding.
+
 
 :::{.cell}
-![Annual average temperature for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1940-2024. Kariba is consistently around 8°C warmer than Mbabane. A clear warming trend is evident in both locations. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_annual_timeseries_26.30S31.17E_16.52S28.80E.png)
-
-![Annual total precipitation for Kariba (Zimbabwe) and Mbabane (Eswatini) for the period 1940-2024. Mbabane consistently receives more annual rainfall than Kariba, with both locations showing high interannual variability. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Precip_annual_timeseries_26.30S31.17E_16.52S28.80E.png)
+![Fig. 2: Average percentage of climatically suitable days per month over Kariba and Mbabane from 2010-2020](images/Vis3_Monthly-Climatic-Suitability_ERA5_2010-2020.png)
 :::
 
-<h3>Daily Climatologies</h3>
+Figure 2 condenses the information shown in Figure 1 into a heatmap illustrating the average percentage of days in each calendar month when the climatic thresholds for malaria transmission are met for both Kariba (Zimbabwe) and Mbabane (Eswatini). Clear seasonality is evident for both locations. The warm, humid, and wet summer months from December to February exhibit the highest proportion of suitable days (>70%), providing favorable conditions for mosquito survival and malaria transmission. In contrast, although Kariba remains warm enough during winter, both Kariba and Mbabane experience very few suitable days in the cooler, drier, and less humid months, as the climatic thresholds are rarely met.
 
 :::{.cell}
-![Daily temperature climatology for Kariba (Zimbabwe) for the period 1991-2020. There are distinct cool and warm periods throughout the year. The hottest days and nights occur in late October to early November, while the coldest are observed in early July. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_daily_climatology_16.52S28.80E.png)
-
-![Daily temperature climatology for Mbabane (Eswatini) for the period 1991-2020. The coldest days and nights occur in early July, while the warmest temperatures are more broadly distributed across the summer months (Dec–Feb), rather than peaking in a single period. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_daily_climatology_26.30S31.17E.png)
+![Fig. 3: Total number of climatically suitable days per year over Kariba and Mbabane from 2010-2020](images/Vis2_Annual-Climatic-Suitability_ERA5_2010-2020.png)
 :::
 
-<h3>Hourly Climatologies</h3>
+Figure 3 shows the total number of climatically suitable days—when all three climatic thresholds are met—for each year from 2010 to 2020 in both Kariba and Mbabane. Despite being in different locations, both sites experience a similar number of climatically suitable days each year. Over the 2010–2020 period, Kariba experienced an average of 118 climatically suitable days per year, while Mbabane experienced an average of 126 days. There is a bit of inter-annual variability with 2019 showing experience the lowest number of suitable days in Kariba (76) and the highest in Mbabane (149). 
 
-:::{.cell}
-![Hourly climatological wind rose for Kariba (Zimbabwe) for the period 1991-2020. Wind direction is highly unidirectional with very little variation, indicating a dominant prevailing wind. The wind speed does vary, suggesting changes in intensity even though the direction remains relatively consistent. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Wind_annual_climatology_16.52S28.80E.png)
+In this example, we demonstrated how ERA5’s high temporal resolution can track climatic thresholds critical for malaria transmission in Kariba and Mbabane. By aggregating hourly data to daily/weekly scales, we identified periods of temperature, humidity, and rainfall suitability for Anopheles mosquitoes and Plasmodium parasites. However, three key limitations arise:
 
-![Hourly climatological wind rose for Mbabane (Eswatini) for the period 1991-2020. The wind rose indicates that winds come from multiple directions, with a few directions (Westly, West Noth-Westly and South-Eastly) more common than others. This suggests a moderately variable wind regime without a single dominant direction. Wind speeds also show a wide range of variability. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Wind_annual_climatology_26.30S31.17E.png)
-:::
+1. Temporal smoothing: Daily averages obscure sub-daily temperature extremes that may impact mosquito survival.
+2. Rainfall granularity: The 7-day rolling sum may overlook brief, intense storms that both create transient breeding sites and flush away existing ones—a dual effect critical for malaria risk.
+3. Threshold simplicity: Fixed thresholds cannot capture species-specific tolerances or nonlinear interactions between variables.
 
-<h3>Annual Anomalies</h3>
-
-:::{.cell}
-![Climate warming stripes (annual temperature anomalies relative to the 1961–2010 reference period) for Kariba (Zimbabwe) and Mbabane (Eswatini) for 1940–2024. A clear concentration of red shades in recent decades highlights a warming trend at both locations. Source: Copernicus Climate Change Service (C3S). (2025). ERA Explorer \[Web application\]. Retrieved from https://era-explorer.climate.copernicus.eu/](images/Temperature_warming_stripes_26.30S31.17E_16.52S28.80E.png)
-:::
+Despite these constraints, this example provides a replicable framework to assess climate-driven malaria risk—useful for prioritizing surveillance or interventions when thresholds are crossed.
 
 
 ## Modelling
