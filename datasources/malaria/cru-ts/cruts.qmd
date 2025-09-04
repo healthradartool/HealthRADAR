@@ -584,6 +584,7 @@ ggplot() +
 ```
 
 We incorporate this into the model to see the seasonal pattern in incidence. 
+
 ```{r}
 
 # Time points for the simulation
