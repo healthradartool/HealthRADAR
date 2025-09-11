@@ -56,7 +56,7 @@ Users can also find more information about the GHCNd dataset here:
 | PRCP |  Precipitation |  millimetres per day |
 | TMAX | Maximum temperature | degrees Celsius |
 | TMIN | Minimum temperature | degrees Celsius |
-| TAVG | Average temperature | egrees Celsius |
+| TAVG | Average temperature | degrees Celsius |
 
 For a comprehensive list of variables, you can refer to the dataset's documentation on the [GHCNd Documention](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf).
 
@@ -65,10 +65,13 @@ For a comprehensive list of variables, you can refer to the dataset's documentat
 
 <h2>Accessing the data</h2>
 
-GHCNd data can be downlaoded from several different platforms.
+GHCNd data can be downloaded from several different platforms.
 
 ::: {.panel-tabset}
 ### Data Creator
+The  is the creator and maintainer of the GHCNd dataset.
+
+The Global Historical Climatology Network – Daily (GHCNd) dataset is created and maintained by the [National Centers for Environmental Information (NCEI)](https://www.ncei.noaa.gov/). Users can download it directly from the GHCNd's data directory [page](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/), which provides access to the latest version along with supporting documentation. Daily data from GHCN are available as individual ASCII (i.e., plain text) files (one file per station) and as a GZIP-compressed TAR file containing all of the station files. The descriptions of the data format of available metadata and data files are all laid out in the GHCNd [readme file](). This is the best source for accessing the most up-to-date version of the dataset.
 
 
 |  **Version**   | **Variables**  	| **Resolution** | **Spatial Extent** | **File Format**   	|
