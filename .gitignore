@@ -10,3 +10,5 @@
 /.quarto/
 
 /.luarc.json
+
+**/*.quarto_ipynb
