@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="generator" content="quarto-1.6.42">
+=======
+<meta name="generator" content="quarto-1.8.24">
+>>>>>>> origin/main
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,15 +70,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../favicon.ico" rel="icon">
+<<<<<<< HEAD
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
+=======
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<<<<<<< HEAD
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2fa0555fe88427c29efa1b60aaf9e62d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap-dff3de521ae6401c62226015efe11d87.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+=======
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-f16cd255ecb5ae9510f6a112aa2ee9ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-747f4fabd3009afeb1202f4dea7806e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -145,7 +162,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -171,7 +188,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo light-content">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -277,7 +295,7 @@ window.Quarto = {
 
 
 <div class="tabset-margin-container"></div><div class="page-tabs panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Modelling</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Modelling</a></li></ul>
 <div class="page-tabs tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <h2 class="anchored">
@@ -409,7 +427,7 @@ Accessing the data
 </h2>
 <p>CRU is a widely used dataset and can be downloaded from several different platforms.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Data Creator</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Climate Data Store</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">KNMI Climate Explorer</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Data Creator</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Climate Data Store</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">KNMI Climate Explorer</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>The <a href="https://www.uea.ac.uk/groups-and-centres/climatic-research-unit">Climatic Research Unit (CRU)</a> at the University of East Anglia is the creator of this dataset. Users can download it directly from their <a href="https://crudata.uea.ac.uk/cru/data/hrg/">website</a>, which lists all available datasets, with the most recent version listed at the top. When downloading from CRU, the file provided are for the full global dataset and are available in both ASCII and NetCDF formats. This is the best source for accessing the latest version of the data.</p>
@@ -511,7 +529,7 @@ What the data looks likes
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyterra) </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
@@ -544,7 +562,7 @@ What the data looks likes
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitude"</span>, </span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Latitude"</span>,</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Mean annual rainfall over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -557,7 +575,7 @@ What the data looks likes
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig2_mean_monthly_avg_temperature <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"data/Fig2_MeanMonthlyAverageTemp_CRU_TS-4.08_1991-2020_SouthernAfrica.nc"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig2_mean_monthly_avg_temperature <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"data/Fig2_MeanMonthlyAverageTemp_CRU_TS-4.08_1991-2020_SouthernAfrica.nc"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -580,7 +598,7 @@ What the data looks likes
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Longitude"</span>, </span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Latitude"</span>,</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Annual average daily mean temperature over Southern Africa from 1991-2020, derived from CRU TS v4.08 data. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -593,7 +611,7 @@ What the data looks likes
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fig3_PRCPTOT_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig3_PRCPTOT_mon_CRU_TS-4.08_199101-202012_climatology_Bulawayo.csv"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -642,7 +660,7 @@ What the data looks likes
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Seasonal Cycle of Rainfall and Temperature in Bulawayo"</span>,</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Month"</span>,</span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Monthly climatology of rainfall (bars) and monthly average daily mean temperature (line) for Bulawayo. Zimbabwe, for the period 1991-2020, derived from CRU TS v4.08 data. We see Bulawayo experiences a signioficant propotion of it's rainfall in the warm summer months and is very dry in the temperate winter months. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -655,7 +673,7 @@ What the data looks likes
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig4_PRCPTOT_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig4_PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig4_PRCPTOT_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig4_PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the timeseries plot</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -699,7 +717,7 @@ What the data looks likes
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Monthly Rainfall and Station Count in Bulawayo (1901-2023)"</span>,</span>
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Monthly rainfall time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly rainfall value. The data is derived from CRU TS v4.08. Notably, there is a decrease in the number of contributing stations from around 2010 onwards. Caution is advised when interpreting values calculated without any station data contributions. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -712,7 +730,7 @@ What the data looks likes
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig5_tas_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig5_tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig5_tas_mon <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Fig5_tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the timeseries plot</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -758,7 +776,7 @@ What the data looks likes
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Monthly Average Daily Mean Temperature and </span><span class="sc">\n</span><span class="st"> Station Count in Bulawayo (1901-2023)"</span>,</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Monthly average daily mean temperature time series for Bulawayo, Zimbabwe, from 1901 to 2023, with black dots indicating the number of stations contributing to each monthly average daily mean temperature value. The data is derived from CRU TS v4.08.  The number of contributing stations remains at an adequate level throughout the time series, with a minimum of three stations. Data Source: Climatic Research Unit (University of East Anglia), CRU TS v4.08 Dataset (https://doi.org/10.1038/s41597-020-0453-3)"</span>, <span class="at">width =</span> <span class="dv">75</span>)</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -937,7 +955,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>temperature_values <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(time, tas) <span class="sc">|&gt;</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tas =</span> tas<span class="dv">-273</span>) <span class="sc">|&gt;</span> <span class="co">#convert from Kelvin to Celsius</span></span>
@@ -955,7 +973,7 @@ How can this data be used in disease modelling?
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Changes in temperature over time. Source: tas_mon_CRU-TS 4.08"</span>)</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -968,7 +986,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert one year of temperature data into seasonal forcing function by normalisation of values</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert one year of temperature data into seasonal forcing function by normalisation of values</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>temperature_10yrs <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>, <span class="cf">function</span>(i) {</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  temperature_values <span class="sc">|&gt;</span> </span>
@@ -1012,7 +1030,7 @@ How can this data be used in disease modelling?
 <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Scaled temperature"</span>,</span>
 <span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Using scaled temperature values from 2018 we fit a seasonal curve to obtain inputs for the seasonal forcing function. The fit predicted values for amp = 0.4302 and phi = 0.9913."</span>)</span>
 <span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1026,7 +1044,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="dv">10</span> <span class="co"># Years of simulation</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">365</span><span class="sc">*</span>Y, <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1129,7 +1147,7 @@ How can this data be used in disease modelling?
 <span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cases"</span>,</span>
 <span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Population"</span>,</span>
 <span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"We see the seasonal pattern and the peak malaria season between October and April and lowest between June and September (the cold, dry months). The inclusion of control interventions or other dynamics would shift incidence on a year-by-year basis. Source: Model output"</span>)</span>
-<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1233,6 +1251,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           childEl.remove();
         }
       }
+<<<<<<< HEAD
       return codeEl.innerText;
   }
   const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
@@ -1243,6 +1262,55 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
+=======
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+>>>>>>> origin/main
     });
     clipboardModal.on('success', onCopySuccess);
   }

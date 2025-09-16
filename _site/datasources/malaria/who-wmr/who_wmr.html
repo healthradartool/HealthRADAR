@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="generator" content="quarto-1.6.42">
+=======
+<meta name="generator" content="quarto-1.8.24">
+>>>>>>> origin/main
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,15 +70,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../favicon.ico" rel="icon">
+<<<<<<< HEAD
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
+=======
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<<<<<<< HEAD
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2fa0555fe88427c29efa1b60aaf9e62d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap-dff3de521ae6401c62226015efe11d87.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+=======
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-f16cd255ecb5ae9510f6a112aa2ee9ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-747f4fabd3009afeb1202f4dea7806e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -145,7 +162,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -171,7 +188,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo light-content">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -275,7 +293,7 @@ window.Quarto = {
 
 
 <div class="tabset-margin-container"></div><div class="page-tabs panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Modelling</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Modelling</a></li></ul>
 <div class="page-tabs tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <h2 class="anchored">
@@ -427,7 +445,7 @@ Warning
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View Annex 4J of the 2023 World Malaria Report. Note that we remove the footnotes here.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View Annex 4J of the 2023 World Malaria Report. Note that we remove the footnotes here.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The gt package is used for better formatting, but this is optional.</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>whowmr<span class="sc">::</span>wmr2023<span class="sc">$</span>wmr2023j <span class="sc">|&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Hide the footnotes</span></span>
@@ -435,7 +453,7 @@ Warning
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Country, <span class="st">`</span><span class="at">2010</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2022</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.align =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.align =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="jjwvhjacwq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -888,7 +906,7 @@ Warning
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="Country" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Country</th>
@@ -1014,7 +1032,7 @@ Warning
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the E8 countries</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the E8 countries</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>e8_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Botswana"</span>, <span class="st">"Eswatini"</span>, <span class="st">"Namibia"</span>, <span class="st">"South Africa"</span>, <span class="st">"Angola"</span>, <span class="st">"Mozambique"</span>, <span class="st">"Zambia"</span>, <span class="st">"Zimbabwe"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data for the E8 countries</span></span>
@@ -1025,7 +1043,7 @@ Warning
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># View the filtered dataset</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(wmr2023j_e8)<span class="sc">|&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.align =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.align =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="jxufdefsqj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1478,7 +1496,7 @@ Warning
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="Country" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Country</th>
@@ -1638,7 +1656,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the lollipop plot</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wmr2023Ea_Africa, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(Country, ITNCovPercent, <span class="at">.na_rm =</span> <span class="cn">FALSE</span>),</span>
@@ -1653,7 +1671,7 @@ How to plot this data?
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Data for selected African countries"</span>,</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The percentage of households with at least one insecticide-treated net (ITN) in selected African countries, highlighting variations in ITN coverage. Benin,and Mozambique exhibit the highest coverage, while Kenya and Nigeria have the lowest. Most countries have coverage between 50% and 60%, which supports malaria control efforts if ITNs are properly used and resistance to insecticides remains low. Source: WMR 2023 Annex 4Ea."</span>, <span class="at">width =</span> <span class="dv">75</span>),</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Country"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1666,7 +1684,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)</span>
@@ -1699,7 +1717,7 @@ How to plot this data?
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_identity</span>() <span class="sc">+</span>  </span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,  <span class="co"># Keep the caption outside the plot area</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1712,7 +1730,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>whowmr<span class="sc">::</span>wmr2023<span class="sc">$</span>wmr2023f <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>whowmr<span class="sc">::</span>wmr2023<span class="sc">$</span>wmr2023f <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter for the frontline E8 countries</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Country/area</span><span class="st">`</span> <span class="sc">|&gt;</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="st">"Botswana|Eswatini|Namibia|South Africa"</span>),</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="co"># We couldn't get opt_interactive to work with grouped rows so we'll just display fewer columns</span></span>
@@ -1758,7 +1776,7 @@ How to plot this data?
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(Deaths_Upper)</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.align =</span> <span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.align =</span> <span class="st">"left"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="vupknccyxg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -2211,7 +2229,7 @@ How to plot this data?
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 11%">
 <col style="width: 11%">
@@ -2225,10 +2243,10 @@ How to plot this data?
 </colgroup>
 <thead>
 <tr class="gt_heading header">
-<th colspan="9" class="gt_heading gt_title gt_font_normal">Population at risk and estimated malaria cases and deaths in the E8 frontline countries</th>
+<td colspan="9" class="gt_heading gt_title gt_font_normal">Population at risk and estimated malaria cases and deaths in the E8 frontline countries</td>
 </tr>
 <tr class="gt_heading even">
-<th colspan="9" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Data from WMR 2023 Annex 4F</th>
+<td colspan="9" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Data from WMR 2023 Annex 4F</td>
 </tr>
 <tr class="gt_col_headings gt_spanner_row header">
 <th rowspan="2" id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
@@ -2384,7 +2402,7 @@ Deaths
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot for Deaths with low and high bands</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot for Deaths with low and high bands</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>whowmr<span class="sc">::</span>wmr2023<span class="sc">$</span>wmr2023f <span class="sc">|&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter for the E8 countries</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Country/area</span><span class="st">`</span> <span class="sc">|&gt;</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(<span class="st">"Angola|Botswana|Eswatini|Malawi|Mozambique|Namibia|South Africa|Zambia|Zimbabwe"</span>)) <span class="sc">|&gt;</span></span>
@@ -2409,7 +2427,7 @@ Deaths
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"Country"</span>,  <span class="co"># Added 'fill' label for the ribbon shading</span></span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The plot displays estimated malaria cases in selected countries from 2000 to 2022, with lines representing case estimates and shaded areas showing the confidence bands. Variations in case numbers and uncertainty across countries are evident, such as stable case numbers in Mozambique, while Angola saw fluctuating cases with increasing uncertainty after 2015. Source: WMR 2023 Annex 4F."</span>, <span class="at">width =</span> <span class="dv">85</span>)</span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2422,7 +2440,7 @@ Deaths
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the costing data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the costing data</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>costing_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tutorial_data/costing_df.csv"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape data for plotting</span></span>
@@ -2449,7 +2467,7 @@ Deaths
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Donor"</span>,</span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The stacked bar plot shows donor contributions to malaria control efforts in selected countries from 2020 to 2022. Contributions vary by country and donor, with Mozambique receiving significant support from the Global Fund and PMI/USAID, while in South Africa, the Global Fund and local government are key contributors. Understanding the distribution of funding is essential for evaluating the sustainability and impact of malaria control programs. Source: WMR 2023 4C."</span>, <span class="at">width =</span> <span class="dv">100</span>)</span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()  <span class="co"># Apply the custom radar theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()  <span class="co"># Apply the custom radar theme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2472,7 +2490,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>estimated_data <span class="ot">&lt;-</span> whowmr<span class="sc">::</span>wmr2023<span class="sc">$</span>wmr2023f <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>estimated_data <span class="ot">&lt;-</span> whowmr<span class="sc">::</span>wmr2023<span class="sc">$</span>wmr2023f <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter for Angola</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Country/area</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Angola"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Population_at_risk =</span><span class="st">"Population denominator for incidence and mortality rate"</span>) <span class="sc">|&gt;</span></span>
@@ -2490,7 +2508,7 @@ How can this data be used in disease modelling?
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Estimated case data as at 23 October 2023"</span>,</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Estimated Cases per 1000"</span>,</span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> stringr<span class="sc">::</span><span class="fu">str_wrap</span>(<span class="st">"We see that the incidence rate for malaria in Angola has generally decreased over time, but rose again after 2014. We also note wide lower and upper ranges of the data, indicating a high level of uncertainty in the exact estimate of the incidence rate. Source: World Malaria Report 2023, Annex 4-F."</span>)) <span class="sc">+</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2517,7 +2535,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated model output with 95% Confidence intervals of incidence rates</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulated model output with 95% Confidence intervals of incidence rates</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>modelled_incidence_rate <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2022</span>,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">incidence_rate =</span> estimated_data<span class="sc">$</span>inci_rate <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(estimated_data<span class="sc">$</span>inci_rate), <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">25</span>)) <span class="sc">|&gt;</span>  </span>
@@ -2536,7 +2554,7 @@ How can this data be used in disease modelling?
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Estimated Cases per 1000"</span>,</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Variable Type"</span>, </span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> stringr<span class="sc">::</span><span class="fu">str_wrap</span>(<span class="st">"The calibrated model output projects incidence close to the WHO estimates. The yellow ribbon represents the model's uncertainty, and its overlap with the confidence intervals of the data indicates a good fit. Source: Model output &amp; World Malaria Report 2023, Annex 4-F."</span>)) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_health_radar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2634,6 +2652,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           childEl.remove();
         }
       }
+<<<<<<< HEAD
       return codeEl.innerText;
   }
   const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
@@ -2644,6 +2663,55 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
+=======
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+>>>>>>> origin/main
     });
     clipboardModal.on('success', onCopySuccess);
   }

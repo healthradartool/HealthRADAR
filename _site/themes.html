@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="generator" content="quarto-1.6.42">
+=======
+<meta name="generator" content="quarto-1.8.24">
+>>>>>>> origin/main
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,15 +34,28 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./favicon.ico" rel="icon">
+<<<<<<< HEAD
 <script src="site_libs/quarto-html/quarto.js"></script>
+=======
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+>>>>>>> origin/main
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<<<<<<< HEAD
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2fa0555fe88427c29efa1b60aaf9e62d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-dff3de521ae6401c62226015efe11d87.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+=======
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-f16cd255ecb5ae9510f6a112aa2ee9ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-747f4fabd3009afeb1202f4dea7806e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+>>>>>>> origin/main
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,7 +120,8 @@ background: #EDF3F9;
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    <img src="./img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo light-content">
+    <img src="./img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -311,6 +329,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           childEl.remove();
         }
       }
+<<<<<<< HEAD
       return codeEl.innerText;
   }
   const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
@@ -321,6 +340,55 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
+=======
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+>>>>>>> origin/main
     });
     clipboardModal.on('success', onCopySuccess);
   }

@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="generator" content="quarto-1.6.42">
+=======
+<meta name="generator" content="quarto-1.8.24">
+>>>>>>> origin/main
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,15 +70,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../favicon.ico" rel="icon">
+<<<<<<< HEAD
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
+=======
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<<<<<<< HEAD
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2fa0555fe88427c29efa1b60aaf9e62d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap-dff3de521ae6401c62226015efe11d87.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+=======
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-f16cd255ecb5ae9510f6a112aa2ee9ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-747f4fabd3009afeb1202f4dea7806e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -145,7 +162,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -171,7 +188,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo light-content">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -275,7 +293,7 @@ window.Quarto = {
 
 
 <div class="tabset-margin-container"></div><div class="page-tabs panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Modelling</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Modelling</a></li></ul>
 <div class="page-tabs tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <h2 class="anchored">
@@ -384,7 +402,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EnvStats)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rdhs)</span>
@@ -420,14 +438,14 @@ How to plot this data?
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>dat_trt_pp <span class="ot">&lt;-</span> dat_long <span class="sc">|&gt;</span> <span class="fu">filter</span>(Indicator <span class="sc">==</span> <span class="st">"TREATMENT_FAILURE_PP"</span>)</span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the long data for sample size</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>dat_sample <span class="ot">&lt;-</span> dat_long <span class="sc">|&gt;</span> <span class="fu">filter</span>(Indicator <span class="sc">==</span> <span class="st">"SAMPLE_SIZE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>dat_sample <span class="ot">&lt;-</span> dat_long <span class="sc">|&gt;</span> <span class="fu">filter</span>(Indicator <span class="sc">==</span> <span class="st">"SAMPLE_SIZE"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>A stacked bar plot is a useful way of visualising a total value that is made up of a number of contributions. Here, the total number of patients that completed a MTM therapeutic efficacy study per year between 2010 and 2021 are visualised, with the contributions from each of four of the E8 countries highlighted.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of individuals that completed a study in the e8 countries in a given year</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of individuals that completed a study in the e8 countries in a given year</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_sample, <span class="fu">aes</span>(<span class="at">x =</span> YEAR_END, <span class="at">y =</span> Value, <span class="at">fill =</span> COUNTRY_NAME)) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply the custom fill scale for Country</span></span>
@@ -443,7 +461,7 @@ How to plot this data?
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Country"</span>,</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The number of patients that completed a Malaria Threats Map Therapeutic Efficacy Study between 2010 and 2021, for any drug. This excludes all patients that withdrew or were lost to follow-up. Contributions vary by country and year, with Zimbabwe having the highest number of patients complete the study for any year in 2010 (768 patients), and the most patients completing the study across E8 countries in 2015 (1039 patients). Source: Malaria Threats Map Therapeutic Efficacy Study."</span>, <span class="at">width =</span> <span class="dv">85</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -457,7 +475,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data for Zimbabwe only, and remove sites Gokwe and Chiredzi - missing data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data for Zimbabwe only, and remove sites Gokwe and Chiredzi - missing data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>filt_data <span class="ot">=</span> dat_trt_pp <span class="sc">|&gt;</span> <span class="fu">filter</span>(COUNTRY_NAME <span class="sc">==</span> <span class="st">"Zimbabwe"</span> <span class="sc">&amp;</span> <span class="sc">!</span>(SITE_NAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Gokwe"</span>, <span class="st">"Chiredzi"</span>)), DRUG_NAME <span class="sc">==</span> <span class="st">"Artemether-lumefantrine"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a single color for the bars</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>single_color <span class="ot">&lt;-</span> <span class="st">"#1b9e77"</span></span>
@@ -481,7 +499,7 @@ How to plot this data?
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Percentage of patients with treatment failure (2010, 2014 and 2017)"</span>,</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage of Patients"</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The percentage of patients with treatment failure in Artemether-lumefantrine drug trials ending in the years 2010, 2014 and 2017, for trials run at selected sites in Zimbabwe. Note that the y-axis ranges from 0% to 9.1%. This maximum percentage of patients with treatment failure (9.1%) occurs at the Beitbridge site in 2010. At least one trial is completed at each site with an observed treatment failure of 0%. It should be noted that the number of patients who completed each trial differs drastically between trials, with the minimum being 13 at the Uzumba-Maramba-Pfungwe site in 2017, and the maximum being 109 participants at the Mutasa site in 2010. This impacts the probability of observing a patient with treatment failure. Source: Malaria Threats Map Therapeutic Efficacy Study."</span>, <span class="at">width =</span> <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The percentage of patients with treatment failure in Artemether-lumefantrine drug trials ending in the years 2010, 2014 and 2017, for trials run at selected sites in Zimbabwe. Note that the y-axis ranges from 0% to 9.1%. This maximum percentage of patients with treatment failure (9.1%) occurs at the Beitbridge site in 2010. At least one trial is completed at each site with an observed treatment failure of 0%. It should be noted that the number of patients who completed each trial differs drastically between trials, with the minimum being 13 at the Uzumba-Maramba-Pfungwe site in 2017, and the maximum being 109 participants at the Mutasa site in 2010. This impacts the probability of observing a patient with treatment failure. Source: Malaria Threats Map Therapeutic Efficacy Study."</span>, <span class="at">width =</span> <span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -492,14 +510,14 @@ How to plot this data?
 </div>
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the treatment working nearly perfectly, or is there some other factor potentially at play with a number of sites having treatment failure of 0% in 2017? There is no missing data (i.e. these aren't NaNs), and the sample sizes range between 13 and 103, so they are mostly respectable. I feel like I may have missed a mitigating factor which should be mentioned in the caption</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the treatment working nearly perfectly, or is there some other factor potentially at play with a number of sites having treatment failure of 0% in 2017? There is no missing data (i.e. these aren't NaNs), and the sample sizes range between 13 and 103, so they are mostly respectable. I feel like I may have missed a mitigating factor which should be mentioned in the caption</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>A lollipop plot can be used to visualise the percentage of patients who experienced treatment failure on different drugs, in different countries. A problem is encountered, however, if multiple trials in the same country had the same percentage of patients with treatment failure. Jittering is used to solve this problem, which decreases the visual appeal but ensures that important information is not obscured.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed to ensure identical jittering every time the plot is built</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">18</span>)</span>
@@ -531,7 +549,7 @@ How to plot this data?
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">65</span>),</span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">""</span>,</span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage"</span>, </span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Drug"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Drug"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -553,7 +571,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>therapeutic_eff_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/MTM_THERAPEUTIC_EFFICACY_STUDY_20250324.xlsx"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">sheet =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span>  </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TREATMENT_FAILURE_PP =</span> <span class="fu">as.numeric</span>(TREATMENT_FAILURE_PP)<span class="sc">/</span><span class="dv">100</span>)</span>
@@ -577,7 +595,7 @@ How can this data be used in disease modelling?
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proportion that failed treatment"</span>,</span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">"Year and Variable"</span>, </span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Median and Interquartile values from study results indicated by boxplot. We see that mean treatment failure is decreasing over time, from 3% in 2010 to almost 0% in 2017. Source: Malaria Threats Map."</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Median and Interquartile values from study results indicated by boxplot. We see that mean treatment failure is decreasing over time, from 3% in 2010 to almost 0% in 2017. Source: Malaria Threats Map."</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -594,7 +612,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="dv">22</span> <span class="co"># Years of simulation</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">365</span><span class="sc">*</span>Y, <span class="dv">1</span>) <span class="co"># time in days</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -701,7 +719,7 @@ How can this data be used in disease modelling?
 <span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage"</span>,</span>
 <span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"In general, treatment follows the seasonal pattern of malaria, but the treatment success rate has an overall increasing trend as treatment failure decreases over time, and more infected individuals are successfully cured. Source: Model output"</span>)) <span class="sc">+</span></span>
-<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">guides =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">guides =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -718,7 +736,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(triangle)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(triangle)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lhs)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -803,7 +821,7 @@ How can this data be used in disease modelling?
 <span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage"</span>,</span>
 <span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"Sensitivity analysis of values for treatment failure in each year. Sampling from within the minimum and maximum ranges provided does not appear to significantly cause changes to the treatment success rate. Source: Model output."</span>)) <span class="sc">+</span></span>
-<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -900,6 +918,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           childEl.remove();
         }
       }
+<<<<<<< HEAD
       return codeEl.innerText;
   }
   const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
@@ -910,6 +929,55 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
+=======
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+>>>>>>> origin/main
     });
     clipboardModal.on('success', onCopySuccess);
   }

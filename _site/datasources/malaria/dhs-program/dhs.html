@@ -2,7 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="generator" content="quarto-1.6.42">
+=======
+<meta name="generator" content="quarto-1.8.24">
+>>>>>>> origin/main
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,15 +70,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../favicon.ico" rel="icon">
+<<<<<<< HEAD
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
+=======
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<<<<<<< HEAD
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2fa0555fe88427c29efa1b60aaf9e62d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap-dff3de521ae6401c62226015efe11d87.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+=======
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-f16cd255ecb5ae9510f6a112aa2ee9ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-747f4fabd3009afeb1202f4dea7806e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+>>>>>>> origin/main
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -155,7 +172,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -181,7 +198,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo light-content">
+    <img src="../../../img/Health RADAR Logo Transparent.png" alt="" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -284,7 +302,7 @@ window.Quarto = {
 
 
 <div class="tabset-margin-container"></div><div class="page-tabs panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Modelling</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Visualisations</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Modelling</a></li></ul>
 <div class="page-tabs tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <h2 class="anchored">
@@ -298,7 +316,7 @@ Accessing the data
 </h2>
 <p>There are several options for accessing the data, each thoroughly explained in other resources.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">DHS Website</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">STATcompiler</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">R package</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">DHS Website</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">STATcompiler</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">R package</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p><a href="https://www.dhsprogram.com/data/Access-Instructions.cfm">The DHS Program Access Instructions:</a> This requires signing up for a free user account.</p>
@@ -371,11 +389,11 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>indicators <span class="ot">&lt;-</span> <span class="fu">dhs_indicators</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>indicators <span class="ot">&lt;-</span> <span class="fu">dhs_indicators</span>()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all indicators starting with ML</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>all_malaria_indicators <span class="ot">=</span> indicators[<span class="fu">grepl</span>(<span class="st">"^ML"</span>, indicators<span class="sc">$</span>IndicatorId), <span class="fu">c</span>(<span class="st">"IndicatorId"</span>, <span class="st">"Definition"</span>)]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(all_malaria_indicators))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(all_malaria_indicators))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -429,10 +447,10 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tags <span class="ot">&lt;-</span> <span class="fu">dhs_tags</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tags <span class="ot">&lt;-</span> <span class="fu">dhs_tags</span>()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the tags related to malaria</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tags[<span class="fu">grepl</span>(<span class="st">"Malaria"</span>, tags<span class="sc">$</span>TagName), ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tags[<span class="fu">grepl</span>(<span class="st">"Malaria"</span>, tags<span class="sc">$</span>TagName), ])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -467,7 +485,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the country codes of the frontline 4 of the elimination 8 countries</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the country codes of the frontline 4 of the elimination 8 countries</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>all_countries <span class="ot">=</span> <span class="fu">dhs_countries</span>(<span class="at">returnFields=</span><span class="fu">c</span>(<span class="st">"CountryName"</span>,<span class="st">"DHS_CountryCode"</span>))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the country codes of the frontline 4 of the elimination 8 countries</span></span>
@@ -488,14 +506,14 @@ How to plot this data?
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>filt_data <span class="ot">=</span> data1[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^</span><span class="sc">\\</span><span class="st">..*"</span>, data1<span class="sc">$</span>CharacteristicLabel),]</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data for Namibia only</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>filt_data <span class="ot">=</span> filt_data[filt_data<span class="sc">$</span>CountryName <span class="sc">==</span> <span class="st">"Namibia"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>filt_data <span class="ot">=</span> filt_data[filt_data<span class="sc">$</span>CountryName <span class="sc">==</span> <span class="st">"Namibia"</span>,]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>A faceted bar plot can be used to visualise the percentage of households with at least one insecticide-treated net (ITN) in each Namibian province at a small number of time points.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a single color for the bars</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a single color for the bars</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>single_color <span class="ot">&lt;-</span> <span class="st">"#1b9e77"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data as a bar plot</span></span>
@@ -521,7 +539,7 @@ How to plot this data?
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Namibian households with at least one mosquito net"</span>,</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Percentage of Households"</span>,</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The percentage of households in different regions of Namibia which have at least one mosquito net, based on subnational DHS survey data collected in 2006 and 2013. The Northeast region of Namibia has the highest percentage of households with at least one mosquito net in both 2006 and 2013, while the South region has the lowest. Every region saw an increase in the percentage of households with at least one mosquito net from 2006 to 2013. Note that the y-axis ranges from 0% to 57%. Source: DHS Data API - Malaria Indicator ML_NETP_H_MOS"</span>, <span class="at">width =</span> <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The percentage of households in different regions of Namibia which have at least one mosquito net, based on subnational DHS survey data collected in 2006 and 2013. The Northeast region of Namibia has the highest percentage of households with at least one mosquito net in both 2006 and 2013, while the South region has the lowest. Every region saw an increase in the percentage of households with at least one mosquito net from 2006 to 2013. Note that the y-axis ranges from 0% to 57%. Source: DHS Data API - Malaria Indicator ML_NETP_H_MOS"</span>, <span class="at">width =</span> <span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -534,7 +552,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve DHS data for the specified indicator, countries, and survey years</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve DHS data for the specified indicator, countries, and survey years</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">dhs_data</span>(<span class="at">indicatorIds =</span> <span class="st">"ML_NETP_H_MNM"</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">countryIds =</span> e8_codes,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">surveyYearStart =</span> <span class="dv">2000</span>,</span>
@@ -544,14 +562,14 @@ How to plot this data?
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>filt_data <span class="ot">=</span> data2[data2<span class="sc">$</span>LevelRank <span class="sc">==</span> <span class="dv">1</span>,]</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with CharacteristicLabel starting with ".." to avoid double counting regions</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>filt_data <span class="ot">=</span> filt_data[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^</span><span class="sc">\\</span><span class="st">..*"</span>, filt_data<span class="sc">$</span>CharacteristicLabel),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>filt_data <span class="ot">=</span> filt_data[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^</span><span class="sc">\\</span><span class="st">..*"</span>, filt_data<span class="sc">$</span>CharacteristicLabel),]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Generalised linear models can be used to fit an estimated mean value for the number of mosquito nets per household in various African countries. Rather than including all of these countries on one plot, the visualisation can be faceted to show multiple smaller plots - one for each country.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data using ggplot2</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data using ggplot2</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(filt_data, <span class="fu">aes</span>(<span class="at">x =</span> SurveyYear, <span class="at">y =</span> Value), <span class="at">colour =</span> single_color) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add points to the plot</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">colour =</span> single_color) <span class="sc">+</span></span>
@@ -574,7 +592,7 @@ How to plot this data?
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean Nets Per Household"</span>,</span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"The mean number of mosquito nets per household is estimated by fitting a generalised linear model (GLM) to subnational survey data collected in various years for a selection of Elimination 8 (E8) countries. These GLMs are shown as lines with their 95% confidence intervals displayed in grey, while the data on which the GLMs were built are shown as points. Note that the y-axis ranges differ between countries. Namibia and Eswatini each have only two recorded data points, making it difficult to draw reliable conclusions for either country. All four remaining countries show an increase in mean number of mosquito nets per household, with the mean number of nets per household being between 1 and 2 for their respective most recent survey year. Source: DHS Data API - Malaria Indicator ML_NETP_H_MNM"</span>, <span class="at">width =</span> <span class="dv">95</span>)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -588,7 +606,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data for Zambia for the year 2018</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the data for Zambia for the year 2018</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> data2[(data2<span class="sc">$</span>CountryName <span class="sc">==</span> <span class="st">"Zambia"</span> <span class="sc">&amp;</span> data2<span class="sc">$</span>SurveyYear <span class="sc">==</span> <span class="dv">2018</span>),]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the related spatial data frame object for Zambia</span></span>
@@ -623,7 +641,7 @@ How to plot this data?
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>(),</span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -637,7 +655,7 @@ How to plot this data?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a request to DHS data API for Malawi, for the specified indicator, and survey years</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">dhs_data</span>(<span class="at">countryIds =</span> <span class="st">"MW"</span>,</span>
@@ -694,7 +712,7 @@ How to plot this data?
 <span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">labFormat =</span> <span class="fu">labelFormat</span>()</span>
 <span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set the initial view of the map to focus on Malawi</span></span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lng =</span> <span class="dv">37</span>, <span class="at">lat =</span> <span class="sc">-</span><span class="dv">13</span>, <span class="at">zoom =</span> <span class="fl">5.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="at">lng =</span> <span class="dv">37</span>, <span class="at">lat =</span> <span class="sc">-</span><span class="dv">13</span>, <span class="at">zoom =</span> <span class="fl">5.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="leaflet html-widget html-fill-item" id="htmlwidget-3e782e42e3c51c0721f3" style="width:100%;height:464px;"></div>
@@ -730,7 +748,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Source LLIN coverage and usage data from DHS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Source LLIN coverage and usage data from DHS</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>indicators <span class="ot">&lt;-</span> <span class="fu">dhs_indicators</span>()</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>all_malaria_indicators <span class="ot">&lt;-</span> indicators <span class="sc">|&gt;</span> </span>
@@ -766,7 +784,7 @@ How can this data be used in disease modelling?
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the two datasets</span></span>
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>LLIN_data <span class="ot">&lt;-</span> <span class="fu">full_join</span>(LLIN_data, LLIN_access, <span class="at">by =</span> <span class="st">"SurveyYear"</span>) <span class="sc">|&gt;</span>  </span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SurveyYear <span class="sc">&gt;</span> <span class="dv">2007</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SurveyYear <span class="sc">&gt;</span> <span class="dv">2007</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -796,7 +814,7 @@ How can this data be used in disease modelling?
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Time points for the simulation</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="dv">17</span> <span class="co"># Years of simulation</span></span>
@@ -879,7 +897,7 @@ How can this data be used in disease modelling?
 <span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Malaria prevention through access and use of LLINs"</span>,</span>
 <span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
 <span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion of population at risk (%)"</span>,</span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"DHS' data captures access to LLINs at particular points in time, but this data may be incongruent with annual LLIN access data captured from the World Malaria Report. We expect effective coverage to be lower than access when accounting for operational effectiveness, usage and waning in the insecticide efficacy and physical integrity of the net. Sources: Model output; DHS Data API - Malaria Indicators ML_NETP_H_IT2 &amp; ML_NETP_H_LL2; World Malaria Report Annexes 4-D and 4-F."</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(<span class="st">"DHS' data captures access to LLINs at particular points in time, but this data may be incongruent with annual LLIN access data captured from the World Malaria Report. We expect effective coverage to be lower than access when accounting for operational effectiveness, usage and waning in the insecticide efficacy and physical integrity of the net. Sources: Model output; DHS Data API - Malaria Indicators ML_NETP_H_IT2 &amp; ML_NETP_H_LL2; World Malaria Report Annexes 4-D and 4-F."</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -976,6 +994,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           childEl.remove();
         }
       }
+<<<<<<< HEAD
       return codeEl.innerText;
   }
   const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
@@ -986,6 +1005,55 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
+=======
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+>>>>>>> origin/main
     });
     clipboardModal.on('success', onCopySuccess);
   }
