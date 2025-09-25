@@ -16,7 +16,7 @@ Here are a few guidelines to help you understand the project, learn about the st
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by our [Code of Conduct](https://github.com/healthradartool/.github/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+This project and everyone participating in it is governed by our [Code of Conduct](https://github.com/healthradartool/.github/blob/main/CODE_OF_CONDUCT.md){target="_blank"}. By participating, you are expected to uphold this code.
 
 ## What can you contribute to?
 
@@ -41,6 +41,6 @@ Each page has three major sections:
 - Visualisations
 - Modelling
 
-The overview section provides a brief overview of the dataset, including the source, how to access the data and any caveats or limitations. The visualisations section provides a few visualisations of the data and the modelling section provides a few modelling examples. To learn more about contributing a data source page you can have a look at our [contribution guide](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md).
+The overview section provides a brief overview of the dataset, including the source, how to access the data and any caveats or limitations. The visualisations section provides a few visualisations of the data and the modelling section provides a few modelling examples. To learn more about contributing a data source page you can have a look at our [contribution guide](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md){target="_blank"}.
 
 
