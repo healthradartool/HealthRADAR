@@ -1,0 +1,46 @@
+---
+title: "Contributing to Health RADAR"
+subtitle: "This guide provides detailed instructions to help you effectively contribute to the Health RADAR project."
+page-layout: full
+format: 
+  html: 
+    code-fold: false
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+comments: false
+---
+
+First of all, thank you for choosing to contribute some of your time to Health RADAR. 
+
+Here are a few guidelines to help you understand the project, learn about the style guide, development best practices and how to contribute.
+
+## Code of Conduct
+
+This project and everyone participating in it is governed by our [Code of Conduct](https://github.com/healthradartool/.github/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+## What can you contribute to?
+
+There are many ways in which the community can contribute to this project:
+
+- Help develop pages for malaria data sources 
+- Suggest datasources for inclusion
+- Contribute to content editing
+- General feedback and suggestions are welcome 
+
+## Report issues
+
+A very good way to contribute is to report issues, either found when working on a pull request or when simply using Health RADAR. We have issue templates to help you report feature requests or bugs, please use them when reporting an issue. We also have a [report issues](/issues.qmd) page where you can report issues if you are not familiar with GitHub.
+
+## How to contribute a data source page
+
+Contributing a page requires the completion of a page template, with a folder for static images and any sample datasets used. 
+
+Each page has three major sections:
+
+- Overview
+- Visualisations
+- Modelling
+
+The overview section provides a brief overview of the dataset, including the source, how to access the data and any caveats or limitations. The visualisations section provides a few visualisations of the data and the modelling section provides a few modelling examples. To learn more about contributing a data source page you can have a look at our [contribution guide](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md).
+
+

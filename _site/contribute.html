@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Health RADAR is a tool to acquire context and access to optionalisable data for modelling malaria in Southern Africa.">
 
-<title>Health: RADAR</title>
+<title>Contributing to Health RADAR</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,6 +76,23 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
 </script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #212529;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #212529;
+background: #EDF3F9;
+      }
+</style>
 
 
 </head>
@@ -84,7 +100,7 @@ gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -100,7 +116,7 @@ gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -123,7 +139,7 @@ gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./contribute.html"> 
+    <a class="nav-link active" href="./contribute.html" aria-current="page"> 
 <span class="menu-text">Contribute</span></a>
   </li>  
   <li class="nav-item">
@@ -145,120 +161,80 @@ gtag('config', 'G-H03EKDS8HM', { 'anonymize_ip': true});
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Contributing to Health RADAR</h1>
+            <p class="subtitle lead">This guide provides detailed instructions to help you effectively contribute to the Health RADAR project.</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link active" data-scroll-target="#code-of-conduct">Code of Conduct</a></li>
+  <li><a href="#what-can-you-contribute-to" id="toc-what-can-you-contribute-to" class="nav-link" data-scroll-target="#what-can-you-contribute-to">What can you contribute to?</a></li>
+  <li><a href="#report-issues" id="toc-report-issues" class="nav-link" data-scroll-target="#report-issues">Report issues</a></li>
+  <li><a href="#how-to-contribute-a-data-source-page" id="toc-how-to-contribute-a-data-source-page" class="nav-link" data-scroll-target="#how-to-contribute-a-data-source-page">How to contribute a data source page</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content page-columns page-full column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
-<div id="hero-banner" class="column-screen page-columns page-full">
-<div class="grid column-page">
-<div class="headline g-col-lg-12 g-col-12 g-col-md-12">
-<div id="homepage-heading" class="h1">
-<p>Welcome to Health RADAR</p>
-</div>
-<div class="description h4">
-<p>Health RADAR is a centralised resource for data relevant to climate sensitive infectious disease (CSID) modelling. Explore our data pages for guidance on downloading and using CSID modelling data.</p>
-</div>
-<div class="entry-point">
-<div class="grid">
-<div class="g-col-12 g-col-md-5 h5">
-<p>I am looking for data in</p>
-<div class="hero-buttons">
-<p><select class="form-select form-select-lg mb-3" aria-label="Large select example"> <option selected="">Malaria</option> <option value="1" disabled="">Chikungunya</option> <option value="2" disabled="">Dengue</option> <option value="3" disabled="">Cholera</option> </select></p>
-<p><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"></p>
-<p><a href="./themes.html"> <button class="btn btn-primary hero-button w-100" type="button" width="">Proceed <i class="fa-solid fa-arrow-right-to-bracket"></i></button> </a></p>
-</div>
-</div>
-<div class="g-col-12 g-col-md-7">
-<p><img src="img/Health RADAR - landing image.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="rating-cards-section" class="content-block column-screen page-columns page-full">
-<div class="column-page">
-<div class="grid align-items-center">
-<div class="g-col-12 g-col-md-4">
-<div class="content-card">
-<div class="card-header">
-<p>Data Sources</p>
-</div>
-<div class="card-image">
-<p><img src="img/data-sources.png" class="img-fluid"></p>
-</div>
-<div class="card-description">
-<p>Access comprehensive datasets for climate sensitive infectious disease modelling including demographic, epidemiological and environmental data.</p>
-</div>
-</div>
-</div>
-<div class="g-col-12 g-col-md-4">
-<div class="content-card">
-<div class="card-header">
-<p>Documentation</p>
-</div>
-<div class="card-image">
-<p><img src="img/documentation.png" class="img-fluid"></p>
-</div>
-<div class="card-description">
-<p>Detailed guides and tutorials on how to download, process and incorporate data into your CSID models effectively.</p>
-</div>
-</div>
-</div>
-<div class="g-col-12 g-col-md-4">
-<div class="content-card">
-<div class="card-header">
-<p>Code Examples</p>
-</div>
-<div class="card-image">
-<p><img src="img/code-examples.png" class="img-fluid"></p>
-</div>
-<div class="card-description">
-<p>Worked examples and code snippets showing how to integrate various data sources into your modelling workflows.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="radar-block" class="content-block column-screen page-columns page-full">
-<div class="column-page">
-<!-- Use .grid and add .align-items-center for vertical alignment -->
-<div class="grid align-items-stretch">
-<!-- First column: 100% width on mobile, 50% on medium screens and up -->
-<div class="g-col-12 g-col-md-6">
-<div class="hero-text h3">
-<p>Responsible Access to Data for Analysis and Research</p>
-</div>
-<div class="description">
-<p>Health RADAR makes it easier to find and use data for climate sensitive infectious disease (CSID) modelling. The platform collates a wide range of data sources—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. While the data are not available for download on our site, Health RADAR guides you through downloading the data on partner websites. In addition, Health RADAR provides extensive documentation that describes and contextualises each dataset and offers worked code examples on how to incorporate data into CSID models.</p>
-</div>
-<p><br> <a href="./about.html"> <button id="learn-more" class="btn btn-outline-primary btn-action-primary btn-action btn-success btn-sm" type="button"> Learn More About Health RADAR <i class="fa-solid fa-arrow-right-to-bracket"></i> </button> </a></p>
-</div>
-<!-- Second column: 100% width on mobile, 50% on medium screens and up -->
-<div class="g-col-12 g-col-md-6">
-<!-- Pro-tip: adding {.img-fluid} makes the image scale nicely within its column -->
-<p><img src="img/Browse-Data-Sources.png" id="data-image" class="img-fluid"></p>
-</div>
-</div>
-<!-- End of .grid -->
-</div>
-</div>
-<div id="browse-btn-block" class="content-block column-screen page-columns page-full">
-<div class="column-page">
-<p><a href="./data.html"> <button id="browse-all" class="btn btn-primary btn-browse btn-action-primary btn-action btn-success btn-lg" type="button"> Browse All Data Sources <i class="fa-solid fa-square-up-right"></i> </button> </a></p>
-</div>
-</div>
+
+<p>First of all, thank you for choosing to contribute some of your time to Health RADAR.</p>
+<p>Here are a few guidelines to help you understand the project, learn about the style guide, development best practices and how to contribute.</p>
+<section id="code-of-conduct" class="level2">
+<h2 class="anchored" data-anchor-id="code-of-conduct">Code of Conduct</h2>
+<p>This project and everyone participating in it is governed by our <a href="https://github.com/healthradartool/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>. By participating, you are expected to uphold this code.</p>
+</section>
+<section id="what-can-you-contribute-to" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-you-contribute-to">What can you contribute to?</h2>
+<p>There are many ways in which the community can contribute to this project:</p>
+<ul>
+<li>Help develop pages for malaria data sources</li>
+<li>Suggest datasources for inclusion</li>
+<li>Contribute to content editing</li>
+<li>General feedback and suggestions are welcome</li>
+</ul>
+</section>
+<section id="report-issues" class="level2">
+<h2 class="anchored" data-anchor-id="report-issues">Report issues</h2>
+<p>A very good way to contribute is to report issues, either found when working on a pull request or when simply using Health RADAR. We have issue templates to help you report feature requests or bugs, please use them when reporting an issue. We also have a <a href="./issues.html">report issues</a> page where you can report issues if you are not familiar with GitHub.</p>
+</section>
+<section id="how-to-contribute-a-data-source-page" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-contribute-a-data-source-page">How to contribute a data source page</h2>
+<p>Contributing a page requires the completion of a page template, with a folder for static images and any sample datasets used.</p>
+<p>Each page has three major sections:</p>
+<ul>
+<li>Overview</li>
+<li>Visualisations</li>
+<li>Modelling</li>
+</ul>
+<p>The overview section provides a brief overview of the dataset, including the source, how to access the data and any caveats or limitations. The visualisations section provides a few visualisations of the data and the modelling section provides a few modelling examples. To learn more about contributing a data source page you can have a look at our <a href="https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md">contribution guide</a>.</p>
 
 
+</section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

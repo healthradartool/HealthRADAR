@@ -25,23 +25,21 @@ While recorded annually, meaning the dataset may not be appropriate for investig
 
 The [UNICEF data website](https://data.unicef.org/) serves as a central hub, offering an array of resources such as a frequently updated blog, journal articles, publications, data visualisations, datasets, and other resources related to the data they make available. For those interested in malaria and broader child health indicators, several avenues exist for data access, catering to different levels of detail and user needs.
 
-<h3>Curated datasets from UNICEF Topic Pages</h3>
+**1 - Curated Datasets from UNICEF Topic Pages **
 
 UNICEF's topic-specific pages, such as the [Malaria webpage](https://data.unicef.org/topic/child-health/malaria/#notes), often present data within a narrative context, accompanied by pre-selected indicator datasets available for direct download. These datasets are typically provided as Excel files, offering a convenient "single pack" of key indicators relevant to the topic.
 
 To access the Child Health Coverage dataset, for example, from the UNICEF data website:
 
-Navigate to the 'Data by Topic' tab, and select the 'Malaria' option from the 'Child and Adolescent Health' subsection to reach UNICEF's Malaria webpage.
+-  Navigate to the 'Data by Topic' tab, and select the 'Malaria' option from the 'Child and Adolescent Health' subsection to reach UNICEF's Malaria webpage.
+-  Scroll down until you see the heading 'Malaria Data'. Select the download button beside the label 'Child Health Coverage'.
+-  The dataset will be downloaded as an Excel file, containing many of the indicators discussed previously, pre-filtered for ease of use.
 
-Scroll down until you see the heading 'Malaria Data'. Select the download button beside the label 'Child Health Coverage'.
-
-The dataset will be downloaded as an Excel file, containing many of the indicators discussed previously, pre-filtered for ease of use.
-
-<h3>Direct Access to Survey Data (DHS and MICS Programs)</h3>
+**2 - Direct Access to Survey Data (DHS and MICS Programs) **
 
 For users seeking more granular data, the DHS Program and MICS provide direct access to survey data. These platforms allow users to explore datasets by country, year, and specific indicators. Users can download raw data files for further analysis or use online tools to generate custom tables and visualisations. More information can be found on the [DHS Program](/datasources/malaria/dhs-program/dhs.html) page.
 
-<h3>UNICEF Indicator Data Warehouse (SDMX)</h3>
+**3 - UNICEF Indicator Data Warehouse (SDMX) **
 
 For users requiring programmatic access or a broader range of demographic and health indicators beyond those curated for specific topics, UNICEF provides data through its "UNICEF Indicator Data Warehouse." This warehouse utilizes the SDMX (Statistical Data and Metadata eXchange) protocol, a standard for exchanging statistical data and metadata.
 
@@ -49,7 +47,7 @@ Accessing data via SDMX allows for automated data retrieval, making it suitable 
 
 <h2>What do the data look like?</h2>
 
-Following the first datastream above, the downloaded "Child Health Coverage" Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
+Following the first data avenue above, the downloaded "Child Health Coverage" Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.
 
 ![Layout of the first sheet of the Excel document.](images/malaria_xlsx_index.png)
 
@@ -230,9 +228,9 @@ mal_dat |>
         subtitle = "Data for Southern African countries",
         caption = stringr::str_wrap("This plot displays the percentage of pregnant Angolan, Estwatinian, Mozambiquan, Namibian, Zambian and Zimbabwean women between 15 and 49 years of age, who used insecticide-treated mosquito nets (ITNs) the night prior to their participation in the survey. Records are displayed for the years in which they were collected. Consequences of the 2015 setback in Zimbabwe are further explored in the HealthRADAR modelling example. Source: UNICEF Child Health Coverage Dataset.", width = 75),
         x = "Time",
-        y = "Percent of pregnant women sleeping under an ITN",
-        colour = "Country"
+        y = "Percent of pregnant women sleeping under an ITN"
     ) +
+  guides(colour = "none") +
     facet_wrap(~`Countries and areas`, ncol=1)
 ```
 
