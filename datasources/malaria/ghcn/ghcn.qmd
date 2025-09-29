@@ -69,14 +69,22 @@ GHCNd data can be downloaded from several different platforms.
 
 ::: {.panel-tabset}
 ### Data Creator
-The  is the creator and maintainer of the GHCNd dataset.
+The [National Centers for Environmental Information (NCEI)](https://www.ncei.noaa.gov/) is the creator and maintainer of the GHCNd dataset. The dataset is updated daily and the data is subjected to a suite of quality checks. Each daily update to GHCNd is assigned a unique [version number](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-version.txt), and then archived at NCEI.
 
-The Global Historical Climatology Network – Daily (GHCNd) dataset is created and maintained by the [National Centers for Environmental Information (NCEI)](https://www.ncei.noaa.gov/). Users can download it directly from the GHCNd's data directory [page](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/), which provides access to the latest version along with supporting documentation. Daily data from GHCN are available as individual ASCII (i.e., plain text) files (one file per station) and as a GZIP-compressed TAR file containing all of the station files. The descriptions of the data format of available metadata and data files are all laid out in the GHCNd [readme file](). This is the best source for accessing the most up-to-date version of the dataset.
+The NCEI provides access to the GHCNd dataset via a [data archive](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/), where users can download individual station records in CSV format or as a GZIP-compressed TAR file containing all of the station files. Descriptions of the metadata and data file formats are provided in the [GHCNd documentation](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf). This is the best source for accessing the most up-to-date version of the dataset.
+
+#### Metadata-Inventories
+Additional metadata and inventories are available, including:
+[Stations](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt): Station ID, latitude, longitude, elevation, State (if applicable), and Station name. 
+[Inventory](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt): Station ID, latitude, longitude, element type, and begin/end date
+[Documentation](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf): Data format, element definitions, and Station variables
+[Country Codes](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-countries.txt): List of country codes used in the Station inventory
+[Additional details](https://www.ncei.noaa.gov/pub/data/ghcn/daily/readme.txt)
 
 
 |  **Version**   | **Variables**  	| **Resolution** | **Spatial Extent** | **File Format**   	|
 |----------------|------------------|----------------|--------------------|---------------------|
-|   |  	| 	|  |   |
+| Latest (updated daily)  | All available variables. Station specific 	| Point	| Global  | CSV (.csv)  |
 
 
 ### KNMI Climate Explorer

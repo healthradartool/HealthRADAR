@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://healthradartool.net/data.html</loc>
-    <lastmod>2025-08-19T07:38:37.181Z</lastmod>
+    <lastmod>2025-08-21T07:58:38.681Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/about.html</loc>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://healthradartool.net/contribute.html</loc>
-    <lastmod>2025-09-25T16:01:16.130Z</lastmod>
+    <lastmod>2025-09-29T07:56:27.992Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/drafts/climate-data-store/climate_data_store.html</loc>
@@ -115,5 +115,9 @@
   <url>
     <loc>https://healthradartool.net/updates/pilot_launch.html</loc>
     <lastmod>2025-08-19T07:38:38.631Z</lastmod>
+  </url>
+  <url>
+    <loc>https://healthradartool.net/datasources/malaria/ghcn/ghcn.html</loc>
+    <lastmod>2025-09-29T09:03:16.505Z</lastmod>
   </url>
 </urlset>
