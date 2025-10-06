@@ -117,7 +117,12 @@
     <lastmod>2025-08-19T07:38:38.631Z</lastmod>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://healthradartool.net/datasources/malaria/ghcn/ghcn.html</loc>
     <lastmod>2025-10-02T07:56:54.119Z</lastmod>
+=======
+    <loc>https://healthradartool.net/datasources/malaria/climate-data-store/climate_data_store.html</loc>
+    <lastmod>2025-09-10T08:21:48.820Z</lastmod>
+>>>>>>> origin/main
   </url>
 </urlset>
