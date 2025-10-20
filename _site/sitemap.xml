@@ -37,19 +37,19 @@
     <lastmod>2025-09-01T11:20:14.486Z</lastmod>
   </url>
   <url>
-    <loc>https://healthradartool.net/datasources/malaria/alma-scorecards/alma_scorecards.html</loc>
-    <lastmod>2025-08-19T07:38:37.241Z</lastmod>
+    <loc>https://healthradartool.net/datasources/malaria/climate-data-store/climate_data_store.html</loc>
+    <lastmod>2025-10-20T13:18:53.659Z</lastmod>
   </url>
   <url>
-    <loc>https://healthradartool.net/datasources/drafts/severe-malaria-observatory/severe_malaria_observatory.html</loc>
-    <lastmod>2025-08-19T07:38:37.236Z</lastmod>
+    <loc>https://healthradartool.net/datasources/drafts/the-lancet/lancet_malaria.html</loc>
+    <lastmod>2025-08-19T07:38:37.239Z</lastmod>
   </url>
   <url>
-    <loc>https://healthradartool.net/datasources/drafts/ncar-climate-data-guide/ncar_climate_data_guide.html</loc>
-    <lastmod>2025-08-19T07:38:37.211Z</lastmod>
+    <loc>https://healthradartool.net/datasources/drafts/pmi/pmi.html</loc>
+    <lastmod>2025-08-19T07:38:37.233Z</lastmod>
   </url>
   <url>
-    <loc>https://healthradartool.net/datasources/drafts/global-fund/global_fund.html</loc>
+    <loc>https://healthradartool.net/datasources/drafts/grid3/grid3.html</loc>
     <lastmod>2025-08-19T07:38:37.198Z</lastmod>
   </url>
   <url>
@@ -65,20 +65,20 @@
     <lastmod>2025-09-25T16:01:16.130Z</lastmod>
   </url>
   <url>
-    <loc>https://healthradartool.net/datasources/drafts/climate-data-store/climate_data_store.html</loc>
-    <lastmod>2025-09-15T08:45:04.252Z</lastmod>
-  </url>
-  <url>
-    <loc>https://healthradartool.net/datasources/drafts/grid3/grid3.html</loc>
+    <loc>https://healthradartool.net/datasources/drafts/global-fund/global_fund.html</loc>
     <lastmod>2025-08-19T07:38:37.198Z</lastmod>
   </url>
   <url>
-    <loc>https://healthradartool.net/datasources/drafts/pmi/pmi.html</loc>
-    <lastmod>2025-08-19T07:38:37.233Z</lastmod>
+    <loc>https://healthradartool.net/datasources/drafts/ncar-climate-data-guide/ncar_climate_data_guide.html</loc>
+    <lastmod>2025-08-19T07:38:37.211Z</lastmod>
   </url>
   <url>
-    <loc>https://healthradartool.net/datasources/drafts/the-lancet/lancet_malaria.html</loc>
-    <lastmod>2025-08-19T07:38:37.239Z</lastmod>
+    <loc>https://healthradartool.net/datasources/drafts/severe-malaria-observatory/severe_malaria_observatory.html</loc>
+    <lastmod>2025-08-19T07:38:37.236Z</lastmod>
+  </url>
+  <url>
+    <loc>https://healthradartool.net/datasources/malaria/alma-scorecards/alma_scorecards.html</loc>
+    <lastmod>2025-08-19T07:38:37.241Z</lastmod>
   </url>
   <url>
     <loc>https://healthradartool.net/datasources/malaria/cru-ts/cruts.html</loc>
@@ -115,9 +115,5 @@
   <url>
     <loc>https://healthradartool.net/updates/pilot_launch.html</loc>
     <lastmod>2025-08-19T07:38:38.631Z</lastmod>
-  </url>
-  <url>
-    <loc>https://healthradartool.net/datasources/malaria/climate-data-store/climate_data_store.html</loc>
-    <lastmod>2025-10-20T13:18:53.659Z</lastmod>
   </url>
 </urlset>
