@@ -151,6 +151,47 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
 :::
 
 
+::: {#contribute-block .content-block .column-screen}
+::: {.column-page}
+
+::: {.grid .align-items-center}
+
+::: {.g-col-12 .g-col-md-8}
+::: {.hero-text .h3}
+Contribute to Health RADAR
+:::
+
+::: {.description}
+Join our community to strengthen climate-sensitive infectious disease modeling. [Contribute data sources](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md){target="_blank"}, improve documentation or share your CSID modelling expertise.
+:::
+
+::: {.contribute-buttons}
+<a href="https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md" target="_blank">
+  <button class="btn btn-outline-primary btn-action btn-sm" type="button">
+    Contribution Guide
+    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+  </button>
+</a>
+
+<a href="/about.qmd">
+  <button class="btn btn-link btn-sm" type="button">
+    Learn more about Health RADAR
+  </button>
+</a>
+:::
+
+:::
+
+::: {.g-col-12 .g-col-md-4}
+<!-- Add your Health RADAR logo or relevant graphic here -->
+![](img/open-source.png){.img-fluid}
+:::
+
+:::
+
+:::
+:::
+
 ::: {#browse-btn-block .content-block .column-screen}
 
 ::: {.column-page}
