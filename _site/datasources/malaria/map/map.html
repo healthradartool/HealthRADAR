@@ -361,7 +361,7 @@ How to plot this data?
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the selected data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Subnational_Unit-data.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Subnational_Unit-data.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot ITN metrics at a subnational level in Malawi</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Name), <span class="at">y =</span> Value, <span class="at">fill =</span> Metric)) <span class="sc">+</span></span>
@@ -408,13 +408,13 @@ How to plot this data?
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data and filter by provinces of interest</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>shp_zambia <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Zambia_-_Administrative_District_Boundaries_2022/Zambia_-_Administrative_District_Boundaries_2022.shp"</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"data/Zambia_-_Administrative_District_Boundaries_2022/Zambia_-_Administrative_District_Boundaries_2022.shp"</span>, </span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span>  </span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PROVINCE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Eastern"</span>, <span class="st">"Northern"</span>, <span class="st">"Southern"</span>, <span class="st">"Western"</span>)) </span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Load raster file containing walking only travel time to healthcare</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>raster_walk <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"Global_Walking_Only_Travel_Time_To_Healthcare_ZMB.tiff"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>raster_walk <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"data/Global_Walking_Only_Travel_Time_To_Healthcare_ZMB.tiff"</span>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract mean walking time to health facility in each district </span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>df_walk <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">extract</span>(raster_walk, shp_zambia, mean, <span class="at">na.rm =</span> T, <span class="at">ID =</span> T) <span class="sc">|&gt;</span>  </span>
@@ -478,7 +478,7 @@ How can this data be used in disease modelling?
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in IRS data.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>IRSdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"National Unit-data.csv"</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>IRSdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/National_Unit-data.csv"</span>) <span class="sc">|&gt;</span>  </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sprayed =</span> (Value<span class="sc">/</span><span class="dv">100</span>)<span class="sc">*</span><span class="dv">3600000</span>, <span class="co"># estimated number of households sprayed in Zambia</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">365</span><span class="sc">*</span><span class="dv">9</span>, <span class="at">by =</span> <span class="dv">365</span>))) <span class="co"># time steps for each year for 10 years</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            </span>

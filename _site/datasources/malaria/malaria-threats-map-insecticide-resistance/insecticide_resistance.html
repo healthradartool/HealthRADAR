@@ -395,7 +395,7 @@ How can this data be used in disease modelling?
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data from Mozambique</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>insecticide_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"MTM_DISCRIMINATING_CONCENTRATION_BIOASSAY_20250330.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>insecticide_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/MTM_DISCRIMINATING_CONCENTRATION_BIOASSAY_20250330.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">2</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate selection pressure: Proportion of instances of confirmed resistance</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>res <span class="ot">=</span> <span class="fu">sum</span>(insecticide_data<span class="sc">$</span>RESISTANCE_STATUS <span class="sc">==</span> <span class="st">"Confirmed resistance"</span>)<span class="sc">/</span><span class="fu">nrow</span>(insecticide_data)</span>

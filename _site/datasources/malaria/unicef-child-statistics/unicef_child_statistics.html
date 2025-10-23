@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-25">
+<meta name="dcterms.date" content="2025-09-22">
 <meta name="description" content="UNICEF DATA - Child Statistics provides detailed information on malaria’s impact on children, including prevalence, treatment coverage, and mortality rates.">
 
 <title>UNICEF DATA - Child Statistics</title>
@@ -262,7 +262,7 @@ window.Quarto = {
         <div>
         <div class="quarto-title-meta-heading">Last updated</div>
         <div class="quarto-title-meta-contents">
-          <p class="date">May 25, 2025</p>
+          <p class="date">September 22, 2025</p>
         </div>
       </div>
       
@@ -295,27 +295,23 @@ About the data
 Accessing the data
 </h2>
 <p>The <a href="https://data.unicef.org/">UNICEF data website</a> serves as a central hub, offering an array of resources such as a frequently updated blog, journal articles, publications, data visualisations, datasets, and other resources related to the data they make available. For those interested in malaria and broader child health indicators, several avenues exist for data access, catering to different levels of detail and user needs.</p>
-<h3 class="anchored">
-Curated datasets from UNICEF Topic Pages
-</h3>
+<p><strong>1 - Curated Datasets from UNICEF Topic Pages </strong></p>
 <p>UNICEF’s topic-specific pages, such as the <a href="https://data.unicef.org/topic/child-health/malaria/#notes">Malaria webpage</a>, often present data within a narrative context, accompanied by pre-selected indicator datasets available for direct download. These datasets are typically provided as Excel files, offering a convenient “single pack” of key indicators relevant to the topic.</p>
 <p>To access the Child Health Coverage dataset, for example, from the UNICEF data website:</p>
-<p>Navigate to the ‘Data by Topic’ tab, and select the ‘Malaria’ option from the ‘Child and Adolescent Health’ subsection to reach UNICEF’s Malaria webpage.</p>
-<p>Scroll down until you see the heading ‘Malaria Data’. Select the download button beside the label ‘Child Health Coverage’.</p>
-<p>The dataset will be downloaded as an Excel file, containing many of the indicators discussed previously, pre-filtered for ease of use.</p>
-<h3 class="anchored">
-Direct Access to Survey Data (DHS and MICS Programs)
-</h3>
+<ul>
+<li>Navigate to the ‘Data by Topic’ tab, and select the ‘Malaria’ option from the ‘Child and Adolescent Health’ subsection to reach UNICEF’s Malaria webpage.</li>
+<li>Scroll down until you see the heading ‘Malaria Data’. Select the download button beside the label ‘Child Health Coverage’.</li>
+<li>The dataset will be downloaded as an Excel file, containing many of the indicators discussed previously, pre-filtered for ease of use.</li>
+</ul>
+<p><strong>2 - Direct Access to Survey Data (DHS and MICS Programs) </strong></p>
 <p>For users seeking more granular data, the DHS Program and MICS provide direct access to survey data. These platforms allow users to explore datasets by country, year, and specific indicators. Users can download raw data files for further analysis or use online tools to generate custom tables and visualisations. More information can be found on the <a href="../../..\datasources/malaria/dhs-program/dhs.html">DHS Program</a> page.</p>
-<h3 class="anchored">
-UNICEF Indicator Data Warehouse (SDMX)
-</h3>
+<p><strong>3 - UNICEF Indicator Data Warehouse (SDMX) </strong></p>
 <p>For users requiring programmatic access or a broader range of demographic and health indicators beyond those curated for specific topics, UNICEF provides data through its “UNICEF Indicator Data Warehouse.” This warehouse utilizes the SDMX (Statistical Data and Metadata eXchange) protocol, a standard for exchanging statistical data and metadata.</p>
 <p>Accessing data via SDMX allows for automated data retrieval, making it suitable for advanced users, developers, or researchers who wish to integrate UNICEF data directly into their own analytical platforms or databases. This method provides access to a vast array of indicators, including fundamental demographic data (e.g., population figures, birth rates, number of pregnancies) which can be crucial for contextualizing and analyzing the malaria situation in a country. Details on how to connect to the SDMX API are available on the <a href="https://data.unicef.org/sdmx-api-documentation/">UNICEF data website</a> for those with technical expertise. Note that there is an R package <code>rsdmx</code> which can be used to access SDMX data in R.</p>
 <h2 class="anchored">
 What do the data look like?
 </h2>
-<p>Following the first datastream above, the downloaded “Child Health Coverage” Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.</p>
+<p>Following the first data avenue above, the downloaded “Child Health Coverage” Excel document has 19 sheets. The first, which will come up when the file is opened, contains a description of each of these sheets, as well as a thorough description of each indicator, how they are calculated, and the primary sources from which they are drawn.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="images/malaria_xlsx_index.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Layout of the first sheet of the Excel document."><img src="images/malaria_xlsx_index.png" class="img-fluid figure-img" alt="Layout of the first sheet of the Excel document."></a></p>
@@ -377,7 +373,7 @@ How to use the dataset
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mal_dat <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_xlsx</span>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Child-Health-Coverage-Database-December-2023 .xlsx"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data/Child-Health-Coverage-Database-December-2023.xlsx"</span>,</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Long"</span>,</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">3</span>,</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">col_types =</span> <span class="fu">c</span>(<span class="st">"skip"</span>, <span class="st">"text"</span>,</span>
@@ -407,23 +403,23 @@ Table&nbsp;1: First ten rows of the data
 </figcaption>
 <div aria-describedby="tbl-mal-long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="bjwlrczxax" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bjwlrczxax table {
+<div id="ppxemmkgle" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ppxemmkgle table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bjwlrczxax thead, #bjwlrczxax tbody, #bjwlrczxax tfoot, #bjwlrczxax tr, #bjwlrczxax td, #bjwlrczxax th {
+#ppxemmkgle thead, #ppxemmkgle tbody, #ppxemmkgle tfoot, #ppxemmkgle tr, #ppxemmkgle td, #ppxemmkgle th {
   border-style: none;
 }
 
-#bjwlrczxax p {
+#ppxemmkgle p {
   margin: 0;
   padding: 0;
 }
 
-#bjwlrczxax .gt_table {
+#ppxemmkgle .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -449,12 +445,12 @@ Table&nbsp;1: First ten rows of the data
   border-left-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_caption {
+#ppxemmkgle .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bjwlrczxax .gt_title {
+#ppxemmkgle .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -466,7 +462,7 @@ Table&nbsp;1: First ten rows of the data
   border-bottom-width: 0;
 }
 
-#bjwlrczxax .gt_subtitle {
+#ppxemmkgle .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -478,7 +474,7 @@ Table&nbsp;1: First ten rows of the data
   border-top-width: 0;
 }
 
-#bjwlrczxax .gt_heading {
+#ppxemmkgle .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -490,13 +486,13 @@ Table&nbsp;1: First ten rows of the data
   border-right-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_bottom_border {
+#ppxemmkgle .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_col_headings {
+#ppxemmkgle .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -511,7 +507,7 @@ Table&nbsp;1: First ten rows of the data
   border-right-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_col_heading {
+#ppxemmkgle .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -531,7 +527,7 @@ Table&nbsp;1: First ten rows of the data
   overflow-x: hidden;
 }
 
-#bjwlrczxax .gt_column_spanner_outer {
+#ppxemmkgle .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -543,15 +539,15 @@ Table&nbsp;1: First ten rows of the data
   padding-right: 4px;
 }
 
-#bjwlrczxax .gt_column_spanner_outer:first-child {
+#ppxemmkgle .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bjwlrczxax .gt_column_spanner_outer:last-child {
+#ppxemmkgle .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bjwlrczxax .gt_column_spanner {
+#ppxemmkgle .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -563,11 +559,11 @@ Table&nbsp;1: First ten rows of the data
   width: 100%;
 }
 
-#bjwlrczxax .gt_spanner_row {
+#ppxemmkgle .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bjwlrczxax .gt_group_heading {
+#ppxemmkgle .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -593,7 +589,7 @@ Table&nbsp;1: First ten rows of the data
   text-align: left;
 }
 
-#bjwlrczxax .gt_empty_group_heading {
+#ppxemmkgle .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -608,15 +604,15 @@ Table&nbsp;1: First ten rows of the data
   vertical-align: middle;
 }
 
-#bjwlrczxax .gt_from_md > :first-child {
+#ppxemmkgle .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bjwlrczxax .gt_from_md > :last-child {
+#ppxemmkgle .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bjwlrczxax .gt_row {
+#ppxemmkgle .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -635,7 +631,7 @@ Table&nbsp;1: First ten rows of the data
   overflow-x: hidden;
 }
 
-#bjwlrczxax .gt_stub {
+#ppxemmkgle .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -648,7 +644,7 @@ Table&nbsp;1: First ten rows of the data
   padding-right: 5px;
 }
 
-#bjwlrczxax .gt_stub_row_group {
+#ppxemmkgle .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -662,15 +658,15 @@ Table&nbsp;1: First ten rows of the data
   vertical-align: top;
 }
 
-#bjwlrczxax .gt_row_group_first td {
+#ppxemmkgle .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bjwlrczxax .gt_row_group_first th {
+#ppxemmkgle .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bjwlrczxax .gt_summary_row {
+#ppxemmkgle .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -680,16 +676,16 @@ Table&nbsp;1: First ten rows of the data
   padding-right: 5px;
 }
 
-#bjwlrczxax .gt_first_summary_row {
+#ppxemmkgle .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_first_summary_row.thick {
+#ppxemmkgle .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bjwlrczxax .gt_last_summary_row {
+#ppxemmkgle .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -699,7 +695,7 @@ Table&nbsp;1: First ten rows of the data
   border-bottom-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_grand_summary_row {
+#ppxemmkgle .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -709,7 +705,7 @@ Table&nbsp;1: First ten rows of the data
   padding-right: 5px;
 }
 
-#bjwlrczxax .gt_first_grand_summary_row {
+#ppxemmkgle .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -719,7 +715,7 @@ Table&nbsp;1: First ten rows of the data
   border-top-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_last_grand_summary_row_top {
+#ppxemmkgle .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -729,11 +725,11 @@ Table&nbsp;1: First ten rows of the data
   border-bottom-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_striped {
+#ppxemmkgle .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bjwlrczxax .gt_table_body {
+#ppxemmkgle .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -742,7 +738,7 @@ Table&nbsp;1: First ten rows of the data
   border-bottom-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_footnotes {
+#ppxemmkgle .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -756,7 +752,7 @@ Table&nbsp;1: First ten rows of the data
   border-right-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_footnote {
+#ppxemmkgle .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -765,7 +761,7 @@ Table&nbsp;1: First ten rows of the data
   padding-right: 5px;
 }
 
-#bjwlrczxax .gt_sourcenotes {
+#ppxemmkgle .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -779,7 +775,7 @@ Table&nbsp;1: First ten rows of the data
   border-right-color: #D3D3D3;
 }
 
-#bjwlrczxax .gt_sourcenote {
+#ppxemmkgle .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -787,72 +783,72 @@ Table&nbsp;1: First ten rows of the data
   padding-right: 5px;
 }
 
-#bjwlrczxax .gt_left {
+#ppxemmkgle .gt_left {
   text-align: left;
 }
 
-#bjwlrczxax .gt_center {
+#ppxemmkgle .gt_center {
   text-align: center;
 }
 
-#bjwlrczxax .gt_right {
+#ppxemmkgle .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bjwlrczxax .gt_font_normal {
+#ppxemmkgle .gt_font_normal {
   font-weight: normal;
 }
 
-#bjwlrczxax .gt_font_bold {
+#ppxemmkgle .gt_font_bold {
   font-weight: bold;
 }
 
-#bjwlrczxax .gt_font_italic {
+#ppxemmkgle .gt_font_italic {
   font-style: italic;
 }
 
-#bjwlrczxax .gt_super {
+#ppxemmkgle .gt_super {
   font-size: 65%;
 }
 
-#bjwlrczxax .gt_footnote_marks {
+#ppxemmkgle .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bjwlrczxax .gt_asterisk {
+#ppxemmkgle .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bjwlrczxax .gt_indent_1 {
+#ppxemmkgle .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bjwlrczxax .gt_indent_2 {
+#ppxemmkgle .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bjwlrczxax .gt_indent_3 {
+#ppxemmkgle .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bjwlrczxax .gt_indent_4 {
+#ppxemmkgle .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bjwlrczxax .gt_indent_5 {
+#ppxemmkgle .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bjwlrczxax .katex-display {
+#ppxemmkgle .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bjwlrczxax div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ppxemmkgle div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -979,23 +975,23 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
 </figcaption>
 <div aria-describedby="tbl-mal-wider-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="hkxvhzeilo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hkxvhzeilo table {
+<div id="haqahpkrkd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#haqahpkrkd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hkxvhzeilo thead, #hkxvhzeilo tbody, #hkxvhzeilo tfoot, #hkxvhzeilo tr, #hkxvhzeilo td, #hkxvhzeilo th {
+#haqahpkrkd thead, #haqahpkrkd tbody, #haqahpkrkd tfoot, #haqahpkrkd tr, #haqahpkrkd td, #haqahpkrkd th {
   border-style: none;
 }
 
-#hkxvhzeilo p {
+#haqahpkrkd p {
   margin: 0;
   padding: 0;
 }
 
-#hkxvhzeilo .gt_table {
+#haqahpkrkd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1021,12 +1017,12 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-left-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_caption {
+#haqahpkrkd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hkxvhzeilo .gt_title {
+#haqahpkrkd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1038,7 +1034,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-bottom-width: 0;
 }
 
-#hkxvhzeilo .gt_subtitle {
+#haqahpkrkd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1050,7 +1046,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-top-width: 0;
 }
 
-#hkxvhzeilo .gt_heading {
+#haqahpkrkd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1062,13 +1058,13 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-right-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_bottom_border {
+#haqahpkrkd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_col_headings {
+#haqahpkrkd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1083,7 +1079,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-right-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_col_heading {
+#haqahpkrkd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1103,7 +1099,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   overflow-x: hidden;
 }
 
-#hkxvhzeilo .gt_column_spanner_outer {
+#haqahpkrkd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1115,15 +1111,15 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   padding-right: 4px;
 }
 
-#hkxvhzeilo .gt_column_spanner_outer:first-child {
+#haqahpkrkd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hkxvhzeilo .gt_column_spanner_outer:last-child {
+#haqahpkrkd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hkxvhzeilo .gt_column_spanner {
+#haqahpkrkd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1135,11 +1131,11 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   width: 100%;
 }
 
-#hkxvhzeilo .gt_spanner_row {
+#haqahpkrkd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hkxvhzeilo .gt_group_heading {
+#haqahpkrkd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1165,7 +1161,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   text-align: left;
 }
 
-#hkxvhzeilo .gt_empty_group_heading {
+#haqahpkrkd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1180,15 +1176,15 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   vertical-align: middle;
 }
 
-#hkxvhzeilo .gt_from_md > :first-child {
+#haqahpkrkd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hkxvhzeilo .gt_from_md > :last-child {
+#haqahpkrkd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hkxvhzeilo .gt_row {
+#haqahpkrkd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1207,7 +1203,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   overflow-x: hidden;
 }
 
-#hkxvhzeilo .gt_stub {
+#haqahpkrkd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1220,7 +1216,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   padding-right: 5px;
 }
 
-#hkxvhzeilo .gt_stub_row_group {
+#haqahpkrkd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1234,15 +1230,15 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   vertical-align: top;
 }
 
-#hkxvhzeilo .gt_row_group_first td {
+#haqahpkrkd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hkxvhzeilo .gt_row_group_first th {
+#haqahpkrkd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hkxvhzeilo .gt_summary_row {
+#haqahpkrkd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1252,16 +1248,16 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   padding-right: 5px;
 }
 
-#hkxvhzeilo .gt_first_summary_row {
+#haqahpkrkd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_first_summary_row.thick {
+#haqahpkrkd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hkxvhzeilo .gt_last_summary_row {
+#haqahpkrkd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1271,7 +1267,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-bottom-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_grand_summary_row {
+#haqahpkrkd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1281,7 +1277,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   padding-right: 5px;
 }
 
-#hkxvhzeilo .gt_first_grand_summary_row {
+#haqahpkrkd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1291,7 +1287,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-top-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_last_grand_summary_row_top {
+#haqahpkrkd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1301,11 +1297,11 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-bottom-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_striped {
+#haqahpkrkd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hkxvhzeilo .gt_table_body {
+#haqahpkrkd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1314,7 +1310,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-bottom-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_footnotes {
+#haqahpkrkd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1328,7 +1324,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-right-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_footnote {
+#haqahpkrkd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1337,7 +1333,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   padding-right: 5px;
 }
 
-#hkxvhzeilo .gt_sourcenotes {
+#haqahpkrkd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1351,7 +1347,7 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   border-right-color: #D3D3D3;
 }
 
-#hkxvhzeilo .gt_sourcenote {
+#haqahpkrkd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1359,72 +1355,72 @@ Table&nbsp;2: Zimbabwe, Malaria diagnostics - percentage of febrile children (un
   padding-right: 5px;
 }
 
-#hkxvhzeilo .gt_left {
+#haqahpkrkd .gt_left {
   text-align: left;
 }
 
-#hkxvhzeilo .gt_center {
+#haqahpkrkd .gt_center {
   text-align: center;
 }
 
-#hkxvhzeilo .gt_right {
+#haqahpkrkd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hkxvhzeilo .gt_font_normal {
+#haqahpkrkd .gt_font_normal {
   font-weight: normal;
 }
 
-#hkxvhzeilo .gt_font_bold {
+#haqahpkrkd .gt_font_bold {
   font-weight: bold;
 }
 
-#hkxvhzeilo .gt_font_italic {
+#haqahpkrkd .gt_font_italic {
   font-style: italic;
 }
 
-#hkxvhzeilo .gt_super {
+#haqahpkrkd .gt_super {
   font-size: 65%;
 }
 
-#hkxvhzeilo .gt_footnote_marks {
+#haqahpkrkd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hkxvhzeilo .gt_asterisk {
+#haqahpkrkd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hkxvhzeilo .gt_indent_1 {
+#haqahpkrkd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hkxvhzeilo .gt_indent_2 {
+#haqahpkrkd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hkxvhzeilo .gt_indent_3 {
+#haqahpkrkd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hkxvhzeilo .gt_indent_4 {
+#haqahpkrkd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hkxvhzeilo .gt_indent_5 {
+#haqahpkrkd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hkxvhzeilo .katex-display {
+#haqahpkrkd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hkxvhzeilo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#haqahpkrkd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1609,9 +1605,9 @@ How to plot these data?
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Data for Southern African countries"</span>,</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> stringr<span class="sc">::</span><span class="fu">str_wrap</span>(<span class="st">"This plot displays the percentage of pregnant Angolan, Estwatinian, Mozambiquan, Namibian, Zambian and Zimbabwean women between 15 and 49 years of age, who used insecticide-treated mosquito nets (ITNs) the night prior to their participation in the survey. Records are displayed for the years in which they were collected. Consequences of the 2015 setback in Zimbabwe are further explored in the HealthRADAR modelling example. Source: UNICEF Child Health Coverage Dataset."</span>, <span class="at">width =</span> <span class="dv">75</span>),</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Time"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Percent of pregnant women sleeping under an ITN"</span>,</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">colour =</span> <span class="st">"Country"</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Percent of pregnant women sleeping under an ITN"</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="st">`</span><span class="at">Countries and areas</span><span class="st">`</span>, <span class="at">ncol=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">

@@ -125,7 +125,7 @@ strat_levels = c("National",
 
 # Read in data
 mal_dat <- readxl::read_xlsx(
-    "Child-Health-Coverage-Database-December-2023.xlsx",
+    "data/Child-Health-Coverage-Database-December-2023.xlsx",
     sheet = "Long",
     skip = 3,
     col_types = c("skip", "text",
