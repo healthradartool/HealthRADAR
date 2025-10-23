@@ -594,3 +594,122 @@ footer > .footer-items {
     height: auto;
   }
 }
+
+/* Contribute Block Styles */
+#contribute-block {
+  background-color: linear-gradient(135deg, #edf3f9 0%, #fffef6 100%);
+  padding: 4rem 0;
+}
+
+#contribute-block .column-page {
+  border: 2px solid #cccccc;
+  border-radius: 0.75rem;
+  padding: 3rem 2rem;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+#contribute-block .grid {
+  align-items: center;
+  gap: 3rem;
+}
+
+#contribute-block .hero-text {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #172f46ff;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+#contribute-block .description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.contribute-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.contribute-buttons .btn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.contribute-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.contribute-buttons .btn-outline-primary {
+  color: #172f46ff;
+  border: 2px solid #172f46ff;
+  background-color: transparent;
+}
+
+.contribute-buttons .btn-outline-primary:hover {
+  background-color: #172f46ff;
+  color: #ffffff;
+}
+
+.contribute-buttons .btn-link {
+  color: #6c757d;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  box-shadow: none;
+  padding: 0.875rem 1rem;
+}
+
+.contribute-buttons .btn-link:hover {
+  color: #495057;
+  background: none;
+  box-shadow: none;
+  transform: none;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments for contribute block */
+@media (max-width: 768px) {
+  #contribute-block {
+    padding: 3rem 0;
+  }
+  
+  #contribute-block .grid {
+    gap: 2rem;
+  }
+  
+  #contribute-block .hero-text {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  #contribute-block .description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contribute-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .contribute-buttons .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
