@@ -31,7 +31,7 @@ There are many ways in which the community can contribute to this project:
 
 A very good way to contribute is to report issues, either found when working on a pull request or when simply using Health RADAR. We have issue templates to help you report feature requests or bugs, please use them when reporting an issue. We also have a [report issues](/issues.qmd) page where you can report issues if you are not familiar with GitHub.
 
-## How to contribute a data source page
+## Contributing a data source page
 
 Contributing a page requires the completion of a page template, with a folder for static images and any sample datasets used. 
 
