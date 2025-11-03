@@ -2,7 +2,7 @@
 title: "Climate Data Store"
 description: "Copernicus Climate Data Store functions as a one-stop shop to explore data on the Earth’s past, present and future climate."
 date: 05/29/2025 # mm-dd-yyyy
-image: "images/climate_data_store_logo.jpg"
+image: "images/climate_data_store_logo.png"
 
 categories:
   - climate portal

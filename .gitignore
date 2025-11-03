@@ -8,6 +8,7 @@
 /renv/library
 
 /.quarto/
+/_site/
 
 /.luarc.json
 

@@ -142,7 +142,7 @@ We calculate the proportion of confirmed resistance to calculate the selection p
 ```{r}
 
 # Load the data from Mozambique
-insecticide_data <- read_excel("MTM_DISCRIMINATING_CONCENTRATION_BIOASSAY_20250330.xlsx", sheet = 2)
+insecticide_data <- read_excel("data/MTM_DISCRIMINATING_CONCENTRATION_BIOASSAY_20250330.xlsx", sheet = 2)
 
 # Calculate selection pressure: Proportion of instances of confirmed resistance
 res = sum(insecticide_data$RESISTANCE_STATUS == "Confirmed resistance")/nrow(insecticide_data)
