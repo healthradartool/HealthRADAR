@@ -1,12 +1,274 @@
 ---
-title: "Modelling guide"
-subtitle: "Expert guidance for navigating and utilizing Heath RADAR for modelling"
+title: "Modelling Data Guide"
+subtitle: "Expert guidance for navigating and utilizing modelling data"
 page-layout: full
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 comments: false
+execute: 
+  echo: false
+  warning: false
 ---
 
-## A guide to malaria modelling
+```{r}
+#| label: set-up
+#| echo: false
 
-{{< lipsum 5 >}}
+library(tidyverse)
+library(gt)
+library(gtExtras)
+```
+
+## A. Types of Modelling Data
+
+### 1. Observational Data 
+
+Observational data are empirically collected from surveillance systems, health records, field studies, or surveys. These data capture real-world observations of populations, environments, and disease occurrence. While surveillance systems and health records are maintained on governmental databases and require a data-sharing agreement to access, field studies and surveys may often be conducted by researchers and made available in academic journals. Sometimes, data from surveys conducted across multiple countries are housed on public platforms. The [Demographic and Health Survey](/datasources/malaria/dhs-program/dhs.html)  source of data is an example of this.
+
+There are many types of data required for disease models. Depending on the disease itself, some types of data will be more important than others. @tbl-data-types contains a description of different types of data commonly used in disease models. These data could be available at a different administrative levels (national/ sub-national) and disaggregated by age, sex and other risk groups.
+
+
+```{r}
+#| label: tbl-data-types
+#| tbl-cap: Data types commonly used in disease models
+
+data <- data.frame(
+  TYPE = c(
+    "Case surveillance data",
+    "Demographic data",
+    "Entomological data",
+    "Environmental and climatic data",
+    "Health system data",
+    "Behavioural and mobility data",
+    "Serological data"
+  ),
+  EXAMPLES = c(
+    "Reported counts of confirmed and/or suspected cases, hospitalisations, and deaths collected through national or sentinel systems.",
+    "Population size, age and sex structure, births and deaths, and migration records.",
+    "Vector density, species distribution.",
+    "Temperature, rainfall, humidity, vegetation, and land use.",
+    "Facility catchment, treatment availability, intervention distribution (e.g., ITNs, vaccines), and healthcare utilisation rates.",
+    "Human movement, contact patterns, and health-seeking behaviours derived from surveys, GPS, or mobile data.",
+    "Antibody or antigen prevalence indicating historical exposure, immunity, or infection patterns."
+  )
+)
+
+gt(data) |>  
+  gt_theme_nytimes()
+```
+
+### 2. Estimated Information
+
+Estimated information, sometimes mislabelled as data, but still important for disease modelling, is generated through inference, statistical modelling, or disease modelling from when direct observation is limited or incomplete. These represent interpreted or model-inferred quantities. As an example, the [Malaria Atlas Project](/datasources/malaria/map/map.html)  provides estimates of malaria prevalence in 2-10 year olds. @tbl-estimated-data contains a description of different types of estimated information commonly used as inputs or validation points in disease models. These estimates and their uncertainty ranges could be available at a different administrative levels (national/ sub-national) and disaggregated by age, sex and other risk groups.
+
+
+```{r}
+#| label: tbl-estimated-data
+#| tbl-cap: Types of estimated information
+
+data <- data.frame(
+  TYPE = c(
+    "Transmission parameters",
+    "Intervention effectiveness",
+    "Under-reporting adjustments",
+    "Modelled incidence and prevalence",
+    "Mobility and contact matrices"
+  ),
+  DESCRIPTION = c(
+    "Estimated measures such as the basic reproduction number (R₀), force of infection, or contact rate.",
+    "Derived measures of vaccine efficacy, treatment failure, or intervention coverage, population adherence.",
+    "Corrected case or mortality estimates accounting for incomplete surveillance or diagnostic capacity.",
+    "Predicted disease burden over time derived from statistical or mechanistic models.",
+    "Inferred patterns of interaction between age, spatial, or occupational groups."
+  )
+)
+
+gt(data) |> 
+  gt_theme_nytimes()
+```
+
+### 3. Metadata and Data Quality
+
+This source of essential information describes how data were collected, curated, and validated. This helps to assess the credibility, comparability, and interpretability of datasets used in modelling. @tbl-metadata describes key sources of metadata to contextualise observed data and estimated information. 
+
+
+```{r}
+#| label: tbl-metadata
+#| tbl-cap: Key sources of metadata to contextualise observed data and estimated information
+
+data <- data.frame(
+  Type = c(
+    "Data completeness",
+    "Data provenance and documentation",
+    "Official reports",
+    "Standardisation and harmonisation",
+    "Ethical and legal considerations"
+  ),
+  DESCRIPTION = c(
+    "Proportion of observational data actually reported or recorded in the health system databases across time or space.",
+    "Source details, collection methodology, and transformations applied before analysis.",
+    "Governmental documents such as national strategic plans, operational plans, budgets, annual progress reports and reviews.",
+    "Use of consistent formats, definitions, and coding schemes enabling integration across sources.",
+    "Metadata on data ownership, consent, and use permissions, ensuring responsible data sharing and application."
+  )
+)
+
+gt(data) |> 
+  gt_theme_nytimes()
+```
+
+## B. Disease Models
+
+Mathematical mechanistic models are tools that use mathematics, biological and epidemiological principles and logic to create synthetic populations on a computer, that have features similar to real populations where options for disease control interventions are being considered.
+
+@tbl-disease-models presents a very high-level overview of different mechanistic disease model classes. While these are presented separately, they are often combined in practice e.g. An age-structured compartmental model that is simulated stochastically.
+
+
+```{r}
+#| label: tbl-disease-models
+#| tbl-cap: Different mechanistic disease model classes
+
+data <- data.frame(
+  Model_Type = c(
+    "Compartmental Models (e.g., SIR, SEIR, SEIRS)",
+    "Age-structured / Demographic Models",
+    "Spatial / Metapopulation Models",
+    "Vector-borne Transmission Models",
+    "Stochastic Models",
+    "Individual-based (Agent-based) Models",
+    "Network Models",
+    "Hybrid / Multi-scale Models"
+  ),
+  Core_Methodology = c(
+    "Differential equations representing population movement between disease states",
+    "Extends compartmental models with age or risk group stratification",
+    "Divides populations into spatial units connected by movement",
+    "Links human and vector populations via transmission parameters",
+    "Adds randomness to transmission and progression processes",
+    "Simulates individual entities with attributes and behaviours",
+    "Represents individuals as nodes and contacts as edges",
+    "Combines multiple methods (e.g., agent-based + DE models)"
+  ),
+  Key_Features = c(
+    "Populations divided into compartments (Susceptible, Exposed, Infectious, Recovered, etc.)",
+    "Tracks population by age, sex, or risk",
+    "Incorporates travel, migration, or vector dispersal",
+    "Includes mosquito, tick, or other vector compartments",
+    "Uses probabilities instead of deterministic rates",
+    "Tracks each person’s state and interactions over time",
+    "Uses network theory to model interactions",
+    "Links dynamics across scales (individual to population)"
+  ),
+  Common_Use_Cases = c(
+    "Modelling transmission dynamics, intervention evaluation",
+    "Intervention evaluation with comparison between age or risk groups",
+    "Regional transmission, outbreak spread, importation risk",
+    "Malaria, dengue, Zika",
+    "Small populations, early outbreak dynamics",
+    "Contact tracing, behaviour-driven epidemics and intervention analysis",
+    "HIV, COVID-19, sexually transmitted infections",
+    "Policy simulations, complex transmission settings"
+  ),
+  Strengths = c(
+    "Simple, interpretable, computationally efficient",
+    "Captures heterogeneity, informs targeted interventions",
+    "Models geography and connectivity explicitly",
+    "Represents human–vector interaction explicitly",
+    "Captures chance events, extinction probabilities",
+    "Highly detailed, flexible, realistic",
+    "Captures heterogeneity in contacts and clustering",
+    "Balances realism and tractability"
+  ),
+  Limitations = c(
+    "Assumes homogeneous mixing, limited individual variation",
+    "Requires detailed data, increases complexity",
+    "Computationally demanding, needs spatial data",
+    "Requires vector data (biting rate, survival, distribution etc.)",
+    "Computationally heavy, requires multiple model runs",
+    "Data intensive, slow to run, difficult to calibrate",
+    "Requires social network data, complex to parameterize",
+    "Complex to design and validate"
+  )
+)
+
+gt(data) |> 
+    cols_label(
+        Model_Type = "Model type",
+        Core_Methodology = "Core methodology",
+        Key_Features = "Key features",
+        Common_Use_Cases = "Common use cases"
+    ) |> 
+      gt_theme_nytimes()
+```
+
+## C. Key considerations when using data as inputs to models for parameterization or calibration
+
+##### 1. Data Quality and Reliability
+
+- **Completeness:** Check for missing data, underreporting, or incomplete records.
+- **Accuracy:** Assess potential measurement errors or misclassification (e.g., false positives/negatives).
+- **Consistency:** Verify that data sources use consistent definitions and collection methods over time.
+- **Timeliness:** Ensure data are up-to-date and reflect current or historical epidemiological conditions as needed.
+
+##### 2. Data Relevance and Appropriateness
+
+- **Epidemiological relevance:** Confirm that data correspond to the disease, population, and context being modelled.
+- **Temporal and spatial resolution:** Match data frequency and geographic scale to the model’s structure (e.g., daily vs. annual, district vs. national).
+- **Alignment with model compartments:** Ensure data map correctly to model states (e.g., incidence vs. prevalence).
+
+##### 3. Data Integration and Compatibility
+
+- **Multiple data sources:** When combining datasets (e.g., surveillance, surveys, lab, climate), check for consistency and avoid double-counting.
+- **Standardization:** Harmonize variable formats, units, and definitions across sources.
+- **Metadata:** Retain and review metadata for context, collection methods, and limitations.
+
+##### 4. Representativeness
+
+- **Population coverage:** Evaluate whether data capture key subpopulations (e.g., rural areas, private sector, asymptomatic cases).
+- **Bias:** Identify sampling bias, reporting bias, or selection bias that could distort model outputs.
+
+##### 5. Contextual Understanding
+
+- **Health system effects:** Consider reporting practices, diagnostic access, or changes in policy that affect data trends.
+- **External drivers:** Integrate contextual variables (e.g., mobility, climate, interventions) that influence disease dynamics.
+- **Expert input:** Engage local or domain experts to interpret data patterns and validate assumptions.
+
+##### 6. Ethical and Governance Considerations
+
+- **Data privacy:** Protect identifiable or sensitive health information.
+- **Permissions and ownership:** Respect data-sharing agreements and attribution.
+- **Transparency:** Document data sources, transformations, and assumptions clearly for reproducibility.
+
+In relation to the model development, the following should also be considered
+
+###### 1. Uncertainty and Variability
+
+- **Measurement uncertainty:** Quantify uncertainty ranges where possible.
+- **Natural variability:** Account for stochasticity or seasonality in transmission or reporting.
+- **Scenario testing:** Use sensitivity or uncertainty analyses to understand model dependence on data assumptions.
+
+###### 2. Calibration and Validation
+
+- **Model calibration:** Choose appropriate parameters to fit data, ensuring that calibration is statistically sound (e.g., MCMC, optimization).
+- **Validation:** Compare model predictions to independent datasets or samples from datasets not used in calibration.
+- **Overfitting:** Avoid tuning parameters too closely to one dataset at the expense of generalizability.
+
+## D. The Modelling Process
+
+Building and implementing a model is not a single step but a continuous, iterative process that links conceptual understanding, data analysis, and model refinement to inform public health decisions. It is a multi-stage process that integrates data, assumptions, and analytical methods to generate insights about disease dynamics and intervention impact.
+
+The following are key steps in the modelling process:
+
+![Iterative cycle of stages in the modelling process](modelling%20process.png)
+
+1. **Define the modelling question:** It begins with defining a clear question that directly connects to a policy issue and can be answered using a model along with existing data and evidence.
+2. **Data collation:** Gathering and understand the available data. This step involves identifying what information is available, recognizing any gaps or limitations, and finding alternative solutions
+3. **Model Building:** Choosing the appropriate model features to include in the structure is key, as is designing the software or code that will bring it to life. 
+4. **Parameter estimation:** Identify and select key values that will influence the model, and determine how best to manage and guess at unknown values 
+5. **Addressing uncertainty:** As all models need to make assumptions and have limitations,  it is important to address uncertainty by identifying and accounting for possible sources of error.
+6. **Model validation:** Here the model is tested for accuracy and compared with other models or data sources, including comparing model outputs with what is known to have happened in the past (e.g., historic disease incidence or hospitalizations).
+7. **Scenario analysis:** Scenario analyses are performed, to allow for examining various strategies to see how different versions of the future might evolve
+8. **Interpret and share results:** Interpret the model results by comparing different scenarios to a baseline (i.e., status quo) to help clarify the impact of potential decisions. Communicating the model should involve clear and plain language, information about its assumptions, and the limitations of the model. This  helps policymakers and other stakeholders to trust and understand the findings and better judge their potential validity. 
+
+
+
