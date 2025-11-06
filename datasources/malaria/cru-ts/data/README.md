@@ -97,9 +97,3 @@ This README serves as a catalog and description of the origin of the files used 
     - The time series corresponding to the grid cell in which Bulawayo (-20.145, 28.587) lies was extracted.  
     - Temperature values were converted from Kelvin to degrees Celsius.  
     - The monthly time series for daily mean temperature and associated station counts were saved to a CSV file named `Fig5_tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv`.
-
-
-- [PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/cru-ts/data/PRCPTOT_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv): 
-
-
-- [tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/cru-ts/data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv): 

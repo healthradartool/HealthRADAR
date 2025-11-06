@@ -512,7 +512,7 @@ You may need to adjust the function based on the transmission pattern in differe
 ```{r}
 
 # Load the data 
-temperature_values <- read_csv("data/tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv") |> 
+temperature_values <- read_csv("data/Fig5_tas_mon_CRU_TS-4.08_190101-202312_Bulawayo.csv") |> 
   select(time, tas) |> 
   mutate(tas = tas-273) |> #convert from Kelvin to Celsius
   filter(time >= ymd("2010-01-01") & time <= ymd("2020-12-31")) # start date of data
