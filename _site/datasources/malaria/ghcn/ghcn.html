@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-f16cd255ecb5ae9510f6a112aa2ee9ab.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-9a3aeb7c12a4adf5998c042e6ed37cb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-1a2b2bab5b8e9a5d71283d4b8408c33f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -140,6 +140,10 @@ background: #EDF3F9;
         <li>
     <a class="dropdown-item" href="../../../guides/climate/climate.html">
  <span class="dropdown-text">Climate</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../guides/modelling/modelling.html">
+ <span class="dropdown-text">Modelling</span></a>
   </li>  
     </ul>
   </li>
@@ -340,7 +344,7 @@ Accessing the data
 <tbody>
 <tr class="odd">
 <td>Latest (updated daily)</td>
-<td>All available variables. Station specific</td>
+<td>All available variables (Station specific)</td>
 <td>Point</td>
 <td>Global</td>
 <td>CSV (.csv)</td>
@@ -350,7 +354,7 @@ Accessing the data
 </section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>The <a href="https://climexp.knmi.nl/start.cgi">KNMI Climate Explorer</a> provides access to</p>
+<p>The <a href="https://climexp.knmi.nl/start.cgi">KNMI Climate Explorer</a> is another platform where users can download GHCNd data. On the <a href="https://climexp.knmi.nl/selectdailyseries.cgi?id=someone@somewhere">Daily station data</a> page, the latest version of GHCNd is typically available. Users can select a specific variable and search for stations by name, station ID, coordinates, or by a custom mask (e.g., a shapefile), and then download data for individual stations. The data are provided in a few different formats.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
@@ -370,11 +374,11 @@ Accessing the data
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Typically up-to-date</td>
+<td>precipitation, average temperature, minimum temperature, maximum temperature, snowfall, snow depth (Station specific)</td>
+<td>Point</td>
+<td>Global</td>
+<td>raw text (.dat), netCDF (.nc), PDF (.pdf), eps (.eps)</td>
 </tr>
 </tbody>
 </table>
@@ -436,7 +440,7 @@ What the data looks likes
 <h2 class="anchored">
 Key points to consider
 </h2>
-<p>The GHCNd dataset consists of direct station observations rather than model outputs, presenting both unique advantages and analytical challenges. Unlike spatially complete gridded datasets, GHCNd exhibits uneven geographic coverage with particularly sparse station density across much of Africa outside urban centers and former colonial observation networks, while stations in temperate regions often benefit from longer and more complete records. Individual station histories frequently contain gaps due to operational interruptions, and many records are discontinuous as stations relocate or change instrumentation - a transition that may introduce artificial shifts in the data unless properly accounted for through metadata analysis. While NOAA applies rigorous quality control including outlier detection and homogenization algorithms to create climate-quality data, residual errors may persist at individual stations due to localized effects like urbanization or microclimate influences that aren’t fully corrected in the automated processing. These characteristics make GHCNd exceptionally valuable for validating gridded products and studying local climate extremes, but require careful preprocessing including gap-filling, homogeneity testing, and urban heat island screening when used for trend analysis or combined into regional composites. The dataset’s strength lies in its direct measurements of weather conditions, but this comes with the responsibility for users to thoroughly understand each station’s history and potential artifacts before drawing climate conclusions.</p>
+<p>The GHCNd dataset consists of direct station observations rather than model outputs, presenting both unique advantages and analytical challenges. Unlike spatially complete gridded datasets, GHCNd exhibits uneven geographic coverage with particularly sparse station density across much of Africa outside urban centers and former colonial observation networks, while stations in temperate regions often benefit from longer and more complete records. Individual station histories frequently contain gaps due to operational interruptions, and many records are discontinuous as stations relocate or change instrumentation - a transition that may introduce artificial shifts in the data unless properly accounted for through metadata analysis. While NOAA applies rigorous quality control including outlier detection and homogenization algorithms to create climate-quality data, residual errors may persist at individual stations due to localized effects like urbanization or microclimate influences that aren’t fully corrected in the automated processing. These characteristics make GHCNd exceptionally valuable for validating gridded products and studying local climate extremes, but require careful preprocessing including gap-filling, homogeneity testing, and urban heat island screening when used for trend analysis or combined into regional composites. The dataset’s strength lies in its direct measurements of weather conditions, but this comes with the responsibility for users to thoroughly understand each station’s history and potential artifacts before drawing climate conclusions. Although the GHCNd dataset is updated daily, many African stations are updated irregularly and may rely on Global Summary of the Day (GSOD) feeds, with some historical records not extending to recent years, leading to delayed or incomplete data coverage compared with other regions.</p>
 <h3 class="anchored">
 Strengths
 </h3>
@@ -455,6 +459,7 @@ Limitations
 <li>Temporal discontinuities from station moves/equipment changes.</li>
 <li>Variable data latency (some stations report in near-real-time, others monthly).</li>
 <li>Point measurements (often at airports/urban sites) may not reflect conditions of the wider surrounding area.</li>
+<li>In Africa, many stations are updated irregularly and may rely on Global Summary of the Day (GSOD) feeds, resulting in delayed or incomplete data coverage compared with other regions.</li>
 </ul>
 <h2 class="anchored">
 Citing the data
