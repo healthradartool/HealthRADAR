@@ -1,0 +1,14 @@
+# Placeholder for Images
+
+This folder should contain:
+- A main image for the data source page (referenced in the .qmd front matter)
+- Any screenshots or diagrams used in the documentation
+- Visualizations or example outputs
+
+## Recommended Image Format
+- PNG or JPG format
+- Main image should be approximately 800x400 pixels for best display
+- Name your main image descriptively (e.g., `data-source-logo.png`, `example-map.png`)
+
+## Image Attribution
+If using images from external sources, ensure you have permission and provide proper attribution in your documentation.
