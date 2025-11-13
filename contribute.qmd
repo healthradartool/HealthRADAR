@@ -1,6 +1,6 @@
 ---
 title: "Contributing to Health RADAR"
-subtitle: "This guide provides detailed instructions to help you effectively contribute to the Health RADAR project."
+subtitle: "Guidelines for effective contribution to the Health RADAR project"
 page-layout: full
 format: 
   html: 
