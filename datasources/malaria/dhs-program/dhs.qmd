@@ -37,7 +37,7 @@ There are several options for accessing the data, each thoroughly explained in o
 
 [STATcompiler](https://www.statcompiler.com/en/), a graphical user interface tool for accessing and downloading the data in CSV format.
 
-{{< video https://youtu.be/eXdPi6a_pQ0?list=PLagqLv-gqpTNRdiY391wMY0lzM_MuYpAL >}}
+{{< video https://www.youtube.com/watch?v=eXdPi6a_pQ0&list=PLagqLv-gqpTNRdiY391wMY0lzM_MuYpAL >}}
 
 #### Accessing the data using STATcompiler
 
