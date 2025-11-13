@@ -153,6 +153,63 @@ NOAA data are generally free for all to use with proper attribution.
 
 <h2>How to use this data?</h2>
 
+Ground-based weather observations provide invaluable information on local-scale climate. Datasets such as GHCN (Global Historical Climatology Network) offer long-term daily records of temperature, precipitation, and other variables from individual weather stations. Analysing station data allows us to examine historical climate trends, extreme events, and seasonal patterns at specific locations. Station data can also be used to evaluate and validate gridded datasets, such as ERA5.
+
+In this example, we use GHCN station data from Skukuza, South Africa. The station has a long record spanning 1911–2025 and includes precipitation and temperature variables. We will examine the sources of the data in the station record and discuss potential issues that users should be aware of. Finally, we compare the station data with ERA5 data for the grid cell containing Skukuza to explore any differences between the datasets.
+
+To generate the visualisations, we downloaded the [station data file](https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/SF000068296.csv) for Skukuza and applied the following preparation steps:
+
+- Variable unit correction: GHCN stores many variables in tenths of their true value. Values were divided by 10 to convert them to standard units.
+
+- Add missing time steps: Any missing dates in the station record were added to create a continuous daily time series, ensuring that all days between the start and end of the record are represented.
+
+For the ERA5 data, we used daily average, minimum, and maximum temperature, as well as precipitation. Time-series data for these four variables were extracted for the grid cell containing Skukuza.
+
+
+<h2>How to plot the data?</h2>
+
+The GHCN Skukuza station rainfall record spans 1 September 1911 to 24 July 2025, with valid (non-missing) values available for 70.95% of the record. After 30 May 2001, the source of the data changes to the Global Summary of the Day (GSOD), meaning the values are derived from hourly synoptic reports exchanged via the Global Telecommunications System (GTS). GHCN cautions that “daily values derived in this fashion may differ significantly from ‘true’ daily data, particularly for precipitation (i.e., use with caution).” This change in source is highlighted in Figure 1.
+
+:::{.cell}
+![Fig. 1: Daily rainfall time series for Skukuza, South Africa, from 1911 to 2025. Lighter shaded bars indicate values in the GHCN station record that are sourced from the Global Summary of the Day (GSOD).](images/Vis1_GHCN_daily_TimeSeries_Rainfall_Skakuza.png)
+:::
+
+The GHCN Skukuza station has three temperature variables. Maximum and minimum temperatures are recorded from 1 January 1960 to 24 July 2025, with valid (non-missing) values available for around 80% of their records. As with the rainfall record, after 30 May 2001 the source of the data changes to the Global Summary of the Day (GSOD). All values for the average temperature variable are sourced from GSOD (Figure 2).
+
+:::{.cell}
+![Fig. 2: Daily maximum (top), average (middle), and minimum (bottom) temperature time series for Skukuza, South Africa, from 1960 to 2025. Lighter shaded lines indicate values in the GHCN station record that are sourced from the Global Summary of the Day (GSOD).](images/Vis2_GHCN_daily_TimeSeries_Temperatures_Skakuza.png)
+:::
+
+In Figure 3, we compare annual rainfall totals between the GHCN station record (blue bars) and the ERA5 grid cell (orange bars) over Skukuza. Annual rainfall provides a useful visual metric for assessing whether datasets capture comparable magnitudes of total rainfall. The percentage of valid (non-missing) daily values for the GHCN station is also shown in Figure 3 (black dots and line).
+
+As annual rainfall sums daily values, data completeness is crucial. Figure 3 highlights the post-2001 GSOD data issue, where no year exceeds 30% valid observations. Overall, 74 of 115 years have ≥80% completeness, and 64 years exceed 90%.
+
+:::{.cell}
+![Fig. 3: Annual rainfall comparison between the GHCN station record and the ERA5 grid cell over Skukuza, South Africa. The black dashed line indicates the percentage of valid daily rainfall observations available in the GHCN record for each year.](images/Vis3_GHCN-ERA5_year_TimeSeries_Rainfall_Skakuza.png)
+:::
+
+Figure 4 shows a similar drop in temperature data completeness after 2001 when the source switches to GSOD. The daily average temperature variable consists entirely of GSOD data and is therefore excluded from further analysis.
+
+Given the good data completeness of the station record for maximum and minimum temperature, as well as precipitation, over the roughly 40-year period between 1960 and 2001—which overlaps with the ERA5 dataset—we focus on this period for comparing the two datasets.
+
+:::{.cell}
+![Fig. 4: Annual mean daily maximum (top), average (middle), and minimum (bottom) temperature comparison between the GHCN station record and the ERA5 grid cell over Skukuza, South Africa. The black dashed line indicates the percentage of valid daily temperature observations available in the GHCN record for each year](images/Vis4_GHCN-ERA5_year_TimeSeries_Temperatures_Skakuza.png)
+:::
+
+Figure 5 compares the monthly rainfall climatology from the GHCN station and the ERA5 reanalysis for Skukuza, averaged over 1960–2000. It shows two key metrics for each dataset: mean monthly rainfall and the mean number of rain days per month. Both datasets capture the strong seasonal rainfall cycle characteristic of the region, with a pronounced wet season during summer (November–March) and a dry season in winter (May–August). Although the timing of wet and dry seasons aligns between GHCN and ERA5, differences in rainfall magnitude and number of rain days show how station-based and gridded datasets can represent local climate differently. In particular, ERA5 consistently shows more rain days, with similar monthly average rainfall totals, suggesting it captures more low-intensity rainfall events than the GHCN station.
+
+
+:::{.cell}
+![Fig. 5: Comparison of monthly climatologies of rainfall between the GHCN station record (blue bars) and the ERA5 grid cell (orange bars) from 1960 to 2000 over Skukuza, South Africa. The dashed lines show the average number of rain days (≥1 mm) for the GHCN record (dark blue) and ERA5 (dark orange).](images/Vis5_GHCN-ERA5_monthly_Climatology_Rainfall_Skakuza.png)
+:::
+
+Figure 6 compares the monthly climatologies of maximum and minimum temperatures between the GHCN station and the ERA5 grid cell at Skukuza, averaged over 1960–2000. The mean daily maximum temperature from ERA5 is consistently cooler than the station record across all months, suggesting a potential bias in the reanalysis. For minimum temperature, ERA5 is slightly warmer than the station during the winter/dry season months, but aligns closely with GHCN observations in summer/wet season.
+
+:::{.cell}
+![Fig. 6: Comparison of monthly climatologies of maximum (red) and minimum (yellow) temperatures between the GHCN station record (solid line) and the ERA5 grid cell (dashed line) from 1960 to 2000 over Skukuza, South Africa.](images/Vis6_GHCN-ERA5_monthly_Climatology_Temperatures_Skakuza.png)
+:::
+
+These visualisations highlight the strengths and limitations of both station-based and gridded datasets. The GHCN station provides detailed daily observations over a long period, capturing historical variability, seasonal cycles, and extremes, although users should account for record completeness and changes in data source. ERA5 reanalysis offers continuous gridded coverage and captures seasonal patterns, but may differ from the station in the magnitude and frequency of events. Comparing annual totals, monthly climatologies, and data completeness helps users understand the characteristics of both datasets and make informed decisions based on the temporal and spatial scale of interest.
 
 
 ## Modelling
