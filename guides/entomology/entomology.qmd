@@ -1,0 +1,408 @@
+---
+title: "Entomology Data Guide"
+subtitle: "Expert guidance on utilising Entomology data"
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+comments: false
+execute: 
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: set-up
+#| echo: false
+
+library(tidyverse)
+library(gt)
+library(gtExtras)
+```
+
+## Understanding Malaria Data
+
+### Introduction
+
+Malaria continues to pose a formidable challenge to global health, particularly in tropical and subtropical regions where transmission is sustained by favorable environmental conditions. Despite significant progress in reducing cases and deaths, the path to elimination requires not only robust surveillance but also advanced analytical approaches that can anticipate and respond to shifting transmission dynamics. 
+
+One of the most powerful tools in this effort is mathematical and computational modeling. By integrating malaria data with climatic variables such as temperature, rainfall, and humidity, models can capture the ecological drivers of transmission. These variables directly influence mosquito breeding, parasite development within vectors, and the seasonality of outbreaks. For example, rainfall patterns determine the availability of breeding sites, while temperature affects the speed of parasite maturation inside mosquitoes.
+
+The benefits of modeling malaria with climatic inputs are substantial:  
+Predictive capacity: Models can forecast seasonal and geographic variations in transmission, enabling proactive interventions.
+
+- Resource optimization: By identifying high-risk periods and locations, health systems can allocate insecticide-treated nets, indoor spraying, and medicines more efficiently.  
+
+- Policy guidance: Modeling provides evidence-based insights for national malaria control programs, supporting strategic decisions on elimination timelines.
+
+- Early warning systems: Climate-informed models can serve as surveillance tools, alerting authorities to potential outbreaks before they occur. 
+
+Ultimately, the integration of climatic variables into malaria modeling transforms raw data into actionable intelligence. This approach strengthens elimination efforts by shifting strategies from reactive responses to proactive, climate-sensitive planning. As malaria-endemic countries move closer to elimination goals, understanding and leveraging these models will be critical to sustaining progress and preventing resurgence.
+
+## 1. Types of malaria-related entomological data
+
+Mosquitoes in general have a wide range of variables that data can be collected on but malaria entomology has its own database of variables and indicators that specialists spend vast amount of time addressing. For the purposes of this project however, entomological data pertaining to the control and elimination of malaria have been identified, with the key ones listed below. 
+
+- **Vector Species Identification and Distribution**: Identifying the specific Anopheles mosquito species present and their geographical spread.
+
+- **Vector Density and Abundance**: Measuring mosquito populations using methods like indoor resting density, light traps, and human landing catches.
+
+- **Biting Behavior**: Determining the Human Biting Rate (HBR), which is the number of bites per person per unit of time, and whether mosquitoes bite indoors (endophagy) or outdoors (exophagy), and at what times.
+
+- **Infection Status**: Measuring the Sporozoite Rate (proportion of mosquitoes infected with the malaria parasite) to calculate the Entomologic Inoculation Rate (EIR), which is the product of the HBR and the sporozoite rate, representing the number of infective bites per person per year.
+
+- **Vector Lifespan/Survival**: Assessing the longevity of the mosquitoes (often using parity rate or Mark-Release-Recapture studies).
+
+- **Blood-Feeding Behavior**: Identifying the host animals mosquitoes feed on (Blood Meal Source), distinguishing between humans (anthropophagy) and animals (zoophagy).
+
+- [**Insecticide Resistance**](/datasources/malaria/malaria-threats-map-antimalarial-drug-efficacy-and-resistance/antimalarial_drug_efficacy_and_resistance.qmd): Testing vector susceptibility to various insecticides used for control (e.g., cone bioassays). 
+
+- **Larval Ecology**: Mapping and characterizing mosquito breeding sites and larval distribution.
+
+### 1.1 Types of Entomological Data Affected by Climate
+
+During their lifecycle, mosquitoes occupy two very different habitats which are impacted differently from one another. In an aquatic environment, humidity plays no role in the development of the immature mosquito larvae. However, for adult mosquitoes in a terrestrial environment, humidity influences their activity levels since high humidities influences the movement of mosquitoes and ultimately impacts population dispersal.
+
+```{r}
+#| label: tbl-data-sources
+#| tbl-cap: Description of the data sources and the climatic factors that influence these data sources.
+
+mosquito_climate_df <- data.frame(
+  data_source = c(
+    "Species Distribution and Range",
+    "Population Abundance",
+    "Phenology (Seasonal Activity)",
+    "Breeding and Oviposition Data",
+    "Vector Competence and Disease Transmission",
+    "Survival and Mortality Rates",
+    "Dispersal and Flight Activity",
+    "Interaction with Natural Enemies"
+  ),
+  description = c(
+    "Geographical presence and spread of mosquito species.",
+    "Number of individuals in a population.",
+    "Timing of emergence, breeding, and dormancy.",
+    "Egg-laying and larval habitat availability.",
+    "Ability to transmit pathogens.",
+    "Life expectancy and death rates.",
+    "Movement and spread of insects.",
+    "Predation and ecological interactions."
+  ),
+  influencing_climatic_factors = c(
+    "Temperature, Rainfall",
+    "Temperature, Humidity, Rainfall",
+    "Temperature, Seasonal Variation",
+    "Rainfall, Humidity",
+    "Temperature, Humidity",
+    "Extreme Temperatures, Humidity",
+    "Wind Speed, Temperature, Humidity",
+    "Temperature, Rainfall"
+  )
+)
+
+gt(mosquito_climate_df) |> 
+    cols_label(
+        data_source = "Data Source",
+        description = "Description",
+        influencing_climatic_factors = "Influencing Climatic Factors"
+    ) |> 
+      gt_theme_nytimes() |> 
+      tab_style(
+        style = cell_text(weight = "400", font = "Golos Text"),
+        locations = cells_column_labels()
+      ) 
+```
+
+The data sources are discussed in more detail below.
+
+**Species Distribution and Range**
+
+Climate determines where mosquitoes can live and propagate. Mosquito activity and Mosquito development ceases below 10°C and over 35°C. Within this range species differ but most flourish between 20-30°C. In the low range of temperatures, larvae and pupae fail to mature and adult activity (feeding, reproduction) is suppressed. Mosquitoes thrive between 20-30° where growth rates, survival, and biting activity are highest. This is also the range where disease transmission (malaria, dengue, chikungunya) are highest. Development and survival decline sharply above 35°C. Mortality significantly increases as eggs, larvae and adults fail to survive. Warming temperatures expand ranges of species like Aedes mosquitoes into new regions. 
+
+**Population Abundance**
+
+The main climatic factor that impacts on population are rainfall and humidity since they directly affect breeding sites, survival rates and activity levels. 
+
+Mosquitoes lay eggs in stagnant water. Rainfall fills puddles, containers and natural depressions creating ideal habitats for mosquito larvae to develop. After heavy rains mosquito populations spike due to increased egg hatching and larval survival. However, after heavy rains population abundance may decline if excessive water washes away eggs and larvae.
+
+Mosquitoes are highly sensitive to desiccation. High humidity reduces water loss, allowing mosquitos to live longer and feed more often. Humidity influences mosquito activity pattern, biting frequency and host-seeking behaviour. In dry conditions, mosquito mortality rises, reducing transmission potential.
+
+**Phenology (Seasonal Activity)**
+
+Seasonality strongly shapes the mosquito life cycle by influence breeding, survival and disease transmission patterns. Timing of insect emergence, migration, and diapause (dormancy) shifts with climate. Warmer winters can lead to early spring activity and extended breeding seasons. Warm, wet seasons drive population abundance while cold or dry seasons suppress mosquito activity and shorten lifespans.
+
+**Breeding and Oviposition Data**
+
+Rainfall patterns directly impact egg-laying sites for mosquitoes, whereas drought reduces breeding success, while heavy rains increase larval habitats.
+
+**Vector Competence and Disease Transmission**
+
+Humidity, rainfall and temperature directly affects mosquito vector competence (their ability to acquire and transmit pathogens). Warmer, wetter and more humid conditions generally increase mosquito survival, biting rates, and pathogen development, leading to higher transmission risks. For example, higher temperatures accelerate parasite replication inside mosquitoes, making mosquitoes infectious sooner.
+
+**Survival and Mortality Rates**
+
+Extreme heat or cold can reduce mosquito survival. Humidity influences desiccation risk. These rates are all impacted upon by climatic factors as discussed above.
+
+**Dispersal and Flight Activity**
+
+Apart from temperature and rainfall, wind speed and direction influence insect dispersal patterns. Mosquitoes can be transported hundreds of kilometers by strong winds, increasing their range and capable of causing infections in naïve populations.
+
+**Interaction with Natural Enemies**
+
+Climate shifts alter predator-prey dynamics affecting predation rates on mosquito populations, especially the larval stages. Climate influences mosquito predators by altering their abundance, distribution and feeding efficiency. Warmer temperatures, rainfall and humidity affect fish, birds, bats, dragonflies, and other natural enemies, which in turn regulate mosquito populations. Rainfall and high temperatures can accelerate development and abundance of predators, increasing consumption of mosquito larvae, thus decreasing population numbers.
+
+## Data types used to describe malaria transmission
+
+Understanding malaria transmission requires the integration of diverse data types that capture the complexity of the disease’s dynamics.  Epidemiological data which includes case counts, prevalence, incidence rates, and demographic information, which help quantify the burden of malaria in populations. Entomological data that focuses on mosquito vector characteristics such as species distribution, biting rates, and sporozoite infection rates, which are critical for assessing transmission potential. Environmental and climatic data encompasses temperature, rainfall, humidity, and land use patterns, as these factors influence mosquito breeding and parasite development. And finally, genetic and molecular data provides insights into parasite and vector genetics, drug resistance markers, and transmission-blocking interventions.
+
+Combining these data types enables researchers to model transmission patterns, identify hotspots, and design targeted interventions for malaria control and elimination.
+
+### 2.1 Summary of Malaria Entomological Data Types
+
+A brief explanation of the main entomological  data collected for progrsmme planning. The reason for collection of each data type is visited briefly and is clarified using an example of what the data type outputs.
+
+```{r}
+#| label: tbl-data_type
+#| tbl-cap: Summary of malaria entomological data types
+
+malaria_vector_df <- data.frame(
+  data_type = c(
+    "Species Distribution",
+    "Population Abundance",
+    "Breeding & Oviposition",
+    "Phenology (Seasonality)",
+    "Vector Competence",
+    "Survival & Mortality",
+    "Dispersal & Flight",
+    "Human-Vector Contact",
+    "Insecticide Resistance"
+  ),
+  purpose = c(
+    "Identify malaria vector presence and range",
+    "Estimate vector density for transmission risk",
+    "Locate larval habitats and predict population",
+    "Understand seasonal activity and peak biting",
+    "Assess ability to transmit Plasmodium",
+    "Determine longevity for parasite development",
+    "Track movement between habitats and dwellings",
+    "Measure exposure risk to humans",
+    "Monitor effectiveness of control interventions"
+  ),
+  examples = c(
+    "Mapping Anopheles species in different regions",
+    "Adult mosquito counts per trap/night",
+    "Water body surveys; larval density counts",
+    "Monthly biting rate trends",
+    "Sporozoite infection rates in mosquitoes",
+    "Adult survival under different temperatures",
+    "Mark-release-recapture studies",
+    "Human landing catches; indoor vs outdoor biting",
+    "WHO susceptibility tests; genetic resistance markers"
+  )
+)
+
+gt(malaria_vector_df) |> 
+    cols_label(
+        data_type = "Data Type",
+        purpose = "Purpose",
+        examples = "Examples"
+    ) |> 
+      gt_theme_nytimes() |> 
+      tab_style(
+        style = cell_text(weight = "400", font = "Golos Text"),
+        locations = cells_column_labels()
+      ) 
+```
+
+Collecting and analyzing entomological data is fundamental for malaria control programs. These data types help in identifying transmission hotspots, monitoring vector behavior, and evaluating intervention effectiveness, ultimately contributing to reducing malaria burden globally.
+
+### 2.2 Climatic Variables that influence entomological Data
+
+```{r}
+ #| label: tbl-climatic-variables
+ #| tbl-cap: Climatic variables that influence entomological data
+
+ climate_entomology_df <- data.frame(
+  climatic_variable = c(
+    "Temperature",
+    "Rainfall",
+    "Humidity",
+    "Wind",
+    "Seasonality",
+    "Extreme Events (heatwaves, droughts, storms)"
+  ),
+  influenced_entomological_data = c(
+    "Species distribution; Population abundance; Phenology (seasonal activity); Vector competence",
+    "Breeding/oviposition sites; Population abundance; Survival rates",
+    "Survival/mortality rates; Activity levels; Vector competence",
+    "Dispersal and migration; Flight activity",
+    "Phenology; Breeding cycles; Disease transmission patterns",
+    "Mortality; Distribution shifts; Breeding success"
+  ),
+  examples_notes = c(
+    "Warmer temperatures expand mosquito ranges; accelerate pathogen replication inside vectors; alter timing of insect emergence",
+    "Heavy rains create mosquito larval habitats; drought reduces breeding success; flooding can wash away larvae",
+    "High humidity reduces desiccation risk; low humidity increases mortality in small-bodied insects",
+    "Strong winds aid long-distance dispersal (e.g., locust swarms); storms can transport insects across regions",
+    "Seasonal changes dictate insect dormancy (diapause), peak breeding times, and vector-borne disease outbreaks",
+    "Heatwaves cause mass die-offs; drought limits breeding; storms redistribute insect populations"
+  )
+)
+
+gt(climate_entomology_df) |> 
+    cols_label(
+        climatic_variable = "Climatic Variable",
+        influenced_entomological_data = "Influenced Entomological Data",
+        examples_notes = "Examples / Notes"
+    ) |> 
+      gt_theme_nytimes() |> 
+      tab_style(
+        style = cell_text(weight = "400", font = "Golos Text"),
+        locations = cells_column_labels()
+      ) 
+```
+
+
+## 3. Data Correction of Malaria Entomology Data
+
+Accurate data correction is essential for ensuring reliability in vector surveillance, intervention evaluation, and epidemiological modeling. The information presented is based on best practices and WHO guidelines.
+
+### 3.1 Forms of Data Correction in Malaria Entomology
+
+Malaria entomology data often requires multiple layers of correction to address errors from field collection, laboratory analysis, and data entry. These corrections include data cleaning, sampling effort adjustments, spatial and temporal alignment, laboratory verification, environmental integration, and indicator calculation checks.
+
+#### 3.1.1 Correction Checklist
+
+The following checklist provides a structured approach to ensure data integrity:
+
+```{r}
+#| label: tbl-correction-list
+#| tbl-cap: Correction checklist
+
+data_correction_df <- data.frame(
+  category = c(
+    "Data Cleaning",
+    "Sampling Effort",
+    "Spatial & Temporal Alignment",
+    "Laboratory Verification",
+    "Environmental & Covariate Integration",
+    "Indicator Calculation"
+  ),
+  correction_steps = c(
+    "Remove duplicates; Standardize species names; Validate dates; Check ranges; Handle missing values",
+    "Normalize counts by trap-nights; Adjust HLC for exposure time; Account for seasonality",
+    "Verify GPS coordinates; Align data to consistent time intervals",
+    "Validate PCR/ELISA results; Reconcile species identification discrepancies",
+    "Correct weather data; Incorporate intervention coverage",
+    "Confirm formulas for EIR, HBR, Parity Rate; Ensure consistency across datasets"
+  )
+)
+
+gt(data_correction_df) |> 
+    cols_label(
+        category = "Category",
+        correction_steps = "Correction steps"
+    ) |> 
+      gt_theme_nytimes() |> 
+      tab_style(
+        style = cell_text(weight = "400", font = "Golos Text"),
+        locations = cells_column_labels()
+      ) 
+```
+
+Implementing these data correction steps ensures high-quality malaria entomology datasets, enabling accurate calculation of key indicators such as Entomological Inoculation Rate (EIR) and Human Biting Rate (HBR). This process supports evidence-based decision-making for malaria control and elimination programs.
+
+### 3.2 Abbott's Formula and Its Application
+
+Measuring mortality among malaria vectors is often the endpoint of most vector assays and it is important that negative controls are done as part of the assay. If mortality is less than 5% then the results can be used without correction. If mortality is >5 ≤ 20%, the results need to be corrected to take into account mortality in the negative control. Abbott's formula is a widely used correction method in entomology and bioassays. It helps researchers accurately assess the effectiveness of insecticides or treatments by accounting for natural mortality observed in control groups. This section summarizes the concept, mathematical expression, applications, and importance of Abbott's formula, particularly in malaria vector studies.
+
+#### 3.2.1 Definition of Abbott's Formula
+
+Abbott's formula was introduced by Walter S. Abbott in 1925. It is designed to correct observed mortality in treated insect populations by considering the mortality that occurs naturally in untreated controls. This ensures that the calculated effectiveness of a treatment is not overestimated.
+
+**Mathematical Expression**
+
+$$
+\text{Corrected Mortality (\%)} = \frac{\text{Mortality in Treatment} - \text{Mortality in Control}}{100 - \text{Mortality in Control}} \times 100
+$$
+
+**Use Cases**
+
+Abbott's formula is commonly applied in the following scenarios:
+
+- Insecticide susceptibility tests (e.g., WHO cone bioassays, CDC bottle bioassays)
+- Malaria vector control studies, including IRS (Indoor Residual Spraying) and LLIN (Long-Lasting Insecticidal Nets) evaluations
+- Resistance monitoring programs for mosquito populations
+- Any bioassay where natural mortality in controls could bias results if not corrected
+
+**Importance**
+
+Abbott's formula is crucial for ensuring accurate interpretation of bioassay results. Without this correction, high control mortality could lead to misleading conclusions about treatment efficacy. The formula standardizes results across experiments and is recommended by WHO guidelines for vector control evaluations.
+
+Researchers conducting malaria vector studies should consistently apply Abbott's formula when control mortality is observed. This practice enhances data reliability and supports informed decision-making in vector control programs.
+
+#### 3.2.2 Worked Example
+
+Suppose mortality in the treatment group is $75%$, and mortality in the control group is $24%$. Using Abbott's formula:
+
+$$
+\text{Corrected Mortality (\%)} = \frac{75 - 24}{100 - 24} \times 100 = \frac{51}{76} \times 100 \approx 67\%
+$$
+
+This means the insecticide caused $67%$ mortality after adjusting for natural deaths.
+
+##### 3.2.2.1 Diagram of Correction Process
+
+![](/guides/entomology/images/mortality_correction.png)
+
+## 4. Entomological Data Sources
+
+
+```{r}
+#| label: tbl-entomology-data-sources
+#| tbl-cap: Entomology data sources
+
+mosquito_sources <- data.frame(
+  Source_Name = c(
+    "WHO Global Malaria Programme",
+    "Global Mosquito Observations Dashboard (GMOD)",
+    "MalariaGEN Mosquito Data Tools",
+    "MosquitoDB (Ifakara Health Institute)",
+    "VectorByte – Vector Data Ecosystem",
+    "Smithsonian Entomology Collections",
+    "Global Biodiversity Information Facility (GBIF)",
+    "EMBL-EBI Biodiversity Portal"
+  ),
+  Description = c(
+    "Official WHO tools for entomology and vector control data collection and visualization.",
+    "Citizen science platform for global mosquito observations.",
+    "Genomic data and analysis tools for mosquito populations.",
+    "Open-source system for managing mosquito field and lab data.",
+    "Global repository for vector occurrence, infection, and geospatial data.",
+    "Digitized specimen data from one of the largest entomology collections.",
+    "Worldwide species occurrence records, including mosquitoes.",
+    "Biomolecular and genomic data for biodiversity and climate research."
+  ),
+  Access_Link = c(
+    "https://www.who.int/teams/global-malaria-programme/prevention/vector-control/dhis-data-collection-and-collation-tools",
+    "https://sdgstoday.org/dataset/global-mosquito-observations-dashboard",
+    "https://www.malariagen.net/resources/mosquito-data-tools/",
+    "https://github.com/IHI-Data-science/mdb",
+    "https://www.vectorbyte.org/vecdataecosystem",
+    "https://collections.nmnh.si.edu/search/ento/",
+    "https://www.gbif.org",
+    "https://www.embl.org/news/science-technology/embl-ebis-open-data-resources-for-biodiversity-and-climate-research/"
+  )
+)
+
+gt(mosquito_sources) |>  
+  cols_label(
+      Source_Name = "Source name",
+      Description = "Description",
+      Access_Link = "Access link"
+  ) |> 
+    gt_theme_nytimes() |> 
+    tab_style(
+      style = cell_text(weight = "400", font = "Golos Text"),
+      locations = cells_column_labels()
+    ) 
+```

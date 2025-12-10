@@ -38,6 +38,8 @@ website:
             href: guides/climate/climate.qmd
           - text: Modelling
             href: guides/modelling/modelling.qmd
+          - text: Entomology
+            href: guides/entomology/entomology.qmd
 #      - text: Updates
 #        href: updates.qmd
       - text: Contribute
