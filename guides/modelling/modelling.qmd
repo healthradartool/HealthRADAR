@@ -23,7 +23,7 @@ library(gtExtras)
 
 ### 1. Observational Data 
 
-Observational data are empirically collected from surveillance systems, health records, field studies, or surveys. These data capture real-world observations of populations, environments, and disease occurrence. While surveillance systems and health records are maintained on governmental databases and require a data-sharing agreement to access, field studies and surveys are often be conducted by researchers and made available in academic journals. Sometimes, data from surveys conducted across multiple countries are housed on public platforms. The [Demographic and Health Survey](/datasources/malaria/dhs-program/dhs.html)  source of data is an example of this.
+Observational data are empirically collected from surveillance systems, health records, field studies, or surveys. These data capture real-world observations of populations, environments, and disease occurrence. While surveillance systems and health records are maintained on governmental databases and require a data-sharing agreement to access, field studies and surveys are often conducted by researchers and made available in academic journals. Sometimes, data from surveys conducted across multiple countries are housed on public platforms. The [Demographic and Health Survey](/datasources/malaria/dhs-program/dhs.html)  source of data is an example of this.
 
 There are many types of data required for disease models. Depending on the disease, some types of data will be more important than others. @tbl-data-types contains a description of different types of data commonly used in disease models. These data could be available at a different administrative levels (national/ sub-national) and disaggregated by age, sex and other risk groups.
 
