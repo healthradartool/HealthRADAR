@@ -18,7 +18,7 @@ Here are a few guidelines to help you understand the project, learn about the st
 
 This project and everyone participating in it is governed by our [Code of Conduct](https://github.com/healthradartool/.github/blob/main/CODE_OF_CONDUCT.md){target="_blank"}. By participating, you are expected to uphold this code.
 
-## How you can contribute?
+## How can you contribute?
 
 There are many ways in which the community can contribute to this project:
 
@@ -29,7 +29,7 @@ There are many ways in which the community can contribute to this project:
 
 ## Report issues
 
-A great way to contribute is to report issues, either found when working on a pull request or when using Health RADAR. We have [issue templates](https://github.com/healthradartool/HealthRADAR/issues) to help you report feature requests or bugs. Please use them when reporting an issue. We also have a [report issues](/issues.qmd) page where you can report issues if you are not familiar with GitHub.
+A great way to contribute is to report issues, either found when working on a pull request or when using Health RADAR. We have [issue templates](https://github.com/healthradartool/HealthRADAR/issues) to help you report feature requests or bugs. Please use these when reporting an issue. We also have a [report issues](/issues.qmd) page where you can report issues if you are not familiar with GitHub.
 
 ## Contributing a data source page
 
@@ -41,7 +41,7 @@ Each page has three major sections:
 - Visualisations
 - Modelling
 
-The overview section provides a brief overview of the dataset, including the source, how to access the data and any caveats or limitations to using the data. The visualisations section displays example plots of the data (such as temporal trends, geographic distributions or demographic breakdowns) to illustrate data characteristics. The modelling section provides worked code examples that demonstrate how to incorporate the dataset into climate-sensitive infectious disease models.
+The overview section provides a brief overview of the dataset, including the source, how to access the data and any caveats or limitations to using the data. The visualisations section provides example plots of the data (such as temporal trends, geographic distributions or demographic breakdowns) to illustrate data characteristics. The modelling section provides worked code examples that demonstrate how to incorporate the dataset into climate-sensitive infectious disease models.
 
 To learn more about contributing a data source page please look at our [contribution guide](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md){target="_blank"}.
 
