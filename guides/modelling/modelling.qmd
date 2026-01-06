@@ -121,119 +121,121 @@ gt(data) |>
 
 Mathematical mechanistic models are tools that use mathematics, biological and epidemiological principles and logic to create synthetic populations on a computer. These have features similar to real populations where options for disease control interventions are being considered.
 
-@tbl-disease-models presents a high-level overview of different mechanistic disease model classes. While these are presented separately, they are often combined in practice, for example, an age-structured compartmental model that is simulated stochastically.
+Below is a high-level overview of different mechanistic disease model classes. While these are presented separately, they are often combined in practice, for example, an age-structured compartmental model that is simulated stochastically.
 
 
-```{r}
-#| label: tbl-disease-models
-#| tbl-cap: Different mechanistic disease model classes
+#### Compartmental Models (e.g., SIR, SEIR, SEIRS)
 
-data <- data.frame(
-  Model_Type = c(
-    "Compartmental Models (e.g., SIR, SEIR, SEIRS)",
-    "Age-structured / Demographic Models",
-    "Spatial / Metapopulation Models",
-    "Vector-borne Transmission Models",
-    "Stochastic Models",
-    "Individual-based (Agent-based) Models",
-    "Network Models",
-    "Hybrid / Multi-scale Models"
-  ),
-  Core_Methodology = c(
-    "Differential equations representing population movement between disease states",
-    "Extends compartmental models with age or risk group stratification",
-    "Divides populations into spatial units connected by movement",
-    "Links human and vector populations via transmission parameters",
-    "Adds randomness to transmission and progression processes",
-    "Simulates individual entities with attributes and behaviours",
-    "Represents individuals as nodes and contacts as edges",
-    "Combines multiple methods (e.g., agent-based + DE models)"
-  ),
-  Key_Features = c(
-    "Populations divided into compartments (Susceptible, Exposed, Infectious, Recovered, etc.)",
-    "Tracks population by age, sex, or risk",
-    "Incorporates travel, migration, or vector dispersal",
-    "Includes mosquito, tick, or other vector compartments",
-    "Uses probabilities instead of deterministic rates",
-    "Tracks each person’s state and interactions over time",
-    "Uses network theory to model interactions",
-    "Links dynamics across scales (individual to population)"
-  ),
-  Common_Use_Cases = c(
-    "Modelling transmission dynamics, intervention evaluation",
-    "Intervention evaluation with comparison between age or risk groups",
-    "Regional transmission, outbreak spread, importation risk",
-    "Malaria, dengue, Zika",
-    "Small populations, early outbreak dynamics",
-    "Contact tracing, behaviour-driven epidemics and intervention analysis",
-    "HIV, COVID-19, sexually transmitted infections",
-    "Policy simulations, complex transmission settings"
-  ),
-  Strengths = c(
-    "Simple, interpretable, computationally efficient",
-    "Captures heterogeneity, informs targeted interventions",
-    "Models geography and connectivity explicitly",
-    "Represents human–vector interaction explicitly",
-    "Captures chance events, extinction probabilities",
-    "Highly detailed, flexible, realistic",
-    "Captures heterogeneity in contacts and clustering",
-    "Balances realism and tractability"
-  ),
-  Limitations = c(
-    "Assumes homogeneous mixing, limited individual variation",
-    "Requires detailed data, increases complexity",
-    "Computationally demanding, needs spatial data",
-    "Requires vector data (biting rate, survival, distribution etc.)",
-    "Computationally heavy, requires multiple model runs",
-    "Data intensive, slow to run, difficult to calibrate",
-    "Requires social network data, complex to parameterize",
-    "Complex to design and validate"
-  )
-)
+- **Core Methodology:** Differential equations representing population movement between disease states.
+- **Key Features:** Populations divided into compartments (Susceptible, Exposed, Infectious, Recovered, etc.).
+- **Common Use Cases:** General transmission dynamics and broad intervention evaluation.
+- **Strengths:** Simple, interpretable, and computationally efficient.
+- **Limitations:** Assumes homogeneous mixing; ignores individual variation.
 
-gt(data) |> 
-    cols_label(
-        Model_Type = "Model type",
-        Core_Methodology = "Core methodology",
-        Key_Features = "Key features",
-        Common_Use_Cases = "Common use cases"
-    ) |> 
-      gt_theme_nytimes()
-```
+---
+
+#### Age-structured / Demographic Models
+
+- **Core Methodology:** Extends compartmental models with age or risk group stratification.
+- **Key Features:** Tracks population by age, sex, or risk level.
+- **Common Use Cases:** Comparing interventions between specific age groups (e.g., schools vs. elderly care).
+- **Strengths:** Captures heterogeneity; informs highly targeted interventions.
+- **Limitations:** Requires detailed demographic data; increases mathematical complexity.
+
+---
+
+#### Spatial / Metapopulation Models
+
+- **Core Methodology:** Divides populations into spatial units connected by movement.
+- **Key Features:** Incorporates travel, migration, or vector dispersal.
+- **Common Use Cases:** Regional transmission, outbreak spread, and importation risk (e.g., airport travel).
+- **Strengths:** Explicitly models geography and connectivity.
+- **Limitations:** Computationally demanding; requires high-quality spatial and travel data.
+
+---
+
+#### Vector-borne Transmission Models
+
+- **Core Methodology:** Links human and vector populations via transmission parameters.
+- **Key Features:** Includes mosquito, tick, or other vector compartments.
+- **Common Use Cases:** Malaria, Dengue, Zika.
+- **Strengths:** Represents the human–vector interaction cycle explicitly.
+- **Limitations:** Requires vector-specific data (biting rates, survival, distribution).
+
+---
+
+#### Stochastic Models
+
+- **Core Methodology:** Adds randomness to transmission and progression processes.
+- **Key Features:** Uses probabilities instead of deterministic (fixed) rates.
+- **Common Use Cases:** Small populations or capturing early outbreak dynamics.
+- **Strengths:** Captures chance events and "extinction" probabilities.
+- **Limitations:** Computationally heavy; requires multiple model runs to get an average.
+
+---
+
+#### Individual-based (Agent-based) Models
+
+- **Core Methodology:** Simulates individual entities with unique attributes and behaviors.
+- **Key Features:** Tracks each person’s specific state and interactions over time.
+- **Common Use Cases:** Contact tracing, behavior-driven epidemics, and complex intervention analysis.
+- **Strengths:** Highly detailed, flexible, and realistic.
+- **Limitations:** Very data-intensive; slow to run; difficult to calibrate.
+
+---
+
+#### Network Models
+
+- **Core Methodology:** Represents individuals as **nodes** and contacts as **edges**.
+- **Key Features:** Uses network theory to model social or physical interactions.
+- **Common Use Cases:** HIV, COVID-19, and other sexually transmitted infections.
+- **Strengths:** Captures heterogeneity in contacts and social clustering.
+- **Limitations:** Requires social network data; complex to parameterize.
+
+---
+
+#### Hybrid / Multi-scale Models
+
+- **Core Methodology:** Combines multiple methods (e.g., agent-based + differential equations).
+- **Key Features:** Links dynamics across scales (from individual to whole population).
+- **Common Use Cases:** Large-scale policy simulations and complex transmission settings.
+- **Strengths:** Balances realism with computational tractability.
+- **Limitations:** Extremely complex to design, code, and validate.
+
 
 ## C. Key considerations when using data as inputs to models for parameterisation or calibration
 
-##### 1. Data Quality and Reliability
+#### 1. Data Quality and Reliability
 
 - **Completeness:** Check for missing data, underreporting, or incomplete records.
 - **Accuracy:** Assess potential measurement errors or misclassification (e.g., false positives/negatives).
 - **Consistency:** Verify that data sources use consistent definitions and collection methods over time.
 - **Timeliness:** Ensure data are up-to-date and reflect current or historical epidemiological conditions as needed.
 
-##### 2. Data Relevance and Appropriateness
+#### 2. Data Relevance and Appropriateness
 
 - **Epidemiological relevance:** Confirm that data correspond to the disease, population, and context being modelled.
 - **Temporal and spatial resolution:** Match data frequency and geographic scale to the model’s structure (e.g., daily vs. annual, district vs. national).
 - **Alignment with model compartments:** Ensure data map correctly to model states (e.g., incidence vs. prevalence).
 
-##### 3. Data Integration and Compatibility
+#### 3. Data Integration and Compatibility
 
 - **Multiple data sources:** When combining datasets (e.g., surveillance, surveys, lab, climate), check for consistency and avoid double-counting.
 - **Standardisation:** Harmonise variable formats, units, and definitions across sources.
 - **Metadata:** Retain and review metadata for context, collection methods, and limitations.
 
-##### 4. Representativeness
+#### 4. Representativeness
 
 - **Population coverage:** Evaluate whether data capture key subpopulations (e.g., rural areas, private sector, asymptomatic cases).
 - **Bias:** Identify sampling bias, reporting bias, or selection bias that could distort model outputs.
 
-##### 5. Contextual Understanding
+#### 5. Contextual Understanding
 
 - **Health system effects:** Consider reporting practices, diagnostic access, or changes in policy that affect data trends.
 - **External drivers:** Integrate contextual variables (e.g., mobility, climate, interventions) that influence disease dynamics.
 - **Expert input:** Engage local or domain experts to interpret data patterns and validate assumptions.
 
-##### 6. Ethical and Governance Considerations
+#### 6. Ethical and Governance Considerations
 
 - **Data privacy:** Protect identifiable or sensitive health information.
 - **Permissions and ownership:** Respect data-sharing agreements and attribution.
@@ -241,13 +243,13 @@ gt(data) |>
 
 In relation to the model development, the following should also be considered
 
-###### 1. Uncertainty and Variability
+#### 1. Uncertainty and Variability
 
 - **Measurement uncertainty:** Quantify uncertainty ranges where possible.
 - **Natural variability:** Account for stochasticity or seasonality in transmission or reporting.
 - **Scenario testing:** Use sensitivity or uncertainty analyses to understand model dependence on data assumptions.
 
-###### 2. Calibration and Validation
+#### 2. Calibration and Validation
 
 - **Model calibration:** Choose appropriate parameters to fit data, ensuring that calibration is statistically sound (e.g., MCMC, optimisation).
 - **Validation:** Compare model predictions to independent datasets or samples from datasets not used in calibration.
