@@ -23,9 +23,9 @@ library(gtExtras)
 
 ### 1. Observational Data 
 
-Observational data are empirically collected from surveillance systems, health records, field studies, or surveys. These data capture real-world observations of populations, environments, and disease occurrence. While surveillance systems and health records are maintained on governmental databases and require a data-sharing agreement to access, field studies and surveys may often be conducted by researchers and made available in academic journals. Sometimes, data from surveys conducted across multiple countries are housed on public platforms. The [Demographic and Health Survey](/datasources/malaria/dhs-program/dhs.html)  source of data is an example of this.
+Observational data are empirically collected from surveillance systems, health records, field studies, or surveys. These data capture real-world observations of populations, environments, and disease occurrence. While surveillance systems and health records are maintained on governmental databases and require a data-sharing agreement to access, field studies and surveys are often conducted by researchers and made available in academic journals. Sometimes, data from surveys conducted across multiple countries are housed on public platforms. The [Demographic and Health Survey](/datasources/malaria/dhs-program/dhs.html)  source of data is an example of this.
 
-There are many types of data required for disease models. Depending on the disease itself, some types of data will be more important than others. @tbl-data-types contains a description of different types of data commonly used in disease models. These data could be available at a different administrative levels (national/ sub-national) and disaggregated by age, sex and other risk groups.
+There are many types of data required for disease models. Depending on the disease, some types of data will be more important than others. @tbl-data-types contains a description of different types of data commonly used in disease models. These data could be available at a different administrative levels (national/ sub-national) and disaggregated by age, sex and other risk groups.
 
 
 ```{r}
@@ -33,7 +33,7 @@ There are many types of data required for disease models. Depending on the disea
 #| tbl-cap: Data types commonly used in disease models
 
 data <- data.frame(
-  TYPE = c(
+  Type = c(
     "Case surveillance data",
     "Demographic data",
     "Entomological data",
@@ -42,7 +42,7 @@ data <- data.frame(
     "Behavioural and mobility data",
     "Serological data"
   ),
-  EXAMPLES = c(
+  Examples = c(
     "Reported counts of confirmed and/or suspected cases, hospitalisations, and deaths collected through national or sentinel systems.",
     "Population size, age and sex structure, births and deaths, and migration records.",
     "Vector density, species distribution.",
@@ -59,7 +59,7 @@ gt(data) |>
 
 ### 2. Estimated Information
 
-Estimated information, sometimes mislabelled as data, but still important for disease modelling, is generated through inference, statistical modelling, or disease modelling from when direct observation is limited or incomplete. These represent interpreted or model-inferred quantities. As an example, the [Malaria Atlas Project](/datasources/malaria/map/map.html)  provides estimates of malaria prevalence in 2-10 year olds. @tbl-estimated-data contains a description of different types of estimated information commonly used as inputs or validation points in disease models. These estimates and their uncertainty ranges could be available at a different administrative levels (national/ sub-national) and disaggregated by age, sex and other risk groups.
+Estimated information, which is sometimes mislabelled as data but still important for disease modelling, is generated through inference, statistical modelling, or disease modelling when direct observation is limited or incomplete. These represent interpreted or model-inferred quantities. As an example, the [Malaria Atlas Project](/datasources/malaria/map/map.html)  provides estimates of malaria prevalence in 2-10 year olds. @tbl-estimated-data contains a description of different types of estimated information commonly used as inputs or validation points in disease models. These estimates and their uncertainty ranges could be available at a different administrative levels (national/ sub-national) and disaggregated by age, sex and other risk groups.
 
 
 ```{r}
@@ -67,14 +67,14 @@ Estimated information, sometimes mislabelled as data, but still important for di
 #| tbl-cap: Types of estimated information
 
 data <- data.frame(
-  TYPE = c(
+  Type = c(
     "Transmission parameters",
     "Intervention effectiveness",
     "Under-reporting adjustments",
     "Modelled incidence and prevalence",
     "Mobility and contact matrices"
   ),
-  DESCRIPTION = c(
+  Description = c(
     "Estimated measures such as the basic reproduction number (R₀), force of infection, or contact rate.",
     "Derived measures of vaccine efficacy, treatment failure, or intervention coverage, population adherence.",
     "Corrected case or mortality estimates accounting for incomplete surveillance or diagnostic capacity.",
@@ -104,7 +104,7 @@ data <- data.frame(
     "Standardisation and harmonisation",
     "Ethical and legal considerations"
   ),
-  DESCRIPTION = c(
+  Description = c(
     "Proportion of observational data actually reported or recorded in the health system databases across time or space.",
     "Source details, collection methodology, and transformations applied before analysis.",
     "Governmental documents such as national strategic plans, operational plans, budgets, annual progress reports and reviews.",
@@ -119,9 +119,9 @@ gt(data) |>
 
 ## B. Disease Models
 
-Mathematical mechanistic models are tools that use mathematics, biological and epidemiological principles and logic to create synthetic populations on a computer, that have features similar to real populations where options for disease control interventions are being considered.
+Mathematical mechanistic models are tools that use mathematics, biological and epidemiological principles and logic to create synthetic populations on a computer. These have features similar to real populations where options for disease control interventions are being considered.
 
-@tbl-disease-models presents a very high-level overview of different mechanistic disease model classes. While these are presented separately, they are often combined in practice e.g. An age-structured compartmental model that is simulated stochastically.
+@tbl-disease-models presents a high-level overview of different mechanistic disease model classes. While these are presented separately, they are often combined in practice, for example, an age-structured compartmental model that is simulated stochastically.
 
 
 ```{r}
@@ -201,7 +201,7 @@ gt(data) |>
       gt_theme_nytimes()
 ```
 
-## C. Key considerations when using data as inputs to models for parameterization or calibration
+## C. Key considerations when using data as inputs to models for parameterisation or calibration
 
 ##### 1. Data Quality and Reliability
 
@@ -219,7 +219,7 @@ gt(data) |>
 ##### 3. Data Integration and Compatibility
 
 - **Multiple data sources:** When combining datasets (e.g., surveillance, surveys, lab, climate), check for consistency and avoid double-counting.
-- **Standardization:** Harmonize variable formats, units, and definitions across sources.
+- **Standardisation:** Harmonise variable formats, units, and definitions across sources.
 - **Metadata:** Retain and review metadata for context, collection methods, and limitations.
 
 ##### 4. Representativeness
@@ -249,9 +249,9 @@ In relation to the model development, the following should also be considered
 
 ###### 2. Calibration and Validation
 
-- **Model calibration:** Choose appropriate parameters to fit data, ensuring that calibration is statistically sound (e.g., MCMC, optimization).
+- **Model calibration:** Choose appropriate parameters to fit data, ensuring that calibration is statistically sound (e.g., MCMC, optimisation).
 - **Validation:** Compare model predictions to independent datasets or samples from datasets not used in calibration.
-- **Overfitting:** Avoid tuning parameters too closely to one dataset at the expense of generalizability.
+- **Overfitting:** Avoid tuning parameters too closely to one dataset at the expense of generalisability.
 
 ## D. The Modelling Process
 
@@ -261,8 +261,8 @@ The following are key steps in the modelling process:
 
 ![Iterative cycle of stages in the modelling process](modelling%20process.png)
 
-1. **Define the modelling question:** It begins with defining a clear question that directly connects to a policy issue and can be answered using a model along with existing data and evidence.
-2. **Data collation:** Gathering and understand the available data. This step involves identifying what information is available, recognizing any gaps or limitations, and finding alternative solutions
+1. **Define the modelling question:** Modelling begins with defining a clear question that directly connects to a policy issue and can be answered using a model along with existing data and evidence.
+2. **Data collation:** Gathering and understanding the available data. This step involves identifying what information is available, recognising gaps or limitations, and finding alternative solutions
 3. **Model Building:** Choosing the appropriate model features to include in the structure is key, as is designing the software or code that will bring it to life. 
 4. **Parameter estimation:** Identify and select key values that will influence the model, and determine how best to manage and guess at unknown values 
 5. **Addressing uncertainty:** As all models need to make assumptions and have limitations,  it is important to address uncertainty by identifying and accounting for possible sources of error.
