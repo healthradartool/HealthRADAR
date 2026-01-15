@@ -82,6 +82,19 @@ button, .btn {
   font-family: "Golos Text";
 }
 
+/* Responsive adjustments for homepage heading */
+@media (max-width: 768px) {
+  #homepage-heading {
+    font-size: 2rem;
+    line-height: 1.2em;
+  }
+  
+  .headline .description {
+    font-size: 1rem;
+    line-height: 1.4em;
+  }
+}
+
 .headline {
   font-size: 1.25em;
   font-weight: 400;
