@@ -1,5 +1,6 @@
 ---
 title: "President's Malaria Initiative (PMI)"
+draft: true
 description: "PMI collaborates closely with partner countries to scale up proven interventions and strengthen local capacity and health systems."
 date: 10/25/2024 # mm-dd-yyyy
 image: "images/pmi.png"
