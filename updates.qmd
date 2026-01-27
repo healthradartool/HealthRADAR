@@ -2,6 +2,7 @@
 title: "Updates"
 back-to-top-navigation: false
 page-layout: full
+draft: true
 title-block-banner: "#EDF3F9"
 title-block-banner-color: "#212529"
 
