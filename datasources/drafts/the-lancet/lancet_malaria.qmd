@@ -1,5 +1,6 @@
 ---
 title: "The Lancet special issues on malaria"
+draft: true
 description: "The Lancet has published several special issues and articles focused on malaria."
 date: 07/04/2024 # mm-dd-yyyy
 image: "images/lancet.png"

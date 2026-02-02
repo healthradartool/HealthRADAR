@@ -82,6 +82,19 @@ button, .btn {
   font-family: "Golos Text";
 }
 
+/* Responsive adjustments for homepage heading */
+@media (max-width: 768px) {
+  #homepage-heading {
+    font-size: 2rem;
+    line-height: 1.2em;
+  }
+  
+  .headline .description {
+    font-size: 1rem;
+    line-height: 1.4em;
+  }
+}
+
 .headline {
   font-size: 1.25em;
   font-weight: 400;
@@ -370,27 +383,54 @@ footer > .footer-items {
 /* Responsive adjustments for radar block */
 @media (max-width: 768px) {
   #radar-block {
-    padding: 3rem 0;
+    padding: 2rem 0;
+  }
+  
+  #radar-block .column-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   
   #radar-block .grid {
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: flex-start !important; /* Override stretch on mobile */
+  }
+  
+  #radar-block .g-col-12 {
+    padding-left: 0;
+    padding-right: 0;
   }
   
   #radar-block .hero-text {
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin-bottom: 1rem;
+    line-height: 1.3;
   }
   
   #radar-block .description {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
   }
   
   #radar-block .btn {
     padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    width: 100%; /* Full width button on mobile */
+    text-align: center;
+  }
+  
+  #radar-block #data-image {
+    margin-top: 1rem;
+    border-radius: 8px;
+  }
+  
+  /* Ensure image column doesn't stretch unnecessarily */
+  #radar-block .g-col-md-6:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -407,8 +447,45 @@ footer > .footer-items {
   text-align: center;
 }
 
+#browse-btn-block a {
+  text-decoration: none; /* Remove underline from link wrapper */
+}
+
 #browse-btn-block.content-block {
   padding-bottom: 0 !important;
+}
+
+/* Responsive adjustments for browse button block */
+@media (max-width: 768px) {
+  #browse-btn-block {
+    padding: 2rem 0;
+  }
+  
+  #browse-btn-block .column-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+  }
+  
+  #browse-btn-block a {
+    text-decoration: none !important; /* Remove underline from link wrapper */
+    display: block;
+  }
+  
+  #browse-btn-block .btn-browse {
+    margin-right: 0 !important; /* Remove right margin on mobile */
+    width: 100%;
+    max-width: 100%;
+    display: block;
+  }
+  
+  #browse-all {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    text-decoration: none !important; /* Ensure button text has no underline */
+  }
 }
 
 /* this is added and hidden so that quarto can properly align the principles */
@@ -684,21 +761,35 @@ footer > .footer-items {
 /* Responsive adjustments for contribute block */
 @media (max-width: 768px) {
   #contribute-block {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
+  }
+
+  #contribute-block .column-page {
+    padding: 2rem 1.5rem;
   }
   
   #contribute-block .grid {
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    align-items: stretch;
+  }
+
+  #contribute-block .g-col-12 {
+    padding-left: 0;
+    padding-right: 0;
   }
   
   #contribute-block .hero-text {
     font-size: 2rem;
     margin-bottom: 1rem;
+    line-height: 1.3;
   }
   
   #contribute-block .description {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
   }
   
   .contribute-buttons {
@@ -709,7 +800,20 @@ footer > .footer-items {
   
   .contribute-buttons .btn {
     padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-align: center;
+    width: 100%;
+  }
+
+  /* Center the logo image and give it breathing room on mobile */
+  #contribute-block .g-col-md-4 {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  #contribute-block img {
+    max-width: 100%;
+    height: auto;
   }
 }

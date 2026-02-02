@@ -33,10 +33,14 @@ I am looking for data in
 
 :::{.hero-buttons}
 <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-  <option selected>Malaria</option>
-  <option value="1" disabled>Chikungunya</option>
-  <option value="2" disabled>Dengue</option>
-  <option value="3" disabled>Cholera</option>
+  <optgroup label="Available">
+    <option selected>Malaria</option>
+  </optgroup>
+  <optgroup label="Coming Soon">
+    <option value="1" disabled>Chikungunya</option>
+    <option value="2" disabled>Dengue</option>
+    <option value="3" disabled>Cholera</option>
+  </optgroup>
 </select>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -126,7 +130,6 @@ Responsible Access to Data for Analysis and Research
 Health RADAR makes it easier to find and use data for climate sensitive infectious disease (CSID) modelling. The platform collates a wide range of data sources—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. While the data are not available for download on our site, Health RADAR guides you through downloading the data on partner websites. In addition, Health RADAR provides extensive documentation that describes and contextualises each dataset and offers worked code examples on how to incorporate data into CSID models. 
 :::
 
-<br/>
 <a href="/about.qmd">
   <button id="learn-more" class="btn btn-outline-primary btn-action-primary btn-action btn-success btn-sm" type="button">
   Learn More About Health RADAR
@@ -140,7 +143,7 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
 ::: {.g-col-12 .g-col-md-6}
 
 <!-- Pro-tip: adding {.img-fluid} makes the image scale nicely within its column -->
-![](img/Browse-Data-Sources.png){#data-image}
+![](img/Browse-Data-Sources.png){#data-image .img-fluid}
 
 :::
 
@@ -162,7 +165,7 @@ Contribute to Health RADAR
 :::
 
 ::: {.description}
-Join our community to strengthen climate-sensitive infectious disease modeling. [Contribute data sources](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md){target="_blank"}, improve documentation or share your CSID modelling expertise.
+Join our community to strengthen climate-sensitive infectious disease modelling. [Contribute data sources](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md){target="_blank"}, improve documentation or share your CSID modelling expertise.
 :::
 
 ::: {.contribute-buttons}

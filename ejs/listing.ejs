@@ -94,38 +94,76 @@
 
 
 <script>
-  // No changes needed to your JavaScript logic, but update the selector to be robust.
-  function updateUrl() {
+  function applyFilters() {
     const time = document.getElementById("time").value;
     const geography = document.getElementById("geography").value;
     const theme = document.getElementById("theme").value;
     const other = document.getElementById("other").value;
-  
-    const filters = [];
-    if (time) filters.push("category=" + time);
-    if (geography) filters.push("category=" + geography);
-    if (theme) filters.push("category=" + theme);
-    if (other) filters.push("category=" + other);
-  
-    const urlFragment = filters.length > 0 ? "#" + filters.join("&") : "";
-    
-    const baseUrl = window.location.href.replace(/#.*$/g, "");
-    window.location = baseUrl + urlFragment;
+
+    // Collect all selected filter values
+    const selectedFilters = [];
+    if (time) selectedFilters.push(time);
+    if (geography) selectedFilters.push(geography);
+    if (theme) selectedFilters.push(theme);
+    if (other) selectedFilters.push(other);
+
+    // Get all cards
+    const cards = document.querySelectorAll('.list.grid .card');
+
+    // If no filters selected, show all cards
+    if (selectedFilters.length === 0) {
+      cards.forEach(card => {
+        card.style.display = '';
+      });
+      return;
+    }
+
+    // Filter cards based on selected categories (OR logic)
+    cards.forEach(card => {
+      // Get the base64-encoded categories from the data attribute
+      const encodedCategories = card.getAttribute('data-categories');
+
+      if (!encodedCategories) {
+        card.style.display = 'none';
+        return;
+      }
+
+      try {
+        // Decode base64, then decode URI component
+        const decoded = atob(encodedCategories);
+        const decodedCategories = decodeURIComponent(decoded);
+
+        // Split categories string into array
+        const cardCategories = decodedCategories.split(',').map(cat => cat.trim());
+
+        // Check if card has ALL of the selected filters (AND logic)
+        const hasMatch = selectedFilters.every(filter =>
+          cardCategories.includes(filter)
+        );
+
+        // Show or hide the card
+        card.style.display = hasMatch ? '' : 'none';
+      } catch (e) {
+        // If decoding fails, hide the card
+        console.error('Error decoding categories:', e);
+        card.style.display = 'none';
+      }
+    });
   }
-  
-  // Select all dropdowns inside the grid container
+
+  // Apply filters when any dropdown changes
   document.querySelectorAll('.grid select').forEach(dropdown => {
-    dropdown.onchange = updateUrl;
+    dropdown.onchange = applyFilters;
   });
-  
+
   function resetSelections() {
     document.getElementById("time").selectedIndex = 0;
     document.getElementById("geography").selectedIndex = 0;
     document.getElementById("theme").selectedIndex = 0;
     document.getElementById("other").selectedIndex = 0;
-    updateUrl();
+    applyFilters();
   }
-  
+
   document.getElementById("resetButton").onclick = resetSelections;
 </script>
 ```

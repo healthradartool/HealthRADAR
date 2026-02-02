@@ -1,5 +1,6 @@
 ---
 title: "GRID3"
+draft: true
 description: "GRID3 provides open-source, high-resolution geospatial data and tools to support data-driven decision-making for development and humanitarian efforts."
 date: 09/12/2024 # mm-dd-yyyy
 image: "images/grid3-logo.png"
