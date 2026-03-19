@@ -80,7 +80,7 @@ Data Sources
 ![](img/data-sources.png){.img-fluid}
 :::
 ::: {.card-description}
-Access comprehensive datasets for climate-sensitive infectious disease modelling including demographic, epidemiological and environmental data.
+Access curated datasets for climate-sensitive infectious disease modelling including demographic and epidemiological data, among others.
 :::
 :::
 :::
@@ -94,7 +94,7 @@ Documentation
 ![](img/documentation.png){.img-fluid}
 :::
 ::: {.card-description}
-Detailed guides and tutorials on how to download, process and incorporate data into your CSID models effectively.
+View detailed guides and tutorials on how to download, process and incorporate data into your CSID models effectively.
 :::
 :::
 :::
@@ -108,7 +108,7 @@ Code Examples
 ![](img/code-examples.png){.img-fluid}
 :::
 ::: {.card-description}
-Worked examples and code snippets showing how to integrate various data sources into your modelling workflows.
+Explore worked examples and code snippets showing how to integrate diverse data sources into your modelling workflows.
 :::
 :::
 :::
