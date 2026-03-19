@@ -3,7 +3,7 @@
 [![Website](https://img.shields.io/badge/Website-Health%20RADAR-blue)](https://healthradartool.net)
 [![GitHub](https://img.shields.io/badge/GitHub-HealthRADAR-green)](https://github.com/healthradartool/HealthRADAR)
 
-**Health RADAR** is a platform that makes it easier to find and use data for Climate Sensitive Infectious Disease (CSID) modelling, with a primary focus on malaria in Southern Africa. The platform provides extensive documentation that describes and contextualises each dataset, offers worked code examples on how to incorporate data into CSID models and directs users to the original data sources where they can download the data.
+**Health RADAR** is a platform that makes it easier to find and use data for Climate-Sensitive Infectious Disease (CSID) modelling, with a primary focus on malaria in Southern Africa. The platform provides extensive documentation that describes and contextualises each dataset, offers worked code examples on how to incorporate data into CSID models and directs users to the original data sources where they can download the data.
 
 ## Project Overview
 
