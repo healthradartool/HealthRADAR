@@ -22,7 +22,7 @@ Welcome to Health RADAR
 :::
 
 ::: {.description .h4}
-Health RADAR is a centralised resource for data relevant to climate sensitive infectious disease (CSID) modelling. Explore our data pages for guidance on downloading and using CSID modelling data.
+Health RADAR is a centralised resource for data relevant to climate-sensitive infectious disease (CSID) modelling. Explore the data pages for guidance on downloading and using CSID modelling data.
 :::
 
 ::: {.entry-point}
@@ -76,7 +76,7 @@ Data Sources
 ![](img/data-sources.png){.img-fluid}
 :::
 ::: {.card-description}
-Access comprehensive datasets for climate sensitive infectious disease modelling including demographic, epidemiological and environmental data.
+Access comprehensive datasets for climate-sensitive infectious disease modelling including demographic, epidemiological and environmental data.
 :::
 :::
 :::
@@ -127,7 +127,7 @@ Responsible Access to Data for Analysis and Research
 :::
 
 ::: {.description}
-Health RADAR makes it easier to find and use data for climate sensitive infectious disease (CSID) modelling. The platform collates a wide range of data sources—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. While the data are not available for download on our site, Health RADAR guides you through downloading the data on partner websites. In addition, Health RADAR provides extensive documentation that describes and contextualises each dataset and offers worked code examples on how to incorporate data into CSID models. 
+Health RADAR makes it easier to find and use data for climate-sensitive infectious disease (CSID) modelling. The platform collates a wide range of data sources—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. While the data are not available for download on our site, Health RADAR guides you through downloading the data on partner websites. In addition, Health RADAR provides extensive documentation that describes and contextualises each dataset and offers worked code examples on how to incorporate data into CSID models. 
 :::
 
 <a href="/about.qmd">
