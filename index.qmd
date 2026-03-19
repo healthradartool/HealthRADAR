@@ -65,6 +65,10 @@ I am looking for data in
 ::: {#rating-cards-section .content-block .column-screen}
 ::: {.column-page}
 
+::: {.section-heading}
+Platform Components
+:::
+
 ::: {.grid .align-items-center}
 
 ::: {.g-col-12 .g-col-md-4}
