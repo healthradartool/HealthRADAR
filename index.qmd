@@ -158,6 +158,20 @@ Health RADAR makes it easier to find and use data for climate-sensitive infectio
 :::
 
 
+::: {#browse-btn-block .content-block .column-screen}
+
+::: {.column-page}
+
+<a href="/data.qmd">
+  <button id="browse-all" class="btn btn-primary btn-browse btn-action-primary btn-action btn-success btn-lg" type="button">
+    Browse All Data Sources
+    <i class="fa-solid fa-square-up-right"></i>
+  </button>
+</a>
+
+:::
+:::
+
 ::: {#contribute-block .content-block .column-screen}
 ::: {.column-page}
 
@@ -195,20 +209,6 @@ Join our community to strengthen climate-sensitive infectious disease modelling.
 :::
 
 :::
-
-:::
-:::
-
-::: {#browse-btn-block .content-block .column-screen}
-
-::: {.column-page}
-
-<a href="/data.qmd">
-  <button id="browse-all" class="btn btn-primary btn-browse btn-action-primary btn-action btn-success btn-lg" type="button">
-    Browse All Data Sources 
-    <i class="fa-solid fa-square-up-right"></i>
-  </button>
-</a>
 
 :::
 :::
