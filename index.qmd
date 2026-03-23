@@ -22,7 +22,7 @@ Welcome to Health RADAR
 :::
 
 ::: {.description .h4}
-Health RADAR is a centralised resource for data relevant to climate-sensitive infectious disease (CSID) modelling. Explore the data pages for guidance on downloading and using CSID modelling data.
+Health RADAR is a centralised resource for data relevant to climate-sensitive infectious disease (CSID) modelling. Explore the data pages for guidance on accessing, downloading, and using these datasets to support CSID research and analysis. As a growing resource, Health RADAR welcomes contributions from the community to expand and strengthen its collection of data sources.
 :::
 
 ::: {.entry-point}
