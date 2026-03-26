@@ -1,7 +1,7 @@
 ---
 pagetitle: "Select a theme"
 title: "Malaria"
-subtitle: "Malaria is a mosquito-borne infectious disease caused by *Plasmodium* parasites, which are transmitted to humans through the bites of infected female *Anopheles* mosquitoes.<br/><br/>**Select a theme to filter and discover relevant datasources**"
+subtitle: "Malaria is a mosquito-borne infectious disease caused by *Plasmodium* parasites, which are transmitted to humans through the bites of infected female *Anopheles* mosquitoes.<br/><br/><a href='/data.qmd'><button id='browse-all' class='btn btn-primary btn-browse btn-action-primary btn-action btn-success' type='button'>Browse All Data Sources <i class='fa-solid fa-square-up-right'></i></button></a><br/><br/>**Select a theme to filter and discover relevant data sources**"
 toc: false
 back-to-top-navigation: false
 page-layout: full
@@ -38,6 +38,8 @@ add_card <- function(src = NULL, title = NULL, text = NULL, url = NULL, link_tex
 }
 ```
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 ::: {.grid}
 ```{r}
 #| echo: false
@@ -45,7 +47,7 @@ add_card <- function(src = NULL, title = NULL, text = NULL, url = NULL, link_tex
 
 add_card(
     src = "/img/climate.png",
-    title = "Climate",
+    title = "Climate ",
     text = "Climate data for analysis, modeling, and decision-making on climate change impacts and adaptation.",
     url = "/data.html#category=climate",
     link_text = "Browse data"
@@ -53,7 +55,7 @@ add_card(
 
 add_card(
     src = "/img/entomology.png",
-    title = "Entomology",
+    title = "Entomology ",
     text = "Data covering insect taxonomy, distribution, behavior, specimen records, genetics, and ecological surveys.",
     url = "/data.html#category=entomology",
     link_text = "Browse data"
@@ -77,7 +79,7 @@ add_card(
 
 add_card(
     src = "/img/interventions.png",
-    title = "Interventions",
+    title = "Interventions ",
     text = "Malaria intervention data on vector control, treatment, and public health measures.",
     url ="/data.html#category=interventions",
     link_text = "Browse data"
@@ -85,7 +87,7 @@ add_card(
 
 add_card(
     src = "/img/policy.png",
-    title = "Policies",
+    title = "Policies ",
     text = "Policy data on regulations, guidelines, and strategies for malaria control.",
     url ="/data.html#category=interventions",
     link_text = "Browse data"
