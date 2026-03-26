@@ -55,7 +55,7 @@ website:
         
     pinned: true
   page-footer: 
-          left: "&copy; Copyright 2025, Health RADAR"
+          left: "&copy; Copyright <span id='footer-year'></span>, Health RADAR<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>"
           center:
             - text: About
               href: about.qmd
