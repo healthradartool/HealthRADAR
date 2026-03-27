@@ -28,7 +28,7 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - text: Browse
+      - text: Data Sources
         href: data.qmd
       - text: About
         href: about.qmd
