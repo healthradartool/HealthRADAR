@@ -5,13 +5,12 @@ date: 08/01/2025 # mm-dd-yyyy
 image: "images/GHCNd.png"
 
 categories:
-  - climate
-  - station
-  - observational
-  - rainfall
-  - temperature
-  - global
-  - daily
+  - Climate
+  - Global
+  - Daily
+  - Historical Archive
+  - Real-time
+  - Observational / Station
 ---
 
 

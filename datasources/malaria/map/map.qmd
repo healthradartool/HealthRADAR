@@ -5,10 +5,13 @@ date: 09/23/2024 # mm-dd-yyyy
 image: "images/map.png"
 
 categories:
-  - malaria
-  - epidemiology
-  - spatiotemporal
-  - raster
+  - Epidemiology
+  - Global
+  - Gridded
+  - Country-level
+  - Annual
+  - Historical Archive
+  - Modelled Estimates
 editor: 
   markdown: 
     wrap: 72

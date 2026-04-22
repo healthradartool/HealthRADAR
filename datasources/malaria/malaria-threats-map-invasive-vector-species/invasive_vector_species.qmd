@@ -5,11 +5,11 @@ date: 10/23/2024 # mm-dd-yyyy
 image: "images/invasive_vector_species.png"
 
 categories:
-  - entomology
-  - malaria vectors
-  - new vectors of malaria
-  - emerging vectors of malaria
-  - vector species
+  - Entomology
+  - Country-level
+  - Global
+  - Annual
+  - Surveillance / Routine
 ---
 
 ::: {.page-tabs .panel-tabset}

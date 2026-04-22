@@ -6,13 +6,12 @@ draft: false
 image: "images/crulogo.png"
 
 categories:
-  - climate
-  - gridded
-  - observed
-  - rainfall
-  - temperature
-  - global
-  - monthly
+  - Climate
+  - Global
+  - Gridded
+  - Monthly
+  - Historical Archive
+  - Observational / Station
 ---
 
 

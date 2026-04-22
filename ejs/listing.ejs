@@ -1,5 +1,5 @@
 ```{=html}
-<!-- 
+<!--
   - grid: Enables the layout system.
   - gap-2: Creates a consistent space between all grid items,
     both horizontally on desktop AND vertically on mobile.
@@ -11,7 +11,7 @@
   <!-- For each dropdown, we create a responsive column -->
   <div class="g-col-12 g-col-md-3">
     <select class="form-select" id="theme">
-      <option value="">Theme</option>
+      <option value="" disabled selected>Theme</option>
       <% if (templateParams && templateParams.theme && templateParams.theme.length > 0) { %>
         <% templateParams.theme.forEach(function(theme) { %>
           <option value="<%= theme %>"><%= theme %></option>
@@ -19,21 +19,21 @@
       <% } %>
     </select>
   </div>
-  
+
   <div class="g-col-12 g-col-md-3">
-    <select class="form-select" id="time">
-      <option value="">Time</option>
-      <% if (templateParams && templateParams.time && templateParams.time.length > 0) { %>
-        <% templateParams.time.forEach(function(time) { %>
-          <option value="<%= time %>"><%= time %></option>
+    <select class="form-select" id="temporalresolution">
+      <option value="" disabled selected>Temporal Resolution</option>
+      <% if (templateParams && templateParams.temporalresolution && templateParams.temporalresolution.length > 0) { %>
+        <% templateParams.temporalresolution.forEach(function(temporalresolution) { %>
+          <option value="<%= temporalresolution %>"><%= temporalresolution %></option>
         <% }); %>
       <% } %>
     </select>
   </div>
-  
+
   <div class="g-col-12 g-col-md-2">
     <select class="form-select" id="geography">
-      <option value="">Geography</option>
+      <option value="" disabled selected>Geography</option>
       <% if (templateParams && templateParams.geography && templateParams.geography.length > 0) { %>
         <% templateParams.geography.forEach(function(category) { %>
           <option value="<%= category %>"><%= category %></option>
@@ -43,23 +43,23 @@
   </div>
 
   <div class="g-col-12 g-col-md-2">
-    <select class="form-select" id="other">
-      <option value="">Other</option>
-      <% if (templateParams && templateParams.other && templateParams.other.length > 0) { %>
-        <% templateParams.other.forEach(function(other) { %>
-          <option value="<%= other %>"><%= other %></option>
+    <select class="form-select" id="datatype">
+      <option value="" disabled selected>Data Type</option>
+      <% if (templateParams && templateParams.datatype && templateParams.datatype.length > 0) { %>
+        <% templateParams.datatype.forEach(function(datatype) { %>
+          <option value="<%= datatype %>"><%= datatype %></option>
         <% }); %>
       <% } %>
     </select>
   </div>
-  
-  <!-- 
+
+  <!--
     The Button's column is special.
     - g-col-12: Full width on mobile.
     - g-col-md-2: Fixed width on desktop that accommodates the button nicely.
   -->
   <div class="g-col-12 g-col-md-2">
-    <!-- 
+    <!--
       Add w-100 to the button itself.
       - This makes it fill its parent column. On mobile, the column is full-width, so the button becomes full-width.
       - On desktop, the column takes up the allocated space.
@@ -94,91 +94,90 @@
 
 
 <script>
-  function applyFilters() {
-    const time = document.getElementById("time").value;
-    const geography = document.getElementById("geography").value;
-    const theme = document.getElementById("theme").value;
-    const other = document.getElementById("other").value;
+  const DROPDOWN_IDS = ['theme', 'temporalresolution', 'geography', 'datatype'];
 
-    // Collect all selected filter values
-    const selectedFilters = [];
-    if (time) selectedFilters.push(time);
-    if (geography) selectedFilters.push(geography);
-    if (theme) selectedFilters.push(theme);
-    if (other) selectedFilters.push(other);
-
-    // Get all cards
-    const cards = document.querySelectorAll('.list.grid .card');
-
-    // If no filters selected, show all cards
-    if (selectedFilters.length === 0) {
-      cards.forEach(card => {
-        card.style.display = '';
-      });
-      return;
-    }
-
-    // Filter cards based on selected categories (OR logic)
-    cards.forEach(card => {
-      // Get the base64-encoded categories from the data attribute
-      const encodedCategories = card.getAttribute('data-categories');
-
-      if (!encodedCategories) {
-        card.style.display = 'none';
-        return;
-      }
-
+  // Decode all card categories once and cache them
+  const allCardCategories = (function () {
+    return Array.from(document.querySelectorAll('.list.grid .card')).map(card => {
+      const encoded = card.getAttribute('data-categories');
+      if (!encoded) return [];
       try {
-        // Decode base64, then decode URI component
-        const decoded = atob(encodedCategories);
-        const decodedCategories = decodeURIComponent(decoded);
-
-        // Split categories string into array
-        const cardCategories = decodedCategories.split(',').map(cat => cat.trim());
-
-        // Check if card has ALL of the selected filters (AND logic)
-        const hasMatch = selectedFilters.every(filter =>
-          cardCategories.includes(filter)
-        );
-
-        // Show or hide the card
-        card.style.display = hasMatch ? '' : 'none';
+        return decodeURIComponent(atob(encoded)).split(',').map(c => c.trim());
       } catch (e) {
-        // If decoding fails, hide the card
-        console.error('Error decoding categories:', e);
-        card.style.display = 'none';
+        return [];
       }
+    });
+  })();
+
+  // Count cards whose categories include every filter in the given array
+  function countMatches(filters) {
+    if (filters.length === 0) return allCardCategories.length;
+    return allCardCategories.filter(cats =>
+      filters.every(f => cats.includes(f))
+    ).length;
+  }
+
+  // Update option labels and disabled state for all dropdowns based on current selections
+  function updateDropdownCounts() {
+    DROPDOWN_IDS.forEach(id => {
+      const select = document.getElementById(id);
+
+      // Filters from all OTHER dropdowns
+      const otherFilters = DROPDOWN_IDS
+        .filter(otherId => otherId !== id)
+        .map(otherId => document.getElementById(otherId).value)
+        .filter(v => v !== '');
+
+      if (!select) return;
+      const currentValue = select.value;
+      Array.from(select.options).forEach(function (opt) {
+        if (opt.value === '') return; // skip the placeholder
+        const count = countMatches([...otherFilters, opt.value]);
+        opt.textContent = opt.value + ' [' + count + ']';
+        // Disable options with no results, but never disable the currently selected option
+        opt.disabled = count === 0 && opt.value !== currentValue;
+      });
     });
   }
 
-  // Apply filters when any dropdown changes
-  document.querySelectorAll('.grid select').forEach(dropdown => {
-    dropdown.onchange = applyFilters;
-  });
+  function applyFilters() {
+    const selectedFilters = DROPDOWN_IDS
+      .map(id => document.getElementById(id).value)
+      .filter(v => v !== '');
+
+    const cards = document.querySelectorAll('.list.grid .card');
+
+    if (selectedFilters.length === 0) {
+      cards.forEach(card => { card.style.display = ''; });
+    } else {
+      cards.forEach((card, i) => {
+        const cats = allCardCategories[i];
+        card.style.display = selectedFilters.every(f => cats.includes(f)) ? '' : 'none';
+      });
+    }
+
+    updateDropdownCounts();
+  }
 
   function resetSelections() {
-    document.getElementById("time").selectedIndex = 0;
-    document.getElementById("geography").selectedIndex = 0;
-    document.getElementById("theme").selectedIndex = 0;
-    document.getElementById("other").selectedIndex = 0;
+    DROPDOWN_IDS.forEach(id => {
+      const select = document.getElementById(id);
+      select.options[0].hidden = false;
+      select.value = '';
+    });
     applyFilters();
   }
 
+  // Wire up dropdown events
+  document.querySelectorAll('.grid select').forEach(dropdown => {
+    dropdown.onchange = applyFilters;
+    dropdown.addEventListener('mousedown', function () {
+      this.options[0].hidden = true;
+    });
+  });
   document.getElementById("resetButton").onclick = resetSelections;
+
+  // Initialise counts on page load
+  updateDropdownCounts();
 </script>
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

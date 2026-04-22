@@ -5,11 +5,12 @@ date: 10-23-2024 # mm-dd-yyyy
 image: "images/ihme.jpg"
 
 categories:
-  - malaria
-  - epidemiology
-  - interventions
-  - country-level
-  - annual
+  - Epidemiology
+  - Interventions
+  - Country-level
+  - Global
+  - Annual
+  - Modelled Estimates
 ---
 
 ::: {.page-tabs .panel-tabset}
