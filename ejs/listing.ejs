@@ -148,9 +148,10 @@
     const cards = document.querySelectorAll('.list.grid .card');
 
     if (selectedFilters.length === 0) {
-      cards.forEach(card => { card.style.display = ''; });
+      cards.forEach(card => { card.style.display = ''; card.classList.remove('hide'); });
     } else {
       cards.forEach((card, i) => {
+        card.classList.remove('hide');
         const cats = allCardCategories[i];
         card.style.display = selectedFilters.every(f => cats.includes(f)) ? '' : 'none';
       });
@@ -165,6 +166,11 @@
       select.options[0].hidden = false;
       select.value = '';
     });
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    // Reset Quarto's list.js filter so it removes the 'hide' class it applied
+    Object.values(window["quarto-listings"] || {}).forEach(list => list.filter());
     applyFilters();
   }
 
