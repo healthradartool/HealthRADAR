@@ -185,5 +185,25 @@
 
   // Initialise counts on page load
   updateDropdownCounts();
+
+  // Pre-select dropdown when arriving via a themed link (e.g. #category=Climate)
+  function initFromHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const match = hash.match(/[#&]category=([^&]*)/);
+    if (!match) return;
+    const category = decodeURIComponent(match[1]);
+    for (const id of DROPDOWN_IDS) {
+      const select = document.getElementById(id);
+      const option = Array.from(select.options).find(o => o.value === category);
+      if (option) {
+        select.options[0].hidden = true;
+        select.value = category;
+        break;
+      }
+    }
+    applyFilters();
+  }
+  initFromHash();
 </script>
 ```
