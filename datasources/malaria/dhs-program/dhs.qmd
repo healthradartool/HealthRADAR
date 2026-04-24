@@ -5,10 +5,12 @@ date: 07/04/2024 # mm-dd-yyyy
 image: "images/dhs.png"
 
 categories:
-  - malaria
-  - epidemiology
-  - country-level
-  - annual
+  - Epidemiology
+  - Demography
+  - Interventions
+  - Country-level
+  - Annual
+  - Survey / Household
 ---
 
 :::: {.page-tabs .panel-tabset}

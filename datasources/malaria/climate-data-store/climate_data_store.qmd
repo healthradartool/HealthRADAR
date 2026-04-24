@@ -5,16 +5,15 @@ date: 05/29/2025 # mm-dd-yyyy
 image: "images/climate_data_store_logo.png"
 
 categories:
-  - climate portal
-  - observed
-  - reanalysis
-  - seasonal forecast
-  - climate projections
-  - rainfall
-  - temperature
-  - humidity
-  - CRU
-  - ERA5
+  - Climate
+  - Global
+  - Gridded
+  - Daily
+  - Monthly
+  - Historical Archive
+  - Real-time
+  - Observational / Station
+  - Modelled Estimates
 ---
 
 ::: {.page-tabs .panel-tabset}

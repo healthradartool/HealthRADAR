@@ -5,11 +5,12 @@ date: 09/22/2025 # mm-dd-yyyy
 image: "images/unicef.png"
 
 categories:
-  - malaria
-  - epidemiology
-  - country-level
-  - annual
-  - children
+  - Epidemiology
+  - Interventions
+  - Demography
+  - Country-level
+  - Annual
+  - Survey / Household
 ---
 
 ::: {.page-tabs .panel-tabset}

@@ -5,9 +5,11 @@ date: 12/13/2024 # mm-dd-yyyy
 image: "images/un_population_data.png"
 
 categories:
-  - demography
-  - country-level 
-  - annual
+  - Demography
+  - Country-level
+  - Global
+  - Annual
+  - Modelled Estimates
 ---
 
 ::: {.page-tabs .panel-tabset}

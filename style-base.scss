@@ -8,7 +8,7 @@ $body-bg: #fefeff;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 /*-- scss:rules --*/
 
 /* style the navbar */
@@ -60,6 +60,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Golos Text";
 }
 
+
+.grid select.form-select {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+
 p.subtitle {
   margin-top: .25em;
   margin-bottom: .5em;
@@ -92,6 +98,7 @@ button, .btn {
   .headline .description {
     font-size: 1rem;
     line-height: 1.4em;
+    text-wrap: balance;
   }
 }
 
@@ -325,6 +332,7 @@ footer > .footer-items {
 .description {
   margin-top: 1em;
   font-size: 20px;
+  text-wrap: balance;
 }
 
 #radar-block {
@@ -585,6 +593,15 @@ footer > .footer-items {
 #rating-cards-section {
   background: linear-gradient(135deg, #edf3f9 0%, #fffef6 100%);
   padding: 3rem 0;
+}
+
+#rating-cards-section .section-heading {
+  font-family: "Golos Text";
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #172f46ff;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .content-card {

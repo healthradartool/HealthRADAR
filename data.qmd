@@ -13,43 +13,30 @@ listing:
     template: ejs/listing.ejs
     template-params:
       theme:
-        - climate
-        - entomology
-        - epidemiology
-        - demography
-        - interventions
+        - Climate
+        - Epidemiology
+        - Entomology
+        - Demography
+        - Interventions
+        - Drug Resistance
+        - Health Systems & Policy
       geography:
-        -  country-level
-        -  global
-        -  multi-national
-      time:
-        - annual
-        - past
-        - present
-        - monthly
-      other:
-        - interventions
-        - children
-        - gridded observed
-        - rainfall
-        - temperature
-        - spatiotemporal
-        - raster
-        - therapeutic efficacy studies
-        - molecular marker studies
-        - ongoing therapeutic efficacy studies
-        - ongoing molecular marker studies
-        - country scorecards
-        - indicators
-        - accountability
-        - insecticide resistance status
-        - intensity
-        - resistance mechanisms detection
-        - synergist effect in susceptibility
-        - malaria vectors
-        - new vectors of malaria
-        - emerging vectors of malaria
-        - vector species    
+        - Global
+        - Multi-national
+        - Country-level
+        - Gridded
+      temporalresolution:
+        - Real-time
+        - Daily
+        - Monthly
+        - Annual
+        - Historical Archive
+      datatype:
+        - Survey / Household
+        - Surveillance / Routine
+        - Observational / Station
+        - Modelled Estimates
+        - Reports & Scorecards
     sort: "date"
     type: grid
     filter-ui: [title, description, categories]

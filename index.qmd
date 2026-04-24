@@ -22,7 +22,13 @@ Welcome to Health RADAR
 :::
 
 ::: {.description .h4}
-Health RADAR is a centralised resource for data relevant to climate sensitive infectious disease (CSID) modelling. Explore our data pages for guidance on downloading and using CSID modelling data.
+Health RADAR is a centralised resource for data relevant to climate-sensitive infectious
+disease (CSID) modelling. Explore the data pages for guidance on accessing, downloading,
+and using these datasets to support CSID research and analysis.
+
+<span class="fw-semibold text-primary">As a growing resource, Health RADAR welcomes
+contributions from the community to expand and strengthen its collection of data
+sources.</span>
 :::
 
 ::: {.entry-point}
@@ -65,6 +71,10 @@ I am looking for data in
 ::: {#rating-cards-section .content-block .column-screen}
 ::: {.column-page}
 
+::: {.section-heading}
+Platform Components
+:::
+
 ::: {.grid .align-items-center}
 
 ::: {.g-col-12 .g-col-md-4}
@@ -76,7 +86,7 @@ Data Sources
 ![](img/data-sources.png){.img-fluid}
 :::
 ::: {.card-description}
-Access comprehensive datasets for climate sensitive infectious disease modelling including demographic, epidemiological and environmental data.
+Access curated datasets for climate-sensitive infectious disease modelling including demographic and epidemiological data, among others.
 :::
 :::
 :::
@@ -90,7 +100,7 @@ Documentation
 ![](img/documentation.png){.img-fluid}
 :::
 ::: {.card-description}
-Detailed guides and tutorials on how to download, process and incorporate data into your CSID models effectively.
+View detailed guides and tutorials on how to download, process and incorporate data into your CSID models effectively.
 :::
 :::
 :::
@@ -104,7 +114,7 @@ Code Examples
 ![](img/code-examples.png){.img-fluid}
 :::
 ::: {.card-description}
-Worked examples and code snippets showing how to integrate various data sources into your modelling workflows.
+Explore worked examples and code snippets showing how to integrate diverse data sources into your modelling workflows.
 :::
 :::
 :::
@@ -127,7 +137,7 @@ Responsible Access to Data for Analysis and Research
 :::
 
 ::: {.description}
-Health RADAR makes it easier to find and use data for climate sensitive infectious disease (CSID) modelling. The platform collates a wide range of data sources—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data—relevant to CSID modelling. While the data are not available for download on our site, Health RADAR guides you through downloading the data on partner websites. In addition, Health RADAR provides extensive documentation that describes and contextualises each dataset and offers worked code examples on how to incorporate data into CSID models. 
+Health RADAR makes it easier to find and use data for climate-sensitive infectious disease (CSID) modelling. The platform collates a wide range of data sources—including demographic, epidemiological, entomological, climate and environmental, health system, intervention impact and cost data. While the data are not hosted directly on our site, Health RADAR guides users through accessing and downloading the data on partner repositories. In addition, the platform provides detailed documentation that contextualises each dataset, along with worked code examples demonstrating how to incorporate data into CSID models. 
 :::
 
 <a href="/about.qmd">
@@ -153,6 +163,20 @@ Health RADAR makes it easier to find and use data for climate sensitive infectio
 :::
 :::
 
+
+::: {#browse-btn-block .content-block .column-screen}
+
+::: {.column-page}
+
+<a href="/data.qmd">
+  <button id="browse-all" class="btn btn-primary btn-browse btn-action-primary btn-action btn-success btn-lg" type="button">
+    Browse All Data Sources
+    <i class="fa-solid fa-square-up-right"></i>
+  </button>
+</a>
+
+:::
+:::
 
 ::: {#contribute-block .content-block .column-screen}
 ::: {.column-page}
@@ -191,20 +215,6 @@ Join our community to strengthen climate-sensitive infectious disease modelling.
 :::
 
 :::
-
-:::
-:::
-
-::: {#browse-btn-block .content-block .column-screen}
-
-::: {.column-page}
-
-<a href="/data.qmd">
-  <button id="browse-all" class="btn btn-primary btn-browse btn-action-primary btn-action btn-success btn-lg" type="button">
-    Browse All Data Sources 
-    <i class="fa-solid fa-square-up-right"></i>
-  </button>
-</a>
 
 :::
 :::

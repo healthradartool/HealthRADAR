@@ -5,11 +5,14 @@ date: 07/03/2024 # mm-dd-yyyy
 image: "images/wmr-covers-2023.jpg"
 
 categories:
-  - malaria
-  - epidemiology
-  - interventions
-  - country-level
-  - annual
+  - Epidemiology
+  - Interventions
+  - Country-level
+  - Global
+  - Annual
+  - Historical Archive
+  - Reports & Scorecards
+  - Surveillance / Routine
 ---
 
 ```{r setup, include=FALSE}

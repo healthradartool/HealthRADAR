@@ -5,13 +5,13 @@ date: 08/01/2025 # mm-dd-yyyy
 image: "images/era5.png"
 
 categories:
-  - climate
-  - gridded
-  - reanalysis
-  - rainfall
-  - temperature
-  - global
-  - hourly
+  - Climate
+  - Global
+  - Gridded
+  - Daily
+  - Historical Archive
+  - Real-time
+  - Modelled Estimates
 ---
 
 
