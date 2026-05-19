@@ -5,13 +5,12 @@ date: 08/01/2025 # mm-dd-yyyy
 image: "images/GHCNd.png"
 
 categories:
-  - climate
-  - station
-  - observational
-  - rainfall
-  - temperature
-  - global
-  - daily
+  - Climate
+  - Global
+  - Daily
+  - Historical Archive
+  - Real-time
+  - Observational / Station
 ---
 
 
@@ -216,7 +215,7 @@ These visualisations highlight the strengths and limitations of both station-bas
 
 <h2>How can this data be used in disease modelling?</h2>
 
-Incorporating localised, ground-truthed meteorological data—such as the Global Historical Climatology Network (GHCN) daily station data—into infectious disease models bridges the gap between environmental ecology and public health. Unlike gridded climate datasets (which average conditions over large spatial areas), station data captures the exact, localised microclimatic extremes, such as a sudden 50 mm rainfall downpour or an acute heatwave.
+Incorporating localised, ground-truthed meteorological data such as the Global Historical Climatology Network (GHCN) daily station data into infectious disease models bridges the gap between environmental ecology and public health. Unlike gridded climate datasets (which average conditions over large spatial areas), station data captures the exact, localised microclimatic extremes, such as a sudden 50 mm rainfall downpour or an acute heatwave.
 
 In mechanistic models, like the SEACR-SEI model, these daily observations are fed directly into the system's differential equations. Temperature (T) is used to dynamically calculate the mosquito biting rate, daily oviposition (egg-laying) rate, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP) using non-linear thermal performance curves. Precipitation (P) acts as a proxy for the availability of aquatic breeding habitats, driving the environmental carrying capacity (K). By accurately capturing phenomena like "larval flushing" during heavy storms or thermal suppression during winter months, modelers can simulate highly localized transmission intensity, estimate shifts in the basic reproduction number (R_0), and project future transmission scenarios under varying climate conditions.
 
@@ -242,7 +241,7 @@ options(digits=4, scipen = 9)
 ```
 
 
-There are different approaches to explicitly include environmental conditions into an infectious disease model. For this example, we use equations adapted from Mordecai et al. (2013) and Agusto (2020) defining the effect of climate on the dynamics of malaria transmission. Specifically, the example below describes temperature-dependent human biting rates, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP). It also includes a rainfall-dependent environmental carrying capacity that accounts for hydrological extremes—specifically, the physical disruption or "flushing" of aquatic larval habitats during heavy rainfall events exceeding 30 mm.
+There are different approaches to explicitly include environmental conditions into an infectious disease model. For this example, we use equations adapted from Mordecai et al. (2013) and Agusto (2020) defining the effect of climate on the dynamics of malaria transmission. Specifically, the example below describes temperature-dependent human biting rates, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP). It also includes a rainfall-dependent environmental carrying capacity that accounts for hydrological extremes, specifically the physical disruption or "flushing" of aquatic larval habitats during heavy rainfall events exceeding 30 mm.
 
 ```{r}
 
@@ -283,7 +282,7 @@ ggplot() +
 ```{r}
 
 # Load the GHN data 
-rrainfall_values <- bind_rows(
+rainfall_values <- bind_rows(
   read_csv("daily_GHCND_ SF000068296-Kruger_National_Park.csv") |> 
     mutate(Province = "Limpopo"),
   read_csv("daily_GHCND_Mozambique.csv") |> 
@@ -475,7 +474,7 @@ dfL <- as_tibble(as.data.frame(outL)) |>
   ) |>
   pivot_longer(cols = c(-time, -date, -Province), names_to = "variable", values_to = "value")
 
-df <- bind_rows(dfA, dfKNP) |>
+df <- bind_rows(dfM, dfL) |>
   group_by(Province)
 
 ```
@@ -483,9 +482,9 @@ df <- bind_rows(dfA, dfKNP) |>
 
 ### Changes in vector population
 
-As mentioned earlier, environmental conditions tightly regulate parasite development and mosquito ecology. As such, we anticipate changes in the vector population to mirror the regional patterns in temperature and rainfall. (In this example, we assume the human population stays constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection, representing secondary infection).
+As mentioned earlier, environmental conditions tightly regulate parasite development and mosquito ecology. As such, we anticipate changes in the vector population to mirror the regional patterns in temperature and rainfall. In this example, we assume the human population stays constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection, representing secondary infection.
 
-The environmental drivers yield distinct biological outcomes for the two regions. In Limpopo, mosquito density follows an opportunistic "boom-and-bust" cycle, spiking dramatically in response to summer rainfall and crashing during dry periods. Maputo’s more frequent, moderate rainfall provides a much more stable carrying capacity for aquatic stages. This allows Maputo to maintain sustained mosquito population levels—even through traditionally drier periods—ensuring year-round vector presence and biting pressure.
+The environmental drivers yield distinct biological outcomes for the two regions. In Limpopo, mosquito density follows an opportunistic "boom-and-bust" cycle, spiking dramatically in response to summer rainfall and crashing during dry periods. Maputo’s more frequent, moderate rainfall provides a much more stable carrying capacity for aquatic stages. This allows Maputo to maintain sustained mosquito population levels even through traditionally drier periods ensuring year-round vector presence and biting pressure.
 
 ```{r}
 
@@ -509,7 +508,7 @@ df |>
 
 ### Implications for transmission
 
-The force of infection (i.e., the rate at which susceptible individuals become infected per unit time) is largely driven by the human biting rate, the ratio of vectors relative to hosts, the probability of transmission, and the size of the infectious reservoir. Below, we see how the thermal and hydrological profiles of each region drive the rate of new cases through our climate-dependent variables.
+The force of infection i.e., the rate at which susceptible individuals become infected per unit time, is largely driven by the human biting rate, the ratio of vectors relative to hosts, the probability of transmission, and the size of the infectious reservoir. Below, we see how the thermal and hydrological profiles of each region drive the rate of new cases through our climate-dependent variables.
 
 This is especially insightful for comparing epidemic versus endemic transmission dynamics. Limpopo exhibits a classic epidemic profile: its high summer temperatures significantly accelerate the parasite's EIP, creating high-velocity transmission windows that result in sharp seasonal spikes in clinical cases. However, winter cold-stress acts as a natural brake, dropping transmission to near zero. Conversely, Maputo displays stabilized endemicity. Its environmental conditions rarely fall below the biological thresholds for parasite development, sustaining a perennial symptomatic burden and a consistent infectious reservoir throughout the year.
 
@@ -535,23 +534,20 @@ df |>
 
 Models that explicitly incorporate localised temperature and rainfall are critical for shifting public health strategies from reactive to proactive. By understanding the distinct epidemiological profiles of regions like Limpopo and Maputo, policymakers can optimise resource allocation:
 
-Targeted Epidemic Response (e.g.,Limpopo): Because transmission is highly seasonal and prone to weather-driven "boom-and-bust" cycles, predictive models can serve as Early Warning Systems (EWS). If meteorological forecasts predict a convergence of optimal thermal conditions and heavy, non-flushing rainfall, health ministries can precisely time interventions—such as initiating Indoor Residual Spraying (IRS) campaigns just before the anticipated mosquito population explosion.
+Targeted Epidemic Response (e.g.,Limpopo): Because transmission is highly seasonal and prone to weather-driven "boom-and-bust" cycles, predictive models can serve as Early Warning Systems (EWS). If meteorological forecasts predict a convergence of optimal thermal conditions and heavy, non-flushing rainfall, health ministries can precisely time interventions, such as initiating Indoor Residual Spraying (IRS) campaigns just before the anticipated mosquito population explosion.
 
-Sustained Endemic Control (e.g., Maputo): In areas where environmental conditions support year-round vector competence, policy must focus on sustained, continuous interventions. This includes ensuring universal coverage of Long-Lasting Insecticidal Nets (LLINs), robust seasonal malaria chemoprevention (SMC), and continuous supply chains for rapid diagnostic tests (RDTs) and antimalarials.
+Sustained Endemic Control e.g., Maputo: In areas where environmental conditions support year-round vector competence, policy must focus on sustained, continuous interventions. This includes ensuring universal coverage of Long-Lasting Insecticidal Nets (LLINs), robust seasonal malaria chemoprevention (SMC), and continuous supply chains for rapid diagnostic tests (RDTs) and antimalarials.
 
 Cross-Border Collaboration: The juxtaposition of an endemic zone (Maputo) and an epidemic-prone zone (Limpopo) highlights the need for regional data sharing. Asymptomatic human carriers moving across borders can act as an infectious reservoir, igniting outbreaks in neighboring regions when local weather conditions become highly permissive.
 
 
 ### Citations
 
--Agusto F. B., Gumel A. B., & Parham P. E. Qualitative assessment of the role of temperature variations on malaria transmission dynamics. Journal of Biological Systems, 23(04), 1550030 (2015). <https://doi.org/10.1142/S0218339015500308>
--Mordecai EA, Paaijmans KP, Johnson LR, Balzer C, Ben-Horin T, de Moor E, McNally A, Pawar S, Ryan SJ, Smith TC, Lafferty KD. Optimal temperature for malaria transmission is dramatically lower than previously predicted. Ecol Lett. 2013 Jan;16(1):22-30. doi: 10.1111/ele.12015. Epub 2012 Oct 11. PMID: 23050931.
-<https://pubmed.ncbi.nlm.nih.gov/23050931/>
--Traoré B., Sangaré B., Traoré S. A mathematical model of malaria transmission with structured vector population and seasonality. Journal of Applied Mathematics, 1, 6754097 (2017). <https://doi.org/10.1155/2017/6754097>
--Shapiro L.L.M., Whitehead S.A., & Thomas M.B. Quantifying the effects of temperature on mosquito and parasite traits that determine the transmission potential of human malaria. PLoS Biology 15(10), e2003489 (2017). 
-<https://doi.org/10.1371/journal.pbio.2003489>
--Suh, E., Stopard, I.J., Lambert, B. et al. Estimating the effects of temperature on transmission of the human malaria parasite, Plasmodium falciparum. Nature Communications 15, 3230 (2024). <https://doi.org/10.1038/s41467-024-47265-w>
-- Paaijmans KP, Wandago MO, Githeko AK, Takken W. Unexpected high losses of Anopheles gambiae larvae due to rainfall. PLoS One. 2007 Nov 7;2(11):e1146. doi: 10.1371/journal.pone.0001146. PMID: 17987125; PMCID: PMC2063461.
-<https://pubmed.ncbi.nlm.nih.gov/17987125/>
+- Agusto F. B., Gumel A. B., & Parham P. E. Qualitative assessment of the role of temperature variations on malaria transmission dynamics. Journal of Biological Systems, 23(04), 1550030 (2015). <https://doi.org/10.1142/S0218339015500308>
+- Mordecai EA, Paaijmans KP, Johnson LR, Balzer C, Ben-Horin T, de Moor E, McNally A, Pawar S, Ryan SJ, Smith TC, Lafferty KD. Optimal temperature for malaria transmission is dramatically lower than previously predicted. Ecol Lett. 2013 Jan;16(1):22-30. doi: 10.1111/ele.12015. Epub 2012 Oct 11. PMID: 23050931.<https://pubmed.ncbi.nlm.nih.gov/23050931/>
+- Traoré B., Sangaré B., Traoré S. A mathematical model of malaria transmission with structured vector population and seasonality. Journal of Applied Mathematics, 1, 6754097 (2017).<https://doi.org/10.1155/2017/6754097>
+- Shapiro L.L.M., Whitehead S.A., & Thomas M.B. Quantifying the effects of temperature on mosquito and parasite traits that determine the transmission potential of human malaria. PLoS Biology 15(10), e2003489 (2017). <https://doi.org/10.1371/journal.pbio.2003489>
+- Suh, E., Stopard, I.J., Lambert, B. et al. Estimating the effects of temperature on transmission of the human malaria parasite, Plasmodium falciparum. Nature Communications 15, 3230 (2024). <https://doi.org/10.1038/s41467-024-47265-w>
+- Paaijmans KP, Wandago MO, Githeko AK, Takken W. Unexpected high losses of Anopheles gambiae larvae due to rainfall. PLoS One. 2007 Nov 7;2(11):e1146. doi: 10.1371/journal.pone.0001146. PMID: 17987125; PMCID: PMC2063461.<https://pubmed.ncbi.nlm.nih.gov/17987125/>
 
 :::
