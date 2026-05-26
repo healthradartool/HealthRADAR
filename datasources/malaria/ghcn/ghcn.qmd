@@ -1,7 +1,7 @@
 ---
 title: "GHCNd"
 description: "Global Historical Climatology Network daily station data"
-date: 08/01/2025 # mm-dd-yyyy
+date: 02/03/2026 # mm-dd-yyyy
 image: "images/GHCNd.png"
 
 categories:
@@ -95,7 +95,7 @@ The [KNMI Climate Explorer](https://climexp.knmi.nl/start.cgi) is another platfo
 | Typically up-to-date | precipitation, average temperature, minimum temperature, maximum temperature, snowfall, snow depth (Station specific)	| Point | Global | raw text (.dat), netCDF (.nc), PDF (.pdf), eps (.eps) |
 :::
 
-<h2>What the data looks likes</h2>
+<h2>What the data looks like</h2>
 
 Below are a few plots to give a better sense of where the GHCNd station are located. 
 
@@ -104,7 +104,7 @@ Below are a few plots to give a better sense of where the GHCNd station are loca
 :::
 
 :::{.cell}
-![Spatial map of GHCNd Avergae Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TAVG_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Average Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TAVG_stations_size.png){fig-align="center"}
 :::
 
 :::{.cell}
@@ -145,7 +145,7 @@ Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012: An overv
 
 <h3>Terms of use</h3>
 
-NOAA data are generally free for all to use with proper attribution.
+GHCNd data are produced by NOAA and are freely available for public use. As a U.S. federal government dataset, the data are in the public domain in the United States, and NCEI works to ensure a Creative Commons CC0 license is applied. NOAA requests attribution for the use or dissemination of unaltered data, and it is not permissible to state or imply endorsement by or affiliation with NOAA. For further details, refer to the [NESDIS/NCEI Open Data Policy](https://www.ncei.noaa.gov/archive#v-pills-licensing).
 
 
 ## Visualisations  
