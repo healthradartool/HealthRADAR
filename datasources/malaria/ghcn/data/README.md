@@ -4,7 +4,6 @@ This README serves as a catalog and description of the origin of the files used 
 
 ## Data Files
 
-
 - [**ghcnd-inventory.txt**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/ghcnd-inventory.txt):
   - **Used in:** Station map plots in the "What the Data Looks Like" section (all four station maps: PRCP, TAVG, TMAX, TMIN).
   - **Download:** Downloaded directly from the [NCEI GHCNd data repository](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt). This file contains the full GHCNd station inventory, listing each station's ID, latitude, longitude, variable, first year, and last year of available data.
@@ -45,7 +44,7 @@ This README serves as a catalog and description of the origin of the files used 
     - Daily precipitation totals were computed and saved as `pr_daily_ERA5_19590101-20241231_Skukuza.csv`.
 
 - [**tas_daily_ERA5_19590101-20241231_Skukuza.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/tas_daily_ERA5_19590101-20241231_Skukuza.csv):
-  - **Used in:**Visualisation Section 
+  - **Used in:** Visualisation Section 
     - Fig. 4 (annual mean temperature comparison with GHCNd) 
     - Fig. 6 (monthly temperature climatology comparison with GHCNd).
   - **Download:** Extracted from ERA5 daily NetCDF files sourced from the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/).
