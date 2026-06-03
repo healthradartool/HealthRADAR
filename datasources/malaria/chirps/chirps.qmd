@@ -51,7 +51,7 @@ Users can also find more information about the CHIRPS dataset here:
 
 | **Variable Name** | **Variable Description** | **Units** |
 --- | --- | --- |
-| precip | convective precipitation rate | millimetres per day |
+| precip | total precipitation | millimetres per day |
 
 
 <h2>Accessing the data</h2>
@@ -91,8 +91,23 @@ The [Early Warning Explorer (EWX)](https://ewx3.chc.ucsb.edu/ewx/index.html) is 
 :::
 
 
-<h2>What the data looks likes</h2>
+<h2>What the data looks like</h2>
 
+Below is a spatial plot of mean annual rainfall over Southern Africa for the 1991-2020 climatology period, giving a sense of the spatial coverage and resolution of the CHIRPS v3 dataset.
+
+:::{.cell}
+![Mean annual rainfall over Southern Africa (1991-2020) derived from CHIRPS v3 at 0.05° resolution.](images/CHIRPS_MeanAnnualRainfall_1991-2020.png){fig-align="center"}
+:::
+
+The plots below show the monthly rainfall climatology and daily rainfall time series for Tete, Mozambique, illustrating the seasonal cycle and temporal extent of the dataset.
+
+:::{.cell}
+![Monthly rainfall climatology for Tete, Mozambique (1991-2020) derived from CHIRPS v3.](images/CHIRPS_Climatology_Tete_1991-2020.png){fig-align="center"}
+:::
+
+:::{.cell}
+![Daily rainfall time series for Tete, Mozambique (1981-2026) derived from CHIRPS v3.](images/CHIRPS_TimeSeries_Rainfall_1981-2026.png){fig-align="center"}
+:::
 
 
 <h2>Key points to consider</h2>
@@ -139,6 +154,58 @@ When citing the CHIRPS v3 data repository directly, please also include: Climate
 <h3>Terms of use</h3>
 
 CHIRPS v3 data are made freely available under the  [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. Users are free to share and adapt the data for any purpose, provided appropriate credit is given. This replaces the public domain waiver used for CHIRPS v2.
+
+
+## Visualisations
+
+The visualisations below use CHIRPS v3 data to explore rainfall variability across Tete Province, Mozambique, at both provincial and district level. Tete Province was selected as an example location within the E8 region to demonstrate how CHIRPS v3 can be aggregated to administrative units, which is a common requirement when working with climate-sensitive disease data.
+
+
+<h2>How to use this data?</h2>
+
+Gridded rainfall datasets like CHIRPS v3 provide spatially continuous coverage that can be aggregated to administrative units, making them well suited for district- or provincial-level analyses relevant to climate-sensitive disease surveillance and modelling.
+
+In this example we use CHIRPS v3 daily data at 0.05° resolution accessed from the Climate Hazards Center data repository. Rather than extracting a single grid cell to represent a district or province, we demonstrate area-weighted spatial averaging, a method that accounts for the fact that grid cells near the equator cover slightly more area than those further away. This approach produces a more representative rainfall estimate for an administrative unit than a simple mean of grid cell values.
+
+Administrative boundaries for Mozambique were sourced from the [Humanitarian Data Exchange (HDX)](https://data.humdata.org/dataset/cod-ab-moz).
+
+The following preparation steps were applied to the data:
+
+- For each district, a spatial mask was created using the district boundary and area weights were applied based on the cosine of latitude.
+- Monthly district totals were accumulated and then summed to produce annual totals and DJF (December-January-February) seasonal totals.
+- A 1991-2020 baseline period was used for all anomaly and percentile calculations. The 90th percentile threshold for extreme DJF seasons was calculated from the distribution of annual DJF seasonal totals over this period.
+
+
+<h2>How to plot the data?</h2>
+
+Figure 1 shows the mean annual rainfall anomaly for each district in Tete Province for the period 2016-2025, expressed as a percentage relative to the 1991-2020 baseline.
+
+:::{.cell}
+![Fig. 1: Mean annual rainfall anomaly by district in Tete Province for the period 2016-2025, expressed as a percentage relative to the 1991-2020 baseline. Blue shading indicates wetter than average conditions and red shading indicates drier than average conditions.](images/Vis1_CHIRPS_AnnualRainfallAnomaly_Districts_TeteProvince_2016-2025.png){fig-align="center"}
+:::
+
+A clear spatial pattern emerges across the province. Districts in the north and east, particularly Macanga, Angonia and Chifunde, have been notably wetter in the recent decade compared to the 1991-2020 baseline. Western districts including Magoe and Zumbu have experienced slightly drier conditions. This spatial heterogeneity would be missed if only a single grid cell or provincial mean were used for analysis.
+
+Figure 2 shows the annual area-weighted rainfall for Tete Province and each individual district over the full CHIRPS v3 record from 1981 to 2025.
+
+:::{.cell}
+![Fig. 2: Annual area-weighted rainfall for Tete Province (blue line) and individual districts (grey lines) from 1981 to 2025, derived from CHIRPS v3. The dashed line shows the 1991-2020 baseline mean for Tete Province (910 mm).](images/Vis2_CHIRPS_AnnualRainfall_ProvinceDistricts_Tete_1981-2025.png){fig-align="center"}
+:::
+
+The time series reveals considerable interannual variability in rainfall across Tete Province, with annual totals ranging from below 600 mm to above 1300 mm for the provincial mean. The spread between individual districts is substantial, with some districts receiving nearly twice the rainfall of others in the same year. This highlights the importance of working at district level rather than using a single provincial value when assessing rainfall impacts on malaria transmission.
+
+The DJF season corresponds to the peak of the malaria transmission season across much of southern Africa, making extreme rainfall events during this period particularly relevant for disease burden. Figure 3 shows the number of extreme DJF seasons experienced by each district between 2016 and 2025, where a season is classified as extreme if the district total exceeds the 90th percentile of DJF totals in the 1991-2020 baseline period.
+
+:::{.cell}
+![Fig. 3: Number of extreme DJF seasons by district in Tete Province between 2016 and 2025. A season is classified as extreme if the area-weighted DJF rainfall total exceeds the 90th percentile of all DJF totals in the 1991-2020 baseline period. Values in brackets indicate the number of extreme seasons out of the 10-year comparison period.](images/Vis3_CHIRPS_ExtremeDJF_Districts_TeteProvince_2016-2025.png){fig-align="center"}
+:::
+
+Macanga experienced the greatest number of extreme DJF seasons in the recent decade (3 out of 10), consistent with its strongly positive anomaly in Fig. 1. In contrast, Zumbu, Magoe, Maravia and Chiuta recorded no extreme DJF seasons during this period, suggesting that the recent wetting trend in Tete Province has been spatially uneven and concentrated in the northern and eastern districts.
+
+These visualisations are intended as an example of how CHIRPS v3 can be used for district-level rainfall analysis. The district-level aggregation approach is reproducible for any administrative unit provided boundary files are available, and area-weighting ensures spatial accuracy across districts of varying size. However, users should be aware that districts smaller than the CHIRPS grid resolution (0.05°, approximately 5 km) may be represented by very few grid cells, which can affect the reliability of area-averaged estimates. The 10-year comparison period (2016-2025) is relatively short for detecting statistically robust trends, and results are sensitive to the choice of baseline period. A different baseline would produce different anomaly and extreme season classifications.
+
+
+## Modelling 
 
 :::
 
