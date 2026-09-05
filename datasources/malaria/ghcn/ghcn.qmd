@@ -217,7 +217,7 @@ These visualisations highlight the strengths and limitations of both station-bas
 
 Incorporating localised, ground-truthed meteorological data such as the Global Historical Climatology Network (GHCN) daily station data into infectious disease models bridges the gap between environmental ecology and public health. Unlike gridded climate datasets (which average conditions over large spatial areas), station data captures the exact, localised microclimatic extremes, such as a sudden 50 mm rainfall downpour or an acute heatwave.
 
-In mechanistic models, like the SEACR-SEI model, these daily observations are fed directly into the system's differential equations. Temperature (T) is used to dynamically calculate the mosquito biting rate, daily oviposition (egg-laying) rate, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP) using non-linear thermal performance curves. Precipitation (P) acts as a proxy for the availability of aquatic breeding habitats, driving the environmental carrying capacity (K). By accurately capturing phenomena like "larval flushing" during heavy storms or thermal suppression during winter months, modelers can simulate highly localized transmission intensity, estimate shifts in the basic reproduction number (R_0), and project future transmission scenarios under varying climate conditions.
+In mechanistic models, like the SEACR-SEI model, these daily observations are fed directly into the system's differential equations. Temperature (T) is used to dynamically calculate the mosquito biting rate, daily oviposition (egg-laying) rate, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP) using non-linear thermal performance curves. Precipitation (P) acts as a proxy for the availability of aquatic breeding habitats, driving the environmental carrying capacity (K). By accurately capturing phenomena like "larval flushing" during heavy storms or thermal suppression during winter months, modelers can simulate highly localised transmission intensity, estimate shifts in the basic reproduction number (R_0), and project future transmission scenarios under varying climate conditions.
 
 
 ### Preparing the data 
@@ -241,7 +241,7 @@ options(digits=4, scipen = 9)
 ```
 
 
-There are different approaches to explicitly include environmental conditions into an infectious disease model. For this example, we use equations adapted from Mordecai et al. (2013) and Agusto (2020) defining the effect of climate on the dynamics of malaria transmission. Specifically, the example below describes temperature-dependent human biting rates, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP). It also includes a rainfall-dependent environmental carrying capacity that accounts for hydrological extremes, specifically the physical disruption or "flushing" of aquatic larval habitats during heavy rainfall events exceeding 30 mm.
+There are different approaches to explicitly include environmental conditions into an disease model. For this example, we use equations adapted from Mordecai et al. (2013) and Agusto (2020) defining the effect of climate on the dynamics of malaria transmission. Specifically, the example below describes temperature-dependent human biting rates, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP). It also includes a rainfall-dependent environmental carrying capacity that accounts for hydrological extremes, specifically the physical disruption or "flushing" of aquatic larval habitats during heavy rainfall events exceeding 30 mm.
 
 ```{r}
 
@@ -272,7 +272,7 @@ ggplot() +
     title = "Daily Average Temperature values in Limpopo and Maputo from 2010 to 2025",
     x = "Year",
     y = "Temperature values (Celsius °)",
-    caption = str_wrap("Seasonal thermal regulation of transmission. Limpopo’s higher summer temperatures significantly accelerate the parasite's Extrinsic Incubation Period (EIP), creating (high-velocity) transmission windows. Maputo’s more stable thermal profile suggests a consistent, year-round window for vector competence, though without the extreme metabolic acceleration seen in Kruger's peaks. Source: GHCN Daily (TAVG)",
+    caption = str_wrap("Limpopo’s higher summer temperatures significantly accelerate the parasite's Extrinsic Incubation Period (EIP), creating (high-velocity) transmission windows. Maputo’s stable thermal profile suggests a consistent, year-round window for vector competence. Source: GHCN Daily (TAVG)",
       width = 150)
     )+
   ylim(0, NA)
@@ -310,7 +310,7 @@ ggplot() +
     x = "Year",
     y = "Rainfall values (mm)",
     caption = str_wrap(
-      "Hydrological drivers of larval productivity. Maputo’s frequent, moderate rainfall supports stable carrying capacity (K) for aquatic stages. Conversely, the high-intensity rainfall spikes in Kruger (exceeding 50mm) likely trigger (flushing) events that physically disrupt breeding sites, leading to temporary but sharp declines in mosquito emergence rates. Source: GHCN Daily (PRCP)",
+      "Maputo’s frequent, moderate rainfall supports stable carrying capacity (K) for aquatic stages. Conversely, the high-intensity rainfall spikes in Kruger (exceeding 50mm) likely trigger (flushing) events that physically disrupt breeding sites, leading to temporary but sharp declines in mosquito emergence rates. Source: GHCN Daily (PRCP)",
       width = 150)
     )
 ```
@@ -484,8 +484,6 @@ df <- bind_rows(dfM, dfL) |>
 
 As mentioned earlier, environmental conditions tightly regulate parasite development and mosquito ecology. As such, we anticipate changes in the vector population to mirror the regional patterns in temperature and rainfall. In this example, we assume the human population stays constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection, representing secondary infection.
 
-The environmental drivers yield distinct biological outcomes for the two regions. In Limpopo, mosquito density follows an opportunistic "boom-and-bust" cycle, spiking dramatically in response to summer rainfall and crashing during dry periods. Maputo’s more frequent, moderate rainfall provides a much more stable carrying capacity for aquatic stages. This allows Maputo to maintain sustained mosquito population levels even through traditionally drier periods ensuring year-round vector presence and biting pressure.
-
 ```{r}
 
 df |> 
@@ -501,7 +499,7 @@ df |>
     x = "Year",
     y = "Population size",
     colour = "Population",
-    caption = str_wrap("Vector population seasonality. In Limpopo, mosquito density (M) follows an opportunistic (boom-and-bust) cycle in response to rainfall-driven habitat availability. Maputo’s sustained population levels, particularly between 2020 and 2022, suggest favorable environmental conditions that prevent the population from crashing during the dry season, ensuring year-round biting pressure. Source: SEACR-SEI Model.", width = 150)
+    caption = str_wrap("In Limpopo, mosquito density (M) follows an opportunistic (boom-and-bust) cycle in response to rainfall-driven habitat availability. Maputo’s sustained population levels, particularly between 2020 and 2022, suggest favorable environmental conditions that prevent the population from crashing during the dry season, ensuring year-round biting pressure. Source: SEACR-SEI Model.", width = 150)
   )
 
 ```
@@ -510,9 +508,7 @@ df |>
 
 The force of infection i.e., the rate at which susceptible individuals become infected per unit time, is largely driven by the human biting rate, the ratio of vectors relative to hosts, the probability of transmission, and the size of the infectious reservoir. Below, we see how the thermal and hydrological profiles of each region drive the rate of new cases through our climate-dependent variables.
 
-This is especially insightful for comparing epidemic versus endemic transmission dynamics. Limpopo exhibits a classic epidemic profile: its high summer temperatures significantly accelerate the parasite's EIP, creating high-velocity transmission windows that result in sharp seasonal spikes in clinical cases. However, winter cold-stress acts as a natural brake, dropping transmission to near zero. Conversely, Maputo displays stabilized endemicity. Its environmental conditions rarely fall below the biological thresholds for parasite development, sustaining a perennial symptomatic burden and a consistent infectious reservoir throughout the year.
-
-Note that the outputs below are illustrative models of transmission potential based on environmental suitability. In reality, the number of reported clinical cases may differ due to human interventions, limitations in treatment access, availability of rapid diagnostic tests, and test sensitivity.
+This is especially insightful for comparing epidemic versus endemic transmission dynamics. Note that the outputs below are illustrative models of transmission potential based on environmental suitability. In reality, the number of reported clinical cases may differ due to human interventions, limitations in treatment access, availability of rapid diagnostic tests, and test sensitivity.
 ```{r}
 df |> 
   filter(variable == "C", time > 100) |>
@@ -525,20 +521,20 @@ df |>
     title = "Daily symptomatic cases values in the human population", 
     x = "Year",
     y = "Number of cases",
-    caption = str_wrap("Biological limits of transmission stability. Maputo maintains a perennial symptomatic burden because environmental conditions rarely fall below the threshold for parasite development. In contrast, Limpopo’s transmission is strictly seasonal; case numbers drop to near zero during winter thermal troughs, indicating that cold-stress on the parasite and vector acts as a natural annual (break) in the transmission chain. Source: SEACR-SEI Model.", width = 150)
+    caption = str_wrap("Maputo maintains a perennial symptomatic burden because environmental conditions rarely fall below the threshold for parasite development. In contrast, Limpopo’s transmission is strictly seasonal; case numbers drop to near zero during winter thermal troughs, indicating that cold-stress on the parasite and vector acts as a natural annual (break) in the transmission chain. Source: SEACR-SEI Model.", width = 150)
   ) +
   ylim(0, NA)
 ```
 
 ### Policy implications
 
-Models that explicitly incorporate localised temperature and rainfall are critical for shifting public health strategies from reactive to proactive. By understanding the distinct epidemiological profiles of regions like Limpopo and Maputo, policymakers can optimise resource allocation:
+Models that explicitly incorporate localised temperature and rainfall are critical for shifting public health strategies. By understanding the distinct epidemiological profiles of regions such as Limpopo and Maputo, policymakers can optimise resource allocation:
 
-Targeted Epidemic Response (e.g.,Limpopo): Because transmission is highly seasonal and prone to weather-driven "boom-and-bust" cycles, predictive models can serve as Early Warning Systems (EWS). If meteorological forecasts predict a convergence of optimal thermal conditions and heavy, non-flushing rainfall, health ministries can precisely time interventions, such as initiating Indoor Residual Spraying (IRS) campaigns just before the anticipated mosquito population explosion.
+Because transmission is highly seasonal and prone to weather-driven "boom-and-bust" cycles, predictive models can serve as Early Warning Systems (EWS). If meteorological forecasts predict a convergence of optimal thermal conditions and heavy, non-flushing rainfall, health ministries can precisely time interventions, such as initiating Indoor Residual Spraying (IRS) campaigns just before the anticipated mosquito population explosion.
 
-Sustained Endemic Control e.g., Maputo: In areas where environmental conditions support year-round vector competence, policy must focus on sustained, continuous interventions. This includes ensuring universal coverage of Long-Lasting Insecticidal Nets (LLINs), robust seasonal malaria chemoprevention (SMC), and continuous supply chains for rapid diagnostic tests (RDTs) and antimalarials.
+In areas where environmental conditions support year-round vector competence, policy must focus on sustained, continuous interventions. This includes ensuring universal coverage of Long-Lasting Insecticidal Nets (LLINs), robust seasonal malaria chemoprevention (SMC), and continuous supply chains for rapid diagnostic tests (RDTs) and antimalarials.
 
-Cross-Border Collaboration: The juxtaposition of an endemic zone (Maputo) and an epidemic-prone zone (Limpopo) highlights the need for regional data sharing. Asymptomatic human carriers moving across borders can act as an infectious reservoir, igniting outbreaks in neighboring regions when local weather conditions become highly permissive.
+The juxtaposition of an endemic zone (Maputo) and an epidemic-prone zone (Limpopo) highlights the need for regional data sharing. Asymptomatic human carriers moving across borders can act as an infectious reservoir, igniting outbreaks in neighboring regions when local weather conditions become highly permissive.
 
 
 ### Citations

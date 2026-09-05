@@ -204,13 +204,13 @@ If users wish to generate their own plots, it is recommended to download the dat
 
 <h2>How can this data be used in disease modelling?</h2>
 
-Using a country-wide, gridded reanalysis product like the Copernicus Climate Data Store (CDS) ERA5 dataset transforms national disease modeling by providing continuous, gap-free environmental drivers across the entirety of Nigeria. Unlike scattered point-source station observations, reanalysis data blends satellite and in-situ observations into numerical weather models, offering a complete historical archive of multi-variable climate fields at a national scale.
+Using a country-wide, gridded reanalysis product like the Copernicus Climate Data Store (CDS) ERA5 dataset transforms national disease modeling by providing continuous, gap-free environmental drivers across the entirety country. Unlike scattered point-source station observations, reanalysis data blends satellite and in-situ observations into numerical weather models, offering a complete historical archive of multi-variable climate fields at a national scale.
 
-To explicitly integrate these environmental conditions into a national architecture, we expand the mechanistic equations adapted from Mordecai et al. (2013) and Agusto (2020) by utilizing a spatially distributed ensemble framework. Rather than calculating a simplified, single national average of weather parameters which commits an ecological fallacy due to the highly non-linear curves governing vector biology we resolve the temperature-dependent human biting rates (a), parasite development rates (gamma_m), daily oviposition rates (ovi), and humidity-driven desiccation mortality (mu_m) at the individual grid-cell level before evaluating the national ordinary differential equation (ODE) system. This ensures that localized climate extremes, such as dry Harmattan dust lanes in the north or humid coastal monsoons in the south, are biologically preserved rather than mathematically smoothed away.
+To explicitly integrate these environmental conditions into a mathematical model, we expand the mechanistic equations adapted from Mordecai et al. (2013) and Agusto (2020) by utilising a spatially distributed ensemble framework. Rather than calculating a simplified, single national average of weather parameters which commits an ecological fallacy due to the highly non-linear curves governing vector biology we resolve the temperature-dependent human biting rates (a), parasite development rates (gamma_m), daily oviposition rates (ovi), and humidity-driven desiccation mortality (mu_m) at the individual grid-cell level before evaluating the national ordinary differential equation (ODE) system. This ensures that localised climate extremes, such as dry Harmattan dust lanes in the north or humid coastal monsoons in the south, are biologically preserved rather than mathematically smoothed away.
 
 ### Preparing the data 
 
-Using the national hourly ERA5 single-levels dataset, we pull t2m (temperature in Kelvin), d2m (dewpoint in Kelvin), and tp (total precipitation in meters). We converted the thermodynamic metrics into Celsius and compute relative humidity via the Magnus-Tetens formula to map country-wide transmission vectors over time. The key modelling shift here is that we apply the non-linear biological trait equations to each grid cell prior to national summation, yielding an ecologically accurate set of daily forcing arrays from 2010 to 2025.
+Using the national hourly ERA5 single-levels dataset, we pull t2m (temperature in Kelvin), d2m (dewpoint in Kelvin), and tp (total precipitation in meters). We converted the thermodynamic metrics into Celsius and compute relative humidity via the Magnus-Tetens formula to map country-wide transmission vectors over time. The key modelling shift here is that we apply the non-linear biological trait equations to each grid cell prior to national summation, yielding an ecologically accurate set of daily forcing arrays.
 
 
 ```{r}
@@ -287,7 +287,7 @@ ggplot(data = era5_grid_processed) +
     title = "Daily National Average Temperature Values in Nigeria from 2010 to 2025",
     x = "Year",
     y = "Temperature values (Celsius °)",
-    caption = str_wrap("National daily temperatures float consistently between 23 and 35 degree celsius, maintaining an ambient environment that keeps parasite replication and extrinsic incubation continuously active throughout the year.)",
+    caption = str_wrap("Daily temperatures float consistently between 23 and 35 degree celsius, maintaining an ambient environment that keeps parasite replication and extrinsic incubation continuously active throughout the year.)",
       width = 150)
   ) +
   ylim(0, NA)
@@ -306,16 +306,14 @@ ggplot(data = era5_grid_processed) +
     title = "Daily Precipitation in Nigeria from 2010 to 2025",
     x = "Year",
     y = "Rainfall values (mm)",
-    caption = str_wrap("National daily precipitation averages oscillate predictably between 0 and 6 mm, where regular rainfall expands aquatic breeding capacity, but intense localized storms exceeding 30 mm physically wash away developing larvae.", width = 150)
+    caption = str_wrap("Daily precipitation averages oscillate predictably between 0 and 6 mm, where regular rainfall expands aquatic breeding capacity, but intense localised storms exceeding 30 mm physically wash away developing larvae.", width = 150)
   ) +
   ylim(0, NA)
 ```
 
 We incorporate pre-resolved, distributed biological parameters directly into our national mathematical model. While other frameworks treat localised metrics as unlinked variables, this model explicitly integrates humidity as a non-linear driver of adult vector desiccation stress within the mortality equation (mu_m). 
 
-Furthermore, geographic altitude is natively captured by the ERA5 reanalysis fields, as the underlying 2-meter temperature (t2m) profiles inherently adjust for topographic elevation via the environmental lapse rate. For this country-wide analysis, we explore national mosquito populations and disease prevalence under the influence of these overlapping environmental forces. 
-
-We achieve this by holding baseline epidemiological parameters and initial host population structures constant, allowing the shifting, multi-variable climate fields of temperature, precipitation, and relative humidity to dynamically drive transmission potential across the country.
+For this country-wide analysis, we explore national mosquito populations and disease prevalence under the influence of these overlapping environmental forces. We achieve this by holding baseline epidemiological parameters and initial host population structures constant, allowing the shifting, multi-variable climate fields of temperature, precipitation, and relative humidity to dynamically drive transmission potential across the country.
 
 ```{r}
 # Simulation Timeline Setup
@@ -366,7 +364,7 @@ seacr_era5_ensemble <- function(times, start, parameters, a_vec, gamma_m_vec, ov
   })
 }
 
-# Complete system initialization
+# Complete system initialisation
 initial_state <- c(Sm = 70000, Em = 25000, Im = 35000, S = 85000, E = 15000, A = 8000, C = 6000, R = 4000, G = 1000, CInc = 0)
 parameters    <- c(b = 0.72, c = 0.52, r = 1/21, rho = 1/150, delta = 1/140, zeta_a = 0.4, pa = 0.38, mu_h = 1/(60 * 365), gamma_h = 1/10, Km = 45000)
 
@@ -387,8 +385,6 @@ df_nigeria_results <- as_tibble(as.data.frame(out_Nigeria)) |>
 
 ### Changes in vector population
 
-Vector population dynamics across Nigeria follow a highly synchronized seasonal curve when simulated under a distributed ensemble logic. The human population remains constant, and secondary infections occur when individuals are re-exposed to infectious vectors while recovering from a primary infection channel.
-
 The interactions between local environmental stressors create distinct macro-trends in the mosquito population (M). During the dry season, low relative humidity values driven by the regional Harmattan wind patterns induce heavy desiccation stress across northern grids, spiking vector mortality (mu_m) and causing a substantial drop in the overall national vector population. When the seasonal monsoon rains arrive, this atmospheric pressure eases and expanding aquatic breeding habitats across all grid coordinates trigger a rapid, widespread resurgence in mosquito populations across the country.
 ```{r}
 df_nigeria_results |> 
@@ -401,17 +397,17 @@ df_nigeria_results |>
   labs(
     title = "National Mosquito Vector Populations Over Time in Nigeria", 
     x = "Year", y = "Population Size",
-    caption = str_wrap("Resolving spatial variation captures a pronounced annual drop in adult mosquito density when relative humidity falls below 55%, followed by rapid, rain-driven resurgences that peak near 0.25M vectors during synchronized national breeding windows.", width = 150)
+    caption = str_wrap("Resolving spatial variation captures a pronounced annual drop in adult mosquito density when relative humidity falls below 55%, followed by rapid, rain-driven resurgences that peak near 0.25M vectors during synchronised national breeding windows.", width = 150)
   )
 ```
 
 ### Implications for transmission
 
-The national force of infection is driven by human biting frequencies, the ratio of active vectors to human hosts, transmission probabilities, and the scale of the infectious human reservoir (C + zeta_a A). By processing climate fields on a distributed mesh, our equations explicitly capture transmission bottlenecks that simple aggregated models tend to miss.
+By processing climate fields on a distributed mesh, our model explicitly capture transmission bottlenecks that simple aggregated models tend to miss.
 
 The resulting simulation demonstrates an intense, perennial transmission profile that is bounded by seasonal transitions. During dry-season intervals, transmission slows considerably; even though ambient temperatures remain high enough to support rapid parasite development (EIP), the low relative humidity shortens adult mosquito lifespans, meaning few vectors survive long enough to become fully infectious (Im). Once the wet season breaks, the pairing of optimal temperatures and elevated relative humidity extends vector longevity, unleashing high-velocity transmission cycles that produce distinct, broad annual waves in clinical cases (C) across the population.
 
-Note that these outputs represent illustrative indicators of transmission potential derived from multi-variable environmental suitability. In operational contexts, recorded clinical case data may deviate from these metrics due to healthcare access limits, localized interventions, or diagnostic availability.
+Note that these outputs represent illustrative indicators of transmission potential derived from multi-variable environmental suitability. In operational contexts, recorded clinical case data may deviate from these metrics due to healthcare access limits, localised interventions, or diagnostic availability.
 ```{r}
 df_nigeria_results |> 
   filter(variable == "C", time > 100) |>
@@ -422,20 +418,18 @@ df_nigeria_results |>
   labs(
     title = "Daily Symptomatic Cases Values in the Nigerian Human Population", 
     x = "Year", y = "Number of Cases",
-    caption = str_wrap("The national transmission profile displays highly responsive, clockwork seasonality where a distinct annual dry-season drop down to 2,500 cases is followed by a sharp monsoonal surge peaking near 20,000 cases as environmental conditions recover.", width = 150)
+    caption = str_wrap("The transmission profile displays highly responsive, clockwork seasonality where a distinct annual dry-season drop down to 2,500 cases is followed by a sharp monsoonal surge peaking near 20,000 cases as environmental conditions recover.", width = 150)
   ) +
   ylim(0, NA)
 ```
 
 ### Policy implications
 
-Models that evaluate non-linear temperature, rainfall, and relative humidity matrices on a distributed grid enable the National Malaria Elimination Programme (NMEP) of Nigeria to transition from reactive management to proactive, forecast-driven public health planning:
+Models that evaluate non-linear temperature, rainfall, and relative humidity matrices on a distributed grid enable the National Malaria Elimination Programme (NMEP) of a country to transition from reactive management to proactive, forecast-driven public health planning:
 
-Spatially Optimized National Interventions: Because this framework captures how relative humidity acts as a key survival bottleneck for vectors, control programs can time the distribution of Long-Lasting Insecticidal Nets (LLINs) and seasonal chemoprevention to conclude right before the national humidity upswing, targeting the vector population at its most vulnerable point.
+Because this framework captures how relative humidity acts as a key survival bottleneck for vectors, control programs can time the distribution of Long-Lasting Insecticidal Nets (LLINs) and seasonal chemoprevention to conclude right before the national humidity upswing, targeting the vector population at its most vulnerable point. Also th Rapid Diagnostic Tests (RDTs) and Artemisin-based Combination Therapies (ACTs) can be moved into regional distribution hubs ahead of the surge, preventing stockouts during high-transmission months.
 
-Proactive Supply Chain Routing for Seasonal Surges: Anticipating the predictable, climate-driven expansion of clinical cases late in the wet season allows health ministries to build proactive supply lines. Rapid Diagnostic Tests (RDTs) and Artemisin-based Combination Therapies (ACTs) can be moved into regional distribution hubs ahead of the surge, preventing stockouts during high-transmission months.
-
-Evaluating Interannual Climate Resilience: Incorporating continuous Copernicus Climate Data Store feeds helps health authorities identify anomalous years such as prolonged rainy seasons or unseasonably humid dry intervals allowing teams to adjust national control budgets and operational timelines dynamically.
+Incorporating continuous Copernicus Climate Data Store feeds helps health authorities identify anomalous years such as prolonged rainy seasons or unseasonably humid dry intervals allowing teams to adjust national control budgets and operational timelines dynamically.
 
 ### Citations
 - Agusto F. B., Gumel A. B., & Parham P. E. Qualitative assessment of the role of temperature variations on malaria transmission dynamics. Journal of Biological Systems, 23(04), 1550030 (2015). <https://doi.org/10.1142/S0218339015500308>
