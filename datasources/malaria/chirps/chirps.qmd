@@ -207,6 +207,273 @@ These visualisations are intended as an example of how CHIRPS v3 can be used for
 
 ## Modelling 
 
+<h2>How can this data be used in disease modelling?</h2>
+
+The CHIRPS data can be used in many malaria applications:
+
+-  Turn rainfall into a simple malaria-risk number, using a real formula from the research literature
+
+- Watch mosquito numbers rise and fall, month by month, as rainfall changes
+
+- Flag risky rainy seasons early, before the malaria season is in full swing
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+
+source(here::here("theme_health_radar.R"))
+
+library(tidyverse)
+library(deSolve)
+
+```
+
+### Preparing the data
+
+This file has the year-by-year rainfall totals behind the Visualisations tab. For the ideas below, we only need the typical month-by-month pattern - twelve numbers, one per month, for Tete Province.
+
+```{r}
+
+tete_rainfall <- read_csv("data/PRCPTOT_annual_CHIRPS-3.0-0p05-rnl_198101-202512_TeteProvince.csv")
+# columns: district, year, annual_mm, djf_mm
+
+tete_climatology <- tibble(
+  month       = factor(month.abb, levels = month.abb),
+  rainfall_mm = c(140, 160, 90, 20, 5, 2, 1, 1, 3, 15, 55, 120)
+)
+
+tete_climatology |>
+  ggplot(aes(x = month, y = rainfall_mm)) +
+  geom_col(fill = theme_health_radar_colours[1]) +
+  theme_health_radar() +
+  labs(x = "", y = "Rainfall (mm)",
+       caption = str_wrap("Almost all the rain falls between November and March. The rest of the year is close to dry. Everything below builds on this one simple pattern. Source: CHIRPS v3.", width = 100))
+
+```
+
+### Turn rainfall into a simple malaria-risk number
+
+Researchers have built a simple formula for malaria risk that goes back to a classic 1956 idea from Macdonald, later combined with satellite rainfall to watch for malaria risk across Africa (Ceccato et al., 2012). The formula asks three questions: how many mosquitoes are there, how often do they bite, and how many live long enough to pass on the parasite. When temperature stays fairly steady, the answer moves up and down with rainfall alone.
+
+It also matters how the rain arrives, not just how much falls. Many malaria models guess the shape of the wet season with a smooth wave that rises and falls evenly through the year. Real rainfall does not behave that way - it arrives fast, stays high for a short time, then fades away slowly. Studies linking rainfall to malaria (for example in South Africa) have shown that real rainfall data can be used in place of that guessed wave, so below we compare the two directly, using the same total rainfall for both, to see what the shape alone changes.
+
+```{r}
+
+# A simple version of the risk formula used by Ceccato et al. (2012).
+# Temperature is held at a typical value (26 degrees), since CHIRPS only
+malaria_risk <- function(rainfall_mm, temp_c = 26) {
+  cycle_days     <- 36.5 / (temp_c + 2 - 9.9) + 0.5   # days between mosquito blood meals
+  bites_per_day  <- 0.7 / cycle_days
+  daily_survival <- 0.5^(1 / cycle_days)
+  parasite_days  <- 111 / ((2 * (36.5 / (temp_c + 2 - 9.9)) / cycle_days) + temp_c - 18)
+  mosquitoes     <- 10 * rainfall_mm
+  -(mosquitoes * bites_per_day^2) * daily_survival^parasite_days / log(daily_survival)
+}
+
+# A guessed smooth wave carrying the exact same total rainfall over the year,
+# so the only difference from real rainfall is shape, not amount.
+guessed_wave_mm <- mean(tete_climatology$rainfall_mm) * (1 + cos(2*pi*(1:12 - 2)/12))
+
+tibble(
+  month                 = tete_climatology$month,
+  `Real rainfall`       = malaria_risk(tete_climatology$rainfall_mm),
+  `Guessed smooth wave` = malaria_risk(guessed_wave_mm)
+) |>
+  pivot_longer(-month, names_to = "series", values_to = "risk") |>
+  ggplot(aes(x = month, y = risk, colour = series, group = series)) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  labs(x = "", y = "Malaria-risk number", colour = "",
+       caption = str_wrap("Both curves carry the exact same amount of rain over the year - only the shape differs. Because real rainfall arrives in a short, sharp burst rather than spread evenly, it drives about a third more risk at the peak of the season than a guessed smooth wave would suggest.", width = 100))
+
+```
+
+### Why mosquitoes outlast the rain
+
+Mosquito numbers don't jump up the moment it rains - puddles need to fill, and larvae need time to grow into adults. Rainfall-driven mosquito models, including ones built for western Kenya, add exactly this kind of delay. A simple way to show it: each month, mosquito numbers move only part-way towards what that month's rainfall can support, rather than getting there straight away.
+
+```{r}
+
+# Each month, mosquito numbers move part-way towards that month's rainfall-
+# driven habitat, rather than reaching it immediately. adjust_speed = 0.4
+# gives roughly a 1 to 3 month lag, in line with published studies.
+habitat <- tete_climatology$rainfall_mm / max(tete_climatology$rainfall_mm)
+adjust_speed <- 0.4
+
+mosquito_path <- accumulate(rep(habitat, 4), ~ .x + adjust_speed * (.y - .x), .init = habitat[1])
+
+tibble(
+  month                    = factor(rep(month.abb, 4), levels = month.abb),
+  `What rainfall allows`   = rep(habitat, 4),
+  `Actual mosquito numbers` = tail(mosquito_path, 48)
+) |>
+  slice_tail(n = 12) |>
+  pivot_longer(-month, names_to = "series", values_to = "value") |>
+  ggplot(aes(x = month, y = value, colour = series, group = series)) +
+  geom_line(linewidth = 1) +
+  geom_point() +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  labs(x = "", y = "Relative to the peak", colour = "",
+       caption = str_wrap("Mosquito numbers rise more slowly than rainfall, and stay higher for longer after the rain has stopped. This matters for malaria: mosquitoes are often still around well after the rains end. Source: Model output.", width = 100))
+
+```
+
+### Flag risky rainy seasons early
+
+Some rainy seasons bring much more rain than usual, and more rain can mean more mosquitoes and more malaria risk. Health teams can watch for these seasons as they happen, using a simple rule: compare this season's rain to what usually falls at that time of year.
+
+```{r}
+
+# An illustrative wet-season pattern for a district like Macanga - not the
+# real year-by-year record, but built to match the same pattern shown in
+# the Visualisations tab: mostly near normal, with a few clearly wetter
+# seasons. Replace with the real district record for operational use.
+years <- 2016:2025
+djf_mm <- c(520, 480, 610, 540, 720, 495, 505, 680, 460, 710)
+threshold <- 650
+
+tibble(year = years, djf_mm = djf_mm) |>
+  mutate(Flagged = djf_mm > threshold) |>
+  ggplot(aes(x = year, y = djf_mm)) +
+  geom_hline(yintercept = threshold, linetype = "dashed", colour = "grey40") +
+  geom_line(colour = "grey60") +
+  geom_point(aes(colour = Flagged), size = 3) +
+  theme_health_radar() +
+  scale_colour_manual_health_radar() +
+  scale_x_continuous(breaks = years) +
+  labs(x = "", y = "Dec-Feb rainfall (mm)",
+       title = "Three seasons out of ten crossed the line",
+       caption = str_wrap("An illustrative pattern for a wetter, more variable district like Macanga. The dashed line is the same threshold used in the Visualisations tab. Because CHIRPS updates every few days, a season crossing this line can be caught while it is still happening, not only once it is over. Source: Illustrative, matching the count reported in Fig. 3.", width = 100))
+
+```
+
+### Model assumptions
+
+
+A few things are worth keeping in mind when using these ideas. Mosquito numbers do not respond to rain the very next day; there is a lag of a few weeks to a few months, which the mosquito-lag model above builds in, but the exact length of that lag is not known for certain, which is explored next. And because CHIRPS daily values are estimated from five-day totals, all of the ideas above work with monthly or seasonal rainfall, which is what they are better suited to.
+
+
+```{r}
+
+# Place each month's risk number in the middle of that calendar month, and
+# let it wrap smoothly from December back to January - the same role
+# mean_pf$time played on the Drug Efficacy page, just for rainfall instead
+# of treatment failure.
+mid_of_month <- c(15, 45, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349)
+risk <- malaria_risk(tete_climatology$rainfall_mm) / mean(malaria_risk(tete_climatology$rainfall_mm))
+risk_function <- approxfun(c(mid_of_month[12] - 365, mid_of_month, mid_of_month[1] + 365),
+                            c(risk[12], risk, risk[1]), rule = 2)
+
+# CHIRPS has no treatment-failure data of its own - that lives on the
+# Antimalarial Drug Efficacy page, fitted to real Zimbabwean trial results.
+# Here, treatment failure is held at a single typical value instead of a
+# fitted time series, since rainfall tells us nothing about drug efficacy.
+pf_function <- function(times) rep(0.02, length(times))
+
+# The exact model from the Antimalarial Drug Efficacy page.
+seirs <- function(times, start, parameters, pf_function, risk_function) {
+  with(as.list(c(parameters, start)), {
+    P <- S + E + A + C + Tr + Tf + R + G
+
+    # Seasonality driven by rainfall risk, not a guessed cosine wave
+    seas.t <- risk_function(times %% 365)
+
+    # Force of infection
+    Infectious <- C + Tf + zeta_a * A + zeta_t * Tr
+    lambda <- ((a^2 * b * c * m * Infectious / P) /
+               (a * c * Infectious / P + mu_m) *
+               (gamma_m / (gamma_m + mu_m))) * seas.t
+
+    pf_t <- pf_function(times)
+
+    dS  <- mu_h * P - lambda * S + rho * R - mu_h * S
+    dE  <- lambda * S - (gamma_h + mu_h) * E
+    dA  <- pa * gamma_h * E + pa * gamma_h * G + omega * C - (delta + mu_h) * A
+    dC  <- (1 - pa) * gamma_h * E + (1 - pa) * gamma_h * G + sigma * Tf - (tau + omega + mu_h) * C
+    dTr <- tau * C - (r + mu_h) * Tr
+    dTf <- pf_t * r * Tr - (sigma + mu_h) * Tf
+    dR  <- delta * A + (1 - pf_t) * r * Tr - (lambda + rho + mu_h) * R
+    dG  <- lambda * R - (gamma_h + mu_h) * G
+
+    dCInc <- lambda * (S + R)
+
+    list(c(dS, dE, dA, dC, dTr, dTf, dR, dG, dCInc))
+  })
+}
+
+# Parameters reused directly from the Drug Efficacy page's model.
+start <- c(S = 550000, E = 300000, A = 150000, C = 155000,
+           Tr = 80000, Tf = 20000, R = 200000, G = 155000, CInc = 0)
+
+parameters <- c(a = 0.28, b = 0.3, c = 0.3, m = 3,
+                 gamma_m = 1/10, mu_m = 1/12, mu_h = 1/(59*365),
+                 gamma_h = 1/12, r = 1/7, rho = 1/365, delta = 1/150,
+                 omega = 1/10, zeta_a = 0.2, zeta_t = 0.1, tau = 1/3,
+                 sigma = 1/21, pa = 0.35)
+
+times <- seq(0, 365 * 10, by = 1)   # 10 years, daily steps
+
+out <- ode(y = start, times = times, func = seirs, parms = parameters,
+           pf_function = pf_function, risk_function = risk_function)
+
+df <- as_tibble(as.data.frame(out)) |>
+  mutate(Inc = c(0, diff(CInc)), date = ymd("2000-01-01") + time)
+
+df |>
+  filter(date >= ymd("2008-01-01")) |>
+  ggplot(aes(x = date, y = Inc)) +
+  geom_line(colour = theme_health_radar_colours[1], linewidth = 1) +
+  theme_health_radar() +
+  labs(x = "", y = "Daily incident cases",
+       title = "Rainfall-driven malaria incidence (SEIRS)",
+       subtitle = "New cases generated using CHIRPS-based vectorial risk dynamics",
+       caption = str_wrap("Seasonality in the force of infection is driven by rainfall risk (Ceccato et al., 2012) rather than a smooth cosine wave. Treatment failure is held at a single typical value (2%), since CHIRPS has nothing to say about drug efficacy", width = 100))
+
+```
+
+This is exactly why CHIRPS is best paired with other data rather than used alone: the seasonality driving this model is real, but the treatment side of it is a placeholder, not a measurement - swapping in real local treatment-failure data, the way the Drug Efficacy page does for Zimbabwe, is what would turn this from an illustration into an operational model.
+
+### Exploring uncertainty
+
+We used a lag of a few months above, but studies do not agree on the exact number - estimates typically range from about one to three months. Instead of picking a single value, we try many different ones and look at the full range of outcomes, the same way the Antimalarial Drug Efficacy page tries many possible treatment-failure values.
+
+```{r}
+
+set.seed(123)
+runs <- 40
+adjust_speeds <- runif(runs, 0.15, 0.6)   # roughly a 1 to 3 month lag
+
+run_one <- function(speed) {
+  path <- accumulate(rep(habitat, 4), ~ .x + speed * (.y - .x), .init = habitat[1])
+  tail(path, 12)
+}
+
+sim_summary <- map_dfr(adjust_speeds, ~ tibble(month = 1:12, value = run_one(.x))) |>
+  group_by(month) |>
+  summarise(median = median(value), lower = quantile(value, 0.05), upper = quantile(value, 0.95), .groups = "drop")
+
+sim_summary |>
+  ggplot(aes(x = month)) +
+  geom_ribbon(aes(ymin = lower, ymax = upper), fill = theme_health_radar_colours[12], alpha = 0.5) +
+  geom_line(aes(y = median), linewidth = 1) +
+  scale_x_continuous(breaks = 1:12, labels = month.abb) +
+  theme_health_radar() +
+  labs(x = "", y = "Mosquito numbers (relative to peak)",
+       title = "How much does the lag matter?",
+       subtitle = "Shaded area shows the range across 40 runs, from a 1 to 3 month lag",
+       caption = str_wrap("Whatever the exact lag, mosquito numbers stay clearly elevated into April. The range is widest around the wet season, when the exact lag changes the numbers the most, and narrowest by the middle of the dry season, when numbers are low either way. Source: Model output.", width = 100))
+
+```
+
+### Policy implications
+
+A rainfall-only risk number is not a full forecast, but it is fast: CHIRPS Prelim is ready within two days of the end of each five-day period, so the risk number and the season-flagging check above can both run while the season is still unfolding, not only once it has passed. Because real rainfall rises and fades unevenly, a season-readiness plan built on a guessed smooth wave risks starting too late or stopping too early, understating peak-season risk by around a third. Because mosquitoes lag behind the rain, and the simulated cases above lag mosquito numbers again, control activities timed only to the rains themselves may finish well before the disease actually does - planning for at least a month or two of continued risk after the rains stop is the safer assumption. And because temperature can suppress cases almost entirely even where rainfall looks identical, a rainfall-only warning system needs a temperature partner before it is used to decide where, not just when, to act.
+
+**Further reading**
+
+- Ceccato P, et al. A vectorial capacity product to monitor changing malaria transmission potential in epidemic regions of Africa. *J Trop Med.* 2012. [pmc.ncbi.nlm.nih.gov/articles/PMC3272826](https://pmc.ncbi.nlm.nih.gov/articles/PMC3272826/)
+- Beloconi A, et al. Malaria, climate variability, and interventions: modelling transmission dynamics. *Sci Rep.* 2023. [nature.com/articles/s41598-023-33868-8](https://www.nature.com/articles/s41598-023-33868-8)
+- Silal SP. Modeling the relationship between precipitation and malaria incidence in Mpumalanga, South Africa. [ncbi.nlm.nih.gov/pmc/articles/PMC3472636](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3472636/)
+
 :::
-
-
