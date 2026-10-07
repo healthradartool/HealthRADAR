@@ -100,20 +100,20 @@ The [KNMI Climate Explorer](https://climexp.knmi.nl/start.cgi) is another platfo
 Below are a few plots to give a better sense of where the GHCNd station are located. 
 
 :::{.cell}
-![Spatial map of GHCNd Precipitation stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_PRCP_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Precipitation stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig1_ghcnd_PRCP_stations_size.png){fig-align="center"}
 :::
 
 :::{.cell}
-![Spatial map of GHCNd Avergae Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TAVG_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Avergae Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig2_ghcnd_TAVG_stations_size.png){fig-align="center"}
 :::
 
 :::{.cell}
-![Spatial map of GHCNd Maximum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TMAX_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Maximum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig3_ghcnd_TMAX_stations_size.png){fig-align="center"}
 :::
 
 
 :::{.cell}
-![Spatial map of GHCNd Minimum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TMIN_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Minimum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig4_ghcnd_TMIN_stations_size.png){fig-align="center"}
 :::
 
 
