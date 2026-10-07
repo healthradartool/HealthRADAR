@@ -96,17 +96,17 @@ The [Early Warning Explorer (EWX)](https://ewx3.chc.ucsb.edu/ewx/index.html) is 
 Below is a spatial plot of mean annual rainfall over Southern Africa for the 1991-2020 climatology period, giving a sense of the spatial coverage and resolution of the CHIRPS v3 dataset.
 
 :::{.cell}
-![Mean annual rainfall over Southern Africa (1991-2020) derived from CHIRPS v3 at 0.05° resolution.](images/CHIRPS_MeanAnnualRainfall_1991-2020.png){fig-align="center"}
+![Mean annual rainfall over Southern Africa (1991-2020) derived from CHIRPS v3 at 0.05° resolution.](images/Fig1_CHIRPS_MeanAnnualRainfall_1991-2020.png){fig-align="center"}
 :::
 
 The plots below show the monthly rainfall climatology and daily rainfall time series for Tete, Mozambique, illustrating the seasonal cycle and temporal extent of the dataset.
 
 :::{.cell}
-![Monthly rainfall climatology for Tete, Mozambique (1991-2020) derived from CHIRPS v3.](images/CHIRPS_Climatology_Tete_1991-2020.png){fig-align="center"}
+![Monthly rainfall climatology for Tete, Mozambique (1991-2020) derived from CHIRPS v3.](images/Fig2_CHIRPS_Climatology_Tete_1991-2020.png){fig-align="center"}
 :::
 
 :::{.cell}
-![Daily rainfall time series for Tete, Mozambique (1981-2026) derived from CHIRPS v3.](images/CHIRPS_TimeSeries_Rainfall_1981-2026.png){fig-align="center"}
+![Daily rainfall time series for Tete, Mozambique (1981-2026) derived from CHIRPS v3.](images/Fig3_CHIRPS_TimeSeries_Rainfall_1981-2026.png){fig-align="center"}
 :::
 
 
