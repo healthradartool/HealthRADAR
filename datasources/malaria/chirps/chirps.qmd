@@ -228,7 +228,15 @@ library(deSolve)
 
 ### Preparing the data
 
-This file has the year-by-year rainfall totals behind the Visualisations tab. For the ideas below, we only need the typical month-by-month pattern - twelve numbers, one per month, for Tete Province.
+This file has the year-by-year rainfall totals behind the Visualisations tab. We keep using Tete Province as our example, for three reasons:
+
+- **Malaria is a severe and persistent regional problem.** Malaria cases in Tete increased by 12% from 725,745 cases in 2019 to 812,239 in 2020 (Afai et al., 2022). Furthermore, national survey data reveals significant community-level intervention gaps—only 46% of women of reproductive age in Tete have complete knowledge of malaria symptoms, transmission, and prevention (Afai et al., 2022). It is a high-burden, highly relevant setting without being Mozambique's single most extreme high-transmission outlier, making it a fair, typical baseline for regional modeling.
+
+- **It sits at a critical cross-border transmission corridor.** Tete shares borders with Zambia, Zimbabwe, and Malawi—key partner nations in the Elimination 8 (E8) regional initiative. High-risk frontier districts like Mágoe (which recorded 27 cases per 1,000 residents in 2019) and Zumbo directly border Zimbabwe and Zambia, and local health posts frequently treat cross-border populations (Afai et al., 2022). What we model here directly informs cross-border transmission dynamics.
+
+- Almost all rain falls within a single wet season from November to March, while annual totals fluctuate dramatically between under 600 mm and over 1,300 mm. Significant intra-provincial variation exists—with some districts receiving nearly double the rainfall of neighboring districts in the same year—illustrating why district-level environmental data is essential over regional averages.
+
+For the ideas below, we only need the typical month-by-month pattern - twelve numbers, one per month, for Tete Province.
 
 ```{r}
 
