@@ -241,7 +241,10 @@ For the ideas below, we only need the typical month-by-month pattern - twelve nu
 ```{r}
 
 tete_rainfall <- read_csv("data/PRCPTOT_annual_CHIRPS-3.0-0p05-rnl_198101-202512_TeteProvince.csv")
-# columns: district, year, annual_mm, djf_mm
+
+# Typical month-by-month rainfall for Tete Province. These twelve values are
+# illustrative stand-ins with the right seasonal shape - replace them with the
+# real 1991-2020 monthly means extracted from CHIRPS.
 
 tete_climatology <- tibble(
   month       = factor(month.abb, levels = month.abb),
@@ -266,7 +269,7 @@ It also matters how the rain arrives, not just how much falls. Many malaria mode
 ```{r}
 
 # A simple version of the risk formula used by Ceccato et al. (2012).
-# Temperature is held at a typical value (26 degrees), since CHIRPS only
+# Temperature is held at a typical value (26 degrees)
 malaria_risk <- function(rainfall_mm, temp_c = 26) {
   cycle_days     <- 36.5 / (temp_c + 2 - 9.9) + 0.5   # days between mosquito blood meals
   bites_per_day  <- 0.7 / cycle_days

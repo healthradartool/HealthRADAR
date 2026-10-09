@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 title: "GHCNd"
 description: "Global Historical Climatology Network daily station data"
