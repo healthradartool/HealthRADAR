@@ -100,20 +100,20 @@ The [KNMI Climate Explorer](https://climexp.knmi.nl/start.cgi) is another platfo
 Below are a few plots to give a better sense of where the GHCNd station are located. 
 
 :::{.cell}
-![Spatial map of GHCNd Precipitation stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig1_ghcnd_PRCP_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Precipitation stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_PRCP_stations_size.png){fig-align="center"}
 :::
 
 :::{.cell}
-![Spatial map of GHCNd Avergae Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig2_ghcnd_TAVG_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Avergae Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TAVG_stations_size.png){fig-align="center"}
 :::
 
 :::{.cell}
-![Spatial map of GHCNd Maximum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig3_ghcnd_TMAX_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Maximum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TMAX_stations_size.png){fig-align="center"}
 :::
 
 
 :::{.cell}
-![Spatial map of GHCNd Minimum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/Fig4_ghcnd_TMIN_stations_size.png){fig-align="center"}
+![Spatial map of GHCNd Minimum Temperature stations over southern Africa. The size of the station marker indicates the length of the station and the colour indicates the last year the station produced data.](images/ghcnd_TMIN_stations_size.png){fig-align="center"}
 :::
 
 
@@ -170,13 +170,13 @@ For the ERA5 data, we used daily average, minimum, and maximum temperature, as w
 The GHCN Skukuza station rainfall record spans 1 September 1911 to 24 July 2025, with valid (non-missing) values available for 70.95% of the record. After 30 May 2001, the source of the data changes to the Global Summary of the Day (GSOD), meaning the values are derived from hourly synoptic reports exchanged via the Global Telecommunications System (GTS). GHCN cautions that “daily values derived in this fashion may differ significantly from ‘true’ daily data, particularly for precipitation (i.e., use with caution).” This change in source is highlighted in Figure 1.
 
 :::{.cell}
-![Fig. 1: Daily rainfall time series for Skukuza, South Africa, from 1911 to 2025. Lighter shaded bars indicate values in the GHCN station record that are sourced from the Global Summary of the Day (GSOD).](images/Vis1_GHCN_daily_TimeSeries_Rainfall_Skukuza.png)
+![Fig. 1: Daily rainfall time series for Skukuza, South Africa, from 1911 to 2025. Lighter shaded bars indicate values in the GHCN station record that are sourced from the Global Summary of the Day (GSOD).](images/Vis1_GHCN_daily_TimeSeries_Rainfall_Skakuza.png)
 :::
 
 The GHCN Skukuza station has three temperature variables. Maximum and minimum temperatures are recorded from 1 January 1960 to 24 July 2025, with valid (non-missing) values available for around 80% of their records. As with the rainfall record, after 30 May 2001 the source of the data changes to the Global Summary of the Day (GSOD). All values for the average temperature variable are sourced from GSOD (Figure 2).
 
 :::{.cell}
-![Fig. 2: Daily maximum (top), average (middle), and minimum (bottom) temperature time series for Skukuza, South Africa, from 1960 to 2025. Lighter shaded lines indicate values in the GHCN station record that are sourced from the Global Summary of the Day (GSOD).](images/Vis2_GHCN_daily_TimeSeries_Temperatures_Skukuza.png)
+![Fig. 2: Daily maximum (top), average (middle), and minimum (bottom) temperature time series for Skukuza, South Africa, from 1960 to 2025. Lighter shaded lines indicate values in the GHCN station record that are sourced from the Global Summary of the Day (GSOD).](images/Vis2_GHCN_daily_TimeSeries_Temperatures_Skakuza.png)
 :::
 
 In Figure 3, we compare annual rainfall totals between the GHCN station record (blue bars) and the ERA5 grid cell (orange bars) over Skukuza. Annual rainfall provides a useful visual metric for assessing whether datasets capture comparable magnitudes of total rainfall. The percentage of valid (non-missing) daily values for the GHCN station is also shown in Figure 3 (black dots and line).
@@ -184,7 +184,7 @@ In Figure 3, we compare annual rainfall totals between the GHCN station record (
 As annual rainfall sums daily values, data completeness is crucial. Figure 3 highlights the post-2001 GSOD data issue, where no year exceeds 30% valid observations. Overall, 74 of 115 years have ≥80% completeness, and 64 years exceed 90%.
 
 :::{.cell}
-![Fig. 3: Annual rainfall comparison between the GHCN station record and the ERA5 grid cell over Skukuza, South Africa. The black dashed line indicates the percentage of valid daily rainfall observations available in the GHCN record for each year.](images/Vis3_GHCN-ERA5_year_TimeSeries_Rainfall_Skukuza.png)
+![Fig. 3: Annual rainfall comparison between the GHCN station record and the ERA5 grid cell over Skukuza, South Africa. The black dashed line indicates the percentage of valid daily rainfall observations available in the GHCN record for each year.](images/Vis3_GHCN-ERA5_year_TimeSeries_Rainfall_Skakuza.png)
 :::
 
 Figure 4 shows a similar drop in temperature data completeness after 2001 when the source switches to GSOD. The daily average temperature variable consists entirely of GSOD data and is therefore excluded from further analysis.
@@ -192,20 +192,20 @@ Figure 4 shows a similar drop in temperature data completeness after 2001 when t
 Given the good data completeness of the station record for maximum and minimum temperature, as well as precipitation, over the roughly 40-year period between 1960 and 2001—which overlaps with the ERA5 dataset—we focus on this period for comparing the two datasets.
 
 :::{.cell}
-![Fig. 4: Annual mean daily maximum (top), average (middle), and minimum (bottom) temperature comparison between the GHCN station record and the ERA5 grid cell over Skukuza, South Africa. The black dashed line indicates the percentage of valid daily temperature observations available in the GHCN record for each year](images/Vis4_GHCN-ERA5_year_TimeSeries_Temperatures_Skukuza.png)
+![Fig. 4: Annual mean daily maximum (top), average (middle), and minimum (bottom) temperature comparison between the GHCN station record and the ERA5 grid cell over Skukuza, South Africa. The black dashed line indicates the percentage of valid daily temperature observations available in the GHCN record for each year](images/Vis4_GHCN-ERA5_year_TimeSeries_Temperatures_Skakuza.png)
 :::
 
 Figure 5 compares the monthly rainfall climatology from the GHCN station and the ERA5 reanalysis for Skukuza, averaged over 1960–2000. It shows two key metrics for each dataset: mean monthly rainfall and the mean number of rain days per month. Both datasets capture the strong seasonal rainfall cycle characteristic of the region, with a pronounced wet season during summer (November–March) and a dry season in winter (May–August). Although the timing of wet and dry seasons aligns between GHCN and ERA5, differences in rainfall magnitude and number of rain days show how station-based and gridded datasets can represent local climate differently. In particular, ERA5 consistently shows more rain days, with similar monthly average rainfall totals, suggesting it captures more low-intensity rainfall events than the GHCN station.
 
 
 :::{.cell}
-![Fig. 5: Comparison of monthly climatologies of rainfall between the GHCN station record (blue bars) and the ERA5 grid cell (orange bars) from 1960 to 2000 over Skukuza, South Africa. The dashed lines show the average number of rain days (≥1 mm) for the GHCN record (dark blue) and ERA5 (dark orange).](images/Vis5_GHCN-ERA5_monthly_Climatology_Rainfall_Skukuza.png)
+![Fig. 5: Comparison of monthly climatologies of rainfall between the GHCN station record (blue bars) and the ERA5 grid cell (orange bars) from 1960 to 2000 over Skukuza, South Africa. The dashed lines show the average number of rain days (≥1 mm) for the GHCN record (dark blue) and ERA5 (dark orange).](images/Vis5_GHCN-ERA5_monthly_Climatology_Rainfall_Skakuza.png)
 :::
 
 Figure 6 compares the monthly climatologies of maximum and minimum temperatures between the GHCN station and the ERA5 grid cell at Skukuza, averaged over 1960–2000. The mean daily maximum temperature from ERA5 is consistently cooler than the station record across all months, suggesting a potential bias in the reanalysis. For minimum temperature, ERA5 is slightly warmer than the station during the winter/dry season months, but aligns closely with GHCN observations in summer/wet season.
 
 :::{.cell}
-![Fig. 6: Comparison of monthly climatologies of maximum (red) and minimum (yellow) temperatures between the GHCN station record (solid line) and the ERA5 grid cell (dashed line) from 1960 to 2000 over Skukuza, South Africa.](images/Vis6_GHCN-ERA5_monthly_Climatology_Temperatures_Skukuza.png)
+![Fig. 6: Comparison of monthly climatologies of maximum (red) and minimum (yellow) temperatures between the GHCN station record (solid line) and the ERA5 grid cell (dashed line) from 1960 to 2000 over Skukuza, South Africa.](images/Vis6_GHCN-ERA5_monthly_Climatology_Temperatures_Skakuza.png)
 :::
 
 These visualisations highlight the strengths and limitations of both station-based and gridded datasets. The GHCN station provides detailed daily observations over a long period, capturing historical variability, seasonal cycles, and extremes, although users should account for record completeness and changes in data source. ERA5 reanalysis offers continuous gridded coverage and captures seasonal patterns, but may differ from the station in the magnitude and frequency of events. Comparing annual totals, monthly climatologies, and data completeness helps users understand the characteristics of both datasets and make informed decisions based on the temporal and spatial scale of interest.
@@ -215,9 +215,7 @@ These visualisations highlight the strengths and limitations of both station-bas
 
 <h2>How can this data be used in disease modelling?</h2>
 
-Incorporating localised, ground-truthed meteorological data such as the Global Historical Climatology Network (GHCN) daily station data into infectious disease models bridges the gap between environmental ecology and public health. Unlike gridded climate datasets (which average conditions over large spatial areas), station data captures the exact, localised microclimatic extremes, such as a sudden 50 mm rainfall downpour or an acute heatwave.
-
-In mechanistic models, like the SEACR-SEI model, these daily observations are fed directly into the system's differential equations. Temperature (T) is used to dynamically calculate the mosquito biting rate, daily oviposition (egg-laying) rate, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP) using non-linear thermal performance curves. Precipitation (P) acts as a proxy for the availability of aquatic breeding habitats, driving the environmental carrying capacity (K). By accurately capturing phenomena like "larval flushing" during heavy storms or thermal suppression during winter months, modelers can simulate highly localized transmission intensity, estimate shifts in the basic reproduction number (R_0), and project future transmission scenarios under varying climate conditions.
+In mechanistic models, like the SEACR-SEI model, these daily observations are fed directly into the system's differential equations. Temperature (T) is used to dynamically calculate the mosquito biting rate, daily oviposition (egg-laying) rate, mosquito mortality, and the parasite's Extrinsic Incubation Period (EIP) using non-linear thermal performance curves. Precipitation (P) can act as a proxy for the availability of aquatic breeding habitats, driving the environmental carrying capacity (K). By accurately capturing phenomena like "larval flushing" during heavy storms or thermal suppression during winter months, modelers can simulate highly localised transmission intensity, estimate shifts in the basic reproduction number (R_0), and project future transmission scenarios under varying climate conditions.
 
 
 ### Preparing the data 
@@ -269,11 +267,10 @@ ggplot() +
   theme_health_radar() +
   scale_colour_manual_health_radar() +
   labs(
-    title = "Daily Average Temperature values in Limpopo and Maputo from 2010 to 2025",
+    title = ("Daily Average Temperature values in Limpopo and Maputo \nfrom 2010 to 2025"),
     x = "Year",
     y = "Temperature values (Celsius °)",
-    caption = str_wrap("Seasonal thermal regulation of transmission. Limpopo’s higher summer temperatures significantly accelerate the parasite's Extrinsic Incubation Period (EIP), creating (high-velocity) transmission windows. Maputo’s more stable thermal profile suggests a consistent, year-round window for vector competence, though without the extreme metabolic acceleration seen in Kruger's peaks. Source: GHCN Daily (TAVG)",
-      width = 150)
+    caption = str_wrap("Seasonal thermal regulation of transmission. Limpopo’s higher summer temperatures significantly accelerate the parasite's Extrinsic Incubation Period (EIP), creating (high-velocity) transmission windows. Maputo’s more stable thermal profile suggests a consistent, year-round window for vector competence, though without the extreme metabolic acceleration seen in Kruger's peaks. Source: GHCN Daily (TAVG)")
     )+
   ylim(0, NA)
 
@@ -310,8 +307,7 @@ ggplot() +
     x = "Year",
     y = "Rainfall values (mm)",
     caption = str_wrap(
-      "Hydrological drivers of larval productivity. Maputo’s frequent, moderate rainfall supports stable carrying capacity (K) for aquatic stages. Conversely, the high-intensity rainfall spikes in Kruger (exceeding 50mm) likely trigger (flushing) events that physically disrupt breeding sites, leading to temporary but sharp declines in mosquito emergence rates. Source: GHCN Daily (PRCP)",
-      width = 150)
+      "Hydrological drivers of larval productivity. Maputo’s frequent, moderate rainfall supports stable carrying capacity (K) for aquatic stages. Conversely, the high-intensity rainfall spikes in Kruger (exceeding 50mm) likely trigger (flushing) events that physically disrupt breeding sites, leading to temporary but sharp declines in mosquito emergence rates. Source: GHCN Daily (PRCP)")
     )
 ```
 We incorporate these values into the mathematical model. Note that other models may include variables such as altitude and humidity. For this example, we will explore the mosquito populations and disease prevalence in both areas, as influenced by their distinct environmental conditions. We achieve this by assuming the same epidemiological parameters and starting host populations for both areas, and only varying the inputs for rainfall and temperature.
@@ -484,7 +480,7 @@ df <- bind_rows(dfM, dfL) |>
 
 As mentioned earlier, environmental conditions tightly regulate parasite development and mosquito ecology. As such, we anticipate changes in the vector population to mirror the regional patterns in temperature and rainfall. In this example, we assume the human population stays constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection, representing secondary infection.
 
-The environmental drivers yield distinct biological outcomes for the two regions. In Limpopo, mosquito density follows an opportunistic "boom-and-bust" cycle, spiking dramatically in response to summer rainfall and crashing during dry periods. Maputo’s more frequent, moderate rainfall provides a much more stable carrying capacity for aquatic stages. This allows Maputo to maintain sustained mosquito population levels even through traditionally drier periods ensuring year-round vector presence and biting pressure.
+The environmental drivers yield distinct biological outcomes for the two regions. In Limpopo, mosquito density follows an opportunistic "boom-and-bust" cycle, spiking dramatically in response to summer rainfall and crashing during dry periods. Maputo’s more frequent, moderate rainfall may provide a much more stable carrying capacity for aquatic stages. This allows Maputo to maintain sustained mosquito population levels even through traditionally drier periods ensuring year-round vector presence and biting pressure.
 
 ```{r}
 
@@ -501,7 +497,7 @@ df |>
     x = "Year",
     y = "Population size",
     colour = "Population",
-    caption = str_wrap("Vector population seasonality. In Limpopo, mosquito density (M) follows an opportunistic (boom-and-bust) cycle in response to rainfall-driven habitat availability. Maputo’s sustained population levels, particularly between 2020 and 2022, suggest favorable environmental conditions that prevent the population from crashing during the dry season, ensuring year-round biting pressure. Source: SEACR-SEI Model.", width = 150)
+    caption = str_wrap("Vector population seasonality. In Limpopo, mosquito density (M) follows an opportunistic (boom-and-bust) cycle in response to rainfall-driven habitat availability. Maputo’s sustained population levels, particularly between 2020 and 2022, suggest favorable environmental conditions that prevent the population from crashing during the dry season, ensuring year-round biting pressure. Source: SEACR-SEI Model.")
   )
 
 ```
@@ -510,7 +506,7 @@ df |>
 
 The force of infection i.e., the rate at which susceptible individuals become infected per unit time, is largely driven by the human biting rate, the ratio of vectors relative to hosts, the probability of transmission, and the size of the infectious reservoir. Below, we see how the thermal and hydrological profiles of each region drive the rate of new cases through our climate-dependent variables.
 
-This is especially insightful for comparing epidemic versus endemic transmission dynamics. Limpopo exhibits a classic epidemic profile: its high summer temperatures significantly accelerate the parasite's EIP, creating high-velocity transmission windows that result in sharp seasonal spikes in clinical cases. However, winter cold-stress acts as a natural brake, dropping transmission to near zero. Conversely, Maputo displays stabilized endemicity. Its environmental conditions rarely fall below the biological thresholds for parasite development, sustaining a perennial symptomatic burden and a consistent infectious reservoir throughout the year.
+This is especially insightful for comparing epidemic versus endemic transmission dynamics. Limpopo exhibits a classic epidemic profile: its high summer temperatures significantly accelerate the parasite's EIP, creating high-velocity transmission windows that result in sharp seasonal spikes in clinical cases. However, winter cold-stress acts as a natural brake, dropping transmission to near zero. Conversely, Maputo displays stabilised endemicity. Its environmental conditions rarely fall below the biological thresholds for parasite development, sustaining a perennial symptomatic burden and a consistent infectious reservoir throughout the year.
 
 Note that the outputs below are illustrative models of transmission potential based on environmental suitability. In reality, the number of reported clinical cases may differ due to human interventions, limitations in treatment access, availability of rapid diagnostic tests, and test sensitivity.
 ```{r}
@@ -525,7 +521,7 @@ df |>
     title = "Daily symptomatic cases values in the human population", 
     x = "Year",
     y = "Number of cases",
-    caption = str_wrap("Biological limits of transmission stability. Maputo maintains a perennial symptomatic burden because environmental conditions rarely fall below the threshold for parasite development. In contrast, Limpopo’s transmission is strictly seasonal; case numbers drop to near zero during winter thermal troughs, indicating that cold-stress on the parasite and vector acts as a natural annual (break) in the transmission chain. Source: SEACR-SEI Model.", width = 150)
+    caption = str_wrap("Biological limits of transmission stability. Maputo maintains a perennial symptomatic burden because environmental conditions rarely fall below the threshold for parasite development. In contrast, Limpopo’s transmission is strictly seasonal; case numbers drop to near zero during winter thermal troughs, indicating that cold-stress on the parasite and vector acts as a natural annual (break) in the transmission chain. Source: SEACR-SEI Model.")
   ) +
   ylim(0, NA)
 ```
@@ -534,11 +530,11 @@ df |>
 
 Models that explicitly incorporate localised temperature and rainfall are critical for shifting public health strategies from reactive to proactive. By understanding the distinct epidemiological profiles of regions like Limpopo and Maputo, policymakers can optimise resource allocation:
 
-Targeted Epidemic Response (e.g.,Limpopo): Because transmission is highly seasonal and prone to weather-driven "boom-and-bust" cycles, predictive models can serve as Early Warning Systems (EWS). If meteorological forecasts predict a convergence of optimal thermal conditions and heavy, non-flushing rainfall, health ministries can precisely time interventions, such as initiating Indoor Residual Spraying (IRS) campaigns just before the anticipated mosquito population explosion.
+Because transmission is highly seasonal and prone to weather-driven "boom-and-bust" cycles, predictive models can serve as Early Warning Systems (EWS). If meteorological forecasts predict a convergence of optimal thermal conditions and heavy, non-flushing rainfall, health ministries can precisely time interventions, such as initiating Indoor Residual Spraying (IRS) campaigns just before the anticipated mosquito population explosion.
 
-Sustained Endemic Control e.g., Maputo: In areas where environmental conditions support year-round vector competence, policy must focus on sustained, continuous interventions. This includes ensuring universal coverage of Long-Lasting Insecticidal Nets (LLINs), robust seasonal malaria chemoprevention (SMC), and continuous supply chains for rapid diagnostic tests (RDTs) and antimalarials.
+In areas where environmental conditions support year-round vector competence, policy may focus on sustained, continuous interventions. This includes ensuring universal coverage of Long-Lasting Insecticidal Nets (LLINs), robust seasonal malaria chemoprevention (SMC), and continuous supply chains for rapid diagnostic tests (RDTs) and antimalarials.
 
-Cross-Border Collaboration: The juxtaposition of an endemic zone (Maputo) and an epidemic-prone zone (Limpopo) highlights the need for regional data sharing. Asymptomatic human carriers moving across borders can act as an infectious reservoir, igniting outbreaks in neighboring regions when local weather conditions become highly permissive.
+The juxtaposition of an endemic zone (Maputo) and an epidemic-prone zone (Limpopo) highlights the need for regional data sharing. Asymptomatic human carriers moving across borders can act as an infectious reservoir, igniting outbreaks in neighboring regions when local weather conditions become highly permissive.
 
 
 ### Citations
