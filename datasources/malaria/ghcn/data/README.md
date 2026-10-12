@@ -4,9 +4,28 @@ This README serves as a catalog and description of the origin of the files used 
 
 ## Data Files
 
-- [**ghcnd-inventory.txt**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/ghcnd-inventory.txt):
-  - **Used in:** Station map plots in the "What the Data Looks Like" section (all four station maps: PRCP, TAVG, TMAX, TMIN).
-  - **Download:** Downloaded directly from the [NCEI GHCNd data repository](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt). This file contains the full GHCNd station inventory, listing each station's ID, latitude, longitude, variable, first year, and last year of available data.
+- [**Fig1_ghcnd_PRCP_stations_southern-africa.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/Fig1_ghcnd_PRCP_stations_southern-africa.csv):
+  - **Used in:** Fig. 1 (PRCP station map) in the "What the Data Looks Like" section.
+  - **Download:** Derived from the full GHCNd station inventory (`ghcnd-inventory.txt`), downloaded from the [NCEI GHCNd data repository](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt).
+  - **Processing:** The following processing steps were applied.
+    - The full inventory was filtered to stations in Southern African countries (South Africa, Mozambique, Zimbabwe, Zambia, Malawi, Botswana, Namibia, Lesotho, Eswatini, and the southern portions of Angola, DR Congo, Republic of Congo, Tanzania, Kenya, Uganda, Rwanda, and Burundi).
+    - The filtered inventory was split by variable, keeping only `PRCP` (rainfall) records.
+    - The result was saved as `Fig1_ghcnd_PRCP_stations_southern-africa.csv`.
+
+- [**Fig2_ghcnd_TAVG_stations_southern-africa.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/Fig2_ghcnd_TAVG_stations_southern-africa.csv):
+  - **Used in:** Fig. 2 (TAVG station map) in the "What the Data Looks Like" section.
+  - **Download:** Derived from the full GHCNd station inventory (`ghcnd-inventory.txt`), downloaded from the [NCEI GHCNd data repository](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt).
+  - **Processing:** Same Southern Africa country filter as `Fig1_ghcnd_PRCP_stations_southern-africa.csv` above, then split to keep only `TAVG` (average temperature) records.
+
+- [**Fig3_ghcnd_TMAX_stations_southern-africa.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/Fig3_ghcnd_TMAX_stations_southern-africa.csv):
+  - **Used in:** Fig. 3 (TMAX station map) in the "What the Data Looks Like" section.
+  - **Download:** Derived from the full GHCNd station inventory (`ghcnd-inventory.txt`), downloaded from the [NCEI GHCNd data repository](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt).
+  - **Processing:** Same Southern Africa country filter as `Fig1_ghcnd_PRCP_stations_southern-africa.csv` above, then split to keep only `TMAX` (maximum temperature) records.
+
+- [**Fig4_ghcnd_TMIN_stations_southern-africa.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/Fig4_ghcnd_TMIN_stations_southern-africa.csv):
+  - **Used in:** Fig. 4 (TMIN station map) in the "What the Data Looks Like" section.
+  - **Download:** Derived from the full GHCNd station inventory (`ghcnd-inventory.txt`), downloaded from the [NCEI GHCNd data repository](https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-inventory.txt).
+  - **Processing:** Same Southern Africa country filter as `Fig1_ghcnd_PRCP_stations_southern-africa.csv` above, then split to keep only `TMIN` (minimum temperature) records.
 
 - [**pr_GHCN_daily_Skukuza-SF000068296.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/ghcn/data/pr_GHCN_daily_Skukuza-SF000068296.csv):
   - **Used in:** Visualisation Section 

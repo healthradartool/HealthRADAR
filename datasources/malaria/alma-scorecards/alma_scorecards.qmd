@@ -229,4 +229,13 @@ The data obtained from the scorecards can be used to:
 Generally, model outputs may complement the ALMA scorecards by forecasting key indicators and generating policy-relevant projections.
 
 
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+
+source(here::here("theme_health_radar.R"))
+
+library(readxl)
+library(tidyverse)
+
+```
+
 :::
