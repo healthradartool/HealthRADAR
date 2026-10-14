@@ -39,6 +39,16 @@ $body-bg: #fefeff;
   background-color: #ffffff;
 }
 
+// The home page has no title, so drop the empty title block and the top
+// margin on main, which otherwise leave a strip above the hero.
+main.content:has(#hero-banner) {
+  margin-top: 0;
+
+  #title-block-header {
+    display: none;
+  }
+}
+
 .back-nav {
   margin-bottom: 1.1em;
 }
@@ -120,7 +130,7 @@ button, .btn {
   max-width: 44rem;
   margin-top: 0.625rem;
   color: #5d6b78;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   line-height: 1.6;
   text-wrap: pretty;
 }
@@ -146,7 +156,7 @@ button, .btn {
   border-radius: 1.25rem;
   background-color: $body-bg-hero;
   color: #3a4149;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
 }
 
 .headline .hero-contribute a {
@@ -169,6 +179,10 @@ button, .btn {
   }
 
   .headline .hero-support {
+    font-size: 1.1rem;
+  }
+
+  .headline .hero-contribute p {
     font-size: 1rem;
   }
 }
