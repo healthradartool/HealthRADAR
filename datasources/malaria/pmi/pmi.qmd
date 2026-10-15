@@ -188,7 +188,7 @@ In the simple example below, we obtain data on Intermittent preventive treatment
 
 **Force of infection**
 
-The force of infection is typically expressed in terms of the number of new infections per susceptible individual per unit of time. It is often represented as a function of various factors, including malaria transmission dynamics, the prevalence of infection within the population, and specific interventions aimed at reducing transmission. In this example, the force of infection includes a seasonal forcing function, and current coverage levels of IPTp. For a more detailed explanation of seasonal forcing and the impact of weather dynamics on malaria transmission, please see the [Climate Research Unit Timeseries (CRU TS)](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/cru-ts/cruts.html) page. This example also extends other models on this website by demonstrating three scenarios of IPTp coverage.
+The force of infection is typically expressed in terms of the number of new infections per susceptible individual per unit of time. It is often represented as a function of various factors, including malaria transmission dynamics, the prevalence of infection within the population, and specific interventions aimed at reducing transmission. In this example, the force of infection includes a seasonal forcing function, and current coverage levels of IPTp. For a more detailed explanation of seasonal forcing and the impact of weather dynamics on malaria transmission, please see the [Climate Research Unit Timeseries (CRU TS)](../cru-ts/cruts.qmd) page. This example also extends other models on this website by demonstrating three scenarios of IPTp coverage.
 
 ```{r}
 # Load packages ####
