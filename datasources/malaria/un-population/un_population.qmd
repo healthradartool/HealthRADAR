@@ -279,7 +279,7 @@ rates |>
 
 ### Changes in human population
 
-Considering malaria immunity increases with age, the introduction of new susceptibles (through the birth rate) can help sustain transmission, and skew the disease burden to younger individuals, i.e. children. In order to factor this in, we show a simple model with no interventions. We assume the vector population remains constant. The [Climate Research Unit Timeseries](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/cru-ts/cruts.html) page provides a demonstration of changes to the vector population in the context of disease modeling. 
+Considering malaria immunity increases with age, the introduction of new susceptibles (through the birth rate) can help sustain transmission, and skew the disease burden to younger individuals, i.e. children. In order to factor this in, we show a simple model with no interventions. We assume the vector population remains constant. The [Climate Research Unit Timeseries](../cru-ts/cruts.qmd) page provides a demonstration of changes to the vector population in the context of disease modeling. 
 
 ```{r}
 library(deSolve)

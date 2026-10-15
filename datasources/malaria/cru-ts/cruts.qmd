@@ -698,6 +698,6 @@ df |>
 
 Incorporating time-varying transmission into the model reflects the real-world seasonality of malaria. This can be used to plan the timing of interventions, aligning delivery to the peak of the season across different geographical regions. These differences in risk (across geographic regions and seasons) are also important insights for resource allocation and health systems planning, ensuring consistent access to care and other control measures.
 
-This model uses a seasonal forcing function as opposed to explicit climatic data, and as such the model does not capture details such as extreme weather events, such as 2017's Cyclone Dineo (which may have contributed to increases in malaria cases across southern Africa) or other long-term periodic climatic phenomena such as the El Niño-Southern Oscillation (ENSO) cycle. We show the explicit use of temperature and rainfall using ERA5 data [here](https://uct-masha.quarto.pub/healthradar/datasources/malaria/era5/era5.html).
+This model uses a seasonal forcing function as opposed to explicit climatic data, and as such the model does not capture details such as extreme weather events, such as 2017's Cyclone Dineo (which may have contributed to increases in malaria cases across southern Africa) or other long-term periodic climatic phenomena such as the El Niño-Southern Oscillation (ENSO) cycle. We show the explicit use of temperature and rainfall using ERA5 data [here](../era5/era5.qmd).
 
 :::

@@ -188,7 +188,7 @@ We incorporate this data into the model in two ways:
 
 In a more complex model you may also have different rates of mosquito mortality $\mu_m$, susceptibility to infection $b$, or biting rates $a$ (due to fitness costs) for insecticide-sensitive and resistant vectors.
 
-In this simple model example, we assume the coverage of LLINs to be constant at 75%, further reduced by the usage rate. A more detailed example of the implementation of LLINs (including effectiveness, attrition and insecticidal decay) into a transmission model can be found [here](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html). We demonstrate the impact of vector insecticide resistance on the effective coverage of LLINs.
+In this simple model example, we assume the coverage of LLINs to be constant at 75%, further reduced by the usage rate. A more detailed example of the implementation of LLINs (including effectiveness, attrition and insecticidal decay) into a transmission model can be found [here](../dhs-program/dhs.qmd). We demonstrate the impact of vector insecticide resistance on the effective coverage of LLINs.
 
 ```{r}
 
