@@ -1,0 +1,117 @@
+<svg id="website-organisation-root" width="832" height="556" viewBox="0 0 832 556" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="website-organisation-title website-organisation-desc">
+  <title id="website-organisation-title">How the Health RADAR website is organised</title>
+  <desc id="website-organisation-desc">Data source pages, guides and site pages are combined with the site configuration and R environment when you run quarto preview, which saves R output in _freeze/ to commit and builds a local preview in _site/ that is never committed; Netlify reuses _freeze/ on main to publish healthradartool.net.</desc>
+  <defs>
+    <pattern id="website-organisation-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(23,47,70,0.10)"/>
+    </pattern>
+    <marker id="website-organisation-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6a737b"/></marker>
+    <marker id="website-organisation-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#39729e"/></marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#f7f9fb"/>
+  <rect width="100%" height="100%" fill="url(#website-organisation-dots)" opacity="0.55"/>
+
+  <!-- Zones (drawn first) -->
+  <rect x="40" y="40" width="240" height="236" rx="8" fill="rgba(23,47,70,0.02)" stroke="rgba(23,47,70,0.10)" stroke-width="0.8"/>
+  <text x="60" y="58" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">YOU WRITE</text>
+
+  <rect x="40" y="300" width="240" height="168" rx="8" fill="rgba(23,47,70,0.02)" stroke="rgba(23,47,70,0.10)" stroke-width="0.8"/>
+  <text x="60" y="318" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">SHARED SETUP</text>
+
+  <rect x="552" y="152" width="240" height="236" rx="8" fill="rgba(23,47,70,0.02)" stroke="rgba(23,47,70,0.10)" stroke-width="0.8"/>
+  <text x="572" y="170" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">GENERATED</text>
+
+  <!-- Arrows (drawn before boxes) -->
+  <!-- Content → quarto preview -->
+  <line x1="280" y1="272" x2="344" y2="272" stroke="#6a737b" stroke-width="1.2" marker-end="url(#website-organisation-arrow)"/>
+  <!-- Shared setup → quarto preview -->
+  <line x1="280" y1="304" x2="344" y2="304" stroke="#6a737b" stroke-width="1.2" marker-end="url(#website-organisation-arrow)"/>
+  <!-- quarto preview → _freeze/ (enters bottom) -->
+  <path d="M 504,280 H 612 Q 620,280 620,272 V 232" fill="none" stroke="#6a737b" stroke-width="1.2" marker-end="url(#website-organisation-arrow)"/>
+  <!-- quarto preview → _site/ (enters top) -->
+  <path d="M 504,296 H 612 Q 620,296 620,304 V 320" fill="none" stroke="#6a737b" stroke-width="1.2" marker-end="url(#website-organisation-arrow)"/>
+  <!-- _freeze/ → Netlify build -->
+  <line x1="708" y1="184" x2="708" y2="120" stroke="#39729e" stroke-width="1.2" marker-end="url(#website-organisation-arrow-link)"/>
+
+  <!-- Arrow labels -->
+  <rect x="660" y="130" width="40" height="12" rx="2" fill="#f7f9fb"/>
+  <text x="680" y="139" fill="#39729e" font-size="8" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle" letter-spacing="0.12em">REUSED</text>
+
+  <!-- You write: Data source page (focal) -->
+  <rect x="60" y="72" width="200" height="48" rx="6" fill="#ffffff"/>
+  <rect x="60" y="72" width="200" height="48" rx="6" fill="rgba(171,60,30,0.08)" stroke="#ab3c1e" stroke-width="1"/>
+  <text x="160" y="93" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Data source pages</text>
+  <text x="160" y="108" fill="#ab3c1e" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">datasources/malaria/&lt;source&gt;/</text>
+
+  <!-- You write: Guides -->
+  <rect x="60" y="140" width="200" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="160" y="161" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Guides</text>
+  <text x="160" y="176" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">guides/&lt;topic&gt;/</text>
+
+  <!-- You write: Site pages -->
+  <rect x="60" y="208" width="200" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="160" y="229" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Site pages</text>
+  <text x="160" y="244" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">index.qmd · data.qmd · …</text>
+
+  <!-- Shared setup: Site configuration -->
+  <rect x="60" y="332" width="200" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="160" y="353" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Site configuration</text>
+  <text x="160" y="368" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">_quarto.yml · *.scss</text>
+
+  <!-- Shared setup: R environment -->
+  <rect x="60" y="400" width="200" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="160" y="421" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">R environment</text>
+  <text x="160" y="436" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">renv.lock · theme_*.R</text>
+
+  <!-- Build step: quarto preview -->
+  <rect x="344" y="264" width="160" height="48" rx="6" fill="rgba(106,115,123,0.10)" stroke="#6a737b" stroke-width="1"/>
+  <text x="424" y="285" fill="#172f46" font-size="12" font-weight="500" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">quarto preview</text>
+  <text x="424" y="300" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">on your machine</text>
+
+  <!-- Generated: _freeze/ (focal) -->
+  <rect x="572" y="184" width="200" height="48" rx="6" fill="#ffffff"/>
+  <rect x="572" y="184" width="200" height="48" rx="6" fill="rgba(171,60,30,0.08)" stroke="#ab3c1e" stroke-width="1"/>
+  <text x="672" y="205" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Saved R output</text>
+  <text x="672" y="220" fill="#ab3c1e" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">_freeze/ · commit it</text>
+
+  <!-- Generated: _site/ (not committed) -->
+  <rect x="572" y="320" width="200" height="48" rx="6" fill="rgba(23,47,70,0.02)" stroke="rgba(23,47,70,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="672" y="341" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Local preview</text>
+  <text x="672" y="356" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">_site/ · never commit</text>
+
+  <!-- External: Netlify build -->
+  <rect x="572" y="72" width="200" height="48" rx="6" fill="rgba(23,47,70,0.03)" stroke="rgba(23,47,70,0.30)" stroke-width="1"/>
+  <text x="672" y="93" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Netlify build</text>
+  <text x="672" y="108" fill="#39729e" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">main → healthradartool.net</text>
+
+  <!-- Annotation callout -->
+  <text x="320" y="64" fill="#ab3c1e" font-size="14" font-style="italic" font-family="Georgia, 'Times New Roman', serif">listed on Data Sources automatically</text>
+  <path d="M 318,60 Q 292,64 264,92" fill="none" stroke="rgba(171,60,30,0.50)" stroke-width="1" stroke-dasharray="4,3"/>
+  <circle cx="262" cy="94" r="2" fill="#ab3c1e"/>
+
+  <!-- Legend -->
+  <line x1="40" y1="496" x2="792" y2="496" stroke="rgba(23,47,70,0.10)" stroke-width="0.8"/>
+  <text x="40" y="512" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">LEGEND</text>
+
+  <rect x="40" y="524" width="14" height="10" rx="2" fill="rgba(171,60,30,0.08)" stroke="#ab3c1e" stroke-width="1"/>
+  <text x="60" y="532" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Where to focus</text>
+
+  <rect x="148" y="524" width="14" height="10" rx="2" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="168" y="532" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Source files</text>
+
+  <rect x="248" y="524" width="14" height="10" rx="2" fill="rgba(106,115,123,0.10)" stroke="#6a737b" stroke-width="1"/>
+  <text x="268" y="532" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Build step</text>
+
+  <rect x="336" y="524" width="14" height="10" rx="2" fill="rgba(23,47,70,0.02)" stroke="rgba(23,47,70,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="356" y="532" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Not committed</text>
+
+  <rect x="440" y="524" width="14" height="10" rx="2" fill="rgba(23,47,70,0.03)" stroke="rgba(23,47,70,0.30)" stroke-width="1"/>
+  <text x="460" y="532" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">External service</text>
+
+  <line x1="556" y1="529" x2="584" y2="529" stroke="#6a737b" stroke-width="1.2" marker-end="url(#website-organisation-arrow)"/>
+  <text x="592" y="532" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Feeds into</text>
+
+  <line x1="660" y1="529" x2="688" y2="529" stroke="#39729e" stroke-width="1.2" marker-end="url(#website-organisation-arrow-link)"/>
+  <text x="696" y="532" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Deploys</text>
+</svg>

@@ -193,14 +193,13 @@ Contribute to Health RADAR
 :::
 
 ::: {.description}
-Join our community to strengthen climate-sensitive infectious disease modelling. [Contribute data sources](https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md){target="_blank"}, improve documentation or share your CSID modelling expertise.
+Join our community to strengthen climate-sensitive infectious disease modelling. [Contribute data sources](/contribution-guide.qmd), improve documentation or share your CSID modelling expertise.
 :::
 
 ::: {.contribute-buttons}
-<a href="https://github.com/healthradartool/.github/blob/main/CONTRIBUTING.md" target="_blank">
+<a href="/contribution-guide.qmd">
   <button class="btn btn-outline-primary btn-action btn-sm" type="button">
     Contribution Guide
-    <i class="fa-solid fa-arrow-up-right-from-square"></i>
   </button>
 </a>
 
