@@ -85,12 +85,15 @@ Start by looking at nearby files that are similar to the change you want to make
 
 Install:
 
-- [Git](https://git-scm.com/)
-- [R 4.5.0](https://cran.r-project.org/)
-- [Quarto](https://quarto.org/docs/get-started/)
-- RStudio or any IDE of your choice.
+- [Git](https://git-scm.com/downloads), and create a [GitHub account](https://github.com/signup) if you don't have one
+- R 4.5 from [CRAN](https://cloud.r-project.org/). The project records R 4.5.0, but any 4.5 release works. If CRAN now offers a newer version, Windows users can find 4.5 on the [previous releases](https://cloud.r-project.org/bin/windows/base/old/) page
+- the latest release of [Quarto](https://quarto.org/docs/get-started/)
+- on Windows, [Rtools 4.5](https://cloud.r-project.org/bin/windows/Rtools/rtools45/rtools.html). Some of the package versions the project uses have to be built from source, which needs Rtools
+- on macOS, the Xcode Command Line Tools, by running `xcode-select --install` in a terminal
 
-Pages using spatial R packages may also require system libraries such as `GDAL`, `GEOS`, `PROJ`, and `udunits`.
+On macOS and Linux, the spatial R packages (`sf`, `terra` and `units`) also need the system libraries `GDAL`, `GEOS`, `PROJ` and `udunits`. Install them with your system's package manager. On Windows, Rtools includes them.
+
+We recommend working in an IDE. [RStudio](https://posit.co/download/rstudio-desktop/) works well with this project, but any editor that can open the project folder, such as Positron or VS Code, is fine.
 
 ### Fork and clone
 
@@ -102,13 +105,22 @@ cd HealthRADAR
 git remote add upstream https://github.com/healthradartool/HealthRADAR.git
 ```
 
-Open `HealthRADAR.Rproj` in RStudio or open the `HealthRADAR` directory in your IDE of choice. The project uses [renv](https://rstudio.github.io/renv/) to keep package versions consistent. Restore the packages recorded in `renv.lock`:
+Open `HealthRADAR.Rproj` in RStudio, or open the `HealthRADAR` folder in your editor. R needs to start in the project folder for the next step to work.
+
+### Install the R packages
+
+The project uses [renv](https://rstudio.github.io/renv/) to keep package versions consistent. You don't need to install renv yourself. The first time you open the project, R installs the version the project needs, and you'll see a message starting with "Bootstrapping renv". If this step fails, check your internet connection and reopen the project.
+
+Then install the packages recorded in `renv.lock`:
 
 ```r
 renv::restore()
 ```
 
-The first restore may take some time.
+The first restore installs around 180 packages and may take some time. If it fails:
+
+- on `sf`, `terra` or `units`, check that the system libraries above are installed
+- on `rdhs` or `whowmr`, which are installed from GitHub, GitHub may be limiting anonymous downloads. Create a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens), add it to your `.Renviron` file as `GITHUB_PAT`, restart R and run `renv::restore()` again
 
 ### Preview the website
 
