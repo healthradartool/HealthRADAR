@@ -248,33 +248,14 @@ Use `draft: true` until the page is ready to appear in the data source listing. 
 
 ### Available categories
 
-Categories are grouped by theme, geography, temporal resolution and data type. Choose categories from the lists below rather than creating new ones, so that filtering and listing pages stay consistent.
+Categories are grouped by theme, geography, temporal resolution and data type. Choose categories from the table below rather than creating new ones, so that filtering and listing pages stay consistent.
 
-- **Theme**
-  - Climate
-  - Epidemiology
-  - Entomology
-  - Demography
-  - Interventions
-  - Drug Resistance
-  - Health Systems & Policy
-- **Geography**
-  - Global
-  - Multi-national
-  - Country-level
-  - Gridded
-- **Temporal resolution**
-  - Real-time
-  - Daily
-  - Monthly
-  - Annual
-  - Historical Archive
-- **Data type**
-  - Survey / Household
-  - Surveillance / Routine
-  - Observational / Station
-  - Modelled Estimates
-  - Reports & Scorecards
+| Group | Categories |
+| --- | --- |
+| Theme | `Climate`, `Epidemiology`, `Entomology`, `Demography`, `Interventions`, `Drug Resistance`, `Health Systems & Policy` |
+| Geography | `Global`, `Multi-national`, `Country-level`, `Gridded` |
+| Temporal resolution | `Real-time`, `Daily`, `Monthly`, `Annual`, `Historical Archive` |
+| Data type | `Survey / Household`, `Surveillance / Routine`, `Observational / Station`, `Modelled Estimates`, `Reports & Scorecards` |
 
 If a dataset needs a category that is not listed here, open an issue to discuss adding it before using it on a page.
 
