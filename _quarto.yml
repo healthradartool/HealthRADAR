@@ -47,7 +47,7 @@ website:
           - text: Code of Conduct
             href: code-of-conduct.qmd
           - text: Contribution Guide
-            href: contribution-guide.qmd
+            href: contribute.qmd
       - text: Report issues
         href: issues.qmd
 
