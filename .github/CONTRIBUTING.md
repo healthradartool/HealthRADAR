@@ -54,7 +54,7 @@ Health RADAR is a [Quarto](https://quarto.org/) website. Content is written in `
 
 Most contributions only touch the files under "You write". When you run `quarto preview`, Quarto combines them with the shared setup and produces two folders:
 
-- `_freeze/` holds the saved results of your R code. Commit it with your changes. The live site is built by Netlify from `main` and reuses these results instead of running R again.
+- `_freeze/` holds the saved results of your R code. Commit it with your changes. The live site and the dev preview are built by Netlify from `main` and `dev`, and reuse these results instead of running R again.
 - `_site/` is the website built on your machine for previewing. It is ignored by Git, so never commit it.
 
 Preview only re-runs the R code in pages you have changed, and reuses the saved results for everything else. If you change shared R code, such as `theme_health_radar.R`, render each page that uses it with `quarto render <page>.qmd`. Rendering a single page always re-runs its code and updates `_freeze/`.
@@ -159,8 +159,8 @@ Only add a dependency when it provides a clear benefit that existing project pac
 
 Health RADAR uses two primary branches:
 
-- `dev` is the integration branch. Create a feature branch for your work and create a pull request into `dev`.
-- `main` contains the published version of the website. Maintainers promote tested changes from `dev` to `main`.
+- `dev` is the integration branch. Create a feature branch for your work and create a pull request into `dev`. Once a pull request is merged, the changes appear on the preview site at [dev.healthradartool.net](https://dev.healthradartool.net) within a few minutes.
+- `main` contains the published version of the website at [healthradartool.net](https://healthradartool.net). Maintainers promote tested changes from `dev` to `main`.
 
 ![Your pull request goes into dev. Maintainers review and merge it, then release dev to main to publish the site.](/img/contributing/development-workflow.svg)
 
