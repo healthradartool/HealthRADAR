@@ -1,0 +1,173 @@
+---
+title: "[Data Source Name]"
+description: "[Brief description of the data source]"
+date: MM/DD/YYYY # mm-dd-yyyy
+image: "images/placeholder.png"
+
+categories:
+  - malaria
+  - [add relevant category]
+  - [add relevant category]
+---
+
+```{r setup, include=FALSE}
+# Load required packages
+source(here::here("datasources/malaria/_template-datasource/scripts/packages.R"))
+```
+
+:::: {.page-tabs .panel-tabset}
+## Overview
+
+<h2>About the data</h2>
+
+[Provide a comprehensive description of the data source, including:]
+- What organization or initiative produces this data
+- What types of information are included
+- Geographic and temporal coverage
+- Key features that make this data useful for CSID modelling
+
+<h2>Accessing the data</h2>
+
+[Explain how to access the data:]
+- Direct download links or web portals
+- Registration requirements (if any)
+- API access (if available)
+- R/Python packages (if available)
+- Any specific tools or software needed
+
+Example:
+The data can be accessed from [Data Source Website](https://example.com).
+
+<h2>What do the data look like?</h2>
+
+**Description**
+
+[Describe the structure and format of the data:]
+- File formats (CSV, Excel, Shapefile, NetCDF, etc.)
+- Key variables and fields
+- Data granularity (temporal and spatial)
+- Examples of typical data records
+
+[Include screenshots or examples of data tables/files if helpful]
+
+<h2>Key points to consider</h2>
+
+**Important Considerations:**
+
+[List key points users should be aware of when using this data:]
+- Data quality issues or limitations
+- Temporal or spatial gaps
+- Known biases or uncertainties
+- Appropriate and inappropriate use cases
+- Compatibility with other datasets
+
+**Caveats and Limitations:**
+
+[Describe any important caveats:]
+- Reporting delays
+- Methodological changes over time
+- Coverage limitations
+- Resolution constraints
+
+<h2>Examples of data use in literature</h2>
+
+[Provide citations and links to published studies that have used this data:]
+
+- [Author et al. (Year). Title of paper.](https://doi.org/example)
+- [Author et al. (Year). Title of paper.](https://doi.org/example)
+
+## Visualisations
+
+<h2>How to use this data?</h2>
+
+[Provide step-by-step instructions for loading and preparing the data:]
+
+```{r}
+# Example code for loading and examining the data
+# Replace with actual code relevant to your data source
+
+# Load the data
+# data <- read_csv("path/to/data.csv")
+
+# Examine the structure
+# head(data)
+
+# Filter or transform as needed
+# filtered_data <- data |>
+#   filter(condition) |>
+#   select(relevant_columns)
+```
+
+<h2>How to plot this data?</h2>
+
+```{r}
+# Example visualization code
+# Replace with actual visualization relevant to your data source
+
+# library(ggplot2)
+# source(here::here("theme_health_radar.R"))
+
+# ggplot(data, aes(x = variable1, y = variable2)) +
+#   geom_point() +
+#   theme_health_radar() +
+#   labs(
+#     title = "Title of Visualization",
+#     subtitle = "Subtitle if needed",
+#     x = "X-axis Label",
+#     y = "Y-axis Label",
+#     caption = "Source: [Data Source Name]"
+#   )
+```
+
+## Modelling
+
+<h2>How can this data be used in disease modelling?</h2>
+
+### Preparing the data 
+
+[Explain how to prepare this data for use in CSID models:]
+- Data cleaning steps
+- Variable transformations
+- Temporal or spatial aggregation
+- Joining with other datasets
+
+```{r}
+# Example code for data preparation for modelling
+# Replace with actual code relevant to your data source
+
+# prepared_data <- data |>
+#   mutate(new_variable = transformation(existing_variable)) |>
+#   filter(complete.cases(.)) |>
+#   arrange(time)
+```
+
+### Model assumptions
+
+[Describe relevant assumptions when using this data in models:]
+- What the data represents
+- Appropriate model types for this data
+- Parameter estimation considerations
+- Validation approaches
+
+### Example analysis
+
+[Provide a worked example showing how to use this data in a simple model or analysis:]
+
+```{r}
+# Example modelling code
+# Replace with actual modelling example relevant to your data source
+
+# Simple example - adapt to your specific data source
+# model <- lm(outcome ~ predictor1 + predictor2, data = prepared_data)
+# summary(model)
+```
+
+### Policy implications
+
+[Discuss how this data and associated models can inform policy decisions:]
+- What questions can be answered using this data
+- How to interpret results
+- Limitations for policy recommendations
+- Examples of policy applications
+
+:::
