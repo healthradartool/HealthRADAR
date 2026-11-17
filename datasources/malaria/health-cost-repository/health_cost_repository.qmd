@@ -1,6 +1,6 @@
 ---
 title: "Health Cost Repository"
-description: "Find published cost studies for malaria, dengue and chikungunya, and use their estimates to cost packages of interventions"
+description: "Find published economic evidence for malaria, dengue and chikungunya, and use their estimates to cost packages of interventions"
 date: 2026-11-17
 draft: false
 image: "images/HCR logo.png"
@@ -20,17 +20,17 @@ categories:
 
 ### About the data
 
-The **Health Cost Repository (HCR)** is an interactive, systematic evidence map of published economic data for **malaria, dengue and chikungunya**. It is maintained by the [Modelling and Simulation Hub, Africa (MASHA)](https://science.uct.ac.za/masha) and is intended to help researchers, policy makers and programme planners to identify studies across diseases, settings and interventions, and find sources for evidence synthesis, economic modelling and policy analysis. The **16 November 2026** data release contains **140 distinct publications** and over the next few months, records for additional studies on the three diseases, published by August 2026, will be uploaded. Each database row describes a publication. Follow its source link for the specific unit cost estimates, detailed costing methods and study context. One paper may report several costs for different populations, interventions or perspectives.
+The **Health Cost Repository (HCR)** is an interactive, systematic evidence map of published economic data for **malaria, dengue and chikungunya**. It is maintained by the [Modelling and Simulation Hub, Africa (MASHA)](https://science.uct.ac.za/masha) and is intended to help researchers, policy makers and programme planners to identify studies across diseases, settings and interventions, and find sources for evidence synthesis, economic modelling and policy analysis. Additional published economic studies are regularly uploaded to the repository. Each database row describes a publication; follow its source link for the specific unit cost estimates, detailed costing methods and study context. One paper may report several costs for different populations, interventions or perspectives.
 
-### How studies are selected
+### How the economic studies are selected
 
-The repository draws primarily on journal articles and technical reports identified through disease-specific searches of **PubMed and Scopus**. Its documented search round was conducted in **August 2026**, combining disease terms with terms for costing, resource use, economic burden and economic evaluation. Identified publications were imported, deduplicated, screened, and data were extracted using a standardised extraction form.
+The repository draws primarily on journal articles and technical reports identified through disease-specific searches of **PubMed and Scopus**. Its documented search round was conducted in **August 2026**, combining disease terms with terms for costing, resource use, economic burden and economic evaluation. Identified publications are imported, deduplicated, screened, and data are extracted using a standardised extraction form.
 
 ### Accessing the data
 
 To run the RADAR examples now, download the [malaria summary](data/hcr-summary.xlsx), [matching malaria study records](data/hcr-studies.xlsx) and [three-disease summary](data/hcr-all-diseases.xlsx). These are dated extracts; no connection to HCR is needed to use them.
 
-To make your own selection in the HCR app:
+To explore the latest studies or download a filtered selection, open the [Health Cost Repository](https://masha-health-cost-repository.share.connect.posit.cloud).
 
 1. In **Visualisations**, select the disease, evidence type, type of cost data and publication years. **Individual Studies** is the default. Use **Download Summary Data** for the publications and chart counts.
 2. Choose **View Publications in Database** above the charts to carry that exact selection into the Database. For a country subset, select a shaded country or use **Find a Country or Territory**, then choose the button beside the map. Selecting a matrix cell opens its matching publications directly.
