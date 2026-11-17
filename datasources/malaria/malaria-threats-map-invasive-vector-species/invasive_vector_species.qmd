@@ -235,6 +235,17 @@ data |>
 
 <h2>How can this data be used in disease modelling?</h2>
 
+
+```{r, echo = FALSE}
+
+library(readxl)
+library(EnvStats)
+library(tidyverse)
+library(deSolve)
+library(ggrepel)
+
+```
+
 Data on invasive mosquito vector species can be used in a range of malaria modelling applications:
 
 -   To project the spread of disease if transmission efficiency of the invasive vector differs to the native vector, or their combined effects can inform the overall vectorial capacity in a given context.
@@ -244,4 +255,6 @@ Data on invasive mosquito vector species can be used in a range of malaria model
 This can further inform spatial risk mapping and/or be used to forecast further invasions of the species.
 
 These findings can also be used as inputs for models that evaluate intervention impact, as far as targeted vector control and changes in their effectiveness due to the presence of invasive species.
+
+
 :::

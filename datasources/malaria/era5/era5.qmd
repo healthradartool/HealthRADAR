@@ -461,7 +461,7 @@ df <- bind_rows(dfK, dfM) |>
 
 ### Changes in vector population
 
-As mentioned earlier, environmental conditions affect the parasite and mosquito development, and as such we anticipate changes in the vector population to mimic the pattern in the temperature. In this example, we assume the human population stays constant as is shown in the panel on the right. The [UN Population Data portal page](https://uct-masha.quarto.pub/healthradar/datasources/malaria/un-population/un_population.html) describes human population growth in the context of disease modelling. In this example, we assume that the human population remains constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection).
+As mentioned earlier, environmental conditions affect the parasite and mosquito development, and as such we anticipate changes in the vector population to mimic the pattern in the temperature. In this example, we assume the human population stays constant as is shown in the panel on the right. The [UN Population Data portal page](../un-population/un_population.qmd) describes human population growth in the context of disease modelling. In this example, we assume that the human population remains constant, and that humans can be exposed to and infected by an infectious mosquito while recovering from an initial infection (secondary infection).
 
 ```{r}
 

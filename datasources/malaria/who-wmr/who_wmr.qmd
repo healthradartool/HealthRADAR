@@ -391,7 +391,7 @@ estimated_data |>
 
 ### Model assumptions
 
-We assume that the vector population is at equilibrium, and that ITNs are a widely-used control intervention in Angola. For more details on how to incorporate ITNs and calculating effective coverage, see the [DHS](https://uct-masha.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. In a more complex model, we would also account for other Angola-specific interventions, such as larviciding, as well as the treatment cascade illustrated below.
+We assume that the vector population is at equilibrium, and that ITNs are a widely-used control intervention in Angola. For more details on how to incorporate ITNs and calculating effective coverage, see the [DHS](../dhs-program/dhs.qmd) page. In a more complex model, we would also account for other Angola-specific interventions, such as larviciding, as well as the treatment cascade illustrated below.
 
 ![Source: WHO (2014). From malaria control to malaria elimination: a manual for elimination scenario planning.](images/treatment_cascade.PNG)
 

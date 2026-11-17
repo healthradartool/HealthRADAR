@@ -251,7 +251,7 @@ ggplot() +
 
 We may consider the proportion of the population effectively covered by ITNs to be those with access to at least one ITN and actively using the net. In addition, the effectiveness of the nets at preventing infectious bites decreases over time as chemical efficacy drops and nets are damaged through wear and tear and considered lost. This loss is also called attrition, $attr$. The median survival time of long lasting insecticidal nets (LLINs) is considered to be three years, represented by $eta$ in the model. 
 
-For a more detailed description of the incorporation of ITNs, see the [DHS](https://jfunction.quarto.pub/healthradar/radar/datasources/malaria/dhs-program/dhs.html) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: individuals over the age of five, and children under five years old.
+For a more detailed description of the incorporation of ITNs, see the [DHS](../dhs-program/dhs.qmd) page. For this example, we use UNICEF-sourced data to inform an age-structured model in Zimbabwe, depicting two populations: individuals over the age of five, and children under five years old.
 
 ### Model assumptions
 

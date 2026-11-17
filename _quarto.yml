@@ -42,8 +42,12 @@ website:
             href: guides/entomology/entomology.qmd
 #      - text: Updates
 #        href: updates.qmd
-      - text: Contribute
-        href: contribute.qmd
+      - text: Community
+        menu:
+          - text: Code of Conduct
+            href: code-of-conduct.qmd
+          - text: Contribution Guide
+            href: contribute.qmd
       - text: Report issues
         href: issues.qmd
 

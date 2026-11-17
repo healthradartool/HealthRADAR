@@ -4,7 +4,7 @@ This README serves as a catalog and description of the origin of the files used 
 
 ## Data Files
 
-- [**PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_199101-202012_SouthernAfrica.nc**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_199101-202012_SouthernAfrica.nc):
+- [**Fig1_PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_199101-202012_SouthernAfrica.nc**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/Fig1_PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_199101-202012_SouthernAfrica.nc):
   - **Used in:** What the Data Looks Like Section
     - Fig.1 (Spatial mean rainfall map)
   - **Download:** Derived from CHIRPS v3 daily data accessed from the [Climate Hazards Center data repository](https://data.chc.ucsb.edu/products/CHIRPS/v3.0/daily/final/rnl/) using the `rnl` disaggregation product at 0.05° resolution.
@@ -14,7 +14,7 @@ This README serves as a catalog and description of the origin of the files used 
     - The mean of the annual totals over the 1991-2020 period was calculated to represent the mean annual rainfall.
     - The resulting mean annual rainfall field was saved as a NetCDF file.
 
-- [**PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_19810101-20260430_Tete.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_19810101-20260430_Tete.csv):
+- [**Fig3_PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_19810101-20260430_Tete.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/Fig3_PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_19810101-20260430_Tete.csv):
   - **Used in:** What the Data Looks Like Section
     - Fig. 3 (Daily rainfall time series plot)
   - **Download:** Derived from CHIRPS v3 daily data accessed from the [Climate Hazards Center data repository](https://data.chc.ucsb.edu/products/CHIRPS/v3.0/daily/final/rnl/) using the `rnl` disaggregation product at 0.05° resolution.
@@ -23,10 +23,10 @@ This README serves as a catalog and description of the origin of the files used 
     - The grid cell nearest to Tete city (latitude -16.137°, longitude 33.614°) was extracted using nearest-neighbour selection.
     - The daily time series was saved as a CSV file.
 
-- [**PRCPTOT_mon_CHIRPS-3.0-0p05-rnl_199101-202012_climatology_Tete.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/PRCPTOT_mon_CHIRPS-3.0-0p05-rnl_199101-202012_climatology_Tete.csv):
+- [**Fig2_PRCPTOT_mon_CHIRPS-3.0-0p05-rnl_199101-202012_climatology_Tete.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/Fig2_PRCPTOT_mon_CHIRPS-3.0-0p05-rnl_199101-202012_climatology_Tete.csv):
   - **Used in:** What the Data Looks Like Section
     - Fig. 2 (Monthly climatology plot)
-  - **Download:** Using the same source as `PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_19810101-20260430_Tete.csv` (see below).
+  - **Download:** Using the same source as `Fig3_PRCPTOT_daily_CHIRPS-3.0-0p05-rnl_19810101-20260430_Tete.csv` (see below).
   - **Processing:** The following processing steps were applied.
     - Daily values for the Tete city grid cell were resampled to monthly totals.
     - The monthly time series was subset to the 1991-2020 climatology period.
@@ -38,14 +38,14 @@ This README serves as a catalog and description of the origin of the files used 
     - Fig. 1 (mean annual rainfall anomaly by district)
     - Fig. 2 (annual rainfall time series)
     - Fig. 3 (extreme DJF seasons by district)
-  - **Download:** Downloaded directly from the [Humanitarian Data Exchange (HDX)](https://data.humdata.org/dataset/cod-ab-moz). This file contains the province-level (admin level 1) administrative boundaries for Mozambique.
+  - **Download:** Downloaded from the [Humanitarian Data Exchange (HDX)](https://data.humdata.org/dataset/cod-ab-moz), resource `moz_admin_boundaries.shp.zip` (SHP format). Note: HDX blocks scripted downloads of this resource (likely anti-scraping protection); it currently needs to be downloaded manually via a browser and placed in the processing notebook's working directory before running. This file contains the province-level (admin level 1) administrative boundaries for Mozambique.
 
 - [**moz_admbnda_adm2_district.shp**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/moz_admbnda_adm2_district.shp):
   - **Used in:** Visualisation Section
     - Fig. 1 (mean annual rainfall anomaly by district)
     - Fig. 2 (annual rainfall time series)
     - Fig. 3 (extreme DJF seasons by district)
-  - **Download:** Downloaded directly from the [Humanitarian Data Exchange (HDX)](https://data.humdata.org/dataset/cod-ab-moz). This file contains the district-level (admin level 2) administrative boundaries for Mozambique.
+  - **Download:** Downloaded from the [Humanitarian Data Exchange (HDX)](https://data.humdata.org/dataset/cod-ab-moz), resource `moz_admin_boundaries.shp.zip` (SHP format). Note: HDX blocks scripted downloads of this resource (likely anti-scraping protection); it currently needs to be downloaded manually via a browser and placed in the processing notebook's working directory before running. This file contains the district-level (admin level 2) administrative boundaries for Mozambique.
 
 - [**PRCPTOT_annual_CHIRPS-3.0-0p05-rnl_198101-202512_TeteProvince.csv**](https://github.com/healthradartool/HealthRADAR/raw/refs/heads/main/datasources/malaria/chirps/data/PRCPTOT_annual_CHIRPS-3.0-0p05-rnl_198101-202512_TeteProvince.csv):
   - **Used in:** Visualisation Section

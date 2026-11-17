@@ -1,0 +1,93 @@
+<svg id="development-workflow-root" width="808" height="460" viewBox="0 0 808 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="development-workflow-title development-workflow-desc">
+  <title id="development-workflow-title">Health RADAR development workflow</title>
+  <desc id="development-workflow-desc">A contributor branches off dev, commits and previews changes, and opens a pull request into dev; maintainers review it, sending it back if changes are needed, merge it into dev and release dev to main, which publishes the website.</desc>
+  <defs>
+    <pattern id="development-workflow-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="rgba(23,47,70,0.10)"/>
+    </pattern>
+    <marker id="development-workflow-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6a737b"/></marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#f7f9fb"/>
+  <rect width="100%" height="100%" fill="url(#development-workflow-dots)" opacity="0.55"/>
+
+  <!-- Lane dividers -->
+  <line x1="40" y1="40" x2="768" y2="40" stroke="rgba(23,47,70,0.22)" stroke-width="1"/>
+  <line x1="40" y1="152" x2="768" y2="152" stroke="rgba(23,47,70,0.10)" stroke-width="1"/>
+  <line x1="40" y1="264" x2="768" y2="264" stroke="rgba(23,47,70,0.10)" stroke-width="1"/>
+  <line x1="40" y1="376" x2="768" y2="376" stroke="rgba(23,47,70,0.22)" stroke-width="1"/>
+
+  <!-- Lane labels -->
+  <text x="40" y="58" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">CONTRIBUTOR</text>
+  <text x="40" y="170" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">MAINTAINERS</text>
+  <text x="40" y="282" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">WEBSITE</text>
+
+  <!-- Arrows (drawn before boxes) -->
+  <!-- Branch → Commit -->
+  <line x1="160" y1="96" x2="192" y2="96" stroke="#6a737b" stroke-width="1.2" marker-end="url(#development-workflow-arrow)"/>
+  <!-- Commit → Pull request -->
+  <line x1="312" y1="96" x2="344" y2="96" stroke="#6a737b" stroke-width="1.2" marker-end="url(#development-workflow-arrow)"/>
+  <!-- Pull request → Review (contributor → maintainers handoff) -->
+  <line x1="404" y1="120" x2="404" y2="184" stroke="#6a737b" stroke-width="1.2" marker-end="url(#development-workflow-arrow)"/>
+  <!-- Review → Commit (changes needed, dashed return) -->
+  <path d="M 344,208 H 260 Q 252,208 252,200 V 120" fill="none" stroke="#6a737b" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#development-workflow-arrow)"/>
+  <!-- Review → Merge -->
+  <line x1="464" y1="208" x2="496" y2="208" stroke="#6a737b" stroke-width="1.2" marker-end="url(#development-workflow-arrow)"/>
+  <!-- Merge → Release -->
+  <line x1="616" y1="208" x2="648" y2="208" stroke="#6a737b" stroke-width="1.2" marker-end="url(#development-workflow-arrow)"/>
+  <!-- Release → Site published -->
+  <line x1="708" y1="232" x2="708" y2="296" stroke="#6a737b" stroke-width="1.2" marker-end="url(#development-workflow-arrow)"/>
+
+  <!-- Arrow labels -->
+  <rect x="260" y="157" width="88" height="12" rx="2" fill="#f7f9fb"/>
+  <text x="304" y="166" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle" letter-spacing="0.12em">CHANGES NEEDED</text>
+
+  <!-- Contributor: Branch off dev -->
+  <rect x="40" y="72" width="120" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="100" y="93" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Branch off dev</text>
+  <text x="100" y="108" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">git checkout -b</text>
+
+  <!-- Contributor: Commit & preview -->
+  <rect x="192" y="72" width="120" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="252" y="93" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Commit &amp; preview</text>
+  <text x="252" y="108" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">quarto preview</text>
+
+  <!-- Contributor: Open pull request (focal) -->
+  <rect x="344" y="72" width="120" height="48" rx="6" fill="#ffffff"/>
+  <rect x="344" y="72" width="120" height="48" rx="6" fill="rgba(171,60,30,0.08)" stroke="#ab3c1e" stroke-width="1"/>
+  <text x="404" y="93" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Open pull request</text>
+  <text x="404" y="108" fill="#ab3c1e" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">base: dev</text>
+
+  <!-- Maintainers: Review -->
+  <rect x="344" y="184" width="120" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="404" y="212" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Review</text>
+
+  <!-- Maintainers: Merge into dev -->
+  <rect x="496" y="184" width="120" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="556" y="212" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Merge into dev</text>
+
+  <!-- Maintainers: Release to main -->
+  <rect x="648" y="184" width="120" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="708" y="212" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Release to main</text>
+
+  <!-- Website: Site published -->
+  <rect x="648" y="296" width="120" height="48" rx="6" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="708" y="317" fill="#172f46" font-size="12" font-weight="600" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">Site published</text>
+  <text x="708" y="332" fill="#6a737b" font-size="9" font-family="'Roboto Mono', Consolas, monospace" text-anchor="middle">healthradartool.net</text>
+
+  <!-- Legend -->
+  <line x1="40" y1="404" x2="768" y2="404" stroke="rgba(23,47,70,0.10)" stroke-width="0.8"/>
+  <text x="40" y="420" fill="#6a737b" font-size="8" font-family="'Roboto Mono', Consolas, monospace" letter-spacing="0.18em">LEGEND</text>
+
+  <rect x="40" y="432" width="14" height="10" rx="2" fill="#ffffff" stroke="#172f46" stroke-width="1"/>
+  <text x="60" y="440" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Step</text>
+
+  <rect x="112" y="432" width="14" height="10" rx="2" fill="rgba(171,60,30,0.08)" stroke="#ab3c1e" stroke-width="1"/>
+  <text x="132" y="440" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Your pull request</text>
+
+  <line x1="240" y1="437" x2="268" y2="437" stroke="#6a737b" stroke-width="1.2" marker-end="url(#development-workflow-arrow)"/>
+  <text x="276" y="440" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Next step</text>
+
+  <line x1="348" y1="437" x2="376" y2="437" stroke="#6a737b" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#development-workflow-arrow)"/>
+  <text x="384" y="440" fill="#6a737b" font-size="8.5" font-family="'Golos Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Back for changes</text>
+</svg>

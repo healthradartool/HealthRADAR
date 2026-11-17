@@ -1,0 +1,11 @@
+---
+title: "Code of Conduct"
+page-layout: article
+title-block-banner: "#EDF3F9"
+title-block-banner-color: "#212529"
+comments: false
+filters:
+  - strip-title-heading.lua
+---
+
+{{< include .github/CODE_OF_CONDUCT.md >}}
