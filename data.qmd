@@ -20,6 +20,7 @@ listing:
         - Interventions
         - Drug Resistance
         - Health Systems & Policy
+        - Health Economics
       geography:
         - Global
         - Multi-national
@@ -37,6 +38,7 @@ listing:
         - Observational / Station
         - Modelled Estimates
         - Reports & Scorecards
+        - Publications & Evidence Repositories
     sort: "date"
     type: grid
     filter-ui: [title, description, categories]
