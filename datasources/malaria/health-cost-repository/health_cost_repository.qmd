@@ -20,15 +20,11 @@ categories:
 
 ### About the data
 
-The **Health Cost Repository (HCR)** is an interactive, systematic evidence map of published economic data for **malaria, dengue and chikungunya**. It is maintained by the [Modelling and Simulation Hub, Africa (MASHA)](https://science.uct.ac.za/masha) and is intended to help researchers, policy makers and programme planners to identify studies across diseases, settings and interventions, and find sources for evidence synthesis, economic modelling and policy analysis. Additional published economic studies are regularly uploaded to the repository. Each database row describes a publication; follow its source link for the specific unit cost estimates, detailed costing methods and study context. One paper may report several costs for different populations, interventions or perspectives.
+The **Health Cost Repository (HCR)** is an interactive, systematic evidence map of published economic data for **malaria, dengue and chikungunya**. It is intended to help researchers, policy makers and programme planners to rapidly and systematically identify studies across different infectious diseases, settings and interventions, and find sources for evidence synthesis, economic modelling and policy analysis. Additional published economic studies are regularly uploaded to the repository. Each database row describes a publication; follow its source link for the specific unit cost estimates, detailed costing methods and study context. One paper may report several costs for different populations, interventions or perspectives.
 
-### How the economic studies are selected
-
-The repository draws primarily on journal articles and technical reports identified through disease-specific searches of **PubMed and Scopus**. Its documented search round was conducted in **August 2026**, combining disease terms with terms for costing, resource use, economic burden and economic evaluation. Identified publications are imported, deduplicated, screened, and data are extracted using a standardised extraction form.
+The repository draws primarily on journal articles and technical reports identified through disease-specific searches of **PubMed and Scopus**. Its documented search round was conducted in **August 2026**, combining disease-specific terms with broad economic terms. Identified publications are imported, deduplicated, screened, and data are extracted using a standardised form.
 
 ### Accessing the data
-
-To run the RADAR examples now, download the [malaria summary](data/hcr-summary.xlsx), [matching malaria study records](data/hcr-studies.xlsx) and [three-disease summary](data/hcr-all-diseases.xlsx). These are dated extracts; no connection to HCR is needed to use them.
 
 To explore the latest studies or download a filtered selection, open the [Health Cost Repository](https://masha-health-cost-repository.share.connect.posit.cloud).
 
@@ -37,6 +33,7 @@ To explore the latest studies or download a filtered selection, open the [Health
 3. In **Database**, select a title for the study context, costing details and abstract or executive summary. Open **Notes** for study notes and **Reference** for the source. Use **Download Table → Excel workbook** for study records or **Word document** for a reading list.
 
 You can also start in **Database** and filter by disease, country or WHO region, intervention, cost data collection time frame, publication type or type of cost data. The time frame here refers to collection, whereas the Visualisations slider refers to publication years. Save the release date shown on **About**, the export date and the filters with each download.
+
 
 ### What the data looks like
 
@@ -71,17 +68,13 @@ The two kinds of export serve different purposes.
 - **Transferability:** an estimate from another country or programme may require adjustment or may not be applicable. Document why each source is suitable for your question.
 - **Reporting versus Quality:** the presence of a base year or currency helps interpretation but does not establish methodological quality. Review the original methods and limitations.
 
-### Citing and reusing the data
-
-Cite HCR, record the date accessed and cite the original publication for each estimate used. Include the table or page number so another modeller can trace the input to its source.
-
 ## Visualisations
 
 ### Exploring the evidence landscape
 
-The map, country table and bar charts use **11 malaria publications** exported on **17 November 2026**. The filters were **Malaria**, **Individual Studies**, **Primary** and publication years **2021–2024**. A paper covering several countries or interventions contributes to each relevant category.
+To run the examples below, download the [malaria summary](data/hcr-summary.xlsx), [matching malaria study records](data/hcr-studies.xlsx) and [three-disease summary](data/hcr-all-diseases.xlsx).
 
-To reproduce the examples, run the code blocks in order from this page's directory in the Health RADAR project. The three workbooks are in its `data/` folder.
+The illustrated map, country table and bar charts use **11 malaria publications** exported on **17 November 2026**. The filters were **Malaria**, **Individual Studies**, **Primary** and publication years **2021–2024**. A paper covering several countries or interventions contributes to each relevant category.
 
 ```{r}
 #| label: hcr-export-setup
@@ -91,7 +84,7 @@ library(dplyr)
 library(tidyr)
 library(readxl)
 library(ggplot2)
-source("../../../theme_health_radar.R")
+source(here::here("theme_health_radar.R"))
 
 summary_file <- "data/hcr-summary.xlsx"
 # The export is already filtered to malaria and has one row per publication.
@@ -168,7 +161,7 @@ ggplot(publication_years, aes(factor(`Publication Year`), Publications)) +
 
 ### Which intervention categories are covered?
 
-The summary workbook groups interventions into broad categories. The study of seasonal malaria chemoprevention used in the Modelling tab appears under **Prevention**. The **Publications** sheet retains the more specific intervention label for finding that study.
+The summary workbook groups interventions into broad categories as shown below. In HCR, these broad categories have multiple sub-categories available for filtering.
 
 ```{r}
 #| label: fig-hcr-intervention-coverage
@@ -251,7 +244,7 @@ read_excel(all_file, sheet = "Coverage by cost data") |>
 
 ## Modelling
 
-### Costing seasonal malaria chemoprevention in Mali
+### How can this repository help in disease modelling, policy analysis and programme planning?
 
 How much would it cost a programme to deliver four monthly rounds of seasonal malaria chemoprevention (SMC) at fixed distribution points? A programme can estimate this by multiplying the number of children reached in each round by the cost of reaching one child in that round. HCR helps identify a study with the right delivery method, population and costing perspective.
 
@@ -275,7 +268,7 @@ smc_studies |>
   knitr::kable()
 ```
 
-The authors measured provider costs for a 2014 campaign in Kita that offered SMC to children aged 3 - 59 months. Their Table 5 reports an **economic cost per child reached per round**, in **2016 US dollars**. That unit matches the programme’s monthly reach. The table also reports a cost per child reached in all four rounds, which uses a different denominator. [Diawara et al. (2021), Methods and Table 5](https://pmc.ncbi.nlm.nih.gov/articles/PMC7934250/#Tab5)
+The authors measured provider costs for a 2014 campaign in Kita that offered SMC to children aged 3 - 59 months. Table 5, in the original study, reports an **economic cost per child reached per round**, in **2016 US dollars**. That unit matches the programme’s monthly reach. The table also reports a cost per child reached in all four rounds, which uses a different denominator. [Diawara et al. (2021), Methods and Table 5](https://pmc.ncbi.nlm.nih.gov/articles/PMC7934250/#Tab5)
 
 ### Apply the published costs to programme activity
 
