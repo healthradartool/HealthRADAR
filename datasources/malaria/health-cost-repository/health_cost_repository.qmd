@@ -246,8 +246,6 @@ read_excel(all_file, sheet = "Coverage by cost data") |>
 
 ### How can this repository help in disease modelling, policy analysis and programme planning?
 
-### Costing seasonal malaria chemoprevention in Mali
-
 How much would it cost a programme to deliver four monthly rounds of seasonal malaria chemoprevention (SMC) at fixed distribution points? A programme can estimate this by multiplying the number of children reached in each round by the cost of reaching one child in that round. HCR helps identify a study with the right delivery method, population and costing perspective.
 
 ### Find a matching study in HCR
