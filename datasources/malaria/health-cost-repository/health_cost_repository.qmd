@@ -244,6 +244,8 @@ read_excel(all_file, sheet = "Coverage by cost data") |>
 
 ## Modelling
 
+### How can this repository help in disease modelling, policy analysis and programme planning?
+
 ### Costing seasonal malaria chemoprevention in Mali
 
 How much would it cost a programme to deliver four monthly rounds of seasonal malaria chemoprevention (SMC) at fixed distribution points? A programme can estimate this by multiplying the number of children reached in each round by the cost of reaching one child in that round. HCR helps identify a study with the right delivery method, population and costing perspective.
@@ -268,7 +270,7 @@ smc_studies |>
   knitr::kable()
 ```
 
-The authors measured provider costs for a 2014 campaign in Kita that offered SMC to children aged 3 - 59 months. Their Table 5 reports an **economic cost per child reached per round**, in **2016 US dollars**. That unit matches the programme’s monthly reach. The table also reports a cost per child reached in all four rounds, which uses a different denominator. [Diawara et al. (2021), Methods and Table 5](https://pmc.ncbi.nlm.nih.gov/articles/PMC7934250/#Tab5)
+The authors measured provider costs for a 2014 campaign in Kita that offered SMC to children aged 3 - 59 months. Table 5, in the original study, reports an **economic cost per child reached per round**, in **2016 US dollars**. That unit matches the programme’s monthly reach. The table also reports a cost per child reached in all four rounds, which uses a different denominator. [Diawara et al. (2021), Methods and Table 5](https://pmc.ncbi.nlm.nih.gov/articles/PMC7934250/#Tab5)
 
 ### Apply the published costs to programme activity
 
