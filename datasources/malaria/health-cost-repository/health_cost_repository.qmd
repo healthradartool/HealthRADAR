@@ -1,0 +1,339 @@
+---
+title: "Health Cost Repository"
+description: "Find published economic evidence for malaria, dengue and chikungunya, and use their estimates to cost packages of interventions"
+date: 2026-11-17
+draft: false
+image: "images/HCR logo.png"
+
+categories:
+  - Health Economics
+  - Health Systems & Policy
+  - Interventions
+  - Global
+  - Country-level
+  - Publications & Evidence Repositories
+---
+
+:::: {.page-tabs .panel-tabset}
+
+## Overview
+
+### About the data
+
+The **Health Cost Repository (HCR)** is an interactive, systematic evidence map of published economic data for **malaria, dengue and chikungunya**. It is maintained by the [Modelling and Simulation Hub, Africa (MASHA)](https://science.uct.ac.za/masha) and is intended to help researchers, policy makers and programme planners to identify studies across diseases, settings and interventions, and find sources for evidence synthesis, economic modelling and policy analysis. Additional published economic studies are regularly uploaded to the repository. Each database row describes a publication; follow its source link for the specific unit cost estimates, detailed costing methods and study context. One paper may report several costs for different populations, interventions or perspectives.
+
+### How the economic studies are selected
+
+The repository draws primarily on journal articles and technical reports identified through disease-specific searches of **PubMed and Scopus**. Its documented search round was conducted in **August 2026**, combining disease terms with terms for costing, resource use, economic burden and economic evaluation. Identified publications are imported, deduplicated, screened, and data are extracted using a standardised extraction form.
+
+### Accessing the data
+
+To run the RADAR examples now, download the [malaria summary](data/hcr-summary.xlsx), [matching malaria study records](data/hcr-studies.xlsx) and [three-disease summary](data/hcr-all-diseases.xlsx). These are dated extracts; no connection to HCR is needed to use them.
+
+To explore the latest studies or download a filtered selection, open the [Health Cost Repository](https://masha-health-cost-repository.share.connect.posit.cloud).
+
+1. In **Visualisations**, select the disease, evidence type, type of cost data and publication years. **Individual Studies** is the default. Use **Download Summary Data** for the publications and chart counts.
+2. Choose **View Publications in Database** above the charts to carry that exact selection into the Database. For a country subset, select a shaded country or use **Find a Country or Territory**, then choose the button beside the map. Selecting a matrix cell opens its matching publications directly.
+3. In **Database**, select a title for the study context, costing details and abstract or executive summary. Open **Notes** for study notes and **Reference** for the source. Use **Download Table → Excel workbook** for study records or **Word document** for a reading list.
+
+You can also start in **Database** and filter by disease, country or WHO region, intervention, cost data collection time frame, publication type or type of cost data. The time frame here refers to collection, whereas the Visualisations slider refers to publication years. Save the release date shown on **About**, the export date and the filters with each download.
+
+### What the data looks like
+
+The two kinds of export serve different purposes.
+
+| Information | Examples of fields | How it helps |
+|---|---|---|
+| Publication details | Study title, author and publication year, study design, source link | Locate the publication and understand its design. |
+| Costing context | Cost collection period, base year of reported costs, reported currency | Assess the age and monetary basis of the estimates. |
+| Study context | Study setting, target population, notes | Check relevance to the population and delivery setting being modelled. |
+| Evidence classification | Disease, country, intervention, type of cost data | Available in both exports. The summary also includes Study ID and evidence type; the Database workbook adds detailed costing fields. |
+
+::: {.callout-note collapse="true" title="Data dictionary: terms that are easy to confuse"}
+
+| Term | Meaning |
+|---|---|
+| Publication year | The year the article or report was published. |
+| Date of cost data collection | When the underlying cost data were collected. This may be a period rather than a single year. |
+| Time frame | The grouping used to filter cost collection periods in the database. It is not the publication year. |
+| Base year of reported costs | The price year in which the publication expresses its costs. It may differ from both collection and publication years. |
+| Reported currency | The monetary unit used by the source. US dollars and purchasing-power-parity international dollars are different measures. |
+| Evidence type | Individual studies versus evidence syntheses, such as systematic reviews and meta-analyses. |
+| Type of cost data | Primary data collected by the researchers, previously collected secondary data, or both. This does not mean financial versus economic costs. |
+| Not Specified | The database record has no value for that field. Check the source paper for further detail. |
+
+:::
+
+### Key points to consider
+
+- **Unit of Evidence:** count publications separately from cost estimates. Multi-country and multi-intervention publications can contribute to several categories; reviews may include studies also listed individually.
+- **Comparability:** assess the intervention, delivery setting, population, perspective, cost components, currency, price year and denominator before comparing or combining estimates.
+- **Transferability:** an estimate from another country or programme may require adjustment or may not be applicable. Document why each source is suitable for your question.
+- **Reporting versus Quality:** the presence of a base year or currency helps interpretation but does not establish methodological quality. Review the original methods and limitations.
+
+### Citing and reusing the data
+
+Cite HCR, record the date accessed and cite the original publication for each estimate used. Include the table or page number so another modeller can trace the input to its source.
+
+## Visualisations
+
+### Exploring the evidence landscape
+
+The map, country table and bar charts use **11 malaria publications** exported on **17 November 2026**. The filters were **Malaria**, **Individual Studies**, **Primary** and publication years **2021–2024**. A paper covering several countries or interventions contributes to each relevant category.
+
+To reproduce the examples, run the code blocks in order from this page's directory in the Health RADAR project. The three workbooks are in its `data/` folder.
+
+```{r}
+#| label: hcr-export-setup
+#| code-summary: "Show how to read the example workbooks"
+
+library(dplyr)
+library(tidyr)
+library(readxl)
+library(ggplot2)
+source("../../../theme_health_radar.R")
+
+summary_file <- "data/hcr-summary.xlsx"
+# The export is already filtered to malaria and has one row per publication.
+publications <- read_excel(summary_file, sheet = "Publications")
+studies <- read_excel("data/hcr-studies.xlsx")
+```
+
+### Where is malaria cost evidence represented?
+
+The map shows the African countries covered by the selected publications. Grey countries have no matching publication in this export. Studies from India and Myanmar also appear in the workbook.
+
+```{r}
+#| label: fig-hcr-country-map
+#| fig-cap: "African countries covered by the selected malaria cost studies."
+#| fig-alt: "Map of Africa showing four publications covering Nigeria, three covering Uganda, and one or two each in six other countries."
+#| fig-width: 7.5
+#| fig-height: 5.4
+#| code-summary: "Show country map code"
+
+library(sf)
+countries <- read_excel(summary_file, sheet = "Countries") |>
+  filter(Disease == "Malaria")
+
+africa <- rnaturalearthdata::countries50 |>
+  filter(continent == "Africa") |>
+  left_join(countries, by = c("adm0_a3" = "ISO3"))
+
+ggplot(africa) +
+  geom_sf(aes(fill = Publications), colour = "white", linewidth = 0.25) +
+  scale_fill_gradient(low = "#a6cee3", high = "#08519c", na.value = "grey88",
+                      breaks = scales::breaks_width(1)) +
+  coord_sf(xlim = c(-26, 59), ylim = c(-36, 38), expand = FALSE) +
+  theme_health_radar() +
+  theme(axis.text = element_blank(), axis.title = element_blank(),
+        panel.grid = element_blank())
+```
+
+The Elimination 8 (E8) countries can also be read as a table. Mozambique and Zambia both appear in the same multi-country study, which is counted once in each row.
+
+```{r}
+#| label: tbl-hcr-e8
+#| tbl-cap: "Publications in the example export that cover each E8 country."
+#| code-summary: "Show E8 country table code"
+
+e8 <- tibble(Country = c("Angola", "Botswana", "Eswatini", "Mozambique",
+                         "Namibia", "South Africa", "Zambia", "Zimbabwe"))
+e8 |>
+  left_join(countries, by = c("Country" = "Country Name")) |>
+  transmute(Country, Publications = coalesce(Publications, 0)) |>
+  knitr::kable()
+```
+
+### When was the evidence published?
+
+Use publication year to describe when papers appeared. For the age of the underlying costs, use the collection period and price year recorded in the Database.
+
+```{r}
+#| label: fig-hcr-publication-years
+#| fig-cap: "Publication years of individual malaria studies in the example export."
+#| fig-alt: "Four papers were published in 2021, three in 2022, three in 2023 and one in 2024."
+#| fig-width: 7
+#| fig-height: 3.3
+#| code-summary: "Show publication year code"
+
+publication_years <- publications |>
+  count(`Publication Year`, name = "Publications")
+
+ggplot(publication_years, aes(factor(`Publication Year`), Publications)) +
+  geom_col(fill = theme_health_radar_colours[8], width = 0.65) +
+  scale_y_continuous(breaks = scales::breaks_width(1)) +
+  labs(x = "Publication year", y = "Publications") +
+  theme_health_radar()
+```
+
+### Which intervention categories are covered?
+
+The summary workbook groups interventions into broad categories. The study of seasonal malaria chemoprevention used in the Modelling tab appears under **Prevention**. The **Publications** sheet retains the more specific intervention label for finding that study.
+
+```{r}
+#| label: fig-hcr-intervention-coverage
+#| fig-cap: "Publications by HCR intervention category. A study may contribute to more than one bar."
+#| fig-alt: "Five papers address prevention and five address case management. One each addresses health system strengthening and social and behavioural change."
+#| fig-width: 7.5
+#| fig-height: 3.5
+#| code-summary: "Show intervention coverage code"
+
+interventions <- read_excel(summary_file, sheet = "Interventions") |>
+  filter(Disease == "Malaria")
+
+ggplot(interventions, aes(Publications, reorder(Intervention, Publications))) +
+  geom_col(fill = theme_health_radar_colours[1], width = 0.65) +
+  scale_x_continuous(breaks = scales::breaks_width(1)) +
+  labs(x = "Publications", y = NULL) +
+  theme_health_radar()
+```
+
+### Which interventions have cost studies across the three diseases?
+
+For this comparison, the filters were **All Diseases**, **Individual Studies**, **All Cost Data Types** and publication years **2016–2025**. The [three-disease workbook](data/hcr-all-diseases.xlsx) contains one row per paper in **Publications**, even when its Disease field lists two diseases.
+
+```{r}
+#| label: tbl-hcr-disease-counts
+#| tbl-cap: "Individual studies covering each disease, 2016–2025."
+#| code-summary: "Show how to count publications that cover more than one disease"
+
+all_file <- "data/hcr-all-diseases.xlsx"
+all_papers <- read_excel(all_file, sheet = "Publications")
+disease_counts <- all_papers |>
+  separate_rows(Disease, sep = ",\\s*") |>
+  distinct(`Study ID`, Disease) |>
+  count(Disease, name = "Publications")
+disease_counts |> knitr::kable()
+```
+
+The three counts add to **`r sum(disease_counts$Publications)`** across **`r n_distinct(all_papers[["Study ID"]])` distinct publications**. Six papers in this selection cover both dengue and chikungunya. In the matrix, a paper can also appear in more than one intervention row. Read each cell on its own: for example, **Case Management** has 26 malaria, 25 dengue and three chikungunya publications. A zero means that this selection contained no matching paper. [Download just the matrix counts (CSV)](data/hcr-disease-interventions.csv)
+
+```{r}
+#| label: fig-hcr-disease-interventions
+#| fig-cap: "Intervention coverage among individual studies published in 2016–2025."
+#| fig-alt: "Six intervention categories across three diseases. Case management and prevention have the most publications. Surveillance, monitoring and evaluation includes five dengue and two malaria publications."
+#| fig-width: 7.5
+#| fig-height: 4.5
+#| code-summary: "Show disease-by-intervention matrix code"
+
+coverage <- read_excel(all_file, sheet = "Interventions") |>
+  mutate(Disease = factor(Disease, levels = c("Malaria", "Dengue", "Chikungunya"))) |>
+  complete(Intervention, Disease, fill = list(Publications = 0))
+
+ggplot(coverage, aes(Disease, reorder(Intervention, Publications, FUN = sum))) +
+  geom_tile(aes(fill = Publications), colour = "white", linewidth = 1) +
+  geom_text(aes(label = Publications, colour = Publications > max(Publications) / 2)) +
+  scale_fill_gradient(low = "#edf6fb", high = "#083b82", guide = "none") +
+  scale_colour_manual(values = c("FALSE" = "#173853", "TRUE" = "white"), guide = "none") +
+  scale_y_discrete(labels = function(x) stringr::str_wrap(x, width = 22)) +
+  labs(x = NULL, y = NULL) +
+  theme_health_radar() +
+  theme(panel.grid = element_blank())
+```
+
+### Which prevention studies collected primary cost data?
+
+In HCR, select **Break Down by Cost Data Type** above the matrix. The same counts are in the **Coverage by Cost Data** sheet. The three categories are mutually exclusive within a cell: for dengue prevention, eight studies used primary data alone and four used both primary and secondary data. If you need studies with *any* primary data, include both groups.
+
+```{r}
+#| label: tbl-hcr-prevention-cost-data
+#| tbl-cap: "Prevention publications by disease and source of cost data."
+#| code-summary: "Show the cost-data breakdown for prevention"
+
+read_excel(all_file, sheet = "Coverage by cost data") |>
+  filter(Intervention == "Prevention") |>
+  select(-Intervention) |>
+  pivot_wider(names_from = `Cost Data Type`, values_from = Publications,
+              values_fill = 0) |>
+  select(Disease, Primary, Secondary, `Primary and Secondary`) |>
+  knitr::kable()
+```
+
+## Modelling
+
+### Costing seasonal malaria chemoprevention in Mali
+
+How much would it cost a programme to deliver four monthly rounds of seasonal malaria chemoprevention (SMC) at fixed distribution points? A programme can estimate this by multiplying the number of children reached in each round by the cost of reaching one child in that round. HCR helps identify a study with the right delivery method, population and costing perspective.
+
+### Find a matching study in HCR
+
+In **Database**, select **Malaria** as the disease and **Mali** under **Location → Country**. Under **Intervention**, follow **Prevention → Preventive Medicines → Seasonal Malaria Chemoprevention**. Open the reference for **Diawara et al. (2021)**. The Database export now includes country and intervention alongside the costing fields, so you can find the paper directly in the [study records](data/hcr-studies.xlsx).
+
+```{r}
+#| label: tbl-hcr-smc-study
+#| tbl-cap: "Costing details for the Mali SMC study identified through HCR."
+#| code-summary: "Show how to find the study in the Database export"
+
+smc_studies <- studies |>
+  separate_rows(Country, sep = ",\\s*") |>
+  filter(Country == "Mali",
+         grepl("Seasonal Malaria Chemoprevention", `Category of Intervention`))
+
+smc_studies |>
+  select(Study = `Author (Year)`, `Collection year` = `Date of Cost Data Collection`,
+         `Price year` = `Base Year of Reported Costs`, Currency = `Reported Currency`) |>
+  knitr::kable()
+```
+
+The authors measured provider costs for a 2014 campaign in Kita that offered SMC to children aged 3 - 59 months. Their Table 5 reports an **economic cost per child reached per round**, in **2016 US dollars**. That unit matches the programme’s monthly reach. The table also reports a cost per child reached in all four rounds, which uses a different denominator. [Diawara et al. (2021), Methods and Table 5](https://pmc.ncbi.nlm.nih.gov/articles/PMC7934250/#Tab5)
+
+### Apply the published costs to programme activity
+
+First, check the calculation against the study itself. Both the numbers reached and the four unit costs below come from Table 5. A child reached in two rounds contributes once to each round’s cost.
+
+```{r}
+#| label: tbl-hcr-smc-rounds
+#| tbl-cap: "Provider economic cost by round, reconstructed from the published unit costs and numbers reached in Kita. Amounts are in 2016 US dollars."
+#| code-summary: "Show the costing calculation"
+
+rounds <- tibble(
+  Round = 1:4,
+  children_reached = c(98790, 104477, 108659, 105093),
+  usd_per_child = c(0.92, 0.85, 0.82, 0.85)
+) |>
+  mutate(round_cost = children_reached * usd_per_child)
+
+rounds |>
+  select(Round, `Children reached` = children_reached,
+         `USD per child` = usd_per_child, `Cost (USD)` = round_cost) |>
+  knitr::kable(digits = c(0, 0, 2, 0), format.args = list(big.mark = ","))
+```
+
+The four reconstructed costs sum to **US$ `r format(round(sum(rounds$round_cost)), big.mark = ",")`**. The authors report **US$ 357,494** for the campaign. The small difference comes from multiplying by unit costs rounded to cents. [Diawara et al., Table 5](https://pmc.ncbi.nlm.nih.gov/articles/PMC7934250/#Tab5)
+
+For a planning example, suppose the programme expects to reach **100,000 children in each of four rounds** using the same delivery approach. Replace the activity counts with that plan and retain the study’s unit costs.
+
+```{r}
+#| label: hcr-smc-plan
+#| code-summary: "Show how to cost a planned season"
+#| output: false
+
+planned_reach <- rep(100000, 4)
+planned_cost <- sum(planned_reach * rounds$usd_per_child)
+```
+
+The estimated cost of that season is **US$ `r format(planned_cost, big.mark = ",")` in 2016 prices**, assuming similar delivery conditions and average cost per child. It values the resources used, including staff time. For a cash budget, use the study’s financial costs. For a different delivery method, price year or scale of operation, update the unit costs as well as the number of children reached.
+
+### Costing one spraying campaign for two diseases in Mexico
+
+Suppose a programme plans to spray **1,000 houses once** to control the mosquito that transmits dengue and chikungunya. In the three-disease workbook, look up Study ID `Vazquez-Prokopec_2022`. This record appears under both diseases. It describes one targeted indoor residual spraying campaign in Mérida, so the programme should cost the houses once.
+
+[Vazquez-Prokopec et al. (2022), Table 2 and Footnote 'd'](https://www.nature.com/articles/s41598-022-26577-1#Tab2) give two costs per house for the same operation. One uses the insecticide price Mexico's Ministry of Health paid; the other substitutes a Global Fund price. Both include personnel, protective equipment, sprayers, vehicles and insecticide. The authors used a 2020 exchange rate to express costs in US dollars.
+
+```{r}
+#| label: tbl-hcr-shared-campaign
+#| tbl-cap: "Illustrative cost of spraying 1,000 houses once, in the study's US dollars."
+#| code-summary: "Show the two procurement scenarios"
+
+houses_sprayed <- 1000
+tibble(
+  `Insecticide price` = c("Mexico Ministry of Health", "Global Fund scenario"),
+  `USD per house` = c(10.45, 4.23)
+) |>
+  mutate(`Campaign cost (USD)` = houses_sprayed * `USD per house`) |>
+  knitr::kable(digits = c(0, 2, 0), format.args = list(big.mark = ","))
+```
+
+Choose the price scenario that fits the programme. The two totals are alternatives for the same campaign. A model can track benefits for each disease separately while entering this shared cost once.
+
+::::
